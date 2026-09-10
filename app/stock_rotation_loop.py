@@ -32,11 +32,13 @@ import pandas as pd
 from app.kis_auth import issue_token
 from app.kis_ohlcv_cache import cached_ohlcv
 from app.stock_rotation_state import load_state, log_event, now_iso, save_state
+from app.trading_control import read_command
 
 MARKET = os.environ.get("ROTATION_MARKET", "KR").upper()
+BOT_ID = "kr-rotation" if MARKET == "KR" else "us-rotation"
 TOP_K = int(os.environ.get("ROTATION_TOP_K", "8"))
 REGIME = os.environ.get("ROTATION_REGIME", "ew_sma200")
-LOOP_SLEEP_SECONDS = int(os.environ.get("ROTATION_LOOP_SLEEP_SECONDS", "60"))
+LOOP_SLEEP_SECONDS = int(os.environ.get("ROTATION_LOOP_SLEEP_SECONDS", "10"))
 TOKEN_TTL_SECONDS = 12 * 3600
 HISTORY_SINCE = "2018-01-01"
 
@@ -245,20 +247,20 @@ def _market_today() -> dt.date:
     return dt.datetime.now(TZ).date()
 
 
-def plan_rebalance(token: str, state: dict) -> None:
+def plan_rebalance(token: str, state: dict, force: bool = False) -> None:
     today = _market_today().isoformat()
-    if state.get("last_plan_date") == today:
+    if not force and state.get("last_plan_date") == today:
         return
 
     last_rb = state.get("last_rebalance_date")
-    if last_rb:
+    if not force and last_rb:
         gap = (_market_today() - dt.date.fromisoformat(last_rb)).days
         if gap < REBAL_DAYS:
             state["last_plan_date"] = today
             save_state(state)
             return
 
-    log_event(state, f"[{MARKET}] 리밸런스 계획 — 룩백 {LOOKBACK}일, top {TOP_K}, 레짐 {REGIME}")
+    log_event(state, f"[{MARKET}] 리밸런스 계획{' (수동)' if force else ''} — 룩백 {LOOKBACK}일, top {TOP_K}, 레짐 {REGIME}")
     closes = _load_closes(token)
     if closes.empty:
         log_event(state, f"[{MARKET}] 시세 캐시 비어 계획 보류")
@@ -276,6 +278,10 @@ def plan_rebalance(token: str, state: dict) -> None:
     state["regime_cash"] = regime_cash
     state["last_plan_date"] = today
     state["symbol_names"] = _NAMES
+    # 새 계획이 섰으면 수동 정지 해제 — 큐 소비하며 재진입한다.
+    state["manual_flat"] = False
+    state["manual_flat_pending"] = False
+    state["manual_flat_ts"] = None
     log_event(state, f"[{MARKET}] 계획 완료 — 목표 {target or '전액현금'} / "
                      f"매도 {state['pending_sells']} / 매수 {state['pending_buys']}")
     save_state(state)
@@ -302,6 +308,9 @@ def _record_equity(token: str, state: dict, snap: dict | None = None) -> None:
         "account_cash_krw": snap["account_cash_krw"],
         "account_total_krw": snap["account_total_krw"],
     }
+    state["broker"]["manual_flat"] = bool(state.get("manual_flat", False))
+    state["broker"]["manual_flat_pending"] = bool(state.get("manual_flat_pending", False))
+    state["broker"]["manual_flat_ts"] = state.get("manual_flat_ts")
     state["held_symbols"] = sorted(snap["held"])
     state["unrealized_pnl"] = unrealized
     state["equity"] = strategy_equity
@@ -387,6 +396,49 @@ def consume_queue(token: str, state: dict) -> None:
     _ = did_something
 
 
+def _in_order_window(now: dt.datetime) -> bool:
+    return now.weekday() < 5 and ORDER_WINDOW[0] <= now.time() <= ORDER_WINDOW[1]
+
+
+def _flatten_now(token: str, state: dict) -> None:
+    """보유 전량을 매도 큐에 넣고 즉시 소비한다(장중 전제)."""
+    held = _held(token)
+    state["pending_buys"] = []
+    state["target_basket"] = []
+    if not held:
+        state["pending_sells"] = []
+        return
+    state["pending_sells"] = sorted(held)
+    log_event(state, f"[{MARKET}] 수동 즉시 매도 — {sorted(held)} 처분")
+    consume_queue(token, state)
+
+
+def _handle_control(token: str, state: dict, cmd: dict, now: dt.datetime) -> None:
+    if state.get("consumed_control_nonce") == cmd["nonce"]:
+        return
+    try:
+        if cmd["cmd"] == "flatten":
+            state["manual_flat"] = True
+            state["manual_flat_ts"] = now_iso()
+            if _in_order_window(now):
+                _flatten_now(token, state)
+                state["manual_flat_pending"] = bool(state.get("pending_sells"))
+            else:
+                state["manual_flat_pending"] = True
+                log_event(state, f"[{MARKET}] 수동 청산 명령 — 장 마감 중, 다음 개장 시 실행 대기")
+        elif cmd["cmd"] == "enter":
+            plan_rebalance(token, state, force=True)  # state 를 제자리 변경
+            state["manual_flat"] = False
+            state["manual_flat_pending"] = False
+            state["manual_flat_ts"] = None
+            log_event(state, f"[{MARKET}] 수동 즉시 진입 — 현 시점 랭킹으로 목표 재계산, 매수 큐 적재 "
+                             f"(장중이면 이번 사이클, 장외면 개장 시 체결)")
+    except Exception as exc:  # noqa: BLE001
+        log_event(state, f"[{MARKET}] 수동 명령 '{cmd['cmd']}' 실패: {exc}")
+    state["consumed_control_nonce"] = cmd["nonce"]
+    save_state(state)
+
+
 def main() -> None:
     state = load_state()
     log_event(state, f"[{MARKET}] 로테이션 페이퍼봇 시작 — 룩백 {LOOKBACK}/리밸 {REBAL_DAYS}일/"
@@ -404,6 +456,24 @@ def main() -> None:
                 token_at = time.monotonic()
 
             now = dt.datetime.now(TZ)
+
+            # 수동 제어 명령 (즉시 매도 / 즉시 진입)
+            cmd = read_command(BOT_ID)
+            if cmd:
+                state = load_state()
+                if state.get("consumed_control_nonce") != cmd["nonce"]:
+                    _handle_control(token, state, cmd, now)
+
+            # 장 마감 중 접수한 청산 명령 — 개장하면 실행
+            state = load_state()
+            if state.get("manual_flat_pending") and _in_order_window(now):
+                _flatten_now(token, state)
+                if not state.get("pending_sells"):
+                    state["manual_flat_pending"] = False
+                _record_equity(token, state)
+                save_state(state)
+                last_snapshot = time.monotonic()
+
             if now.weekday() < 5:
                 if ORDER_WINDOW[0] <= now.time() <= ORDER_WINDOW[1]:
                     state = load_state()

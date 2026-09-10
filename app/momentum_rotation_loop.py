@@ -17,7 +17,10 @@ import pandas as pd
 from app.crypto_tick_state import load_state as load_tick_state
 from app.futures_data import fetch_perp_ohlcv
 from app.momentum_state import load_state, log_event, now_iso, save_state
+from app.trading_control import read_command
 from app.watchdog import run_with_timeout
+
+BOT_ID = "momentum-rotation"
 
 # crypto_tick_stream.py가 이 시간 안에 갱신한 선물 체결틱이 있으면 REST fetch_ticker 대신 씀.
 _TICK_STALE_SECONDS = 90
@@ -52,8 +55,10 @@ REBALANCE_EVERY_DAYS = int(os.environ.get("MOMENTUM_ROTATION_REBALANCE_DAYS", "3
 TOP_K = int(os.environ.get("MOMENTUM_ROTATION_TOP_K", "8"))
 COMMISSION_PCT = 0.04  # 편도, 리밸런스 회전분에만 적용(백테스트와 동일 가정)
 START_CAPITAL_USDT = float(os.environ.get("MOMENTUM_ROTATION_START_CAPITAL_USDT", "10000"))
-CHECK_INTERVAL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CHECK_INTERVAL_SECONDS", "1800"))
+CHECK_INTERVAL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CHECK_INTERVAL_SECONDS", "120"))
 CYCLE_TIMEOUT_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CYCLE_TIMEOUT_SECONDS", "300"))
+# 수동 제어(즉시 매도/진입) 명령 폴링 주기 — 무거운 사이클과 분리해 거의 틱단위로 반응한다.
+CONTROL_POLL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CONTROL_POLL_SECONDS", "5"))
 SINCE_DAYS_FOR_MOMENTUM = LOOKBACK_DAYS + 10
 
 # --- 실거래 설정 ---
@@ -283,6 +288,17 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         last = datetime.fromisoformat(state["last_rebalance_ts"])
         due = datetime.now(timezone.utc) - last >= timedelta(days=REBALANCE_EVERY_DAYS)
 
+    # 수동 정지(즉시 매도) 중이면 flat 유지 — 자동 재진입은 정기 리밸런스 시각에만.
+    if state.get("manual_flat"):
+        if due:
+            log_event(state, "[LIVE] 수동 정지 중 정기 리밸런스 시각 도달 — 자동 재진입")
+            state["manual_flat"] = False
+            state["manual_flat_ts"] = None
+        else:
+            state["positions"] = {}
+            state["unrealized_pnl_usdt"] = 0.0
+            return
+
     if due:
         _rebalance_live(state, prices, eff_lev)
     else:
@@ -293,6 +309,78 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
             for b, p in positions.items()
         }
         state["unrealized_pnl_usdt"] = sum(p["unrealized_pnl"] for p in positions.values())
+
+
+def _manual_flatten(state: dict) -> None:
+    """즉시 전량 청산 → flat 정지. 자동 재진입은 진입 버튼 또는 다음 정기 리밸런스 시각까지 안 함."""
+    if LIVE:
+        from app.momentum_rotation_exec import account_equity_usdt, exec_client, flatten_all
+        client = exec_client(EXCHANGE_MODE)
+        owned = set(state.get("positions", {}))
+        flatten_all(client, lambda m: log_event(state, m), owned=owned)
+        equity = account_equity_usdt(client)
+        state["equity_usdt"] = equity
+    else:
+        unrealized = sum(p.get("unrealized_pnl_usdt", 0.0) for p in state.get("positions", {}).values())
+        state["cumulative_realized_pnl_usdt"] = state.get("cumulative_realized_pnl_usdt", 0.0) + unrealized
+        equity = (START_CAPITAL_USDT + state["cumulative_realized_pnl_usdt"]
+                  - state.get("cumulative_fee_usdt", 0.0))
+        state["equity_usdt"] = equity
+
+    state["positions"] = {}
+    state["unrealized_pnl_usdt"] = 0.0
+    state["manual_flat"] = True
+    state["manual_flat_ts"] = now_iso()
+    state["manual_flat_equity_usdt"] = equity
+    log_event(state, f"[수동] 즉시 전량 청산 — equity {equity:,.2f} USDT. 자동 재진입 정지 "
+                     f"(진입 버튼 또는 다음 리밸런스 시각까지 flat).")
+
+
+def _manual_enter(state: dict, prices: dict[str, float]) -> None:
+    """즉시 진입 — 현 시점 모멘텀 랭킹으로 롱숏 재구성. 리밸런스 타이머는 지금부터 다시 센다."""
+    if LIVE:
+        from app.momentum_rotation_exec import account_equity_usdt, exec_client
+        if state.get("halted"):
+            log_event(state, "[수동] 진입 거부 — halted 상태. MOMENTUM_ROTATION_RESET_HALT=true 로 재기동 필요.")
+            return
+        client = exec_client(EXCHANGE_MODE)
+        equity = account_equity_usdt(client)
+        hwm = max(float(state.get("hwm_usdt") or equity), equity)
+        dd = 1.0 - equity / hwm if hwm > 0 else 0.0
+        eff_lev = 1 if (dd >= DELEVER_DD and LEVERAGE > 1) else LEVERAGE
+        _rebalance_live(state, prices, eff_lev)
+    else:
+        _rebalance(state, prices)
+
+    state["manual_flat"] = False
+    state["manual_flat_ts"] = None
+    log_event(state, "[수동] 즉시 진입 실행 — 현 시점 랭킹으로 롱숏 재구성, 리밸런스 타이머 리셋.")
+
+
+def handle_control(cmd: dict) -> bool:
+    """제어 명령 1건 처리. 처리(성공/실패 확정)했으면 True, 나중에 재시도할 거면 False."""
+    state = load_state()
+    if state.get("consumed_control_nonce") == cmd["nonce"]:
+        return True
+    try:
+        if cmd["cmd"] == "flatten":
+            _manual_flatten(state)
+        elif cmd["cmd"] == "enter":
+            prices = _fetch_current_prices()
+            if not prices:
+                log_event(state, "[수동] 진입 명령 — 시세 조회 실패, 다음 틱에 재시도")
+                save_state(state)
+                return False
+            _manual_enter(state, prices)
+    except Exception as exc:  # noqa: BLE001
+        import traceback
+        log_event(state, f"[수동] 명령 '{cmd['cmd']}' 실행 실패: {exc}")
+        traceback.print_exc()
+        # 실패해도 nonce 소비 — 무한 재시도 방지. 사용자가 다시 누르면 새 nonce.
+    state["consumed_control_nonce"] = cmd["nonce"]
+    _stamp_rebalance_schedule(state)
+    save_state(state)
+    return True
 
 
 def _stamp_rebalance_schedule(state: dict) -> None:
@@ -336,6 +424,8 @@ def run_cycle() -> None:
             "hwm_usdt": state.get("hwm_usdt", 0.0),
             "leverage": LEVERAGE,
             "halted": bool(state.get("halted", False)),
+            "manual_flat": bool(state.get("manual_flat", False)),
+            "manual_flat_ts": state.get("manual_flat_ts"),
             "positions": state.get("positions", {}),
         }
         state["mode"] = "live"
@@ -357,7 +447,22 @@ def run_cycle() -> None:
         last = datetime.fromisoformat(state["last_rebalance_ts"])
         due = datetime.now(timezone.utc) - last >= timedelta(days=REBALANCE_EVERY_DAYS)
 
-    if due:
+    if state.get("manual_flat"):
+        if due:
+            log_event(state, "수동 정지 중 정기 리밸런스 시각 도달 — 자동 재진입")
+            state["manual_flat"] = False
+            state["manual_flat_ts"] = None
+        else:
+            due = False  # flat 유지
+
+    if state.get("manual_flat"):
+        state["positions"] = {}
+        state["unrealized_pnl_usdt"] = 0.0
+        state["equity_usdt"] = (
+            START_CAPITAL_USDT + state.get("cumulative_realized_pnl_usdt", 0.0)
+            - state.get("cumulative_fee_usdt", 0.0)
+        )
+    elif due:
         _rebalance(state, prices)
     else:
         unrealized = _mark_to_market(state, prices)
@@ -390,20 +495,33 @@ def run_cycle() -> None:
 def main() -> None:
     _mode = f"실거래:{EXCHANGE_MODE} {LEVERAGE}x" if LIVE else "페이퍼(백테스트)"
     print(f"모멘텀 로테이션 루프 시작 [{_mode}] — 룩백 {LOOKBACK_DAYS}일/리밸런스 {REBALANCE_EVERY_DAYS}일/"
-          f"상하위 {TOP_K}개, 사이클 {CHECK_INTERVAL_SECONDS}초", flush=True)
+          f"상하위 {TOP_K}개, 모니터링 {CHECK_INTERVAL_SECONDS}초/제어폴링 {CONTROL_POLL_SECONDS}초", flush=True)
+    last_full = 0.0
     while True:
         try:
-            run_with_timeout(
-                run_cycle, CYCLE_TIMEOUT_SECONDS,
-                on_timeout=lambda: print(
-                    f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
-                ),
-            )
+            # 1) 빠른 폴링: 수동 제어 명령(즉시 매도/진입)
+            cmd = read_command(BOT_ID)
+            if cmd:
+                state = load_state()
+                already = state.get("consumed_control_nonce") == cmd["nonce"]
+                del state
+                if not already and handle_control(cmd):
+                    last_full = 0.0  # 즉시 전체 사이클 1회 → 대시보드 스냅샷 갱신
+
+            # 2) 주기 실행: 무거운 모니터링/리밸런스 사이클
+            if time.monotonic() - last_full >= CHECK_INTERVAL_SECONDS:
+                run_with_timeout(
+                    run_cycle, CYCLE_TIMEOUT_SECONDS,
+                    on_timeout=lambda: print(
+                        f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
+                    ),
+                )
+                last_full = time.monotonic()
         except Exception:
             import traceback
-            print("사이클 실행 중 오류 발생:", flush=True)
+            print("루프 사이클 중 오류 발생:", flush=True)
             traceback.print_exc()
-        time.sleep(CHECK_INTERVAL_SECONDS)
+        time.sleep(CONTROL_POLL_SECONDS)
 
 
 if __name__ == "__main__":

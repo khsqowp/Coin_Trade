@@ -25,6 +25,11 @@ _DEFAULT_STATE = {
     "next_rebalance_ts": None,  # 대시보드 카운트다운용 — momentum_rotation_loop 이 매 사이클 갱신
     "rebalance_every_days": None,
     "equity_history": [],
+    # --- 수동 제어 (즉시 매도 / 즉시 진입) ---
+    "manual_flat": False,        # True면 전량 청산 상태로 정지, 자동 재진입 안 함
+    "manual_flat_ts": None,      # 마지막 수동 청산 시각
+    "manual_flat_equity_usdt": None,  # 수동 청산 시점 equity 스냅샷 (재량판단 성과 추적용)
+    "consumed_control_nonce": None,   # 마지막으로 처리한 제어 명령 nonce (재실행 방지)
 }
 
 

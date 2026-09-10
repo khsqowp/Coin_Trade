@@ -27,6 +27,11 @@ _DEFAULT_STATE = {
     "trade_log": [],
     "equity_history": [],        # [{ts, total_pnl, equity}]
     "position_history": {},      # {symbol: [{ts, price, unrealized_pnl}]}
+    # --- 수동 제어 (즉시 매도 / 즉시 진입) ---
+    "manual_flat": False,        # True면 전량 매도 상태로 정지, 자동 재진입 안 함
+    "manual_flat_ts": None,
+    "manual_flat_pending": False,  # 장 마감 중 청산 명령 — 다음 개장 때 실행 대기
+    "consumed_control_nonce": None,
 }
 
 
