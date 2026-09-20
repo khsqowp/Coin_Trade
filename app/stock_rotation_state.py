@@ -32,6 +32,10 @@ _DEFAULT_STATE = {
     "manual_flat_ts": None,
     "manual_flat_pending": False,  # 장 마감 중 청산 명령 — 다음 개장 때 실행 대기
     "consumed_control_nonce": None,
+    # --- 봇 헬스 (KIS 모의투자 서버 연결 불안정 감지용) ---
+    "consecutive_cycle_failures": 0,  # 연속으로 실패한 루프 사이클 수, 한 번이라도 성공하면 0으로 리셋
+    "last_cycle_error": None,         # 마지막 실패 사유 문자열
+    "last_cycle_error_ts": None,      # 마지막 실패 시각
 }
 
 

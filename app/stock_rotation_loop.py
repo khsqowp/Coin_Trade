@@ -497,9 +497,20 @@ def main() -> None:
                 _record_equity(token, state)
                 save_state(state)
                 last_snapshot = time.monotonic()
+
+            if state.get("consecutive_cycle_failures"):
+                state["consecutive_cycle_failures"] = 0
+                save_state(state)
         except Exception as exc:  # noqa: BLE001
             state = load_state()
-            log_event(state, f"[{MARKET}] 루프 사이클 실패: {exc}")
+            failures = state.get("consecutive_cycle_failures", 0) + 1
+            state["consecutive_cycle_failures"] = failures
+            state["last_cycle_error"] = str(exc)
+            state["last_cycle_error_ts"] = now_iso()
+            # 연결 문제가 오래 이어지면(30회 ≈ 5분) 매번 로그를 남겨 노이즈를 만드는 대신
+            # 처음 발생 시점과 이후 30회 단위로만 남긴다 — 대시보드 배지가 실시간 카운트를 보여준다.
+            if failures == 1 or failures % 30 == 0:
+                log_event(state, f"[{MARKET}] 루프 사이클 실패(연속 {failures}회): {exc}")
             save_state(state)
 
         time.sleep(LOOP_SLEEP_SECONDS)

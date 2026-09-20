@@ -26,14 +26,28 @@ def app_credentials() -> tuple[str, str]:
 
 
 def throttled_request(method: str, url: str, max_retries: int = 4, timeout: int = 15, **kwargs) -> requests.Response:
-    """KIS 호출 전 최소 간격을 강제하고, 초당 거래건수 제한 응답이면 대기 후 재시도한다."""
+    """KIS 호출 전 최소 간격을 강제하고, 초당 거래건수 제한 응답이면 대기 후 재시도한다.
+
+    모의투자 서버(특히 해외주식 엔드포인트)는 DNS 실패/connect·read 타임아웃이 실측상
+    매우 잦다(재시도 없이는 미장 봇이 인셉션 이후 단 한 번도 체결에 성공 못 한 사례 있음).
+    requests 예외는 원래 여기서 잡지 않고 그대로 던져 호출부(한 사이클) 전체를 죽였는데,
+    순간적인 네트워크 문제일 뿐인 경우가 대부분이라 요율제한 응답과 같은 백오프로 재시도한다.
+    """
     global _last_request_monotonic
-    response: requests.Response | None = None
+    last_exc: requests.exceptions.RequestException | None = None
     for attempt in range(max_retries):
         wait = _MIN_REQUEST_INTERVAL_SECONDS - (time.monotonic() - _last_request_monotonic)
         if wait > 0:
             time.sleep(wait)
-        response = requests.request(method, url, timeout=timeout, **kwargs)
+        try:
+            response = requests.request(method, url, timeout=timeout, **kwargs)
+        except requests.exceptions.RequestException as exc:
+            _last_request_monotonic = time.monotonic()
+            last_exc = exc
+            if attempt < max_retries - 1:
+                time.sleep(2 * (attempt + 1))
+                continue
+            raise
         _last_request_monotonic = time.monotonic()
         try:
             body = response.json()
@@ -43,18 +57,23 @@ def throttled_request(method: str, url: str, max_retries: int = 4, timeout: int 
             time.sleep(2 * (attempt + 1))
             continue
         return response
-    return response  # type: ignore[return-value]
+    raise last_exc  # type: ignore[misc]
 
 
-def issue_token(max_retries: int = 3) -> str:
+def issue_token(max_retries: int = 5) -> str:
     app_key, app_secret = app_credentials()
     last_error: Exception | None = None
     for attempt in range(max_retries):
-        resp = requests.post(
-            f"{VTS_BASE_URL}/oauth2/tokenP",
-            json={"grant_type": "client_credentials", "appkey": app_key, "appsecret": app_secret},
-            timeout=10,
-        )
+        try:
+            resp = requests.post(
+                f"{VTS_BASE_URL}/oauth2/tokenP",
+                json={"grant_type": "client_credentials", "appkey": app_key, "appsecret": app_secret},
+                timeout=10,
+            )
+        except requests.exceptions.RequestException as exc:
+            last_error = exc
+            time.sleep(3)
+            continue
         if resp.status_code == 200:
             return resp.json()["access_token"]
         last_error = RuntimeError(f"token issue failed: {resp.status_code} {resp.text}")
