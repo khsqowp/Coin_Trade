@@ -65,8 +65,11 @@ SINCE_DAYS_FOR_MOMENTUM = LOOKBACK_DAYS + 10
 LIVE = os.environ.get("MOMENTUM_ROTATION_LIVE", "false").lower() == "true"
 EXCHANGE_MODE = os.environ.get("MOMENTUM_ROTATION_EXCHANGE", "testnet")  # testnet | mainnet
 LEVERAGE = int(os.environ.get("MOMENTUM_ROTATION_LEVERAGE", "1"))
-# 안전 상한: 선물지갑에 이보다 많이 들어있어도 이 금액까지만 굴린다(0 = 무제한).
+# 안전 상한(절대 USDT, 선택): 선물지갑에 이보다 많이 들어있어도 이 금액까지만 굴린다(0 = 비활성).
 MAX_DEPLOY_USDT = float(os.environ.get("MOMENTUM_ROTATION_MAX_DEPLOY_USDT", "0"))
+# 배치 비율(선택): equity 의 이 비율까지만 굴린다(0 = 비활성, 1.0 = 전액). MAX_DEPLOY_USDT 와 같이
+# 켜져 있으면 둘 다 적용해 더 작은 쪽을 쓴다 — 잔고가 늘어나도 절대 상한을 넘지 않게 하는 이중 안전장치.
+DEPLOY_PCT = float(os.environ.get("MOMENTUM_ROTATION_DEPLOY_PCT", "0"))
 DELEVER_DD = float(os.environ.get("MOMENTUM_ROTATION_DELEVER_DD", "0.20"))
 KILL_DD = float(os.environ.get("MOMENTUM_ROTATION_KILL_DD", "0.35"))
 RESET_HALT = os.environ.get("MOMENTUM_ROTATION_RESET_HALT", "false").lower() == "true"
@@ -191,15 +194,19 @@ def _rebalance(state: dict, prices: dict[str, float]) -> None:
     )
 
 
-def _target_sides() -> dict[str, str] | None:
-    """모멘텀 랭킹 → {base: 'long'|'short'}. 데이터 부족이면 None."""
+def _target_sides() -> tuple[dict[str, str], dict[str, float]] | None:
+    """모멘텀 랭킹 → ({base: 'long'|'short'}, {base: 모멘텀 점수}). 데이터 부족이면 None.
+    점수도 같이 반환하는 이유: 방향(롱/숏)만 남기면 나중에 "모멘텀 점수가 높을수록 실제로도 수익이
+    났는가"를 검증할 수 없다 — entry_log 에 점수를 같이 남겨야 바이낸스 실현손익 이력과 대조해서
+    진짜 데이터로 선정 로직을 조정할 근거가 쌓인다(지금 하루치로 조정하면 과최적화라 일단 기록만)."""
     momentum = _fetch_momentum_ranking()
     if len(momentum) < TOP_K * 2:
         return None
     ranked = momentum.sort_values(ascending=False)
     targets = {b: "long" for b in ranked.index[:TOP_K]}
     targets.update({b: "short" for b in ranked.index[-TOP_K:]})
-    return targets
+    scores = {b: float(ranked[b]) for b in targets}
+    return targets, scores
 
 
 def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None:
@@ -207,11 +214,21 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
 
     client = exec_client(EXCHANGE_MODE)
     equity = account_equity_usdt(client)
-    deploy = min(equity, MAX_DEPLOY_USDT) if MAX_DEPLOY_USDT > 0 else equity
-    targets = _target_sides()
-    if targets is None:
+    deploy = equity
+    if DEPLOY_PCT > 0:
+        deploy = min(deploy, equity * DEPLOY_PCT)
+    if MAX_DEPLOY_USDT > 0:
+        deploy = min(deploy, MAX_DEPLOY_USDT)
+    ranking = _target_sides()
+    if ranking is None:
         log_event(state, "모멘텀 데이터 부족 — 이번 리밸런스 건너뜀")
         return
+    targets, scores = ranking
+    no_price = {b: s for b, s in targets.items() if not prices.get(b)}
+    if no_price:
+        log_event(state, f"[LIVE:{EXCHANGE_MODE}] 시세없음으로 제외: "
+                         f"{[f'{b}/{s}' for b, s in no_price.items()]} — 목표 {len(targets)}종목 중 "
+                         f"{len(no_price)}개 스킵, 실제 진입시도 {len(targets) - len(no_price)}종목")
     targets = {b: s for b, s in targets.items() if prices.get(b)}
 
     # gross = deploy * eff_lev, 롱/숏 반반, 포지션당 균등
@@ -227,14 +244,57 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
     managed = set(targets) | owned
     positions = {b: p for b, p in all_positions.items() if b in managed}
     state["positions"] = {
-        b: {"side": p["side"], "entry_price": p["entry_price"],
+        b: {"side": p["side"], "entry_price": p["entry_price"], "mark_price": p["mark_price"],
             "notional_usdt": p["notional"], "unrealized_pnl_usdt": p["unrealized_pnl"]}
         for b, p in positions.items()
     }
     state["last_rebalance_ts"] = now_iso()
     state["equity_usdt"] = equity
+    # 이 함수는 정기(2~3일) 자동 리밸런스와 수동 "지금 진입" 양쪽에서 공통으로 호출되는 유일한 진입점이다
+    # — 트리거가 뭐였든 여기서 세션(마지막 리밸런스 이후 손익)을 항상 새로 시작한다.
+    state["session_start_equity_usdt"] = equity
+    state["session_start_ts"] = state["last_rebalance_ts"]
+
+    # 진입 시점 모멘텀 점수를 남겨둔다 — 지금 당장 선정 로직을 바꾸진 않지만(하루치로는 과최적화),
+    # 나중에 바이낸스 실현손익 이력(심볼+시각으로 대조 가능)과 합쳐서 "점수 높을수록 실제 수익도
+    # 컸는가"를 진짜 데이터로 검증할 근거가 쌓인다. 무한정 커지지 않게 최근 4000건만 유지한다
+    # (2일 주기 리밸런스 기준 대략 몇 년치 분량).
+    entry_log = state.setdefault("entry_log", [])
+    for b, p in state["positions"].items():
+        entry_log.append({
+            "ts": state["last_rebalance_ts"], "symbol": b, "side": p["side"],
+            "momentum_score": scores.get(b), "entry_price": p["entry_price"],
+            "notional_usdt": p["notional_usdt"],
+        })
+    if len(entry_log) > 4000:
+        state["entry_log"] = entry_log[-4000:]
     log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 완료 — 진입 {result['opened']}, 청산 {result['closed']}, "
                      f"스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
+
+
+def _apply_external_transfers(state: dict, client) -> None:
+    """스팟↔선물 지갑 이체(입출금)는 매매손익이 아니다 — 그런데 이걸 구분 안 하면 equity 가 그만큼
+    뛰거나 떨어질 때 전부 "수익"·"손실"로 잡혀버린다(실제로 2026-09-16 겪은 버그: 74 USDT 이체를
+    +100%대 수익률로 표시). 바이낸스 선물 income 이력의 incomeType=TRANSFER 가 곧 입출금 기록이라,
+    매 사이클 마지막 확인 이후 새로 생긴 이체를 찾아 inception/session 베이스라인과 hwm 을 그만큼
+    같이 밀어준다 — 그러면 이후 계산되는 수익률은 순수하게 매매 성과만 반영한다.
+    """
+    last_ms = int(state.get("last_transfer_check_ms") or 0)
+    try:
+        rows = client.fapiPrivateGetIncome({"incomeType": "TRANSFER", "startTime": last_ms + 1, "limit": 1000})
+    except Exception as exc:  # noqa: BLE001
+        log_event(state, f"[LIVE] 입출금 이력 조회 실패(다음 사이클 재시도): {exc}")
+        return
+    if not rows:
+        return
+    state["last_transfer_check_ms"] = max(int(r["time"]) for r in rows)
+    net = sum(float(r["income"]) for r in rows)
+    if net == 0:
+        return
+    for key in ("inception_equity_usdt", "session_start_equity_usdt", "hwm_usdt"):
+        if state.get(key) is not None:
+            state[key] = float(state[key]) + net
+    log_event(state, f"[LIVE] 지갑 이체 감지: {net:+.2f} USDT — 입출금은 손익이 아니라서 수익률 베이스라인을 그만큼 같이 옮김")
 
 
 def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
@@ -247,7 +307,11 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         state["inception_ts"] = now_iso()
         state["hwm_usdt"] = equity
         state["inception_equity_usdt"] = equity
+        # 이 시점 이전 이체는 이미 관측된 inception 잔고에 녹아있으니 재적용하면 안 된다 — 지금부터만 추적.
+        state["last_transfer_check_ms"] = int(time.time() * 1000)
         log_event(state, f"[LIVE:{EXCHANGE_MODE}] 실거래 루프 시작 — equity {equity:.2f} USDT, 기준배율 {LEVERAGE}x")
+
+    _apply_external_transfers(state, client)
 
     if RESET_HALT and state.get("halted"):
         state["halted"] = False
@@ -304,7 +368,7 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
     else:
         positions = {b: p for b, p in all_positions.items() if b in owned}
         state["positions"] = {
-            b: {"side": p["side"], "entry_price": p["entry_price"],
+            b: {"side": p["side"], "entry_price": p["entry_price"], "mark_price": p["mark_price"],
                 "notional_usdt": p["notional"], "unrealized_pnl_usdt": p["unrealized_pnl"]}
             for b, p in positions.items()
         }
@@ -317,7 +381,7 @@ def _manual_flatten(state: dict) -> None:
         from app.momentum_rotation_exec import account_equity_usdt, exec_client, flatten_all
         client = exec_client(EXCHANGE_MODE)
         owned = set(state.get("positions", {}))
-        flatten_all(client, lambda m: log_event(state, m), owned=owned)
+        flatten_all(client, lambda m: log_event(state, m), owned=owned, tag="수동청산")
         equity = account_equity_usdt(client)
         state["equity_usdt"] = equity
     else:
@@ -410,6 +474,21 @@ def run_cycle() -> None:
         inception_equity = float(state.get("inception_equity_usdt") or state["equity_usdt"])
         total_pnl = state["equity_usdt"] - inception_equity
         gross_notional = sum(abs(p.get("notional_usdt", 0.0)) for p in state.get("positions", {}).values())
+        # "세션" = 마지막 리밸런스(2~3일 주기 자동 또는 수동 즉시매도 후 재진입) 시점부터 지금까지 —
+        # inception 이후 누적 수익률과 달리, 리밸런스가 일어날 때마다 0으로 다시 시작한다.
+        # _rebalance_live()가 매 리밸런스(자동/수동 공통 경로)마다 session_start_equity_usdt 를 그 시점
+        # equity 로 찍어둔다. 단, 배포 시점과 마지막 리밸런스 시점이 어긋나면(이번 코드 배포 전에 이미
+        # 리밸런스가 끝난 경우) 이 필드가 한 번도 채워지지 않은 채로 남는데, 그때 inception 시점을 세션
+        # 시작으로 대신 쓰면 "세션"이라는 이름을 달고 사실은 inception 이후 누적치를 보여주는 오류가
+        # 생긴다 — 실제로 겪은 버그. positions 가 이미 있는데 세션 시작이 비어 있으면, 미실현손익을
+        # 역산해 baseline 을 여기서 한 번 복구(backfill)하고 이후엔 정상적으로 _rebalance_live() 가
+        # 갱신한다. "equity - unrealized = 진입 직후 equity" 근사(그 사이 청산·펀딩 없었다고 가정).
+        if state.get("session_start_equity_usdt") is None and state.get("positions"):
+            unrealized_now = float(state.get("unrealized_pnl_usdt", 0.0))
+            state["session_start_equity_usdt"] = state["equity_usdt"] - unrealized_now
+            state["session_start_ts"] = state.get("last_rebalance_ts") or state.get("inception_ts")
+        session_start_equity = float(state.get("session_start_equity_usdt") or inception_equity)
+        session_pnl = state["equity_usdt"] - session_start_equity
         # 대시보드용 브로커 스냅샷 — equity/positions 는 이미 바이낸스 API(totalMarginBalance,
         # fetch_positions) 값이라 자체 계산 아님. 여기서 한 블록으로 모아둔다.
         state["broker"] = {
@@ -419,6 +498,10 @@ def run_cycle() -> None:
             "inception_equity_usdt": inception_equity,
             "gross_notional_usdt": gross_notional,
             "return_pct": (total_pnl / inception_equity * 100) if inception_equity > 0 else 0.0,
+            "session_start_equity_usdt": session_start_equity,
+            "session_start_ts": state.get("session_start_ts") or state.get("inception_ts"),
+            "session_pnl_usdt": session_pnl,
+            "session_return_pct": (session_pnl / session_start_equity * 100) if session_start_equity > 0 else 0.0,
             "unrealized_pnl_usdt": state.get("unrealized_pnl_usdt", 0.0),
             "drawdown": state.get("drawdown", 0.0),
             "hwm_usdt": state.get("hwm_usdt", 0.0),

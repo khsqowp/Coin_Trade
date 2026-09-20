@@ -79,6 +79,7 @@ def sync_positions(client) -> dict:
             "contracts": contracts,
             "notional": abs(float(pos.get("notional") or 0.0)),
             "entry_price": float(pos.get("entryPrice") or 0.0),
+            "mark_price": float(pos.get("markPrice") or 0.0),
             "unrealized_pnl": float(pos.get("unrealizedPnl") or 0.0),
         }
     return out
@@ -93,16 +94,18 @@ def _close_one(client, symbol: str, pos: dict) -> None:
         client.create_market_buy_order(symbol, amount, params)
 
 
-def flatten_all(client, log, owned: set | None = None) -> None:
-    """포지션 강제 청산(킬 스위치). owned 지정 시 그 종목만."""
+def flatten_all(client, log, owned: set | None = None, tag: str = "KILL") -> None:
+    """전량 청산. 킬 스위치(자동, dd 초과)와 수동 즉시매도 둘 다 이 함수를 쓴다 — tag 로 구분해서 로그에
+    찍는다(둘 다 무조건 "[KILL]"로 찍으면 사용자가 직접 판 것도 킬 스위치가 발동한 것처럼 보여 혼란을
+    준다 — 실제로 겪은 문제). owned 지정 시 그 종목만."""
     for base, pos in sync_positions(client).items():
         if owned is not None and base not in owned:
             continue
         try:
             _close_one(client, perp_symbol(base), pos)
-            log(f"[KILL] {base} {pos['side']} {pos['contracts']} 청산")
+            log(f"[{tag}] {base} {pos['side']} {pos['contracts']} 청산")
         except Exception as exc:  # noqa: BLE001
-            log(f"[KILL] {base} 청산 실패: {exc}")
+            log(f"[{tag}] {base} 청산 실패: {exc}")
 
 
 def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
