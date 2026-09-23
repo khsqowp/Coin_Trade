@@ -42,12 +42,17 @@ def _tick_price(tick_state: dict, base: str) -> float | None:
     except (KeyError, ValueError, TypeError):
         return None
 
+# TON, MKR는 2026-09-23 확인 결과 바이낸스 선물에서 상장폐지(active=False) 상태라 뺐다 —
+# 가격이 상폐 시점에 얼어붙어(거래량 0) 모멘텀이 항상 0%에 가깝게 나오고, 이 구간 나머지
+# 종목 대부분이 양의 모멘텀이라 거의 매번 하위 12개(숏 타겟)로 뽑혔다가 실주문 단계에서
+# "시세없음"으로 스킵됨 — 실측 4회 리밸런스 전부 재현, 매번 숏 12자리 중 2자리가 이 때문에
+# 영구 손실되어 롱/숏 포지션 개수가 구조적으로 어긋났다(체감 "롱 편향"의 절반 원인).
 UNIVERSE = [
     "BTC", "ETH", "BNB", "XRP", "SOL", "TRX", "DOGE", "ZEC", "LINK", "XMR",
     "ADA", "XLM", "BCH", "LTC", "HBAR", "AVAX", "SUI", "UNI", "NEAR",
     "TAO", "AAVE", "ONDO", "THETA", "DOT", "ENA", "WLD", "ICP", "ETC",
     "POL", "QNT", "ALGO", "ATOM", "RENDER", "JUP", "ARB", "FIL", "VET",
-    "CAKE", "TON", "MKR", "LDO", "CRV", "INJ", "OP", "APT", "IMX", "STX",
+    "CAKE", "LDO", "CRV", "INJ", "OP", "APT", "IMX", "STX",
 ]
 
 LOOKBACK_DAYS = int(os.environ.get("MOMENTUM_ROTATION_LOOKBACK_DAYS", "14"))
