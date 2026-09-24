@@ -479,21 +479,20 @@ def run_cycle() -> None:
         inception_equity = float(state.get("inception_equity_usdt") or state["equity_usdt"])
         total_pnl = state["equity_usdt"] - inception_equity
         gross_notional = sum(abs(p.get("notional_usdt", 0.0)) for p in state.get("positions", {}).values())
-        # "세션" = 마지막 리밸런스(2~3일 주기 자동 또는 수동 즉시매도 후 재진입) 시점부터 지금까지 —
-        # inception 이후 누적 수익률과 달리, 리밸런스가 일어날 때마다 0으로 다시 시작한다.
-        # _rebalance_live()가 매 리밸런스(자동/수동 공통 경로)마다 session_start_equity_usdt 를 그 시점
-        # equity 로 찍어둔다. 단, 배포 시점과 마지막 리밸런스 시점이 어긋나면(이번 코드 배포 전에 이미
-        # 리밸런스가 끝난 경우) 이 필드가 한 번도 채워지지 않은 채로 남는데, 그때 inception 시점을 세션
-        # 시작으로 대신 쓰면 "세션"이라는 이름을 달고 사실은 inception 이후 누적치를 보여주는 오류가
-        # 생긴다 — 실제로 겪은 버그. positions 가 이미 있는데 세션 시작이 비어 있으면, 미실현손익을
-        # 역산해 baseline 을 여기서 한 번 복구(backfill)하고 이후엔 정상적으로 _rebalance_live() 가
-        # 갱신한다. "equity - unrealized = 진입 직후 equity" 근사(그 사이 청산·펀딩 없었다고 가정).
-        if state.get("session_start_equity_usdt") is None and state.get("positions"):
-            unrealized_now = float(state.get("unrealized_pnl_usdt", 0.0))
-            state["session_start_equity_usdt"] = state["equity_usdt"] - unrealized_now
+        # "세션수익" = "미실현손익". 무조건 같다(2026-09-24, 사용자 명시 요구) — 지금 안 판
+        # 포지션들이 벌고/잃은 돈이라는 같은 뜻이니 숫자도 같아야 맞다. 예전엔 "마지막 리밸런스
+        # 시점 equity"를 별도 기준선으로 잡아 거기서부터 지금까지 equity 변화량으로 세션수익을
+        # 따로 계산했는데, 리밸런스 함수는 실제로 방향이 안 바뀐 기존 포지션은 건드리지 않고도
+        # 그 기준선을 매번 "지금"으로 리셋해버려서(momentum_rotation_exec.apply_targets가 스킵한
+        # 포지션도 포함) 세션수익이 "며칠간 쌓인 미실현손익"과 다른, 사실상 "리밸런스 이후 몇 분/
+        # 몇 시간 동안의 가격 변동분"만 보여주는 별개 숫자가 됐었다 — 실제로 사용자가 겪은 계산
+        # 실수. 지금 살아있는 포지션 전부의 미실현손익 합 하나로 통일해서 이 괴리 자체를 없앤다.
+        unrealized_total = sum(p.get("unrealized_pnl_usdt", 0.0) for p in state.get("positions", {}).values())
+        state["unrealized_pnl_usdt"] = unrealized_total
+        equity_now = float(state.get("equity_usdt", 0.0))
+        session_pnl = unrealized_total
+        if state.get("session_start_ts") is None:
             state["session_start_ts"] = state.get("last_rebalance_ts") or state.get("inception_ts")
-        session_start_equity = float(state.get("session_start_equity_usdt") or inception_equity)
-        session_pnl = state["equity_usdt"] - session_start_equity
         # 대시보드용 브로커 스냅샷 — equity/positions 는 이미 바이낸스 API(totalMarginBalance,
         # fetch_positions) 값이라 자체 계산 아님. 여기서 한 블록으로 모아둔다.
         state["broker"] = {
@@ -503,11 +502,14 @@ def run_cycle() -> None:
             "inception_equity_usdt": inception_equity,
             "gross_notional_usdt": gross_notional,
             "return_pct": (total_pnl / inception_equity * 100) if inception_equity > 0 else 0.0,
-            "session_start_equity_usdt": session_start_equity,
+            # 더 이상 세션수익 계산엔 안 쓰지만(위 주석 참고), 백엔드 레코드가 이 필드를 원시
+            # double로 기대해서 빼면 역직렬화가 깨진다 — "이 보유 구간이 얼마 자본으로
+            # 시작됐는지" 참고용 표시값으로만 남겨둔다.
+            "session_start_equity_usdt": float(state.get("session_start_equity_usdt") or inception_equity),
             "session_start_ts": state.get("session_start_ts") or state.get("inception_ts"),
             "session_pnl_usdt": session_pnl,
-            "session_return_pct": (session_pnl / session_start_equity * 100) if session_start_equity > 0 else 0.0,
-            "unrealized_pnl_usdt": state.get("unrealized_pnl_usdt", 0.0),
+            "session_return_pct": (session_pnl / equity_now * 100) if equity_now > 0 else 0.0,
+            "unrealized_pnl_usdt": unrealized_total,
             "drawdown": state.get("drawdown", 0.0),
             "hwm_usdt": state.get("hwm_usdt", 0.0),
             "leverage": LEVERAGE,
