@@ -62,6 +62,13 @@ COMMISSION_PCT = 0.04  # 편도, 리밸런스 회전분에만 적용(백테스�
 START_CAPITAL_USDT = float(os.environ.get("MOMENTUM_ROTATION_START_CAPITAL_USDT", "10000"))
 CHECK_INTERVAL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CHECK_INTERVAL_SECONDS", "120"))
 CYCLE_TIMEOUT_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CYCLE_TIMEOUT_SECONDS", "300"))
+# equity_history 표본 간격 — CHECK_INTERVAL_SECONDS(현재 15초, 순수 표시 새로고침용)와 분리.
+# 둘을 안 나누면 대시보드/표시 주기를 올릴 때마다 history 표본도 같이 촘촘해져서, 개수 상한
+# (2000개)에 금방 도달해 오래된 표본이 밀려나고 "일간/주간/전체" 차트가 전부 최근 몇 시간
+# 창으로 수렴해버린다(2026-09-25, 사용자가 세 기간 차트가 똑같아 보인다고 제보해서 발견 —
+# CHECK_INTERVAL 15초 x 2000개 = 최대 8.3시간치 밖에 안 남아있었음). 5분 간격 x 2000개 = 최대
+# 약 6.9일치 보존.
+EQUITY_HISTORY_SAMPLE_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_EQUITY_HISTORY_SAMPLE_SECONDS", "300"))
 # 수동 제어(즉시 매도/진입) 명령 폴링 주기 — 무거운 사이클과 분리해 거의 틱단위로 반응한다.
 CONTROL_POLL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CONTROL_POLL_SECONDS", "5"))
 SINCE_DAYS_FOR_MOMENTUM = LOOKBACK_DAYS + 10
@@ -82,6 +89,22 @@ RESET_HALT = os.environ.get("MOMENTUM_ROTATION_RESET_HALT", "false").lower() == 
 
 def _perp_symbol(base: str) -> str:
     return f"{base}/USDT:USDT"
+
+
+def _should_sample_equity_history(state: dict) -> bool:
+    """직전 표본 이후 EQUITY_HISTORY_SAMPLE_SECONDS 이상 지났을 때만 True — CHECK_INTERVAL_SECONDS
+    가 아무리 짧아져도 history 표본 밀도는 이 간격으로 고정된다."""
+    history = state.get("equity_history") or []
+    if not history:
+        return True
+    last_ts = history[-1].get("ts")
+    if not last_ts:
+        return True
+    try:
+        last = datetime.fromisoformat(last_ts)
+    except ValueError:
+        return True
+    return (datetime.now(timezone.utc) - last).total_seconds() >= EQUITY_HISTORY_SAMPLE_SECONDS
 
 
 def _fetch_current_prices() -> dict[str, float]:
@@ -519,10 +542,11 @@ def run_cycle() -> None:
             "positions": state.get("positions", {}),
         }
         state["mode"] = "live"
-        state["equity_history"] = (state.get("equity_history", []) + [
-            {"ts": now_iso(), "total_pnl_usdt": total_pnl, "equity_usdt": state["equity_usdt"],
-             "drawdown": state.get("drawdown", 0.0)}
-        ])[-2000:]
+        if _should_sample_equity_history(state):
+            state["equity_history"] = (state.get("equity_history", []) + [
+                {"ts": now_iso(), "total_pnl_usdt": total_pnl, "equity_usdt": state["equity_usdt"],
+                 "drawdown": state.get("drawdown", 0.0)}
+            ])[-2000:]
         _stamp_rebalance_schedule(state)
         save_state(state)
         return
@@ -563,20 +587,24 @@ def run_cycle() -> None:
         )
 
     total_pnl = state["equity_usdt"] - START_CAPITAL_USDT
-    state["equity_history"] = (state.get("equity_history", []) + [
-        {"ts": now_iso(), "total_pnl_usdt": total_pnl}
-    ])[-2000:]
+    sample_now = _should_sample_equity_history(state)
+    if sample_now:
+        state["equity_history"] = (state.get("equity_history", []) + [
+            {"ts": now_iso(), "total_pnl_usdt": total_pnl}
+        ])[-2000:]
 
     # 종목별 차트용 — 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음). 지금 보유중인
-    # 롱/숏 종목만 남긴다(47종목 전체를 다 남기면 상태파일이 불필요하게 커짐).
-    symbol_history = state.setdefault("position_history", {})
-    for symbol, pos in state["positions"].items():
-        price = prices.get(symbol)
-        if price is None:
-            continue
-        history = symbol_history.setdefault(symbol, [])
-        history.append({"ts": now_iso(), "price": price, "unrealized_pnl_usdt": pos.get("unrealized_pnl_usdt", 0.0)})
-        symbol_history[symbol] = history[-2000:]
+    # 롱/숏 종목만 남긴다(47종목 전체를 다 남기면 상태파일이 불필요하게 커짐). equity_history와
+    # 같은 표본 간격을 써서 서로 다른 기간 필터끼리 어긋나지 않게 맞춘다.
+    if sample_now:
+        symbol_history = state.setdefault("position_history", {})
+        for symbol, pos in state["positions"].items():
+            price = prices.get(symbol)
+            if price is None:
+                continue
+            history = symbol_history.setdefault(symbol, [])
+            history.append({"ts": now_iso(), "price": price, "unrealized_pnl_usdt": pos.get("unrealized_pnl_usdt", 0.0)})
+            symbol_history[symbol] = history[-2000:]
 
     _stamp_rebalance_schedule(state)
     save_state(state)
