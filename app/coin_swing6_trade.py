@@ -29,7 +29,7 @@ import ccxt
 
 from app.coin_swing6_state import load_state, log_event, now_iso, save_state
 from app.futures_data import fetch_perp_ohlcv
-from app.momentum_rotation_loop import UNIVERSE, _should_sample_equity_history
+from app.momentum_rotation_loop import UNIVERSE, _rollup_daily_history, _should_sample_equity_history
 from app.more_indicators import add_ema_cross_indicators
 
 MAX_SLOTS = int(os.environ.get("COIN_SWING6_MAX_SLOTS", "6"))
@@ -204,9 +204,11 @@ def run_cycle() -> None:
     state["unrealized_pnl_usdt"] = unrealized_total
     sample_now = _should_sample_equity_history(state)
     if sample_now:
+        total_pnl = equity - START_CAPITAL_USDT
         state["equity_history"] = (state.get("equity_history", []) + [
-            {"ts": now_iso(), "total_pnl_usdt": equity - START_CAPITAL_USDT}
+            {"ts": now_iso(), "total_pnl_usdt": total_pnl}
         ])[-EQUITY_HISTORY_MAX_POINTS:]
+        _rollup_daily_history(state, total_pnl)
 
     # 종목별 차트용 — 지금 보유중인 종목만 남긴다(45종목 전체를 다 남기면 상태파일이
     # 불필요하게 커짐). 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음). equity_history와

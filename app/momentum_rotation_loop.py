@@ -111,6 +111,28 @@ def _should_sample_equity_history(state: dict) -> bool:
     return (datetime.now(timezone.utc) - last).total_seconds() >= EQUITY_HISTORY_SAMPLE_SECONDS
 
 
+# 일별 롤업 — equity_history(고밀도, 상한 있음)와 별도로 날짜가 바뀔 때마다 그 날짜의 마지막
+# 값을 하나씩만 쌓는다. 하루 1개라 상한을 넉넉히(3650 = 10년) 둬도 상태파일에 부담이 거의 없고
+# (점 하나 ~30바이트, 10년치도 100KB 안팎), fine 배열의 보존기간(봇마다 다르지만 현재 수 주~90일)을
+# 넘어서도 "월간/전체" 차트가 실제 장기 추세를 보여줄 수 있다(2026-09-26, EQUITY_HISTORY_MAX_POINTS
+# 를 올려도 결국 flat cap이라 진짜 장기(연 단위)는 못 담는다는 한계를 메우려고 추가).
+# momentum_rotation_loop/coin_swing6_trade/stock_rotation_loop가 전부 이 함수를 공유한다 —
+# 값의 의미(usdt/krw)는 봇마다 다르지만 저장 형태는 {"ts": "YYYY-MM-DD", "value": <숫자>}로 통일해
+# 프런트가 봇별 필드명을 몰라도 그대로 병합해 쓸 수 있게 한다.
+EQUITY_HISTORY_DAILY_MAX_POINTS = 3650
+
+
+def _rollup_daily_history(state: dict, value: float) -> None:
+    daily = state.setdefault("equity_history_daily", [])
+    today = datetime.now(timezone.utc).date().isoformat()
+    if daily and daily[-1]["ts"] == today:
+        daily[-1]["value"] = value
+    else:
+        daily.append({"ts": today, "value": value})
+        if len(daily) > EQUITY_HISTORY_DAILY_MAX_POINTS:
+            state["equity_history_daily"] = daily[-EQUITY_HISTORY_DAILY_MAX_POINTS:]
+
+
 def _fetch_current_prices() -> dict[str, float]:
     try:
         tick_state = load_tick_state()
@@ -551,6 +573,7 @@ def run_cycle() -> None:
                 {"ts": now_iso(), "total_pnl_usdt": total_pnl, "equity_usdt": state["equity_usdt"],
                  "drawdown": state.get("drawdown", 0.0)}
             ])[-EQUITY_HISTORY_MAX_POINTS:]
+            _rollup_daily_history(state, total_pnl)
         _stamp_rebalance_schedule(state)
         save_state(state)
         return
@@ -596,6 +619,7 @@ def run_cycle() -> None:
         state["equity_history"] = (state.get("equity_history", []) + [
             {"ts": now_iso(), "total_pnl_usdt": total_pnl}
         ])[-EQUITY_HISTORY_MAX_POINTS:]
+        _rollup_daily_history(state, total_pnl)
 
     # 종목별 차트용 — 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음). 지금 보유중인
     # 롱/숏 종목만 남긴다(47종목 전체를 다 남기면 상태파일이 불필요하게 커짐). equity_history와
