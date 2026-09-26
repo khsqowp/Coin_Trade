@@ -29,7 +29,7 @@ import ccxt
 
 from app.coin_swing6_state import load_state, log_event, now_iso, save_state
 from app.futures_data import fetch_perp_ohlcv
-from app.momentum_rotation_loop import UNIVERSE
+from app.momentum_rotation_loop import UNIVERSE, _should_sample_equity_history
 from app.more_indicators import add_ema_cross_indicators
 
 MAX_SLOTS = int(os.environ.get("COIN_SWING6_MAX_SLOTS", "6"))
@@ -39,6 +39,12 @@ SL_PCT = float(os.environ.get("COIN_SWING6_SL_PCT", "3.0"))
 START_CAPITAL_USDT = float(os.environ.get("COIN_SWING6_START_CAPITAL_USDT", "1000"))
 SLOT_FRACTION = 1.0 / MAX_SLOTS
 LOOKBACK_DAYS = 200 + 30  # SMA200 워밍업 + EMA 안정화 여유
+# equity_history 표본 개수 상한 — 사이클(기본 120초)마다 무조건 찍으면 2000개 상한으론
+# 최대 2.8일치밖에 못 담아 momentum_rotation_loop.py와 같은 "일간/주간/전체 다 똑같다" 문제가
+# 그대로 재현된다(2026-09-26 발견, 배포 전에 미리 막음). momentum_rotation_loop.py의
+# EQUITY_HISTORY_SAMPLE_SECONDS(5분) 표본 게이트를 그대로 재사용해 사이클 주기와 분리하고,
+# 상한도 5분 간격 기준 90일치(25920개)로 맞춘다.
+EQUITY_HISTORY_MAX_POINTS = int(os.environ.get("COIN_SWING6_EQUITY_HISTORY_MAX_POINTS", "25920"))
 
 
 def _perp_symbol(base: str) -> str:
@@ -196,20 +202,24 @@ def run_cycle() -> None:
     equity = START_CAPITAL_USDT + state.get("cumulative_realized_pnl_usdt", 0.0) + unrealized_total
     state["equity_usdt"] = equity
     state["unrealized_pnl_usdt"] = unrealized_total
-    state["equity_history"] = (state.get("equity_history", []) + [
-        {"ts": now_iso(), "total_pnl_usdt": equity - START_CAPITAL_USDT}
-    ])[-2000:]
+    sample_now = _should_sample_equity_history(state)
+    if sample_now:
+        state["equity_history"] = (state.get("equity_history", []) + [
+            {"ts": now_iso(), "total_pnl_usdt": equity - START_CAPITAL_USDT}
+        ])[-EQUITY_HISTORY_MAX_POINTS:]
 
     # 종목별 차트용 — 지금 보유중인 종목만 남긴다(45종목 전체를 다 남기면 상태파일이
-    # 불필요하게 커짐). 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음).
+    # 불필요하게 커짐). 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음). equity_history와
+    # 같은 표본 간격을 써서 서로 다른 기간 필터끼리 어긋나지 않게 맞춘다.
     symbol_history = state.setdefault("position_history", {})
-    for base, pos in positions.items():
-        price = prices.get(base)
-        if price is None:
-            continue
-        history = symbol_history.setdefault(base, [])
-        history.append({"ts": now_iso(), "price": price, "unrealized_pnl_usdt": pos.get("unrealized_pnl_usdt", 0.0)})
-        symbol_history[base] = history[-2000:]
+    if sample_now:
+        for base, pos in positions.items():
+            price = prices.get(base)
+            if price is None:
+                continue
+            history = symbol_history.setdefault(base, [])
+            history.append({"ts": now_iso(), "price": price, "unrealized_pnl_usdt": pos.get("unrealized_pnl_usdt", 0.0)})
+            symbol_history[base] = history[-EQUITY_HISTORY_MAX_POINTS:]
     # 더 이상 안 들고 있는 종목의 옛 기록은 정리(무한정 쌓이는 걸 방지).
     for base in list(symbol_history.keys()):
         if base not in positions:

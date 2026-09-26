@@ -63,12 +63,16 @@ START_CAPITAL_USDT = float(os.environ.get("MOMENTUM_ROTATION_START_CAPITAL_USDT"
 CHECK_INTERVAL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CHECK_INTERVAL_SECONDS", "120"))
 CYCLE_TIMEOUT_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CYCLE_TIMEOUT_SECONDS", "300"))
 # equity_history 표본 간격 — CHECK_INTERVAL_SECONDS(현재 15초, 순수 표시 새로고침용)와 분리.
-# 둘을 안 나누면 대시보드/표시 주기를 올릴 때마다 history 표본도 같이 촘촘해져서, 개수 상한
-# (2000개)에 금방 도달해 오래된 표본이 밀려나고 "일간/주간/전체" 차트가 전부 최근 몇 시간
-# 창으로 수렴해버린다(2026-09-25, 사용자가 세 기간 차트가 똑같아 보인다고 제보해서 발견 —
-# CHECK_INTERVAL 15초 x 2000개 = 최대 8.3시간치 밖에 안 남아있었음). 5분 간격 x 2000개 = 최대
-# 약 6.9일치 보존.
+# 둘을 안 나누면 대시보드/표시 주기를 올릴 때마다 history 표본도 같이 촘촘해져서, 개수 상한에
+# 금방 도달해 오래된 표본이 밀려나고 "일간/주간/전체" 차트가 전부 최근 몇 시간 창으로
+# 수렴해버린다(2026-09-25, 사용자가 세 기간 차트가 똑같아 보인다고 제보해서 발견 — CHECK_INTERVAL
+# 15초 x 2000개 = 최대 8.3시간치 밖에 안 남아있었음).
 EQUITY_HISTORY_SAMPLE_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_EQUITY_HISTORY_SAMPLE_SECONDS", "300"))
+# 표본 개수 상한 — 위 간격 5분 기준 25920개 = 90일치 보존(2026-09-26, 상한을 2000개로 둔 채라
+# 5분 간격이어도 최대 6.9일치밖에 못 담아 "월간/전체"가 계속 같은 그래프로 보이는 걸 재발견해서
+# 올림). 점 1개 ~70바이트라 90일치도 상태파일 기준 2MB 안팎 — 90일보다 더 긴 진짜 장기(연 단위)
+# 보관은 이 flat cap 방식 자체의 한계라 별도로 일별 롤업 구조가 필요하다.
+EQUITY_HISTORY_MAX_POINTS = int(os.environ.get("MOMENTUM_ROTATION_EQUITY_HISTORY_MAX_POINTS", "25920"))
 # 수동 제어(즉시 매도/진입) 명령 폴링 주기 — 무거운 사이클과 분리해 거의 틱단위로 반응한다.
 CONTROL_POLL_SECONDS = int(os.environ.get("MOMENTUM_ROTATION_CONTROL_POLL_SECONDS", "5"))
 SINCE_DAYS_FOR_MOMENTUM = LOOKBACK_DAYS + 10
@@ -546,7 +550,7 @@ def run_cycle() -> None:
             state["equity_history"] = (state.get("equity_history", []) + [
                 {"ts": now_iso(), "total_pnl_usdt": total_pnl, "equity_usdt": state["equity_usdt"],
                  "drawdown": state.get("drawdown", 0.0)}
-            ])[-2000:]
+            ])[-EQUITY_HISTORY_MAX_POINTS:]
         _stamp_rebalance_schedule(state)
         save_state(state)
         return
@@ -591,7 +595,7 @@ def run_cycle() -> None:
     if sample_now:
         state["equity_history"] = (state.get("equity_history", []) + [
             {"ts": now_iso(), "total_pnl_usdt": total_pnl}
-        ])[-2000:]
+        ])[-EQUITY_HISTORY_MAX_POINTS:]
 
     # 종목별 차트용 — 이미 조회한 가격을 그대로 기록만 한다(추가 API 호출 없음). 지금 보유중인
     # 롱/숏 종목만 남긴다(47종목 전체를 다 남기면 상태파일이 불필요하게 커짐). equity_history와
@@ -604,7 +608,7 @@ def run_cycle() -> None:
                 continue
             history = symbol_history.setdefault(symbol, [])
             history.append({"ts": now_iso(), "price": price, "unrealized_pnl_usdt": pos.get("unrealized_pnl_usdt", 0.0)})
-            symbol_history[symbol] = history[-2000:]
+            symbol_history[symbol] = history[-EQUITY_HISTORY_MAX_POINTS:]
 
     _stamp_rebalance_schedule(state)
     save_state(state)
