@@ -21,8 +21,16 @@ from app.data import _parse_ts
 MAX_PAGES = 800
 
 
-def fetch_perp_ohlcv(symbol: str, timeframe: str, since_iso: str, until_iso: str | None = None) -> pd.DataFrame:
-    exchange = ccxt.binance({"enableRateLimit": True, "options": {"defaultType": "future"}})
+def fetch_perp_ohlcv(
+    symbol: str, timeframe: str, since_iso: str, until_iso: str | None = None,
+    exchange: ccxt.binance | None = None,
+) -> pd.DataFrame:
+    # exchange를 안 넘기면(기존 호출부 전부 해당) 예전처럼 매번 새로 만든다 — 하위호환. 여러
+    # 종목을 한 사이클에서 연속 조회하는 호출부(coin_swing6_trade.py)는 미리 만든 인스턴스를
+    # 넘겨서 load_markets()/exchangeInfo 재호출을 종목 수만큼 반복하지 않게 한다(ccxt는 인스턴스
+    # 안에 마켓 캐시를 들고 있어서, 인스턴스를 재사용하면 최초 1회만 적중한다).
+    if exchange is None:
+        exchange = ccxt.binance({"enableRateLimit": True, "options": {"defaultType": "future"}})
     since = _parse_ts(exchange, since_iso)
     until = _parse_ts(exchange, until_iso) if until_iso else exchange.milliseconds()
     rows: list[list[float]] = []

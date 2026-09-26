@@ -57,9 +57,9 @@ def _fetch_prices(exchange: ccxt.binance) -> dict[str, float]:
     return prices
 
 
-def _signal(base: str) -> dict | None:
+def _signal(base: str, exchange: ccxt.binance) -> dict | None:
     since_iso = (datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).isoformat()
-    frame = fetch_perp_ohlcv(_perp_symbol(base), "1d", since_iso, None)
+    frame = fetch_perp_ohlcv(_perp_symbol(base), "1d", since_iso, None, exchange=exchange)
     if frame.empty:
         return None
     # 오늘자 마지막 봉이 아직 마감 전(진행중)일 수 있어, 신호 판단은 전일까지 마감된 봉만으로
@@ -130,13 +130,16 @@ def run_cycle() -> None:
     positions = state.setdefault("positions", {})
 
     # 1) 유니버스 전체 재계산 — 보유 포지션의 반전 청산 판단과 빈 슬롯 후보 순위 산정에
-    #    똑같이 쓰인다("매 사이클마다 전체 재계산", 부분적 스캔 아님).
+    #    똑같이 쓰인다("매 사이클마다 전체 재계산", 부분적 스캔 아님). exchange 인스턴스를
+    #    45종목 전부 재사용 — 종목마다 새로 만들면 매번 load_markets()(exchangeInfo)가 다시
+    #    걸려서 사이클당 요청 수가 배로 늘고, 그 exchangeInfo 호출이 간헐적으로 실패해서
+    #    멀쩡한 종목까지 "일봉 조회 실패"로 스킵되는 원인이었다(2026-09-26 실로그로 확인).
     signals: dict[str, dict] = {}
     for base in UNIVERSE:
         if base not in prices:
             continue
         try:
-            sig = _signal(base)
+            sig = _signal(base, exchange)
         except Exception as exc:  # noqa: BLE001
             log_event(state, f"{base}: 일봉 조회 실패 ({exc})")
             continue
