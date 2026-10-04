@@ -13,6 +13,7 @@ crypto_volume_spike_backtest.py)가 이 모듈 하나를 공유한다 — squeez
 """
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 LOOKBACK_DAYS_DEFAULT = 20          # "한 달" ≈ 거래일 20일
@@ -26,18 +27,29 @@ def find_signals(
     lookback: int = LOOKBACK_DAYS_DEFAULT,
     volume_multiple: float = VOLUME_MULTIPLE_DEFAULT,
     max_price_change_pct: float = MAX_PRICE_CHANGE_PCT_DEFAULT,
+    month_return_cap_pct: float | None = None,
 ) -> pd.DataFrame:
     """frame에 SIGNAL(bool) 컬럼을 더해 반환한다.
 
     baseline 거래량은 당일을 뺀 과거 lookback일 평균(shift(1).rolling) — 당일 거래량을
     스스로의 기준에 포함시키는 미래참조를 막는다.
+
+    month_return_cap_pct를 주면 추가조건: 과거 lookback일 누적수익률(오늘종가 vs
+    lookback일 전 종가)의 절댓값이 이 값 이내여야 신호로 친다 — "당일 하루만 안 움직였나"가
+    아니라 "한 달 내내 옆으로 기었나"까지 요구하는 더 엄격한 버전.
     """
     df = frame.copy()
     df["PCT_CHANGE"] = df["Close"].pct_change() * 100
     df["VOL_BASELINE"] = df["Volume"].shift(1).rolling(lookback).mean()
     df["VOL_RATIO"] = df["Volume"] / df["VOL_BASELINE"]
-    df["SIGNAL"] = (df["VOL_RATIO"] >= volume_multiple) & (df["PCT_CHANGE"] < max_price_change_pct)
-    df.loc[df["VOL_BASELINE"].isna() | df["PCT_CHANGE"].isna(), "SIGNAL"] = False
+    df["MONTH_RETURN_PCT"] = df["Close"].pct_change(lookback) * 100
+    signal = (df["VOL_RATIO"] >= volume_multiple) & (df["PCT_CHANGE"] < max_price_change_pct)
+    invalid = df["VOL_BASELINE"].isna() | df["PCT_CHANGE"].isna()
+    if month_return_cap_pct is not None:
+        signal = signal & (df["MONTH_RETURN_PCT"].abs() <= month_return_cap_pct)
+        invalid = invalid | df["MONTH_RETURN_PCT"].isna()
+    df["SIGNAL"] = signal
+    df.loc[invalid, "SIGNAL"] = False
     return df
 
 
@@ -101,6 +113,111 @@ def evaluate(
         "signal_count": len(signal_idx),
         "signal_dates": [df.index[i] for i in signal_idx],
         "per_horizon": per_horizon,
+    }
+
+
+def simulate_portfolio(
+    prepped: dict[str, pd.DataFrame],
+    top_k: int,
+    hold_days: int,
+    stop_pct: float = 0.0,
+    fee_pct_one_way: float = 0.04,
+    btc_ok: pd.Series | None = None,
+) -> dict:
+    """SIGNAL/VOL_RATIO 컬럼이 이미 있는(find_signals() 처리된) 심볼별 frame들을 하나의
+    계좌로 포트폴리오 백테스트한다. app/crypto_volume_spike_portfolio_backtest.py와
+    app/crypto_volume_spike_sweep.py가 이 함수 하나를 공유한다.
+
+    매일: 1) 손절(저가 기준, stop_pct>0일 때만) → 보유기간 만료(종가) 순으로 청산
+          2) 빈 슬롯을 전날 신호 확정분 중 VOL_RATIO 큰 순으로, 오늘 시가에 균등배분 진입
+    롱 온리, btc_ok를 주면(날짜→bool) 그 날 True일 때만 신규진입 허용(BTC 200일선 레짐필터 등).
+    """
+    dates = sorted(set().union(*(df.index for df in prepped.values())))
+    fee = fee_pct_one_way / 100
+
+    cash = 1.0
+    positions: dict[str, dict] = {}
+    eq_curve: list[tuple[pd.Timestamp, float]] = []
+    n_trades = 0
+    n_stopped = 0
+    exposure_days = 0
+
+    for idx, d in enumerate(dates):
+        for sym in list(positions):
+            pos = positions[sym]
+            df = prepped[sym]
+            if d not in df.index:
+                continue
+            row = df.loc[d]
+            close = float(row["Close"])
+            exit_price = None
+            stopped = False
+            if pos["stop_price"] is not None and float(row["Low"]) <= pos["stop_price"]:
+                exit_price = min(pos["stop_price"], close)
+                stopped = True
+            elif d >= pos["exit_date"]:
+                exit_price = close
+            if exit_price is not None:
+                cash += pos["qty"] * exit_price * (1 - fee)
+                del positions[sym]
+                n_trades += 1
+                if stopped:
+                    n_stopped += 1
+
+        free = top_k - len(positions)
+        if free > 0 and idx > 0:
+            prev_d = dates[idx - 1]
+            regime_ok = btc_ok is None or bool(btc_ok.get(prev_d, False))
+            cands = []
+            if regime_ok:
+                for sym, df in prepped.items():
+                    if sym in positions or prev_d not in df.index or d not in df.index:
+                        continue
+                    prow = df.loc[prev_d]
+                    if not bool(prow["SIGNAL"]):
+                        continue
+                    cands.append((sym, float(prow["VOL_RATIO"])))
+            cands.sort(key=lambda x: x[1], reverse=True)
+
+            mtm = cash + sum(
+                positions[s]["qty"] * float(prepped[s].loc[d, "Close"])
+                for s in positions if d in prepped[s].index
+            )
+            exit_date = dates[min(idx + hold_days, len(dates) - 1)]
+            for sym, _ in cands[:free]:
+                price = float(prepped[sym].loc[d, "Open"])
+                if price <= 0:
+                    continue
+                alloc = min(mtm / top_k, cash)
+                if alloc <= 0:
+                    break
+                qty = alloc * (1 - fee) / price
+                cash -= alloc
+                stop_price = price * (1 - stop_pct) if stop_pct > 0 else None
+                positions[sym] = {"qty": qty, "entry_price": price, "exit_date": exit_date, "stop_price": stop_price}
+
+        mtm = cash + sum(
+            positions[s]["qty"] * float(prepped[s].loc[d, "Close"])
+            for s in positions if d in prepped[s].index
+        )
+        eq_curve.append((d, mtm))
+        if positions:
+            exposure_days += 1
+
+    equity = pd.Series([v for _, v in eq_curve], index=[t for t, _ in eq_curve])
+    years = max((equity.index[-1] - equity.index[0]).days / 365.25, 1e-6)
+    final = float(equity.iloc[-1])
+    cagr = (final ** (1 / years) - 1) * 100 if final > 0 else -100.0
+    peak = equity.cummax()
+    mdd = float(((peak - equity) / peak).max() * 100)
+    daily = equity.pct_change().dropna()
+    sharpe = float(daily.mean() / daily.std() * np.sqrt(365)) if daily.std() > 0 else 0.0
+
+    return {
+        "cagr": cagr, "mdd": mdd, "sharpe": sharpe, "final": final, "years": years,
+        "trades": n_trades, "stopped": n_stopped,
+        "exposure_pct": exposure_days / len(dates) * 100 if dates else 0.0,
+        "start": equity.index[0], "end": equity.index[-1],
     }
 
 
