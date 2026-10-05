@@ -123,14 +123,19 @@ def simulate_portfolio(
     stop_pct: float = 0.0,
     fee_pct_one_way: float = 0.04,
     btc_ok: pd.Series | None = None,
+    tp_pct: float = 0.0,
 ) -> dict:
     """SIGNAL/VOL_RATIO 컬럼이 이미 있는(find_signals() 처리된) 심볼별 frame들을 하나의
     계좌로 포트폴리오 백테스트한다. app/crypto_volume_spike_portfolio_backtest.py와
     app/crypto_volume_spike_sweep.py가 이 함수 하나를 공유한다.
 
-    매일: 1) 손절(저가 기준, stop_pct>0일 때만) → 보유기간 만료(종가) 순으로 청산
-          2) 빈 슬롯을 전날 신호 확정분 중 VOL_RATIO 큰 순으로, 오늘 시가에 균등배분 진입
+    매일: 1) 손절(저가 기준, stop_pct>0일 때만) → 2) 익절(고가 기준, tp_pct>0일 때만) →
+          3) 보유기간 만료(종가) 순으로 청산
+          4) 빈 슬롯을 전날 신호 확정분 중 VOL_RATIO 큰 순으로, 오늘 시가에 균등배분 진입
     롱 온리, btc_ok를 주면(날짜→bool) 그 날 True일 때만 신규진입 허용(BTC 200일선 레짐필터 등).
+    tp_pct>0이면 진입가 대비 그 비율만큼 오르면(고가 기준) hold_days를 기다리지 않고 즉시
+    목표가에 청산한다 — "가격 팍 오르면 판다" 익절 룰. hold_days는 이때도 상한선으로 남는다
+    (익절이 안 터지면 결국 hold_days째에 종가 청산).
     """
     dates = sorted(set().union(*(df.index for df in prepped.values())))
     fee = fee_pct_one_way / 100
@@ -140,6 +145,7 @@ def simulate_portfolio(
     eq_curve: list[tuple[pd.Timestamp, float]] = []
     n_trades = 0
     n_stopped = 0
+    n_tp = 0
     exposure_days = 0
 
     for idx, d in enumerate(dates):
@@ -152,9 +158,13 @@ def simulate_portfolio(
             close = float(row["Close"])
             exit_price = None
             stopped = False
+            took_profit = False
             if pos["stop_price"] is not None and float(row["Low"]) <= pos["stop_price"]:
                 exit_price = min(pos["stop_price"], close)
                 stopped = True
+            elif pos["tp_price"] is not None and float(row["High"]) >= pos["tp_price"]:
+                exit_price = pos["tp_price"]
+                took_profit = True
             elif d >= pos["exit_date"]:
                 exit_price = close
             if exit_price is not None:
@@ -163,6 +173,8 @@ def simulate_portfolio(
                 n_trades += 1
                 if stopped:
                     n_stopped += 1
+                if took_profit:
+                    n_tp += 1
 
         free = top_k - len(positions)
         if free > 0 and idx > 0:
@@ -194,7 +206,11 @@ def simulate_portfolio(
                 qty = alloc * (1 - fee) / price
                 cash -= alloc
                 stop_price = price * (1 - stop_pct) if stop_pct > 0 else None
-                positions[sym] = {"qty": qty, "entry_price": price, "exit_date": exit_date, "stop_price": stop_price}
+                tp_price = price * (1 + tp_pct) if tp_pct > 0 else None
+                positions[sym] = {
+                    "qty": qty, "entry_price": price, "exit_date": exit_date,
+                    "stop_price": stop_price, "tp_price": tp_price,
+                }
 
         mtm = cash + sum(
             positions[s]["qty"] * float(prepped[s].loc[d, "Close"])
@@ -215,7 +231,7 @@ def simulate_portfolio(
 
     return {
         "cagr": cagr, "mdd": mdd, "sharpe": sharpe, "final": final, "years": years,
-        "trades": n_trades, "stopped": n_stopped,
+        "trades": n_trades, "stopped": n_stopped, "tp_hit": n_tp,
         "exposure_pct": exposure_days / len(dates) * 100 if dates else 0.0,
         "start": equity.index[0], "end": equity.index[-1],
     }
