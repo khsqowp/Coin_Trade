@@ -38,7 +38,7 @@ def ledger_run(prepped, config):
             k = local['k']
             p = local['positions'][k]
             parent = frame.f_back.f_locals
-            entry = p['exit'] - parent['hold_days']
+            entry = p.get('entry', p['exit'] - parent['hold_days'])
             price = parent['a']['Open'][entry, k]
             cost = p['qty'] * price / (1 - parent['fee'])
             proceeds = p['qty'] * local['price'] * (1 - parent['fee'])

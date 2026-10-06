@@ -1,0 +1,1 @@
+PASS: fixed parameters/manifest; 5 trade ledgers; 40 exact period boundaries and document rows; independent concentration/flapping/symbol arithmetic; 4 leave-out curves; two-sided fee and all-trades-removed cash fixture; 3 regression logs; README unchanged

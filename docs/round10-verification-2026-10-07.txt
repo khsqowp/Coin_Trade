@@ -1,0 +1,4 @@
+PASS synthetic: fees, entry-only scaling, separate holding periods, immediate/natural/cash exits, ledger reconciliation, invalid-scale rejection
+PASS old/new inverse-vol exact for target .1/.4/.8, including trace/allocations
+PASS python3 py_compile four new/modified modules
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 136 configuration replay / 124 distinct policies; strict votes/transition gaps/MC samples/bootstrap independent arithmetic

@@ -21,7 +21,17 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                        dd_trigger=None, dd_resume=.10, return_trace=False,
                        resume_mode='equity', cooldown_days=20, btc_resume=None,
                        sizing='equal', target_vol=.40, weight_cap=.25,
-                       symbol_trade_share_cap=None):
+                       symbol_trade_share_cap=None, entry_scale=None,
+                       strategy_data=None, active_strategy=None,
+                       strategy_holds=None, liquidate_on_switch=False):
+    if (strategy_data is None) != (active_strategy is None):
+        raise ValueError('strategy banks and historical schedule required together')
+    if strategy_data is not None and (timing != 'next_open' or sizing != 'equal'):
+        raise ValueError('strategy switching supports next_open/equal only')
+    if strategy_data is not None and (not strategy_data or strategy_holds is None or
+            any(k not in strategy_holds or not isinstance(strategy_holds[k], int) or strategy_holds[k] < 1
+                for k in strategy_data)):
+        raise ValueError('positive holding period required for every strategy')
     if symbol_trade_share_cap is not None and not 0 < symbol_trade_share_cap <= 1:
         raise ValueError('symbol trade share cap must be in (0, 1]')
     if dd_trigger is not None and not 0 <= dd_resume < dd_trigger < 1:
@@ -33,6 +43,13 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
     if resume_mode == 'btc_sma50' and btc_resume is None:
         raise ValueError('BTC historical trend required')
     dates,keys,a=prepared or prepare(prepped)
+    if strategy_data is not None:
+        for bank in strategy_data.values():
+            if bank[0] != dates or bank[1] != keys:
+                raise ValueError('strategy bank calendars/universes differ')
+            for field in ['Open','High','Low','Close']:
+                if not np.array_equal(bank[2][field],a[field],equal_nan=True):
+                    raise ValueError('strategy banks must share real execution prices')
     vol = None
     if sizing == 'inverse_vol':
         vol=np.array([prepped[k].Close.pct_change(fill_method=None).rolling(20).std(ddof=1).reindex(dates).to_numpy() for k in keys]).T
@@ -56,6 +73,11 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 event_log.append(dict(kind='pause',index=i,date=str(d),drawdown=drawdown))
         return drawdown
     for i,d in enumerate(dates):
+        selected = active_strategy.get(dates[i-1]) if strategy_data is not None and i>0 else None
+        if strategy_data is not None and selected is not None:
+            if selected not in strategy_data:
+                raise ValueError('unknown active strategy')
+            a=strategy_data[selected][2]
         op,hi,lo,cl=(a[f][i] for f in ['Open','High','Low','Close'])
         def sell(k,price):
             nonlocal cash,trades
@@ -64,7 +86,9 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         # Opening gap stops may free cash at open. Intraday exits never fund same-open entries.
         for k in list(positions):
             p=positions[k]
-            if np.isfinite(op[k]) and p['sl']>0 and op[k]<=p['sl']:
+            if liquidate_on_switch and strategy_data is not None and p['strategy'] != selected and np.isfinite(op[k]):
+                sell(k,op[k])
+            elif np.isfinite(op[k]) and p['sl']>0 and op[k]<=p['sl']:
                 sell(k,op[k]); stops+=1
         # Opening valuation is known before allocation; never read today's close here.
         opening=cash+sum(p['qty']*(op[k] if np.isfinite(op[k]) else marks[k]) for k,p in positions.items())
@@ -79,7 +103,10 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         entry_paused=paused
         blocked_days+=int(entry_paused)
         s=i-(2 if timing=='confirm_open' else 1)
-        if not entry_paused and s>=0 and (btc_ok is None or btc_ok.get(dates[s],False)):
+        entry_multiplier=float(entry_scale.get(dates[s],0.)) if entry_scale is not None and s>=0 else 1.
+        if not np.isfinite(entry_multiplier) or not 0 <= entry_multiplier <= 1:
+            raise ValueError('entry scale must be finite in [0,1]')
+        if not entry_paused and s>=0 and entry_multiplier>0 and (strategy_data is None or selected is not None) and (btc_ok is None or btc_ok.get(dates[s],False)):
             candidates=[k for k in range(len(keys)) if k not in positions and a['SIGNAL'][s,k]==1 and np.isfinite(op[k]) and op[k]>0]
             if symbol_trade_share_cap is not None:
                 # Only sales already executed at this point count. Outstanding
@@ -121,7 +148,7 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 scale=min(1.,max(0.,target_vol-risk)/proposed) if proposed>0 else 0.
                 budgets={k:mtm*weights[k]*scale for k in candidates}
             for k in candidates:
-                alloc=min(cash,budgets[k])
+                alloc=min(cash,budgets[k]*entry_multiplier)
                 if alloc<=1e-12: break
                 price=op[k]; sl=price*(1-stop_pct) if stop_pct else 0.
                 if stop.startswith('pct'): sl=price*(1-float(stop[3:])/100)
@@ -132,7 +159,9 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 if sl>=price: continue  # invalid protective structure, skip entry
                 target=price*(1+tp_pct) if tp_pct else 0.
                 if tp.startswith('pct'): target=price*(1+float(tp[3:])/100)
-                positions[k]={'qty':alloc*(1-fee)/price,'sl':sl,'target':target,'exit':i+hold_days}
+                duration=strategy_holds[selected] if strategy_data is not None else hold_days
+                positions[k]={'qty':alloc*(1-fee)/price,'sl':sl,'target':target,'exit':i+duration,
+                              'entry':i,'strategy':selected}
                 cash-=alloc
                 if return_trace:
                     allocations.append(dict(date=str(d),symbol=keys[k],weight=alloc/mtm,known_through=str(dates[i-1])))
