@@ -79,3 +79,17 @@ PARAM_GRIDS: dict[str, dict[str, list]] = {
     "aroon_cross": {"STRONG_TREND": [60, 70, 80]},
     "cmf_trend": {"STOP_ATR_MULT": [1.5, 2.0, 2.5, 3.0]},
 }
+
+# Daily technical/ICT research: full Cartesian products, 32 + 16 configurations.
+TECHNICAL_COARSE_GRID = {
+    'timing': ['next_open', 'confirm_open'],
+    'stop': ['none', 'pct10'],
+    'tp': ['none', 'pct20'],
+    'hold_days': [10, 20],
+    'selection': ['rank', 'all'],
+}
+TECHNICAL_FINE_GRID = {
+    'stop': ['atr1', 'atr2', 'pct5', 'structure'],
+    'tp': ['none', 'pct30'],
+    'hold_days': [5, 40],
+}
