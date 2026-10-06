@@ -20,7 +20,10 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                        tp='none', selection='rank', prepared=None,
                        dd_trigger=None, dd_resume=.10, return_trace=False,
                        resume_mode='equity', cooldown_days=20, btc_resume=None,
-                       sizing='equal', target_vol=.40, weight_cap=.25):
+                       sizing='equal', target_vol=.40, weight_cap=.25,
+                       symbol_trade_share_cap=None):
+    if symbol_trade_share_cap is not None and not 0 < symbol_trade_share_cap <= 1:
+        raise ValueError('symbol trade share cap must be in (0, 1]')
     if dd_trigger is not None and not 0 <= dd_resume < dd_trigger < 1:
         raise ValueError('require 0 <= dd_resume < dd_trigger < 1')
     if resume_mode not in ('equity','cooldown','btc_sma50'):
@@ -35,6 +38,8 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         vol=np.array([prepped[k].Close.pct_change(fill_method=None).rolling(20).std(ddof=1).reindex(dates).to_numpy() for k in keys]).T
 
     fee=fee_pct_one_way/100; cash=1.; positions={}; curve=[]; trades=0
+    completed_by_symbol=np.zeros(len(keys), dtype=int)
+    share_log=[]
     # Last valid close preserves mark-to-market across missing bars.
     marks=np.zeros(len(keys)); stops=0; profits=0
     peak=1.; paused=False; events=0; resumes=0; blocked_days=0; trace=[]
@@ -55,6 +60,7 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         def sell(k,price):
             nonlocal cash,trades
             cash+=positions[k]['qty']*price*(1-fee); del positions[k]; trades+=1
+            completed_by_symbol[k]+=1
         # Opening gap stops may free cash at open. Intraday exits never fund same-open entries.
         for k in list(positions):
             p=positions[k]
@@ -75,6 +81,20 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         s=i-(2 if timing=='confirm_open' else 1)
         if not entry_paused and s>=0 and (btc_ok is None or btc_ok.get(dates[s],False)):
             candidates=[k for k in range(len(keys)) if k not in positions and a['SIGNAL'][s,k]==1 and np.isfinite(op[k]) and op[k]>0]
+            if symbol_trade_share_cap is not None:
+                # Only sales already executed at this point count. Outstanding
+                # positions and today's later close exits never enter this ratio.
+                allowed=[]
+                for k in candidates:
+                    blocked=trades > 0 and completed_by_symbol[k] > symbol_trade_share_cap*trades
+                    if return_trace:
+                        share_log.append(dict(date=str(d),symbol=keys[k],
+                                              completed_total=trades,
+                                              completed_symbol=int(completed_by_symbol[k]),
+                                              blocked=bool(blocked)))
+                    if not blocked:
+                        allowed.append(k)
+                candidates=allowed
             if timing=='confirm_open':
                 candidates=[k for k in candidates if a['Close'][i-1,k]>a['Close'][s,k]]
             if selection=='rank':
@@ -147,4 +167,6 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
     if return_trace:
         result['trace']=trace
         result['allocations']=allocations
+        if symbol_trade_share_cap is not None:
+            result['symbol_share_log']=share_log
     return result
