@@ -1,0 +1,9 @@
+커밋 메시지: research: 라운드9 TOP_K12 플래핑·기간분리 재검증 및 최종 기각
+git push 미실행
+시도 1 git add: 128
+fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted
+
+시도 2 git add: 128
+fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted
+
+커밋 보류, 변경파일은 작업트리에 남음

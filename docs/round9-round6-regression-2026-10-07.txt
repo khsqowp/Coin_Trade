@@ -1,0 +1,1 @@
+PASS: 48 exact source cells; independent BTC arithmetic; 3 terminal ledgers and cap decision counts; symbol concentration; zero-count/equality/block/denominator recovery fixture; invalid caps; 12 real prefix/future comparisons; document completeness; Round 1-5 regressions
