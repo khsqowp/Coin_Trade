@@ -17,11 +17,25 @@ def prepare(prepped):
 
 def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_way=.04,
                        btc_ok=None, tp_pct=0., *, timing='next_open', stop='none',
-                       tp='none', selection='rank', prepared=None):
+                       tp='none', selection='rank', prepared=None,
+                       dd_trigger=None, dd_resume=.10, return_trace=False):
+    if dd_trigger is not None and not 0 <= dd_resume < dd_trigger < 1:
+        raise ValueError('require 0 <= dd_resume < dd_trigger < 1')
     dates,keys,a=prepared or prepare(prepped)
     fee=fee_pct_one_way/100; cash=1.; positions={}; curve=[]; trades=0
     # Last valid close preserves mark-to-market across missing bars.
     marks=np.zeros(len(keys)); stops=0; profits=0
+    peak=1.; paused=False; events=0; resumes=0; blocked_days=0; trace=[]
+    def observe(value):
+        nonlocal peak,paused,events,resumes
+        peak=max(peak,value)
+        drawdown=1-value/peak
+        if dd_trigger is not None:
+            if paused and drawdown <= dd_resume:
+                paused=False; resumes+=1
+            elif not paused and drawdown >= dd_trigger:
+                paused=True; events+=1
+        return drawdown
     for i,d in enumerate(dates):
         op,hi,lo,cl=(a[f][i] for f in ['Open','High','Low','Close'])
         def sell(k,price):
@@ -32,8 +46,13 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
             p=positions[k]
             if np.isfinite(op[k]) and p['sl']>0 and op[k]<=p['sl']:
                 sell(k,op[k]); stops+=1
+        # Opening valuation is known before allocation; never read today's close here.
+        opening=cash+sum(p['qty']*(op[k] if np.isfinite(op[k]) else marks[k]) for k,p in positions.items())
+        opening_dd=observe(opening)
+        entry_paused=paused
+        blocked_days+=int(entry_paused)
         s=i-(2 if timing=='confirm_open' else 1)
-        if s>=0 and (btc_ok is None or btc_ok.get(dates[s],False)):
+        if not entry_paused and s>=0 and (btc_ok is None or btc_ok.get(dates[s],False)):
             candidates=[k for k in range(len(keys)) if k not in positions and a['SIGNAL'][s,k]==1 and np.isfinite(op[k]) and op[k]>0]
             if timing=='confirm_open':
                 candidates=[k for k in candidates if a['Close'][i-1,k]>a['Close'][s,k]]
@@ -67,11 +86,21 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
             elif i>=p['exit'] or i==len(dates)-1:
                 sell(k,cl[k])
         valid=np.isfinite(cl); marks[valid]=cl[valid]
-        curve.append(cash+sum(p['qty']*marks[k] for k,p in positions.items()))
+        closing=cash+sum(p['qty']*marks[k] for k,p in positions.items())
+        curve.append(closing)
+        closing_dd=observe(closing)
+        if return_trace:
+            trace.append(dict(date=str(d),opening=opening,opening_dd=opening_dd,
+                              entry_paused=entry_paused,closing=closing,peak=peak,
+                              closing_dd=closing_dd,paused=paused,positions=len(positions)))
     equity=pd.Series(curve,index=dates); years=(dates[-1]-dates[0]).days/365.25
     daily=equity.pct_change().dropna()
-    return dict(cagr=(equity.iloc[-1]**(1/years)-1)*100,
+    result=dict(cagr=(equity.iloc[-1]**(1/years)-1)*100,
                 mdd=((equity.cummax()-equity)/equity.cummax()).max()*100,
                 sharpe=daily.mean()/daily.std()*np.sqrt(365) if daily.std()>0 else 0.,
                 trades=trades,stopped=stops,tp_hit=profits,final=equity.iloc[-1],
-                start=str(dates[0]),end=str(dates[-1]),years=years)
+                start=str(dates[0]),end=str(dates[-1]),years=years,
+                breaker_events=events,breaker_resumes=resumes,blocked_days=blocked_days,
+                breaker_paused_final=paused)
+    if return_trace: result['trace']=trace
+    return result
