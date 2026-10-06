@@ -18,23 +18,37 @@ def prepare(prepped):
 def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_way=.04,
                        btc_ok=None, tp_pct=0., *, timing='next_open', stop='none',
                        tp='none', selection='rank', prepared=None,
-                       dd_trigger=None, dd_resume=.10, return_trace=False):
+                       dd_trigger=None, dd_resume=.10, return_trace=False,
+                       resume_mode='equity', cooldown_days=20, btc_resume=None,
+                       sizing='equal', target_vol=.40, weight_cap=.25):
     if dd_trigger is not None and not 0 <= dd_resume < dd_trigger < 1:
         raise ValueError('require 0 <= dd_resume < dd_trigger < 1')
+    if resume_mode not in ('equity','cooldown','btc_sma50'):
+        raise ValueError('unknown resume mode')
+    if cooldown_days < 1 or sizing not in ('equal','inverse_vol') or not 0 < weight_cap <= 1 or target_vol <= 0:
+        raise ValueError('invalid sizing/cooldown')
+    if resume_mode == 'btc_sma50' and btc_resume is None:
+        raise ValueError('BTC historical trend required')
     dates,keys,a=prepared or prepare(prepped)
+    vol = None
+    if sizing == 'inverse_vol':
+        vol=np.array([prepped[k].Close.pct_change(fill_method=None).rolling(20).std(ddof=1).reindex(dates).to_numpy() for k in keys]).T
+
     fee=fee_pct_one_way/100; cash=1.; positions={}; curve=[]; trades=0
     # Last valid close preserves mark-to-market across missing bars.
     marks=np.zeros(len(keys)); stops=0; profits=0
     peak=1.; paused=False; events=0; resumes=0; blocked_days=0; trace=[]
+    paused_since=None; grace_day=-1; event_log=[]; allocations=[]
     def observe(value):
-        nonlocal peak,paused,events,resumes
+        nonlocal peak,paused,events,resumes,paused_since
         peak=max(peak,value)
         drawdown=1-value/peak
         if dd_trigger is not None:
-            if paused and drawdown <= dd_resume:
+            if paused and resume_mode == 'equity' and drawdown <= dd_resume:
                 paused=False; resumes+=1
-            elif not paused and drawdown >= dd_trigger:
-                paused=True; events+=1
+            elif not paused and i != grace_day and drawdown >= dd_trigger:
+                paused=True; events+=1; paused_since=i
+                event_log.append(dict(kind='pause',index=i,date=str(d),drawdown=drawdown))
         return drawdown
     for i,d in enumerate(dates):
         op,hi,lo,cl=(a[f][i] for f in ['Open','High','Low','Close'])
@@ -48,6 +62,13 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 sell(k,op[k]); stops+=1
         # Opening valuation is known before allocation; never read today's close here.
         opening=cash+sum(p['qty']*(op[k] if np.isfinite(op[k]) else marks[k]) for k,p in positions.items())
+        # Only yesterday's completed BTC bar is available at today's open.
+        if paused and resume_mode != 'equity' and i > paused_since:
+            ready = (i-paused_since >= cooldown_days if resume_mode == 'cooldown'
+                     else bool(btc_resume.get(dates[i-1],False)))
+            if ready:
+                paused=False; resumes+=1; grace_day=i
+                event_log.append(dict(kind='resume',index=i,date=str(d),wait=i-paused_since))
         opening_dd=observe(opening)
         entry_paused=paused
         blocked_days+=int(entry_paused)
@@ -62,8 +83,25 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
             # All: retain all candidates, equal split of free cash; no symbol ranking/cap.
             mtm=cash+sum(p['qty']*(op[k] if np.isfinite(op[k]) else marks[k]) for k,p in positions.items())
             budget=cash/len(candidates) if candidates and selection=='all' else mtm/top_k
+            budgets={k:budget for k in candidates}
+            if sizing == 'inverse_vol' and candidates:
+                # Existing holdings remain fixed; estimate whole book risk using
+                # perfect positive correlation (sum w*sigma), a conservative cap.
+                known=i-1
+                candidates=[k for k in candidates if np.isfinite(vol[known,k]) and vol[known,k]>0]
+                sigmas={k:vol[known,k]*np.sqrt(365) for k in candidates}
+                risk=sum(p['qty']*(op[k] if np.isfinite(op[k]) else marks[k])/mtm *
+                         (vol[known,k]*np.sqrt(365) if np.isfinite(vol[known,k]) else target_vol/weight_cap)
+                         for k,p in positions.items())
+                inv=sum(1/sigmas[k] for k in candidates)
+                # Reserve free slot capacity when few signals arrive.
+                pool=min(cash/mtm, len(candidates)/top_k)
+                weights={k:min(weight_cap,pool/sigmas[k]/inv) for k in candidates}
+                proposed=sum(weights[k]*sigmas[k] for k in candidates)
+                scale=min(1.,max(0.,target_vol-risk)/proposed) if proposed>0 else 0.
+                budgets={k:mtm*weights[k]*scale for k in candidates}
             for k in candidates:
-                alloc=min(cash,budget)
+                alloc=min(cash,budgets[k])
                 if alloc<=1e-12: break
                 price=op[k]; sl=price*(1-stop_pct) if stop_pct else 0.
                 if stop.startswith('pct'): sl=price*(1-float(stop[3:])/100)
@@ -76,6 +114,8 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 if tp.startswith('pct'): target=price*(1+float(tp[3:])/100)
                 positions[k]={'qty':alloc*(1-fee)/price,'sl':sl,'target':target,'exit':i+hold_days}
                 cash-=alloc
+                if return_trace:
+                    allocations.append(dict(date=str(d),symbol=keys[k],weight=alloc/mtm,known_through=str(dates[i-1])))
         for k in list(positions):
             if not np.isfinite(cl[k]): continue
             p=positions[k]
@@ -102,5 +142,9 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 start=str(dates[0]),end=str(dates[-1]),years=years,
                 breaker_events=events,breaker_resumes=resumes,blocked_days=blocked_days,
                 breaker_paused_final=paused)
-    if return_trace: result['trace']=trace
+    result['breaker_log']=event_log
+    result['paused_age_final']=len(dates)-1-paused_since if paused and paused_since is not None else 0
+    if return_trace:
+        result['trace']=trace
+        result['allocations']=allocations
     return result
