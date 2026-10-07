@@ -1,0 +1,703 @@
+PROXY 0 7
+PROXY 0 14
+PROXY 0 30
+PROXY 1 7
+PROXY 1 14
+PROXY 1 30
+RESULT 1 / 397 {'variant': 'reference', 'family': 'volume'} {'cagr': 62.35370201973218, 'mdd': 53.38384647347725, 'sharpe': 1.1645781354484106, 'trades': 468, 'final': 30.827421853005916} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 2 / 397 {'variant': 'control_C', 'family': 'heikin_ashi'} {'cagr': 129.33767520045402, 'mdd': 52.88678816988129, 'sharpe': 1.6425677241668883, 'trades': 642, 'final': 354.99450021493215} [False, True, True, True]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 321, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 309, in run
+    row['robustness'] = robustness(p, data, kw, engine, full)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 161, in robustness
+    trials.append(dict(seed=seed, **summary(execute(p, random_data(data, seed, probability), kw, engine))))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 119, in execute
+    return fn(p, prepared=data, return_trace=trace, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/technical_portfolio_engine.py", line 129, in simulate_portfolio
+    candidates=[k for k in range(len(keys)) if k not in positions and a['SIGNAL'][s,k]==1 and np.isfinite(op[k]) and op[k]>0]
+                                                                      ^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+PROXY 0 7
+PROXY 0 14
+PROXY 0 30
+PROXY 1 7
+PROXY 1 14
+PROXY 1 30
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 3 / 397 {'variant': 'control_C', 'family': 'frvp'} {'cagr': 62.43969693742288, 'mdd': 35.858516614939376, 'sharpe': 1.5483896416745273, 'trades': 140, 'final': 30.943125974963607} [True, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 4 / 397 {'variant': 'control_C', 'family': 'volume'} {'cagr': 68.86459222384795, 'mdd': 51.11487619767141, 'sharpe': 1.391140723224691, 'trades': 358, 'final': 40.714210011476816} [True, False, True, True]
+RESULT 5 / 397 {'variant': 'control_C', 'family': 'vwap'} {'cagr': 108.6483589602313, 'mdd': 87.32382054837493, 'sharpe': 1.2458804451656533, 'trades': 484, 'final': 181.85917858718025} None
+RESULT 6 / 397 {'variant': 'control_C', 'family': 'fvg'} {'cagr': 69.8067477349691, 'mdd': 75.35021781304928, 'sharpe': 1.0510867893847742, 'trades': 2409, 'final': 42.348762811172676} None
+RESULT 7 / 397 {'variant': 'control_C', 'family': 'fibonacci'} {'cagr': 29.111602051735865, 'mdd': 31.582674942939594, 'sharpe': 1.00666190201757, 'trades': 559, 'final': 6.095868826524871} None
+RESULT 8 / 397 {'variant': 'control_C', 'family': 'ema_cross'} {'cagr': 24.135124229628026, 'mdd': 43.37917645065881, 'sharpe': 0.9795748624772482, 'trades': 272, 'final': 4.616022636214515} None
+RESULT 9 / 397 {'variant': 'control_C', 'family': 'liquidity_sweep'} {'cagr': 42.78368547681281, 'mdd': 63.85864082591913, 'sharpe': 0.934620113642661, 'trades': 794, 'final': 12.42482072408336} None
+RESULT 10 / 397 {'variant': 'control_C', 'family': 'elliott_wave'} {'cagr': 45.443884594323045, 'mdd': 73.3172938997687, 'sharpe': 0.8628110959897548, 'trades': 185, 'final': 14.158145994698542} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 11 / 397 {'variant': 'control_C', 'family': 'donchian'} {'cagr': 68.60896410474567, 'mdd': 35.919925384098015, 'sharpe': 1.4634585457790896, 'trades': 258, 'final': 40.280177747846366} [True, True, True, True]
+RESULT 12 / 397 {'variant': 'control_D', 'hold_days': 10} {'cagr': 82.73283708687119, 'mdd': 78.98498378031087, 'sharpe': 1.1681126405580575, 'trades': 1576, 'final': 71.16220265761704} None
+RESULT 13 / 397 {'variant': 'control_D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+RESULT 14 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 1.9017434886848816, 'mdd': 12.308741012799283, 'sharpe': 0.3908258482884954, 'trades': 53, 'final': 1.1425670712116522} None
+RESULT 15 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 0.18599425044505402, 'mdd': 21.739583460812334, 'sharpe': 0.06397896193234387, 'trades': 53, 'final': 1.0132329298571854} None
+RESULT 16 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 17 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 18 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.7004713978856, 'mdd': 78.12597201567225, 'sharpe': 1.1752830974622017, 'trades': 1576, 'final': 73.87138146068872} None
+RESULT 19 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.2346226440854, 'mdd': 75.1629692877443, 'sharpe': 1.1117661840866602, 'trades': 872, 'final': 52.90723156051439} None
+RESULT 20 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 131.62918595230462, 'mdd': 54.99915617892219, 'sharpe': 1.6611496817397189, 'trades': 650, 'final': 380.86309468510854} None
+RESULT 21 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.01854030169147, 'mdd': 35.85851661493938, 'sharpe': 1.541778665620446, 'trades': 141, 'final': 30.380007851150946} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 322, in <module>
+    minimum_mc_p=1 / (MC_N + 1),
+^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 310, in run
+    if not row["dominates"]
+                        ^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 162, in robustness
+    data = prepare(p)
+
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round16_liquidation_research.py", line 119, in execute
+    kw = resolved(
+   ^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/technical_portfolio_engine.py", line 129, in simulate_portfolio
+    candidates=[k for k in range(len(keys)) if k not in positions and a['SIGNAL'][s,k]==1 and np.isfinite(op[k]) and op[k]>0]
+                                                                      ^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+PROXY 0 7
+PROXY 0 14
+PROXY 0 30
+PROXY 1 7
+PROXY 1 14
+PROXY 1 30
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 22 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.35125140698639, 'mdd': 51.1148761976714, 'sharpe': 1.3977357741279124, 'trades': 358, 'final': 41.55161981525415} [True, False, True, True]
+RESULT 23 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 117.85754155263129, 'mdd': 87.32382054837493, 'sharpe': 1.2926181399955106, 'trades': 517, 'final': 246.85279042708171} None
+RESULT 24 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 70.3644579282428, 'mdd': 75.22819246318633, 'sharpe': 1.0564926520187072, 'trades': 2400, 'final': 43.342637132091205} None
+RESULT 25 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 29.156200303469614, 'mdd': 31.58267494293957, 'sharpe': 1.0081332128122, 'trades': 560, 'final': 6.110781178058887} None
+RESULT 26 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 24.165158561755895, 'mdd': 43.379176450658846, 'sharpe': 0.9808477475925561, 'trades': 273, 'final': 4.623929653248531} None
+RESULT 27 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 47.63010068640048, 'mdd': 64.39684864355041, 'sharpe': 0.9900793438319286, 'trades': 810, 'final': 15.734246467445551} None
+RESULT 28 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 48.57305879247116, 'mdd': 70.43021601076354, 'sharpe': 0.8893538708009965, 'trades': 188, 'final': 16.459183510133997} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 29 / 397 {'tier_set': 0, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 69.09440009392264, 'mdd': 35.21659699108576, 'sharpe': 1.4741801351397006, 'trades': 258, 'final': 41.1078236718533} [True, True, True, True]
+RESULT 30 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 9.83179520940649, 'mdd': 19.765946455662764, 'sharpe': 0.7167009964527441, 'trades': 255, 'final': 1.9414899761348292} None
+RESULT 31 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 3.081690540986992, 'mdd': 37.81889311347811, 'sharpe': 0.24748348347720858, 'trades': 241, 'final': 1.2395217555762126} None
+RESULT 32 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.4261441212818129, 'mdd': 1.838542062693053, 'sharpe': 0.3678257162565453, 'trades': 1, 'final': 1.030541059009901} None
+RESULT 33 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.5473041057746819, 'mdd': 2.1960995613730296, 'sharpe': 0.36885822584370614, 'trades': 1, 'final': 1.0393692507425742} None
+RESULT 34 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 84.24224262122438, 'mdd': 78.03747288766458, 'sharpe': 1.1793277278623069, 'trades': 1576, 'final': 75.42654618152571} None
+RESULT 35 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.31571699632454, 'mdd': 75.1629692877443, 'sharpe': 1.112337386869857, 'trades': 872, 'final': 53.08069122510693} None
+RESULT 36 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 95.00488999450612, 'mdd': 55.559011267275615, 'sharpe': 1.3909938048093289, 'trades': 662, 'final': 112.70878664818504} None
+RESULT 37 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 61.923617524215516, 'mdd': 35.85851661493938, 'sharpe': 1.5401168986088953, 'trades': 141, 'final': 30.25431136203068} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 38 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 70.61543558460173, 'mdd': 51.114876197671435, 'sharpe': 1.4152620217291931, 'trades': 361, 'final': 43.796387952467605} [True, False, True, True]
+RESULT 39 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 122.09833229895337, 'mdd': 87.28979150198116, 'sharpe': 1.3137764206761067, 'trades': 553, 'final': 282.92517385974173} None
+RESULT 40 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 73.85261792643078, 'mdd': 69.55114479017168, 'sharpe': 1.0793748853237435, 'trades': 2441, 'final': 50.02507046966084} None
+RESULT 41 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.680032106327946, 'mdd': 30.900969801793682, 'sharpe': 0.9954230219299643, 'trades': 563, 'final': 5.95317105212552} None
+RESULT 42 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.493850073865264, 'mdd': 43.77443069433085, 'sharpe': 0.9613722511106644, 'trades': 273, 'final': 4.449945016200369} None
+RESULT 43 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 48.58824272212987, 'mdd': 65.46948972682087, 'sharpe': 1.0065244578748775, 'trades': 837, 'final': 16.47108741647777} None
+RESULT 44 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 51.59145729617918, 'mdd': 69.12327597100035, 'sharpe': 0.916835022637623, 'trades': 192, 'final': 18.97590917747155} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 45 / 397 {'tier_set': 0, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 67.28176573205968, 'mdd': 35.21676662278528, 'sharpe': 1.443247551998365, 'trades': 262, 'final': 38.08999639233201} [True, True, True, True]
+RESULT 46 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 23.304911056856703, 'mdd': 27.875952845900258, 'sharpe': 0.9300377474415547, 'trades': 555, 'final': 4.4020030702841115} None
+RESULT 47 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 24.34173536729045, 'mdd': 48.25651112618996, 'sharpe': 0.7547813487670519, 'trades': 472, 'final': 4.670651904100214} None
+RESULT 48 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.4261441212818129, 'mdd': 1.838542062693053, 'sharpe': 0.3678257162565453, 'trades': 1, 'final': 1.030541059009901} None
+RESULT 49 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.5473041057746819, 'mdd': 2.1960995613730296, 'sharpe': 0.36885822584370614, 'trades': 1, 'final': 1.0393692507425742} None
+RESULT 50 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.40313931680558, 'mdd': 79.7830814658877, 'sharpe': 1.1595213130084685, 'trades': 1576, 'final': 67.57875027123852} None
+RESULT 51 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.9076369130034, 'mdd': 75.1629692877443, 'sharpe': 1.1167678556819727, 'trades': 872, 'final': 54.361655955421355} None
+RESULT 52 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 83.93587883221687, 'mdd': 56.13699936371902, 'sharpe': 1.3035635792900861, 'trades': 688, 'final': 74.54370629675323} None
+RESULT 53 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 33.239991043914415, 'mdd': 36.80356735844788, 'sharpe': 1.0818693947036497, 'trades': 129, 'final': 7.616241500180698} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 54 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.46338771102698, 'mdd': 50.46920265038145, 'sharpe': 1.40569599682996, 'trades': 365, 'final': 41.746658879795945} [True, False, True, True]
+RESULT 55 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 106.53349158995357, 'mdd': 87.42305066053903, 'sharpe': 1.2364909489249112, 'trades': 576, 'final': 169.21300070084868} None
+RESULT 56 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 68.39349551155682, 'mdd': 73.94540476224083, 'sharpe': 1.0436735463241265, 'trades': 2550, 'final': 39.917424199019216} None
+RESULT 57 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 26.263207984178916, 'mdd': 29.79552144808825, 'sharpe': 0.936603245492106, 'trades': 565, 'final': 5.205873819746029} None
+RESULT 58 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.52825734904127, 'mdd': 42.810465339031516, 'sharpe': 0.9652427416502958, 'trades': 274, 'final': 4.458723700164008} None
+RESULT 59 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 40.47405288016404, 'mdd': 64.90335491989745, 'sharpe': 0.9110914974290867, 'trades': 886, 'final': 11.070937729972368} None
+RESULT 60 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 40.45301039177727, 'mdd': 72.66598863996153, 'sharpe': 0.8149508837693511, 'trades': 198, 'final': 11.059210644580064} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 61 / 397 {'tier_set': 0, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 71.1475042581479, 'mdd': 33.84856290563933, 'sharpe': 1.4888373363875291, 'trades': 261, 'final': 44.77183961113229} [True, True, True, True]
+RESULT 62 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 11.83573984765307, 'mdd': 49.41117191680506, 'sharpe': 0.4841869062468526, 'trades': 1123, 'final': 2.206422779518176} None
+RESULT 63 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 15.617515702821084, 'mdd': 61.12834965134712, 'sharpe': 0.5430912612573094, 'trades': 844, 'final': 2.7916913575998867} None
+RESULT 64 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.10513495277344465, 'mdd': 6.64549619963665, 'sharpe': 0.053678072364966425, 'trades': 6, 'final': 1.0074616775696397} None
+RESULT 65 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.8267012598795365, 'mdd': 7.493835045158111, 'sharpe': 0.2756221085053906, 'trades': 6, 'final': 1.0599751166790548} None
+RESULT 66 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 84.56157447607904, 'mdd': 77.69520403020326, 'sharpe': 1.1826192772917876, 'trades': 1577, 'final': 76.35629681033119} None
+RESULT 67 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 74.08809189535152, 'mdd': 74.95922667922402, 'sharpe': 1.095585998461038, 'trades': 870, 'final': 50.50639578955557} None
+RESULT 68 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 85.27377917143902, 'mdd': 54.570117861619885, 'sharpe': 1.3092110473409369, 'trades': 766, 'final': 78.46543129265433} None
+RESULT 69 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 28.598929623303103, 'mdd': 39.314925818638606, 'sharpe': 0.9742361347092453, 'trades': 131, 'final': 5.926677367959681} None
+RESULT 70 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 61.34861321443341, 'mdd': 53.42446601037262, 'sharpe': 1.3083315962497426, 'trades': 372, 'final': 29.50239562053499} None
+RESULT 71 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 81.74967701877249, 'mdd': 91.10534293102849, 'sharpe': 1.0985121663225157, 'trades': 600, 'final': 68.49737648151051} None
+RESULT 72 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 60.436756834641336, 'mdd': 79.05252772971899, 'sharpe': 0.9859663004538162, 'trades': 2739, 'final': 28.342888617914593} None
+RESULT 73 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 26.16635109038372, 'mdd': 32.818613745999386, 'sharpe': 0.9343904111234727, 'trades': 574, 'final': 5.177687530718723} None
+RESULT 74 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.493270913591058, 'mdd': 40.58757154454872, 'sharpe': 0.9951204938621613, 'trades': 275, 'final': 4.449797376152311} None
+RESULT 75 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 32.643140055042785, 'mdd': 66.59542335008393, 'sharpe': 0.8122251173102719, 'trades': 948, 'final': 7.378135648200066} None
+RESULT 76 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 34.87094122180909, 'mdd': 74.1170060080998, 'sharpe': 0.7601098735006162, 'trades': 202, 'final': 8.300828972457555} None
+RESULT 77 / 397 {'tier_set': 0, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 61.15024807732388, 'mdd': 36.03598710841835, 'sharpe': 1.386949510484837, 'trades': 270, 'final': 29.246750024943236} None
+RESULT 78 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 1.9629248012725586, 'mdd': 17.62388763597864, 'sharpe': 0.3356166326444236, 'trades': 82, 'final': 1.147429051765695} None
+RESULT 79 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 1.431675510291952, 'mdd': 25.712401890590897, 'sharpe': 0.19403029623602222, 'trades': 81, 'final': 1.1057979656926202} None
+RESULT 80 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 81 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 82 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.73701684870578, 'mdd': 78.12597201567226, 'sharpe': 1.1756571090632408, 'trades': 1576, 'final': 73.97541275134677} None
+RESULT 83 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+RESULT 84 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 128.19680931957066, 'mdd': 55.22593486312546, 'sharpe': 1.6272284255205114, 'trades': 660, 'final': 342.6882181877908} None
+RESULT 85 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 53.30617089534162, 'mdd': 42.82337936330284, 'sharpe': 1.3878522731201193, 'trades': 141, 'final': 20.547613973009685} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 86 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.27721670363553, 'mdd': 51.11487619767142, 'sharpe': 1.3967613066587032, 'trades': 358, 'final': 41.42328025173321} [True, False, True, True]
+RESULT 87 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 115.01371863573615, 'mdd': 87.32382054837493, 'sharpe': 1.277640931011765, 'trades': 550, 'final': 224.94031948689138} None
+RESULT 88 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 71.45628785641978, 'mdd': 71.5874386289669, 'sharpe': 1.0645826587928908, 'trades': 2418, 'final': 45.346447392301194} None
+RESULT 89 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 29.647418726379616, 'mdd': 29.846605763466833, 'sharpe': 1.0242812147689984, 'trades': 560, 'final': 6.277114222320986} None
+RESULT 90 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 24.263637439386244, 'mdd': 43.37917645065879, 'sharpe': 0.9846671934166279, 'trades': 274, 'final': 4.649937427788894} None
+RESULT 91 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 40.76350150379848, 'mdd': 64.39684864355041, 'sharpe': 0.9039197253232626, 'trades': 820, 'final': 11.23333585960908} None
+RESULT 92 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 48.57305879247116, 'mdd': 70.43021601076354, 'sharpe': 0.8893538708009965, 'trades': 188, 'final': 16.459183510133997} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 93 / 397 {'tier_set': 0, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 69.16878210311243, 'mdd': 35.21659699108576, 'sharpe': 1.475453780825021, 'trades': 259, 'final': 41.23592267154279} [True, True, True, True]
+RESULT 94 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 12.49155341456245, 'mdd': 25.33750918611959, 'sharpe': 0.7081563544337363, 'trades': 382, 'final': 2.2996051518748497} None
+RESULT 95 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 4.479568452673521, 'mdd': 42.93271915040107, 'sharpe': 0.29769387028350225, 'trades': 332, 'final': 1.363450744444406} None
+RESULT 96 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.4261441212818129, 'mdd': 1.838542062693053, 'sharpe': 0.3678257162565453, 'trades': 1, 'final': 1.030541059009901} None
+RESULT 97 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.5473041057746819, 'mdd': 2.1960995613730296, 'sharpe': 0.36885822584370614, 'trades': 1, 'final': 1.0393692507425742} None
+RESULT 98 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.61751150781771, 'mdd': 78.03747288766458, 'sharpe': 1.1754688714970625, 'trades': 1576, 'final': 73.63569168373684} None
+RESULT 99 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.27755907731633, 'mdd': 75.1629692877443, 'sharpe': 1.1120226322327647, 'trades': 872, 'final': 52.99901125073332} None
+RESULT 100 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 91.34801321268928, 'mdd': 58.21882828471513, 'sharpe': 1.3652645133538484, 'trades': 690, 'final': 98.5810821598149} None
+RESULT 101 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 51.49195361054551, 'mdd': 43.42373913047698, 'sharpe': 1.359637206149331, 'trades': 142, 'final': 18.88796571164303} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 102 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.89215221865346, 'mdd': 50.86528443344488, 'sharpe': 1.408336973734976, 'trades': 362, 'final': 42.499677749877854} [True, False, True, True]
+RESULT 103 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 106.630751294438, 'mdd': 90.02289455751777, 'sharpe': 1.237723884484852, 'trades': 622, 'final': 169.77754717206236} None
+RESULT 104 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 56.88565412215611, 'mdd': 77.28036755975792, 'sharpe': 0.9536269073339922, 'trades': 2475, 'final': 24.192146135249338} None
+RESULT 105 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.043110932540127, 'mdd': 29.1476025580654, 'sharpe': 0.9859896759096798, 'trades': 566, 'final': 5.747817694220783} None
+RESULT 106 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 26.70149474462573, 'mdd': 43.761221028613065, 'sharpe': 1.0258151568954204, 'trades': 275, 'final': 5.33507277693556} None
+RESULT 107 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 39.31816951068801, 'mdd': 64.22585321744657, 'sharpe': 0.8929147199783585, 'trades': 862, 'final': 10.442349460217265} None
+RESULT 108 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 37.814990421903886, 'mdd': 71.96950187334362, 'sharpe': 0.7891205766561918, 'trades': 200, 'final': 9.670916350707422} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 109 / 397 {'tier_set': 0, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 63.38779981823437, 'mdd': 35.21676662278528, 'sharpe': 1.4187249746057602, 'trades': 267, 'final': 32.243704177702085} [True, True, True, True]
+RESULT 110 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 18.465542292897762, 'mdd': 31.547168166930913, 'sharpe': 0.6977397387971194, 'trades': 769, 'final': 3.316154589496677} None
+RESULT 111 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 32.086138313374256, 'mdd': 53.61770709885691, 'sharpe': 0.8597289739308036, 'trades': 626, 'final': 7.161721539859062} None
+RESULT 112 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.2991444701502033, 'mdd': 2.549172581194531, 'sharpe': 0.22781756842891054, 'trades': 3, 'final': 1.0213565579994432} None
+RESULT 113 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.9131909367350532, 'mdd': 2.196099561373046, 'sharpe': 0.518429979341734, 'trades': 3, 'final': 1.0664245024557824} None
+RESULT 114 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 80.86576623510298, 'mdd': 79.37922498131029, 'sharpe': 1.1563302697326658, 'trades': 1576, 'final': 66.17516752263865} None
+RESULT 115 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 76.50028375695031, 'mdd': 75.18741907832134, 'sharpe': 1.1209752612718773, 'trades': 872, 'final': 55.670695946620015} None
+RESULT 116 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 87.51525548330075, 'mdd': 55.62771413988469, 'sharpe': 1.3303995177196724, 'trades': 733, 'final': 85.43317156407507} None
+RESULT 117 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 25.959250229056607, 'mdd': 43.822170526352544, 'sharpe': 0.9021660485472566, 'trades': 131, 'final': 5.117858517877873} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 118 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 68.22601371699004, 'mdd': 48.07127097023669, 'sharpe': 1.394811301095739, 'trades': 366, 'final': 39.63740012406469} [True, False, True, True]
+RESULT 119 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 107.21273682658384, 'mdd': 88.71692638073004, 'sharpe': 1.2395728115166045, 'trades': 674, 'final': 173.18960856304923} None
+RESULT 120 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 42.06212813311001, 'mdd': 86.8457023839973, 'sharpe': 0.8344492948292962, 'trades': 2605, 'final': 11.987374602904254} None
+RESULT 121 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 24.68738963764889, 'mdd': 29.159811737430786, 'sharpe': 0.9008695618480079, 'trades': 570, 'final': 4.76328654611742} None
+RESULT 122 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 26.624347645530232, 'mdd': 43.736152164278224, 'sharpe': 1.0279051810500621, 'trades': 277, 'final': 5.312133622564783} None
+RESULT 123 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 34.05636221030428, 'mdd': 62.134392694241654, 'sharpe': 0.8317522732767333, 'trades': 941, 'final': 7.952587786022286} None
+RESULT 124 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 34.955239483870756, 'mdd': 72.66598863996155, 'sharpe': 0.7610778501158184, 'trades': 213, 'final': 8.337603621625833} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 125 / 397 {'tier_set': 0, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 68.09962918486721, 'mdd': 33.84856290563933, 'sharpe': 1.4856946385396204, 'trades': 267, 'final': 39.42720756082501} [True, True, True, True]
+RESULT 126 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 14.36961900042133, 'mdd': 52.50295991222048, 'sharpe': 0.5283605226079916, 'trades': 1647, 'final': 2.5853840899001406} None
+RESULT 127 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 25.22530663373146, 'mdd': 63.050064882633464, 'sharpe': 0.6853503171129014, 'trades': 1247, 'final': 4.910584470950478} None
+RESULT 128 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': -0.2707534253871824, 'mdd': 7.75991515852793, 'sharpe': -0.07837922598273916, 'trades': 14, 'final': 0.9810020622667118} None
+RESULT 129 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 1.5530765814567582, 'mdd': 8.336130803449217, 'sharpe': 0.42638512831344966, 'trades': 14, 'final': 1.1151953306958453} None
+RESULT 130 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 84.75440016005464, 'mdd': 77.08778445151378, 'sharpe': 1.184454285605754, 'trades': 1578, 'final': 76.92246978253499} None
+RESULT 131 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 73.86562291626095, 'mdd': 74.98198191091127, 'sharpe': 1.094538333714823, 'trades': 870, 'final': 50.05155043735077} None
+RESULT 132 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 85.02653852521512, 'mdd': 57.68024286064076, 'sharpe': 1.2956637353441196, 'trades': 831, 'final': 77.72765159231949} None
+RESULT 133 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 28.313370960394145, 'mdd': 49.60734679109011, 'sharpe': 0.9588110137789301, 'trades': 170, 'final': 5.834198264372315} None
+RESULT 134 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 61.354043388035386, 'mdd': 50.72375779766423, 'sharpe': 1.3158406166213843, 'trades': 373, 'final': 29.509420719364176} None
+RESULT 135 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 84.10876621108653, 'mdd': 91.20667743063673, 'sharpe': 1.1054334801290935, 'trades': 759, 'final': 75.04081361485726} None
+RESULT 136 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 44.50296812471362, 'mdd': 87.70312789687242, 'sharpe': 0.8531581186130373, 'trades': 2912, 'final': 13.522755922949584} None
+RESULT 137 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 24.013595734163594, 'mdd': 31.89798366545422, 'sharpe': 0.8889759686337152, 'trades': 582, 'final': 4.584146733974807} None
+RESULT 138 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 25.333412747496965, 'mdd': 42.63751835837466, 'sharpe': 1.0336567872754117, 'trades': 278, 'final': 4.94065441001188} None
+RESULT 139 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 30.415821370208263, 'mdd': 62.281289341675205, 'sharpe': 0.7980672113564213, 'trades': 1041, 'final': 6.54510092291019} None
+RESULT 140 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 31.502619460995817, 'mdd': 72.47638643458146, 'sharpe': 0.7256519280046817, 'trades': 225, 'final': 6.9408730078763154} None
+RESULT 141 / 397 {'tier_set': 0, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 58.69292365957579, 'mdd': 36.03598710841835, 'sharpe': 1.3434697331180399, 'trades': 281, 'final': 26.23407852475465} None
+RESULT 142 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 3.160419088889488, 'mdd': 17.78533419221631, 'sharpe': 0.4541608955092141, 'trades': 108, 'final': 1.246234725932018} None
+RESULT 143 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 4.697816268719368, 'mdd': 26.017593829082035, 'sharpe': 0.4541254434344952, 'trades': 106, 'final': 1.3837283516327283} None
+RESULT 144 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 145 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 146 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.73701684870578, 'mdd': 78.12597201567226, 'sharpe': 1.1756571090632408, 'trades': 1576, 'final': 73.97541275134677} None
+RESULT 147 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+RESULT 148 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 119.37906066009644, 'mdd': 56.459536296339664, 'sharpe': 1.5731811022524709, 'trades': 661, 'final': 259.3113721121398} None
+RESULT 149 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 53.116114130221035, 'mdd': 43.24930856051216, 'sharpe': 1.3844344266974271, 'trades': 142, 'final': 20.368077604887706} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 150 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.27721670363553, 'mdd': 51.11487619767142, 'sharpe': 1.3967613066587032, 'trades': 358, 'final': 41.42328025173321} [True, False, True, True]
+RESULT 151 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 109.27784363673258, 'mdd': 87.32382054837491, 'sharpe': 1.2438525256138715, 'trades': 563, 'final': 185.7765016746959} None
+RESULT 152 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 52.80109218393736, 'mdd': 76.36141625150637, 'sharpe': 0.9268542526745012, 'trades': 2431, 'final': 20.073459578640815} None
+RESULT 153 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.373441720354876, 'mdd': 29.846605763466844, 'sharpe': 0.9935136249142922, 'trades': 560, 'final': 5.853548767791534} None
+RESULT 154 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 25.06244637601216, 'mdd': 43.37917645065878, 'sharpe': 1.0186707615907147, 'trades': 275, 'final': 4.865581275425828} None
+RESULT 155 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 40.0425825046475, 'mdd': 64.39684864355041, 'sharpe': 0.8963627367560755, 'trades': 831, 'final': 10.832600372373998} None
+RESULT 156 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 49.59013660649367, 'mdd': 70.43021601076357, 'sharpe': 0.8987630386091894, 'trades': 189, 'final': 17.273072563955488} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 157 / 397 {'tier_set': 0, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 69.63632833088067, 'mdd': 35.21659699108576, 'sharpe': 1.4818965209533597, 'trades': 261, 'final': 42.04899603515773} [True, True, True, True]
+RESULT 158 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 10.869863486300456, 'mdd': 32.63635227840497, 'sharpe': 0.574163052002464, 'trades': 495, 'final': 2.075094913573598} None
+RESULT 159 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 12.629844183250905, 'mdd': 49.50075555184706, 'sharpe': 0.5401187481522366, 'trades': 411, 'final': 2.319679931459028} None
+RESULT 160 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.45283110584923847, 'mdd': 1.8385420626930655, 'sharpe': 0.38124138181235945, 'trades': 2, 'final': 1.0324800279255033} None
+RESULT 161 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.7645540898034486, 'mdd': 2.1960995613730145, 'sharpe': 0.49628701803864617, 'trades': 2, 'final': 1.0553616138787465} None
+RESULT 162 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 84.73713828101192, 'mdd': 77.19149043290258, 'sharpe': 1.183091104149494, 'trades': 1577, 'final': 76.87163914682333} None
+RESULT 163 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.27755907731633, 'mdd': 75.1629692877443, 'sharpe': 1.1120226322327647, 'trades': 872, 'final': 52.99901125073332} None
+RESULT 164 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 90.99406282672176, 'mdd': 53.4766620989307, 'sharpe': 1.3608823932574898, 'trades': 711, 'final': 97.29823453009156} None
+RESULT 165 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 23.406291111186704, 'mdd': 43.42386667895028, 'sharpe': 0.8503665489096554, 'trades': 129, 'final': 4.427672100588933} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 166 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.1783358742891, 'mdd': 50.86528443344489, 'sharpe': 1.3982732944237044, 'trades': 365, 'final': 41.2524007706091} [True, False, True, True]
+RESULT 167 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 97.44961995179493, 'mdd': 92.74539672879698, 'sharpe': 1.1994442844574127, 'trades': 673, 'final': 123.09404864011415} None
+RESULT 168 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 53.208160750457424, 'mdd': 77.96620927289416, 'sharpe': 0.9279666517329044, 'trades': 2577, 'final': 20.454860139629098} None
+RESULT 169 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 26.155227648716274, 'mdd': 29.14760255806546, 'sharpe': 0.9392286947743993, 'trades': 569, 'final': 5.174458906754207} None
+RESULT 170 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 25.795116950133924, 'mdd': 41.50581127798053, 'sharpe': 1.0309363476526074, 'trades': 278, 'final': 5.070864922502726} None
+RESULT 171 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 32.06426413376704, 'mdd': 64.22585321744653, 'sharpe': 0.8048808498473602, 'trades': 891, 'final': 7.153335135377415} None
+RESULT 172 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 38.7873952718224, 'mdd': 71.96950187334363, 'sharpe': 0.7986690061736748, 'trades': 200, 'final': 10.164134503355719} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 173 / 397 {'tier_set': 0, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 63.77339255122241, 'mdd': 35.21676662278528, 'sharpe': 1.4222905343263812, 'trades': 271, 'final': 32.785918158049235} [True, True, True, True]
+RESULT 174 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 9.305907443078842, 'mdd': 47.66819340624046, 'sharpe': 0.43088987348362673, 'trades': 917, 'final': 1.8766725519228056} None
+RESULT 175 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 23.190309823295706, 'mdd': 62.737543371745275, 'sharpe': 0.6911129896276409, 'trades': 714, 'final': 4.3731404492602515} None
+RESULT 176 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.2201788447689479, 'mdd': 3.272655448969876, 'sharpe': 0.1574227356775048, 'trades': 5, 'final': 1.0156813453074163} None
+RESULT 177 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.9309849979079132, 'mdd': 2.8820384696660573, 'sharpe': 0.4937210263808911, 'trades': 5, 'final': 1.0677555456267838} None
+RESULT 178 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 82.99950567279272, 'mdd': 77.60480555793548, 'sharpe': 1.1718933022005515, 'trades': 1577, 'final': 71.90016193804206} None
+RESULT 179 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 76.16536466750048, 'mdd': 75.18741907832134, 'sharpe': 1.1189353516417797, 'trades': 872, 'final': 54.927640506502435} None
+RESULT 180 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 91.08040390402725, 'mdd': 54.805642295048465, 'sharpe': 1.3567161064615854, 'trades': 773, 'final': 97.60983721754026} None
+RESULT 181 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 20.210962268593935, 'mdd': 43.822070880031426, 'sharpe': 0.7667901207923902, 'trades': 132, 'final': 3.677670851070823} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 182 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 65.93274900582375, 'mdd': 48.07127097023672, 'sharpe': 1.3628559853868336, 'trades': 369, 'final': 35.96939289568609} [True, False, True, True]
+RESULT 183 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 116.67898148766236, 'mdd': 88.11818739057507, 'sharpe': 1.2969526154041828, 'trades': 822, 'final': 237.55905624428533} None
+RESULT 184 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 50.096849638326255, 'mdd': 78.47491460468885, 'sharpe': 0.9037164214557458, 'trades': 2760, 'final': 17.691289663641168} None
+RESULT 185 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 21.526319375745228, 'mdd': 34.10559667178803, 'sharpe': 0.8187970410292922, 'trades': 571, 'final': 3.9720011535262563} None
+RESULT 186 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.169327044858434, 'mdd': 41.04876199825848, 'sharpe': 0.9671976331954342, 'trades': 287, 'final': 4.367873519980188} None
+RESULT 187 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 24.96128143276657, 'mdd': 60.07384666398519, 'sharpe': 0.7053194279440143, 'trades': 983, 'final': 4.83780504791963} None
+RESULT 188 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 36.651433039302006, 'mdd': 72.66598863996154, 'sharpe': 0.7781105050326166, 'trades': 213, 'final': 9.107874214259875} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 189 / 397 {'tier_set': 0, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 69.60055910794094, 'mdd': 33.84856290563933, 'sharpe': 1.4795521535495497, 'trades': 276, 'final': 41.9863100540083} [True, True, True, True]
+RESULT 190 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 11.365606116600247, 'mdd': 60.08548554846425, 'sharpe': 0.46899301861434534, 'trades': 2046, 'final': 2.141635353193787} None
+RESULT 191 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 15.580472756844465, 'mdd': 74.61307771805023, 'sharpe': 0.5453193191495161, 'trades': 1567, 'final': 2.7853697290904087} None
+RESULT 192 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': -0.40115215015891215, 'mdd': 7.93065939479259, 'sharpe': -0.1129862550507783, 'trades': 19, 'final': 0.9719635143736839} None
+RESULT 193 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 1.4346306270901055, 'mdd': 9.728925516050968, 'sharpe': 0.37297104150687616, 'trades': 19, 'final': 1.1060259041228135} None
+RESULT 194 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 85.03646562786199, 'mdd': 77.0418458898782, 'sharpe': 1.1868632177307543, 'trades': 1579, 'final': 77.75715941004847} None
+RESULT 195 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 73.32791456093983, 'mdd': 74.76684237760637, 'sharpe': 1.091097125448794, 'trades': 870, 'final': 48.96668570364192} None
+RESULT 196 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 78.54681534931443, 'mdd': 60.97119501690654, 'sharpe': 1.2450765993493662, 'trades': 909, 'final': 60.40141115838581} None
+RESULT 197 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 43.75516391622263, 'mdd': 49.20416261840615, 'sharpe': 1.2391159505261538, 'trades': 199, 'final': 13.035386219314887} None
+RESULT 198 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 57.88538132915313, 'mdd': 51.07002497431067, 'sharpe': 1.271519976123053, 'trades': 379, 'final': 25.30410761841246} None
+RESULT 199 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 64.77466905889304, 'mdd': 90.39484693793419, 'sharpe': 0.9863687758818616, 'trades': 980, 'final': 34.23060375833345} None
+RESULT 200 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 51.633242193609476, 'mdd': 83.9141128900726, 'sharpe': 0.9130466459650552, 'trades': 3148, 'final': 19.012944241673758} None
+RESULT 201 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 20.743876612771327, 'mdd': 31.027006981294313, 'sharpe': 0.8126473840762964, 'trades': 586, 'final': 3.794577882071778} None
+RESULT 202 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 21.33461529236671, 'mdd': 36.55196967097198, 'sharpe': 0.9554732728854363, 'trades': 290, 'final': 3.9278855298150765} None
+RESULT 203 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 20.850453683794058, 'mdd': 61.05968027501281, 'sharpe': 0.6579048170382255, 'trades': 1108, 'final': 3.8183369235207993} None
+RESULT 204 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 31.72910399678628, 'mdd': 69.24223631318894, 'sharpe': 0.727753524742433, 'trades': 247, 'final': 7.025887515070701} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 205 / 397 {'tier_set': 0, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 64.24884958844099, 'mdd': 36.03598710841835, 'sharpe': 1.4244115476762358, 'trades': 295, 'final': 33.465260940542414} [True, True, True, True]
+RESULT 206 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 0.42462414965342976, 'mdd': 17.360014145688485, 'sharpe': 0.09332613436921249, 'trades': 126, 'final': 1.0304307181629524} None
+RESULT 207 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 1.2550978623699471, 'mdd': 23.281984948401547, 'sharpe': 0.16883771367034403, 'trades': 118, 'final': 1.0922509210683038} None
+RESULT 208 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 209 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 210 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.08258802516065, 'mdd': 78.64378704107295, 'sharpe': 1.170641934965552, 'trades': 1576, 'final': 72.13141630171143} None
+RESULT 211 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+RESULT 212 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 130.3705077216261, 'mdd': 55.01274065158138, 'sharpe': 1.652049527219137, 'trades': 648, 'final': 366.460806716239} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 213 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.57405364751729, 'mdd': 35.19201768744223, 'sharpe': 1.550834278271692, 'trades': 140, 'final': 31.12464612998909} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 214 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 68.44670711754657, 'mdd': 51.11487619767141, 'sharpe': 1.3853174905798782, 'trades': 359, 'final': 40.00674707462524} [True, False, True, True]
+RESULT 215 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 100.22601770527189, 'mdd': 89.48227237454475, 'sharpe': 1.1997926767801133, 'trades': 495, 'final': 135.87480641790188} None
+RESULT 216 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 71.52412074481393, 'mdd': 74.26539462452743, 'sharpe': 1.0569064118342355, 'trades': 2444, 'final': 45.47352070411282} None
+RESULT 217 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 29.01480352308068, 'mdd': 31.582674942939594, 'sharpe': 1.0041828816061793, 'trades': 560, 'final': 6.063609703366724} None
+RESULT 218 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 24.07541852171593, 'mdd': 43.26166707835475, 'sharpe': 0.9791046159139297, 'trades': 273, 'final': 4.600338630505938} None
+RESULT 219 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 42.74391430670927, 'mdd': 63.85864082591913, 'sharpe': 0.9291233636889704, 'trades': 809, 'final': 12.400357437960073} None
+RESULT 220 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 45.79529242720384, 'mdd': 73.3172938997687, 'sharpe': 0.8661121108857966, 'trades': 186, 'final': 14.401934382322093} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 221 / 397 {'tier_set': 1, 'window': 7, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 68.35140147713341, 'mdd': 35.78159905030975, 'sharpe': 1.460399399975239, 'trades': 258, 'final': 39.84688503458141} [True, True, True, True]
+RESULT 222 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 3.108493244450261, 'mdd': 30.465936336285516, 'sharpe': 0.2740766504408133, 'trades': 369, 'final': 1.241803655025553} None
+RESULT 223 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 7.369970790694613, 'mdd': 42.7239350257971, 'sharpe': 0.43090687542182926, 'trades': 320, 'final': 1.6538034856016117} None
+RESULT 224 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 225 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 226 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.59180069405771, 'mdd': 79.4301778662412, 'sharpe': 1.1606083149615865, 'trades': 1576, 'final': 68.07754602961693} None
+RESULT 227 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 76.64483148686432, 'mdd': 75.1629692877443, 'sharpe': 1.1224708774872907, 'trades': 871, 'final': 55.99404771509736} None
+RESULT 228 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 114.60449186851918, 'mdd': 53.71463866011644, 'sharpe': 1.5508221431933435, 'trades': 659, 'final': 221.92899382119847} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 229 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.38768989350392, 'mdd': 35.192017687442224, 'sharpe': 1.5463283910830339, 'trades': 141, 'final': 30.873107254301043} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 230 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.51823836257557, 'mdd': 51.1148761976714, 'sharpe': 1.4008791564240834, 'trades': 363, 'final': 41.84234675034239} [True, False, True, True]
+RESULT 231 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 109.12494712280179, 'mdd': 87.72906165085833, 'sharpe': 1.2466424451512539, 'trades': 492, 'final': 184.81841718845556} None
+RESULT 232 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 70.33150221784281, 'mdd': 73.90793106269854, 'sharpe': 1.0509801179151574, 'trades': 2424, 'final': 43.28335632054084} None
+RESULT 233 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.78592575431491, 'mdd': 31.582674942939594, 'sharpe': 0.9988268769406896, 'trades': 560, 'final': 5.987916271083256} None
+RESULT 234 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.849349446397515, 'mdd': 44.04996503964193, 'sharpe': 0.9452213207569543, 'trades': 274, 'final': 4.288227498590521} None
+RESULT 235 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 44.62877623383215, 'mdd': 65.50947728869383, 'sharpe': 0.9482977016026197, 'trades': 828, 'final': 13.606267745818897} None
+RESULT 236 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 44.45541774032702, 'mdd': 73.3677455089201, 'sharpe': 0.8538123397865647, 'trades': 187, 'final': 13.49130664179004} None
+RESULT 237 / 397 {'tier_set': 1, 'window': 7, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 61.08884409314517, 'mdd': 36.626185436383345, 'sharpe': 1.3649924184856068, 'trades': 260, 'final': 29.168001416941454} None
+RESULT 238 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 4.643567210801214, 'mdd': 33.302628416197635, 'sharpe': 0.3251872465108746, 'trades': 551, 'final': 1.3786639950055413} None
+RESULT 239 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 9.571855979000254, 'mdd': 44.76532015786945, 'sharpe': 0.4727704061559768, 'trades': 451, 'final': 1.9092153970378427} None
+RESULT 240 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 241 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 242 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.10242976282873, 'mdd': 79.43659238572349, 'sharpe': 1.1586642862123324, 'trades': 1577, 'final': 66.79020093676021} None
+RESULT 243 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 80.23364634625767, 'mdd': 75.1629692877443, 'sharpe': 1.1491916347794058, 'trades': 869, 'final': 64.5562189019743} None
+RESULT 244 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 105.34622795897116, 'mdd': 53.94988159630728, 'sharpe': 1.4824473434669099, 'trades': 677, 'final': 162.4503412473404} None
+RESULT 245 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 60.99906168850522, 'mdd': 36.048285256592195, 'sharpe': 1.5233227183996405, 'trades': 141, 'final': 29.053186158409638} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 246 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.141962224319734, 'mdd': 50.92846126641331, 'sharpe': 1.3213363438122596, 'trades': 365, 'final': 31.902046114965362} [True, False, True, True]
+RESULT 247 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 123.9415416234908, 'mdd': 87.88861146016008, 'sharpe': 1.3199011696845164, 'trades': 490, 'final': 299.96110428125775} None
+RESULT 248 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 61.23859015777961, 'mdd': 75.00656228145452, 'sharpe': 0.9915254270077317, 'trades': 2501, 'final': 29.360366085949085} None
+RESULT 249 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.697028823014993, 'mdd': 31.46521449879976, 'sharpe': 0.9969816313033305, 'trades': 561, 'final': 5.958736226236185} None
+RESULT 250 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.027637796205646, 'mdd': 44.04996503964187, 'sharpe': 0.9515547971041701, 'trades': 274, 'final': 4.332450176803614} None
+RESULT 251 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 45.407108314649115, 'mdd': 65.7204898584591, 'sharpe': 0.9582496653479118, 'trades': 851, 'final': 14.132838597807726} None
+RESULT 252 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 43.35328066680402, 'mdd': 74.08416013099249, 'sharpe': 0.8434674805570089, 'trades': 189, 'final': 12.779753295373416} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 253 / 397 {'tier_set': 1, 'window': 7, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.607250909087455, 'mdd': 35.94879766013173, 'sharpe': 1.392195462632825, 'trades': 262, 'final': 31.169637280230372} [True, True, True, True]
+RESULT 254 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 5.383563289373794, 'mdd': 32.97502528157722, 'sharpe': 0.34857320471606834, 'trades': 661, 'final': 1.4491360383521288} None
+RESULT 255 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 15.949656360876197, 'mdd': 34.933674777256904, 'sharpe': 0.6522248701619286, 'trades': 545, 'final': 2.848926052264339} None
+RESULT 256 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.1485712176322984, 'mdd': 0.6594819596416225, 'sharpe': 0.2769847421369229, 'trades': 2, 'final': 1.0105583790310482} None
+RESULT 257 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.16447733825091237, 'mdd': 1.8093569344838092, 'sharpe': 0.25438761984046643, 'trades': 2, 'final': 1.0116944166564095} None
+RESULT 258 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 82.26823716373713, 'mdd': 79.6762818242672, 'sharpe': 1.167551406642569, 'trades': 1577, 'final': 69.89203250930666} None
+RESULT 259 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 81.93281608184711, 'mdd': 75.1629692877443, 'sharpe': 1.162330886811874, 'trades': 869, 'final': 68.98716991880552} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 260 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 105.08510482819351, 'mdd': 51.66013253418738, 'sharpe': 1.4803028357635484, 'trades': 680, 'final': 160.99453185026255} [True, True, True, True]
+RESULT 261 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.04929199188063, 'mdd': 36.075072098833, 'sharpe': 1.539021855485912, 'trades': 142, 'final': 30.42082520224383} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 262 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.14652014560773, 'mdd': 50.92846126641327, 'sharpe': 1.3216100578505172, 'trades': 365, 'final': 31.90835218537968} [True, False, True, True]
+RESULT 263 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 122.09249241460611, 'mdd': 89.04734084038883, 'sharpe': 1.3090859177012544, 'trades': 488, 'final': 282.8725481287901} None
+RESULT 264 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 57.29569391164375, 'mdd': 76.82978155623958, 'sharpe': 0.9587663722159039, 'trades': 2503, 'final': 24.64303404255212} None
+RESULT 265 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.48662540673448, 'mdd': 31.46521449879976, 'sharpe': 0.9916379841810924, 'trades': 561, 'final': 5.890158230596444} None
+RESULT 266 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.92250949433288, 'mdd': 44.049965039641876, 'sharpe': 0.9481488027194388, 'trades': 274, 'final': 4.306327010060867} None
+RESULT 267 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 42.11655104579466, 'mdd': 68.37986717591411, 'sharpe': 0.9169126891541693, 'trades': 855, 'final': 12.01990094244889} None
+RESULT 268 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 43.35328066680402, 'mdd': 74.08416013099249, 'sharpe': 0.8434674805570089, 'trades': 189, 'final': 12.779753295373416} None
+RESULT 269 / 397 {'tier_set': 1, 'window': 7, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.145804819944026, 'mdd': 35.94879766013173, 'sharpe': 1.3866940949816886, 'trades': 263, 'final': 30.54923461978774} None
+RESULT 270 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 0.8583296716458078, 'mdd': 17.15928652937021, 'sharpe': 0.14874522988331906, 'trades': 134, 'final': 1.062329697419904} None
+RESULT 271 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 2.2042489266447696, 'mdd': 20.829219801208865, 'sharpe': 0.25460386124890466, 'trades': 123, 'final': 1.166780338129424} None
+RESULT 272 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 273 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 274 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.08258802516065, 'mdd': 78.64378704107295, 'sharpe': 1.170641934965552, 'trades': 1576, 'final': 72.13141630171143} None
+RESULT 275 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 276 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 136.01293824077905, 'mdd': 52.49995441070989, 'sharpe': 1.6892300663272368, 'trades': 651, 'final': 434.884663924189} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 277 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.57405364751729, 'mdd': 35.19201768744223, 'sharpe': 1.550834278271692, 'trades': 140, 'final': 31.12464612998909} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 278 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 68.44670711754657, 'mdd': 51.11487619767141, 'sharpe': 1.3853174905798782, 'trades': 359, 'final': 40.00674707462524} [True, False, True, True]
+RESULT 279 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 99.72471732798542, 'mdd': 89.48227237454475, 'sharpe': 1.1970419658063862, 'trades': 470, 'final': 133.4863483185232} None
+RESULT 280 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 73.4516660206506, 'mdd': 72.1531626573095, 'sharpe': 1.0708077912604994, 'trades': 2429, 'final': 49.21455727491183} None
+RESULT 281 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 29.01480352308068, 'mdd': 31.582674942939594, 'sharpe': 1.0041828816061793, 'trades': 560, 'final': 6.063609703366724} None
+RESULT 282 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 24.042662237621705, 'mdd': 43.26166707835473, 'sharpe': 0.9781393123850791, 'trades': 273, 'final': 4.591753384582782} None
+RESULT 283 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 43.30285400277829, 'mdd': 63.85864082591913, 'sharpe': 0.9361071560395916, 'trades': 809, 'final': 12.74798357607808} None
+RESULT 284 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 45.79529242720384, 'mdd': 73.3172938997687, 'sharpe': 0.8661121108857966, 'trades': 186, 'final': 14.401934382322093} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 285 / 397 {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 68.22786364390375, 'mdd': 35.78159905030975, 'sharpe': 1.4604566548636109, 'trades': 259, 'final': 39.64048390392487} [True, True, True, True]
+RESULT 286 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 2.909516893996078, 'mdd': 32.93240407142948, 'sharpe': 0.25797923069956274, 'trades': 436, 'final': 1.2249490897998898} None
+RESULT 287 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 7.580599331482274, 'mdd': 42.28094780626993, 'sharpe': 0.4348654550828086, 'trades': 373, 'final': 1.676892697196239} None
+RESULT 288 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 289 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 290 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.59180069405771, 'mdd': 79.4301778662412, 'sharpe': 1.1606083149615865, 'trades': 1576, 'final': 68.07754602961693} None
+RESULT 291 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 76.42080327157184, 'mdd': 75.1629692877443, 'sharpe': 1.1207092654553956, 'trades': 871, 'final': 55.49358309207204} None
+RESULT 292 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 123.46049983450844, 'mdd': 53.651618256621624, 'sharpe': 1.6135587576301196, 'trades': 662, 'final': 295.43230633842063} None
+RESULT 293 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 61.405595586573504, 'mdd': 35.979536503363, 'sharpe': 1.530431890599397, 'trades': 141, 'final': 29.57618616844588} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 294 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.51823836257557, 'mdd': 51.1148761976714, 'sharpe': 1.4008791564240834, 'trades': 363, 'final': 41.84234675034239} [True, False, True, True]
+RESULT 295 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 108.56283504941442, 'mdd': 87.73228848822717, 'sharpe': 1.2437119098027059, 'trades': 468, 'final': 181.33247116176207} None
+RESULT 296 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 62.068222287165085, 'mdd': 79.22548573780018, 'sharpe': 0.9963713547437854, 'trades': 2449, 'final': 30.445975180960655} None
+RESULT 297 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.76349533399729, 'mdd': 31.582674942939594, 'sharpe': 0.9982234474100545, 'trades': 560, 'final': 5.980542030951728} None
+RESULT 298 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.818769715371488, 'mdd': 44.049965039641904, 'sharpe': 0.9444445260448742, 'trades': 274, 'final': 4.280681572115723} None
+RESULT 299 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 42.27480658093663, 'mdd': 65.55019356331351, 'sharpe': 0.9199189712609479, 'trades': 834, 'final': 12.114914720282002} None
+RESULT 300 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 44.45541774032702, 'mdd': 73.3677455089201, 'sharpe': 0.8538123397865647, 'trades': 187, 'final': 13.49130664179004} None
+RESULT 301 / 397 {'tier_set': 1, 'window': 14, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 61.11142092627109, 'mdd': 36.626185436383345, 'sharpe': 1.3660781192756082, 'trades': 261, 'final': 29.19693427862656} None
+RESULT 302 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 6.124940776471699, 'mdd': 31.495016949638334, 'sharpe': 0.3905915042417638, 'trades': 677, 'final': 1.5228193090098479} None
+RESULT 303 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 9.731423315860187, 'mdd': 46.393891427447734, 'sharpe': 0.47599360098796883, 'trades': 559, 'final': 1.928972516690527} None
+RESULT 304 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 305 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 306 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.3789364620571, 'mdd': 79.213444246817, 'sharpe': 1.1607339493860955, 'trades': 1577, 'final': 67.51498881192657} None
+RESULT 307 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 80.20456810161602, 'mdd': 75.1629692877443, 'sharpe': 1.1489208487082037, 'trades': 869, 'final': 64.48257108522928} None
+RESULT 308 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 107.04040990973782, 'mdd': 53.949881596308394, 'sharpe': 1.4943469150145556, 'trades': 679, 'final': 172.17321024393436} None
+RESULT 309 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 60.840435751297626, 'mdd': 36.48423047347972, 'sharpe': 1.5214114921959399, 'trades': 141, 'final': 28.8512809655995} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 310 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.141962224319734, 'mdd': 50.92846126641331, 'sharpe': 1.3213363438122596, 'trades': 365, 'final': 31.902046114965362} [True, False, True, True]
+RESULT 311 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 115.29045996887062, 'mdd': 88.41743783291153, 'sharpe': 1.279696251813397, 'trades': 476, 'final': 226.99656800972477} None
+RESULT 312 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 69.16480677785832, 'mdd': 72.11317794268712, 'sharpe': 1.0500053422408042, 'trades': 2510, 'final': 41.229067797975915} None
+RESULT 313 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.32976497025146, 'mdd': 31.46521449879976, 'sharpe': 0.9853771696004491, 'trades': 562, 'final': 5.839473784480576} None
+RESULT 314 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 23.046273760390346, 'mdd': 43.93556132861849, 'sharpe': 0.9521830403608459, 'trades': 274, 'final': 4.337095167631563} None
+RESULT 315 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 46.84121276317259, 'mdd': 65.76987331730928, 'sharpe': 0.975022321364066, 'trades': 857, 'final': 15.148989700976287} None
+RESULT 316 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 43.35328066680402, 'mdd': 74.08416013099249, 'sharpe': 0.8434674805570089, 'trades': 189, 'final': 12.779753295373416} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 317 / 397 {'tier_set': 1, 'window': 14, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.72100696596308, 'mdd': 35.94879766013173, 'sharpe': 1.3941890104560926, 'trades': 262, 'final': 31.32423089982267} [True, True, True, True]
+RESULT 318 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 7.5560960217960105, 'mdd': 33.185378943783675, 'sharpe': 0.4367530760975175, 'trades': 863, 'final': 1.6741924848687675} None
+RESULT 319 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 17.175772978173054, 'mdd': 37.34363592612596, 'sharpe': 0.6844400591496065, 'trades': 705, 'final': 3.0690257670272096} None
+RESULT 320 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.20015357787708243, 'mdd': 0.9441136673637637, 'sharpe': 0.2985745481396873, 'trades': 4, 'final': 1.014246452893362} None
+RESULT 321 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.3938365761532614, 'mdd': 1.8093569344838067, 'sharpe': 0.46318360006338455, 'trades': 4, 'final': 1.028197907214788} None
+RESULT 322 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 80.67261238986679, 'mdd': 80.89238797636683, 'sharpe': 1.1565674764354996, 'trades': 1578, 'final': 65.67681589908538} None
+RESULT 323 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 81.50215274072117, 'mdd': 75.1629692877443, 'sharpe': 1.159468288571829, 'trades': 868, 'final': 67.84013593921784} None
+RESULT 324 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 99.59090898711938, 'mdd': 54.825676526825454, 'sharpe': 1.435610668128904, 'trades': 680, 'final': 132.85494498307116} None
+RESULT 325 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 61.88008690707429, 'mdd': 36.53731079201112, 'sharpe': 1.5369610579331778, 'trades': 142, 'final': 30.196817751219438} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 326 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.14652014560773, 'mdd': 50.92846126641327, 'sharpe': 1.3216100578505172, 'trades': 365, 'final': 31.90835218537968} [True, False, True, True]
+RESULT 327 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 111.09732986594483, 'mdd': 89.6219784297537, 'sharpe': 1.2558946097458723, 'trades': 489, 'final': 197.5093593435619} None
+RESULT 328 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 71.32588956079778, 'mdd': 70.78046142045852, 'sharpe': 1.0636668857815086, 'trades': 2548, 'final': 45.103024748132825} None
+RESULT 329 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.11236518814537, 'mdd': 31.46521449879976, 'sharpe': 0.9798475030424276, 'trades': 562, 'final': 5.769847417063281} None
+RESULT 330 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.958435436795057, 'mdd': 43.93556132861849, 'sharpe': 0.9493405877141418, 'trades': 274, 'final': 4.315238936316327} None
+RESULT 331 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 42.41500314939704, 'mdd': 67.52340121520332, 'sharpe': 0.920090189290817, 'trades': 867, 'final': 12.199624209458182} None
+RESULT 332 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 43.35328066680402, 'mdd': 74.08416013099249, 'sharpe': 0.8434674805570089, 'trades': 189, 'final': 12.779753295373416} None
+RESULT 333 / 397 {'tier_set': 1, 'window': 14, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.29166979902836, 'mdd': 35.94879766013173, 'sharpe': 1.3890787933444375, 'trades': 263, 'final': 30.744189789890644} None
+RESULT 334 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'A', 'hold_days': 10} {'cagr': 0.9337935379517104, 'mdd': 17.15928652937021, 'sharpe': 0.1581285870129204, 'trades': 137, 'final': 1.067965762191464} None
+RESULT 335 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'A', 'hold_days': 20} {'cagr': 2.0102611466993547, 'mdd': 22.291292093587707, 'sharpe': 0.2365687247012499, 'trades': 124, 'final': 1.1512029744767114} None
+RESULT 336 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 337 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 338 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'D', 'hold_days': 10} {'cagr': 83.08258802516065, 'mdd': 78.64378704107295, 'sharpe': 1.170641934965552, 'trades': 1576, 'final': 72.13141630171143} None
+RESULT 339 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'D', 'hold_days': 20} {'cagr': 75.19648237547261, 'mdd': 75.1629692877443, 'sharpe': 1.1114514640601376, 'trades': 872, 'final': 52.82581850393393} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 340 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 128.16657302143378, 'mdd': 52.49995441070989, 'sharpe': 1.6438579795079789, 'trades': 649, 'final': 342.3671141746509} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 341 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 62.57405364751729, 'mdd': 35.19201768744223, 'sharpe': 1.550834278271692, 'trades': 140, 'final': 31.12464612998909} [False, True, True, True]
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 342 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'volume'} {'cagr': 68.44670711754657, 'mdd': 51.11487619767141, 'sharpe': 1.3853174905798782, 'trades': 359, 'final': 40.00674707462524} [True, False, True, True]
+RESULT 343 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 99.59051137120926, 'mdd': 89.53216977499335, 'sharpe': 1.196144042770991, 'trades': 468, 'final': 132.85307257554308} None
+RESULT 344 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 73.44992472693932, 'mdd': 72.1551403484878, 'sharpe': 1.0707928131828885, 'trades': 2435, 'final': 49.21106204151888} None
+RESULT 345 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 29.01480352308068, 'mdd': 31.582674942939594, 'sharpe': 1.0041828816061793, 'trades': 560, 'final': 6.063609703366724} None
+RESULT 346 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 24.042662237621705, 'mdd': 43.26166707835473, 'sharpe': 0.9781393123850791, 'trades': 273, 'final': 4.591753384582782} None
+RESULT 347 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 43.038404078798465, 'mdd': 63.85864082591913, 'sharpe': 0.9326515281798883, 'trades': 810, 'final': 12.5824832174762} None
+RESULT 348 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 45.79529242720384, 'mdd': 73.3172938997687, 'sharpe': 0.8661121108857966, 'trades': 186, 'final': 14.401934382322093} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 349 / 397 {'tier_set': 1, 'window': 30, 'threshold': 1.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 68.22786364390375, 'mdd': 35.78159905030975, 'sharpe': 1.4604566548636109, 'trades': 259, 'final': 39.64048390392487} [True, True, True, True]
+RESULT 350 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'A', 'hold_days': 10} {'cagr': 3.5668868218835525, 'mdd': 32.36757818441608, 'sharpe': 0.29631897962622233, 'trades': 460, 'final': 1.281392066452301} None
+RESULT 351 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'A', 'hold_days': 20} {'cagr': 8.689827386145211, 'mdd': 40.65295145566545, 'sharpe': 0.4791221696739851, 'trades': 393, 'final': 1.8031099833764337} None
+RESULT 352 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 353 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 354 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.59180069405771, 'mdd': 79.4301778662412, 'sharpe': 1.1606083149615865, 'trades': 1576, 'final': 68.07754602961693} None
+RESULT 355 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'D', 'hold_days': 20} {'cagr': 76.42080327157184, 'mdd': 75.1629692877443, 'sharpe': 1.1207092654553956, 'trades': 871, 'final': 55.49358309207204} None
+RESULT 356 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 111.86341656865073, 'mdd': 54.44710007148489, 'sharpe': 1.5303990507019158, 'trades': 663, 'final': 202.6364993598751} None
+RESULT 357 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 61.47047825611849, 'mdd': 35.797247063073165, 'sharpe': 1.5315803844230569, 'trades': 141, 'final': 29.66040027949863} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 358 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'volume'} {'cagr': 69.51823836257557, 'mdd': 51.1148761976714, 'sharpe': 1.4008791564240834, 'trades': 363, 'final': 41.84234675034239} [True, False, True, True]
+RESULT 359 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 107.94843655978985, 'mdd': 87.73228848822717, 'sharpe': 1.2373340455445823, 'trades': 459, 'final': 177.5869933715301} None
+RESULT 360 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 63.356141023590126, 'mdd': 78.53077909077302, 'sharpe': 1.0045299089153719, 'trades': 2464, 'final': 32.19953021292535} None
+RESULT 361 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.714718429612173, 'mdd': 31.582674942939594, 'sharpe': 0.9972932122180987, 'trades': 561, 'final': 5.964533014190666} None
+RESULT 362 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.61434412819718, 'mdd': 43.94927271513897, 'sharpe': 0.9378790873017624, 'trades': 274, 'final': 4.230529277898279} None
+RESULT 363 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 38.788720103177624, 'mdd': 65.72215574055711, 'sharpe': 0.8783821272181302, 'trades': 836, 'final': 10.164820932718921} None
+RESULT 364 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 44.45541774032702, 'mdd': 73.3677455089201, 'sharpe': 0.8538123397865647, 'trades': 187, 'final': 13.49130664179004} None
+RESULT 365 / 397 {'tier_set': 1, 'window': 30, 'threshold': 2.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 61.11142092627109, 'mdd': 36.626185436383345, 'sharpe': 1.3660781192756082, 'trades': 261, 'final': 29.19693427862656} None
+RESULT 366 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'A', 'hold_days': 10} {'cagr': 7.627661370571581, 'mdd': 30.959449681980537, 'sharpe': 0.4550120250828248, 'trades': 726, 'final': 1.6820893227783489} None
+RESULT 367 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'A', 'hold_days': 20} {'cagr': 11.037694758522587, 'mdd': 45.18940988352656, 'sharpe': 0.5184233374379337, 'trades': 605, 'final': 2.097420194524866} None
+RESULT 368 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.02657374212755581, 'mdd': 0.49322039370850895, 'sharpe': 0.10197310503281555, 'trades': 1, 'final': 1.0018815057378356} None
+RESULT 369 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.21606743806898976, 'mdd': 0.49322039370850895, 'sharpe': 0.5599366234310144, 'trades': 1, 'final': 1.0153866040627493} None
+RESULT 370 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'D', 'hold_days': 10} {'cagr': 81.3789364620571, 'mdd': 79.213444246817, 'sharpe': 1.1607339493860955, 'trades': 1577, 'final': 67.51498881192657} None
+RESULT 371 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'D', 'hold_days': 20} {'cagr': 80.20456810161602, 'mdd': 75.1629692877443, 'sharpe': 1.1489208487082037, 'trades': 869, 'final': 64.48257108522928} None
+RESULT 372 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 106.70196078406198, 'mdd': 53.695046559464984, 'sharpe': 1.4872642825299476, 'trades': 682, 'final': 170.19190931488538} None
+RESULT 373 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 60.90509123492194, 'mdd': 36.30337807966385, 'sharpe': 1.522560808896644, 'trades': 141, 'final': 28.93343100906397} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 374 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.141962224319734, 'mdd': 50.92846126641331, 'sharpe': 1.3213363438122596, 'trades': 365, 'final': 31.902046114965362} [True, False, True, True]
+RESULT 375 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 113.42014354756462, 'mdd': 88.41743783291153, 'sharpe': 1.2697093084840878, 'trades': 478, 'final': 213.4081168068315} None
+RESULT 376 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 70.29294059828494, 'mdd': 71.12384069933174, 'sharpe': 1.0586684817696461, 'trades': 2513, 'final': 43.21407998839577} None
+RESULT 377 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.28115236728128, 'mdd': 31.46521449879976, 'sharpe': 0.9844415855835992, 'trades': 563, 'final': 5.823842386321712} None
+RESULT 378 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.882296555877634, 'mdd': 43.90668431761343, 'sharpe': 0.9469112537787813, 'trades': 274, 'final': 4.29637038437523} None
+RESULT 379 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 43.13298616210008, 'mdd': 66.10909218595961, 'sharpe': 0.9329101793457437, 'trades': 862, 'final': 12.641462188206125} None
+RESULT 380 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 43.657176375378334, 'mdd': 73.69297543097639, 'sharpe': 0.8463500245501555, 'trades': 189, 'final': 12.972656322417837} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 381 / 397 {'tier_set': 1, 'window': 30, 'threshold': 3.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.72100696596308, 'mdd': 35.94879766013173, 'sharpe': 1.3941890104560926, 'trades': 262, 'final': 31.32423089982267} [True, True, True, True]
+RESULT 382 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'A', 'hold_days': 10} {'cagr': 8.856463229917644, 'mdd': 34.50804066348588, 'sharpe': 0.4851300772751815, 'trades': 1013, 'final': 1.8227583698910275} None
+RESULT 383 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'A', 'hold_days': 20} {'cagr': 14.866027853925502, 'mdd': 38.927416934796916, 'sharpe': 0.612878658699116, 'trades': 845, 'final': 2.665826634648317} None
+RESULT 384 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'B', 'hold_days': 10} {'cagr': 0.22678050830029495, 'mdd': 0.8861310696152385, 'sharpe': 0.31523217835499245, 'trades': 5, 'final': 1.0161547634140604} None
+RESULT 385 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'B', 'hold_days': 20} {'cagr': 0.6107549668225243, 'mdd': 1.8093569344838067, 'sharpe': 0.6527626694956655, 'trades': 5, 'final': 1.0440183813112491} None
+RESULT 386 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'D', 'hold_days': 10} {'cagr': 80.67261238986679, 'mdd': 80.89238797636683, 'sharpe': 1.1565674764354996, 'trades': 1578, 'final': 65.67681589908538} None
+RESULT 387 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'D', 'hold_days': 20} {'cagr': 81.84558440714788, 'mdd': 74.82857623097823, 'sharpe': 1.16198074748503, 'trades': 868, 'final': 68.75350077300001} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 388 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} {'cagr': 108.10288148541036, 'mdd': 51.71431131805725, 'sharpe': 1.500028647415154, 'trades': 684, 'final': 178.5222078962209} [True, True, True, True]
+RESULT 389 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'frvp'} {'cagr': 61.88755630231475, 'mdd': 36.51659156099761, 'sharpe': 1.537095936309694, 'trades': 142, 'final': 30.20667637603772} None
+MC 100 / 500
+MC 200 / 500
+MC 300 / 500
+MC 400 / 500
+MC 500 / 500
+RESULT 390 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'volume'} {'cagr': 63.14652014560773, 'mdd': 50.92846126641327, 'sharpe': 1.3216100578505172, 'trades': 365, 'final': 31.90835218537968} [True, False, True, True]
+RESULT 391 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'vwap'} {'cagr': 109.26171352063893, 'mdd': 89.6219784297537, 'sharpe': 1.2459475665219188, 'trades': 491, 'final': 185.67522588473983} None
+RESULT 392 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'fvg'} {'cagr': 62.29695558140966, 'mdd': 72.40336081042236, 'sharpe': 0.9977466450741742, 'trades': 2543, 'final': 30.751274488014097} None
+RESULT 393 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'fibonacci'} {'cagr': 28.24113311037606, 'mdd': 31.46521449879976, 'sharpe': 0.9837569946376027, 'trades': 563, 'final': 5.811001157669619} None
+RESULT 394 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'ema_cross'} {'cagr': 22.922908303429445, 'mdd': 43.90668431761341, 'sharpe': 0.9484815212150396, 'trades': 274, 'final': 4.306425853354392} None
+RESULT 395 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'liquidity_sweep'} {'cagr': 38.68089126368053, 'mdd': 67.86114944255361, 'sharpe': 0.8754580289484483, 'trades': 872, 'final': 10.109082072719783} None
+RESULT 396 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'elliott_wave'} {'cagr': 42.1162742480804, 'mdd': 75.62538738981517, 'sharpe': 0.8316838271756073, 'trades': 190, 'final': 12.019735320288865} None
+RESULT 397 / 397 {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'donchian'} {'cagr': 62.29166979902836, 'mdd': 35.94879766013173, 'sharpe': 1.3890787933444375, 'trades': 263, 'final': 30.744189789890644} None
+FINAL SUMMARY: Round16 397/397조합, 최종후보 0개; 최고Sharpe {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} CAGR+136.012938%/MDD52.499954%/Sharpe1.689230, 챔피언 +62.353702%/53.383846%/1.164578; 세축우위 49개, 개별4검사통과 20개; 최고Sharpe 검증 [False, True, True, True]; Bonferroni 기준 0.000125945, 최종 기각 — 챔피언 교체 근거 없음.
+FINAL SUMMARY: Round16 397/397조합, 최종후보 0개; 전체최고Sharpe {'tier_set': 1, 'window': 14, 'threshold': 1.0, 'variant': 'C', 'family': 'heikin_ashi'} CAGR+136.012938%/MDD52.499954%/Sharpe1.689230 (개별 강건성 실패); 챔피언 +62.353702%/53.383846%/1.164578; 세축우위 49개, 개별4검사통과 전체20개/신규18개; 개별4검사통과 최고Sharpe {'tier_set': 1, 'window': 30, 'threshold': 5.0, 'variant': 'C', 'family': 'heikin_ashi'} CAGR+108.102881%/MDD51.714311%/Sharpe1.500029, 4표 [True, True, True, True], Bonf CAGR/Sharpe [0.7924151696606786, 0.7924151696606786], BH q [0.01617173815634038, 0.018867027849063776]; Bonferroni 기준 0.000125945, 최종 기각 — 챔피언 교체 근거 없음.

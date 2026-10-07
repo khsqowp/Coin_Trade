@@ -12,7 +12,8 @@ from app.technical_portfolio_engine import prepare
 def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
              long_short=False, trailing=0., calendar=None, scales=None,
              dynamic_k=None, clusters=None, cluster_cap=1.,
-             funding_annual=0., slippage=0., fee=.0004, return_trace=False):
+             funding_annual=0., slippage=0., fee=.0004, return_trace=False,
+             exit_signals=None):
     if long_short and trailing:
         raise ValueError('chandelier is a long-only policy in this research')
     if top_k < 1 or hold_days < 1 or trailing < 0 or not 0 < cluster_cap <= 1:
@@ -46,7 +47,9 @@ def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
         # Today's gap may hit a stop fixed at the previous completed close.
         for k in list(positions):
             p = positions[k]
-            if p['stop'] > 0 and np.isfinite(op[k]) and op[k] <= p['stop']:
+            if i > 0 and exit_signals is not None and exit_signals[i-1, k] == 1 and np.isfinite(op[k]):
+                sell(k, op[k], i)
+            elif p['stop'] > 0 and np.isfinite(op[k]) and op[k] <= p['stop']:
                 sell(k, op[k], i)
                 stopped += 1
         opening = cash+sum(value(p, op[k] if np.isfinite(op[k]) else marks[k])

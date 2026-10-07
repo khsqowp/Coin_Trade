@@ -33,7 +33,8 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                        sizing='equal', target_vol=.40, weight_cap=.25,
                        symbol_trade_share_cap=None, entry_scale=None,
                        strategy_data=None, active_strategy=None,
-                       strategy_holds=None, liquidate_on_switch=False):
+                       strategy_holds=None, liquidate_on_switch=False,
+                       exit_signals=None):
     if (strategy_data is None) != (active_strategy is None):
         raise ValueError('strategy banks and historical schedule required together')
     if strategy_data is not None and (timing != 'next_open' or sizing != 'equal'):
@@ -66,7 +67,7 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
 
     fee=fee_pct_one_way/100; cash=1.; positions={}; curve=[]; trades=0
     completed_by_symbol=np.zeros(len(keys), dtype=int)
-    share_log=[]
+    share_log=[]; records=[]
     # Last valid close preserves mark-to-market across missing bars.
     marks=np.zeros(len(keys)); stops=0; profits=0
     peak=1.; paused=False; events=0; resumes=0; blocked_days=0; trace=[]
@@ -91,12 +92,20 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
         op,hi,lo,cl=(a[f][i] for f in ['Open','High','Low','Close'])
         def sell(k,price):
             nonlocal cash,trades
-            cash+=positions[k]['qty']*price*(1-fee); del positions[k]; trades+=1
+            p=positions[k]; proceeds=p['qty']*price*(1-fee)
+            if return_trace:
+                records.append(dict(id=len(records),symbol=keys[k],entry=p['entry'],exit=i,
+                                    entry_date=str(dates[p['entry']]),exit_date=str(d),
+                                    qty=p['qty'],cost=p['cost'],proceeds=proceeds,
+                                    pnl=proceeds-p['cost'],return_pct=(proceeds/p['cost']-1)*100))
+            cash+=proceeds; del positions[k]; trades+=1
             completed_by_symbol[k]+=1
         # Opening gap stops may free cash at open. Intraday exits never fund same-open entries.
         for k in list(positions):
             p=positions[k]
-            if liquidate_on_switch and strategy_data is not None and p['strategy'] != selected and np.isfinite(op[k]):
+            if i>0 and exit_signals is not None and exit_signals[i-1,k]==1 and np.isfinite(op[k]):
+                sell(k,op[k])
+            elif liquidate_on_switch and strategy_data is not None and p['strategy'] != selected and np.isfinite(op[k]):
                 sell(k,op[k])
             elif np.isfinite(op[k]) and p['sl']>0 and op[k]<=p['sl']:
                 sell(k,op[k]); stops+=1
@@ -171,7 +180,7 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
                 if tp.startswith('pct'): target=price*(1+float(tp[3:])/100)
                 duration=strategy_holds[selected] if strategy_data is not None else hold_days
                 positions[k]={'qty':alloc*(1-fee)/price,'sl':sl,'target':target,'exit':i+duration,
-                              'entry':i,'strategy':selected}
+                              'entry':i,'strategy':selected,'cost':alloc}
                 cash-=alloc
                 if return_trace:
                     allocations.append(dict(date=str(d),symbol=keys[k],weight=alloc/mtm,known_through=str(dates[i-1])))
@@ -204,6 +213,8 @@ def simulate_portfolio(prepped, top_k=8, hold_days=20, stop_pct=0., fee_pct_one_
     result['breaker_log']=event_log
     result['paused_age_final']=len(dates)-1-paused_since if paused and paused_since is not None else 0
     if return_trace:
+        result['records']=records
+        result['equity']=[float(v) for v in curve]
         result['trace']=trace
         result['allocations']=allocations
         if symbol_trade_share_cap is not None:
