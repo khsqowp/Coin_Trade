@@ -1,0 +1,1 @@
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 136 configuration replay / 124 distinct policies; strict votes/transition gaps/MC samples/bootstrap independent arithmetic

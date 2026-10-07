@@ -7,6 +7,16 @@ import numpy as np
 import pandas as pd
 
 
+def simulate_research_portfolio(prepped, **kwargs):
+    """Opt-in Round11 collateralized long/short and causal allocation policies.
+
+    Historical simulate_portfolio remains unchanged. Shorts receive positive
+    funding and pay negative funding; daily research accrual is an approximation.
+    """
+    from app.round11_portfolio import simulate
+    return simulate(prepped, **kwargs)
+
+
 def prepare(prepped):
     dates=sorted(set().union(*(df.index for df in prepped.values())))
     keys=sorted(prepped)

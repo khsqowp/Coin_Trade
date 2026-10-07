@@ -1,0 +1,14 @@
+Round1~10 fresh regression; Python3.12 runtime, python3 compile
+1: verify_technical_ict exit=0 log=docs/round11-round1-regression-2026-10-07.txt
+2: verify_hybrid_drawdown exit=0 log=docs/round11-round2-regression-2026-10-07.txt
+3: verify_round3 exit=0 log=docs/round11-round3-regression-2026-10-07.txt
+4: verify_round4 exit=0 log=docs/round11-round4-regression-2026-10-07.txt
+5: verify_round5 exit=0 log=docs/round11-round5-regression-2026-10-07.txt
+6: verify_round6 exit=0 log=docs/round11-round6-regression-2026-10-07.txt
+7: verify_round7 exit=0 log=docs/round11-round7-regression-2026-10-07.txt
+8: verify_round8 exit=0 log=docs/round11-round8-regression-2026-10-07.txt
+9: verify_round9 exit=1 log=docs/round11-round9-regression-2026-10-07.txt
+Correction: Round9 has no verify_round9 module; actual self-verifier is crypto_round9_research.
+9: crypto_round9_research exit=0 log=docs/round11-round9-regression-2026-10-07.txt
+10: verify_round10 exit=0 log=docs/round11-round10-regression-2026-10-07.txt
+PASS all10 rounds; Round9 regenerated artifact SHA256 unchanged.

@@ -1,0 +1,99 @@
+RESULT 1 {'family': 'volume', 'top_k': 8, 'long_short': True} {'cagr': -5.966982467036153, 'mdd': 77.76487904517289, 'sharpe': 0.03846338585232338, 'trades': 612, 'final': 0.6470966540768613} None
+RESULT 1 {'family': 'heikin_ashi', 'top_k': 8, 'long_short': True} {'cagr': 0.477062269589168, 'mdd': 57.36371315943889, 'sharpe': 0.1936424485855292, 'trades': 898, 'final': 1.034243279324901} None
+RESULT 1 {'family': 'frvp', 'top_k': 8, 'long_short': True} {'cagr': -4.174367325068484, 'mdd': 70.39293794333972, 'sharpe': 0.031785546385170164, 'trades': 808, 'final': 0.7395887262022467} None
+RESULT 1 {'family': 'volume', 'top_k': 4, 'long_short': True} {'cagr': -100.0, 'mdd': 106.31049719746848, 'sharpe': -0.5638883331988548, 'trades': 44, 'final': -0.0746581765848684} None
+RESULT 1 {'family': 'volume', 'top_k': 12, 'long_short': True} {'cagr': 6.355412600439769, 'mdd': 44.949993439749825, 'sharpe': 0.4039116126291342, 'trades': 780, 'final': 1.5463707110890734} None
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round11.py", line 98, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round11.py", line 79, in run
+    assert abs(sum(t['pnl'] for t in row['records'])-(m['final']-1))<1e-8
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round11_research.py", line 345, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round11_research.py", line 321, in run
+    subprocess.run([sys.executable,'-m','app.verify_round11'],cwd=ROOT,check=True)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/homebrew/opt/python@3.12/bin/python3.12', '-m', 'app.verify_round11']' returned non-zero exit status 1.
+RESULT 1 {'family': 'volume', 'top_k': 4, 'long_short': True} {'cagr': -100.0, 'mdd': 106.35343436530549, 'sharpe': -0.5635758264936508, 'trades': 48, 'final': -0.07516615726501436} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 5
+RESULT 2 {'family': 'volume', 'calendar': 'weekly', 'hold_days': 20} {'cagr': 11.590947966852072, 'mdd': 20.812696035898522, 'sharpe': 0.7660774062889208, 'trades': 62, 'final': 2.172482045613098} None
+RESULT 2 {'family': 'volume', 'calendar': 'monthly', 'hold_days': 20} {'cagr': 4.402014485399963, 'mdd': 15.107549991338661, 'sharpe': 0.5207302239040685, 'trades': 23, 'final': 1.3563068443541708} None
+RESULT 2 {'family': 'volume', 'calendar': 'weekly', 'hold_days': 7} {'cagr': 9.484065770363559, 'mdd': 12.026396186582208, 'sharpe': 0.8277768226007439, 'trades': 62, 'final': 1.8984197778242993} None
+RESULT 2 {'family': 'volume', 'calendar': 'monthly', 'hold_days': 30} {'cagr': 12.004913268016093, 'mdd': 10.559558095596534, 'sharpe': 1.0778876276620706, 'trades': 23, 'final': 2.2301440761800704} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 9
+RESULT 3 {'family': 'volume', 'universe': 'volume10'} {'cagr': 18.018161145336254, 'mdd': 35.38540001983164, 'sharpe': 0.7663697303789987, 'trades': 158, 'final': 3.228566614669386} None
+RESULT 3 {'family': 'volume', 'universe': 'volume20'} {'cagr': 49.06496908176554, 'mdd': 46.68123817203927, 'sharpe': 1.140660446546457, 'trades': 309, 'final': 16.848610682286147} None
+RESULT 3 {'family': 'volume', 'universe': 'volume30'} {'cagr': 50.97636180525997, 'mdd': 57.841276811373255, 'sharpe': 1.0685607844700447, 'trades': 398, 'final': 18.437857264512715} None
+RESULT 3 {'family': 'volume', 'universe': 'large10'} {'cagr': 35.464957222552826, 'mdd': 27.641902070573686, 'sharpe': 1.2052837587001195, 'trades': 188, 'final': 8.562959481795884} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 13
+RESULT 5 {'family': 'volume', 'vote': 'same2'} {'cagr': 21.554813408227336, 'mdd': 64.56362709542832, 'sharpe': 0.6571176664872015, 'trades': 471, 'final': 3.9785944790244243} None
+RESULT 5 {'family': 'volume', 'vote': 'recent3_2'} {'cagr': 50.0269820346775, 'mdd': 73.48884776889383, 'sharpe': 0.9436094258485962, 'trades': 738, 'final': 17.633112561260802} None
+RESULT 5 {'family': 'volume', 'vote': 'recent5_2'} {'cagr': 67.57897668533886, 'mdd': 74.37795019805444, 'sharpe': 1.0739672121940032, 'trades': 816, 'final': 38.57136057063725} None
+RESULT 5 {'family': 'volume', 'vote': 'same3'} {'cagr': -0.6478010099205345, 'mdd': 8.40683582101445, 'sharpe': -0.2546588173877157, 'trades': 3, 'final': 0.9550625362169448} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 17
+RESULT 6 {'family': 'volume', 'trailing': 2.0, 'hold_days': 10000} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 6 {'family': 'volume', 'trailing': 2.5, 'hold_days': 10000} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 6 {'family': 'volume', 'trailing': 3.0, 'hold_days': 10000} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 6 {'family': 'heikin_ashi', 'trailing': 2.0, 'hold_days': 10000} {'cagr': 19.649180501966267, 'mdd': 87.65252868585785, 'sharpe': 0.5973226461987758, 'trades': 1763, 'final': 3.5577929140880262} None
+RESULT 6 {'family': 'heikin_ashi', 'trailing': 3.0, 'hold_days': 10000} {'cagr': 18.44820022501048, 'mdd': 89.71565104279296, 'sharpe': 0.591938955281626, 'trades': 975, 'final': 3.3127217555745414} None
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round11.py", line 98, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round11.py", line 76, in run
+    assert np.isfinite(list(m.values())).all() and m['trades']>0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round11_research.py", line 350, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round11_research.py", line 326, in run
+    subprocess.run([sys.executable,'-m','app.verify_round11'],cwd=ROOT,check=True)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/homebrew/opt/python@3.12/bin/python3.12', '-m', 'app.verify_round11']' returned non-zero exit status 1.
+RESULT 6 {'family': 'volume', 'trailing': 2.0, 'hold_days': 10000} {'cagr': 15.042451088157982, 'mdd': 60.61053019272803, 'sharpe': 0.5534160792431916, 'trades': 649, 'final': 2.6949287720608024} None
+RESULT 6 {'family': 'volume', 'trailing': 2.5, 'hold_days': 10000} {'cagr': 16.21121321994201, 'mdd': 61.97083317212625, 'sharpe': 0.5547729785558014, 'trades': 598, 'final': 2.894704053549331} None
+RESULT 6 {'family': 'volume', 'trailing': 3.0, 'hold_days': 10000} {'cagr': 11.51731444648114, 'mdd': 65.34351764447132, 'sharpe': 0.47045267893008935, 'trades': 539, 'final': 2.162360781052029} None
+RESULT 6 {'family': 'heikin_ashi', 'trailing': 2.0, 'hold_days': 10000} {'cagr': 19.649180501966267, 'mdd': 87.65252868585785, 'sharpe': 0.5973226461987758, 'trades': 1763, 'final': 3.5577929140880262} None
+RESULT 6 {'family': 'heikin_ashi', 'trailing': 3.0, 'hold_days': 10000} {'cagr': 18.44820022501048, 'mdd': 89.71565104279296, 'sharpe': 0.591938955281626, 'trades': 975, 'final': 3.3127217555745414} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 22
+RESULT 7 {'family': 'volume', 'vol_quantile': 0.5, 'low_scale': 0.5} {'cagr': 44.788945702987704, 'mdd': 58.951034073291744, 'sharpe': 1.0571969514724446, 'trades': 468, 'final': 13.713229230856617} None
+RESULT 7 {'family': 'volume', 'vol_quantile': 0.75, 'low_scale': 0.5} {'cagr': 60.446751388814725, 'mdd': 59.22155171082659, 'sharpe': 1.1976341045256835, 'trades': 468, 'final': 28.355382232987996} None
+RESULT 7 {'family': 'volume', 'vol_quantile': 0.75, 'low_scale': 0.25} {'cagr': 59.02795633933333, 'mdd': 62.01790183382163, 'sharpe': 1.1968819844253404, 'trades': 468, 'final': 26.62843009319341} None
+RESULT 7 {'family': 'volume', 'vol_quantile': 0.9, 'low_scale': 0.0} {'cagr': 56.00685255930977, 'mdd': 53.38384647347386, 'sharpe': 1.1007282185424443, 'trades': 457, 'final': 23.249600037666454} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 26
+RESULT 8 {'family': 'volume', 'correlation': 0.6, 'cluster_cap': 0.25} {'cagr': 31.531059622000267, 'mdd': 42.97540515535579, 'sharpe': 1.0131178824189937, 'trades': 401, 'final': 6.951499729889917} None
+RESULT 8 {'family': 'volume', 'correlation': 0.7, 'cluster_cap': 0.25} {'cagr': 37.78533633871706, 'mdd': 45.56913496155357, 'sharpe': 1.0211069281842657, 'trades': 416, 'final': 9.656204268839074} None
+RESULT 8 {'family': 'volume', 'correlation': 0.8, 'cluster_cap': 0.25} {'cagr': 51.42118056305629, 'mdd': 47.36025707081969, 'sharpe': 1.1242866346034348, 'trades': 446, 'final': 18.82562817888343} None
+RESULT 8 {'family': 'volume', 'correlation': 0.7, 'cluster_cap': 0.375} {'cagr': 48.263315835586965, 'mdd': 47.76734493638728, 'sharpe': 1.1277616417913, 'trades': 443, 'final': 16.217958165577315} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 30
+RESULT 9 {'family': 'volume', 'dynamic': 'count4_12'} {'cagr': 69.84650775455576, 'mdd': 73.03526421393033, 'sharpe': 1.1154706534998164, 'trades': 347, 'final': 42.41896384885532} None
+RESULT 9 {'family': 'volume', 'dynamic': 'count4_16'} {'cagr': 69.64637485804701, 'mdd': 73.03526421393033, 'sharpe': 1.1136169519302124, 'trades': 353, 'final': 42.06661714007092} None
+RESULT 9 {'family': 'volume', 'dynamic': 'strength4_12'} {'cagr': 64.1293152475375, 'mdd': 80.9266917929896, 'sharpe': 1.090694370760675, 'trades': 331, 'final': 33.29334070606207} None
+RESULT 9 {'family': 'volume', 'dynamic': 'strength6_16'} {'cagr': 43.982204113678435, 'mdd': 67.42504571937545, 'sharpe': 0.992692312707416, 'trades': 454, 'final': 13.181735083549196} None
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 34
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 34
+복귀조건 B 달성
