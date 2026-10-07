@@ -1,0 +1,33 @@
+REPLAY 1/31 full45 causal and metrics
+REPLAY 2/31 full45 causal and metrics
+REPLAY 3/31 full45 causal and metrics
+REPLAY 4/31 full45 causal and metrics
+REPLAY 5/31 full45 causal and metrics
+REPLAY 6/31 full45 causal and metrics
+REPLAY 7/31 full45 causal and metrics
+REPLAY 8/31 full45 causal and metrics
+REPLAY 9/31 full45 causal and metrics
+REPLAY 10/31 full45 causal and metrics
+REPLAY 11/31 full45 causal and metrics
+REPLAY 12/31 full45 causal and metrics
+REPLAY 13/31 full45 causal and metrics
+REPLAY 14/31 full45 causal and metrics
+REPLAY 15/31 full45 causal and metrics
+REPLAY 16/31 full45 causal and metrics
+REPLAY 17/31 full45 causal and metrics
+REPLAY 18/31 full45 causal and metrics
+REPLAY 19/31 full45 causal and metrics
+REPLAY 20/31 full45 causal and metrics
+REPLAY 21/31 full45 causal and metrics
+REPLAY 22/31 full45 causal and metrics
+REPLAY 23/31 full45 causal and metrics
+REPLAY 24/31 full45 causal and metrics
+REPLAY 25/31 full45 causal and metrics
+REPLAY 26/31 full45 causal and metrics
+REPLAY 27/31 full45 causal and metrics
+REPLAY 28/31 full45 causal and metrics
+REPLAY 29/31 full45 causal and metrics
+REPLAY 30/31 full45 causal and metrics
+REPLAY 31/31 full45 causal and metrics
+PASS winner eight Y windows, three MC engine draws, 1000 bootstrap sequences, transitions independently replayed
+PASS Round14 31 novel combinations; immutable Y only; X rejected; causal audits; independent five gate arithmetic

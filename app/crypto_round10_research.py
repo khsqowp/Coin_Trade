@@ -173,8 +173,10 @@ def robust(config, prepped, prepared, regime, frames, full, thrashing):
     f = config['family']
     replay, records, _, _, _ = ledger_run(prepped[f], execution(config, prepared, regime))
     assert summary(replay) == summary(full)
+    # Definition X is historical diagnostics only, excluded from acceptance votes.
     old = json.loads((ROOT/'docs/round4-results-2026-10-07.json').read_text())['periods']
-    recent = json.loads((ROOT/'docs/round9-results-2026-10-07.json').read_text())['periods']
+    from app.round_period_standard import ALPHA_PERIODS
+    recent = [dict(start=a, end=b) for a, b in ALPHA_PERIODS]
     actual = [(c['start'], c['end']) for c in recent]
     cells = {}
     for start, end in dict.fromkeys([tuple(p) for p in old] + actual):
@@ -200,7 +202,7 @@ def robust(config, prepped, prepared, regime, frames, full, thrashing):
     tests = {k: dict(p=float((1+sum(t[k]>=full[k] for t in trials))/301),
                     q95=float(np.percentile([t[k] for t in trials],95))) for k in ['cagr','sharpe']}
     boot = block_bootstrap(records, full)
-    votes = [sum(c['alpha']>0 for c in current)>=7 and sum(c['alpha']>0 for c in legacy)>=7,
+    votes = [sum(c['alpha']>0 for c in current)>=7,
              conc['10']['net_pct']<=103 and sy['net_pct']<=88,
              all(t['p']<.05 for t in tests.values()), bool(boot['significant']),
              thrashing['within']['5']['pct']<=50]

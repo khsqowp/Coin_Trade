@@ -143,8 +143,8 @@ def dominates(m):
 def robustness(p, config, frames):
     full, records, _, _, _=ledger_run(p,config)
     # Eight actual two-year windows: earlier audits used 2 broad splits + 6 two-year windows.
-    periods=[(f'{y}-09-08',f'{y+2}-09-07') for y in range(2019,2024)]
-    periods += [('2020-10-06','2022-10-05'),('2023-10-06','2025-10-05'),('2024-10-06','2026-10-05')]
+    from app.round_period_standard import ALPHA_PERIODS
+    periods = ALPHA_PERIODS
     cells=[]
     for start,end in periods:
         sub={s:df.loc[start:end] for s,df in p.items() if len(df.loc[start:end])}

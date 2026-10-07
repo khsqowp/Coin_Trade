@@ -32,6 +32,8 @@ def run():
     assert len(gaps) == flap['resumes']
     for n in [1,3,5]:
         assert flap['within'][str(n)]['count'] == sum(g is not None and g<=n for g in gaps)
+    from app.round_period_standard import assert_standard
+    assert_standard(candidate['robustness']['periods'])
     cells = []
     for cell in candidate['robustness']['periods']:
         start,end = cell['start'],cell['end']

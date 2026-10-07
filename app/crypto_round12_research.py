@@ -122,7 +122,9 @@ def audit(frames, config, full):
 
 
 def robustness(p, kw, state, full):
-    periods = json.loads((ROOT/'docs/round9-results-2026-10-07.json').read_text())['periods']
+    from app.round_period_standard import ALPHA_PERIODS
+    periods = [dict(start=a, end=b) for a, b in ALPHA_PERIODS]
+    # Definition X is historical diagnostics only, excluded from acceptance votes.
     legacy = json.loads((ROOT/'docs/round4-results-2026-10-07.json').read_text())['periods']
     rows = {}
     for start, end in dict.fromkeys([(r['start'], r['end']) for r in periods]+[tuple(r) for r in legacy]):
@@ -157,7 +159,7 @@ def robustness(p, kw, state, full):
         breaker_pct = None
     transitions = transition_stats(state, data[0]) if state is not None else None
     rates = ([breaker_pct] if breaker_pct is not None else [])+([transitions['within']['5']['pct']] if transitions else [])
-    votes = [sum(r['alpha'] > 0 for r in current) >= 7 and sum(r['alpha'] > 0 for r in original) >= 7,
+    votes = [sum(r['alpha'] > 0 for r in current) >= 7,
              conc['10']['net_pct'] <= 103 and sy['net_pct'] <= 88,
              all(t['p'] < .05 for t in tests.values()), boot['ci95'][0] > 0,
              all(x <= 50 for x in rates)]

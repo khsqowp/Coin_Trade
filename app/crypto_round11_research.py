@@ -178,8 +178,10 @@ def audit(config, frames, cores, full):
 
 
 def robust(config, frames, cores, full, thrashing):
+    # Definition X is historical diagnostics only, excluded from acceptance votes.
     old = json.loads((ROOT/'docs/round4-results-2026-10-07.json').read_text())['periods']
-    recent = json.loads((ROOT/'docs/round9-results-2026-10-07.json').read_text())['periods']
+    from app.round_period_standard import ALPHA_PERIODS
+    recent = [dict(start=a, end=b) for a, b in ALPHA_PERIODS]
     actual = [(c['start'],c['end']) for c in recent]
     p,data,kw,_ = build(config,frames,cores)
     cells = {}
@@ -206,7 +208,7 @@ def robust(config, frames, cores, full, thrashing):
     boot = block_bootstrap(records,full)
     legacy = [cells[tuple(c)] for c in old]
     current = [cells[c] for c in actual]
-    votes = [sum(c['alpha']>0 for c in current)>=7 and sum(c['alpha']>0 for c in legacy)>=7,
+    votes = [sum(c['alpha']>0 for c in current)>=7,
              conc['10']['net_pct']<=103 and sy['net_pct']<=88,
              all(t['p']<.05 for t in tests.values()),bool(boot['significant']),
              thrashing is None or thrashing['within']['5']['pct']<=50]

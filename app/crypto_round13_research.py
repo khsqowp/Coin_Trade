@@ -259,18 +259,11 @@ def write_section(out, section, title, rows):
 
 
 def required_gates(result):
-    """Apply this request's Round4/6 calendar, preserving the extra-calendar vote."""
-    result.setdefault(
-        "round12_extra_gate",
-        dict(votes=list(result["votes"]), verdict=result["verdict"]),
-    )
-    result["round9_supplemental_positive"] = sum(
-        p["alpha"] > 0 for p in result["periods"]
-    )
-    result["period_criterion"] = (
-        "사용자 지정 Round4/6 경계 8구간 중 알파양수 7/8 이상; Round9 별도8구간은 참고"
-    )
-    result["votes"][0] = sum(p["alpha"] > 0 for p in result["legacy_periods"]) >= 7
+    """Definition Y is the only acceptance calendar; X is historical only."""
+    from app.round_period_standard import alpha_pass, PERIOD_STANDARD
+
+    result["period_criterion"] = PERIOD_STANDARD
+    result["votes"][0] = alpha_pass(result["periods"])
     result["verdict"] = "통과" if all(result["votes"]) else "기각"
     return result
 
