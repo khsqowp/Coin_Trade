@@ -1,0 +1,3 @@
+PASS: exact baseline/468 source trades; 500 unique seeds and 3 full engine spot checks; causal timestamps/slot bounds; all 5 symbol and annual leave-outs independently rerun; 1000 block sequences independently reconstructed; percentile/p-value/votes; section19/20 placement and tables; Round1-6 regressions
+
+EXIT 0
