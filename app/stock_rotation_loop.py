@@ -31,6 +31,7 @@ import pandas as pd
 
 from app.kis_auth import issue_token
 from app.kis_ohlcv_cache import cached_ohlcv
+from app.momentum_rotation_loop import _rollup_daily_history, _should_sample_equity_history
 from app.stock_rotation_state import load_state, log_event, now_iso, save_state
 from app.trading_control import read_command
 
@@ -41,6 +42,11 @@ REGIME = os.environ.get("ROTATION_REGIME", "ew_sma200")
 LOOP_SLEEP_SECONDS = int(os.environ.get("ROTATION_LOOP_SLEEP_SECONDS", "10"))
 TOKEN_TTL_SECONDS = 12 * 3600
 HISTORY_SINCE = "2018-01-01"
+# equity_history 표본 개수 상한 — 10초 사이클마다 무조건 찍으면 20000개 상한으론 최대 2.3일치밖에
+# 못 담아 momentum_rotation_loop.py와 같은 "일간/주간/월간/전체 다 똑같다" 문제가 그대로
+# 재현됨(2026-09-26 발견). momentum_rotation_loop.py의 표본 게이트를 재사용해 사이클 주기와
+# 분리하고, 상한도 5분 간격 기준 90일치(25920개)로 맞춘다.
+EQUITY_HISTORY_MAX_POINTS = int(os.environ.get("ROTATION_EQUITY_HISTORY_MAX_POINTS", "25920"))
 
 if MARKET == "KR":
     LOOKBACK = int(os.environ.get("ROTATION_LOOKBACK", "20"))
@@ -319,13 +325,16 @@ def _record_equity(token: str, state: dict, snap: dict | None = None) -> None:
     state["deployed_value"] = deployed
     state["return_pct"] = (total / BUDGET * 100) if BUDGET > 0 else 0.0
 
-    hist = state.setdefault("position_history", {})
-    for symbol, p in snap["positions"].items():
-        hist.setdefault(symbol, []).append({"ts": now_iso(), "price": p["price"], "unrealized_pnl": p["pnl"]})
-        hist[symbol] = hist[symbol][-20000:]
-    state["equity_history"] = (state.get("equity_history", []) + [
-        {"ts": now_iso(), "total_pnl": total, "equity": strategy_equity, "deployed": deployed}
-    ])[-20000:]
+    sample_now = _should_sample_equity_history(state)
+    if sample_now:
+        hist = state.setdefault("position_history", {})
+        for symbol, p in snap["positions"].items():
+            hist.setdefault(symbol, []).append({"ts": now_iso(), "price": p["price"], "unrealized_pnl": p["pnl"]})
+            hist[symbol] = hist[symbol][-EQUITY_HISTORY_MAX_POINTS:]
+        state["equity_history"] = (state.get("equity_history", []) + [
+            {"ts": now_iso(), "total_pnl": total, "equity": strategy_equity, "deployed": deployed}
+        ])[-EQUITY_HISTORY_MAX_POINTS:]
+        _rollup_daily_history(state, total)
 
 
 def consume_queue(token: str, state: dict) -> None:
