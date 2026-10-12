@@ -1,0 +1,4 @@
+synthetic fee/funding/short/collateral/pairing/gap/causal-trailing/dynamic PASS
+saved results, champion equity/allocation reproduction PASS 34
+
+EXIT 0

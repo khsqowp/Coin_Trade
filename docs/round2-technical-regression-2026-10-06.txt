@@ -1,0 +1,12 @@
+elliott_wave: prefix invariance PASS
+rsi: prefix invariance PASS
+ema_cross: prefix invariance PASS
+heikin_ashi: prefix invariance PASS
+fibonacci: prefix invariance PASS
+vwap: prefix invariance PASS
+fvg: prefix invariance PASS
+frvp: prefix invariance PASS
+order_block: prefix invariance PASS
+liquidity_sweep: prefix invariance PASS
+PASS: 432 prefix checks + 7 behavioral/accounting checks
+PASS: python3 -m py_compile app/technical_portfolio_engine.py app/heikin_ashi_volume_spike_signal_core.py app/frvp_volume_spike_signal_core.py app/crypto_heikin_ashi_volume_spike_portfolio_backtest.py app/crypto_frvp_volume_spike_portfolio_backtest.py app/crypto_hybrid_drawdown_research.py app/verify_hybrid_drawdown.py app/render_hybrid_drawdown_report.py

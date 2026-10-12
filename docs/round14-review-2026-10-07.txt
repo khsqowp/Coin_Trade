@@ -1,0 +1,11 @@
+source-command-python-review skill / python-reviewer read-only independent review.
+Initial findings: report {{}} expression; report module absent from exact Git list;
+missing public annotations; optimized Python could remove calendar assert; stale 29-count verification log.
+All resolved before final publication: {} corrected; module included; annotations added;
+explicit ValueError enforces Y under -O; final verification and replay logs report 31.
+Final reviewer: 승인. No remaining CRITICAL/HIGH defects found.
+Core reviewed: immutable Y boundaries, causal shifted Donchian highs, inherited
+build/audit routing, 31 unique configurations, winner Y7/8 and all five gate arithmetic.
+Parent execution: python3.12 with pandas. Independent replay 31/31 full45 causal checks;
+winner eight Y windows, MC first/middle/last engine draws, 1000 bootstrap sequences,
+transitions independently replayed. Ruff unavailable; black and pylint E/F used.

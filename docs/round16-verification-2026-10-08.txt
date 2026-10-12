@@ -1,0 +1,10 @@
+PASS synthetic next-open exit/gap/fees/negative exit/BH step-up/AND
+PASS proxy (5, 10, 20) 7 45 symbols prefix/future mutation
+PASS proxy (5, 10, 20) 14 45 symbols prefix/future mutation
+PASS proxy (5, 10, 20) 30 45 symbols prefix/future mutation
+PASS proxy (25, 50, 100) 7 45 symbols prefix/future mutation
+PASS proxy (25, 50, 100) 14 45 symbols prefix/future mutation
+PASS proxy (25, 50, 100) 30 45 symbols prefix/future mutation
+PASS HEAD engine parity: 10 C donors + all Round11 configs
+VERIFICATION {"proxy_prefix_future_checks": 270, "technical_controls": 10, "round11_configs": 34, "synthetic": true, "old_engine_parity": true}
+PASS saved arithmetic {"saved_results_arithmetic": true, "nav_and_bootstrap_reconstructed": 49, "exact_configs": 397}

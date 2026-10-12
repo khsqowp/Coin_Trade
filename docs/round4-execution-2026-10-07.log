@@ -1,0 +1,7 @@
+winner 1 reproduced; independent periods 8 top10 {'pnl': np.float64(156.29574101751706), 'positive_pct': np.float64(31.45875976921955), 'net_pct': np.float64(72.89371415833473)}
+winner 2 reproduced; independent periods 8 top10 {'pnl': np.float64(122.14222901688848), 'positive_pct': np.float64(26.113056885705372), 'net_pct': np.float64(63.77030069373064)}
+winner 3 reproduced; independent periods 8 top10 {'pnl': np.float64(223.3861094015488), 'positive_pct': np.float64(25.77823905833774), 'net_pct': np.float64(63.104401132197495)}
+winner 4 reproduced; independent periods 8 top10 {'pnl': np.float64(170.3251709181485), 'positive_pct': np.float64(25.190080712200956), 'net_pct': np.float64(68.74764442779335)}
+winner 5 reproduced; independent periods 8 top10 {'pnl': np.float64(28.38124773224363), 'positive_pct': np.float64(60.37765345997782), 'net_pct': np.float64(94.7838504101879)}
+PASS: 5 exact reproductions; 40 independent windows; trade ledger daily reconciliation; leave-out reconciliation; 45-symbol historical indicators; independent-window engine prefix; baseline reproduction
+VERDICT 기각 {'periods': True, 'concentration': True, 'sensitivity': False, 'flapping': True, 'symbols': True}

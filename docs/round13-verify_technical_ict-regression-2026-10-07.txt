@@ -1,0 +1,13 @@
+elliott_wave: prefix invariance PASS
+rsi: prefix invariance PASS
+ema_cross: prefix invariance PASS
+heikin_ashi: prefix invariance PASS
+fibonacci: prefix invariance PASS
+vwap: prefix invariance PASS
+fvg: prefix invariance PASS
+frvp: prefix invariance PASS
+order_block: prefix invariance PASS
+liquidity_sweep: prefix invariance PASS
+PASS: 432 prefix checks + 7 behavioral/accounting checks
+
+EXIT 0

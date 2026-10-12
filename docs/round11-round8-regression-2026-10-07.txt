@@ -1,0 +1,1 @@
+PASS: 8-source/10-family ranking; exact winner/969-trade ledger; 8 actual two-year windows independently replayed; concentration; 300 unique random seeds/3 full replays/p arithmetic; 1000 bootstrap sequences reconstructed; 2 execution prefixes/causal timestamps; 3-of-4 verdict; document and Round1-7 regression logs

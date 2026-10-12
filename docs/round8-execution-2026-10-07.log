@@ -1,0 +1,10 @@
+FAMILY 1 heikin_ashi {'dd_trigger': 0.25, 'resume_mode': 'btc_sma50'}
+DOMINATING heikin_ashi none {'dd_trigger': 0.25, 'resume_mode': 'btc_sma50', 'top_k': 12} {'cagr': 108.8012439308495, 'mdd': 49.61021705503379, 'sharpe': 1.5348746073130914, 'trades': 969, 'final': 182.8040092920317}
+ROBUST MC 50
+ROBUST MC 100
+ROBUST MC 150
+ROBUST MC 200
+ROBUST MC 250
+ROBUST MC 300
+PROGRESS 3 1
+복귀조건 A 달성

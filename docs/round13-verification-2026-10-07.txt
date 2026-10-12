@@ -1,0 +1,70 @@
+PASS Round13 8 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 20 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 29 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 35 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 41 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 53 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round13 61 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 62 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 70 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 76 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS online scale actual-ledger completed-count/posterior arithmetic, repeated-run reset, cost-zero parity, execution prefix
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 76 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS specified Round4/6 7/8 independently replayed, future audit and cost-zero full trace parity
+{
+  "config": {
+    "family": "donchian",
+    "btc_hysteresis": 0.03,
+    "sizing": "inverse_vol",
+    "target_vol": 1.0,
+    "weight_cap": 0.25
+  },
+  "metrics": {
+    "cagr": 68.51975841796181,
+    "mdd": 35.41495088498445,
+    "sharpe": 1.4860638350221174,
+    "trades": 289,
+    "final": 40.129653064545145
+  },
+  "votes": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "costs": [
+    {
+      "funding_annual": 0.1095,
+      "slippage": 0.0005,
+      "metrics": {
+        "cagr": 62.956739458663755,
+        "mdd": 36.36821932383101,
+        "sharpe": 1.4026153343842618,
+        "trades": 289,
+        "final": 31.646686519011197
+      }
+    },
+    {
+      "funding_annual": 0.1095,
+      "slippage": 0.001,
+      "metrics": {
+        "cagr": 62.17145582721586,
+        "mdd": 36.49961163306347,
+        "sharpe": 1.3909217138989856,
+        "trades": 289,
+        "final": 30.583441227474534
+      }
+    }
+  ]
+}
+PASS online scale actual-ledger completed-count/posterior arithmetic, repeated-run reset, cost-zero parity, execution prefix
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 81 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS online scale actual-ledger completed-count/posterior arithmetic, repeated-run reset, cost-zero parity, execution prefix
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 81 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology

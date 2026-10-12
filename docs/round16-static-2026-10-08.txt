@@ -1,0 +1,4 @@
+{"command": ["python3", "-m", "py_compile", "app/liquidation_proximity_signal_core.py", "app/crypto_round16_liquidation_research.py", "app/verify_round16.py", "app/round11_portfolio.py", "app/technical_portfolio_engine.py"], "exit_code": 0, "output": ""}
+{"command": ["black", "--check", "app/liquidation_proximity_signal_core.py", "app/crypto_round16_liquidation_research.py", "app/verify_round16.py"], "exit_code": 0, "output": "All done! ✨ 🍰 ✨\n3 files would be left unchanged.\n"}
+{"command": ["mypy", "--follow-imports=skip", "--ignore-missing-imports", "--cache-dir=/dev/null", "app/liquidation_proximity_signal_core.py", "app/crypto_round16_liquidation_research.py", "app/verify_round16.py"], "exit_code": 0, "output": "Success: no issues found in 3 source files\n"}
+{"command": ["git", "diff", "--check"], "exit_code": 0, "output": ""}

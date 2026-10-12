@@ -1,0 +1,1512 @@
+{
+  "runtime": {
+    "python": "3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.5.2",
+    "indicators": "app.technical_indicator_fallback"
+  },
+  "since": "2019-01-01",
+  "cutoff_exclusive": "2026-10-06",
+  "manifest": [
+    {
+      "symbol": "BTC",
+      "bars": 2585,
+      "start": "2019-09-08 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "24383718b3122e6760ed58f2042d64ea90a3ff965f2ce88f6953d825f162996e"
+    },
+    {
+      "symbol": "ETH",
+      "bars": 2505,
+      "start": "2019-11-27 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "00d0b16c5b84b78de1929aa4538b9a313511bbe9327fa59b9e1d4222595afed5"
+    },
+    {
+      "symbol": "BNB",
+      "bars": 2430,
+      "start": "2020-02-10 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "551c995343313f14d0a3085bf275f4de4074ab3b3f742b6ee96ffd7eae321988"
+    },
+    {
+      "symbol": "XRP",
+      "bars": 2465,
+      "start": "2020-01-06 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "370cdef2f774e2af3ddb39f4ff223c28030c7561d68d9cb078657ede485f7bb7"
+    },
+    {
+      "symbol": "SOL",
+      "bars": 2213,
+      "start": "2020-09-14 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "710042a061a4adcac05edfa85a9058d6bf3eea7a490b6398f15f34b4eb22171a"
+    },
+    {
+      "symbol": "TRX",
+      "bars": 2456,
+      "start": "2020-01-15 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "66d77f996d312eb50fe216fb150a0d57133c1c1ccf074c603b54221fc1255fba"
+    },
+    {
+      "symbol": "DOGE",
+      "bars": 2279,
+      "start": "2020-07-10 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "6f9747db0fe16c32df2b7994ea919b82db9ca1d02fbbd55defc5dfe6e1a42280"
+    },
+    {
+      "symbol": "ZEC",
+      "bars": 2435,
+      "start": "2020-02-05 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "56474ec9f8902de66886a623efe4238c8ccaebaecc842b4f6015ec7d25620dd5"
+    },
+    {
+      "symbol": "LINK",
+      "bars": 2454,
+      "start": "2020-01-17 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "34903119208e2caae9564ca63e1ce1888d0f981a114a0d9a1ebdc7f5b871b4e0"
+    },
+    {
+      "symbol": "XMR",
+      "bars": 2437,
+      "start": "2020-02-03 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "3e61a8a5581a01eeda858612f45619595dc94745cf964a26fba2170efd285d8d"
+    },
+    {
+      "symbol": "ADA",
+      "bars": 2440,
+      "start": "2020-01-31 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "d96ead25ff9f8c06135b4fafad852aa4d011969d712032590091d1f66ea2588c"
+    },
+    {
+      "symbol": "XLM",
+      "bars": 2451,
+      "start": "2020-01-20 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "7638311ab9b3dd0d8218d8a08db2630819118df94f45ec46250d1518d44c99fb"
+    },
+    {
+      "symbol": "BCH",
+      "bars": 2483,
+      "start": "2019-12-19 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "d3301b41bb3bf5d4f25638a3446677c0d3c4768325033af367302e78e74e22c6"
+    },
+    {
+      "symbol": "LTC",
+      "bars": 2462,
+      "start": "2020-01-09 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "d3bf4a7b109d7bbd35a0d915e5fbc3f91480b1c4b941e11c3ef6a79143967563"
+    },
+    {
+      "symbol": "HBAR",
+      "bars": 2029,
+      "start": "2021-03-17 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "4b68f293e0c5b4549c1500a6ae8bc4b9f88cd200b024da7f3a8af3cf40150257"
+    },
+    {
+      "symbol": "AVAX",
+      "bars": 2204,
+      "start": "2020-09-23 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "6cef164ee7376ce5a5696470c8d35768c53936ac02a8114b96ebcff4e13bbae8"
+    },
+    {
+      "symbol": "SUI",
+      "bars": 1252,
+      "start": "2023-05-03 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "6d580929af3da2f89d758b2bf8ac89fb7596f31fbcbba7d9d26ee578088e6ba3"
+    },
+    {
+      "symbol": "UNI",
+      "bars": 2209,
+      "start": "2020-09-18 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "273d84cf42397695db661d322a9c53fbfd789258d4ae41264ee9bd8ce000927e"
+    },
+    {
+      "symbol": "NEAR",
+      "bars": 2182,
+      "start": "2020-10-15 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "14460aec55a00bd61df4fa87c2790ab21af46c116e4e56814509a619349964ca"
+    },
+    {
+      "symbol": "TAO",
+      "bars": 908,
+      "start": "2024-04-11 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "c96c167cd14a5a56348b11005a7db8d326b05ec3cb00167803ff6b47a69ec429"
+    },
+    {
+      "symbol": "AAVE",
+      "bars": 2181,
+      "start": "2020-10-16 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "aba8ac87481946d6053cbff875c261a81b332a9f43ed9e97c7562d82fd5ebcee"
+    },
+    {
+      "symbol": "ONDO",
+      "bars": 990,
+      "start": "2024-01-20 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "2232987a6921bc37d1ec8127a42ff08291f7e51c538d37568353dcd6fa8cfeda"
+    },
+    {
+      "symbol": "THETA",
+      "bars": 2323,
+      "start": "2020-05-27 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "59ed147ce74fc7e31d05188b9d9fab14407956beb48f0ec55651e0a7661be253"
+    },
+    {
+      "symbol": "DOT",
+      "bars": 2236,
+      "start": "2020-08-22 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "3445bf48f0e036c15b40820935f860e3208b7343e867966b1870971a5825dd81"
+    },
+    {
+      "symbol": "ENA",
+      "bars": 917,
+      "start": "2024-04-02 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "1082db5045bf888f4f39dfeb1756247b7e547549c2089cca7834342f3c52a4b0"
+    },
+    {
+      "symbol": "WLD",
+      "bars": 1170,
+      "start": "2023-07-24 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "a395898f8b1fca26c2d301b9ca05754f6d4e528c20c832835569d2c709b2ce3e"
+    },
+    {
+      "symbol": "ICP",
+      "bars": 1470,
+      "start": "2022-09-27 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "6a4bfbb189f859984777b1238049728be0457049ba11b30c5a63bf77cbaeb1ea"
+    },
+    {
+      "symbol": "ETC",
+      "bars": 2455,
+      "start": "2020-01-16 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "71b585b6449176cc112efa22e1de3241781f32af8d82543d40202ca9aeae9606"
+    },
+    {
+      "symbol": "POL",
+      "bars": 753,
+      "start": "2024-09-13 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "698752ef23ebd4fefc3b302607c812a2a25f24319cbab93cd2c07d66f1578edb"
+    },
+    {
+      "symbol": "QNT",
+      "bars": 1447,
+      "start": "2022-10-20 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "2f00f9801d50dfe1e065f3c1192669d4a7fd01058d586765d3139ca54741233e"
+    },
+    {
+      "symbol": "ALGO",
+      "bars": 2303,
+      "start": "2020-06-16 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "ca3932155212e8af7d4badc078683b7725ba368739f109b7426bc45d6e136696"
+    },
+    {
+      "symbol": "ATOM",
+      "bars": 2433,
+      "start": "2020-02-07 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "af8ee4a474535e1cef6cd04bc403a1a614e8bf80c0d84e4c226ee2aaeeab2fc8"
+    },
+    {
+      "symbol": "RENDER",
+      "bars": 802,
+      "start": "2024-07-26 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "134d9e3d0cbb501a80a9661915c832566869a1f903913db151f87a73787f1a77"
+    },
+    {
+      "symbol": "JUP",
+      "bars": 979,
+      "start": "2024-01-31 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "7989d829fc1b59d8979e7b2771137d612f27483bb12aa02281661845a2c13c91"
+    },
+    {
+      "symbol": "ARB",
+      "bars": 1293,
+      "start": "2023-03-23 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "df793bf45533d65af16f2f88ca5100f5ee6003ca554091a784c924c0011d907b"
+    },
+    {
+      "symbol": "FIL",
+      "bars": 2181,
+      "start": "2020-10-16 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "bbf785f046e6a971d005e57eae15a5e772a1037fa7c0e2d166bb3fcb11257efd"
+    },
+    {
+      "symbol": "VET",
+      "bars": 2426,
+      "start": "2020-02-14 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "d33a8785aa78978dd783745fe1a13cbdaf666b95c40a344d9905a064324f79fc"
+    },
+    {
+      "symbol": "CAKE",
+      "bars": 1069,
+      "start": "2023-11-02 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "b9debb5bd83ae331c4adb213ff0a68367be20a4f99138d837c847614568cdf05"
+    },
+    {
+      "symbol": "LDO",
+      "bars": 1475,
+      "start": "2022-09-22 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "3285fd7c3691280c87d633640d1e139d0ddb383e63e55128badfa9a98268be35"
+    },
+    {
+      "symbol": "CRV",
+      "bars": 2226,
+      "start": "2020-09-01 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "33a5ce57323cdb91bec75089fb86eb08202f0246cc75026f7dbf3376a1cde337"
+    },
+    {
+      "symbol": "INJ",
+      "bars": 1511,
+      "start": "2022-08-17 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "2725ef9fd96c84a3257a1b61b5b84a1bb191c8edaa36ece804576f9f782c11b3"
+    },
+    {
+      "symbol": "OP",
+      "bars": 1588,
+      "start": "2022-06-01 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "13a3530fb7cf5a062a3b2497d9eb8de5b680da0204486ba9821bb7a4df7c88a4"
+    },
+    {
+      "symbol": "APT",
+      "bars": 1448,
+      "start": "2022-10-19 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "3700329f370af8ad8750a14545079954a0b22358517897cd5f276da77f1482fe"
+    },
+    {
+      "symbol": "IMX",
+      "bars": 1698,
+      "start": "2022-02-11 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "d90849dad13f413f232c9090cae8370b37f5ad5bb1ca4a304c61ae6d89ea70dc"
+    },
+    {
+      "symbol": "STX",
+      "bars": 1323,
+      "start": "2023-02-21 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "sha256": "8ed066cec5e4859e36ca1780c45e844f5ad24c45f807d9585bb09496020362ae"
+    }
+  ],
+  "skipped": [],
+  "config": {
+    "top_k": 8,
+    "hold_days": 20,
+    "fee_pct_one_way": 0.04,
+    "stop": "none",
+    "tp": "none",
+    "timing": "next_open",
+    "selection": "rank",
+    "dd_resume": 0.1
+  },
+  "engine_comparison": [
+    {
+      "price_cap": 3.0,
+      "legacy": {
+        "cagr": 54.1119774213348,
+        "mdd": 56.19576524500546,
+        "sharpe": 1.09185275123815,
+        "final": 21.323994117010038,
+        "years": 7.0746064339493495,
+        "trades": 432,
+        "stopped": 0,
+        "tp_hit": 0,
+        "exposure_pct": 83.67504835589942,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00"
+      },
+      "new": {
+        "cagr": 50.893894273611416,
+        "mdd": 56.3094085494812,
+        "sharpe": 1.0576108290804722,
+        "trades": 426,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 18.366725051421906,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "delta_new_minus_legacy": {
+        "cagr": -3.2180831477233838,
+        "mdd": 0.11364330447573678,
+        "sharpe": -0.03424192215767774,
+        "trades": -6
+      }
+    },
+    {
+      "price_cap": 5.0,
+      "legacy": {
+        "cagr": 65.98395738692918,
+        "mdd": 53.66181450612484,
+        "sharpe": 1.1982699469461684,
+        "final": 36.04799812405598,
+        "years": 7.0746064339493495,
+        "trades": 475,
+        "stopped": 0,
+        "tp_hit": 0,
+        "exposure_pct": 86.26692456479691,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00"
+      },
+      "new": {
+        "cagr": 62.35370201973227,
+        "mdd": 53.38384647347723,
+        "sharpe": 1.164578135448411,
+        "trades": 468,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 30.827421853006026,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "delta_new_minus_legacy": {
+        "cagr": -3.6302553671969093,
+        "mdd": -0.27796803264761394,
+        "sharpe": -0.03369181149775735,
+        "trades": -7
+      }
+    }
+  ],
+  "baselines": [
+    {
+      "name": "volume_spike",
+      "metrics": {
+        "cagr": 50.893894273611416,
+        "mdd": 56.3094085494812,
+        "sharpe": 1.0576108290804722,
+        "trades": 426,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 18.366725051421906,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 818
+    },
+    {
+      "name": "heikin_ashi",
+      "metrics": {
+        "cagr": 71.29879248288876,
+        "mdd": 72.23812625213733,
+        "sharpe": 1.1096565868496509,
+        "trades": 898,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 45.052581993462965,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 10451
+    },
+    {
+      "name": "frvp",
+      "metrics": {
+        "cagr": 67.45323804946786,
+        "mdd": 73.07077874420644,
+        "sharpe": 1.1132529337556494,
+        "trades": 736,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 38.367080104182556,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 2113
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 26
+    },
+    {
+      "name": "frvp_volume_spike",
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 4
+    }
+  ],
+  "sweep": [
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": 13.716726568256043,
+        "mdd": 16.326435488436395,
+        "sharpe": 0.7708783116498881,
+        "trades": 45,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 2.4827632214604094,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 2,
+        "breaker_resumes": 1,
+        "blocked_days": 2126,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 39.9829730610448,
+      "cagr_loss": 37.17716770535537,
+      "sharpe_loss": 0.28673251743058414
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": 22.123579616485898,
+        "mdd": 33.254897925137364,
+        "sharpe": 0.872095514078394,
+        "trades": 72,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 4.11218346353,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 2,
+        "breaker_resumes": 1,
+        "blocked_days": 1975,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 23.054510624343834,
+      "cagr_loss": 28.770314657125517,
+      "sharpe_loss": 0.18551531500207818
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 21.31209200959523,
+        "mdd": 33.25489792513735,
+        "sharpe": 0.8558504254794209,
+        "trades": 71,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 3.9227301196188185,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1965,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 23.05451062434385,
+      "cagr_loss": 29.581802264016186,
+      "sharpe_loss": 0.2017604036010513
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 21.414505016599783,
+        "mdd": 37.63408172379605,
+        "sharpe": 0.8144163188024842,
+        "trades": 74,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 3.9462186307022797,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1961,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 18.675326825685147,
+      "cagr_loss": 29.479389257011633,
+      "sharpe_loss": 0.243194510277988
+    },
+    {
+      "name": "heikin_ashi",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": 0.7978891611504002,
+        "mdd": 31.566891829110688,
+        "sharpe": 0.12817997834893846,
+        "trades": 25,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.0578340984276047,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2414,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 40.67123442302665,
+      "cagr_loss": 70.50090332173836,
+      "sharpe_loss": 0.9814766085007124
+    },
+    {
+      "name": "heikin_ashi",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": 0.7978891611504002,
+        "mdd": 31.566891829110688,
+        "sharpe": 0.12817997834893846,
+        "trades": 25,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.0578340984276047,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2413,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 40.67123442302665,
+      "cagr_loss": 70.50090332173836,
+      "sharpe_loss": 0.9814766085007124
+    },
+    {
+      "name": "heikin_ashi",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 0.7978891611504002,
+        "mdd": 31.566891829110688,
+        "sharpe": 0.12817997834893846,
+        "trades": 25,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.0578340984276047,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2413,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 40.67123442302665,
+      "cagr_loss": 70.50090332173836,
+      "sharpe_loss": 0.9814766085007124
+    },
+    {
+      "name": "heikin_ashi",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": -2.25941952372124,
+        "mdd": 51.451161557302406,
+        "sharpe": -0.060053580221529304,
+        "trades": 29,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.8507146707944696,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2402,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 20.78696469483493,
+      "cagr_loss": 73.55821200660999,
+      "sharpe_loss": 1.1697101670711803
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": -2.2400255395456092,
+        "mdd": 21.39603145177144,
+        "sharpe": -0.34859289608127886,
+        "trades": 5,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.8519095942214003,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2398,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 51.674747292435,
+      "cagr_loss": 69.69326358901347,
+      "sharpe_loss": 1.4618458298369283
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": -2.2400255395456092,
+        "mdd": 21.39603145177144,
+        "sharpe": -0.34859289608127886,
+        "trades": 5,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.8519095942214003,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 2398,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 51.674747292435,
+      "cagr_loss": 69.69326358901347,
+      "sharpe_loss": 1.4618458298369283
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 44.793374792367516,
+        "mdd": 45.653871613551,
+        "sharpe": 1.2072957232072041,
+        "trades": 117,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 13.716197213864211,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 2,
+        "breaker_resumes": 1,
+        "blocked_days": 1973,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 27.41690713065544,
+      "cagr_loss": 22.65986325710034,
+      "sharpe_loss": -0.09404278945155475
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 46.338978321247005,
+        "mdd": 41.86801729701515,
+        "sharpe": 1.249504099924789,
+        "trades": 118,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 14.786216191808428,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1965,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 31.202761447191286,
+      "cagr_loss": 21.11425972822085,
+      "sharpe_loss": -0.13625116616913968
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    }
+  ],
+  "winners": [],
+  "pareto_frontier": [
+    {
+      "name": "heikin_ashi",
+      "metrics": {
+        "cagr": 71.29879248288876,
+        "mdd": 72.23812625213733,
+        "sharpe": 1.1096565868496509,
+        "trades": 898,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 45.052581993462965,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 10451
+    },
+    {
+      "name": "frvp",
+      "metrics": {
+        "cagr": 67.45323804946786,
+        "mdd": 73.07077874420644,
+        "sharpe": 1.1132529337556494,
+        "trades": 736,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 38.367080104182556,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 2113
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 26
+    },
+    {
+      "name": "frvp_volume_spike",
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 4
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": 13.716726568256043,
+        "mdd": 16.326435488436395,
+        "sharpe": 0.7708783116498881,
+        "trades": 45,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 2.4827632214604094,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 2,
+        "breaker_resumes": 1,
+        "blocked_days": 2126,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 39.9829730610448,
+      "cagr_loss": 37.17716770535537,
+      "sharpe_loss": 0.28673251743058414
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": 22.123579616485898,
+        "mdd": 33.254897925137364,
+        "sharpe": 0.872095514078394,
+        "trades": 72,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 4.11218346353,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 2,
+        "breaker_resumes": 1,
+        "blocked_days": 1975,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 23.054510624343834,
+      "cagr_loss": 28.770314657125517,
+      "sharpe_loss": 0.18551531500207818
+    },
+    {
+      "name": "volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 21.31209200959523,
+        "mdd": 33.25489792513735,
+        "sharpe": 0.8558504254794209,
+        "trades": 71,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 3.9227301196188185,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1965,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 23.05451062434385,
+      "cagr_loss": 29.581802264016186,
+      "sharpe_loss": 0.2017604036010513
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 46.338978321247005,
+        "mdd": 41.86801729701515,
+        "sharpe": 1.249504099924789,
+        "trades": 118,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 14.786216191808428,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1965,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 31.202761447191286,
+      "cagr_loss": 21.11425972822085,
+      "sharpe_loss": -0.13625116616913968
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "heikin_ashi_volume_spike",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 3.614250998185309,
+        "mdd": 11.545276855387659,
+        "sharpe": 0.5662319934196006,
+        "trades": 26,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 1.285543677761013,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.15,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.2,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.25,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "frvp_volume_spike",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": -0.7477846229318463,
+        "mdd": 9.861305639100209,
+        "sharpe": -0.39840280464335903,
+        "trades": 4,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 0.9482836522391851,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "mdd_improvement": 0.0,
+      "cagr_loss": 0.0,
+      "sharpe_loss": 0.0
+    },
+    {
+      "name": "volume_spike_cap5",
+      "metrics": {
+        "cagr": 62.35370201973227,
+        "mdd": 53.38384647347723,
+        "sharpe": 1.164578135448411,
+        "trades": 468,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 30.827421853006026,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false
+    }
+  ],
+  "closest_candidates": [
+    {
+      "name": "volume_spike_cap5",
+      "metrics": {
+        "cagr": 62.35370201973227,
+        "mdd": 53.38384647347723,
+        "sharpe": 1.164578135448411,
+        "trades": 468,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 30.827421853006026,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false
+    },
+    {
+      "name": "frvp",
+      "dd_trigger": 0.3,
+      "metrics": {
+        "cagr": 46.338978321247005,
+        "mdd": 41.86801729701515,
+        "sharpe": 1.249504099924789,
+        "trades": 118,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 14.786216191808428,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 1,
+        "breaker_resumes": 0,
+        "blocked_days": 1965,
+        "breaker_paused_final": true
+      },
+      "target": false,
+      "mdd_improvement": 31.202761447191286,
+      "cagr_loss": 21.11425972822085,
+      "sharpe_loss": -0.13625116616913968
+    },
+    {
+      "name": "heikin_ashi",
+      "metrics": {
+        "cagr": 71.29879248288876,
+        "mdd": 72.23812625213733,
+        "sharpe": 1.1096565868496509,
+        "trades": 898,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 45.052581993462965,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false,
+      "signal_count": 10451
+    }
+  ],
+  "largest_mdd_improvement": {
+    "name": "frvp",
+    "dd_trigger": 0.15,
+    "metrics": {
+      "cagr": -2.2400255395456092,
+      "mdd": 21.39603145177144,
+      "sharpe": -0.34859289608127886,
+      "trades": 5,
+      "stopped": 0,
+      "tp_hit": 0,
+      "final": 0.8519095942214003,
+      "start": "2019-09-08 00:00:00+00:00",
+      "end": "2026-10-05 00:00:00+00:00",
+      "years": 7.0746064339493495,
+      "breaker_events": 1,
+      "breaker_resumes": 0,
+      "blocked_days": 2398,
+      "breaker_paused_final": true
+    },
+    "target": false,
+    "mdd_improvement": 51.674747292435,
+    "cagr_loss": 69.69326358901347,
+    "sharpe_loss": 1.4618458298369283
+  },
+  "supplemental_baselines": [
+    {
+      "name": "volume_spike_cap5",
+      "metrics": {
+        "cagr": 62.35370201973227,
+        "mdd": 53.38384647347723,
+        "sharpe": 1.164578135448411,
+        "trades": 468,
+        "stopped": 0,
+        "tp_hit": 0,
+        "final": 30.827421853006026,
+        "start": "2019-09-08 00:00:00+00:00",
+        "end": "2026-10-05 00:00:00+00:00",
+        "years": 7.0746064339493495,
+        "breaker_events": 0,
+        "breaker_resumes": 0,
+        "blocked_days": 0,
+        "breaker_paused_final": false
+      },
+      "target": false
+    }
+  ]
+}

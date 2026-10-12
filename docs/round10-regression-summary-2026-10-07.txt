@@ -1,0 +1,2 @@
+Final engine version after entry_multiplier isolation
+[('verify_technical_ict', 0), ('verify_hybrid_drawdown', 0), ('verify_round3', 0), ('verify_round4', 0), ('verify_round5', 0), ('verify_round6', 0), ('verify_round7', 0), ('verify_round8', 0), ('crypto_round9_research', 0)]

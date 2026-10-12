@@ -1,0 +1,251 @@
+RESULT 1 {'meta': 'gate', 'family': 'volume', 'confirm': 1} {'cagr': 50.061322417199385, 'mdd': 46.52909566031901, 'sharpe': 1.1972288500979122, 'trades': 272, 'final': 17.661686424604156} None
+RESULT 2 {'meta': 'gate', 'family': 'volume', 'confirm': 3} {'cagr': 50.377925297760726, 'mdd': 45.569134961553566, 'sharpe': 1.179618900392082, 'trades': 279, 'final': 17.927003127857382} None
+RESULT 3 {'meta': 'gate', 'family': 'volume', 'confirm': 5} {'cagr': 48.95574004103729, 'mdd': 52.72044276732052, 'sharpe': 1.1574701885261451, 'trades': 275, 'final': 16.761461673055415} None
+RESULT 4 {'meta': 'gate', 'family': 'volume', 'confirm': 10} {'cagr': 41.009584339888065, 'mdd': 52.10065211131257, 'sharpe': 1.0256883873890748, 'trades': 275, 'final': 11.373007749159894} None
+RESULT 5 {'meta': 'gate', 'family': 'heikin_ashi', 'confirm': 1} {'cagr': 69.93474669604521, 'mdd': 60.757096352305865, 'sharpe': 1.1801671219445755, 'trades': 551, 'final': 42.57511721942475} None
+RESULT 6 {'meta': 'gate', 'family': 'heikin_ashi', 'confirm': 3} {'cagr': 73.09675743601261, 'mdd': 62.1852467574991, 'sharpe': 1.2088648401684323, 'trades': 530, 'final': 48.50655311832157} None
+RESULT 7 {'meta': 'gate', 'family': 'heikin_ashi', 'confirm': 5} {'cagr': 69.64390691362033, 'mdd': 63.73263294892383, 'sharpe': 1.181967057967021, 'trades': 529, 'final': 42.062287901925195} None
+RESULT 8 {'meta': 'gate', 'family': 'heikin_ashi', 'confirm': 10} {'cagr': 69.2649832507291, 'mdd': 60.931811733192944, 'sharpe': 1.1906737451861584, 'trades': 531, 'final': 41.40210629656193} None
+RESULT 9 {'meta': 'gate', 'family': 'frvp', 'confirm': 1} {'cagr': 58.149604391490485, 'mdd': 56.75982154564346, 'sharpe': 1.0985949845998433, 'trades': 476, 'final': 25.60522113538468} None
+RESULT 10 {'meta': 'gate', 'family': 'frvp', 'confirm': 3} {'cagr': 58.63396094805895, 'mdd': 58.44048115369653, 'sharpe': 1.1089783006870195, 'trades': 453, 'final': 26.165197768358368} None
+RESULT 11 {'meta': 'gate', 'family': 'frvp', 'confirm': 5} {'cagr': 64.22105802657518, 'mdd': 63.03827329387782, 'sharpe': 1.1586512018204724, 'trades': 455, 'final': 33.42522187521487} None
+RESULT 12 {'meta': 'gate', 'family': 'frvp', 'confirm': 10} {'cagr': 66.373729537697, 'mdd': 72.53017003760537, 'sharpe': 1.1803800410958758, 'trades': 458, 'final': 36.65115033005829} None
+RESULT 13 {'meta': 'gate', 'family': 'fvg', 'confirm': 1} {'cagr': 52.26557371081739, 'mdd': 66.93934470663106, 'sharpe': 1.0172111315606531, 'trades': 529, 'final': 19.581020661416275} None
+RESULT 14 {'meta': 'gate', 'family': 'fvg', 'confirm': 3} {'cagr': 63.87909103236642, 'mdd': 67.31417679851292, 'sharpe': 1.1394077226939114, 'trades': 530, 'final': 32.935909593367306} None
+RESULT 15 {'meta': 'gate', 'family': 'fvg', 'confirm': 5} {'cagr': 86.04429501982362, 'mdd': 62.82083631562744, 'sharpe': 1.3544757895795245, 'trades': 516, 'final': 80.80339615638738} None
+RESULT 16 {'meta': 'gate', 'family': 'fvg', 'confirm': 10} {'cagr': 50.92975329788898, 'mdd': 76.27216951588969, 'sharpe': 0.9905905634456039, 'trades': 517, 'final': 18.397626176784673} None
+RESULT 17 {'meta': 'gate', 'family': 'vwap', 'confirm': 1} {'cagr': 36.45254035975627, 'mdd': 76.77852596199551, 'sharpe': 0.8547352058963177, 'trades': 860, 'final': 9.014504827068526} None
+RESULT 18 {'meta': 'gate', 'family': 'vwap', 'confirm': 3} {'cagr': 40.82177903193911, 'mdd': 77.60064823725385, 'sharpe': 0.914389749889477, 'trades': 833, 'final': 11.266279246235113} None
+RESULT 19 {'meta': 'gate', 'family': 'vwap', 'confirm': 5} {'cagr': 44.09230398291839, 'mdd': 73.62719171278056, 'sharpe': 0.9565960263428968, 'trades': 833, 'final': 13.25321131654737} None
+RESULT 20 {'meta': 'gate', 'family': 'vwap', 'confirm': 10} {'cagr': 32.68411024183937, 'mdd': 80.99063529807383, 'sharpe': 0.8054966935633914, 'trades': 837, 'final': 7.394273269664605} None
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 20 unique replay; strict votes/transition gaps/MC samples/bootstrap independent arithmetic
+RESULT 21 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'four0'} {'cagr': 53.854977567148055, 'mdd': 32.014467463117505, 'sharpe': 1.331270809093078, 'trades': 332, 'final': 21.073689862690475} None
+RESULT 22 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'four10'} {'cagr': 53.92800439752177, 'mdd': 32.06650609252885, 'sharpe': 1.3314410181195593, 'trades': 459, 'final': 21.14455618901806} None
+RESULT 23 {'meta': 'scale', 'family': 'volume', 'confirm': 3, 'mapping': 'four0'} {'cagr': 50.576803102424606, 'mdd': 34.0307581849987, 'sharpe': 1.2474672491258727, 'trades': 349, 'final': 18.095408957136996} None
+RESULT 24 {'meta': 'scale', 'family': 'volume', 'confirm': 3, 'mapping': 'four10'} {'cagr': 52.71334938229633, 'mdd': 34.0307581849987, 'sharpe': 1.2873541387082588, 'trades': 459, 'final': 19.99205437434361} None
+RESULT 25 {'meta': 'scale', 'family': 'volume', 'confirm': 5, 'mapping': 'four0'} {'cagr': 47.25353069271081, 'mdd': 39.669980984465, 'sharpe': 1.2023255021507646, 'trades': 343, 'final': 15.452501709883695} None
+RESULT 26 {'meta': 'scale', 'family': 'volume', 'confirm': 5, 'mapping': 'four10'} {'cagr': 47.61477700624705, 'mdd': 38.1790264754974, 'sharpe': 1.2112234877284305, 'trades': 459, 'final': 15.722696002123909} None
+RESULT 27 {'meta': 'scale', 'family': 'volume', 'confirm': 10, 'mapping': 'four0'} {'cagr': 40.57088613980202, 'mdd': 44.169039889146624, 'sharpe': 1.0766781042078368, 'trades': 330, 'final': 11.125041126044703} None
+RESULT 28 {'meta': 'scale', 'family': 'volume', 'confirm': 10, 'mapping': 'four10'} {'cagr': 43.48376284260438, 'mdd': 38.483444982574504, 'sharpe': 1.1311717035496915, 'trades': 458, 'final': 12.862275181559916} None
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 50
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 100
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 150
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 200
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 250
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 300
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round10_research.py", line 360, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round10_research.py", line 327, in run
+    save(output)
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round10_research.py", line 218, in save
+    PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2, allow_nan=False))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 50
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 100
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 150
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 200
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 250
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} 300
+RESULT 29 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four0'} {'cagr': 103.82445300117666, 'mdd': 51.69162856161994, 'sharpe': 1.554302948133574, 'trades': 700, 'final': 154.12266397271262} 기각
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 50
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 100
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 150
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 200
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 250
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} 300
+RESULT 30 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'four10'} {'cagr': 91.61282259471439, 'mdd': 49.429746151330036, 'sharpe': 1.4615498273152219, 'trades': 868, 'final': 99.55032189940555} 기각
+RESULT 31 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 3, 'mapping': 'four0'} {'cagr': 97.17728707008948, 'mdd': 55.65601905434173, 'sharpe': 1.5293848555626313, 'trades': 649, 'final': 121.897957687434} None
+RESULT 32 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 3, 'mapping': 'four10'} {'cagr': 87.61843416371815, 'mdd': 53.533233028653335, 'sharpe': 1.4273063073126093, 'trades': 868, 'final': 85.76629720421906} None
+RESULT 33 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 5, 'mapping': 'four0'} {'cagr': 62.554650953904066, 'mdd': 57.632427315907286, 'sharpe': 1.1579422726541007, 'trades': 636, 'final': 31.098376129968493} None
+RESULT 34 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 5, 'mapping': 'four10'} {'cagr': 81.30275840560779, 'mdd': 55.3939310527378, 'sharpe': 1.3665019507448053, 'trades': 868, 'final': 67.31463779328246} None
+RESULT 35 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 10, 'mapping': 'four0'} {'cagr': 71.33261032739082, 'mdd': 67.16659927601117, 'sharpe': 1.2518962208986442, 'trades': 623, 'final': 45.11554334100354} None
+RESULT 36 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 10, 'mapping': 'four10'} {'cagr': 62.72113533489843, 'mdd': 60.3442888369007, 'sharpe': 1.1621395451194647, 'trades': 862, 'final': 31.32440572342228} None
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} 300
+RESULT 37 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four0'} {'cagr': 74.48148472267518, 'mdd': 52.55916825885228, 'sharpe': 1.3127636768700106, 'trades': 598, 'final': 51.31939097403487} 기각
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} 300
+RESULT 38 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'four10'} {'cagr': 73.65378919212633, 'mdd': 48.6083945280651, 'sharpe': 1.3313703339340779, 'trades': 731, 'final': 49.6217227380899} 기각
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} 300
+RESULT 39 {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four0'} {'cagr': 62.47353390327204, 'mdd': 53.37234905306963, 'sharpe': 1.1980052708510138, 'trades': 566, 'final': 30.988754926959988} 기각
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} 300
+RESULT 40 {'meta': 'scale', 'family': 'frvp', 'confirm': 3, 'mapping': 'four10'} {'cagr': 70.18130659522006, 'mdd': 52.17794921790605, 'sharpe': 1.3021578787812038, 'trades': 731, 'final': 43.01406488359667} 기각
+RESULT 41 {'meta': 'scale', 'family': 'frvp', 'confirm': 5, 'mapping': 'four0'} {'cagr': 60.83877866781282, 'mdd': 53.53416653391826, 'sharpe': 1.1753157175542517, 'trades': 556, 'final': 28.84917814151397} None
+RESULT 42 {'meta': 'scale', 'family': 'frvp', 'confirm': 5, 'mapping': 'four10'} {'cagr': 67.90382148370362, 'mdd': 55.71941897293331, 'sharpe': 1.2698998201829959, 'trades': 731, 'final': 39.103446125290546} None
+RESULT 43 {'meta': 'scale', 'family': 'frvp', 'confirm': 10, 'mapping': 'four0'} {'cagr': 60.351567589883004, 'mdd': 67.03894631722417, 'sharpe': 1.1589628050648033, 'trades': 533, 'final': 28.23659016561393} None
+RESULT 44 {'meta': 'scale', 'family': 'frvp', 'confirm': 10, 'mapping': 'four10'} {'cagr': 60.01407410502435, 'mdd': 61.938067043838906, 'sharpe': 1.1683750343626997, 'trades': 729, 'final': 27.818825750651012} None
+RESULT 45 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'four0'} {'cagr': 65.31839185350172, 'mdd': 60.018518454756034, 'sharpe': 1.1857933648687782, 'trades': 662, 'final': 35.037762791782335} None
+RESULT 46 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'four10'} {'cagr': 71.25415469526615, 'mdd': 56.86862714206383, 'sharpe': 1.2440441362970307, 'trades': 831, 'final': 44.96959183128298} None
+RESULT 47 {'meta': 'scale', 'family': 'fvg', 'confirm': 3, 'mapping': 'four0'} {'cagr': 53.37155138152101, 'mdd': 64.37623700697308, 'sharpe': 1.0549872138233214, 'trades': 659, 'final': 20.609688695013297} None
+RESULT 48 {'meta': 'scale', 'family': 'fvg', 'confirm': 3, 'mapping': 'four10'} {'cagr': 68.7410369779326, 'mdd': 58.05477258303626, 'sharpe': 1.207992229927174, 'trades': 831, 'final': 40.50392618907266} None
+RESULT 49 {'meta': 'scale', 'family': 'fvg', 'confirm': 5, 'mapping': 'four0'} {'cagr': 62.6148240400622, 'mdd': 56.526122995033255, 'sharpe': 1.1705862238445168, 'trades': 620, 'final': 31.17990871299951} None
+RESULT 50 {'meta': 'scale', 'family': 'fvg', 'confirm': 5, 'mapping': 'four10'} {'cagr': 65.82961159903886, 'mdd': 55.868605005530966, 'sharpe': 1.1945903903782897, 'trades': 830, 'final': 35.811522866881894} None
+RESULT 51 {'meta': 'scale', 'family': 'fvg', 'confirm': 10, 'mapping': 'four0'} {'cagr': 50.31661897258199, 'mdd': 65.29096290028139, 'sharpe': 1.011467218846906, 'trades': 606, 'final': 17.875362270230482} None
+RESULT 52 {'meta': 'scale', 'family': 'fvg', 'confirm': 10, 'mapping': 'four10'} {'cagr': 49.26539474769138, 'mdd': 65.25240904578656, 'sharpe': 1.0071362976169225, 'trades': 829, 'final': 17.00953367834978} None
+RESULT 53 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'four0'} {'cagr': 50.05516100549387, 'mdd': 64.16935236007039, 'sharpe': 1.07963275254296, 'trades': 1062, 'final': 17.656556727118026} None
+RESULT 54 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'four10'} {'cagr': 48.64087267623554, 'mdd': 63.539290968058005, 'sharpe': 1.0568556453488338, 'trades': 1381, 'final': 16.512405517173523} None
+RESULT 55 {'meta': 'scale', 'family': 'vwap', 'confirm': 3, 'mapping': 'four0'} {'cagr': 53.347159949738554, 'mdd': 63.183294286189295, 'sharpe': 1.1189776668640774, 'trades': 986, 'final': 20.58651173744626} None
+RESULT 56 {'meta': 'scale', 'family': 'vwap', 'confirm': 3, 'mapping': 'four10'} {'cagr': 46.838768603177705, 'mdd': 66.26853415316833, 'sharpe': 1.030623513374358, 'trades': 1381, 'final': 15.147205902996113} None
+RESULT 57 {'meta': 'scale', 'family': 'vwap', 'confirm': 5, 'mapping': 'four0'} {'cagr': 52.65399721068433, 'mdd': 57.88651167541755, 'sharpe': 1.1046559535990705, 'trades': 968, 'final': 19.93715003226024} None
+RESULT 58 {'meta': 'scale', 'family': 'vwap', 'confirm': 5, 'mapping': 'four10'} {'cagr': 47.931275057485735, 'mdd': 65.69747472907727, 'sharpe': 1.04043996163382, 'trades': 1381, 'final': 15.962744932251068} None
+RESULT 59 {'meta': 'scale', 'family': 'vwap', 'confirm': 10, 'mapping': 'four0'} {'cagr': 32.53915995995398, 'mdd': 77.0741046785802, 'sharpe': 0.8216347294828347, 'trades': 954, 'final': 7.3373149493820335} None
+RESULT 60 {'meta': 'scale', 'family': 'vwap', 'confirm': 10, 'mapping': 'four10'} {'cagr': 40.56370250937875, 'mdd': 73.20524998224263, 'sharpe': 0.9330962135707287, 'trades': 1373, 'final': 11.121019653579898} None
+RESULT 61 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'atr'} {'cagr': 51.285950247700576, 'mdd': 40.11809897530836, 'sharpe': 1.2760723854840414, 'trades': 405, 'final': 18.707007245494516} None
+RESULT 62 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'atr_smooth5'} {'cagr': 50.34432986880457, 'mdd': 42.66342248176705, 'sharpe': 1.2377537018767404, 'trades': 455, 'final': 17.898688464656196} None
+RESULT 63 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'roc'} {'cagr': 48.235452363232014, 'mdd': 39.09559167687258, 'sharpe': 1.3618393187388045, 'trades': 428, 'final': 16.196407926193512} None
+RESULT 64 {'meta': 'scale', 'family': 'volume', 'confirm': 1, 'mapping': 'roc_smooth5'} {'cagr': 47.65623294690941, 'mdd': 38.7811022989315, 'sharpe': 1.3435856393401764, 'trades': 459, 'final': 15.753960878024337} None
+RESULT 65 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'atr'} {'cagr': 72.40217720037315, 'mdd': 57.10315087574715, 'sharpe': 1.278069142412972, 'trades': 790, 'final': 47.14621508775997} None
+RESULT 66 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'atr_smooth5'} {'cagr': 71.63767756986319, 'mdd': 57.31165795299389, 'sharpe': 1.2675621414607234, 'trades': 867, 'final': 45.68693440558488} None
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 50
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 100
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 150
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 200
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 250
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} 300
+RESULT 67 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc'} {'cagr': 87.72467146172045, 'mdd': 50.14922294137559, 'sharpe': 1.6143188896675065, 'trades': 846, 'final': 86.11046279470787} 기각
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 50
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 100
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 150
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 200
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 250
+MC {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} 300
+RESULT 68 {'meta': 'scale', 'family': 'heikin_ashi', 'confirm': 1, 'mapping': 'roc_smooth5'} {'cagr': 87.66937350363729, 'mdd': 45.18974805287593, 'sharpe': 1.6259062322950886, 'trades': 868, 'final': 85.9311722412026} 기각
+RESULT 69 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'atr'} {'cagr': 64.06390890860956, 'mdd': 62.41596830053246, 'sharpe': 1.2154689218182562, 'trades': 659, 'final': 33.19959147430717} None
+RESULT 70 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'atr_smooth5'} {'cagr': 60.00907578766967, 'mdd': 61.85814363177203, 'sharpe': 1.171470741521093, 'trades': 730, 'final': 27.81267871800778} None
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} 300
+RESULT 71 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc'} {'cagr': 71.91763325298723, 'mdd': 45.135009780428284, 'sharpe': 1.4918333864406492, 'trades': 719, 'final': 46.21674800842368} 기각
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 50
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 100
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 150
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 200
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 250
+MC {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} 300
+RESULT 72 {'meta': 'scale', 'family': 'frvp', 'confirm': 1, 'mapping': 'roc_smooth5'} {'cagr': 74.04109419202439, 'mdd': 41.510412292410784, 'sharpe': 1.5583172717745752, 'trades': 731, 'final': 50.41001285551867} 기각
+RESULT 73 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'atr'} {'cagr': 60.1343343803743, 'mdd': 55.174882730124075, 'sharpe': 1.1352777517386372, 'trades': 757, 'final': 27.967076395171162} None
+RESULT 74 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'atr_smooth5'} {'cagr': 57.00302820704057, 'mdd': 56.485886257692705, 'sharpe': 1.0959774476808921, 'trades': 826, 'final': 24.320483367593926} None
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 50
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 100
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 150
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 200
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 250
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} 300
+RESULT 75 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc'} {'cagr': 63.05093397217409, 'mdd': 44.160017227861196, 'sharpe': 1.3038916505879337, 'trades': 820, 'final': 31.776328710014827} 기각
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 50
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 100
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 150
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 200
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 250
+MC {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} 300
+RESULT 76 {'meta': 'scale', 'family': 'fvg', 'confirm': 1, 'mapping': 'roc_smooth5'} {'cagr': 74.74832916240514, 'mdd': 46.115060746408886, 'sharpe': 1.437660705298274, 'trades': 830, 'final': 51.877232024524865} 기각
+RESULT 77 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'atr'} {'cagr': 35.645323153569784, 'mdd': 74.15060281966387, 'sharpe': 0.8735412335339988, 'trades': 1231, 'final': 8.643945570705908} None
+RESULT 78 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'atr_smooth5'} {'cagr': 41.36125979584007, 'mdd': 73.9614704529053, 'sharpe': 0.952004235880261, 'trades': 1368, 'final': 11.575198940290147} None
+RESULT 79 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'roc'} {'cagr': 40.172382874320746, 'mdd': 55.92412167315022, 'sharpe': 1.0548602919915708, 'trades': 1355, 'final': 10.903832125218013} None
+RESULT 80 {'meta': 'scale', 'family': 'vwap', 'confirm': 1, 'mapping': 'roc_smooth5'} {'cagr': 39.78334039807132, 'mdd': 57.71302542102542, 'sharpe': 1.0583163311544919, 'trades': 1381, 'final': 10.691528841941667} None
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 80 unique replay; strict votes/transition gaps/MC samples/bootstrap independent arithmetic
+RESULT 81 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 1, 'exit': 'natural'} {'cagr': 47.69268889988123, 'mdd': 67.07384360508537, 'sharpe': 0.9841303163229198, 'trades': 557, 'final': 15.781499005803067} None
+RESULT 82 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 1, 'exit': 'immediate'} {'cagr': 32.21073362459506, 'mdd': 81.13785494003993, 'sharpe': 0.8087088597821807, 'trades': 575, 'final': 7.209651674684494} None
+RESULT 83 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 3, 'exit': 'natural'} {'cagr': 50.32164630027223, 'mdd': 67.31913358273431, 'sharpe': 1.0065884045964464, 'trades': 572, 'final': 17.879592183369965} None
+RESULT 84 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 3, 'exit': 'immediate'} {'cagr': 37.28163954552895, 'mdd': 79.22668039821313, 'sharpe': 0.8679418493525192, 'trades': 597, 'final': 9.409227640910162} None
+RESULT 85 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 5, 'exit': 'natural'} {'cagr': 47.045159614254885, 'mdd': 67.77962693985951, 'sharpe': 0.972666199243213, 'trades': 563, 'final': 15.29847122016382} None
+RESULT 86 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 5, 'exit': 'immediate'} {'cagr': 42.810792631499965, 'mdd': 70.37830587706902, 'sharpe': 0.9332077525766126, 'trades': 580, 'final': 12.441518098877024} None
+RESULT 87 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 10, 'exit': 'natural'} {'cagr': 54.52097212491349, 'mdd': 60.28339785169856, 'sharpe': 1.068762546051532, 'trades': 555, 'final': 21.72759714738805} None
+RESULT 88 {'meta': 'switch', 'family': 'volume', 'bear': 'frvp', 'confirm': 10, 'exit': 'immediate'} {'cagr': 51.88714715798366, 'mdd': 69.84261832412587, 'sharpe': 1.042994347040235, 'trades': 568, 'final': 19.23932412482649} None
+RESULT 89 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 1, 'exit': 'natural'} {'cagr': 50.061322417199385, 'mdd': 46.52909566031901, 'sharpe': 1.1972288500979122, 'trades': 272, 'final': 17.661686424604156} None
+RESULT 90 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 1, 'exit': 'immediate'} {'cagr': 41.335024096404815, 'mdd': 46.43138298518684, 'sharpe': 1.1073874111764332, 'trades': 273, 'final': 11.560009275729916} None
+RESULT 91 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 3, 'exit': 'natural'} {'cagr': 50.377925297760726, 'mdd': 45.569134961553566, 'sharpe': 1.179618900392082, 'trades': 279, 'final': 17.927003127857382} None
+RESULT 92 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 3, 'exit': 'immediate'} {'cagr': 38.49975852836738, 'mdd': 52.561988445232984, 'sharpe': 1.018785790162697, 'trades': 280, 'final': 10.016041613009063} None
+RESULT 93 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 5, 'exit': 'natural'} {'cagr': 48.95574004103729, 'mdd': 52.72044276732052, 'sharpe': 1.1574701885261451, 'trades': 275, 'final': 16.761461673055415} None
+RESULT 94 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 5, 'exit': 'immediate'} {'cagr': 43.33622716908096, 'mdd': 55.17499391501458, 'sharpe': 1.0874308285628105, 'trades': 275, 'final': 12.769001681244623} None
+RESULT 95 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 10, 'exit': 'natural'} {'cagr': 41.009584339888065, 'mdd': 52.10065211131257, 'sharpe': 1.0256883873890748, 'trades': 275, 'final': 11.373007749159894} None
+RESULT 96 {'meta': 'switch', 'family': 'volume', 'bear': 'cash', 'confirm': 10, 'exit': 'immediate'} {'cagr': 39.77962936884205, 'mdd': 61.42039391947185, 'sharpe': 1.0130218415258776, 'trades': 275, 'final': 10.689520923643151} None
+RESULT 97 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 1, 'exit': 'natural'} {'cagr': 97.30280490476255, 'mdd': 69.61713909453594, 'sharpe': 1.346590213477125, 'trades': 804, 'final': 122.4479885414579} None
+RESULT 98 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 1, 'exit': 'immediate'} {'cagr': 46.18753500758261, 'mdd': 85.04597046642355, 'sharpe': 0.902165209954572, 'trades': 946, 'final': 14.678300506677088} None
+RESULT 99 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 3, 'exit': 'natural'} {'cagr': 82.97097788426588, 'mdd': 72.25188243166829, 'sharpe': 1.2362421322703716, 'trades': 804, 'final': 71.82090364466507} None
+RESULT 100 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 3, 'exit': 'immediate'} {'cagr': 59.048391290457644, 'mdd': 78.20199769482929, 'sharpe': 1.0225820177704745, 'trades': 850, 'final': 26.652646933502247} None
+RESULT 101 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 5, 'exit': 'natural'} {'cagr': 77.02793876597569, 'mdd': 66.06574728322182, 'sharpe': 1.1884598923894376, 'trades': 805, 'final': 56.85886729568842} None
+RESULT 102 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 5, 'exit': 'immediate'} {'cagr': 65.35158397912093, 'mdd': 76.41893571539065, 'sharpe': 1.076950122157887, 'trades': 834, 'final': 35.08756142201353} None
+RESULT 103 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 10, 'exit': 'natural'} {'cagr': 81.46947531097626, 'mdd': 71.1008285010464, 'sharpe': 1.214955580135015, 'trades': 805, 'final': 67.75377494678156} None
+RESULT 104 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'frvp', 'confirm': 10, 'exit': 'immediate'} {'cagr': 81.80629838863133, 'mdd': 69.4133659807671, 'sharpe': 1.2243837376712803, 'trades': 824, 'final': 68.64848672656774} None
+RESULT 105 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 1, 'exit': 'natural'} {'cagr': 69.93474669604521, 'mdd': 60.757096352305865, 'sharpe': 1.1801671219445755, 'trades': 551, 'final': 42.57511721942475} None
+RESULT 106 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 1, 'exit': 'immediate'} {'cagr': 56.27640976229395, 'mdd': 65.689234849717, 'sharpe': 1.0587455044445162, 'trades': 644, 'final': 23.535296525482153} None
+RESULT 107 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 3, 'exit': 'natural'} {'cagr': 73.09675743601261, 'mdd': 62.1852467574991, 'sharpe': 1.2088648401684323, 'trades': 530, 'final': 48.50655311832157} None
+RESULT 108 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 3, 'exit': 'immediate'} {'cagr': 60.4596496733135, 'mdd': 70.38896368551525, 'sharpe': 1.0985847389623875, 'trades': 533, 'final': 28.371512622578486} None
+RESULT 109 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 5, 'exit': 'natural'} {'cagr': 69.64390691362033, 'mdd': 63.73263294892383, 'sharpe': 1.181967057967021, 'trades': 529, 'final': 42.062287901925195} None
+RESULT 110 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 5, 'exit': 'immediate'} {'cagr': 65.9599513963548, 'mdd': 69.99540718165333, 'sharpe': 1.1537796854261722, 'trades': 529, 'final': 36.011130412526065} None
+RESULT 111 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 10, 'exit': 'natural'} {'cagr': 69.2649832507291, 'mdd': 60.931811733192944, 'sharpe': 1.1906737451861584, 'trades': 531, 'final': 41.40210629656193} None
+RESULT 112 {'meta': 'switch', 'family': 'heikin_ashi', 'bear': 'cash', 'confirm': 10, 'exit': 'immediate'} {'cagr': 67.3138081871479, 'mdd': 64.97073081361614, 'sharpe': 1.1796207298173864, 'trades': 531, 'final': 38.14164315123522} None
+RESULT 113 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 1, 'exit': 'natural'} {'cagr': 35.14357242140373, 'mdd': 90.93023140272646, 'sharpe': 0.7848610121795053, 'trades': 1050, 'final': 8.420268553539671} None
+RESULT 114 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 1, 'exit': 'immediate'} {'cagr': 23.82546946410402, 'mdd': 92.39787227410083, 'sharpe': 0.6578357825632981, 'trades': 1138, 'final': 4.535175568368571} None
+RESULT 115 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 3, 'exit': 'natural'} {'cagr': 53.425172679944374, 'mdd': 85.01002930829691, 'sharpe': 0.9676214441272672, 'trades': 1047, 'final': 20.660718914250673} None
+RESULT 116 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 3, 'exit': 'immediate'} {'cagr': 35.10740230977589, 'mdd': 86.1036072062125, 'sharpe': 0.7867325915623932, 'trades': 1121, 'final': 8.404338044414985} None
+RESULT 117 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 5, 'exit': 'natural'} {'cagr': 46.912737735451636, 'mdd': 89.38247700826926, 'sharpe': 0.9037392885705838, 'trades': 1046, 'final': 15.201270023482264} None
+RESULT 118 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 5, 'exit': 'immediate'} {'cagr': 69.68374553202817, 'mdd': 82.1641026946982, 'sharpe': 1.122561642330072, 'trades': 1093, 'final': 42.13221909881561} None
+RESULT 119 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 10, 'exit': 'natural'} {'cagr': 27.447123997676705, 'mdd': 92.53763873950534, 'sharpe': 0.6987412720344699, 'trades': 1037, 'final': 5.561200783726367} None
+RESULT 120 {'meta': 'switch', 'family': 'fvg', 'bear': 'vwap', 'confirm': 10, 'exit': 'immediate'} {'cagr': 29.80266082901908, 'mdd': 94.39281737898924, 'sharpe': 0.7268948545649953, 'trades': 1074, 'final': 6.33048306421349} None
+RESULT 121 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 1, 'exit': 'natural'} {'cagr': 44.58213173295298, 'mdd': 77.07184878363495, 'sharpe': 0.9007149234845009, 'trades': 1103, 'final': 13.575253470365238} None
+RESULT 122 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 1, 'exit': 'immediate'} {'cagr': 22.298853263734884, 'mdd': 89.12205792973786, 'sharpe': 0.6398982002670144, 'trades': 1187, 'final': 4.154119318682557} None
+RESULT 123 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 3, 'exit': 'natural'} {'cagr': 45.31151279936807, 'mdd': 79.24588169154522, 'sharpe': 0.908204056715748, 'trades': 1086, 'final': 14.067236692473228} None
+RESULT 124 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 3, 'exit': 'immediate'} {'cagr': 36.81204351337695, 'mdd': 83.54211249276466, 'sharpe': 0.8183206086721346, 'trades': 1151, 'final': 9.183877025265456} None
+RESULT 125 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 5, 'exit': 'natural'} {'cagr': 47.587620701486166, 'mdd': 69.74181080805685, 'sharpe': 0.9345653651169191, 'trades': 1092, 'final': 15.702244393154194} None
+RESULT 126 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 5, 'exit': 'immediate'} {'cagr': 44.85708081045212, 'mdd': 79.7051828568455, 'sharpe': 0.9051272204447127, 'trades': 1138, 'final': 13.758948401956408} None
+RESULT 127 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 10, 'exit': 'natural'} {'cagr': 47.4228208344279, 'mdd': 75.90049668783546, 'sharpe': 0.9299650649340594, 'trades': 1102, 'final': 15.578621669698169} None
+RESULT 128 {'meta': 'switch', 'family': 'vwap', 'bear': 'frvp', 'confirm': 10, 'exit': 'immediate'} {'cagr': 41.95792031497141, 'mdd': 75.24370503417146, 'sharpe': 0.8761470094531956, 'trades': 1130, 'final': 11.925304727363866} None
+RESULT 129 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 1, 'exit': 'natural'} {'cagr': 58.149604391490485, 'mdd': 56.75982154564346, 'sharpe': 1.0985949845998433, 'trades': 476, 'final': 25.60522113538468} None
+RESULT 130 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 1, 'exit': 'immediate'} {'cagr': 51.85409920035262, 'mdd': 66.96888460479762, 'sharpe': 1.056370867728905, 'trades': 494, 'final': 19.209728419292134} None
+RESULT 131 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 3, 'exit': 'natural'} {'cagr': 58.63396094805895, 'mdd': 58.44048115369653, 'sharpe': 1.1089783006870195, 'trades': 453, 'final': 26.165197768358368} None
+RESULT 132 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 3, 'exit': 'immediate'} {'cagr': 54.34508379341325, 'mdd': 67.13969383618455, 'sharpe': 1.0744399720374809, 'trades': 453, 'final': 21.553230912445688} None
+RESULT 133 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 5, 'exit': 'natural'} {'cagr': 64.22105802657518, 'mdd': 63.03827329387782, 'sharpe': 1.1586512018204724, 'trades': 455, 'final': 33.42522187521487} None
+RESULT 134 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 5, 'exit': 'immediate'} {'cagr': 66.62202902292249, 'mdd': 65.22350029214424, 'sharpe': 1.1953479079329328, 'trades': 455, 'final': 37.0398821535306} None
+RESULT 135 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 10, 'exit': 'natural'} {'cagr': 66.373729537697, 'mdd': 72.53017003760537, 'sharpe': 1.1803800410958758, 'trades': 458, 'final': 36.65115033005829} None
+RESULT 136 {'meta': 'switch', 'family': 'frvp', 'bear': 'cash', 'confirm': 10, 'exit': 'immediate'} {'cagr': 67.64241157538558, 'mdd': 72.84285176575224, 'sharpe': 1.2004899744545572, 'trades': 458, 'final': 38.674773598861954} None
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 136 unique replay; strict votes/transition gaps/MC samples/bootstrap independent arithmetic
+PASS Round10: synthetic scale/fees/strategy holds/cash exits/ledger; 5 baseline exact; 136 unique replay; strict votes/transition gaps/MC samples/bootstrap independent arithmetic
+복귀조건 B 달성

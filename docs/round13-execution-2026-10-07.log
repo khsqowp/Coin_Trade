@@ -1,0 +1,98 @@
+RESULT 3 {'family': 'compression_breakout', 'monthly_trend': True} {'cagr': 21.097978876510105, 'mdd': 56.038727081540515, 'sharpe': 0.7304459902262767, 'trades': 261, 'final': 3.874010657131112} None
+RESULT 3 {'family': 'compression_breakout', 'monthly_trend': True, 'rank': 'residual'} {'cagr': 18.572368607894262, 'mdd': 56.05440912475942, 'sharpe': 0.6686109229950659, 'trades': 261, 'final': 3.3373681185232638} None
+RESULT 3 {'family': 'obv_breakout', 'monthly_trend': True} {'cagr': 45.64673777544594, 'mdd': 56.98603300334422, 'sharpe': 1.0937092607597374, 'trades': 283, 'final': 14.298438742255023} None
+RESULT 3 {'family': 'obv_breakout', 'monthly_trend': True, 'rank': 'residual'} {'cagr': 50.47789811248708, 'mdd': 53.330734764918134, 'sharpe': 1.1678267274010787, 'trades': 281, 'final': 18.011489147826538} None
+RESULT 3 {'family': 'dry_pullback', 'monthly_trend': True} {'cagr': 26.289716656537365, 'mdd': 64.3218781436409, 'sharpe': 0.732320005561376, 'trades': 396, 'final': 5.213611023412971} None
+RESULT 3 {'family': 'dry_pullback', 'monthly_trend': True, 'rank': 'residual'} {'cagr': 32.462248956281094, 'mdd': 63.77235735798258, 'sharpe': 0.8317397014869142, 'trades': 397, 'final': 7.307245994168461} None
+RESULT 3 {'family': 'donchian', 'monthly_trend': True} {'cagr': 45.97339015499937, 'mdd': 61.53172848810902, 'sharpe': 1.0596962835943597, 'trades': 293, 'final': 14.526859472037346} None
+RESULT 3 {'family': 'donchian', 'monthly_trend': True, 'rank': 'residual'} {'cagr': 47.20929526912092, 'mdd': 62.270578398882805, 'sharpe': 1.0712764110990862, 'trades': 294, 'final': 15.419691476292503} None
+RESULT 3 {'family': 'aroon'} {'cagr': 10.652146396134498, 'mdd': 64.39108789602724, 'sharpe': 0.45383670522031794, 'trades': 334, 'final': 2.046437972315216} None
+RESULT 3 {'family': 'aroon', 'volume_confirm': True} {'cagr': 12.05094750811806, 'mdd': 66.62108925477663, 'sharpe': 0.4874930499327573, 'trades': 233, 'final': 2.2366367157595173} None
+RESULT 3 {'family': 'aroon', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 9.98719836482158, 'mdd': 54.827237830766904, 'sharpe': 0.44512905723588003, 'trades': 243, 'final': 1.9610080088211344} None
+RESULT 3 {'family': 'williams'} {'cagr': 6.829190594978196, 'mdd': 81.0814309982346, 'sharpe': 0.38783809196333485, 'trades': 433, 'final': 1.5957689828621133} None
+RESULT 3 {'family': 'williams', 'volume_confirm': True} {'cagr': 9.892808356995353, 'mdd': 43.596269135552376, 'sharpe': 0.4484544288392585, 'trades': 198, 'final': 1.9491330072194628} None
+RESULT 3 {'family': 'williams', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 10.164561779415827, 'mdd': 69.7085596808347, 'sharpe': 0.44401300343431815, 'trades': 319, 'final': 1.9834898189871042} None
+RESULT 3 {'family': 'ichimoku'} {'cagr': 38.89900594699023, 'mdd': 59.44648781383631, 'sharpe': 0.9102233917529174, 'trades': 441, 'final': 10.22210263896042} None
+RESULT 3 {'family': 'ichimoku', 'volume_confirm': True} {'cagr': 51.57364527398747, 'mdd': 40.93420465219225, 'sharpe': 1.2240248955167703, 'trades': 298, 'final': 18.96014074989023} None
+RESULT 3 {'family': 'ichimoku', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 36.64880200924372, 'mdd': 54.92983830044682, 'sharpe': 0.910915715191464, 'trades': 364, 'final': 9.10663368923082} None
+RESULT 3 {'family': 'psar'} {'cagr': 34.188019044766335, 'mdd': 81.01969716605348, 'sharpe': 0.8133481110650372, 'trades': 538, 'final': 8.008007263662432} None
+RESULT 3 {'family': 'psar', 'volume_confirm': True} {'cagr': 43.67170571680088, 'mdd': 61.271327611143846, 'sharpe': 1.0108519966059966, 'trades': 362, 'final': 12.981941350335505} None
+RESULT 3 {'family': 'psar', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 48.39403226047574, 'mdd': 72.07416018675625, 'sharpe': 1.0518376488857633, 'trades': 394, 'final': 16.319386212114566} None
+RESULT 3 {'family': 'trix'} {'cagr': 15.180711053859719, 'mdd': 61.50390266825275, 'sharpe': 0.5907775826718199, 'trades': 245, 'final': 2.7179258957244334} None
+RESULT 3 {'family': 'trix', 'volume_confirm': True} {'cagr': 8.539461794006108, 'mdd': 52.03445239733663, 'sharpe': 0.4723020406196533, 'trades': 133, 'final': 1.7855364277769499} None
+RESULT 3 {'family': 'trix', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 12.355437721316775, 'mdd': 54.534133119295625, 'sharpe': 0.5505852160054887, 'trades': 179, 'final': 2.2799919691114074} None
+RESULT 3 {'family': 'awesome'} {'cagr': 2.6532931271876725, 'mdd': 72.72325905985562, 'sharpe': 0.28788708727320045, 'trades': 374, 'final': 1.2035349138933973} None
+RESULT 3 {'family': 'awesome', 'volume_confirm': True} {'cagr': 15.3234797980774, 'mdd': 58.65481881199296, 'sharpe': 0.6091885725096747, 'trades': 185, 'final': 2.7418496129486973} None
+RESULT 3 {'family': 'awesome', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 1.5642289144402133, 'mdd': 69.06647780126444, 'sharpe': 0.23073806897990323, 'trades': 235, 'final': 1.116062034557688} None
+RESULT 3 {'family': 'keltner'} {'cagr': 64.62847895125941, 'mdd': 51.66028524539371, 'sharpe': 1.2626897173194753, 'trades': 384, 'final': 34.01632740136407} 기각
+RESULT 3 {'family': 'keltner', 'volume_confirm': True} {'cagr': 57.83084868347756, 'mdd': 56.525862856409084, 'sharpe': 1.1666508218039096, 'trades': 353, 'final': 25.242341205248337} None
+RESULT 3 {'family': 'keltner', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 70.46212633499451, 'mdd': 51.815401285993886, 'sharpe': 1.3696889446175136, 'trades': 351, 'final': 43.51873294022743} 기각
+RESULT 3 {'family': 'donchian', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 68.51975841796181, 'mdd': 35.41495088498445, 'sharpe': 1.4860638350221174, 'trades': 289, 'final': 40.129653064545145} 기각
+RESULT 3 {'family': 'donchian', 'btc_hysteresis': 0.07, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 57.45404625958259, 'mdd': 35.41495088498445, 'sharpe': 1.3435027324796702, 'trades': 282, 'final': 24.8190825352423} None
+RESULT 3 {'family': 'obv_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 70.20680793552853, 'mdd': 53.18758985622387, 'sharpe': 1.4233417304936886, 'trades': 356, 'final': 43.05968554643898} 기각
+RESULT 3 {'family': 'obv_breakout', 'btc_hysteresis': 0.07, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 52.96804046749748, 'mdd': 56.093202449292754, 'sharpe': 1.2027157169649736, 'trades': 345, 'final': 20.229135518486412} None
+RESULT 3 {'family': 'compression_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 55.255479383625385, 'mdd': 48.34838607040645, 'sharpe': 1.2098819461556802, 'trades': 323, 'final': 22.468903883096907} None
+RESULT 3 {'family': 'compression_breakout', 'btc_hysteresis': 0.07, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 52.30037071191849, 'mdd': 42.04250983955599, 'sharpe': 1.197864366656003, 'trades': 313, 'final': 19.612700223101537} None
+RESULT 3 {'family': 'obv_breakout', 'and_family': 'aroon', 'rank': 'low_vol'} {'cagr': 15.093499197741455, 'mdd': 28.588837032566744, 'sharpe': 0.6958666173668174, 'trades': 150, 'final': 2.703400197236432} None
+RESULT 3 {'family': 'obv_breakout', 'and_family': 'awesome', 'rank': 'low_vol'} {'cagr': 14.752054174628482, 'mdd': 32.01092677364992, 'sharpe': 0.7501858050394486, 'trades': 106, 'final': 2.6471697751436642} None
+RESULT 3 {'family': 'donchian', 'and_family': 'aroon', 'rank': 'low_vol'} {'cagr': 3.730998928861906, 'mdd': 60.479860211899414, 'sharpe': 0.27322478320751403, 'trades': 142, 'final': 1.295826335852281} None
+RESULT 3 {'family': 'donchian', 'and_family': 'awesome', 'rank': 'low_vol'} {'cagr': 9.61866260847235, 'mdd': 32.34483718552508, 'sharpe': 0.5534881214659187, 'trades': 95, 'final': 1.9149927524889583} None
+RESULT 3 {'family': 'dry_pullback', 'and_family': 'aroon', 'rank': 'low_vol'} {'cagr': 2.7688132194137127, 'mdd': 25.138415133766163, 'sharpe': 0.259360936530325, 'trades': 74, 'final': 1.2131494941314411} None
+RESULT 3 {'family': 'dry_pullback', 'and_family': 'awesome', 'rank': 'low_vol'} {'cagr': 19.0213929163763, 'mdd': 30.35598904353219, 'sharpe': 0.8270407647931671, 'trades': 99, 'final': 3.427814515133677} None
+RESULT {'family': 'obv_breakout', 'shrink_sizing': 'win', 'shrink_window': 40} {'cagr': 62.50848719882409, 'mdd': 47.84179271153857, 'sharpe': 1.3558402920006325, 'trades': 506, 'final': 31.035949895687374} 기각
+RESULT {'family': 'obv_breakout', 'shrink_sizing': 'payoff', 'shrink_window': 40} {'cagr': 63.422997532717005, 'mdd': 59.29724054352339, 'sharpe': 1.2817058043407963, 'trades': 506, 'final': 32.29287712342443} None
+RESULT {'family': 'obv_breakout', 'shrink_sizing': 'payoff', 'shrink_window': 80} {'cagr': 70.79607028713848, 'mdd': 53.10506831732354, 'sharpe': 1.3190191545868397, 'trades': 506, 'final': 44.125482168310164} 기각
+RESULT {'family': 'donchian', 'shrink_sizing': 'win', 'shrink_window': 40} {'cagr': 44.39287444278395, 'mdd': 54.03829072969047, 'sharpe': 1.1223443555695363, 'trades': 363, 'final': 13.450036860038011} None
+RESULT {'family': 'donchian', 'shrink_sizing': 'payoff', 'shrink_window': 40} {'cagr': 52.46280054540402, 'mdd': 54.038290714337975, 'sharpe': 1.188821712099669, 'trades': 363, 'final': 19.761160952000225} None
+RESULT {'family': 'donchian', 'shrink_sizing': 'payoff', 'shrink_window': 80} {'cagr': 58.895523006177484, 'mdd': 62.51334205343609, 'sharpe': 1.2123889954808933, 'trades': 363, 'final': 26.471944865031553} None
+RESULT {'family': 'compression_breakout', 'shrink_sizing': 'win', 'shrink_window': 40} {'cagr': 40.03507689210943, 'mdd': 43.304407705585554, 'sharpe': 1.117535603246017, 'trades': 479, 'final': 10.828493697313965} None
+RESULT {'family': 'compression_breakout', 'shrink_sizing': 'payoff', 'shrink_window': 40} {'cagr': 43.67554056412794, 'mdd': 54.4333468680471, 'sharpe': 1.1334357267627513, 'trades': 479, 'final': 12.98439297491524} None
+RESULT {'family': 'compression_breakout', 'shrink_sizing': 'payoff', 'shrink_window': 80} {'cagr': 38.130085977192586, 'mdd': 52.133434317608305, 'sharpe': 0.9885001954663544, 'trades': 479, 'final': 9.828435306981948} None
+RESULT {'family': 'volume_spike', 'shrink_sizing': 'win', 'shrink_window': 40} {'cagr': 45.15308625235224, 'mdd': 45.56913496155356, 'sharpe': 1.111312715921541, 'trades': 468, 'final': 13.95909301189736} None
+RESULT {'family': 'volume_spike', 'shrink_sizing': 'payoff', 'shrink_window': 40} {'cagr': 37.492881007695814, 'mdd': 47.12712089391017, 'sharpe': 0.9648068169636351, 'trades': 468, 'final': 9.512136613076862} None
+RESULT {'family': 'volume_spike', 'shrink_sizing': 'payoff', 'shrink_window': 80} {'cagr': 49.38739462797022, 'mdd': 47.12047686584353, 'sharpe': 1.0945766986466312, 'trades': 467, 'final': 17.108132846036078} None
+RESULT {'family': 'obv_breakout', 'weekly_indicator': 'ichimoku'} {'cagr': 8.30704721407145, 'mdd': 19.243375380341295, 'sharpe': 0.6068382060988239, 'trades': 42, 'final': 1.7586629909273448} None
+RESULT {'family': 'obv_breakout', 'weekly_indicator': 'keltner'} {'cagr': 6.885548585882506, 'mdd': 15.930572982049096, 'sharpe': 0.5815598315987894, 'trades': 41, 'final': 1.6017343038571403} None
+RESULT {'family': 'donchian', 'weekly_indicator': 'ichimoku'} {'cagr': 4.5076252733756705, 'mdd': 26.502106446074013, 'sharpe': 0.34730534105542893, 'trades': 51, 'final': 1.3660431507343367} None
+RESULT {'family': 'donchian', 'weekly_indicator': 'keltner'} {'cagr': 6.880710658107181, 'mdd': 17.616088767025868, 'sharpe': 0.5472316610633178, 'trades': 48, 'final': 1.6012214738291721} None
+RESULT {'family': 'compression_breakout', 'weekly_indicator': 'ichimoku'} {'cagr': 7.821549726274335, 'mdd': 6.91579399347537, 'sharpe': 0.9725546122500456, 'trades': 22, 'final': 1.7036447281603753} None
+RESULT {'family': 'compression_breakout', 'weekly_indicator': 'keltner'} {'cagr': -0.664480729607897, 'mdd': 8.137532961788589, 'sharpe': -0.18644460640553986, 'trades': 10, 'final': 0.9539287689600312} None
+RESULT {'family': 'gap', 'weekly_indicator': 'ichimoku'} {'cagr': 3.735490263731367, 'mdd': 40.95697728897098, 'sharpe': 0.29941514224443266, 'trades': 54, 'final': 1.2962233199200617} None
+RESULT {'family': 'gap', 'weekly_indicator': 'keltner'} {'cagr': 4.397296759132341, 'mdd': 29.805779011032236, 'sharpe': 0.38300032821850294, 'trades': 39, 'final': 1.3558733090276829} None
+RESULT {'family': 'volume_spike', 'or_family': 'keltner', 'rank': 'low_vol'} {'cagr': 88.8458393960351, 'mdd': 57.3966941284085, 'sharpe': 1.3377368269280983, 'trades': 619, 'final': 89.81550933594372} None
+RESULT {'family': 'volume_spike', 'or_family': 'keltner', 'monthly_trend': True} {'cagr': 66.19156359890293, 'mdd': 50.631902944344695, 'sharpe': 1.2879825477538165, 'trades': 368, 'final': 36.368188209708975} 기각
+RESULT {'family': 'volume_spike', 'or_family': 'keltner', 'btc_hysteresis': 0.03} {'cagr': 82.1652737949365, 'mdd': 58.695590316395695, 'sharpe': 1.40237556407596, 'trades': 404, 'final': 69.61319151206865} None
+RESULT {'family': 'volume_spike', 'or_family': 'ichimoku', 'rank': 'low_vol'} {'cagr': 98.59629951675342, 'mdd': 57.6649803838463, 'sharpe': 1.4144144954812654, 'trades': 653, 'final': 128.2415116573343} None
+RESULT {'family': 'volume_spike', 'or_family': 'ichimoku', 'monthly_trend': True} {'cagr': 34.71736077158074, 'mdd': 55.24589827136119, 'sharpe': 0.9050080027189755, 'trades': 317, 'final': 8.23418827624158} None
+RESULT {'family': 'volume_spike', 'or_family': 'ichimoku', 'btc_hysteresis': 0.03} {'cagr': 64.7718380201677, 'mdd': 53.61617343633371, 'sharpe': 1.2236137680443058, 'trades': 409, 'final': 34.226443219858744} None
+RESULT {'family': 'volume_spike', 'or_family': 'obv_breakout', 'rank': 'low_vol'} {'cagr': 122.04909462267652, 'mdd': 61.05065152690109, 'sharpe': 1.5466437796439738, 'trades': 671, 'final': 282.4817350431069} None
+RESULT {'family': 'volume_spike', 'or_family': 'obv_breakout', 'monthly_trend': True} {'cagr': 62.79322254588193, 'mdd': 54.9578001311276, 'sharpe': 1.245764139854751, 'trades': 357, 'final': 31.422712576891648} None
+RESULT {'family': 'volume_spike', 'or_family': 'obv_breakout', 'btc_hysteresis': 0.03} {'cagr': 102.1043632391939, 'mdd': 54.36003710790994, 'sharpe': 1.5434637936361064, 'trades': 428, 'final': 145.15357608638737} None
+RESULT {'family': 'obv_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 10} {'cagr': 59.867279890755086, 'mdd': 50.361422381946554, 'sharpe': 1.4820673395542028, 'trades': 505, 'final': 27.638780395619264} None
+RESULT {'family': 'obv_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 30} {'cagr': 48.58257398359138, 'mdd': 51.89031101800708, 'sharpe': 1.077807742918313, 'trades': 294, 'final': 16.466642370955373} None
+RESULT {'family': 'obv_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 40} {'cagr': 61.692078944862374, 'mdd': 49.6997845311481, 'sharpe': 1.2478195494200848, 'trades': 233, 'final': 29.94958010716321} None
+RESULT {'family': 'compression_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 10} {'cagr': 27.62989726286822, 'mdd': 43.68753164190567, 'sharpe': 0.9199596883264238, 'trades': 405, 'final': 5.61786979963993} None
+RESULT {'family': 'compression_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 30} {'cagr': 50.068780304063985, 'mdd': 45.028892195534, 'sharpe': 1.1178385848155052, 'trades': 265, 'final': 17.667897217300933} None
+RESULT {'family': 'compression_breakout', 'btc_hysteresis': 0.03, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25, 'hold_days': 40} {'cagr': 80.97173875677962, 'mdd': 50.12809726492399, 'sharpe': 1.4398245420002735, 'trades': 212, 'final': 66.44996148325552} 기각
+RESULT {'family': 'volume_spike', 'online_sizing': 'win', 'online_window': 40} {'cagr': 44.43442536338162, 'mdd': 45.56913496155356, 'sharpe': 1.0977912764179512, 'trades': 468, 'final': 13.477442519062649} None
+RESULT {'family': 'volume_spike', 'online_sizing': 'payoff', 'online_window': 40} {'cagr': 37.33775938807133, 'mdd': 47.1650626849138, 'sharpe': 0.9625564212861072, 'trades': 468, 'final': 9.436473438006542} None
+RESULT {'family': 'volume_spike', 'online_sizing': 'payoff', 'online_window': 80} {'cagr': 49.38739462797022, 'mdd': 47.12047686584353, 'sharpe': 1.0945766986466317, 'trades': 467, 'final': 17.108132846036085} None
+RESULT {'family': 'obv_breakout', 'online_sizing': 'win', 'online_window': 40} {'cagr': 62.50848719882409, 'mdd': 47.84179271153857, 'sharpe': 1.3558402920006325, 'trades': 506, 'final': 31.035949895687374} 기각
+RESULT {'family': 'obv_breakout', 'online_sizing': 'payoff', 'online_window': 40} {'cagr': 63.422997532717005, 'mdd': 59.2972405435234, 'sharpe': 1.2817058043407974, 'trades': 506, 'final': 32.29287712342443} None
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round13_final_batch.py", line 139, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round13_final_batch.py", line 111, in run
+    r13.execute(out, frames, config)
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round13_research.py", line 272, in execute
+    row["robustness"] = old.robustness(p, kw, state, full)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round12_research.py", line 142, in robustness
+    trials.append(dict(seed=seed, **summary(simulate_portfolio(p, prepared=random_data(data, seed, probability), **kw))))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/technical_portfolio_engine.py", line 185, in simulate_portfolio
+    elif i>=p['exit'] or i==len(dates)-1:
+                         ^^^^^^^^^^^^^^^
+KeyboardInterrupt

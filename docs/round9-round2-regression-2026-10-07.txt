@@ -1,0 +1,3 @@
+heikin_ashi_volume_spike all 45 symbols intersection/prefix PASS
+frvp_volume_spike all 45 symbols intersection/prefix PASS
+PASS: 388 hybrid prefix checks; 90 intersection checks; synthetic suspension/recovery/gap/permanent lock; 12 real breaker prefixes; 26 result sanity/period/target checks

@@ -1,0 +1,3 @@
+PASS online scale actual-ledger completed-count/posterior arithmetic, repeated-run reset, cost-zero parity, execution prefix
+PASS cost adapter 4 complete traces and independent two-day funding/slippage arithmetic
+PASS Round13 81 unique experiments; 7 synthetic prefix tests; artifacts, 5 gates, entry chronology

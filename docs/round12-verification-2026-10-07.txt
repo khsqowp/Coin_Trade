@@ -1,0 +1,173 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round12.py", line 45, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round12.py", line 34, in run
+    a = find_signals(frame, name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/round12_signals.py", line 60, in find_signals
+    direction = supertrend_direction(h, l, c)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/round12_signals.py", line 31, in supertrend_direction
+    lower[i] = lower[i-1]
+    ~~~~~^^^
+ValueError: assignment destination is read-only
+PASS Round12 3 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 4 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 7 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 9 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 11 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 21 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 32 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 43 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 48 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 52 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 58 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 64 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 68 unique experiments; 12 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 77 unique experiments; 15 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 82 unique experiments; 15 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 90 unique experiments; 15 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 95 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 104 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 110 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 118 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
+PASS Round12 127 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round12.py", line 78, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/verify_round12.py", line 31, in run
+    assert concentration(r['records']) == r['concentration']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+REPLAY 1/127 metrics + full45-universe prefix audit passed
+REPLAY 2/127 metrics + full45-universe prefix audit passed
+REPLAY 3/127 metrics + full45-universe prefix audit passed
+REPLAY 4/127 metrics + full45-universe prefix audit passed
+REPLAY 5/127 metrics + full45-universe prefix audit passed
+REPLAY 6/127 metrics + full45-universe prefix audit passed
+REPLAY 7/127 metrics + full45-universe prefix audit passed
+REPLAY 8/127 metrics + full45-universe prefix audit passed
+REPLAY 9/127 metrics + full45-universe prefix audit passed
+REPLAY 10/127 metrics + full45-universe prefix audit passed
+REPLAY 11/127 metrics + full45-universe prefix audit passed
+REPLAY 12/127 metrics + full45-universe prefix audit passed
+REPLAY 13/127 metrics + full45-universe prefix audit passed
+REPLAY 14/127 metrics + full45-universe prefix audit passed
+REPLAY 15/127 metrics + full45-universe prefix audit passed
+REPLAY 16/127 metrics + full45-universe prefix audit passed
+REPLAY 17/127 metrics + full45-universe prefix audit passed
+REPLAY 18/127 metrics + full45-universe prefix audit passed
+REPLAY 19/127 metrics + full45-universe prefix audit passed
+REPLAY 20/127 metrics + full45-universe prefix audit passed
+REPLAY 21/127 metrics + full45-universe prefix audit passed
+REPLAY 22/127 metrics + full45-universe prefix audit passed
+REPLAY 23/127 metrics + full45-universe prefix audit passed
+REPLAY 24/127 metrics + full45-universe prefix audit passed
+REPLAY 25/127 metrics + full45-universe prefix audit passed
+REPLAY 26/127 metrics + full45-universe prefix audit passed
+REPLAY 27/127 metrics + full45-universe prefix audit passed
+REPLAY 28/127 metrics + full45-universe prefix audit passed
+REPLAY 29/127 metrics + full45-universe prefix audit passed
+REPLAY 30/127 metrics + full45-universe prefix audit passed
+REPLAY 31/127 metrics + full45-universe prefix audit passed
+REPLAY 32/127 metrics + full45-universe prefix audit passed
+REPLAY 33/127 metrics + full45-universe prefix audit passed
+REPLAY 34/127 metrics + full45-universe prefix audit passed
+REPLAY 35/127 metrics + full45-universe prefix audit passed
+REPLAY 36/127 metrics + full45-universe prefix audit passed
+REPLAY 37/127 metrics + full45-universe prefix audit passed
+REPLAY 38/127 metrics + full45-universe prefix audit passed
+REPLAY 39/127 metrics + full45-universe prefix audit passed
+REPLAY 40/127 metrics + full45-universe prefix audit passed
+REPLAY 41/127 metrics + full45-universe prefix audit passed
+REPLAY 42/127 metrics + full45-universe prefix audit passed
+REPLAY 43/127 metrics + full45-universe prefix audit passed
+REPLAY 44/127 metrics + full45-universe prefix audit passed
+REPLAY 45/127 metrics + full45-universe prefix audit passed
+REPLAY 46/127 metrics + full45-universe prefix audit passed
+REPLAY 47/127 metrics + full45-universe prefix audit passed
+REPLAY 48/127 metrics + full45-universe prefix audit passed
+REPLAY 49/127 metrics + full45-universe prefix audit passed
+REPLAY 50/127 metrics + full45-universe prefix audit passed
+REPLAY 51/127 metrics + full45-universe prefix audit passed
+REPLAY 52/127 metrics + full45-universe prefix audit passed
+REPLAY 53/127 metrics + full45-universe prefix audit passed
+REPLAY 54/127 metrics + full45-universe prefix audit passed
+REPLAY 55/127 metrics + full45-universe prefix audit passed
+REPLAY 56/127 metrics + full45-universe prefix audit passed
+REPLAY 57/127 metrics + full45-universe prefix audit passed
+REPLAY 58/127 metrics + full45-universe prefix audit passed
+REPLAY 59/127 metrics + full45-universe prefix audit passed
+REPLAY 60/127 metrics + full45-universe prefix audit passed
+REPLAY 61/127 metrics + full45-universe prefix audit passed
+REPLAY 62/127 metrics + full45-universe prefix audit passed
+REPLAY 63/127 metrics + full45-universe prefix audit passed
+REPLAY 64/127 metrics + full45-universe prefix audit passed
+REPLAY 65/127 metrics + full45-universe prefix audit passed
+REPLAY 66/127 metrics + full45-universe prefix audit passed
+REPLAY 67/127 metrics + full45-universe prefix audit passed
+REPLAY 68/127 metrics + full45-universe prefix audit passed
+REPLAY 69/127 metrics + full45-universe prefix audit passed
+REPLAY 70/127 metrics + full45-universe prefix audit passed
+REPLAY 71/127 metrics + full45-universe prefix audit passed
+REPLAY 72/127 metrics + full45-universe prefix audit passed
+REPLAY 73/127 metrics + full45-universe prefix audit passed
+REPLAY 74/127 metrics + full45-universe prefix audit passed
+REPLAY 75/127 metrics + full45-universe prefix audit passed
+REPLAY 76/127 metrics + full45-universe prefix audit passed
+REPLAY 77/127 metrics + full45-universe prefix audit passed
+REPLAY 78/127 metrics + full45-universe prefix audit passed
+REPLAY 79/127 metrics + full45-universe prefix audit passed
+REPLAY 80/127 metrics + full45-universe prefix audit passed
+REPLAY 81/127 metrics + full45-universe prefix audit passed
+REPLAY 82/127 metrics + full45-universe prefix audit passed
+REPLAY 83/127 metrics + full45-universe prefix audit passed
+REPLAY 84/127 metrics + full45-universe prefix audit passed
+REPLAY 85/127 metrics + full45-universe prefix audit passed
+REPLAY 86/127 metrics + full45-universe prefix audit passed
+REPLAY 87/127 metrics + full45-universe prefix audit passed
+REPLAY 88/127 metrics + full45-universe prefix audit passed
+REPLAY 89/127 metrics + full45-universe prefix audit passed
+REPLAY 90/127 metrics + full45-universe prefix audit passed
+REPLAY 91/127 metrics + full45-universe prefix audit passed
+REPLAY 92/127 metrics + full45-universe prefix audit passed
+REPLAY 93/127 metrics + full45-universe prefix audit passed
+REPLAY 94/127 metrics + full45-universe prefix audit passed
+REPLAY 95/127 metrics + full45-universe prefix audit passed
+REPLAY 96/127 metrics + full45-universe prefix audit passed
+REPLAY 97/127 metrics + full45-universe prefix audit passed
+REPLAY 98/127 metrics + full45-universe prefix audit passed
+REPLAY 99/127 metrics + full45-universe prefix audit passed
+REPLAY 100/127 metrics + full45-universe prefix audit passed
+REPLAY 101/127 metrics + full45-universe prefix audit passed
+REPLAY 102/127 metrics + full45-universe prefix audit passed
+REPLAY 103/127 metrics + full45-universe prefix audit passed
+REPLAY 104/127 metrics + full45-universe prefix audit passed
+REPLAY 105/127 metrics + full45-universe prefix audit passed
+REPLAY 106/127 metrics + full45-universe prefix audit passed
+REPLAY 107/127 metrics + full45-universe prefix audit passed
+REPLAY 108/127 metrics + full45-universe prefix audit passed
+REPLAY 109/127 metrics + full45-universe prefix audit passed
+REPLAY 110/127 metrics + full45-universe prefix audit passed
+REPLAY 111/127 metrics + full45-universe prefix audit passed
+REPLAY 112/127 metrics + full45-universe prefix audit passed
+REPLAY 113/127 metrics + full45-universe prefix audit passed
+REPLAY 114/127 metrics + full45-universe prefix audit passed
+REPLAY 115/127 metrics + full45-universe prefix audit passed
+REPLAY 116/127 metrics + full45-universe prefix audit passed
+REPLAY 117/127 metrics + full45-universe prefix audit passed
+REPLAY 118/127 metrics + full45-universe prefix audit passed
+REPLAY 119/127 metrics + full45-universe prefix audit passed
+REPLAY 120/127 metrics + full45-universe prefix audit passed
+REPLAY 121/127 metrics + full45-universe prefix audit passed
+REPLAY 122/127 metrics + full45-universe prefix audit passed
+REPLAY 123/127 metrics + full45-universe prefix audit passed
+REPLAY 124/127 metrics + full45-universe prefix audit passed
+REPLAY 125/127 metrics + full45-universe prefix audit passed
+REPLAY 126/127 metrics + full45-universe prefix audit passed
+REPLAY 127/127 metrics + full45-universe prefix audit passed
+PASS Round12 127 unique experiments; 19 synthetic prefix tests; artifacts, 5 gates, entry chronology
