@@ -13,14 +13,24 @@ def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
              long_short=False, trailing=0., calendar=None, scales=None,
              dynamic_k=None, clusters=None, cluster_cap=1.,
              funding_annual=0., slippage=0., fee=.0004, return_trace=False,
-             exit_signals=None):
+             exit_signals=None, sell_tax=0., borrow_annual=0.):
     if long_short and trailing:
         raise ValueError('chandelier is a long-only policy in this research')
     if top_k < 1 or hold_days < 1 or trailing < 0 or not 0 < cluster_cap <= 1:
         raise ValueError('invalid capacity/holding/trailing/cluster limit')
-    if not 0 <= fee < 1 or not 0 <= slippage < 1 or not np.isfinite(funding_annual):
+    slippage_input = np.asarray(slippage, dtype=float)
+    if (not 0 <= fee < 1 or (slippage_input < 0).any() or
+            (slippage_input >= 1).any() or not np.isfinite(slippage_input).all() or
+            not 0 <= sell_tax < 1 or not np.isfinite(funding_annual) or
+            not np.isfinite(borrow_annual) or borrow_annual < 0):
         raise ValueError('invalid execution cost')
     dates, keys, a = prepared or prepare(prepped)
+    if slippage_input.ndim == 0:
+        slippage_by_symbol = np.full(len(keys), float(slippage_input))
+    elif slippage_input.shape == (len(keys),):
+        slippage_by_symbol = slippage_input
+    else:
+        raise ValueError('slippage array must match prepared symbol order')
     cash = 1.
     positions = {}
     marks = np.zeros(len(keys))
@@ -33,8 +43,9 @@ def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
     def sell(k, price, i):
         nonlocal cash
         p = positions.pop(k)
-        executed = price*(1-p['direction']*slippage)
-        proceeds = value(p, executed)-p['qty']*executed*fee
+        executed = price*(1-p['direction']*slippage_by_symbol[k])
+        exit_tax = sell_tax if p['direction'] > 0 else 0.
+        proceeds = value(p, executed)-p['qty']*executed*(fee+exit_tax)
         cash += proceeds
         records.append(dict(id=len(records), symbol=keys[k], entry=p['entry'], exit=i,
                             entry_date=str(dates[p['entry']]), exit_date=str(dates[i]),
@@ -90,11 +101,12 @@ def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
                     alloc = min(alloc, max(0., opening*cluster_cap-used))
                 if alloc <= 1e-12:
                     continue
-                price = op[k]*(1+direction*slippage)
+                price = op[k]*(1+direction*slippage_by_symbol[k])
                 atr = a['ATR14'][s, k]
                 if trailing and (not np.isfinite(atr) or atr <= 0):
                     continue
-                principal = alloc*(1-fee)
+                entry_tax = sell_tax if direction < 0 else 0.
+                principal = alloc*(1-fee-entry_tax)
                 positions[k] = dict(qty=principal/price, principal=principal, cost=alloc,
                                     price=price, direction=direction, funding=0., entry=i,
                                     expiry=i+hold_days, high=price,
@@ -112,6 +124,8 @@ def simulate(prepped, *, prepared=None, top_k=8, hold_days=20,
             fraction = 2/3 if p['entry'] == i else 1.
             notional = p['qty']*(op[k] if p['entry'] == i else marks[k])
             p['funding'] += p['direction']*notional*funding_annual/365*fraction
+            if p['direction'] < 0:
+                p['funding'] += notional*borrow_annual/365*fraction
             if not np.isfinite(cl[k]):
                 continue
             if p['stop'] > 0 and lo[k] <= p['stop']:

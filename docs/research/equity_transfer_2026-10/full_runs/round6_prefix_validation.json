@@ -1,0 +1,35 @@
+{
+  "markets": {
+    "US": {
+      "cost_cases": {
+        "KIS_0.36pct": {
+          "passed": true,
+          "caps": 3
+        },
+        "low_0.08pct": {
+          "passed": true,
+          "caps": 3
+        }
+      },
+      "passed": true
+    },
+    "KR": {
+      "cost_cases": {
+        "KR_base": {
+          "passed": true,
+          "caps": 3
+        },
+        "KR_2x_slippage": {
+          "passed": true,
+          "caps": 3
+        }
+      },
+      "passed": true
+    }
+  },
+  "full_curve_replays": 40,
+  "independent_period_replays": 320,
+  "prefix_curve_checks": 12,
+  "feature_prefix_checks": 708,
+  "all_checks_passed": true
+}

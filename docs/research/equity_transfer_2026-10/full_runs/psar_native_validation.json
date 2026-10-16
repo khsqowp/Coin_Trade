@@ -1,0 +1,39 @@
+{
+  "source_library": "pandas-ta 0.4.71b0",
+  "markets": [
+    {
+      "market": "US",
+      "symbols": 54,
+      "cutoff": "2024-02-22",
+      "curve_rows_reconciled": 2,
+      "prefix_fields_checked": [
+        "SIGNAL",
+        "EXIT_SIGNAL"
+      ],
+      "prefix_values_compared": 139752,
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "changed_prefix_values": 0,
+      "passed": true
+    },
+    {
+      "market": "KR",
+      "symbols": 64,
+      "cutoff": "2024-02-06",
+      "curve_rows_reconciled": 2,
+      "prefix_fields_checked": [
+        "SIGNAL",
+        "EXIT_SIGNAL"
+      ],
+      "prefix_values_compared": 161152,
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "changed_prefix_values": 0,
+      "passed": true
+    }
+  ],
+  "all_curve_metrics_reconciled": true,
+  "all_prefix_checks_passed": true
+}
