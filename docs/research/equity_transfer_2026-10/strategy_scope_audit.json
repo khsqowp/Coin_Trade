@@ -1,0 +1,1228 @@
+{
+  "as_of": "2026-10-14",
+  "registered_family_count": 98,
+  "registered_parameter_points_per_timeframe": 3171,
+  "registered_family_timeframe_units": 6342,
+  "tested_market_timeframe": "1d",
+  "markets": {
+    "US": {
+      "parameter_units_tested": 3171,
+      "portfolio_case_rows": 913248,
+      "source": "local KIS daily OHLCV, 54 securities"
+    },
+    "KR": {
+      "parameter_units_tested": 3171,
+      "portfolio_case_rows": 913248,
+      "source": "local KIS daily OHLCV, 64 securities"
+    }
+  },
+  "unavailable_market_timeframe_units": {
+    "4h_per_market": 3171,
+    "both_markets": 6342
+  },
+  "not_reproduced_count": 16,
+  "not_reproduced": [
+    {
+      "name": "a_advanced_adaptive_sizing",
+      "reason": "not_reproducible: input indicator bank unspecified; risk sizing excluded by harness contract"
+    },
+    {
+      "name": "a_advanced_drawdown_protection",
+      "reason": "not_reproducible: exits depend on simulated portfolio equity, which the pure signal interface excludes"
+    },
+    {
+      "name": "a_advanced_high_quality",
+      "reason": "not_reproducible: indicator bank unspecified; its PRICE_MOVE_FACTOR is a tautological same-close check for factor<=1, not a delayed confirmation"
+    },
+    {
+      "name": "a_advanced_multitimeframe",
+      "reason": "not_reproducible: SUPERTREND/SUPERT_LINE input bank is unspecified; native ADX-filtered Supertrend provided separately"
+    },
+    {
+      "name": "a_advanced_regime_switch",
+      "reason": "not_reproducible: optional RSI14/SMA200 input columns select different source rules; source does not specify the indicator bank"
+    },
+    {
+      "name": "a_nr7_opening_range",
+      "reason": "not_reproducible: catalog #98 requires minute opening-range data absent from D"
+    },
+    {
+      "name": "a_opening_range_breakout",
+      "reason": "not_reproducible: catalog #91 requires minute opening-range data and a session definition absent from D"
+    },
+    {
+      "name": "b_bollinger_divergence_intraday",
+      "reason": "app/bollinger_divergence_indicators.py defines 1-minute session rules; D has no 1-minute bars. Daily/4h signals cannot reproduce same-session exits or daily entry limit."
+    },
+    {
+      "name": "b_ict_bos",
+      "reason": "No original machine definition of BOS joined to these entries (§13)."
+    },
+    {
+      "name": "b_ict_kill_zone",
+      "reason": "Kill-zone timing was explicitly outside the researched rule definitions (§13)."
+    },
+    {
+      "name": "b_ict_mss",
+      "reason": "No original machine definition of MSS joined to these entries (§13)."
+    },
+    {
+      "name": "b_ict_session",
+      "reason": "No machine-defined session filter in the original daily ICT research (§13)."
+    },
+    {
+      "name": "b_tjr_discretionary",
+      "reason": "docs §13 explicitly excludes full TJR discretionary execution; no complete machine rule."
+    },
+    {
+      "name": "c_pairs_best_partner",
+      "reason": "not_reproducible: new_strategy_screening.pair_zscore chooses BTC/ETH/SOL/BNB partner by full-sample average rolling correlation (future leak); replaced by explicitly approximate BTC residual family"
+    },
+    {
+      "name": "c_sma_wide_original",
+      "reason": "not_reproducible: inspected TRX wide-stop original uses EMA9/21 only; no independently researched SMA wide-stop rule found, so no invented SMA family registered"
+    },
+    {
+      "name": "c_ten_thousand_rule",
+      "reason": "not_reproducible: app/crypto_tenthousand_rule_backtest.py uses 1-minute bars, same-session exit and one entry/day; 1d/4h bars cannot recover minute indicators or intraday path; day-end positions would all be flat"
+    }
+  ],
+  "supplemental_portfolio_tests": [
+    {
+      "source_rounds": "crypto_volume_spike_research_loop.py R01-R16",
+      "coverage": "account circuit, top_k, inverse-vol sizing, and cash-fraction variants",
+      "markets": ["US", "KR"],
+      "daily_rows": 64,
+      "result": "full_runs/volume_portfolio_transfer.json",
+      "method_report": "VOLUME_PORTFOLIO_TRANSFER.md",
+      "note": "Separate causal portfolio-level transfer; not part of the registered 98-family grid."
+    },
+    {
+      "source_rounds": "mach7_portfolio_backtest.py TOP_N x regime x RS rank x exit x stop",
+      "coverage": "all 72 account-level combinations",
+      "markets": ["US", "KR"],
+      "daily_rows": 288,
+      "result": "full_runs/mach7_portfolio_transfer.json",
+      "method_report": "MACH7_PORTFOLIO_TRANSFER.md",
+      "note": "Causal next-open equity transfer; BTC SMA200 is replaced by a synthetic equal-weight equity proxy."
+    },
+    {
+      "source_rounds": "crypto_round12_research.phase2_groups §§45-51 and crypto_round13_research.groups §§64-68",
+      "coverage": "47 Round12 §§45-51 plus 41 Round13 §§64-68 account-policy configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 352,
+      "result": "full_runs/round12_13_policy_transfer.json",
+      "method_report": "ROUND12_13_POLICY_TRANSFER.md",
+      "note": "Round12 §§45-51 and Round13 §§64-68 are independent source-defined groups; subsequent Round12 §§53-61 and Round13 §§69-76 are recorded separately."
+    },
+    {
+      "source_rounds": "crypto_round12_extension.groups §§53-57 and crypto_round12_final_batch.groups §§59-61",
+      "coverage": "59 declared Round12 configurations including persistence, BTC confirmation, downside/residual ranks, breadth and new signals",
+      "markets": ["US", "KR"],
+      "daily_rows": 236,
+      "result": "full_runs/round12_extension_policy_transfer.json",
+      "method_report": "ROUND12_EXTENSION_TRANSFER.md",
+      "note": "Completes the declared Round12 account-policy batches in §§45-61; BTC regime uses an explicitly documented stock-market proxy."
+    },
+    {
+      "source_rounds": "crypto_round13_extension.groups §§69-72 and crypto_round13_final_batch.groups §§73-76",
+      "coverage": "all 71 declared completed-trade sizing, weekly confirmation, shared-slot union, volatility sizing, hysteresis, rank and holding-period configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 284,
+      "result": "full_runs/round13_policy_transfer.json",
+      "method_report": "ROUND13_POLICY_TRANSFER.md",
+      "note": "Next-open equity adaptation; records include market-specific fees, slippage and KR sell tax. BTC regimes use the causal equal-weight stock proxy. Prefix perturbation results are stored separately."
+    },
+    {
+      "source_rounds": "crypto_round14_research.plans()",
+      "coverage": "all 44 current predeclared Donchian lookback, ranking, holding-period, inverse-volatility and hysteresis configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 176,
+      "result": "full_runs/round14_policy_transfer.json",
+      "method_report": "ROUND14_POLICY_TRANSFER.md",
+      "note": "Evaluates the current plans() grid, not every historical Round14 experiment; BTC regime uses the causal equal-weight stock proxy."
+    },
+    {
+      "source_rounds": "app/broad_strategies.py ParabolicSarStrategy; requirements.txt pandas-ta pin",
+      "coverage": "native pandas-ta 0.4.71b0 daily PSAR signal transfer with common next-open portfolio execution",
+      "markets": ["US", "KR"],
+      "daily_rows": 4,
+      "result": "full_runs/psar_native_transfer.json",
+      "method_report": "PSAR_NATIVE_TRANSFER.md",
+      "note": "Indicator version resolved; signal-level transfer only. Native intrabar trailing-stop fills and risk_per_trade sizing differ from the source strategy."
+    },
+    {
+      "source_rounds": "app/trx_dca_swing_backtest.py user-confirmed EMA/DCA/RSI rule",
+      "coverage": "multi-stock portfolio transfer with up to five DCA tranches and staged partial/full exits",
+      "markets": ["US", "KR"],
+      "daily_rows": 4,
+      "result": "full_runs/trx_dca_swing_transfer.json",
+      "method_report": "TRX_DCA_SWING_TRANSFER.md",
+      "note": "Causal next-open adaptation; source is single-TRX, while transfer uses eight stock slots, equal per-position budget and alphabetical tie-break; not literal source-account replication."
+    },
+    {
+      "source_rounds": "crypto_round16_liquidation_research.plans()",
+      "coverage": "all 397 current predeclared controls and synthetic OHLC leverage-tier proximity configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 1588,
+      "result": "full_runs/round16_liquidation_proxy_transfer.json",
+      "method_report": "ROUND16_LIQUIDATION_PROXY_TRANSFER.md",
+      "note": "All curve metrics reconciled and future-prefix checks passed; OHLC clusters are synthetic assumptions, not observed stock liquidations/OI or actual margin-tier exposures."
+    },
+    {
+      "source_rounds": "app/new_strategy_screening.py pair_zscore (causal equity adaptation; not literal reproduction)",
+      "coverage": "point-in-time 180-day peer correlation, 60-day ratio z-score, paired dollar-neutral targets; 18 signal configurations x four rebalances x two costs",
+      "markets": ["US", "KR"],
+      "daily_rows": 288,
+      "result": "full_runs/equity_peer_pairs.json",
+      "method_report": "EQUITY_PEER_PAIRS_TRANSFER.md",
+      "note": "Separate stock peer-pair hypothesis; original fixed crypto anchors and full-sample partner-selection rule are not reproduced. Saved curves reconciled and future-prefix perturbation passed."
+    },
+    {
+      "source_rounds": "crypto_round10_research.configs() §§25-27",
+      "coverage": "all 136 BTC regime gating, continuous/four-state entry scaling, and regime strategy-switch configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 544,
+      "result": "full_runs/round10_policy_transfer.json",
+      "method_report": "ROUND10_POLICY_TRANSFER.md",
+      "note": "Uses causal synthetic equal-weight equity proxy for BTC regime; all 544 saved curves reconciled and future OHLCV perturbation prefix checks passed. This is a stock adaptation."
+    },
+    {
+      "source_rounds": "crypto_round11_research.configs() §§29-38",
+      "coverage": "all 34 declared portfolio policies across long-short, calendar, dynamic universe, voting, ATR trailing, volatility regime, correlation cluster and dynamic K",
+      "markets": ["US", "KR"],
+      "daily_rows": 136,
+      "result": "full_runs/round11_policy_transfer.json",
+      "method_report": "ROUND11_POLICY_TRANSFER.md",
+      "note": "Future OHLCV prefix checks and curve metric reconciliation passed. BTC regime uses synthetic equal-weight stock proxy; large10 uses monthly trailing dollar-turnover proxy. Original futures funding scenarios are not stock-equivalent and were not copied."
+    },
+    {
+      "source_rounds": "app/crypto_strategy_showdown.py REGIMES x STOP_MODES x STOP_PCTS x LEVERAGES",
+      "coverage": "all 112 filtered portfolio regime, drawdown-stop and leverage configurations",
+      "markets": ["US", "KR"],
+      "daily_rows": 448,
+      "result": "full_runs/showdown_policy_transfer.json",
+      "method_report": "SHOWDOWN_POLICY_TRANSFER.md",
+      "note": "All curves reconciled and future-prefix checks passed. BTC regime maps to synthetic equal-weight stock proxy. Source 0.5% maintenance-margin liquidation threshold is retained only as synthetic stress arithmetic, not an actual stock margin model."
+    },
+    {
+      "source_rounds": "app/crypto_round3_research.py and app/crypto_hybrid_drawdown_research.py",
+      "coverage": "48 drawdown breaker variants, 3 inverse-volatility sizing variants and 2 loose hybrid variants; 3 source baselines tracked separately",
+      "markets": ["US", "KR"],
+      "daily_rows": 224,
+      "result": "full_runs/round3_policy_transfer.json",
+      "method_report": "ROUND3_POLICY_TRANSFER.md",
+      "note": "All 224 curves reconciled; 590 symbol-signal feature prefixes and 224 account-curve prefixes passed future perturbation. BTC SMA50 resume maps to synthetic equal-weight equity proxy."
+    },
+    {
+      "source_rounds": "app/crypto_round4_robustness.py fixed winners and diagnostics",
+      "coverage": "5 crypto-selected fixed policies, 8 independent periods each, 6 Heikin-Ashi drawdown thresholds, trade/symbol concentration, leave-top-trades-out and breaker flapping",
+      "markets": ["US", "KR"],
+      "daily_rows": 204,
+      "result": "full_runs/round4_robustness_transfer.json",
+      "method_report": "ROUND4_ROBUSTNESS_TRANSFER.md",
+      "note": "20 full curves, 160 independent-period replays and 24 sensitivity replays. Trade ledgers reconcile to account curves; 236 feature prefixes and 20 full-curve prefixes pass future perturbation. Verdict thresholds are original Round4 thresholds applied to equity adaptations, not evidence of crypto-equity parity."
+    },
+    {
+      "source_rounds": "app/crypto_bucket_ensemble_research.py Round5 champion and fixed-capital ensembles",
+      "coverage": "Champion plus N2/N3 on US/KR with two cost cases; 8 independent periods, champion signal sensitivity, ensemble-weight recombinations, and synthetic equity-proxy SMA50 confirmation",
+      "markets": ["US", "KR"],
+      "daily_rows": 168,
+      "result": "full_runs/round5_policy_transfer.json",
+      "method_report": "ROUND5_POLICY_TRANSFER.md",
+      "note": "168 stored result records comprise 12 full portfolio audits, 96 independent-period replays, 36 unique champion sensitivity replays, 20 pointwise ensemble-weight combinations, and 4 proxy-confirmation curves. Prefix validation passed for 1,298 signal features, 12 full curves, 96 period metrics, and 4 confirmation curves. Per-trade attribution removes only realized PnL; terminal unrealized equity is stored separately. This is a stock adaptation, not crypto-equity parity."
+    },
+    {
+      "source_rounds": "app/crypto_round6_research.py BTC-relative classification and symbol trade-share caps",
+      "coverage": "6 fixed strategies compared with a synthetic equity-market proxy over 8 periods; champion symbol trade-share caps 10%, 15%, 20% across two markets and two cost cases",
+      "markets": ["US", "KR"],
+      "daily_rows": 360,
+      "result": "full_runs/round6_policy_transfer.json",
+      "method_report": "ROUND6_POLICY_TRANSFER.md",
+      "note": "360 result records comprise 40 full strategy/cap curves and 320 independent-period replays. Independent reruns matched all 40 curves and 320 period metrics; 12 cap curves and 708 signal prefixes passed future OHLCV perturbation. BTC is not comparable to stocks, so this transfer reports excess CAGR over a synthetic local-universe equal-weight proxy, not beta-adjusted alpha."
+    }
+  ],
+  "registered_families": [
+    {
+      "name": "a_dual_thrust_ls",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_dynamic_breakout_ii_ls",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_dynamic_fast_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_keltner_catalog_ls",
+      "parameter_points": 18,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_ichimoku_cloud_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_ichimoku_strict_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_larry_williams_ls",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_williams_catalog_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_donchian_r12",
+      "parameter_points": 25,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py (+ round12/14-results JSON; report §59–82)"
+    },
+    {
+      "name": "a_donchian_btc_hysteresis",
+      "parameter_points": 48,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round13_signals.py:hysteresis (+ app/crypto_round14_research.py; round14-results JSON)"
+    },
+    {
+      "name": "a_gap_r12",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_range_lower_r12",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_dual_thrust_r12",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_compression_breakout",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_obv_breakout",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: supplied quote volume instead of original Volume units",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_keltner_r13",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_trix_r13",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_awesome_r13",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_williams_r13",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_aroon_r13",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_psar_r13",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_ichimoku_r13",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/round12_signals.py / app/round13_signals.py (+ round12/13-results JSON)"
+    },
+    {
+      "name": "a_adx_native",
+      "parameter_points": 16,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_williams_native",
+      "parameter_points": 12,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_obv_native",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed; quote rather than base volume",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_keltner_native",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_ichimoku_native",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_trix_native",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_awesome_native",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_aroon_native",
+      "parameter_points": 12,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/broad_strategies.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_donchian_native_ls",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/futures_donchian_probe.py"
+    },
+    {
+      "name": "a_supertrend_native",
+      "parameter_points": 36,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed; quote volume confirmation",
+      "source": "app/extra_strategies.py (+ app/extra_indicators.py; app/param_grids.py)"
+    },
+    {
+      "name": "a_supertrend_native_ls",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/futures_strategies.py"
+    },
+    {
+      "name": "a_supertrend_r12",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: explicit R12 fallback Supertrend recursion; original pandas-ta/TA-Lib initialization not guaranteed",
+      "source": "app/round12_signals.py"
+    },
+    {
+      "name": "a_nr7_catalog_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_ichimoku_btc_ls",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_keltner_btc_ls",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact original direction events; overlapping event-study horizons have no unique position/exit policy; condition used as close state",
+      "source": "app/new_strategy_screening.py (+ docs/신규전략100-카탈로그.md; app/new_strategy_precision.py)"
+    },
+    {
+      "name": "a_donchian_channel_native",
+      "parameter_points": 72,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/swing_strategies.py (+ app/swing_indicators.py; app/param_grids.py)"
+    },
+    {
+      "name": "a_gap_native",
+      "parameter_points": 72,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: native intrabar stop/target evaluated on closes as requested",
+      "source": "app/momentum_strategy.py (+ app/param_grids.py)"
+    },
+    {
+      "name": "a_dual_thrust_native",
+      "parameter_points": 15,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed; original 1h unavailable: preserve 21/14/25-bar counts on supplied timeframe",
+      "source": "app/strategies.py (+ app/more_indicators.py; app/param_grids.py)"
+    },
+    {
+      "name": "a_range_native",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: pandas-ta non-TA-Lib Wilder/EMA formulas; native intrabar stops evaluated on closes as requested; library-version/TA-Lib initialization not guaranteed",
+      "source": "app/extra_strategies.py (+ app/extra_indicators.py; app/param_grids.py)"
+    },
+    {
+      "name": "b_heikin_ashi",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/heikin_ashi_signal_core.py + app/technical_signal_common.py; docs §§13,21-22; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_heikin_ashi_volume_spike",
+      "parameter_points": 81,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/heikin_ashi_volume_spike_signal_core.py + app/volume_spike_signal_core.py; docs §14; hybrid-drawdown-results-2026-10-06.json"
+    },
+    {
+      "name": "b_heikin_ashi_volume_spike_loose",
+      "parameter_points": 81,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/heikin_ashi_volume_spike_loose_signal_core.py; docs §15; round3-results-2026-10-06.json"
+    },
+    {
+      "name": "b_frvp",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; reproduces original past60/24-bin typical-price histogram proxy, not real volume-at-price; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/frvp_signal_core.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_frvp_volume_spike",
+      "parameter_points": 81,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; original typical-price profile proxy; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/frvp_volume_spike_signal_core.py; docs §14; hybrid-drawdown-results-2026-10-06.json"
+    },
+    {
+      "name": "b_frvp_volume_spike_loose",
+      "parameter_points": 81,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; original typical-price profile proxy; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/frvp_volume_spike_loose_signal_core.py; docs §15; round3-results-2026-10-06.json"
+    },
+    {
+      "name": "b_vwap",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; quote-USDT weights replace original CCXT OHLCV volume, which D cannot reconstruct exactly",
+      "source": "app/crypto_vwap_portfolio_backtest.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_fvg",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/fvg_signal_core.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_order_block",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/order_block_signal_core.py + app/technical_signal_common.py; docs §13; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_liquidity_sweep",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/liquidity_sweep_signal_core.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_ema_cross",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; research fallback SMA-seeded EMA/RMA, not optional TA-Lib definitions",
+      "source": "app/ema_cross_signal_core.py + app/technical_indicator_fallback.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_fibonacci",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/fibonacci_signal_core.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_elliott_wave",
+      "parameter_points": 144,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations",
+      "source": "app/elliott_wave_signal_core.py + app/technical_signal_common.py; docs §§13,21; technical-ict-results-2026-10-06.json"
+    },
+    {
+      "name": "b_heikin_ashi_chandelier",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; previous completed high/ATR protection retained; intraday/gap exits converted to closes",
+      "source": "app/crypto_round11_research.py + app/round11_portfolio.py; docs §34; round11-results-2026-10-07.json"
+    },
+    {
+      "name": "b_liquidation_proximity",
+      "parameter_points": 48,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: exact original causal entry definitions on supplied bars; close entry instead of next open, close-only SL/TP instead of intraday fills; no terminal liquidation or portfolio allocation; 4h is a day-scaled extension; missing-bar extension uses full rolling windows and skips missing recursive observations; exact assumed leverage-anchor cluster definition, not observed liquidations/OI/heatmaps",
+      "source": "app/liquidation_proximity_signal_core.py + app/crypto_round16_liquidation_research.py; docs §80; round16-results-2026-10-08.json"
+    },
+    {
+      "name": "c_volume_surge",
+      "parameter_points": 48,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart",
+      "source": "app/crypto_volume_spike_sweep.py + app/volume_spike_signal_core.py; docs/전략-백테스트-종합.md §12-3"
+    },
+    {
+      "name": "c_volume_lookback",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart",
+      "source": "app/crypto_volume_spike_sweep.py BONUS"
+    },
+    {
+      "name": "c_volume_tp",
+      "parameter_points": 10,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart; high/low TP replaced by close TP",
+      "source": "app/crypto_volume_spike_tp_sweep.py; §12-4"
+    },
+    {
+      "name": "c_volume_stop_regime",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart; low stop replaced by close stop",
+      "source": "app/crypto_volume_spike_portfolio_backtest.py; §12-2"
+    },
+    {
+      "name": "c_volume_month_cap",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart",
+      "source": "app/crypto_volume_spike_portfolio_backtest.py; §12-2"
+    },
+    {
+      "name": "c_volume_positive_rs",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart",
+      "source": "app/crypto_volume_spike_research_loop.py R06/R15"
+    },
+    {
+      "name": "c_volume_rs_half",
+      "parameter_points": 4,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: base volume reconstructed as quote volume/close; independent positions omit TOP_K/cash allocation; close entries replace next-open; no held-signal restart; RS quantile over signal candidates includes already-held symbols, unlike portfolio free candidates",
+      "source": "app/crypto_volume_spike_research_loop.py R05"
+    },
+    {
+      "name": "c_mach7_ma",
+      "parameter_points": 48,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift",
+      "source": "app/mach7_ma_pullback_sweep.py + app/mach7_backtest_core.py"
+    },
+    {
+      "name": "c_mach7_rsi",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift",
+      "source": "app/crypto_mach7_backtest.py + app/mach7_indicators.py"
+    },
+    {
+      "name": "c_mach7_bb",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift",
+      "source": "app/crypto_mach7_backtest.py + app/mach7_indicators.py"
+    },
+    {
+      "name": "c_gongdol",
+      "parameter_points": 12,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: filtered variant uses provided quote turnover instead of base Volume*Close; unfiltered rule exact",
+      "source": "app/crypto_pullback_rebound_backtest.py + app/pullback_rebound_backtest_core.py"
+    },
+    {
+      "name": "c_squeeze_200_20",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/crypto_squeeze_backtest.py + app/squeeze_indicators.py + app/squeeze_backtest_core.py"
+    },
+    {
+      "name": "c_trx_ema_wide",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "exact",
+      "source": "app/trx_buy_hold_wide_stop_backtest.py + app/more_indicators.py"
+    },
+    {
+      "name": "c_rsi2_native",
+      "parameter_points": 36,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift; native 4h periods retained; 1d is bar-count transfer",
+      "source": "app/strategies.py Rsi2MeanReversionStrategy + app/more_indicators.py"
+    },
+    {
+      "name": "c_bb_macd_adx_native",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift; native 4h periods retained; 1d is bar-count transfer",
+      "source": "app/strategies.py BollingerMacdStrategy + app/more_indicators.py"
+    },
+    {
+      "name": "c_bollinger_reversion",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact catalog direction states; original event study has overlapping horizons, no unique held trade state",
+      "source": "app/new_strategy_screening.py bollinger_reversion; docs/신규전략100-카탈로그.md #99"
+    },
+    {
+      "name": "c_bollinger_riding",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact catalog direction states; event horizons not collapsed into invented exit",
+      "source": "app/new_strategy_screening.py bollinger_trend; catalog #100"
+    },
+    {
+      "name": "c_bollinger_breakout",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift",
+      "source": "app/broad_strategies.py BollingerBreakoutStrategy"
+    },
+    {
+      "name": "c_macd_long_short",
+      "parameter_points": 81,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift; preserves executable pandas-ta histogram/signal column swap; source full-universe runner uses daily bars, scaled x6 on 4h",
+      "source": "app/futures_macd_full_universe.py + app/futures_long_short_probe.py MacdLongShortStrategy"
+    },
+    {
+      "name": "c_rsi14_recovery",
+      "parameter_points": 48,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: recovery trigger exact; close entry/stop and independent fixed-hold state omit portfolio slots",
+      "source": "app/crypto_rsi_portfolio_backtest.py + app/technical_signal_common.py; docs/round8-results-2026-10-07.json"
+    },
+    {
+      "name": "c_rsi2_catalog",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact screening direction state; event horizons have no unique native exit",
+      "source": "app/new_strategy_screening.py rsi2_pullback + app/strategy_screen_core.py"
+    },
+    {
+      "name": "c_short_term_reversal",
+      "parameter_points": 9,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact cross-sectional direction state; original is an overlapping event study",
+      "source": "app/new_strategy_screening.py cs_reversal/_rank_panel; catalog #7"
+    },
+    {
+      "name": "c_seasonality_month",
+      "parameter_points": 3,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact grouped prior same-calendar-month bar-return direction, not historical whole-month performance; event study has no held exit",
+      "source": "app/new_strategy_screening.py seasonality_month; catalog #23"
+    },
+    {
+      "name": "c_pairs_residual_btc",
+      "parameter_points": 36,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: single-leg residual proxy; no real pair legs; 60-bar rolling-beta return residual summed over 20 bars replaces synthetic pair ratio; original z entry/exit/stop retained",
+      "source": "app/pairs_strategies.py + app/new_strategy_screening.py beta_relative_value"
+    },
+    {
+      "name": "c_round12_mach7",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_squeeze",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_rebound",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_rsi2",
+      "parameter_points": 24,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_bb_macd_adx",
+      "parameter_points": 24,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_obv",
+      "parameter_points": 24,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_dry",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_compression",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_residual",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_ma_pullback",
+      "parameter_points": 24,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_round12_range",
+      "parameter_points": 8,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used",
+      "source": "app/round12_signals.py + app/crypto_round12_research.py; docs/round12-results-2026-10-07.json §§39-63; round13 OBV hold sweep"
+    },
+    {
+      "name": "c_weekday_mach7",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used; original tomorrow weekday gate retained",
+      "source": "app/crypto_round12_research.py §50 weekdays+volume_confirm"
+    },
+    {
+      "name": "c_month_edge_mach7",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used; original tomorrow days <=5 or >=25 gate retained",
+      "source": "app/crypto_round12_research.py §50 month_edge+self_trend"
+    },
+    {
+      "name": "c_weekday_rebound",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used; original tomorrow weekday gate retained",
+      "source": "app/crypto_round12_research.py §50 weekdays+volume_confirm"
+    },
+    {
+      "name": "c_month_edge_rebound",
+      "parameter_points": 6,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: Round12 entry/expiry adaptation; independent positions omit TOP_K/cash allocation; close entry replaces next-open; base volume proxy where used; original tomorrow days <=5 or >=25 gate retained",
+      "source": "app/crypto_round12_research.py §50 month_edge+self_trend"
+    },
+    {
+      "name": "c_connors_rsi3",
+      "parameter_points": 27,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "partial: exact catalog composite and direction states; event study has no unique held exit",
+      "source": "app/new_strategy_screening.py connors_pullback + app/strategy_screen_core.py connors_rsi"
+    },
+    {
+      "name": "c_rsi14_long_short",
+      "parameter_points": 54,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift",
+      "source": "app/futures_long_short_probe.py RsiMeanReversionStrategy"
+    },
+    {
+      "name": "c_mach7_portfolio_rule",
+      "parameter_points": 24,
+      "timeframes": [
+        "1d",
+        "4h"
+      ],
+      "fidelity": "approx: original intrabar stops/targets evaluated on closes; no execution shift; independent states omit top_n/capital slots",
+      "source": "app/mach7_portfolio_backtest.py"
+    }
+  ],
+  "scope_note": "Registered family list is the actual rs_map_off_run registry, not every strategy ever mentioned in the source repository. See each fidelity/source field and each NOT_REPRODUCED reason before interpreting parity."
+}

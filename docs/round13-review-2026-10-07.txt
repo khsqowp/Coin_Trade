@@ -1,0 +1,6 @@
+Round13 independent python-reviewer review
+1. Corrected before affected extension experiments: monthly overlay after union; extension replay dispatch; verified winner persistence before cost computation; concrete git add inclusion; early A resume guard.
+2. Re-review: no CRITICAL/HIGH behavioral finding for planned configs. black --check and pylint E/F passed.
+3. Online scale independently verified for hold1/3/20, delayed missing-close exit, actual ledger count/posterior parity, repeated-run and sliced-period reset; no future price read.
+4. Boundary audit: user explicitly requests Round4/6 eight periods >=7 positives. round4 periods == round6 periods. Candidate Donchian/BTC hysteresis3%/inverse_vol1.0/cap25%: required7/8, Round9 supplemental6/8. Old function required BOTH calendars; extra gate preserved separately, not made a current veto.
+5. Independent artifact arithmetic: concentration83.438954%/74.477393%, random300 p=.003322259 each, bootstrap20 trades/1000 CI[.904613,2.349275], thrashing1/19=5.263158%. All five explicit user gates pass. Existing extra-calendar verdict remains rejected.

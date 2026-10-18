@@ -1,0 +1,1768 @@
+{
+  "market": "US",
+  "symbols": [
+    "AAON",
+    "AAPL",
+    "ADBE",
+    "AMAT",
+    "AMD",
+    "AMZN",
+    "APO",
+    "BAC",
+    "BKNG",
+    "CASY",
+    "CIEN",
+    "COST",
+    "CSCO",
+    "CVNA",
+    "DELL",
+    "DIS",
+    "FICO",
+    "FIX",
+    "GE",
+    "GLW",
+    "GOLD",
+    "GOOGL",
+    "GRC",
+    "HBAN",
+    "HD",
+    "HOOD",
+    "IBKR",
+    "IBM",
+    "INTC",
+    "JNJ",
+    "JPM",
+    "KEY",
+    "KKR",
+    "KMI",
+    "KO",
+    "LRCX",
+    "MA",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NTRS",
+    "NUE",
+    "NVDA",
+    "PEP",
+    "PG",
+    "QCOM",
+    "RCL",
+    "RF",
+    "SAIA",
+    "T",
+    "TSLA",
+    "UNH",
+    "V",
+    "XOM"
+  ],
+  "panel_dates": [
+    "2018-01-02",
+    "2026-10-12"
+  ],
+  "source_top10_sha256": "0b4e46a1026794c467e8ffe6542a11969d4c9cadd92dfc03acb4b105428fad15",
+  "source_variants_function": "app.crypto_round8_research.variants",
+  "round8": {
+    "representatives": [
+      {
+        "rank": 1,
+        "family": "heikin_ashi",
+        "representative_name": "heikin_ashi",
+        "source_config": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50"
+        },
+        "source_metrics": {
+          "cagr": 129.33767520045402,
+          "mdd": 52.88678816988129,
+          "sharpe": 1.6425677241668883,
+          "trades": 642,
+          "final": 354.99450021493215
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 2,
+        "family": "frvp",
+        "representative_name": "frvp",
+        "source_config": {
+          "dd_trigger": 0.2,
+          "resume_mode": "cooldown",
+          "cooldown_days": 60
+        },
+        "source_metrics": {
+          "cagr": 62.43969693742288,
+          "mdd": 35.858516614939376,
+          "sharpe": 1.5483896416745273,
+          "trades": 140,
+          "final": 30.943125974963607
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 3,
+        "family": "volume",
+        "representative_name": "volume_spike_cap5",
+        "source_config": {
+          "volume_multiple": 3.5
+        },
+        "source_metrics": {
+          "cagr": 68.86459222384795,
+          "mdd": 51.11487619767141,
+          "sharpe": 1.391140723224691,
+          "trades": 358,
+          "final": 40.714210011476816
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {}
+          },
+          {
+            "filter": "sma200",
+            "config": {}
+          },
+          {
+            "filter": "rsi70",
+            "config": {}
+          },
+          {
+            "filter": "atr10",
+            "config": {}
+          },
+          {
+            "filter": "trend7",
+            "config": {}
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 4,
+        "family": "vwap",
+        "representative_name": "vwap",
+        "source_config": {
+          "timing": "confirm_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 20,
+          "selection": "all"
+        },
+        "source_metrics": {
+          "cagr": 108.6483589602313,
+          "mdd": 87.32382054837493,
+          "sharpe": 1.2458804451656533,
+          "trades": 484,
+          "final": 181.85917858718025
+        },
+        "declared_variants": 13,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 5,
+        "family": "ensemble",
+        "representative_name": "ensemble",
+        "source_config": {
+          "names": [
+            "volume_spike_cap5",
+            "heikin_ashi",
+            "frvp"
+          ],
+          "weights": [
+            0.5,
+            0.25,
+            0.25
+          ]
+        },
+        "source_metrics": {
+          "cagr": 66.12717802285142,
+          "mdd": 67.17984611608289,
+          "sharpe": 1.1636529217002614,
+          "trades": 2102,
+          "final": 36.26862645091439
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {}
+          },
+          {
+            "filter": "sma200",
+            "config": {}
+          },
+          {
+            "filter": "rsi70",
+            "config": {}
+          },
+          {
+            "filter": "atr10",
+            "config": {}
+          },
+          {
+            "filter": "trend7",
+            "config": {}
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 6,
+        "family": "fvg",
+        "representative_name": "fvg",
+        "source_config": {
+          "timing": "next_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 10,
+          "selection": "all"
+        },
+        "source_metrics": {
+          "cagr": 69.8067477349691,
+          "mdd": 75.35021781304928,
+          "sharpe": 1.0510867893847742,
+          "trades": 2409,
+          "final": 42.348762811172676
+        },
+        "declared_variants": 13,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 7,
+        "family": "fibonacci",
+        "representative_name": "fibonacci",
+        "source_config": {
+          "timing": "confirm_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 10,
+          "selection": "rank"
+        },
+        "source_metrics": {
+          "cagr": 29.111602051735865,
+          "mdd": 31.582674942939594,
+          "sharpe": 1.00666190201757,
+          "trades": 559,
+          "final": 6.095868826524871
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 8,
+        "family": "ema_cross",
+        "representative_name": "ema_cross",
+        "source_config": {
+          "timing": "confirm_open",
+          "stop": "pct5",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "rank"
+        },
+        "source_metrics": {
+          "cagr": 24.135124229628026,
+          "mdd": 43.37917645065881,
+          "sharpe": 0.9795748624772482,
+          "trades": 272,
+          "final": 4.616022636214515
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 9,
+        "family": "liquidity_sweep",
+        "representative_name": "liquidity_sweep",
+        "source_config": {
+          "timing": "confirm_open",
+          "stop": "structure",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "rank"
+        },
+        "source_metrics": {
+          "cagr": 42.78368547681281,
+          "mdd": 63.85864082591913,
+          "sharpe": 0.934620113642661,
+          "trades": 794,
+          "final": 12.42482072408336
+        },
+        "declared_variants": 16,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      },
+      {
+        "rank": 10,
+        "family": "elliott_wave",
+        "representative_name": "elliott_wave",
+        "source_config": {
+          "timing": "next_open",
+          "stop": "pct5",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "all"
+        },
+        "source_metrics": {
+          "cagr": 45.443884594323045,
+          "mdd": 73.3172938997687,
+          "sharpe": 0.8628110959897548,
+          "trades": 185,
+          "final": 14.158145994698542
+        },
+        "declared_variants": 13,
+        "configs": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ],
+        "evaluated": 0,
+        "status": "NOT_RUN: source configs depend on crypto signal cores/engine semantics; no equivalent US adapter validated"
+      }
+    ],
+    "declared_configs": 151,
+    "evaluated_configs": 0,
+    "blockers": [
+      "No validated equity equivalents for the crypto portfolio engine filter/timing/stop semantics across these ten source families.",
+      "Ensemble source mixes independent crypto capital buckets and requires a separate equity-equivalent combined-ledger engine."
+    ]
+  },
+  "round9": {
+    "source_config": {
+      "dd_trigger": 0.25,
+      "resume_mode": "btc_sma50",
+      "top_k": 12
+    },
+    "source_period_cells": 8,
+    "source_variants_declared": 0,
+    "us_replays": 0,
+    "blockers": [
+      "Round9 source-selected TOP_K12 candidate must be resolved from the full source Round8 experiment table; checked-in Round8 result contains only 3 experiments and none establishes that selection.",
+      "No source-defined breaker mapping to US was validated for the fixed candidate."
+    ]
+  },
+  "round15": {
+    "source_counts": [
+      {
+        "round": 12,
+        "experiments": 127,
+        "family": 0,
+        "three_axis_candidates": 6
+      },
+      {
+        "round": 13,
+        "experiments": 81,
+        "family": 2,
+        "three_axis_candidates": 9
+      },
+      {
+        "round": 14,
+        "experiments": 31,
+        "family": 31,
+        "three_axis_candidates": 6
+      }
+    ],
+    "source_total_unique": 239,
+    "source_checks": [
+      {
+        "method": "Bonferroni A",
+        "n": 239,
+        "threshold": 0.0002092050209205021,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "Bonferroni B Round14",
+        "n": 31,
+        "threshold": 0.0016129032258064516,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "Bonferroni B cumulative family",
+        "n": 33,
+        "threshold": 0.0015151515151515152,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "BH rank1 all",
+        "n": 239,
+        "threshold": 0.0002092050209205021,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "BH rank1 candidates",
+        "n": 21,
+        "threshold": 0.002380952380952381,
+        "p": 0.0033222591362126247,
+        "passes": false
+      }
+    ],
+    "us_hypothesis_test_count": 0,
+    "us_recomputed_p": null,
+    "raw_us_trials_available": false,
+    "omissions": [
+      "Original 300-control input/trial vector and full per-hypothesis p-value table are absent from Round15 artifact.",
+      "No crypto p-value copied or interpreted as US evidence."
+    ]
+  },
+  "environment": {
+    "cost_cases": [
+      "KIS_0.36pct",
+      "low_0.08pct"
+    ],
+    "daily_symbols": 54
+  },
+  "status": "inventory_only_for_round8_9_15"
+}

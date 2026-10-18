@@ -1,0 +1,48 @@
+--- a/docker-compose.trading.yml
++++ b/docker-compose.trading.yml
+@@ -153,25 +153,30 @@
+         required: false
+     environment:
+       CRYPTO_TICK_STATE_PATH: /app/crypto-tick-state/crypto_tick_state.json
+-      # 실거래 — equity 의 80% 배치(2026-09-17부터 고정 70 USDT 대신 비율제 — 잔고가 늘면 배치도 같이
+-      # 늘어난다), 4배(2026-09-19 2->4 변경 — 기존 열린 포지션은 2x 유지, 다음 리밸런스부터 신규/조정
+-      # 종목에 4x 적용), 달러중립 14일룩백/리밸2일/상하위 12개(2026-09-20 8->12 변경).
+-      # TOP_K 8->12 근거: 안전장치(디레버/킬스위치) 포함 백테스트에서 8개는 3x/4x 둘 다 킬스위치
+-      # 발동(2023년 구간, 발동 후 수동 리셋 전까지 영구 flat)하는데 12개는 1x~4x 전부 생존, Calmar도
+-      # 전 레버리지에서 8개보다 높음(펀딩비 실데이터 반영해도 결론 동일 — 연 드래그 0.4~1.4%p뿐).
+-      # 개별손절/개별익절/방향무관선정/소프트스큐/전략앙상블/이중룩백블렌드는 전부 테스트 후 기각
+-      # (다들 8:8 달러중립 헤지를 깨뜨려서 역효과 — 상세 근거는 이 세션 대화 참고).
+-      # 디레버: 고점대비 -20% 에서 배율 4->1. 킬: -35% 에서 전량청산+정지(RESET_HALT=true 로 재개).
++      # 실거래 — 2026-10-11 전략 변경(docs/research/final_integration.md §4 후보1 + 총노출 2x):
++      # 14일룩백/리밸3일/상하위 8개, 달러중립. 총노출 = equity * DEPLOY_PCT(0.5) * LEVERAGE(4) = 2.0x,
++      # 초기증거금 사용 = 총노출/LEVERAGE = equity 의 50%. 디레버 사다리 폐기(DELEVER_DD=1.0 = 비활성;
++      # 142 USDT 에서 1x 로 내리면 포지션당 명목 < 5 USDT 라 영구 flat 함정). 소액계좌는 총노출을 줄이지
++      # 않고 K 를 줄임(최소 3). 유일한 레짐 오버레이 = BTC 14일 수익률 < -10% 일 때 전량 flat(일 1회, 완결 일봉).
++      # 킬: 고점대비 -35% 전량청산+정지, 14일 쿨다운 후 hwm 리셋 자동 재진입(RESET_HALT=true 로 수동 재개도 가능).
+       MOMENTUM_ROTATION_LIVE: "true"
+       MOMENTUM_ROTATION_EXCHANGE: mainnet
++      MOMENTUM_ROTATION_LOOKBACK_DAYS: "14"
++      MOMENTUM_ROTATION_REBALANCE_DAYS: "3"
++      MOMENTUM_ROTATION_TOP_K: "8"
+       MOMENTUM_ROTATION_LEVERAGE: "4"
+-      MOMENTUM_ROTATION_TOP_K: "12"
+-      # 리밸런스 3->2일: 14일 상대모멘텀 신호가 빨리 감쇠, 2일이 현실 비용(편도 0.10%) 반영
+-      # Calmar/Sharpe/CAGR 최적 (백테스트 2022-2026). 1일은 회전율 155x로 비용에 잠식됨.
+-      MOMENTUM_ROTATION_REBALANCE_DAYS: "2"
+-      MOMENTUM_ROTATION_DEPLOY_PCT: "0.8"
+-      MOMENTUM_ROTATION_DELEVER_DD: "0.20"
++      MOMENTUM_ROTATION_DEPLOY_PCT: "0.5"
++      MOMENTUM_ROTATION_DELEVER_DD: "1.0"
+       MOMENTUM_ROTATION_KILL_DD: "0.35"
++      MOMENTUM_ROTATION_KILL_COOLDOWN_DAYS: "14"
++      MOMENTUM_ROTATION_CRASH_FILTER: "true"
++      MOMENTUM_ROTATION_CRASH_THRESHOLD: "-0.10"
++      MOMENTUM_ROTATION_CRASH_LOOKBACK_DAYS: "14"
++      # PROFIT_LOCK 코드 기본값은 OFF. "true" 활성화 여부는 사용자가 결정한다.
++      MOMENTUM_ROTATION_PROFIT_LOCK: "false"
++      MOMENTUM_ROTATION_PROFIT_LOCK_ACTIVATION: "0.20"
++      MOMENTUM_ROTATION_PROFIT_LOCK_TRAIL: "0.25"
++      MOMENTUM_ROTATION_PROFIT_LOCK_COOLDOWN_DAYS: "3"
+       # 체결가 자체는 이미 실시간 웹소켓(crypto-tick-stream)인데, 대시보드/state.json은 이 사이클
+       # 주기로만 갱신돼서 화면이 최대 2분 묵어 보이는 게 진짜 원인이었음(2026-09-20). 매매판단
+       # (리밸런스 2일 주기)엔 영향 없음, 순수 조회/표시 빈도만 올림 — fetch_positions/fetch_balance

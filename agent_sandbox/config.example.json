@@ -1,0 +1,35 @@
+{
+  "tick_minutes": 60,
+  "start_equity": 1000.0,
+  "weekly_target": 100.0,
+  "max_leverage": 10,
+  "max_positions": 5,
+  "max_risk_per_trade_pct": 5.0,
+  "max_gross_exposure_x": 3.0,
+  "daily_loss_limit_pct": 15.0,
+  "stale_data_seconds": 300,
+  "throttle_per_minute": 20,
+  "taker_fee_rate": 0.0005,
+  "watchlist": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "BNBUSDT",
+    "XRPUSDT",
+    "DOGEUSDT",
+    "ADAUSDT",
+    "AVAXUSDT",
+    "LINKUSDT",
+    "TRXUSDT"
+  ],
+  "core_symbols": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "decisions_history_n": 10,
+  "codex_model": null,
+  "codex_timeout_seconds": 600,
+  "codex_web_search": true,
+  "state_dir": "state",
+  "random_benchmark_runs": 200
+}

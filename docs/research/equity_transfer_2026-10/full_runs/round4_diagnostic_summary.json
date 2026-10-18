@@ -1,0 +1,458 @@
+{
+  "source": "round4_robustness_transfer.json",
+  "method": "Round4 source instability thresholds applied to the fixed Heikin-Ashi dd=25% BTC-proxy winner on each equity cost case.",
+  "markets": {
+    "US": {
+      "KIS_0.36pct": {
+        "main_policy": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50",
+          "cooldown_days": 20
+        },
+        "full_metrics": {
+          "cagr": 13.533856962249358,
+          "mdd": 51.876965172851556,
+          "sharpe": 0.8260613984185219,
+          "trades": 666,
+          "stopped": 0,
+          "tp_hit": 0,
+          "final": 2.683040802885041,
+          "start": "2019-01-02 00:00:00",
+          "end": "2026-10-12 00:00:00",
+          "years": 7.775496235455168,
+          "breaker_events": 236,
+          "breaker_resumes": 236,
+          "blocked_days": 481,
+          "breaker_paused_final": false,
+          "paused_age_final": 0
+        },
+        "period_count": 8,
+        "bad_periods": [
+          {
+            "start": "2019-09-08",
+            "end": "2022-12-31",
+            "cagr": -6.3559637609196145,
+            "sharpe": -0.16207713206165136
+          },
+          {
+            "start": "2019-09-08",
+            "end": "2021-09-07",
+            "cagr": 7.738282087819104,
+            "sharpe": 0.4970987701805682
+          }
+        ],
+        "top10_trade_net_pnl_pct": 60.68858698603889,
+        "top5_symbol_net_pnl_pct": 61.41961738486209,
+        "resumes_followed_by_pause_within_5d_pct": 97.03389830508475,
+        "sensitivity_jumps": [
+          {
+            "left": 0.15,
+            "right": 0.2,
+            "delta": {
+              "cagr": 4.218438438405414,
+              "mdd": 2.5525564538261776,
+              "sharpe": 0.2193176342880223
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.2,
+            "right": 0.22,
+            "delta": {
+              "cagr": 0.08487183842347257,
+              "mdd": 0.0,
+              "sharpe": 0.026104398098657833
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.22,
+            "right": 0.25,
+            "delta": {
+              "cagr": 0.49914621054019115,
+              "mdd": 1.9669340674228408,
+              "sharpe": 0.034932012523882006
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.25,
+            "right": 0.27,
+            "delta": {
+              "cagr": 1.567988613445026,
+              "mdd": 0.8770464300798295,
+              "sharpe": 0.06655292663500478
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.27,
+            "right": 0.3,
+            "delta": {
+              "cagr": 6.409026947435681,
+              "mdd": 0.0,
+              "sharpe": 0.29105420582471275
+            },
+            "unstable": false
+          }
+        ],
+        "flags": {
+          "periods": true,
+          "top10_trade_concentration": true,
+          "threshold_sensitivity": false,
+          "stop_resume_flapping": true,
+          "top5_symbol_concentration": true
+        },
+        "instability_count": 4,
+        "verdict": "기각"
+      },
+      "low_0.08pct": {
+        "main_policy": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50",
+          "cooldown_days": 20
+        },
+        "full_metrics": {
+          "cagr": 20.925934110817135,
+          "mdd": 48.23698949994785,
+          "sharpe": 1.159387424954572,
+          "trades": 666,
+          "stopped": 0,
+          "tp_hit": 0,
+          "final": 4.381569243720557,
+          "start": "2019-01-02 00:00:00",
+          "end": "2026-10-12 00:00:00",
+          "years": 7.775496235455168,
+          "breaker_events": 182,
+          "breaker_resumes": 182,
+          "blocked_days": 422,
+          "breaker_paused_final": false,
+          "paused_age_final": 0
+        },
+        "period_count": 8,
+        "bad_periods": [
+          {
+            "start": "2019-09-08",
+            "end": "2022-12-31",
+            "cagr": -0.5165619346906514,
+            "sharpe": 0.1278284271533697
+          }
+        ],
+        "top10_trade_net_pnl_pct": 47.785538055505356,
+        "top5_symbol_net_pnl_pct": 46.32403641621031,
+        "resumes_followed_by_pause_within_5d_pct": 95.6043956043956,
+        "sensitivity_jumps": [
+          {
+            "left": 0.15,
+            "right": 0.2,
+            "delta": {
+              "cagr": 1.3386220500775075,
+              "mdd": 2.6950143479689004,
+              "sharpe": 0.03902145423479175
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.2,
+            "right": 0.22,
+            "delta": {
+              "cagr": 0.9728495996891731,
+              "mdd": 0.0,
+              "sharpe": 0.026335087308036798
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.22,
+            "right": 0.25,
+            "delta": {
+              "cagr": 0.28283662136212584,
+              "mdd": 1.2506277649436726,
+              "sharpe": 0.03144284059030067
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.25,
+            "right": 0.27,
+            "delta": {
+              "cagr": 0.44711184168164664,
+              "mdd": 1.469633793465654,
+              "sharpe": 0.026527617503600665
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.27,
+            "right": 0.3,
+            "delta": {
+              "cagr": 0.08483806854291487,
+              "mdd": 1.1864549455674407,
+              "sharpe": 0.020837819093352694
+            },
+            "unstable": false
+          }
+        ],
+        "flags": {
+          "periods": true,
+          "top10_trade_concentration": false,
+          "threshold_sensitivity": false,
+          "stop_resume_flapping": true,
+          "top5_symbol_concentration": false
+        },
+        "instability_count": 2,
+        "verdict": "기각"
+      }
+    },
+    "KR": {
+      "KR_2x_slippage": {
+        "main_policy": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50",
+          "cooldown_days": 20
+        },
+        "full_metrics": {
+          "cagr": 1.2545818123508967,
+          "mdd": 45.308170302057555,
+          "sharpe": 0.20547205254809464,
+          "trades": 688,
+          "stopped": 0,
+          "tp_hit": 0,
+          "final": 1.1014216571399789,
+          "start": "2019-01-02 00:00:00",
+          "end": "2026-10-02 00:00:00",
+          "years": 7.748117727583847,
+          "breaker_events": 131,
+          "breaker_resumes": 131,
+          "blocked_days": 278,
+          "breaker_paused_final": false,
+          "paused_age_final": 0
+        },
+        "period_count": 8,
+        "bad_periods": [
+          {
+            "start": "2019-09-08",
+            "end": "2022-12-31",
+            "cagr": -7.555961840074755,
+            "sharpe": -0.33452282487681995
+          },
+          {
+            "start": "2019-09-08",
+            "end": "2021-09-07",
+            "cagr": -0.1473376847341279,
+            "sharpe": 0.12019433424904645
+          },
+          {
+            "start": "2020-09-08",
+            "end": "2022-09-07",
+            "cagr": -6.993713313756366,
+            "sharpe": -0.35541700610259935
+          },
+          {
+            "start": "2021-09-08",
+            "end": "2023-09-07",
+            "cagr": 5.930018404345994,
+            "sharpe": 0.47109781271921386
+          },
+          {
+            "start": "2022-09-08",
+            "end": "2024-09-07",
+            "cagr": -7.7331033894218475,
+            "sharpe": -0.38963662496311774
+          },
+          {
+            "start": "2024-10-06",
+            "end": "2026-10-05",
+            "cagr": -1.850357191090124,
+            "sharpe": 0.11863990425712867
+          }
+        ],
+        "top10_trade_net_pnl_pct": 605.2571435900538,
+        "top5_symbol_net_pnl_pct": 593.745528696483,
+        "resumes_followed_by_pause_within_5d_pct": 93.12977099236642,
+        "sensitivity_jumps": [
+          {
+            "left": 0.15,
+            "right": 0.2,
+            "delta": {
+              "cagr": 1.0356666218332755,
+              "mdd": 2.2404359140295256,
+              "sharpe": 0.05592051383694341
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.2,
+            "right": 0.22,
+            "delta": {
+              "cagr": 3.355556400826365,
+              "mdd": 4.263256414560601e-14,
+              "sharpe": 0.17709857104908278
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.22,
+            "right": 0.25,
+            "delta": {
+              "cagr": 4.057754501240041,
+              "mdd": 9.244842450731213,
+              "sharpe": 0.20903765819028886
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.25,
+            "right": 0.27,
+            "delta": {
+              "cagr": 9.475010715587029,
+              "mdd": 0.0,
+              "sharpe": 0.46501914579701853
+            },
+            "unstable": true
+          },
+          {
+            "left": 0.27,
+            "right": 0.3,
+            "delta": {
+              "cagr": 0.35401803612249516,
+              "mdd": 0.0,
+              "sharpe": 0.016486831887064568
+            },
+            "unstable": false
+          }
+        ],
+        "flags": {
+          "periods": true,
+          "top10_trade_concentration": true,
+          "threshold_sensitivity": true,
+          "stop_resume_flapping": true,
+          "top5_symbol_concentration": true
+        },
+        "instability_count": 5,
+        "verdict": "기각"
+      },
+      "KR_base": {
+        "main_policy": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50",
+          "cooldown_days": 20
+        },
+        "full_metrics": {
+          "cagr": 18.033959894445427,
+          "mdd": 44.134117272361216,
+          "sharpe": 0.9981433741268908,
+          "trades": 703,
+          "stopped": 0,
+          "tp_hit": 0,
+          "final": 3.6134207838128165,
+          "start": "2019-01-02 00:00:00",
+          "end": "2026-10-02 00:00:00",
+          "years": 7.748117727583847,
+          "breaker_events": 82,
+          "breaker_resumes": 82,
+          "blocked_days": 172,
+          "breaker_paused_final": false,
+          "paused_age_final": 0
+        },
+        "period_count": 8,
+        "bad_periods": [
+          {
+            "start": "2019-09-08",
+            "end": "2022-12-31",
+            "cagr": -6.5057639550879625,
+            "sharpe": -0.2882253403263357
+          },
+          {
+            "start": "2019-09-08",
+            "end": "2021-09-07",
+            "cagr": 1.1649109169825422,
+            "sharpe": 0.19516902809520115
+          },
+          {
+            "start": "2020-09-08",
+            "end": "2022-09-07",
+            "cagr": -5.476104602858555,
+            "sharpe": -0.2508886571709215
+          },
+          {
+            "start": "2022-09-08",
+            "end": "2024-09-07",
+            "cagr": -6.061498643559615,
+            "sharpe": -0.2764519252756333
+          },
+          {
+            "start": "2024-10-06",
+            "end": "2026-10-05",
+            "cagr": 3.8844851270368963,
+            "sharpe": 0.34118494805331795
+          }
+        ],
+        "top10_trade_net_pnl_pct": 60.168255502798,
+        "top5_symbol_net_pnl_pct": 48.781771309873314,
+        "resumes_followed_by_pause_within_5d_pct": 91.46341463414635,
+        "sensitivity_jumps": [
+          {
+            "left": 0.15,
+            "right": 0.2,
+            "delta": {
+              "cagr": 1.989991939954482,
+              "mdd": 1.760089331999005,
+              "sharpe": 0.10959169924700163
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.2,
+            "right": 0.22,
+            "delta": {
+              "cagr": 10.616376620266244,
+              "mdd": 8.68401442762488,
+              "sharpe": 0.47738113364449397
+            },
+            "unstable": true
+          },
+          {
+            "left": 0.22,
+            "right": 0.25,
+            "delta": {
+              "cagr": 0.09311790288806066,
+              "mdd": 1.0928160169340515,
+              "sharpe": 0.003690284919947273
+            },
+            "unstable": false
+          },
+          {
+            "left": 0.25,
+            "right": 0.27,
+            "delta": {
+              "cagr": 15.094973147202982,
+              "mdd": 0.0,
+              "sharpe": 0.7042675745995222
+            },
+            "unstable": true
+          },
+          {
+            "left": 0.27,
+            "right": 0.3,
+            "delta": {
+              "cagr": 2.724353375684685,
+              "mdd": 0.0,
+              "sharpe": 0.1354715831935226
+            },
+            "unstable": false
+          }
+        ],
+        "flags": {
+          "periods": true,
+          "top10_trade_concentration": true,
+          "threshold_sensitivity": true,
+          "stop_resume_flapping": true,
+          "top5_symbol_concentration": false
+        },
+        "instability_count": 4,
+        "verdict": "기각"
+      }
+    }
+  }
+}

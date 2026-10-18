@@ -1,0 +1,39 @@
+{
+  "source_config_count": 397,
+  "method": "post-cutoff lognormal OHLC shock sigma 0.35, volume x7 and equal-weight proxy x3; compare causal entry/exit signals and rank field through cutoff",
+  "markets": [
+    {
+      "market": "US",
+      "config_count": 397,
+      "symbols": 54,
+      "cutoff": "2024-02-22",
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "EXIT_SIGNAL"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    },
+    {
+      "market": "KR",
+      "config_count": 397,
+      "symbols": 64,
+      "cutoff": "2024-02-06",
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "EXIT_SIGNAL"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

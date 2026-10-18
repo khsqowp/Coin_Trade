@@ -1,0 +1,21 @@
+{
+  "method": "For every registered family/parameter-grid point, test three time cutoffs. Perturb all daily OHLCV values strictly after each cutoff and compare all signal outputs through the cutoff.",
+  "markets": {
+    "US": {
+      "units": 3171,
+      "checks": 9513,
+      "failures": 0,
+      "elapsed_seconds": 364.62
+    },
+    "KR": {
+      "units": 3171,
+      "checks": 9513,
+      "failures": 0,
+      "elapsed_seconds": 389.66
+    }
+  },
+  "cutoff_fractions": [0.4, 0.6, 0.8],
+  "total_checks": 19026,
+  "total_failures": 0,
+  "limitation": "Covers registered daily signal functions and tested OHLCV inputs; does not establish fidelity of excluded families, 4h signals, order execution timing, or source-data corporate-action revisions."
+}

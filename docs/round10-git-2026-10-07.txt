@@ -1,0 +1,92 @@
+{
+  "section": 25,
+  "hash": null,
+  "pushed": false,
+  "status": "커밋 보류",
+  "attempts": [
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    }
+  ]
+}
+{
+  "section": 26,
+  "hash": null,
+  "pushed": false,
+  "status": "커밋 보류",
+  "attempts": [
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    }
+  ]
+}
+{
+  "section": 27,
+  "hash": null,
+  "pushed": false,
+  "status": "커밋 보류",
+  "attempts": [
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    }
+  ]
+}
+{
+  "section": 28,
+  "hash": null,
+  "pushed": false,
+  "status": "커밋 보류",
+  "attempts": [
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    },
+    {
+      "action": "add",
+      "code": 128,
+      "output": "fatal: Unable to create '/Users/user/Desktop/CODE/Coin_Trade/.git/index.lock': Operation not permitted\n"
+    }
+  ]
+}

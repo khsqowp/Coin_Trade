@@ -1,0 +1,14 @@
+elliott_wave: prefix invariance PASS
+rsi: prefix invariance PASS
+ema_cross: prefix invariance PASS
+heikin_ashi: prefix invariance PASS
+fibonacci: prefix invariance PASS
+vwap: prefix invariance PASS
+fvg: prefix invariance PASS
+frvp: prefix invariance PASS
+order_block: prefix invariance PASS
+liquidity_sweep: prefix invariance PASS
+PASS: 432 prefix checks + 7 behavioral/accounting checks
+
+Final checks: Python3 py_compile PASS; git diff --check PASS; 45 cached OHLC bounds PASS; 10 baseline and 384 sweep rows match JSON PASS; report regeneration idempotent PASS.
+Manual review: all signals use historical/current completed bars; pivots/zones activate only on confirmation; open allocation uses no current close; no network fetch; no push.

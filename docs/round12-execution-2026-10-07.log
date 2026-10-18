@@ -1,0 +1,142 @@
+RESULT 1 {'family': 'mach7'} {'cagr': 62.473768136204136, 'mdd': 66.90861918319553, 'sharpe': 1.1569993570261827, 'trades': 505, 'final': 30.989070989948274} None
+RESULT 1 {'family': 'mach7', 'top_k': 3} {'cagr': 98.78244561347917, 'mdd': 79.94710261634816, 'sharpe': 1.2885667791714024, 'trades': 246, 'final': 129.09431773097194} None
+RESULT 1 {'family': 'mach7', 'top_k': 5} {'cagr': 82.13837276410429, 'mdd': 71.98337954965488, 'sharpe': 1.2644029640320795, 'trades': 363, 'final': 69.54049687511002} None
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round12_research.py", line 318, in <module>
+    run()
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round12_research.py", line 284, in run
+    verify_and_section(out, section, title, rows)
+  File "/Users/user/Desktop/CODE/Coin_Trade/app/crypto_round12_research.py", line 247, in verify_and_section
+    subprocess.run([sys.executable, '-m', 'app.verify_round12'], cwd=ROOT, stdout=f, stderr=subprocess.STDOUT, check=True)
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/homebrew/opt/python@3.12/bin/python3.12', '-m', 'app.verify_round12']' returned non-zero exit status 1.
+RESULT 1 {'family': 'squeeze'} {'cagr': -3.3638195031423623, 'mdd': 62.938357793614074, 'sharpe': -0.016632493570993202, 'trades': 193, 'final': 0.784999941565834} None
+RESULT 1 {'family': 'rebound'} {'cagr': 68.05425451320808, 'mdd': 71.84040913614459, 'sharpe': 1.0549627967742305, 'trades': 905, 'final': 39.35197791732599} None
+RESULT 1 {'family': 'rebound', 'top_k': 4} {'cagr': 71.83301197940544, 'mdd': 75.53652902849619, 'sharpe': 1.045321483256231, 'trades': 465, 'final': 46.05604959911988} None
+RESULT 1 {'family': 'rebound', 'hold_days': 10} {'cagr': 34.665735340102955, 'mdd': 70.77996993112382, 'sharpe': 0.7808417913512018, 'trades': 1637, 'final': 8.211890695274258} None
+RESULT 1 {'family': 'supertrend'} {'cagr': 25.90063237617588, 'mdd': 58.5406127238302, 'sharpe': 0.7078350485752118, 'trades': 439, 'final': 5.101032684440156} None
+RESULT 1 {'family': 'range'} {'cagr': 10.147834488291307, 'mdd': 78.80795399569371, 'sharpe': 0.49136719666756234, 'trades': 693, 'final': 1.9813601324704575} None
+RESULT 1 {'family': 'rsi2'} {'cagr': 2.9071435017798075, 'mdd': 76.6372485907084, 'sharpe': 0.32018689898618646, 'trades': 490, 'final': 1.224749239926911} None
+RESULT 1 {'family': 'bb_macd_adx'} {'cagr': 3.5729827784061197, 'mdd': 43.25237376359766, 'sharpe': 0.2660322225792184, 'trades': 136, 'final': 1.2819257488721627} None
+RESULT 1 {'family': 'donchian'} {'cagr': 78.03671125837708, 'mdd': 62.513342053436084, 'sharpe': 1.3805222972837, 'trades': 363, 'final': 59.19112142966705} None
+RESULT 1 {'family': 'donchian', 'top_k': 4} {'cagr': 98.71802082060816, 'mdd': 73.67966901161579, 'sharpe': 1.4004917179279417, 'trades': 237, 'final': 128.7986139172797} None
+RESULT 1 {'family': 'donchian', 'hold_days': 10} {'cagr': 53.69971561307616, 'mdd': 43.47715050057361, 'sharpe': 1.2121122170461314, 'trades': 538, 'final': 20.92369877606591} None
+RESULT 1 {'family': 'dual_thrust'} {'cagr': 43.67643139700401, 'mdd': 49.81826187251652, 'sharpe': 1.1451368730146891, 'trades': 228, 'final': 12.984962542822814} None
+RESULT 1 {'family': 'dual_thrust', 'top_k': 4} {'cagr': 61.55435963179692, 'mdd': 61.2348224512356, 'sharpe': 1.1084194706906072, 'trades': 166, 'final': 29.76957875106122} None
+RESULT 1 {'family': 'dual_thrust', 'hold_days': 10} {'cagr': 28.49016256938226, 'mdd': 41.90082594465664, 'sharpe': 0.9951565231835388, 'trades': 245, 'final': 5.891305492751069} None
+RESULT 1 {'family': 'ma_pullback'} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 1 {'family': 'gap'} {'cagr': 84.15400104017101, 'mdd': 71.62428317816052, 'sharpe': 1.1990424805719322, 'trades': 718, 'final': 75.17134724402656} None
+RESULT 1 {'family': 'gap', 'top_k': 4} {'cagr': 65.74130484865029, 'mdd': 87.91984144231013, 'sharpe': 1.0108085149433355, 'trades': 406, 'final': 35.67682692023132} None
+RESULT 1 {'family': 'gap', 'hold_days': 10} {'cagr': 50.07197529429277, 'mdd': 74.35106032518513, 'sharpe': 0.9387761014638558, 'trades': 1105, 'final': 17.67055852085499} None
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 49.9621517595225, 'mdd': 46.886628490249755, 'sharpe': 1.3607466099975254, 'trades': 416, 'final': 17.579276932332277} None
+RESULT 2 {'family': 'squeeze', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': -0.28815713208935056, 'mdd': 53.39049359664393, 'sharpe': 0.0911509893072822, 'trades': 149, 'final': 0.9797915721808103} None
+RESULT 2 {'family': 'rebound', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 44.50687525042263, 'mdd': 45.10934497552109, 'sharpe': 1.1370162360593536, 'trades': 538, 'final': 13.525342847587199} None
+RESULT 2 {'family': 'supertrend', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 22.456665048064785, 'mdd': 37.70324674251816, 'sharpe': 0.8506885621280008, 'trades': 234, 'final': 4.192190889225918} None
+RESULT 2 {'family': 'range', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 24.48904880894267, 'mdd': 53.219772800153585, 'sharpe': 0.784989680423246, 'trades': 360, 'final': 4.709940665463425} None
+RESULT 2 {'family': 'rsi2', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 21.828189138281683, 'mdd': 49.39680152989531, 'sharpe': 0.7444321806065457, 'trades': 379, 'final': 4.0423308764503645} None
+RESULT 2 {'family': 'bb_macd_adx', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': -2.193356367397814, 'mdd': 32.25864851960074, 'sharpe': -0.07632104462619994, 'trades': 45, 'final': 0.8547909346630853} None
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 54.23599805851411, 'mdd': 29.021471485513118, 'sharpe': 1.5735130946038645, 'trades': 274, 'final': 21.445693976290514} None
+RESULT 2 {'family': 'dual_thrust', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 28.48812296349934, 'mdd': 32.24568538354294, 'sharpe': 1.1394176396314313, 'trades': 147, 'final': 5.890643932707604} None
+RESULT 2 {'family': 'ma_pullback', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6, 'weight_cap': 0.25} {'cagr': 36.069275129473155, 'mdd': 30.22137487972624, 'sharpe': 1.133575785203814, 'trades': 411, 'final': 8.836898371007184} None
+RESULT 2 {'family': 'mach7', 'self_trend': True, 'volume_confirm': True} {'cagr': 60.57764106715054, 'mdd': 60.624609680402486, 'sharpe': 1.1893596555077524, 'trades': 368, 'final': 28.519436866239403} None
+RESULT 2 {'family': 'squeeze', 'self_trend': True, 'volume_confirm': True} {'cagr': 3.0813905834815802, 'mdd': 25.44382918046529, 'sharpe': 0.3119305800671751, 'trades': 70, 'final': 1.2394962385064583} None
+RESULT 2 {'family': 'rebound', 'self_trend': True, 'volume_confirm': True} {'cagr': 37.87745448811752, 'mdd': 64.75008801798715, 'sharpe': 0.9109706274125642, 'trades': 378, 'final': 9.701969211788121} None
+RESULT 2 {'family': 'supertrend', 'self_trend': True, 'volume_confirm': True} {'cagr': 7.600204977175884, 'mdd': 57.21964886698853, 'sharpe': 0.3886524694028625, 'trades': 176, 'final': 1.6790558895941772} None
+RESULT 2 {'family': 'range', 'self_trend': True, 'volume_confirm': True} {'cagr': 5.905582263592479, 'mdd': 44.383689851735156, 'sharpe': 0.3383837754442488, 'trades': 150, 'final': 1.5006902908508066} None
+RESULT 2 {'family': 'rsi2', 'self_trend': True, 'volume_confirm': True} {'cagr': 11.144478281666515, 'mdd': 53.000338682744676, 'sharpe': 0.4636099735550202, 'trades': 246, 'final': 2.11173186391897} None
+RESULT 2 {'family': 'bb_macd_adx', 'self_trend': True, 'volume_confirm': True} {'cagr': -0.4463429524946605, 'mdd': 10.99280801212831, 'sharpe': -0.11029533221539033, 'trades': 4, 'final': 0.9688478581934568} None
+RESULT 2 {'family': 'donchian', 'self_trend': True, 'volume_confirm': True} {'cagr': 74.18839014661891, 'mdd': 63.5559039912839, 'sharpe': 1.3271944690717716, 'trades': 333, 'final': 50.712616844602934} None
+RESULT 2 {'family': 'dual_thrust', 'self_trend': True, 'volume_confirm': True} {'cagr': 23.93869954410497, 'mdd': 42.03805770390978, 'sharpe': 0.8448317536619137, 'trades': 147, 'final': 4.564596378290191} None
+RESULT 2 {'family': 'ma_pullback', 'self_trend': True, 'volume_confirm': True} {'cagr': 0.0, 'mdd': 0.0, 'sharpe': 0.0, 'trades': 0, 'final': 1.0} None
+RESULT 2 {'family': 'gap', 'self_trend': True, 'volume_confirm': True} {'cagr': 45.91442806564265, 'mdd': 67.26408662038898, 'sharpe': 0.96584542619157, 'trades': 392, 'final': 14.485398410390243} None
+RESULT 2 {'family': 'mach7', 'weekly_trend': True, 'rank': 'relative_strength'} {'cagr': 60.8806751646346, 'mdd': 58.497056345817555, 'sharpe': 1.1426303114060494, 'trades': 481, 'final': 28.902384837965855} None
+RESULT 2 {'family': 'rebound', 'weekly_trend': True, 'rank': 'relative_strength'} {'cagr': 67.17053590351021, 'mdd': 66.13687936621618, 'sharpe': 1.1168642459553504, 'trades': 677, 'final': 37.91117935751162} None
+RESULT 2 {'family': 'supertrend', 'weekly_trend': True, 'rank': 'relative_strength'} {'cagr': 9.376496322459161, 'mdd': 64.78055890174565, 'sharpe': 0.4344427427393426, 'trades': 218, 'final': 1.8852633871442908} None
+RESULT 2 {'family': 'donchian', 'weekly_trend': True, 'rank': 'relative_strength'} {'cagr': 65.5788541174595, 'mdd': 59.393057198068554, 'sharpe': 1.280924568674798, 'trades': 350, 'final': 35.43017372425601} None
+RESULT 2 {'family': 'gap', 'weekly_trend': True, 'rank': 'relative_strength'} {'cagr': 61.677113640623915, 'mdd': 55.13769613259687, 'sharpe': 1.1040139432015967, 'trades': 444, 'final': 29.929975066699996} None
+RESULT 2 {'family': 'mach7', 'breadth': True, 'rank': 'low_vol'} {'cagr': 56.474891965713915, 'mdd': 52.152916664176885, 'sharpe': 1.1802644862585345, 'trades': 377, 'final': 23.747584700832917} None
+RESULT 2 {'family': 'supertrend', 'breadth': True, 'rank': 'low_vol'} {'cagr': 37.210429314854096, 'mdd': 58.5406127238302, 'sharpe': 0.9307974988931446, 'trades': 293, 'final': 9.374752819370169} None
+RESULT 2 {'family': 'donchian', 'breadth': True, 'rank': 'low_vol'} {'cagr': 69.00536317252606, 'mdd': 54.02342726883235, 'sharpe': 1.3507435703485275, 'trades': 302, 'final': 40.9549357501523} None
+RESULT 2 {'family': 'gap', 'breadth': True, 'rank': 'low_vol'} {'cagr': 91.39209259209753, 'mdd': 56.929220453548254, 'sharpe': 1.381910417266104, 'trades': 420, 'final': 98.74185447269173} None
+RESULT 2 {'family': 'compression_breakout'} {'cagr': 44.06925430250197, 'mdd': 60.98640639307577, 'sharpe': 0.9825061680786819, 'trades': 479, 'final': 13.238220112032074} None
+RESULT 2 {'family': 'compression_breakout', 'hold_days': 10} {'cagr': 39.23151623718126, 'mdd': 59.73990321874702, 'sharpe': 1.0299799535420244, 'trades': 619, 'final': 10.396486998229838} None
+RESULT 2 {'family': 'compression_breakout', 'hold_days': 40} {'cagr': 62.9889173174524, 'mdd': 73.33021769447579, 'sharpe': 1.1214876082251959, 'trades': 332, 'final': 31.69092251637121} None
+RESULT 2 {'family': 'compression_breakout', 'weekly_trend': True, 'volume_confirm': True} {'cagr': 38.423275715421546, 'mdd': 63.40817024460984, 'sharpe': 0.9422976365579475, 'trades': 346, 'final': 9.976976878096636} None
+RESULT 2 {'family': 'compression_breakout', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.6} {'cagr': 47.142175996269884, 'mdd': 35.68367305649953, 'sharpe': 1.280698427126465, 'trades': 318, 'final': 15.370022112582893} None
+RESULT 2 {'family': 'compression_breakout', 'self_trend': True, 'rank': 'relative_strength'} {'cagr': 30.90419636673285, 'mdd': 57.15120478388409, 'sharpe': 0.871708024336052, 'trades': 330, 'final': 6.720482750105962} None
+RESULT 2 {'family': 'mach7', 'weekdays': True, 'volume_confirm': True} {'cagr': 54.82313321799257, 'mdd': 61.255950964689454, 'sharpe': 1.1330789827667012, 'trades': 345, 'final': 22.029971808014174} None
+RESULT 2 {'family': 'rebound', 'weekdays': True, 'volume_confirm': True} {'cagr': 63.200767084067365, 'mdd': 77.50756204075844, 'sharpe': 1.0854888384606578, 'trades': 656, 'final': 31.98348725723303} None
+RESULT 2 {'family': 'gap', 'weekdays': True, 'volume_confirm': True} {'cagr': 73.28446980746845, 'mdd': 75.8454603536586, 'sharpe': 1.1528023340444902, 'trades': 587, 'final': 48.87992137610986} None
+RESULT 2 {'family': 'mach7', 'month_edge': True, 'self_trend': True} {'cagr': 60.38327555863112, 'mdd': 49.12581242776667, 'sharpe': 1.3722354428379868, 'trades': 350, 'final': 28.276115048489224} None
+RESULT 2 {'family': 'rebound', 'month_edge': True, 'self_trend': True} {'cagr': 48.855655138563606, 'mdd': 60.769668718456096, 'sharpe': 1.0585839631473513, 'trades': 471, 'final': 16.681948461189855} None
+RESULT 2 {'family': 'gap', 'month_edge': True, 'self_trend': True} {'cagr': 45.212868939407215, 'mdd': 49.145718494180876, 'sharpe': 1.0872742460022669, 'trades': 266, 'final': 13.999817155380478} None
+RESULT 2 {'family': 'mach7', 'breaker': True, 'volume_confirm': True} {'cagr': 41.36391304105806, 'mdd': 46.014114064481966, 'sharpe': 1.1504463089224861, 'trades': 149, 'final': 11.57673604159116} None
+RESULT 2 {'family': 'supertrend', 'breaker': True, 'volume_confirm': True} {'cagr': 8.466798605879067, 'mdd': 57.57599411071005, 'sharpe': 0.4180205908630371, 'trades': 83, 'final': 1.7770969648712382} None
+RESULT 2 {'family': 'donchian', 'breaker': True, 'volume_confirm': True} {'cagr': 34.63911281981276, 'mdd': 53.72307073008552, 'sharpe': 0.9794690262040765, 'trades': 122, 'final': 8.200412417265179} None
+RESULT 2 {'family': 'gap', 'breaker': True, 'volume_confirm': True} {'cagr': 52.77600525808319, 'mdd': 47.89051749747413, 'sharpe': 1.2582824796833558, 'trades': 205, 'final': 20.050155660888038} None
+복귀조건 미달성, 계속 진행 필요
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 56.84510518589811, 'mdd': 45.52258799559358, 'sharpe': 1.3306516809001787, 'trades': 428, 'final': 24.147945145186792} None
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 57.03766360960729, 'mdd': 48.30597074421794, 'sharpe': 1.2437355444224907, 'trades': 434, 'final': 24.358465356563467} None
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 61.875508496146296, 'mdd': 47.1818717150982, 'sharpe': 1.2770248025705502, 'trades': 441, 'final': 30.190776213433175} None
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 64.96102887023476, 'mdd': 31.377233703391237, 'sharpe': 1.5715701350322584, 'trades': 281, 'final': 34.505437993562836} 기각
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 69.97529803919664, 'mdd': 36.406868838041575, 'sharpe': 1.502318295236058, 'trades': 290, 'final': 42.64704488687163} 기각
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 68.19223773751094, 'mdd': 40.337528998086654, 'sharpe': 1.4363408428350792, 'trades': 292, 'final': 39.581132651157866} 기각
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 51.70511484607401, 'mdd': 49.497871972676315, 'sharpe': 1.2246175277954363, 'trades': 416, 'final': 19.076792079538393} None
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.0, 'weight_cap': 0.25} {'cagr': 60.61402578216195, 'mdd': 56.021098061854765, 'sharpe': 1.2376129770206032, 'trades': 430, 'final': 28.56518527919686} None
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 72.00400221165091, 'mdd': 62.49911810636996, 'sharpe': 1.3089886795333434, 'trades': 442, 'final': 46.38126155858146} None
+RESULT 2 {'family': 'mach7', 'weekly_trend': True, 'persistence': True} {'cagr': 59.81034455146603, 'mdd': 60.06226437322121, 'sharpe': 1.2167068610709848, 'trades': 300, 'final': 27.569218127174103} None
+RESULT 2 {'family': 'donchian', 'weekly_trend': True, 'persistence': True} {'cagr': 58.504342341102266, 'mdd': 66.53307091631235, 'sharpe': 1.2131436950221959, 'trades': 284, 'final': 26.01432188470558} None
+RESULT 2 {'family': 'gap', 'weekly_trend': True, 'persistence': True} {'cagr': 43.31426819138184, 'mdd': 68.72672185392206, 'sharpe': 0.9458720599833748, 'trades': 342, 'final': 12.755168779235964} None
+RESULT 2 {'family': 'rebound', 'weekly_trend': True, 'persistence': True} {'cagr': 65.01551486311922, 'mdd': 62.60244534554374, 'sharpe': 1.1499895307665438, 'trades': 436, 'final': 34.586148310944836} None
+RESULT 2 {'family': 'compression_breakout', 'weekly_trend': True, 'persistence': True} {'cagr': 40.293616235913944, 'mdd': 67.10982495684064, 'sharpe': 1.0164147084657924, 'trades': 250, 'final': 10.970725354535094} None
+RESULT 2 {'family': 'mach7', 'rank': 'residual'} {'cagr': 56.60951519111788, 'mdd': 64.33799736907343, 'sharpe': 1.0877426482894033, 'trades': 506, 'final': 23.892505961763824} None
+RESULT 2 {'family': 'mach7', 'rank': 'residual', 'btc_trend': True} {'cagr': 67.38464119488168, 'mdd': 54.799392202791466, 'sharpe': 1.229497235796388, 'trades': 447, 'final': 38.25602683081042} None
+RESULT 2 {'family': 'donchian', 'rank': 'residual'} {'cagr': 64.97637808493795, 'mdd': 57.54652296004114, 'sharpe': 1.2485149063201575, 'trades': 362, 'final': 34.52815846680491} None
+RESULT 2 {'family': 'donchian', 'rank': 'residual', 'btc_trend': True} {'cagr': 70.57999071163495, 'mdd': 54.03829071249763, 'sharpe': 1.3601589678359804, 'trades': 300, 'final': 43.73205971420453} None
+RESULT 2 {'family': 'gap', 'rank': 'residual'} {'cagr': 77.22245065751794, 'mdd': 73.39995933410509, 'sharpe': 1.146338646523579, 'trades': 716, 'final': 57.302327312861124} None
+RESULT 2 {'family': 'gap', 'rank': 'residual', 'btc_trend': True} {'cagr': 78.82631857858804, 'mdd': 70.40144800275837, 'sharpe': 1.2618504446532195, 'trades': 459, 'final': 61.07353544329286} None
+RESULT 2 {'family': 'compression_breakout', 'rank': 'residual'} {'cagr': 37.78952417947321, 'mdd': 62.39470716046637, 'sharpe': 0.8958633419147275, 'trades': 479, 'final': 9.658280788176874} None
+RESULT 2 {'family': 'compression_breakout', 'rank': 'residual', 'btc_trend': True} {'cagr': 56.07635939401086, 'mdd': 47.95432273717471, 'sharpe': 1.2073858701461897, 'trades': 343, 'final': 23.32298200542555} None
+RESULT 2 {'family': 'mach7', 'rank': 'downside', 'self_trend': True} {'cagr': 69.43200518955213, 'mdd': 63.48031243675625, 'sharpe': 1.239495413531406, 'trades': 504, 'final': 41.69199610314417} None
+RESULT 2 {'family': 'donchian', 'rank': 'downside', 'self_trend': True} {'cagr': 76.71967314297434, 'mdd': 62.18675358804402, 'sharpe': 1.3895346497922603, 'trades': 362, 'final': 56.1621004243295} None
+RESULT 2 {'family': 'gap', 'rank': 'downside', 'self_trend': True} {'cagr': 39.34062024929732, 'mdd': 70.81118754046614, 'sharpe': 0.8601419518362297, 'trades': 450, 'final': 10.454260123693668} None
+RESULT 2 {'family': 'rebound', 'rank': 'downside', 'self_trend': True} {'cagr': 33.40291518886447, 'mdd': 72.44881552175386, 'sharpe': 0.7925444602241933, 'trades': 646, 'final': 7.682372813246862} None
+RESULT 2 {'family': 'compression_breakout', 'rank': 'downside', 'self_trend': True} {'cagr': 33.165225947793566, 'mdd': 55.52682605153421, 'sharpe': 0.9084320620803764, 'trades': 331, 'final': 7.586058167869923} None
+RESULT 2 {'family': 'dry_pullback'} {'cagr': 60.235927044336755, 'mdd': 70.95464727964035, 'sharpe': 1.1081072997481394, 'trades': 598, 'final': 28.092842667861188} None
+RESULT 2 {'family': 'dry_pullback', 'weekly_trend': True, 'volume_confirm': True} {'cagr': 43.784248875176466, 'mdd': 64.95548831158644, 'sharpe': 1.0971762061810715, 'trades': 274, 'final': 13.054055951116315} None
+RESULT 2 {'family': 'dry_pullback', 'btc_trend': True, 'rank': 'residual'} {'cagr': 72.54926991023008, 'mdd': 62.43701293444588, 'sharpe': 1.3021921140758568, 'trades': 423, 'final': 47.431529114177565} None
+RESULT 2 {'family': 'obv_breakout'} {'cagr': 91.54982503500013, 'mdd': 53.10506831732356, 'sharpe': 1.415398404568969, 'trades': 506, 'final': 99.31900335313495} 기각
+RESULT 2 {'family': 'obv_breakout', 'weekly_trend': True, 'volume_confirm': True} {'cagr': 102.9141029420074, 'mdd': 66.53303472905343, 'sharpe': 1.5951824822356457, 'trades': 394, 'final': 149.31832062066186} None
+RESULT 2 {'family': 'obv_breakout', 'btc_trend': True, 'rank': 'residual'} {'cagr': 80.01089047225574, 'mdd': 55.184983071371704, 'sharpe': 1.4160436677200707, 'trades': 370, 'final': 63.9938727572583} None
+RESULT 2 {'family': 'residual_rebound'} {'cagr': 12.2855351159175, 'mdd': 60.10353951869279, 'sharpe': 0.4821560999342197, 'trades': 431, 'final': 2.2699755086428426} None
+RESULT 2 {'family': 'residual_rebound', 'weekly_trend': True, 'volume_confirm': True} {'cagr': 24.356537893162432, 'mdd': 24.6756316510791, 'sharpe': 0.923183480811147, 'trades': 135, 'final': 4.674587003680102} None
+RESULT 2 {'family': 'residual_rebound', 'btc_trend': True, 'rank': 'residual'} {'cagr': 15.013767001507293, 'mdd': 53.527396090841826, 'sharpe': 0.5338583114207713, 'trades': 357, 'final': 2.6901786628352715} None
+복귀조건 미달성, 계속 진행 필요
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 47.021443188342936, 'mdd': 48.915159903195175, 'sharpe': 1.1819207546165473, 'trades': 413, 'final': 15.281023604673356} None
+RESULT 2 {'family': 'mach7', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 63.54584467627538, 'mdd': 46.992286933309416, 'sharpe': 1.3138135460238933, 'trades': 423, 'final': 32.46500555688417} 기각
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 49.19823938223096, 'mdd': 51.86152671460429, 'sharpe': 1.314151142609628, 'trades': 275, 'final': 16.95546785042058} None
+RESULT 2 {'family': 'donchian', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 57.630363587831845, 'mdd': 54.65838007043594, 'sharpe': 1.296567106533894, 'trades': 285, 'final': 25.016373218438392} None
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 0.8, 'weight_cap': 0.25} {'cagr': 41.19212825011345, 'mdd': 44.83285768597625, 'sharpe': 1.0663944746866119, 'trades': 416, 'final': 11.477577082088668} None
+RESULT 2 {'family': 'gap', 'btc_trend': True, 'btc_confirm': 5, 'sizing': 'inverse_vol', 'target_vol': 1.2, 'weight_cap': 0.25} {'cagr': 63.5529282335489, 'mdd': 65.61327949899352, 'sharpe': 1.2105753731820197, 'trades': 424, 'final': 32.47495472558323} None
+RESULT 2 {'family': 'cci', 'self_trend': True, 'volume_confirm': True} {'cagr': 10.22533386335336, 'mdd': 46.63548874944276, 'sharpe': 0.4473218471408961, 'trades': 221, 'final': 1.99124375508952} None
+RESULT 2 {'family': 'cci', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 11.824373717459213, 'mdd': 69.72647565367784, 'sharpe': 0.4779168663967469, 'trades': 316, 'final': 2.2048368314244056} None
+RESULT 2 {'family': 'roc', 'self_trend': True, 'volume_confirm': True} {'cagr': 46.379889450224574, 'mdd': 76.52352869357019, 'sharpe': 0.9243823559395743, 'trades': 541, 'final': 14.815485305301255} None
+RESULT 2 {'family': 'roc', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 54.875730738953685, 'mdd': 66.9602753955831, 'sharpe': 1.0206999478518133, 'trades': 587, 'final': 22.082973996641794} None
+RESULT 2 {'family': 'cmf', 'self_trend': True, 'volume_confirm': True} {'cagr': 21.192825284069162, 'mdd': 53.957000357943244, 'sharpe': 0.7422481292882261, 'trades': 218, 'final': 3.895527589767118} None
+RESULT 2 {'family': 'cmf', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 50.41331418606889, 'mdd': 69.45687992957947, 'sharpe': 0.9960182287134874, 'trades': 477, 'final': 17.95687092871025} None
+RESULT 2 {'family': 'stochastic', 'self_trend': True, 'volume_confirm': True} {'cagr': -0.9674813432632656, 'mdd': 23.839344461176896, 'sharpe': -0.002080101446133131, 'trades': 49, 'final': 0.9335332040390083} None
+RESULT 2 {'family': 'stochastic', 'weekly_trend': True, 'rank': 'residual'} {'cagr': 2.414050188614114, 'mdd': 65.83623411892017, 'sharpe': 0.24907658140745584, 'trades': 259, 'final': 1.1838309221029344} None
+RESULT 2 {'family': 'donchian', 'breadth': True, 'rank': 'low_vol', 'hold_days': 10, 'top_k': 8} {'cagr': 56.25930765226252, 'mdd': 35.316217630964275, 'sharpe': 1.309253762570364, 'trades': 460, 'final': 23.517081328218985} None
+RESULT 2 {'family': 'donchian', 'breadth': True, 'rank': 'low_vol', 'hold_days': 40, 'top_k': 8} {'cagr': 42.63650585687107, 'mdd': 60.96091207921799, 'sharpe': 0.9773903861293713, 'trades': 212, 'final': 12.334496954758482} None
+RESULT 2 {'family': 'donchian', 'breadth': True, 'rank': 'low_vol', 'hold_days': 20, 'top_k': 12} {'cagr': 49.42646372045989, 'mdd': 51.00853411944579, 'sharpe': 1.155136600171142, 'trades': 392, 'final': 17.139811685487416} None
+RESULT 2 {'family': 'gap', 'breadth': True, 'rank': 'low_vol', 'hold_days': 10, 'top_k': 8} {'cagr': 76.58648132973592, 'mdd': 54.355567093510025, 'sharpe': 1.323643792647905, 'trades': 634, 'final': 55.86332545687616} None
+RESULT 2 {'family': 'gap', 'breadth': True, 'rank': 'low_vol', 'hold_days': 40, 'top_k': 8} {'cagr': 94.90521943964549, 'mdd': 63.73977823616508, 'sharpe': 1.3153282552410765, 'trades': 281, 'final': 112.30186828874216} None
+RESULT 2 {'family': 'gap', 'breadth': True, 'rank': 'low_vol', 'hold_days': 20, 'top_k': 12} {'cagr': 84.76621348388885, 'mdd': 48.55784212545686, 'sharpe': 1.416058342737643, 'trades': 559, 'final': 76.9572728214785} 기각
+RESULT 2 {'family': 'compression_breakout', 'breadth': True, 'rank': 'low_vol', 'hold_days': 10, 'top_k': 8} {'cagr': 36.2296363666325, 'mdd': 43.261721469112175, 'sharpe': 1.0691055484789624, 'trades': 476, 'final': 8.910841251264857} None
+RESULT 2 {'family': 'compression_breakout', 'breadth': True, 'rank': 'low_vol', 'hold_days': 40, 'top_k': 8} {'cagr': 67.58905425932176, 'mdd': 54.695575288240846, 'sharpe': 1.2188251669834262, 'trades': 264, 'final': 38.587773383958336} None
+RESULT 2 {'family': 'compression_breakout', 'breadth': True, 'rank': 'low_vol', 'hold_days': 20, 'top_k': 12} {'cagr': 55.73726568981996, 'mdd': 41.633051506485934, 'sharpe': 1.2893854613840166, 'trades': 504, 'final': 22.966855594704658} None
+복귀조건 미달성, 계속 진행 필요

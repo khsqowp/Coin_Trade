@@ -1,0 +1,67 @@
+{
+  "round": 15,
+  "new_backtests": 0,
+  "counts": [
+    {
+      "round": 12,
+      "experiments": 127,
+      "family": 0,
+      "three_axis_candidates": 6
+    },
+    {
+      "round": 13,
+      "experiments": 81,
+      "family": 2,
+      "three_axis_candidates": 9
+    },
+    {
+      "round": 14,
+      "experiments": 31,
+      "family": 31,
+      "three_axis_candidates": 6
+    }
+  ],
+  "total_unique": 239,
+  "p": 0.0033222591362126247,
+  "p_formula": "(0+1)/(300+1)",
+  "alpha": 0.05,
+  "checks": [
+    {
+      "method": "Bonferroni A",
+      "n": 239,
+      "threshold": 0.0002092050209205021,
+      "p": 0.0033222591362126247,
+      "passes": false
+    },
+    {
+      "method": "Bonferroni B Round14",
+      "n": 31,
+      "threshold": 0.0016129032258064516,
+      "p": 0.0033222591362126247,
+      "passes": false
+    },
+    {
+      "method": "Bonferroni B cumulative family",
+      "n": 33,
+      "threshold": 0.0015151515151515152,
+      "p": 0.0033222591362126247,
+      "passes": false
+    },
+    {
+      "method": "BH rank1 all",
+      "n": 239,
+      "threshold": 0.0002092050209205021,
+      "p": 0.0033222591362126247,
+      "passes": false
+    },
+    {
+      "method": "BH rank1 candidates",
+      "n": 21,
+      "threshold": 0.002380952380952381,
+      "p": 0.0033222591362126247,
+      "passes": false
+    }
+  ],
+  "verdict": "기각 — 우연과 구분 안 됨",
+  "bh_scope": "Requested rank-1 comparison only; not full BH step-up"
+}

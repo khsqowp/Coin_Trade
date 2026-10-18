@@ -1,0 +1,41 @@
+{
+  "source_config_count": 71,
+  "method": "post-cutoff OHLC shock, volume x7 and equal-weight proxy x3; compare every configured signal and indicator through cutoff",
+  "markets": [
+    {
+      "market": "US",
+      "config_count": 71,
+      "symbols": 54,
+      "cutoff": "2024-02-22",
+      "future_price_multiplier": "deterministic lognormal, sigma 0.35",
+      "future_volume_multiplier": 7.0,
+      "future_proxy_multiplier": 3.0,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "ATR14",
+        "STOP_LEVEL"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    },
+    {
+      "market": "KR",
+      "config_count": 71,
+      "symbols": 64,
+      "cutoff": "2024-02-06",
+      "future_price_multiplier": "deterministic lognormal, sigma 0.35",
+      "future_volume_multiplier": 7.0,
+      "future_proxy_multiplier": 3.0,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "ATR14",
+        "STOP_LEVEL"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

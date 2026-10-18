@@ -1,0 +1,4 @@
+PASS: python3 -m py_compile app/crypto_round9_research.py
+PASS: Round4 flapping function plus independent first-following-pause arithmetic; Round8 full and all 8 windows exact; BTC Round6 formula; no-CB prefix/future mutation/known-through timestamps; finite metrics
+PASS: final verdict and document completeness; 3 failed windows all no-CB alpha negative; variants not permitted by low-flapping condition
+PASS: Round1-8 verification modules rerun, all exit code 0; each regression log contains PASS and no Traceback

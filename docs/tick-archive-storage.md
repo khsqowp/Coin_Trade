@@ -1,0 +1,11 @@
+# Tick archive storage and retention
+
+Tick events are buffered briefly in the stream process and flushed to the local archive every 15 seconds for Binance streams and every 30 seconds for KIS streams. Archive files are plain JSONL, partitioned by UTC timestamp as `YYYY/MM/DD/HH/<category>.jsonl`. A single flush can span categories and hours; `append_batches` serializes writers, fsyncs appended data, and rolls the batch back if a write fails.
+
+The Binance and KIS stream processes keep a failed archive batch in memory and retry it while continuing to refresh their rolling state. This is a short retry buffer, not durable storage: a host/process crash during a persistent local-disk failure can still lose the not-yet-written batch. Monitor `[틱아카이브 저장실패]` and `[틱아카이브 롤백실패]` messages.
+
+The local archive is mounted into the trading containers at `/app/archive` and is the source of truth until backup verification succeeds. A dedicated LaunchAgent runs a tick-only NAS backup immediately when loaded and every seven days afterward. It checks the NAS mount, writes closed-date JSONL files as `.jsonl.gz` under `/Volumes/HDD2TB/Trade/tick-archive`, and compares the SHA-256 of decompressed NAS content with each local source file. Only verified closed UTC date folders are removed locally; the current UTC date folder remains available for appends. Existing uncompressed historical NAS files are left untouched. The separate four-hour LaunchAgent continues to back up database dumps and trading state.
+
+A short live sample (under one minute) produced about 3.1 MB of raw JSONL and about 0.17 MB when gzip-compressed, roughly 5.5% of the raw size. Linear extrapolation suggests approximately 1.6 GB per week compressed versus 30 GB raw, but this brief sample is not a reliable capacity forecast; measure actual daily growth after the collector has run longer. NAS free space was about 487 GiB at the time of measurement.
+
+To inspect operation, review `~/Library/Logs/tick-archive-weekly.log` and `~/Library/Logs/tick-archive-backup-launchd.log`, confirm `com.orchestration.tick-archive-weekly` and `com.orchestration.tick-backup` are loaded, and compare local/NAS file trees after a completed run. NAS `.jsonl.gz` files can be streamed with `gzip -dc file.jsonl.gz`. A failed or mismatched copy leaves the local source folder in place for the next retry.

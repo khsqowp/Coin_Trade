@@ -1,0 +1,23 @@
+Round16 독립 Python 코드 검토
+최종 판정: Approve — 검토 범위에서 CRITICAL/HIGH 결함 없음.
+
+발견 및 수정:
+- 기간별 inverse_vol 계산의 사전 변동성 워밍업 누락: 전체 p와 기간별 prepared 전달로 수정 후 실행 재시작.
+- 검증기 보정값 스냅샷의 참조 공유: copy.deepcopy로 수정.
+- 빈 prefix 프레임 및 검증 설정 그룹 순회 오류: 0행 (0,4) 배열 처리 및 34개 실제 Round11 설정 펼침으로 수정.
+- 신규 세 파일 타입/포맷 문제: mypy 및 Black 통과.
+
+확인:
+- 프록시와 신호는 현재/과거 확정봉만 사용, next-open exit는 i-1 신호 사용.
+- 전체397개 (신규384 +대조13), 전체 n 기반 full BH, Bonferroni, 4검사 AND.
+- 기존 technical engine 6개 설정의 과거 필드/trace parity 독립 확인.
+- 부모 검증기: 전체270개 종목×티어×창 prefix/미래변조, C대조10개, Round11 34설정 HEAD parity 통과.
+- C/D 대응 대조군 지표차이는 최종채택 규칙에 영향 없음.
+- spawn4 병렬 MC는 seed/시행수/순서를 유지, 직접 실행 첫 seed 일치 검사; 예외 전파.
+- 500회 MC 최소 p=1/501는 Bonferroni 0.05/397보다 큼. 해상도 부족을 p=0 또는 승자로 해석하지 않음.
+
+중단/재시작:
+- 워밍업 결함 수정 및 동일 seed MC 병렬화 시 각각 진행 중 미저장 MC를 중단.
+- 완료·저장 설정은 exact config/manifest 대조 후 건너뛰고 미완료 설정만 재실행.
+- 반복 시행은 동일 설정 재실행이며 새 조합으로 중복 집계하지 않음.
+- 실행중단 흔적과 완료 시행은 round16-execution-2026-10-08.log에 보존.

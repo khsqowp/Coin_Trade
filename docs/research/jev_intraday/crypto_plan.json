@@ -1,0 +1,179 @@
+{
+  "title": "Jev decision-layer research plan for second-level crypto trading",
+  "version": 1,
+  "as_of": "2026-10-16",
+  "status": "research_design_only",
+  "profitability_claim": false,
+  "scope": {
+    "repository": "/Users/user/Desktop/CODE/Ochestration/trading",
+    "outputs_only": [
+      "docs/research/jev_intraday/CRYPTO_RESEARCH.md",
+      "docs/research/jev_intraday/crypto_plan.json"
+    ],
+    "prohibited": ["live_orders", "api_key_access", "commit", "push"],
+    "not_performed": ["backtest", "api_latency_benchmark", "paper_order", "live_order"]
+  },
+  "model": {
+    "provider": "TypeSafe",
+    "model_family": "System One / Jev",
+    "endpoint": "POST https://api.typesafe.ai/v1/systemone",
+    "request_shape": {
+      "headers": ["Authorization: Bearer <key>", "Content-Type: application/json"],
+      "fields": ["model", "state", "questions"]
+    },
+    "response_shape": ["resolved model", "answers keyed by question id", "usage"],
+    "question_types": ["Choice", "Score", "Noul"],
+    "published_default_limits": {
+      "requests_per_minute": 1200,
+      "input_tokens_per_second": 250000,
+      "caveat": "Limits can change and may vary by organization; verify current official console/API values before any later experiment. Throughput limits are not latency guarantees."
+    },
+    "documented_latency_sla": null,
+    "latency_note": "No numerical Jev p50/p95/p99 inference SLA was verified. Measure full request RTT and end-to-end event-to-fill components separately."
+  },
+  "repository_and_data": {
+    "crypto_collector": {
+      "sources_reported_by_user": ["Binance spot @trade", "Binance USD-M @trade", "Binance USD-M @markPrice@1s"],
+      "reported_transform": "Discard exchange event timestamp T/E, trade quantity q and maker-side m; persist local now_iso() receive timestamp and price only.",
+      "current_checkout_caveat": "app/crypto_tick_stream.py is deleted in the dirty worktree; the above is user-provided code inspection and historical/source context, not a present-file verification.",
+      "depth_stream": false,
+      "tick_signal_connected_to_live_decisions": false
+    },
+    "nas_inventory_user_report": {
+      "path": "/Volumes/HDD2TB/Trade/tick-archive",
+      "approx_size_gb": 158,
+      "date_start": "2026-09-01",
+      "date_end": "2026-10-mid",
+      "crypto_spot_daily_files": 43,
+      "crypto_perp_daily_files": 43,
+      "kr_daily_files": 36,
+      "us_daily_files": 0,
+      "record_fields": ["symbol", "ts", "price"],
+      "depth_or_size_or_side": false,
+      "inspection_method": "Use user-provided find/du/sample inventory; do not scan all files."
+    },
+    "local_sample_2026_10_13": {
+      "crypto_spot": {"size_mb_approx": 1.9, "rows": 25299},
+      "crypto_perp": {"size_mb_approx": 13, "rows": 175195},
+      "fields": ["symbol", "ts", "price"],
+      "representativeness": "Not established."
+    },
+    "kr_us_feed": {
+      "code_support": "app/tick_stream.py implements KIS public KR H0STCNT0 and US HDFSCNT0 subscriptions.",
+      "evidence_of_archive": "NAS inventory reports 36 KR daily files and 0 US daily files.",
+      "interpretation": "Subscription implementation is not proof of current successful coverage; zero archived US files is not proof that subscription is unsupported. Check live state subscribed lists and actual payload continuity separately.",
+      "timestamp_caveat": "KIS collector stores local now_iso() and price; exchange event-time fidelity is not established."
+    },
+    "historical_identifiability": {
+      "price_only_proxy_tests_possible": ["price-return momentum", "price-return reversal", "sample timestamp interval/duplication and continuity diagnostics"],
+      "not_reconstructable": ["orderbook imbalance", "depth slope", "queue position", "spread from quotes", "volume delta/CVD", "aggressor side", "event-time feed latency", "historical fills and queue priority"],
+      "reason": "Archived rows omit bid/ask depth, size, trade quantity, maker flag and exchange event time."
+    },
+    "additional_feed_fields": ["exchange_event_time", "local_monotonic_receive_time", "sequence/update_id", "bid_ask_price_and_quantity_deltas", "trade_price", "base_and_quote_quantity", "maker_flag", "mark/index_price", "funding_rate", "reconnect_and_gap_markers", "clock_offset_measurements"]
+  },
+  "latency_budget": {
+    "components": ["exchange_event_to_local_receive", "feature_and_queue", "Jev_HTTP_RTT", "policy_and_risk", "order_send_to_ack", "ack_to_fill"],
+    "measure_percentiles": [50, 95, 99],
+    "current_archived_event_time_replay_possible": false,
+    "candidate_expiry_thresholds_ms": [250, 500, 1000],
+    "thresholds_are_guarantees": false,
+    "policy": "Shadow-only initially. Expired, stale, gapped, timed-out, 429 or 529 inputs/results become no-trade; delayed answers never trigger retroactive entry."
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "Short impulse continuation",
+      "trigger": "On completed 1s aggregate: 5s log-return z-score >= 2.5 (short <= -2.5) relative to trailing 60s realized volatility, and 5s quote/trade count exceeds the same-time-of-day trailing 30m 90th percentile.",
+      "features": ["1/5/15/60s returns", "realized volatility", "spread_bps", "normalized_volume", "mark_index_basis", "seconds_to_funding", "freshness", "BTC co-movement"],
+      "jev_questions": ["Choose continuation, range, or reversal over next 10s", "Noul: is expected edge positive after costs?"],
+      "holding_seconds": [5, 15],
+      "risk_exit": "Exit at timeout, opposite z trigger, or the tighter of 1.0x recent 1s volatility adverse move and account risk cap.",
+      "falsification": "Reject if OOS net 10s markout fails to beat both no-model z-momentum and zero after costs."
+    },
+    {
+      "id": "H2",
+      "name": "Short-horizon overextension fade",
+      "trigger": "3s cumulative return absolute z >= 3; next 1s return reverses; price is >=2x 1s volatility from 5s VWAP; spread <=10bp and feed fresh.",
+      "features": ["1/3/5/30s path", "VWAP gap", "volatility", "quote update rate", "trade count", "reversal persistence"],
+      "jev_questions": ["Choice: fade, wait, no-trade"],
+      "holding_seconds": [1, 10],
+      "risk_exit": "Exit at VWAP reversion, 10s maximum, or impulse extreme plus 0.5x 5s volatility stop.",
+      "falsification": "Reject if OOS 5s/15s net markout or adverse-selection tail does not improve versus a fixed contrarian rule."
+    },
+    {
+      "id": "H3",
+      "name": "L2 imbalance with price confirmation",
+      "trigger": "Sequence-valid top-5 depth imbalance >0.6 (<-0.6 short) for 3 updates, followed by at least one tick same-direction mid confirmation in the next second.",
+      "features": ["top-5/10 imbalance", "depth slope", "spread", "quote cancel/update rate", "100/500ms trade flow", "1/3s mid returns"],
+      "jev_questions": ["Choice: continuation, absorption, insufficient evidence", "Noul: permit entry?"],
+      "holding_seconds": [1, 5],
+      "risk_exit": "Exit on imbalance reversal, invalidated price confirmation, sequence gap or timeout.",
+      "falsification": "Only test after raw L2 collection; reject if 1/3/5s executable net markout is <=0 or edge vanishes after excluding gaps.",
+      "current_archive_backtestable": false
+    },
+    {
+      "id": "H4",
+      "name": "Aggressor-flow exhaustion reversal",
+      "trigger": "Rolling 1s signed quote-volume delta has 10s z-score >3, mid fails to make a new extreme in the same direction, and same-direction top-of-book depth recovers on two updates.",
+      "features": ["trade q", "maker flag m", "spread", "top depth", "trade intensity", "mid markout", "volatility"],
+      "jev_questions": ["Choice: absorption, continuation, ambiguous"],
+      "holding_seconds": [1, 5],
+      "risk_exit": "Exit on flow re-acceleration, adverse price bound, or 5s timeout.",
+      "falsification": "Reject if OOS net markout/executability does not beat price-only contrarian baseline after latency and costs.",
+      "current_archive_backtestable": false
+    },
+    {
+      "id": "H5",
+      "name": "Funding/mark dislocation execution veto",
+      "trigger": "Within 60s of funding settlement with predicted funding or mark-index basis above trailing 24h 99th percentile, or mark/last basis 30s z-score >3.",
+      "features": ["funding rate", "seconds to settlement", "mark/index/last basis", "spread/depth", "volatility", "holding horizon", "order side/notional"],
+      "jev_questions": ["Choice: allow, delay, reduce, no-trade"],
+      "holding_seconds": null,
+      "risk_exit": "This is an execution veto overlay, not a direction-entry signal; deterministic leverage and exposure caps dominate.",
+      "falsification": "Matched settlement-window samples must show improved cost-adjusted tail risk or fill quality; otherwise reject overlay."
+    }
+  ],
+  "risk_and_cost_assumptions": {
+    "initial_mode": "shadow_only_then_demo_or_testnet_paper",
+    "leverage_max": 1.0,
+    "risk_per_order_equity_bps": 2,
+    "symbol_gross_cap_equity_pct": 10,
+    "total_gross_cap_equity_pct": 25,
+    "daily_loss_stop_equity_bps": 20,
+    "fee_stress_round_trip_bps": {"maker_assumption": 10, "taker_assumption": 20},
+    "fee_note": "Provisional one-way 5bp maker and 10bp taker assumptions each way; not verified exchange fees or user tier.",
+    "extra_slippage_stress_one_way_bps": [2, 5, 10],
+    "slippage_note": "Stress assumptions until sequence-valid L2 execution replay is available.",
+    "funding": "Join actual historical contract funding rate and settlement timestamps; track realized payment separately.",
+    "guards": ["reduce-only exits", "stale/gap kill", "maximum order frequency", "one active position per symbol", "deduplicate event/order IDs", "timeout/error/unknown response means no new entry", "exchange lot/tick/notional validation"]
+  },
+  "baselines": ["no-trade", "matched random direction/time", "deterministic trigger only", "always allow", "always abstain", "same-feature Jev gate", "deterministic baseline with Jev-equivalent measured delay", "passive limit/taker/no-fill execution scenarios"],
+  "metrics": ["net_pnl_per_event", "net_bps_per_trade", "1/3/5/10s_markout", "fill_ratio", "adverse_selection", "turnover", "max_drawdown", "loss_tail", "decision_coverage", "probability_calibration", "timeout_and_stale_abstain_rate", "event_to_decision_and_fill_latency_p50_p95_p99"],
+  "protocol": [
+    {"step": 1, "name": "Read-only data integrity audit", "requirements": ["manifest and sampled files only", "record duplicates/gaps/coverage", "do not recursively scan all NAS data", "label local receive-time price-only data explicitly"]},
+    {"step": 2, "name": "Price-only proxy study", "requirements": ["H1/H2 only", "do not treat repeated collector samples as independent trades", "do not claim event-time replay or execution profit", "no H3/H4 backtest"]},
+    {"step": 3, "name": "Raw market-data capture", "requirements": ["trade/depth/mark/index/funding", "exchange event time and monotonic receive time", "sequence-safe snapshot/diff recovery", "reconnect and clock-offset logging"]},
+    {"step": 4, "name": "Pre-register and split", "requirements": ["chronological train/validation/untouched OOS >=4 weeks", "purged event split and embargo", "log all hypotheses and parameter searches", "report symbol/regime/time-of-day slices"]},
+    {"step": 5, "name": "Causal replay and model-response collection", "requirements": ["historical current API calls are not past Jev predictions", "retain contemporaneous shadow responses and resolved model IDs", "realistic fee/funding/slippage/fill model"]},
+    {"step": 6, "name": "Shadow-only", "minimum": "2 weeks or 1000 candidate events, whichever is longer", "requirements": ["log request/response monotonic timestamps", "measure p50/p95/p99 and errors", "late answer expires to no-trade"]},
+    {"step": 7, "name": "Demo/testnet paper execution", "minimum": "4 weeks", "requirements": ["model partial/no fills/cancel delay conservatively", "daily reconcile", "never auto-promote to live"]},
+    {"step": 8, "name": "Acceptance gate", "requirements": ["positive net expectancy across all fixed OOS periods", "survive higher-cost stress", "bootstrap lower bound above zero", "incremental benefit over deterministic baseline", "latency deadline and kill-switch tests pass", "separate authorization and review for any later live trading"]}
+  ],
+  "sources": [
+    {"title": "TypeSafe Quick start", "url": "https://docs.typesafe.ai/introduction/quickstart", "kind": "official", "supports": ["API endpoint", "request/response shape", "question primitives"]},
+    {"title": "TypeSafe System One", "url": "https://docs.typesafe.ai/concepts/system-one", "kind": "official", "supports": ["structured decisions", "parallel independent questions", "no numerical latency SLA stated"]},
+    {"title": "TypeSafe HTTP API reference", "url": "https://docs.typesafe.ai/api", "kind": "official", "supports": ["HTTP schema"]},
+    {"title": "TypeSafe Python SDK retries", "url": "https://docs.typesafe.ai/sdk/python/api/retries", "kind": "official", "supports": ["retry configuration"]},
+    {"title": "TypeSafe Python SDK constants", "url": "https://docs.typesafe.ai/sdk/python/api/constants", "kind": "official", "supports": ["SDK defaults; no numerical inference latency SLA verified"]},
+    {"title": "kataras/jev Go SDK", "url": "https://github.com/kataras/jev", "kind": "third_party", "supports": ["quotes TypeSafe published default rate limits; official quota page was not directly verified"]},
+    {"title": "Binance Spot WebSocket Streams", "url": "https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md", "kind": "official", "supports": ["trade/depth event fields, sequence management and stream limits"]},
+    {"title": "Binance Spot WebSocket API", "url": "https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md", "kind": "official", "supports": ["request/response and order/rate-limit documentation"]},
+    {"title": "Binance USD-M Futures WebSocket Market Streams", "url": "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public", "kind": "official", "supports": ["trade/depth/bookTicker/mark fields, sequence and documented stream update speeds"]},
+    {"title": "Binance USD-M Futures New Order", "url": "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade", "kind": "official", "supports": ["order API fields and validation"]},
+    {"title": "Binance USD-M Futures Exchange Information", "url": "https://developers.binance.com/en/docs/catalog/derivatives-trading-usds-futures/market-data/rest-api/exchange-information", "kind": "official", "supports": ["current symbol filters and trading metadata"]},
+    {"title": "Binance USD-M Funding Rate History", "url": "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data", "kind": "official", "supports": ["historical funding data"]},
+    {"title": "Binance USD-M Limits", "url": "https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/general-info", "kind": "official", "supports": ["request/order rate-limit concepts; verify current values"]},
+    {"title": "KIS Open API portal", "url": "https://apiportal.koreainvestment.com/", "kind": "official", "supports": ["KR/US public execution stream definitions; actual coverage must be measured"]}
+  ],
+  "uncertainties": ["No numerical Jev latency benchmark or guaranteed SLA found or measured.", "Published default Jev rate-limit numbers were found only via a third-party SDK quoting TypeSafe docs; official current quota page was not directly verified. Current quotas/models may change; no key/console access was used.", "NAS counts and approximate size are user-provided inventory results; archive was not fully scanned.", "Local 2026-10-13 sample is not proven representative of NAS history.", "crypto_tick_stream.py is deleted in the dirty checkout; stream transformation details are user-provided inspection.", "Actual current KIS subscription success is unknown without live subscription state and payload evidence.", "No backtest, paper execution, or profitability result was produced."]
+}

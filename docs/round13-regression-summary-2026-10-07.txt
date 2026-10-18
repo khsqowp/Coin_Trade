@@ -1,0 +1,12 @@
+verify_technical_ict 0
+verify_round4 0
+verify_hybrid_drawdown 0
+verify_round6 0
+verify_round7 0
+verify_round8 0
+verify_round3 0
+verify_round5 0
+verify_round12 0
+verify_round11 0
+verify_round10 0
+round9 independent path-override replay 0

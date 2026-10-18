@@ -1,0 +1,1814 @@
+{
+  "market": "KR equity",
+  "panel": {
+    "symbols": 64,
+    "dates": [
+      "2018-01-02",
+      "2026-10-15"
+    ],
+    "sessions": 2154
+  },
+  "crypto_sources_sha256": {
+    "docs/round8-results-2026-10-07.json": "0b4e46a1026794c467e8ffe6542a11969d4c9cadd92dfc03acb4b105428fad15",
+    "docs/round9-results-2026-10-07.json": "986e252ff48971dd240c70f5089bb99a49e124571cce1f8c5c87b415a28652db",
+    "docs/round15-results-2026-10-07.json": "6e1ffae625f3d670ec9e8d4c01ec55cf68f5b8da49d5cb0c4be13d023d61b3c2"
+  },
+  "round8": {
+    "top10_source_selected_representatives": [
+      {
+        "rank": 1,
+        "family": "heikin_ashi",
+        "representative_name": "heikin_ashi",
+        "config": {
+          "dd_trigger": 0.25,
+          "resume_mode": "btc_sma50"
+        },
+        "source": "round4-results-2026-10-07.json",
+        "source_status": "§16 하이킨아시 CB25%+BTC재개 기각 (동일 변형)",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.25,
+              "resume_mode": "btc_sma50",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "family": "frvp",
+        "representative_name": "frvp",
+        "config": {
+          "dd_trigger": 0.2,
+          "resume_mode": "cooldown",
+          "cooldown_days": 60
+        },
+        "source": "round3-results-2026-10-06.json",
+        "source_status": "미검증 (최종 4항목); §16 기간·집중도 일부검증 / §18 알파 6/8",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "dd_trigger": 0.2,
+              "resume_mode": "cooldown",
+              "cooldown_days": 60,
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 3,
+        "family": "volume",
+        "representative_name": "volume_spike_cap5",
+        "config": {
+          "volume_multiple": 3.5
+        },
+        "source": "round5-champion-results-2026-10-07.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {}
+          },
+          {
+            "filter": "sma200",
+            "config": {}
+          },
+          {
+            "filter": "rsi70",
+            "config": {}
+          },
+          {
+            "filter": "atr10",
+            "config": {}
+          },
+          {
+            "filter": "trend7",
+            "config": {}
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 4,
+        "family": "vwap",
+        "representative_name": "vwap",
+        "config": {
+          "timing": "confirm_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 20,
+          "selection": "all"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 20,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 5,
+        "family": "ensemble",
+        "representative_name": "ensemble",
+        "config": {
+          "names": [
+            "volume_spike_cap5",
+            "heikin_ashi",
+            "frvp"
+          ],
+          "weights": [
+            0.5,
+            0.25,
+            0.25
+          ]
+        },
+        "source": "round5-results-2026-10-07.json",
+        "source_status": "§17 기각 계열; 해당 변형 4항목 미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 7
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 14
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 30
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "hold_days": 60
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {}
+          },
+          {
+            "filter": "sma200",
+            "config": {}
+          },
+          {
+            "filter": "rsi70",
+            "config": {}
+          },
+          {
+            "filter": "atr10",
+            "config": {}
+          },
+          {
+            "filter": "trend7",
+            "config": {}
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 6,
+        "family": "fvg",
+        "representative_name": "fvg",
+        "config": {
+          "timing": "next_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 10,
+          "selection": "all"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 7,
+        "family": "fibonacci",
+        "representative_name": "fibonacci",
+        "config": {
+          "timing": "confirm_open",
+          "stop": "pct10",
+          "tp": "none",
+          "hold_days": 10,
+          "selection": "rank"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct10",
+              "tp": "none",
+              "hold_days": 10,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 8,
+        "family": "ema_cross",
+        "representative_name": "ema_cross",
+        "config": {
+          "timing": "confirm_open",
+          "stop": "pct5",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "rank"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 9,
+        "family": "liquidity_sweep",
+        "representative_name": "liquidity_sweep",
+        "config": {
+          "timing": "confirm_open",
+          "stop": "structure",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "rank"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 4
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 6
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 12
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "top_k": 16
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "structure",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "rank",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      },
+      {
+        "rank": 10,
+        "family": "elliott_wave",
+        "representative_name": "elliott_wave",
+        "config": {
+          "timing": "next_open",
+          "stop": "pct5",
+          "tp": "none",
+          "hold_days": 40,
+          "selection": "all"
+        },
+        "source": "technical-ict-results-2026-10-06.json",
+        "source_status": "미검증",
+        "variants": [
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 7,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 14,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 30,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 60,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma50",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "sma200",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "rsi70",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "atr10",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "trend7",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "confirm_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all"
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.6,
+              "weight_cap": 0.35
+            }
+          },
+          {
+            "filter": "none",
+            "config": {
+              "timing": "next_open",
+              "stop": "pct5",
+              "tp": "none",
+              "hold_days": 40,
+              "selection": "all",
+              "sizing": "inverse_vol",
+              "target_vol": 0.8,
+              "weight_cap": 0.35
+            }
+          }
+        ]
+      }
+    ],
+    "declared_variant_count": 151,
+    "evaluated_in_kr": 0,
+    "omission": "All declared configs inventoried, but no KR strategy evaluation claimed: source families include crypto-specific signals/accounting and no one-to-one mapping is defined."
+  },
+  "round9": {
+    "source_fixed_config": {
+      "dd_trigger": 0.25,
+      "resume_mode": "btc_sma50",
+      "top_k": 12
+    },
+    "source_periods": [
+      {
+        "start": "2019-09-08",
+        "end": "2021-09-07",
+        "cb": {
+          "cagr": 426.55017596965257,
+          "mdd": 45.41974753063162,
+          "sharpe": 2.7584893496834852,
+          "trades": 262,
+          "final": 27.662531869218522
+        },
+        "no_cb": {
+          "cagr": 359.7026418750373,
+          "mdd": 61.62397700165118,
+          "sharpe": 2.207169808065497,
+          "trades": 321,
+          "final": 21.08856932421637
+        },
+        "btc_cagr": 116.50969760093082,
+        "cb_alpha": 310.0404783687218,
+        "no_cb_alpha": 243.19294427410645,
+        "cause": "실패 없음"
+      },
+      {
+        "start": "2020-09-08",
+        "end": "2022-09-07",
+        "cb": {
+          "cagr": 265.65074816858026,
+          "mdd": 54.255166502440154,
+          "sharpe": 2.1068381328171544,
+          "trades": 254,
+          "final": 13.299047733662649
+        },
+        "no_cb": {
+          "cagr": 132.78977452176397,
+          "mdd": 72.43652093583238,
+          "sharpe": 1.391718941375927,
+          "trades": 388,
+          "final": 5.400335738520491
+        },
+        "btc_cagr": 36.34871398923721,
+        "cb_alpha": 229.30203417934305,
+        "no_cb_alpha": 96.44106053252676,
+        "cause": "실패 없음"
+      },
+      {
+        "start": "2021-09-08",
+        "end": "2023-09-07",
+        "cb": {
+          "cagr": 2.845140998535789,
+          "mdd": 39.89119903984714,
+          "sharpe": 0.33766375030495327,
+          "trades": 265,
+          "final": 1.0575904482952556
+        },
+        "no_cb": {
+          "cagr": -38.69735123466022,
+          "mdd": 73.70957849600346,
+          "sharpe": -0.30881311388707283,
+          "trades": 394,
+          "final": 0.37655745929606876
+        },
+        "btc_cagr": -25.24624080864578,
+        "cb_alpha": 28.09138180718157,
+        "no_cb_alpha": -13.451110426014438,
+        "cause": "실패 없음"
+      },
+      {
+        "start": "2022-09-08",
+        "end": "2024-09-07",
+        "cb": {
+          "cagr": 36.87589198874925,
+          "mdd": 49.61021705503378,
+          "sharpe": 0.8244100971566585,
+          "trades": 325,
+          "final": 1.8726960883398844
+        },
+        "no_cb": {
+          "cagr": 27.366499637242402,
+          "mdd": 51.80008100026179,
+          "sharpe": 0.6998490895106662,
+          "trades": 400,
+          "final": 1.6216854273772414
+        },
+        "btc_cagr": 67.52744118412383,
+        "cb_alpha": -30.651549195374578,
+        "no_cb_alpha": -40.16094154688143,
+        "cause": "순수 신호 엣지 약화"
+      },
+      {
+        "start": "2023-09-08",
+        "end": "2025-09-07",
+        "cb": {
+          "cagr": 83.51672275212505,
+          "mdd": 48.79592731627252,
+          "sharpe": 1.3426628303015287,
+          "trades": 321,
+          "final": 3.365040826402716
+        },
+        "no_cb": {
+          "cagr": 58.74221900022316,
+          "mdd": 59.90869379374805,
+          "sharpe": 1.0290073238102393,
+          "trades": 401,
+          "final": 2.5183156287233723
+        },
+        "btc_cagr": 105.76103730789987,
+        "cb_alpha": -22.24431455577482,
+        "no_cb_alpha": -47.01881830767671,
+        "cause": "순수 신호 엣지 약화"
+      },
+      {
+        "start": "2020-10-06",
+        "end": "2022-10-05",
+        "cb": {
+          "cagr": 341.1983462086364,
+          "mdd": 45.63890262091221,
+          "sharpe": 2.4479069150553596,
+          "trades": 257,
+          "final": 19.347300836331794
+        },
+        "no_cb": {
+          "cagr": 156.76342252786307,
+          "mdd": 72.46159298134941,
+          "sharpe": 1.5090253215511475,
+          "trades": 386,
+          "final": 6.567263636113931
+        },
+        "btc_cagr": 36.720241487795306,
+        "cb_alpha": 304.4781047208411,
+        "no_cb_alpha": 120.04318104006776,
+        "cause": "실패 없음"
+      },
+      {
+        "start": "2023-10-06",
+        "end": "2025-10-05",
+        "cb": {
+          "cagr": 89.15588157428755,
+          "mdd": 46.83691334275526,
+          "sharpe": 1.3710775706400486,
+          "trades": 320,
+          "final": 3.574874118686377
+        },
+        "no_cb": {
+          "cagr": 64.17250812403358,
+          "mdd": 59.936195116558956,
+          "sharpe": 1.0759346446492881,
+          "trades": 398,
+          "final": 2.693432746934633
+        },
+        "btc_cagr": 112.27201564494709,
+        "cb_alpha": -23.11613407065954,
+        "no_cb_alpha": -48.099507520913505,
+        "cause": "순수 신호 엣지 약화"
+      },
+      {
+        "start": "2024-10-06",
+        "end": "2026-10-05",
+        "cb": {
+          "cagr": 66.60814258926906,
+          "mdd": 46.06889995664942,
+          "sharpe": 1.1817875469145835,
+          "trades": 291,
+          "final": 2.770014157211042
+        },
+        "no_cb": {
+          "cagr": 47.833750492798586,
+          "mdd": 57.129559844562486,
+          "sharpe": 0.9163083601712517,
+          "trades": 403,
+          "final": 2.1819759917409964
+        },
+        "btc_cagr": 18.01220715785044,
+        "cb_alpha": 48.595935431418624,
+        "no_cb_alpha": 29.821543334948146,
+        "cause": "실패 없음"
+      }
+    ],
+    "source_checks": {
+      "flapping_threshold": {
+        "flapping_5d_max_pct": 50,
+        "alpha_positive_min": 7
+      },
+      "period_alpha_min": 7
+    },
+    "kr_reproductions": 0,
+    "omission": "TOP_K12 source diagnosis inventoried; KR score/ranking, breaker and crypto benchmark are not equivalent to KR broad-market state. No KR diagnosis result asserted."
+  },
+  "round15": {
+    "source_counts": [
+      {
+        "round": 12,
+        "experiments": 127,
+        "family": 0,
+        "three_axis_candidates": 6
+      },
+      {
+        "round": 13,
+        "experiments": 81,
+        "family": 2,
+        "three_axis_candidates": 9
+      },
+      {
+        "round": 14,
+        "experiments": 31,
+        "family": 31,
+        "three_axis_candidates": 6
+      }
+    ],
+    "unique_hypotheses": 239,
+    "declared_tests": [
+      {
+        "method": "Bonferroni A",
+        "n": 239,
+        "threshold": 0.0002092050209205021,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "Bonferroni B Round14",
+        "n": 31,
+        "threshold": 0.0016129032258064516,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "Bonferroni B cumulative family",
+        "n": 33,
+        "threshold": 0.0015151515151515152,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "BH rank1 all",
+        "n": 239,
+        "threshold": 0.0002092050209205021,
+        "p": 0.0033222591362126247,
+        "passes": false
+      },
+      {
+        "method": "BH rank1 candidates",
+        "n": 21,
+        "threshold": 0.002380952380952381,
+        "p": 0.0033222591362126247,
+        "passes": false
+      }
+    ],
+    "trial_control_source_counts": {
+      "round12": 127,
+      "round13": 81,
+      "round14": 31
+    },
+    "source_hypothesis_inputs_available": true,
+    "kr_hypotheses_recomputed": 0,
+    "kr_inference": null,
+    "omission": "Round15 contains only aggregate crypto p and multiplicity counts; no raw 300-control trial series or per-hypothesis matched null inputs. Equity p-values cannot be recomputed. Crypto p-values intentionally not reused."
+  },
+  "limitations": [
+    "No KR result is inferred from crypto-only benchmarks or universe-specific ranking.",
+    "No market adaptation is claimed for Round8, Round9, or Round15; this is the requested auditable source inventory and explicit gap record."
+  ]
+}

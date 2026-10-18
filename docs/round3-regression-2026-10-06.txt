@@ -1,0 +1,18 @@
+elliott_wave: prefix invariance PASS
+rsi: prefix invariance PASS
+ema_cross: prefix invariance PASS
+heikin_ashi: prefix invariance PASS
+fibonacci: prefix invariance PASS
+vwap: prefix invariance PASS
+fvg: prefix invariance PASS
+frvp: prefix invariance PASS
+order_block: prefix invariance PASS
+liquidity_sweep: prefix invariance PASS
+PASS: 432 prefix checks + 7 behavioral/accounting checks
+heikin_ashi_volume_spike all 45 symbols intersection/prefix PASS
+frvp_volume_spike all 45 symbols intersection/prefix PASS
+PASS: 388 hybrid prefix checks; 90 intersection checks; synthetic suspension/recovery/gap/permanent lock; 12 real breaker prefixes; 26 result sanity/period/target checks
+
+Python 별도 코드 리뷰: 핵심 인과성·재개·배분·목표 판정 오류 발견 없음.
+문서 표 구분자 누락 및 중간 불릿으로 표가 분리되는 오류 수정; 전수 열 개수·렌더 반복 동일성 확인.
+선택한 pylint 오류 검사 통과. black 포맷 검사 미통과(기존 compact 스타일 유지). mypy는 unresolved placeholder type 내부 오류로 중단; 타입검사 통과 주장 없음.

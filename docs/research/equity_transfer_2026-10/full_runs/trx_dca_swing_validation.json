@@ -1,0 +1,28 @@
+{
+  "markets": [
+    {
+      "market": "US",
+      "cutoff": "2024-02-22",
+      "cost_curves_reconciled": 2,
+      "account_equity_prefix_values_compared": 2588,
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    },
+    {
+      "market": "KR",
+      "cutoff": "2024-02-06",
+      "cost_curves_reconciled": 2,
+      "account_equity_prefix_values_compared": 2518,
+      "future_price_log_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    }
+  ],
+  "all_saved_curves_reconciled": true,
+  "all_future_prefix_checks_passed": true
+}

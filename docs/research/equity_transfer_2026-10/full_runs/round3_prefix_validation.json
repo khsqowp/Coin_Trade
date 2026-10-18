@@ -1,0 +1,25 @@
+{
+  "markets": {
+    "US": {
+      "cutoff": "2022-11-16",
+      "saved_curve_checks": 112,
+      "feature_symbol_checks": 270,
+      "future_ohlc_multiplier": 3,
+      "future_volume_multiplier": 7,
+      "max_prefix_curve_difference": 0.0,
+      "passed": true
+    },
+    "KR": {
+      "cutoff": "2022-11-09",
+      "saved_curve_checks": 112,
+      "feature_symbol_checks": 320,
+      "future_ohlc_multiplier": 3,
+      "future_volume_multiplier": 7,
+      "max_prefix_curve_difference": 0.0,
+      "passed": true
+    }
+  },
+  "reconciled_curves": 224,
+  "feature_prefix_checks": 590,
+  "all_checks_passed": true
+}

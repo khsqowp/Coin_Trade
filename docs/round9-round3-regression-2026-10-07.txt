@@ -1,0 +1,36 @@
+heikin_ashi_volume_spike_loose 45-symbol pair confirmation and prefix PASS
+frvp_volume_spike_loose 45-symbol pair confirmation and prefix PASS
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 12 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 13 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 2 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 13 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 2 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 13 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: volume_spike_cap5 {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 13 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 12 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 36 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 55 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 18 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 58 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 12 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 58 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 2 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 38 종료 전 쿨다운 미경과
+FINAL PAUSED: heikin_ashi {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 57 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 12 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 6 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.15, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 19 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 10 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 32 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.2, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 59 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 20} age 0 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 26 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.25, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 58 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 40} age 37 종료 전 쿨다운 미경과
+FINAL PAUSED: frvp {'dd_trigger': 0.3, 'resume_mode': 'cooldown', 'cooldown_days': 60} age 55 종료 전 쿨다운 미경과
+PASS: 741 prefix checks; 90 independent pair checks; synthetic cash restart/exact cooldown/BTC lag; future mutations; sizing inverse ratio/cap/risk; 56 result sanity and 48 restart event audits

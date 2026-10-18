@@ -1,0 +1,5 @@
+ccxt==4.4.68
+pandas-ta==0.4.71b0
+backtesting==0.3.3
+requests==2.32.3
+websockets==13.1
