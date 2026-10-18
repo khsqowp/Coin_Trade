@@ -1,0 +1,32 @@
+services:
+  crypto-shadow-predictor:
+    build:
+      context: ..
+      dockerfile: shadow_predictor/Dockerfile
+      args:
+        KRONOS_GIT_REF: ${KRONOS_GIT_REF:-67b630e67f6a18c9e9be918d9b4337c960db1e9a}
+    container_name: cointrade-crypto-shadow-predictor
+    user: "${LOCAL_UID:-501}:${LOCAL_GID:-20}"
+    environment:
+      SHADOW_SOURCE_STATE: /input/crypto_paper_strategies_6symbols.json
+      SHADOW_OUTPUT_STATE: /output/shadow_predictions.json
+      SHADOW_POLL_SECONDS: ${SHADOW_POLL_SECONDS:-10}
+      KRONOS_MODEL_ID: NeoQuasar/Kronos-mini
+      KRONOS_TOKENIZER_ID: NeoQuasar/Kronos-Tokenizer-2k
+      KRONOS_CONTEXT_LENGTH: "300"
+    volumes:
+      - ../../trading-crypto-paper-state:/input:ro
+      - ./runtime:/output
+    network_mode: none
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    init: true
+    logging:
+      driver: none
+
