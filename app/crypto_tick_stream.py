@@ -16,20 +16,38 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 
 import websockets
 
 from app.crypto_tick_state import load_state, log_event, now_iso, save_state
-from app.tick_archive import append_batch
+from app.tick_archive import append_batches
+from app.paper_strategy_engine import PaperStrategyEngine
 from app.momentum_rotation_loop import UNIVERSE as MOMENTUM_UNIVERSE
 from app.paper_funding_arb import SYMBOLS as FUNDING_ARB_BASES
 
 SPOT_WS_URL = "wss://stream.binance.com:9443/stream"
-FUTURES_WS_URL = "wss://fstream.binance.com/stream"
+FUTURES_WS_URL = "wss://fstream.binance.com/market/stream"
 
-SPOT_BASES = sorted(set(FUNDING_ARB_BASES) | {"TRX"})
-FUTURES_TRADE_BASES = sorted(set(FUNDING_ARB_BASES) | set(MOMENTUM_UNIVERSE))
-FUNDING_BASES = sorted(set(FUNDING_ARB_BASES))
+def _configured_bases(defaults: set[str]) -> list[str]:
+    raw = os.environ.get("CRYPTO_TICK_BASES")
+    if raw is None:
+        return sorted(defaults)
+    bases = {part.strip().upper() for part in raw.split(",") if part.strip()}
+    if not bases or any(not base.isascii() or not base.isalnum() for base in bases):
+        raise ValueError("CRYPTO_TICK_BASES must be a comma-separated list of alphanumeric base symbols")
+    return sorted(bases)
+
+
+if os.environ.get("CRYPTO_TICK_BASES") is None:
+    SPOT_BASES = sorted(set(FUNDING_ARB_BASES) | {"TRX"})
+    FUTURES_TRADE_BASES = sorted(set(FUNDING_ARB_BASES) | set(MOMENTUM_UNIVERSE))
+    FUNDING_BASES = sorted(set(FUNDING_ARB_BASES))
+else:
+    _selected_bases = _configured_bases(set())
+    SPOT_BASES = _selected_bases
+    FUTURES_TRADE_BASES = _selected_bases
+    FUNDING_BASES = _selected_bases
 
 MAX_TICKS_PER_SYMBOL = 300
 FLUSH_INTERVAL_SECONDS = 15
@@ -37,9 +55,8 @@ RECONNECT_BACKOFF_SECONDS = 5
 
 
 def _stream_name(base: str, suffix: str) -> str:
-    # 콤바인드 스트림(?streams=) 엔드포인트는 스트림명이 전부 소문자여야 함(단일 스트림
-    # 엔드포인트와 달리 대소문자 섞이면 그 스트림만 조용히 무시됨 — 실측 확인된 버그).
-    return f"{base.lower()}usdt{suffix}".lower()
+    # 심볼 부분만 소문자화한다. 채널 suffix의 대소문자(예: @markPrice@1s)는 문서 표기를 보존한다.
+    return f"{base.lower()}usdt{suffix}"
 
 
 def _combined_url(base_url: str, streams: list[str]) -> str:
@@ -48,6 +65,28 @@ def _combined_url(base_url: str, streams: list[str]) -> str:
 
 def _base_from_symbol(symbol: str) -> str:
     return symbol[:-4] if symbol.endswith("USDT") else symbol
+
+
+def _trade_record(data: dict) -> dict | None:
+    try:
+        raw_price = data["p"]
+        raw_quantity = data["q"]
+        record = {
+            "ts": now_iso(),
+            "exchange_event_ts": int(data["E"]),
+            "trade_ts": int(data["T"]),
+            "trade_id": int(data.get("t", data.get("a"))),
+            "price": float(raw_price),
+            "price_raw": raw_price,
+            "quantity": float(raw_quantity),
+            "quantity_raw": raw_quantity,
+            "buyer_is_maker": data["m"],
+        }
+    except (KeyError, TypeError, ValueError):
+        return None
+    if not isinstance(record["buyer_is_maker"], bool):
+        return None
+    return record
 
 
 async def _run_spot(buffer: dict[str, list[dict]]) -> None:
@@ -68,8 +107,12 @@ async def _run_spot(buffer: dict[str, list[dict]]) -> None:
             await asyncio.sleep(RECONNECT_BACKOFF_SECONDS)
 
 
-async def _run_futures(buffer: dict[str, list[dict]], funding_buffer: dict[str, list[dict]]) -> None:
-    streams = [_stream_name(b, "@trade") for b in FUTURES_TRADE_BASES]
+async def _run_futures(
+    buffer: dict[str, list[dict]],
+    funding_buffer: dict[str, list[dict]],
+    paper_engine: PaperStrategyEngine | None = None,
+) -> None:
+    streams = [_stream_name(b, "@aggTrade") for b in FUTURES_TRADE_BASES]
     streams += [_stream_name(b, "@markPrice@1s") for b in FUNDING_BASES]
     url = _combined_url(FUTURES_WS_URL, streams)
     while True:
@@ -79,7 +122,7 @@ async def _run_futures(buffer: dict[str, list[dict]], funding_buffer: dict[str, 
             save_state(state)
             async with websockets.connect(url) as ws:
                 async for raw in ws:
-                    _handle_futures_message(raw, buffer, funding_buffer)
+                    _handle_futures_message(raw, buffer, funding_buffer, paper_engine)
         except Exception as exc:  # noqa: BLE001
             state = load_state()
             log_event(state, f"[선물오류] 재접속: {exc}")
@@ -93,24 +136,35 @@ def _handle_spot_message(raw: str, buffer: dict[str, list[dict]]) -> None:
     if data.get("e") != "trade":
         return
     base = _base_from_symbol(data["s"])
-    try:
-        price = float(data["p"])
-    except (KeyError, ValueError):
+    record = _trade_record(data)
+    if record is None:
         return
-    buffer.setdefault(base, []).append({"ts": now_iso(), "price": price})
+    buffer.setdefault(base, []).append(record)
 
 
-def _handle_futures_message(raw: str, buffer: dict[str, list[dict]], funding_buffer: dict[str, list[dict]]) -> None:
+def _handle_futures_message(
+    raw: str,
+    buffer: dict[str, list[dict]],
+    funding_buffer: dict[str, list[dict]],
+    paper_engine: PaperStrategyEngine | None = None,
+) -> None:
     msg = json.loads(raw)
     data = msg.get("data") or {}
     event = data.get("e")
-    if event == "trade":
+    if event in {"trade", "aggTrade"}:
         base = _base_from_symbol(data["s"])
-        try:
-            price = float(data["p"])
-        except (KeyError, ValueError):
+        record = _trade_record(data)
+        if record is None:
             return
-        buffer.setdefault(base, []).append({"ts": now_iso(), "price": price})
+        buffer.setdefault(base, []).append(record)
+        if paper_engine is not None:
+            paper_engine.on_trade(
+                base,
+                record["trade_ts"],
+                record["price"],
+                record["quantity"],
+                record["buyer_is_maker"],
+            )
     elif event == "markPriceUpdate":
         base = _base_from_symbol(data["s"])
         try:
@@ -118,48 +172,91 @@ def _handle_futures_message(raw: str, buffer: dict[str, list[dict]], funding_buf
             funding_rate = float(data["r"])
         except (KeyError, ValueError):
             return
-        funding_buffer.setdefault(base, []).append({"ts": now_iso(), "mark_price": mark_price, "funding_rate": funding_rate})
+        funding_buffer.setdefault(base, []).append({
+            "ts": now_iso(),
+            "exchange_event_ts": data.get("E"),
+            "next_funding_ts": data.get("T"),
+            "mark_price": mark_price,
+            "mark_price_raw": data["p"],
+            "funding_rate": funding_rate,
+            "funding_rate_raw": data["r"],
+        })
+        if paper_engine is not None and data.get("E") is not None and data.get("T") is not None:
+            paper_engine.on_funding(base, int(data["E"]), int(data["T"]), funding_rate)
 
 
 def _archive_records(base: str, points: list[dict]) -> list[dict]:
     return [{"symbol": base, **point} for point in points]
 
 
-def _flush(spot_buffer: dict[str, list[dict]], perp_buffer: dict[str, list[dict]], funding_buffer: dict[str, list[dict]]) -> None:
-    if not spot_buffer and not perp_buffer and not funding_buffer:
-        return
-    state = load_state()
-    for key, buf, archive_category in (
+def _flush(
+    spot_buffer: dict[str, list[dict]],
+    perp_buffer: dict[str, list[dict]],
+    funding_buffer: dict[str, list[dict]],
+    pending_archive: dict[str, list[dict]],
+) -> None:
+    current = (
         ("spot_ticks", spot_buffer, "crypto_spot"),
         ("perp_ticks", perp_buffer, "crypto_perp"),
         ("funding", funding_buffer, "crypto_funding"),
-    ):
+    )
+    if not any(points for _, buf, _ in current for points in buf.values()) and not pending_archive:
+        return
+
+    state = load_state()
+    archive_batches: dict[str, list[dict]] = {}
+    newly_archived: dict[str, list[dict]] = {}
+    for key, buf, archive_category in current:
         store = state.setdefault(key, {})
         for base, points in buf.items():
-            append_batch(archive_category, _archive_records(base, points))
             history = store.setdefault(base, [])
             history.extend(points)
             store[base] = history[-MAX_TICKS_PER_SYMBOL:]
+            newly_archived.setdefault(archive_category, []).extend(_archive_records(base, points))
+
+    # Persist the live rolling state independently from the archive retry queue so an archive
+    # outage does not suppress fresh ticks used by the trading bots.
     save_state(state)
-    spot_buffer.clear()
-    perp_buffer.clear()
-    funding_buffer.clear()
+    for category, records in newly_archived.items():
+        pending_archive.setdefault(category, []).extend(records)
+    for _, buf, _ in current:
+        buf.clear()
+    for category, records in pending_archive.items():
+        archive_batches[category] = list(records)
+    if archive_batches:
+        append_batches(archive_batches)
+        pending_archive.clear()
 
 
-async def _flush_loop(spot_buffer: dict[str, list[dict]], perp_buffer: dict[str, list[dict]], funding_buffer: dict[str, list[dict]]) -> None:
+async def _flush_loop(
+    spot_buffer: dict[str, list[dict]],
+    perp_buffer: dict[str, list[dict]],
+    funding_buffer: dict[str, list[dict]],
+    pending_archive: dict[str, list[dict]],
+) -> None:
     while True:
         await asyncio.sleep(FLUSH_INTERVAL_SECONDS)
-        _flush(spot_buffer, perp_buffer, funding_buffer)
+        try:
+            _flush(spot_buffer, perp_buffer, funding_buffer, pending_archive)
+        except OSError as exc:
+            state = load_state()
+            log_event(state, f"[틱아카이브 저장실패] 로컬 재시도 대기: {exc}")
+            save_state(state)
 
 
 async def _main_async() -> None:
     spot_buffer: dict[str, list[dict]] = {}
     perp_buffer: dict[str, list[dict]] = {}
     funding_buffer: dict[str, list[dict]] = {}
+    pending_archive: dict[str, list[dict]] = {}
+    paper_engine = PaperStrategyEngine(symbols=FUTURES_TRADE_BASES)
+    state = load_state()
+    log_event(state, f"선물 페이퍼 전략 20개 병렬 평가 시작: {FUTURES_TRADE_BASES} — 주문 기능 없음")
+    save_state(state)
     await asyncio.gather(
         _run_spot(spot_buffer),
-        _run_futures(perp_buffer, funding_buffer),
-        _flush_loop(spot_buffer, perp_buffer, funding_buffer),
+        _run_futures(perp_buffer, funding_buffer, paper_engine),
+        _flush_loop(spot_buffer, perp_buffer, funding_buffer, pending_archive),
     )
 
 

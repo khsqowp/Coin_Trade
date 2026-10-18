@@ -22,7 +22,7 @@ import websockets
 
 from app.kis_auth import VTS_BASE_URL, app_credentials
 from app.kr_state import load_state as load_kr_state
-from app.tick_archive import append_batch
+from app.tick_archive import append_batches
 from app.tick_state import load_state, log_event, now_iso, save_state
 from app.us_state import load_state as load_us_state
 from app.us_watchlist import STOCK_UNIVERSE as US_UNIVERSE
@@ -129,20 +129,30 @@ def _ingest_tick(raw: str, buffer: dict[str, list[dict]]) -> None:
         buffer.setdefault(symbol, []).append({"ts": ts, "price": price, "market": market})
 
 
-def _flush_ticks(buffer: dict[str, list[dict]]) -> None:
-    if not buffer:
-        return
-    state = load_state()
-    ticks = state.setdefault("ticks", {})
-    for symbol, points in buffer.items():
-        for market, category in (("KR", "kr"), ("US", "us")):
-            market_points = [p for p in points if p.get("market") == market]
-            if market_points:
-                append_batch(category, [{"symbol": symbol, "ts": p["ts"], "price": p["price"]} for p in market_points])
-        history = ticks.setdefault(symbol, [])
-        history.extend(points)
-        ticks[symbol] = history[-MAX_TICKS_PER_SYMBOL:]
-    save_state(state)
+def _flush_ticks(
+    buffer: dict[str, list[dict]], pending_archive: dict[str, list[dict]]
+) -> None:
+    if buffer:
+        state = load_state()
+        ticks = state.setdefault("ticks", {})
+        batches: dict[str, list[dict]] = {"kr": [], "us": []}
+        for symbol, points in buffer.items():
+            history = ticks.setdefault(symbol, [])
+            history.extend(points)
+            ticks[symbol] = history[-MAX_TICKS_PER_SYMBOL:]
+            for market, category in (("KR", "kr"), ("US", "us")):
+                batches[category].extend(
+                    {"symbol": symbol, "ts": p["ts"], "price": p["price"]}
+                    for p in points if p.get("market") == market
+                )
+        save_state(state)
+        for category, records in batches.items():
+            pending_archive.setdefault(category, []).extend(records)
+        buffer.clear()
+
+    if pending_archive:
+        append_batches(pending_archive)
+        pending_archive.clear()
 
 
 async def _next_non_ping(ws: websockets.ClientConnection, buffer: dict[str, list[dict]]) -> dict:
@@ -192,9 +202,12 @@ async def _subscribe_all(
     return subscribed
 
 
-async def _session(approval_key: str) -> None:
+async def _session(
+    approval_key: str,
+    buffer: dict[str, list[dict]],
+    pending_archive: dict[str, list[dict]],
+) -> None:
     candidates = _build_candidates()
-    buffer: dict[str, list[dict]] = {}
 
     async with websockets.connect(WS_URL, ping_interval=None) as ws:
         subscribed = await _subscribe_all(ws, approval_key, candidates, buffer)
@@ -217,13 +230,24 @@ async def _session(approval_key: str) -> None:
 
             now_mono = time.monotonic()
             if now_mono - last_flush >= FLUSH_INTERVAL_SECONDS:
-                _flush_ticks(buffer)
-                buffer.clear()
+                try:
+                    _flush_ticks(buffer, pending_archive)
+                except OSError as exc:
+                    state = load_state()
+                    log_event(state, f"[틱아카이브 저장실패] 메모리 대기열 유지 후 재시도: {exc}")
+                    save_state(state)
                 last_flush = now_mono
 
             if dt.datetime.now(KST).date() != rebalance_date:
-                _flush_ticks(buffer)
-                buffer.clear()
+                while buffer or pending_archive:
+                    try:
+                        _flush_ticks(buffer, pending_archive)
+                    except OSError as exc:
+                        state = load_state()
+                        log_event(state, f"[틱아카이브 저장실패] 리밸런싱 전 메모리 대기열 유지 후 재시도: {exc}")
+                        save_state(state)
+                        await asyncio.sleep(5)
+                        continue
                 state = load_state()
                 log_event(state, "[리밸런싱] 날짜 변경 감지, 재접속해서 구독종목(tick_rank 최신본)으로 갱신")
                 save_state(state)
@@ -235,10 +259,12 @@ def main() -> None:
     log_event(state, "틱 스트림 시작")
     save_state(state)
 
+    buffer: dict[str, list[dict]] = {}
+    pending_archive: dict[str, list[dict]] = {}
     while True:
         try:
             approval_key = _issue_approval_key()
-            asyncio.run(_session(approval_key))
+            asyncio.run(_session(approval_key, buffer, pending_archive))
         except Exception as exc:  # noqa: BLE001
             state = load_state()
             log_event(state, f"[오류] 세션 종료, 재접속: {exc}")
