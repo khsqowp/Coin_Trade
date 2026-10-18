@@ -1,0 +1,44 @@
+{
+  "source_config_count": 44,
+  "markets": [
+    {
+      "market": "US",
+      "config_count": 44,
+      "symbols": 54,
+      "cutoff": "2024-02-22",
+      "future_price_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "ATR14",
+        "STOP_LEVEL",
+        "market_gate",
+        "breadth"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    },
+    {
+      "market": "KR",
+      "config_count": 44,
+      "symbols": 64,
+      "cutoff": "2024-02-06",
+      "future_price_sigma": 0.35,
+      "future_volume_multiplier": 7,
+      "future_proxy_multiplier": 3,
+      "fields": [
+        "SIGNAL",
+        "VOL_RATIO",
+        "ATR14",
+        "STOP_LEVEL",
+        "market_gate",
+        "breadth"
+      ],
+      "changed_prefix_values": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

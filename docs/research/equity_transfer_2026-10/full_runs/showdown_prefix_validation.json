@@ -1,0 +1,22 @@
+{
+  "markets": {
+    "US": {
+      "curves": 224,
+      "cutoff": "2022-11-16",
+      "price_multiplier": 3,
+      "volume_multiplier": 7,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    },
+    "KR": {
+      "curves": 224,
+      "cutoff": "2022-11-09",
+      "price_multiplier": 3,
+      "volume_multiplier": 7,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    }
+  },
+  "reconciled_curves": 448,
+  "all_checks_passed": true
+}

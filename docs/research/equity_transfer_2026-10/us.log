@@ -1,0 +1,79 @@
+/Users/user/Desktop/CODE/Ochestration/trading/app/rs_us_run.py:32: RuntimeWarning: Mean of empty slice
+  idx_r = np.nanmean(np.where(AVAIL, R, np.nan), axis=0 if False else 1)
+BENCH EW_daily_rebal   full   28.8%  36.4%  0.79 | 2022+   23.3%  30.2%  0.77
+BENCH BH_noRebal       full   30.0%  38.3%  0.78 | 2022+   22.5%  38.3%  0.59
+data: 52 symbols at start; 54 total; 2018-01-02 ~ 2026-10-12
+S1 grid done 240 runs 12s
+IS/OOS cut: 2023-08-30
+
+== S1 선택(IS Calmar 1위, kis 비용) → OOS/전체/2022+ ==
+long         kis   pick=(120, 21, 5, 'long', None) IS cal 1.09 | OOS   51.4%  37.4%  1.37 | full   48.3%  42.2%  1.14 sh 1.23 turn 10x cost 3.6%/y | 2022+   40.9%  39.8%  1.03
+long         cheap pick=(120, 3, 5, 'long', None) IS cal 1.32 | OOS   62.3%  37.5%  1.66 | full   57.0%  40.5%  1.41 sh 1.40 turn 28x cost 2.2%/y | 2022+   51.4%  38.4%  1.34
+long+idx200  kis   pick=(120, 5, 5, 'long', 'idx200') IS cal 0.91 | OOS   46.8%  41.0%  1.14 | full   38.7%  41.0%  0.94 sh 1.13 turn 22x cost 8.1%/y | 2022+   36.3%  41.0%  0.88
+long+idx200  cheap pick=(120, 5, 5, 'long', 'idx200') IS cal 1.29 | OOS   54.5%  39.4%  1.38 | full   46.7%  39.4%  1.19 sh 1.29 turn 22x cost 1.8%/y | 2022+   43.9%  39.4%  1.12
+long+crash   kis   pick=('12-1', 21, 5, 'long', 'crash') IS cal 1.15 | OOS   80.5%  42.4%  1.90 | full   55.4%  42.4%  1.30 sh 1.37 turn 10x cost 3.6%/y | 2022+   48.8%  42.4%  1.15
+long+crash   cheap pick=('12-1', 21, 5, 'long', 'crash') IS cal 1.37 | OOS   84.9%  42.0%  2.02 | full   59.8%  42.0%  1.42 sh 1.45 turn 10x cost 0.8%/y | 2022+   53.2%  42.0%  1.27
+long-short   kis   pick=(120, 21, 5, 'ls', None) IS cal -0.03 | OOS    2.8%  24.9%  0.11 | full    0.5%  31.0%  0.01 sh 0.13 turn 11x cost 4.0%/y | 2022+    3.7%  27.0%  0.14
+long-short   cheap pick=(14, 21, 5, 'ls', None) IS cal 0.20 | OOS    2.7%  16.3%  0.17 | full    3.0%  22.1%  0.13 sh 0.27 turn 24x cost 1.9%/y | 2022+    6.7%  22.1%  0.30
+
+== S1 분포 (kis, long only no filter): CAGR 범위 ==
+lb    14: c3K5=6% c3K10=4% c5K5=11% c5K10=9% c21K5=33% c21K10=26%
+lb    20: c3K5=12% c3K10=12% c5K5=19% c5K10=16% c21K5=35% c21K10=26%
+lb    60: c3K5=26% c3K10=22% c5K5=32% c5K10=25% c21K5=45% c21K10=33%
+lb   120: c3K5=46% c3K10=33% c5K5=49% c5K10=38% c21K5=48% c21K10=40%
+lb  12-1: c3K5=54% c3K10=44% c5K5=53% c5K10=45% c21K5=56% c21K10=47%
+S1 kis 변형 중 B&H(start-set) CAGR 초과: 44/120
+
+== 생존편향 점검 (kis 비용, long-only K5, 월간/주간) ==
+전체54                   EW벤치   28.8%  36.4%  0.79 | 120/21d:48%/42% 60/5d:32%/50% 12-1/21d:56%/46%
+(a)시점별유동성상위30          EW벤치   25.2%  33.8%  0.75 | 120/21d:35%/38% 60/5d:25%/46% 12-1/21d:38%/38%
+(b)사후승자10제외            EW벤치   21.5%  35.8%  0.60 | 120/21d:26%/34% 60/5d:11%/43% 12-1/21d:24%/35%
+
+== S2 크래시필터 (동일비중 지수) ==
+S2 on EW basket full   29.2%  41.9%  0.70 | 2022+   19.4%  41.9%  0.46 | off days 43 switches 30.0
+
+== S3/S4/S5 ==
+S3 EMA9/21 -12%        kis   full   12.8%  20.5%  0.62 | 2022+   11.0%  19.8%  0.56 | trades 2537 win None% turn Nonex cost None%/y worst -17%(2022)
+S4 swing6 long         kis   full   -6.0%  43.7% -0.14 | 2022+   -9.8%  41.5% -0.24 | trades 1089 win 42% turn 47x cost 16.8%/y worst -22%(2022)
+S4 swing6 long+short   kis   full  -16.4%  75.7% -0.22 | 2022+  -17.3%  61.0% -0.28 | trades 1569 win 39% turn 67x cost 24.3%/y worst -36%(2022)
+S5 mach7 top5          kis   full    9.0%  35.1%  0.26 | 2022+    6.0%  30.3%  0.20 | trades 765 win 42% turn 39x cost 14.0%/y worst -27%(2022)
+S5 squeeze top5        kis   full    9.5%  28.5%  0.33 | 2022+    5.3%  26.4%  0.20 | trades 592 win 35% turn 30x cost 10.8%/y worst -24%(2022)
+S5 pullback top5       kis   full  -32.1%  95.3% -0.34 | 2022+  -36.4%  88.7% -0.41 | trades 3327 win 36% turn 170x cost 61.2%/y worst -53%(2022)
+S5 mach7 top10         kis   full    8.6%  31.7%  0.27 | 2022+    8.9%  27.1%  0.33 | trades 1427 win 42% turn 36x cost 13.1%/y worst -23%(2022)
+S5 squeeze top10       kis   full    7.5%  17.8%  0.42 | 2022+    7.2%  15.8%  0.46 | trades 759 win 36% turn 20x cost 7.1%/y worst -14%(2022)
+S5 pullback top10      kis   full  -32.7%  95.5% -0.34 | 2022+  -38.5%  90.2% -0.43 | trades 6074 win 35% turn 155x cost 55.9%/y worst -47%(2022)
+S3 EMA9/21 -12%        cheap full   16.2%  18.0%  0.90 | 2022+   14.4%  17.8%  0.81 | trades 2537 win None% turn Nonex cost None%/y worst -14%(2022)
+S4 swing6 long         cheap full    6.6%  20.6%  0.32 | 2022+    2.8%  19.4%  0.14 | trades 1089 win 43% turn 47x cost 3.7%/y worst -15%(2022)
+S4 swing6 long+short   cheap full    0.4%  25.9%  0.01 | 2022+   -0.1%  22.9% -0.00 | trades 1569 win 41% turn 67x cost 5.4%/y worst -21%(2022)
+S5 mach7 top5          cheap full   20.4%  24.8%  0.82 | 2022+   17.0%  24.4%  0.70 | trades 765 win 43% turn 39x cost 3.1%/y worst -19%(2022)
+S5 squeeze top5        cheap full   18.7%  21.2%  0.88 | 2022+   13.9%  20.0%  0.70 | trades 592 win 42% turn 30x cost 2.4%/y worst -17%(2022)
+S5 pullback top5       cheap full    5.8%  36.7%  0.16 | 2022+   -0.8%  30.9% -0.03 | trades 3327 win 43% turn 170x cost 13.6%/y worst -28%(2022)
+S5 mach7 top10         cheap full   19.2%  24.2%  0.79 | 2022+   19.1%  22.5%  0.85 | trades 1427 win 43% turn 36x cost 2.9%/y worst -16%(2022)
+S5 squeeze top10       cheap full   13.4%  12.9%  1.04 | 2022+   12.7%  11.4%  1.11 | trades 760 win 42% turn 20x cost 1.6%/y worst -10%(2022)
+S5 pullback top10      cheap full    0.9%  38.9%  0.02 | 2022+   -7.6%  32.7% -0.23 | trades 6074 win 43% turn 156x cost 12.4%/y worst -22%(2022)
+
+== S6 오버레이 (S1 long-only IS 1위 위에) ==
+kis   base         full   48.3%  42.2%  1.14 | 2022+   40.9%  39.8%  1.03 | OOS   51.4%  37.4%  1.37
+kis   voltarget15  full   20.8%  25.6%  0.81 | 2022+   18.4%  23.7%  0.78 | OOS   23.8%  14.2%  1.67
+kis   profitlock   full   48.9%  47.7%  1.03 | 2022+   39.2%  45.6%  0.86 | OOS   53.4%  31.3%  1.71
+kis   vt+lock      full   20.5%  26.8%  0.76 | 2022+   17.9%  25.0%  0.71 | OOS   23.8%  14.2%  1.67
+cheap base         full   57.0%  40.5%  1.41 | 2022+   51.4%  38.4%  1.34 | OOS   62.3%  37.5%  1.66
+cheap voltarget15  full   25.6%  24.5%  1.04 | 2022+   23.8%  22.9%  1.04 | OOS   29.7%  13.9%  2.13
+cheap profitlock   full   58.5%  39.5%  1.48 | 2022+   52.8%  39.5%  1.34 | OOS   63.4%  39.5%  1.61
+cheap vt+lock      full   25.6%  24.5%  1.04 | 2022+   23.8%  22.9%  1.04 | OOS   29.7%  13.9%  2.13
+
+== 3 폴드 (연수익/최대낙폭) ==
+S1 long pick        60.7%/39.2% |  35.3%/42.2% |  49.9%/37.4%
+S1 long+idx200      39.7%/27.2% |  35.2%/37.1% |  41.3%/41.0%
+EW daily rebal      40.0%/36.4% |  16.5%/30.2% |  31.1%/21.7%
+B&H start-set       43.0%/36.7% |  16.4%/38.3% |  32.1%/27.5%
+folds: ['2019-01-02', '2021-08-03', '2024-03-07', '2026-10-12']
+
+== 연도별 ==
+S1 long pick       2019:+30% 2020:+132% 2021:+35% 2022:-28% 2023:+117% 2024:+58% 2025:+33% 2026:+61%
+S1 long+idx200     2019:+16% 2020:+82% 2021:+35% 2022:-33% 2023:+122% 2024:+68% 2025:+9% 2026:+65%
+EW daily rebal     2019:+46% 2020:+34% 2021:+33% 2022:-22% 2023:+53% 2024:+40% 2025:+32% 2026:+24%
+B&H start-set      2019:+45% 2020:+44% 2021:+37% 2022:-32% 2023:+60% 2024:+48% 2025:+29% 2026:+30%
+
+시도한 변형 수 ~133, 샤프 보정치(무작위 최대 샤프 기대) ≈ 1.12
+saved /Users/user/Desktop/CODE/Ochestration/trading/docs/research/equity_transfer_2026-10/us.json 15s

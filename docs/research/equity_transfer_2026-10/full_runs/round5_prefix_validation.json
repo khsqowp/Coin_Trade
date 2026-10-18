@@ -1,0 +1,30 @@
+{
+  "markets": {
+    "US": {
+      "cutoff": "2023-03-21",
+      "feature_prefix_checks": 594,
+      "full_portfolio_curve_checks": 6,
+      "independent_period_curve_metric_checks": 48,
+      "champion_sensitivity_metric_checks": 20,
+      "btc_confirmation_curve_checks": 2,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    },
+    "KR": {
+      "cutoff": "2023-03-14",
+      "feature_prefix_checks": 704,
+      "full_portfolio_curve_checks": 6,
+      "independent_period_curve_metric_checks": 48,
+      "champion_sensitivity_metric_checks": 20,
+      "btc_confirmation_curve_checks": 2,
+      "max_prefix_difference": 0.0,
+      "passed": true
+    }
+  },
+  "signal_feature_prefix_checks": 1298,
+  "full_portfolio_curve_checks": 12,
+  "independent_period_curve_metric_checks": 96,
+  "champion_sensitivity_metric_checks": 40,
+  "btc_confirmation_curve_checks": 4,
+  "all_checks_passed": true
+}

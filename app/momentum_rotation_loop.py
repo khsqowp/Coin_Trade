@@ -7,6 +7,7 @@
 """
 from __future__ import annotations
 
+import math
 import os
 import time
 from datetime import datetime, timedelta, timezone
@@ -86,9 +87,197 @@ MAX_DEPLOY_USDT = float(os.environ.get("MOMENTUM_ROTATION_MAX_DEPLOY_USDT", "0")
 # 배치 비율(선택): equity 의 이 비율까지만 굴린다(0 = 비활성, 1.0 = 전액). MAX_DEPLOY_USDT 와 같이
 # 켜져 있으면 둘 다 적용해 더 작은 쪽을 쓴다 — 잔고가 늘어나도 절대 상한을 넘지 않게 하는 이중 안전장치.
 DEPLOY_PCT = float(os.environ.get("MOMENTUM_ROTATION_DEPLOY_PCT", "0"))
-DELEVER_DD = float(os.environ.get("MOMENTUM_ROTATION_DELEVER_DD", "0.20"))
+DELEVER_DD = float(os.environ.get("MOMENTUM_ROTATION_DELEVER_DD", "1.0"))
 KILL_DD = float(os.environ.get("MOMENTUM_ROTATION_KILL_DD", "0.35"))
 RESET_HALT = os.environ.get("MOMENTUM_ROTATION_RESET_HALT", "false").lower() == "true"
+
+CRASH_FILTER = os.environ.get("MOMENTUM_ROTATION_CRASH_FILTER", "true").lower() == "true"
+CRASH_THRESHOLD = float(os.environ.get("MOMENTUM_ROTATION_CRASH_THRESHOLD", "-0.10"))
+CRASH_LOOKBACK_DAYS = int(os.environ.get("MOMENTUM_ROTATION_CRASH_LOOKBACK_DAYS", "14"))
+KILL_COOLDOWN_DAYS = int(os.environ.get("MOMENTUM_ROTATION_KILL_COOLDOWN_DAYS", "14"))
+PROFIT_LOCK = os.environ.get("MOMENTUM_ROTATION_PROFIT_LOCK", "false").lower() == "true"
+PROFIT_LOCK_ACTIVATION = float(os.environ.get("MOMENTUM_ROTATION_PROFIT_LOCK_ACTIVATION", "0.20"))
+PROFIT_LOCK_TRAIL = float(os.environ.get("MOMENTUM_ROTATION_PROFIT_LOCK_TRAIL", "0.25"))
+PROFIT_LOCK_COOLDOWN_DAYS = int(os.environ.get("MOMENTUM_ROTATION_PROFIT_LOCK_COOLDOWN_DAYS", "3"))
+MIN_K = 3
+MIN_COST_DEFAULT = 5.0
+MIN_COST_MULT = 1.25
+MIN_POSITION_NOTIONAL_FLOOR = 6.25
+
+
+def profit_lock_eval(state, equity, now):
+    """UTC 날짜 첫 표본만 평가; orig 기준은 이체 조정 inception으로 고정한다."""
+    if not PROFIT_LOCK:
+        return None
+    defaults = dict(profit_lock_enabled=True, profit_lock_active=False,
+                    profit_lock_until=None, profit_peak_equity_usdt=equity,
+                    profit_lock_armed=False, profit_lock_trigger_ts=None,
+                    profit_lock_trigger_count=0, profit_lock_trigger_equity_usdt=None,
+                    profit_lock_drop_pct=0.0, profit_lock_flatten_pending=False,
+                    profit_lock_last_eval_date=None)
+    for key, value in defaults.items():
+        state.setdefault(key, value)
+    state["profit_lock_enabled"] = True
+    today = now.astimezone(timezone.utc).date().isoformat()
+    peak = float(state["profit_peak_equity_usdt"])
+    state["profit_lock_drop_pct"] = 1 - equity / peak if peak > 0 else 0.0
+    if state["profit_lock_active"]:
+        if now < datetime.fromisoformat(state["profit_lock_until"]):
+            return None
+        state.update(profit_lock_active=False, profit_lock_until=None,
+                     profit_peak_equity_usdt=equity, hwm_usdt=equity, drawdown=0.0,
+                     profit_lock_armed=equity >= state["inception_equity_usdt"] * (1 + PROFIT_LOCK_ACTIVATION),
+                     profit_lock_drop_pct=0.0, profit_lock_last_eval_date=today,
+                     last_rebalance_ts=None)
+        return "expire"
+    if state["profit_lock_last_eval_date"] == today:
+        return None
+    peak = max(peak, equity)
+    armed = peak >= state["inception_equity_usdt"] * (1 + PROFIT_LOCK_ACTIVATION)
+    state.update(profit_peak_equity_usdt=peak, profit_lock_armed=armed,
+                 profit_lock_drop_pct=1 - equity / peak if peak > 0 else 0.0,
+                 profit_lock_last_eval_date=today)
+    if armed and equity <= peak * (1 - PROFIT_LOCK_TRAIL):
+        state.update(profit_lock_active=True,
+                     profit_lock_until=(now + timedelta(days=PROFIT_LOCK_COOLDOWN_DAYS)).isoformat(),
+                     profit_lock_trigger_ts=now.isoformat(), profit_lock_trigger_equity_usdt=equity,
+                     profit_lock_trigger_count=state["profit_lock_trigger_count"] + 1,
+                     profit_lock_flatten_pending=True)
+        return "trigger"
+    return None
+
+
+def _profit_lock_flatten(state, client, owned, trigger=False):
+    from app.momentum_rotation_exec import flatten_all, sync_positions
+
+    owned |= set(state.get("profit_lock_flatten_owned", []))
+    state["profit_lock_flatten_owned"] = sorted(owned)
+    if trigger or (state.get("profit_lock_flatten_pending") and owned & set(sync_positions(client))):
+        flatten_all(client, lambda message: log_event(state, message), owned=owned, tag="PROFIT")
+    positions = {b: p for b, p in sync_positions(client).items() if b in owned}
+    state["profit_lock_flatten_pending"] = bool(positions)
+    if not positions:
+        state["profit_lock_flatten_owned"] = []
+    state["positions"] = {}
+    state["unrealized_pnl_usdt"] = sum(p["unrealized_pnl"] for p in positions.values())
+    return bool(positions)
+
+
+def _profit_lock_cycle(state, client, owned, equity, now):
+    if not PROFIT_LOCK:
+        return False
+    event = profit_lock_eval(state, equity, now)
+    if event == "trigger":
+        log_event(state, f"[LIVE] PROFIT 발동 — equity {equity:.2f}, "
+                         f"peak {state['profit_peak_equity_usdt']:.2f}, "
+                         f"drop {state['profit_lock_drop_pct']:.2%}")
+    pending = False
+    if state.get("profit_lock_active") or state.get("profit_lock_flatten_pending"):
+        pending = _profit_lock_flatten(state, client, owned, event == "trigger")
+    if event == "expire":
+        log_event(state, f"[LIVE] PROFIT 재무장 — peak/hwm {equity:.2f}, 최초 기준 유지")
+    if state.get("profit_lock_active") or pending:
+        update_crash_flag(state, _fetch_btc_daily_closes, now)
+        today = now.astimezone(timezone.utc).date().isoformat()
+        if state.get("profit_lock_status_date") != today:
+            state["profit_lock_status_date"] = today
+            log_event(state, f"[LIVE] PROFIT flat 유지 — until {state['profit_lock_until']}, "
+                             f"청산 대기 {pending}")
+        return True
+    return False
+
+
+def _effective_leverage(dd):
+    return 1 if DELEVER_DD < 1.0 and dd >= DELEVER_DD and LEVERAGE > 1 else LEVERAGE
+
+
+def compute_sizing(equity, leverage, deploy_pct, max_deploy, top_k,
+                   exchange_min_cost=MIN_COST_DEFAULT):
+    deploy = min(equity, equity * deploy_pct) if deploy_pct > 0 else equity
+    if max_deploy > 0:
+        deploy = min(deploy, max_deploy)
+    gross = deploy * leverage
+    minimum = max(exchange_min_cost * MIN_COST_MULT, MIN_POSITION_NOTIONAL_FLOOR)
+    capacity = math.floor(gross / (2 * minimum) + 1e-9)
+    flat = capacity < MIN_K
+    k = 0 if flat else max(MIN_K, min(top_k, capacity))
+    return dict(deploy=deploy, gross=gross, k_eff=k,
+                notional_per_pos=gross / (2 * k) if k else 0.0,
+                gross_multiple=gross / equity if equity > 0 else 0.0,
+                margin_use=deploy / equity if equity > 0 else 0.0,
+                min_notional=minimum, shrunk=k < top_k, flat=flat)
+
+
+def select_targets(ranked, k, notional, min_notional_fn):
+    longs, shorts, skipped = [], [], []
+    for side, candidates, chosen in (("long", ranked.index, longs),
+                                     ("short", ranked.index[::-1], shorts)):
+        for base in candidates:
+            if len(chosen) >= k:
+                break
+            if base in longs or base in shorts:
+                continue
+            minimum = min_notional_fn(base)
+            if minimum > notional + 1e-9:
+                skipped.append(f"{base}({side}, 필요 ${minimum:g} > 명목 ${notional:g})")
+                continue
+            chosen.append(base)
+    count = min(len(longs), len(shorts))
+    if count < MIN_K:
+        return {}, {}, skipped
+    targets = {b: "long" for b in longs[:count]}
+    targets.update({b: "short" for b in shorts[:count]})
+    return targets, {b: float(ranked[b]) for b in targets}, skipped
+
+
+def btc_crash_signal(daily_closes, now, lookback, threshold):
+    date = pd.Timestamp(now).tz_convert("UTC").normalize()
+    closed = daily_closes.loc[daily_closes.index < date].sort_index()
+    if len(closed) < lookback + 1:
+        return None
+    ret = float(closed.iloc[-1] / closed.iloc[-1-lookback] - 1)
+    return dict(ret=ret, asof=closed.index[-1].date().isoformat(), crash=ret < threshold)
+
+
+def update_crash_flag(state, daily_closes_fn, now):
+    today = pd.Timestamp(now).tz_convert("UTC").date().isoformat()
+    if not CRASH_FILTER:
+        # 필터를 끈 상태에서 이전에 켜진 플래그가 남아 있으면 영구 flat 이 되므로 해제한다.
+        if state.get("crash_flat"):
+            state["crash_flat"] = False
+            log_event(state, "[LIVE] BTC 급락필터 비활성 — 기존 플래그 해제")
+            return "exit"
+        return None
+    if state.get("crash_check_date") == today:
+        return None
+    try:
+        signal = btc_crash_signal(daily_closes_fn(), now, CRASH_LOOKBACK_DAYS, CRASH_THRESHOLD)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  BTC 일봉 조회 실패, 급락필터 다음 사이클 재시도 ({exc})", flush=True)
+        return None
+    if signal is None:
+        return None
+    previous = state.get("crash_flat", False)
+    state.update(crash_check_date=today, crash_ret=signal["ret"], crash_flat=signal["crash"])
+    if previous == signal["crash"]:
+        return None
+    event = "enter" if signal["crash"] else "exit"
+    log_event(state, f"[LIVE] BTC 급락필터 {event} — {today}, 수익률 {signal['ret']:.2%}, 기준 {CRASH_THRESHOLD:.2%}")
+    return event
+
+
+def _fetch_btc_daily_closes():
+    since = datetime.now(timezone.utc) - timedelta(days=CRASH_LOOKBACK_DAYS + 10)
+    return fetch_perp_ohlcv("BTC/USDT:USDT", "1d", since_iso=since.isoformat())["Close"]
+
+
+def _symbol_min_notional(client, base, price):
+    try:
+        limits = client.market(_perp_symbol(base)).get("limits") or {}
+        return max(float((limits.get("cost") or {}).get("min") or MIN_COST_DEFAULT),
+                   float((limits.get("amount") or {}).get("min") or 0) * price)
+    except Exception:
+        return MIN_COST_DEFAULT
 
 
 def _perp_symbol(base: str) -> str:
@@ -248,19 +437,18 @@ def _rebalance(state: dict, prices: dict[str, float]) -> None:
     )
 
 
-def _target_sides() -> tuple[dict[str, str], dict[str, float]] | None:
-    """모멘텀 랭킹 → ({base: 'long'|'short'}, {base: 모멘텀 점수}). 데이터 부족이면 None.
-    점수도 같이 반환하는 이유: 방향(롱/숏)만 남기면 나중에 "모멘텀 점수가 높을수록 실제로도 수익이
-    났는가"를 검증할 수 없다 — entry_log 에 점수를 같이 남겨야 바이낸스 실현손익 이력과 대조해서
-    진짜 데이터로 선정 로직을 조정할 근거가 쌓인다(지금 하루치로 조정하면 과최적화라 일단 기록만)."""
-    momentum = _fetch_momentum_ranking()
-    if len(momentum) < TOP_K * 2:
+def _ranked_momentum():
+    return _fetch_momentum_ranking().sort_values(ascending=False)
+
+
+def _target_sides():
+    """기존 라이브 점검 스크립트 호환."""
+    ranked = _ranked_momentum()
+    if len(ranked) < TOP_K * 2:
         return None
-    ranked = momentum.sort_values(ascending=False)
     targets = {b: "long" for b in ranked.index[:TOP_K]}
     targets.update({b: "short" for b in ranked.index[-TOP_K:]})
-    scores = {b: float(ranked[b]) for b in targets}
-    return targets, scores
+    return targets, {b: float(ranked[b]) for b in targets}
 
 
 def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None:
@@ -268,27 +456,27 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
 
     client = exec_client(EXCHANGE_MODE)
     equity = account_equity_usdt(client)
-    deploy = equity
-    if DEPLOY_PCT > 0:
-        deploy = min(deploy, equity * DEPLOY_PCT)
-    if MAX_DEPLOY_USDT > 0:
-        deploy = min(deploy, MAX_DEPLOY_USDT)
-    ranking = _target_sides()
-    if ranking is None:
+    sizing = compute_sizing(equity, eff_lev, DEPLOY_PCT, MAX_DEPLOY_USDT, TOP_K)
+    ranked = _ranked_momentum()
+    if len(ranked) < TOP_K * 2:
         log_event(state, "모멘텀 데이터 부족 — 이번 리밸런스 건너뜀")
         return
-    targets, scores = ranking
-    no_price = {b: s for b, s in targets.items() if not prices.get(b)}
-    if no_price:
-        log_event(state, f"[LIVE:{EXCHANGE_MODE}] 시세없음으로 제외: "
-                         f"{[f'{b}/{s}' for b, s in no_price.items()]} — 목표 {len(targets)}종목 중 "
-                         f"{len(no_price)}개 스킵, 실제 진입시도 {len(targets) - len(no_price)}종목")
-    targets = {b: s for b, s in targets.items() if prices.get(b)}
-
-    # gross = deploy * eff_lev, 롱/숏 반반, 포지션당 균등
-    notional_per_pos = deploy * eff_lev / 2 / TOP_K
-    log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 시작 — equity {equity:.2f} / 운용 {deploy:.2f} USDT, "
-                     f"배율 {eff_lev}x, 포지션당 명목 {notional_per_pos:.2f} USDT")
+    ranked = ranked.loc[[b for b in ranked.index if prices.get(b)]]
+    targets, scores, skipped = ({}, {}, []) if sizing["flat"] else select_targets(
+        ranked, sizing["k_eff"], sizing["notional_per_pos"],
+        lambda b: _symbol_min_notional(client, b, prices[b]))
+    if not targets:
+        log_event(state, "[LIVE] 최소명목 불가 — flat")
+    effective_k = len(targets) // 2
+    notional_per_pos = sizing["notional_per_pos"]
+    state["effective_k"] = effective_k
+    state["gross_multiple_target"] = sizing["gross_multiple"] if targets else 0.0
+    shrink = f" ({TOP_K} -> {effective_k})" if effective_k < TOP_K else ""
+    log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 시작 — equity {equity:.2f} / 운용 {sizing['deploy']:.2f} USDT, "
+                     f"배율 {eff_lev}x, 유효 K {effective_k}{shrink}, 포지션당 명목 {notional_per_pos:.2f} USDT, "
+                     f"목표 총명목배율 {state['gross_multiple_target']:.6f}, 마진사용 {sizing['margin_use']:.2%}")
+    for item in skipped:
+        log_event(state, f"[LIVE] 최소명목 제외·후순위 대체: {item}")
 
     owned = set(state.get("positions", {}))
     result = apply_targets(client, prices, targets, notional_per_pos, eff_lev,
@@ -302,6 +490,8 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
             "notional_usdt": p["notional"], "unrealized_pnl_usdt": p["unrealized_pnl"]}
         for b, p in positions.items()
     }
+    state["gross_multiple_realized"] = sum(p["notional"] for p in positions.values()) / equity if equity > 0 else 0.0
+    log_event(state, f"[LIVE] 실현 총명목배율 {state['gross_multiple_realized']:.6f}")
     state["last_rebalance_ts"] = now_iso()
     state["equity_usdt"] = equity
     # 이 함수는 정기(2~3일) 자동 리밸런스와 수동 "지금 진입" 양쪽에서 공통으로 호출되는 유일한 진입점이다
@@ -345,7 +535,8 @@ def _apply_external_transfers(state: dict, client) -> None:
     net = sum(float(r["income"]) for r in rows)
     if net == 0:
         return
-    for key in ("inception_equity_usdt", "session_start_equity_usdt", "hwm_usdt"):
+    for key in ("inception_equity_usdt", "session_start_equity_usdt", "hwm_usdt",
+                "profit_peak_equity_usdt"):
         if state.get(key) is not None:
             state[key] = float(state[key]) + net
     log_event(state, f"[LIVE] 지갑 이체 감지: {net:+.2f} USDT — 입출금은 손익이 아니라서 수익률 베이스라인을 그만큼 같이 옮김")
@@ -365,12 +556,28 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         state["last_transfer_check_ms"] = int(time.time() * 1000)
         log_event(state, f"[LIVE:{EXCHANGE_MODE}] 실거래 루프 시작 — equity {equity:.2f} USDT, 기준배율 {LEVERAGE}x")
 
+    # 순서: 이체 → RESET_HALT/손실 쿨다운 → hwm/dd → 손실 halt 반환 →
+    # LOSS KILL(최우선) → PROFIT LOCK → BTC 급락필터 → 디레버/리밸런스.
+    # PROFIT 재무장 시에만 hwm을 리셋하며, 같은 사이클 손실 kill이면 보호 평가를 하지 않는다.
     _apply_external_transfers(state, client)
+    now = datetime.now(timezone.utc)
 
     if RESET_HALT and state.get("halted"):
         state["halted"] = False
         state["hwm_usdt"] = equity
+        state["kill_ts"] = None
         log_event(state, "[LIVE] halt 수동 해제 — hwm 재설정")
+
+    remaining = None
+    if state.get("halted") and KILL_COOLDOWN_DAYS > 0:
+        if not state.get("kill_ts"):
+            state["kill_ts"] = now.isoformat()
+            log_event(state, "[LIVE] 기존 halt 상태 — 킬 쿨다운을 지금부터 시작")
+        elapsed = now - datetime.fromisoformat(state["kill_ts"])
+        remaining = max(0.0, KILL_COOLDOWN_DAYS - elapsed.total_seconds() / 86400)
+        if elapsed >= timedelta(days=KILL_COOLDOWN_DAYS):
+            state.update(halted=False, hwm_usdt=equity, kill_ts=None)
+            log_event(state, f"[LIVE] 킬 쿨다운 {KILL_COOLDOWN_DAYS}일 경과 — hwm 재설정, 다음 리밸런스에서 재진입")
 
     hwm = max(float(state.get("hwm_usdt") or equity), equity)
     state["hwm_usdt"] = hwm
@@ -379,8 +586,9 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
     state["equity_usdt"] = equity
 
     if state.get("halted"):
+        cooldown = f"쿨다운 잔여 {remaining:.2f}일" if remaining is not None else "자동 쿨다운 해제 꺼짐"
         log_event(state, f"[LIVE] halt 상태 — 거래 중단 중 (dd {dd*100:.1f}%). "
-                         f"해제하려면 MOMENTUM_ROTATION_RESET_HALT=true 로 재기동")
+                         f"{cooldown}. MOMENTUM_ROTATION_RESET_HALT=true 로 수동 해제")
         return
 
     owned = set(state.get("positions", {}))
@@ -394,10 +602,44 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         log_event(state, f"[LIVE] 킬 스위치 발동 — dd {dd*100:.1f}% >= {KILL_DD*100:.0f}%. 전량 청산 후 정지.")
         flatten_all(client, lambda m: log_event(state, m), owned=owned)
         state["halted"] = True
+        state["kill_ts"] = now_iso()
         state["positions"] = {}
         return
 
-    eff_lev = 1 if (dd >= DELEVER_DD and LEVERAGE > 1) else LEVERAGE
+    if _profit_lock_cycle(state, client, owned, equity, now):
+        return
+    dd = state["drawdown"]  # PROFIT 만료는 hwm/dd를 현재 equity로 재설정한다.
+
+    event = update_crash_flag(state, _fetch_btc_daily_closes, now)
+    if event == "enter":
+        state["crash_flatten_owned"] = sorted(owned)
+        flatten_all(client, lambda m: log_event(state, m), owned=owned, tag="CRASH")
+        state["positions"] = {}
+        state["crash_flatten_pending"] = True
+    if state.get("crash_flat"):
+        owned |= set(state.get("crash_flatten_owned", [])) if state.get("crash_flatten_pending") else set()
+        all_positions = sync_positions(client)
+        if state.get("crash_flatten_pending"):
+            if owned & set(all_positions):
+                flatten_all(client, lambda m: log_event(state, m), owned=owned, tag="CRASH")
+                all_positions = sync_positions(client)
+            if not owned & set(all_positions):
+                state["crash_flatten_pending"] = False
+                state["crash_flatten_owned"] = []
+        positions = {b: p for b, p in all_positions.items() if b in owned}
+        state["positions"] = {
+            b: {"side": p["side"], "entry_price": p["entry_price"], "mark_price": p["mark_price"],
+                "notional_usdt": p["notional"], "unrealized_pnl_usdt": p["unrealized_pnl"]}
+            for b, p in positions.items()
+        }
+        state["unrealized_pnl_usdt"] = sum(p["unrealized_pnl"] for p in positions.values())
+        return
+    if event == "exit":
+        log_event(state, "[LIVE] BTC 급락필터 해제 — 새 랭킹으로 재진입")
+        state.update(last_rebalance_ts=None, manual_flat=False, crash_flatten_pending=False)
+        state["crash_flatten_owned"] = []
+
+    eff_lev = _effective_leverage(dd)
     if eff_lev != LEVERAGE:
         log_event(state, f"[LIVE] 디레버 발동 — dd {dd*100:.1f}% >= {DELEVER_DD*100:.0f}%, 배율 {LEVERAGE}x → {eff_lev}x")
 
@@ -461,11 +703,16 @@ def _manual_enter(state: dict, prices: dict[str, float]) -> None:
         if state.get("halted"):
             log_event(state, "[수동] 진입 거부 — halted 상태. MOMENTUM_ROTATION_RESET_HALT=true 로 재기동 필요.")
             return
+        if PROFIT_LOCK and (state.get("profit_lock_active") or state.get("profit_lock_flatten_pending")):
+            log_event(state, "[수동] 진입 거부 — PROFIT 보호 정지/청산 대기 상태.")
+            return
         client = exec_client(EXCHANGE_MODE)
         equity = account_equity_usdt(client)
         hwm = max(float(state.get("hwm_usdt") or equity), equity)
         dd = 1.0 - equity / hwm if hwm > 0 else 0.0
-        eff_lev = 1 if (dd >= DELEVER_DD and LEVERAGE > 1) else LEVERAGE
+        eff_lev = _effective_leverage(dd)
+        if state.get("crash_flat"):
+            state["crash_flatten_pending"] = False
         _rebalance_live(state, prices, eff_lev)
     else:
         _rebalance(state, prices)

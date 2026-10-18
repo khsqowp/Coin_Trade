@@ -2,6 +2,7 @@
 
 Funding follows section29: prior mark, entry open with two of three payments.
 Cash pays daily funding; quantities/slots/risk budgets are recomputed causally.
+Slippage may be scalar or in prepared symbol order; sell_tax is sell-side only.
 """
 
 import numpy as np
@@ -36,12 +37,17 @@ def simulate_cost_portfolio(
     entry_scale=None,
     funding_annual=0.0,
     slippage=0.0,
+    sell_tax=0.0,
     strategy_data=None,
     active_strategy=None,
     strategy_holds=None,
-    liquidate_on_switch=False
+    liquidate_on_switch=False,
+    exit_signals=None,
 ):
-    if not 0 <= slippage < 1 or not np.isfinite(funding_annual) or funding_annual < 0:
+    slip_input = np.asarray(slippage, dtype=float)
+    if (not np.isfinite(slip_input).all() or (slip_input < 0).any() or
+            (slip_input >= 1).any() or not 0 <= sell_tax < 1 or
+            not np.isfinite(funding_annual) or funding_annual < 0):
         raise ValueError("invalid cost assumptions")
     if (strategy_data is None) != (active_strategy is None):
         raise ValueError("strategy banks and historical schedule required together")
@@ -74,6 +80,19 @@ def simulate_cost_portfolio(
     if resume_mode == "btc_sma50" and btc_resume is None:
         raise ValueError("BTC historical trend required")
     dates, keys, a = prepared or prepare(prepped)
+    if exit_signals is not None:
+        exit_signals = np.asarray(exit_signals, dtype=bool)
+        expected_shape = (len(dates), len(keys))
+        if exit_signals.shape != expected_shape:
+            raise ValueError(
+                f"exit_signals must have shape {expected_shape}, got {exit_signals.shape}"
+            )
+    if slip_input.ndim == 0:
+        slippage_by_symbol = np.full(len(keys), float(slip_input))
+    elif slip_input.shape == (len(keys),):
+        slippage_by_symbol = slip_input
+    else:
+        raise ValueError("slippage array must match the prepared symbol order")
     if strategy_data is not None:
         for bank in strategy_data.values():
             if bank[0] != dates or bank[1] != keys:
@@ -112,6 +131,7 @@ def simulate_cost_portfolio(
     resumes = 0
     blocked_days = 0
     trace = []
+    records = []
     paused_since = None
     grace_day = -1
     event_log = []
@@ -148,7 +168,17 @@ def simulate_cost_portfolio(
 
         def sell(k, price):
             nonlocal cash, trades
-            cash += positions[k]["qty"] * price * (1 - slippage) * (1 - fee)
+            position = positions[k]
+            proceeds = position["qty"] * price * (1 - slippage_by_symbol[k]) * (1 - fee) * (1 - sell_tax)
+            if return_trace:
+                records.append(dict(
+                    id=len(records), symbol=keys[k], entry=position["entry"], exit=i,
+                    entry_date=str(dates[position["entry"]]), exit_date=str(d),
+                    qty=position["qty"], cost=position["cost"], proceeds=proceeds,
+                    pnl=proceeds-position["cost"],
+                    return_pct=(proceeds/position["cost"]-1)*100,
+                ))
+            cash += proceeds
             del positions[k]
             trades += 1
             completed_by_symbol[k] += 1
@@ -160,6 +190,13 @@ def simulate_cost_portfolio(
                 liquidate_on_switch
                 and strategy_data is not None
                 and p["strategy"] != selected
+                and np.isfinite(op[k])
+            ):
+                sell(k, op[k])
+            elif (
+                exit_signals is not None
+                and i > 0
+                and exit_signals[i - 1, k]
                 and np.isfinite(op[k])
             ):
                 sell(k, op[k])
@@ -289,7 +326,7 @@ def simulate_cost_portfolio(
                 alloc = min(cash, budgets[k] * entry_multiplier)
                 if alloc <= 1e-12:
                     break
-                price = op[k] * (1 + slippage)
+                price = op[k] * (1 + slippage_by_symbol[k])
                 sl = price * (1 - stop_pct) if stop_pct else 0.0
                 if stop.startswith("pct"):
                     sl = price * (1 - float(stop[3:]) / 100)
@@ -311,6 +348,7 @@ def simulate_cost_portfolio(
                 )
                 positions[k] = {
                     "qty": alloc * (1 - fee) / price,
+                    "cost": alloc,
                     "sl": sl,
                     "target": target,
                     "exit": i + duration,
@@ -387,6 +425,7 @@ def simulate_cost_portfolio(
     if return_trace:
         result["trace"] = trace
         result["allocations"] = allocations
+        result["records"] = records
         if symbol_trade_share_cap is not None:
             result["symbol_share_log"] = share_log
     return result
