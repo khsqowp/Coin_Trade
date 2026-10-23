@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import math
 import os
+import threading
 import time
 from datetime import datetime, timedelta, timezone
 
 import ccxt
 import pandas as pd
 
+from app.ccxt_retry import retry_read
 from app.futures_data import fetch_perp_ohlcv
 from app.momentum_state import load_state, log_event, now_iso, save_state
 from app.trading_control import read_command
@@ -301,25 +303,64 @@ def _rollup_daily_history(state: dict, value: float) -> None:
             state["equity_history_daily"] = daily[-EQUITY_HISTORY_DAILY_MAX_POINTS:]
 
 
+_PRICE_CLIENT_TIMEOUT_MS = 15000
+_MARKETS_REFRESH_SECONDS = 24 * 3600
+_price_client = None
+_price_client_loaded_at = 0.0
+_price_client_lock = threading.Lock()
+
+
+def _get_price_client():
+    """공개 시세 전용 ccxt 클라이언트 — 15초 사이클마다 새로 만들지 않고 재사용한다.
+    마켓 정보(exchangeInfo)는 최초 1회 로드하고 하루에 한 번만 갱신."""
+    global _price_client, _price_client_loaded_at
+    with _price_client_lock:
+        if _price_client is None:
+            _price_client = ccxt.binance({
+                "enableRateLimit": True, "timeout": _PRICE_CLIENT_TIMEOUT_MS,
+                "options": {"defaultType": "future"},
+            })
+            _price_client_loaded_at = 0.0
+        if time.monotonic() - _price_client_loaded_at >= _MARKETS_REFRESH_SECONDS or not _price_client.markets:
+            retry_read(_price_client.load_markets, True)
+            _price_client_loaded_at = time.monotonic()
+        return _price_client
+
+
 def _fetch_current_prices() -> dict[str, float]:
     prices = {}
-    exchange = ccxt.binance({"enableRateLimit": True, "options": {"defaultType": "future"}})
     want = {_perp_symbol(b): b for b in UNIVERSE}
     try:
+        exchange = _get_price_client()
         # 47종목을 개별 fetch_ticker 로 부르면 IP 밴(-1003) 위험 — 한 번에 받는다.
-        tickers = exchange.fetch_tickers(list(want))
+        tickers = retry_read(exchange.fetch_tickers, list(want))
         for symbol, base in want.items():
             last = (tickers.get(symbol) or {}).get("last")
             if last:
                 prices[base] = last
     except Exception as exc:  # noqa: BLE001
         print(f"  일괄 시세조회 실패, 개별 폴백 ({exc})", flush=True)
+        try:
+            exchange = _get_price_client()
+        except Exception as exc2:  # noqa: BLE001
+            print(f"  시세 클라이언트 초기화 실패 ({exc2})", flush=True)
+            return prices
         for symbol, base in want.items():
             try:
                 prices[base] = exchange.fetch_ticker(symbol)["last"]
             except Exception as exc2:  # noqa: BLE001
                 print(f"  {base}: 시세조회 실패 ({exc2})", flush=True)
     return prices
+
+
+def _price_gap_blocks_rebalance(prices: dict[str, float], held, ranked_all) -> list[str]:
+    """부분 시세 실패 시 리밸런스를 막아야 하는 누락 종목 목록(없으면 빈 리스트).
+
+    시세 없는 종목은 랭킹에서 빠지고(타겟 대체) 보유 종목이면 타겟에 못 들어가 apply_targets 가
+    멀쩡한 보유분을 청산해버린다. 보유 종목 또는 상/하위 TOP_K 후보에 시세가 없으면 막는다.
+    (상폐 등으로 영구 누락된 중하위 종목 때문에 리밸런스가 영구 정지되지 않게 그 외는 무시.)"""
+    critical = set(held) | set(ranked_all.index[:TOP_K]) | set(ranked_all.index[-TOP_K:])
+    return sorted(b for b in critical if not prices.get(b))
 
 
 def _fetch_momentum_ranking() -> pd.Series:
@@ -414,7 +455,8 @@ def _target_sides():
     return targets, {b: float(ranked[b]) for b in targets}
 
 
-def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None:
+def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> bool:
+    """리밸런스를 실행했으면 True, 건너뛰었으면 False."""
     from app.momentum_rotation_exec import account_equity_usdt, apply_targets, exec_client, sync_positions
 
     client = exec_client(EXCHANGE_MODE)
@@ -423,7 +465,11 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
     ranked = _ranked_momentum()
     if len(ranked) < TOP_K * 2:
         log_event(state, "모멘텀 데이터 부족 — 이번 리밸런스 건너뜀")
-        return
+        return False
+    gap = _price_gap_blocks_rebalance(prices, state.get("positions", {}), ranked)
+    if gap:
+        log_event(state, f"[LIVE] 시세 누락 {gap} — 보유/상하위 후보 시세가 없어 이번 리밸런스 건너뜀(다음 사이클 재시도, 주문 없음)")
+        return False
     ranked = ranked.loc[[b for b in ranked.index if prices.get(b)]]
     targets, scores, skipped = ({}, {}, []) if sizing["flat"] else select_targets(
         ranked, sizing["k_eff"], sizing["notional_per_pos"],
@@ -477,6 +523,7 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
         state["entry_log"] = entry_log[-4000:]
     log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 완료 — 진입 {result['opened']}, 청산 {result['closed']}, "
                      f"스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
+    return True
 
 
 def _apply_external_transfers(state: dict, client) -> None:
@@ -676,7 +723,9 @@ def _manual_enter(state: dict, prices: dict[str, float]) -> None:
         eff_lev = _effective_leverage(dd)
         if state.get("crash_flat"):
             state["crash_flatten_pending"] = False
-        _rebalance_live(state, prices, eff_lev)
+        if not _rebalance_live(state, prices, eff_lev):
+            log_event(state, "[수동] 진입 보류 — 리밸런스가 건너뛰어져 flat 상태 유지(다시 시도하세요)")
+            return
     else:
         _rebalance(state, prices)
 
@@ -723,18 +772,50 @@ def _stamp_rebalance_schedule(state: dict) -> None:
     )
 
 
+CYCLE_FAILURE_ALERT_THRESHOLD = 3
+_consecutive_cycle_failures = 0
+
+
+def _note_cycle_failure(exc: BaseException) -> None:
+    """LIVE 사이클 연속 실패 카운터. 실패 중엔 킬스위치(-35%) 등 보호 점검이 못 돌고 있다는 뜻이라
+    임계치 이상이면 눈에 띄는 로그를 남긴다(레포에 별도 알림 채널 없음 — docker logs 로 확인)."""
+    global _consecutive_cycle_failures
+    _consecutive_cycle_failures += 1
+    n = _consecutive_cycle_failures
+    if n >= CYCLE_FAILURE_ALERT_THRESHOLD:
+        print(f"[!!! 경고] LIVE 사이클 연속 {n}회 실패 — 킬스위치/보호 점검 불가 상태. 원인: {exc!r}", flush=True)
+    else:
+        print(f"[경고] LIVE 사이클 실패 {n}회 연속: {exc!r}", flush=True)
+
+
+def _note_cycle_success() -> None:
+    global _consecutive_cycle_failures
+    if _consecutive_cycle_failures >= CYCLE_FAILURE_ALERT_THRESHOLD:
+        print(f"[복구] LIVE 사이클 정상 복귀 (직전 연속 실패 {_consecutive_cycle_failures}회)", flush=True)
+    _consecutive_cycle_failures = 0
+
+
 def run_cycle() -> None:
     state = load_state()
     _stamp_rebalance_schedule(state)
 
     prices = _fetch_current_prices()
-    if not prices:
+    if not prices and not LIVE:
         log_event(state, "시세 조회 전체 실패 — 이번 사이클 건너뜀")
         save_state(state)
         return
+    if not prices:
+        # LIVE: 킬스위치(-35%)/급락필터/손절성 점검은 시세가 아니라 계좌 equity·포지션만 필요하다.
+        # 시세 실패로 이걸 통째로 건너뛰면 안 되므로 계속 진행 — 리밸런스는 시세 누락 가드가 막는다.
+        log_event(state, "[LIVE] 시세 조회 전체 실패 — 킬스위치 점검은 계속, 리밸런스는 건너뜀")
 
     if LIVE:
-        _run_cycle_live(state, prices)
+        try:
+            _run_cycle_live(state, prices)
+        except Exception as exc:  # noqa: BLE001
+            _note_cycle_failure(exc)
+            raise
+        _note_cycle_success()
         inception_equity = float(state.get("inception_equity_usdt") or state["equity_usdt"])
         total_pnl = state["equity_usdt"] - inception_equity
         gross_notional = sum(abs(p.get("notional_usdt", 0.0)) for p in state.get("positions", {}).values())

@@ -16,6 +16,8 @@ from functools import lru_cache
 
 import ccxt
 
+from app.ccxt_retry import retry_read
+
 
 @lru_cache(maxsize=2)
 def exec_client(mode: str) -> ccxt.binance:
@@ -48,7 +50,7 @@ def perp_symbol(base: str) -> str:
 
 def account_equity_usdt(client) -> float:
     """USDT 마진잔고(= 지갑잔고 + 전 포지션 미실현손익). 이게 전략의 equity."""
-    balance = client.fetch_balance()
+    balance = retry_read(client.fetch_balance)
     info = balance.get("info", {}) or {}
     try:
         return float(info["totalMarginBalance"])
@@ -56,17 +58,16 @@ def account_equity_usdt(client) -> float:
         pass
     usdt = balance.get("USDT", {}) or {}
     wallet = float(usdt.get("total") or 0.0)
-    try:
-        upnl = sum(float(p.get("unrealizedPnl") or 0.0) for p in client.fetch_positions())
-    except Exception:  # noqa: BLE001
-        upnl = 0.0
+    # 포지션 조회 실패 시 upnl=0 으로 조용히 넘어가면 equity 가 과소평가돼 가짜 드로다운(킬 오발동)·
+    # 사이징 오류가 난다 — 값을 지어내지 않고 예외로 올려 이번 사이클을 중단시킨다.
+    upnl = sum(float(p.get("unrealizedPnl") or 0.0) for p in retry_read(client.fetch_positions))
     return wallet + upnl
 
 
 def sync_positions(client) -> dict:
     """거래소 실포지션. base -> {side, contracts, notional, entry_price, unrealized_pnl}."""
     out: dict[str, dict] = {}
-    for pos in client.fetch_positions():
+    for pos in retry_read(client.fetch_positions):
         contracts = float(pos.get("contracts") or 0.0)
         if contracts == 0:
             continue

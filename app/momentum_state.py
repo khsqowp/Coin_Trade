@@ -11,6 +11,8 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+from app.state_io import atomic_write_json
+
 STATE_PATH = Path(os.environ.get("MOMENTUM_ROTATION_STATE_PATH", "/app/data/momentum_rotation_state.json"))
 
 _DEFAULT_STATE = {
@@ -47,10 +49,7 @@ def load_state() -> dict:
 
 
 def save_state(state: dict) -> None:
-    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = STATE_PATH.with_suffix(".tmp")
-    tmp_path.write_text(json.dumps(state, indent=2, ensure_ascii=False))
-    os.replace(tmp_path, STATE_PATH)
+    atomic_write_json(STATE_PATH, state)
 
 
 def log_event(state: dict, message: str) -> None:
