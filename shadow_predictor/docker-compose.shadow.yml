@@ -10,6 +10,7 @@ services:
     environment:
       SHADOW_SOURCE_STATE: /input/crypto_paper_strategies_6symbols.json
       SHADOW_OUTPUT_STATE: /output/shadow_predictions.json
+      SHADOW_ARCHIVE_DB: /archive/shadow_archive.sqlite3
       SHADOW_POLL_SECONDS: ${SHADOW_POLL_SECONDS:-10}
       KRONOS_MODEL_ID: NeoQuasar/Kronos-mini
       KRONOS_TOKENIZER_ID: NeoQuasar/Kronos-Tokenizer-2k
@@ -17,6 +18,9 @@ services:
     volumes:
       - ../../trading-crypto-paper-state:/input:ro
       - ./runtime:/output
+      - type: bind
+        source: ${HOME}/Library/Application Support/CoinTradeShadowArchive
+        target: /archive
     network_mode: none
     read_only: true
     tmpfs:

@@ -14,6 +14,27 @@ docker compose -f shadow_predictor/docker-compose.shadow.yml exec crypto-shadow-
 
 The compose file expects the existing source state at `../trading-crypto-paper-state/crypto_paper_strategies_6symbols.json`. Results persist in the Git-ignored `shadow_predictor/runtime/` host directory, outside Docker Desktop's virtual-disk volume store. Stop only the sidecar with `docker compose -f shadow_predictor/docker-compose.shadow.yml down`; this leaves the results intact.
 
+## Durable event archive
+
+Forecasts, forecast scores, expired forecasts, and each distinct 20-strategy snapshot are idempotently copied into `~/Library/Application Support/CoinTradeShadowArchive/shadow_archive.sqlite3` on the local disk. This spool is separate from the bounded `shadow_predictions.json` view and is not removed by stopping the container. If a previous spool exists in `shadow_predictor/runtime/`, startup copies it with SQLite's online backup API, checks its integrity, and retains the original. On first run, the currently retained pending forecasts, up to 10,000 scores, expired rows, latest forecasts, and current strategy snapshot are imported.
+
+Install the per-user macOS retry worker once from this directory:
+
+```sh
+python3 shadow_predictor/archive_store.py --install-agent
+```
+
+The worker script and SQLite spool are in the user's Application Support directory, outside macOS's protected Desktop tree. The worker runs at login and every 15 minutes. It only writes under `/Volumes/HDD2TB/Trade/shadow-predictor/` after confirming `/Volumes/HDD2TB` is a mounted volume and `Trade` exists. Each UTC-closed day is written as a content-addressed gzip JSONL file. The worker reads the remote gzip back, validates every JSONL record, and checks its SHA-256 and row count before deleting those exact event IDs from SQLite. Today's events are retained; they become eligible after the UTC date closes. If the disk is absent, inaccessible, or verification fails, the local spool is untouched and a later run retries the backlog. Existing `tick-archive`, the live JSON view, and predictor logs are not deleted.
+
+Check worker state and perform a one-shot transfer:
+
+```sh
+launchctl print gui/$(id -u)/com.cointrade.shadow-archive
+python3 shadow_predictor/archive_store.py --flush
+```
+
+The one-shot command applies the same mount check and deletion-after-verification rule. The NAS archive directory is created only after the expected volume is confirmed mounted.
+
 The image build downloads the public Kronos source and Kronos-mini model/tokenizer from GitHub and Hugging Face. `KRONOS_GIT_REF` defaults to the pinned revision `67b630e67f6a18c9e9be918d9b4337c960db1e9a`. CPU-only PyTorch is installed. After build, the runtime container is offline (`network_mode: none`) and has no host port, exchange key, or exchange client. The build requires outbound access to GitHub and Hugging Face.
 
 ## Evaluation semantics

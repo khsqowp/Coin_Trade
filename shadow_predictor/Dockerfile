@@ -26,6 +26,6 @@ ENV PYTHONPATH=/opt/Kronos:/app
 RUN python -c "from model import Kronos, KronosTokenizer; KronosTokenizer.from_pretrained('NeoQuasar/Kronos-Tokenizer-2k'); Kronos.from_pretrained('NeoQuasar/Kronos-mini')" \
     && chown -R app:app /models
 ENV HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-COPY shadow_predictor/core.py shadow_predictor/main.py ./
+COPY shadow_predictor/archive_store.py shadow_predictor/core.py shadow_predictor/main.py ./
 USER app
 ENTRYPOINT ["python", "-u", "main.py"]

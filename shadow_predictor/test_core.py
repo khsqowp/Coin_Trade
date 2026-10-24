@@ -1,5 +1,12 @@
 import unittest
+import gzip
+import json
+import tempfile
+from unittest.mock import patch
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
+from archive_store import ShadowArchiveStore
 from core import process_snapshot, score_summary
 
 
@@ -109,6 +116,72 @@ class ShadowCoreTests(unittest.TestCase):
         }])
         self.assertEqual(summary["ALL:1m"]["samples"], 1)
         self.assertEqual(summary["ALL:1m"]["direction_accuracy_pct"], 100.0)
+
+
+class ShadowArchiveTests(unittest.TestCase):
+    def test_output_events_are_idempotent_and_closed_day_is_verified_before_deletion(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            store = ShadowArchiveStore(root / "spool.sqlite3")
+            output = {
+                "pending": [{"symbol": "BTC", "horizon": 1, "origin_minute": 100,
+                             "target_minute": 101, "predicted_close": 101.0}],
+                "scores": [{"symbol": "BTC", "horizon": 1, "origin_minute": 99,
+                            "target_minute": 100, "actual_close": 100.0}],
+                "expired": [],
+                "latest_forecasts": {"BTC": {"origin_minute": 100, "predicted_close_1m": 101.0}},
+                "strategy_snapshot": {"s1": {"equity": 100.0}},
+                "source_updated_at": "source-1",
+            }
+            self.assertEqual(store.record_output(output), 4)
+            self.assertEqual(store.record_output(output), 0)
+            yesterday = (datetime.now(timezone.utc).date() - timedelta(days=1)).isoformat()
+            with store._connect() as db:
+                db.execute("UPDATE events SET event_date=?", (yesterday,))
+
+            nas = root / "nas" / "Trade"
+            nas.mkdir(parents=True)
+            result = store.flush_closed_days(nas, root, require_mount=False)
+            self.assertEqual(result, {"days_exported": 1, "events_deleted_after_verification": 4})
+            archives = list((nas / "shadow-predictor").rglob("*.jsonl.gz"))
+            self.assertEqual(len(archives), 1)
+            with gzip.open(archives[0], "rt", encoding="utf-8") as handle:
+                records = [json.loads(line) for line in handle]
+            self.assertEqual(len(records), 4)
+            with store._connect() as db:
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM events").fetchone()[0], 0)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM archived_batches").fetchone()[0], 1)
+
+    def test_mount_check_fails_before_creating_nas_subfolder(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            store = ShadowArchiveStore(root / "spool.sqlite3")
+            store.record_output({"scores": [{"symbol": "BTC", "horizon": 1,
+                                               "origin_minute": 1, "target_minute": 2}]})
+            trade = root / "Trade"
+            trade.mkdir()
+            with self.assertRaisesRegex(RuntimeError, "not mounted"):
+                store.flush_closed_days(trade, root)
+            self.assertFalse((trade / "shadow-predictor").exists())
+            with store._connect() as db:
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM events").fetchone()[0], 1)
+
+    def test_failed_remote_verification_keeps_spool_rows(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            store = ShadowArchiveStore(root / "spool.sqlite3")
+            store.record_output({"scores": [{"symbol": "BTC", "horizon": 1,
+                                               "origin_minute": 1, "target_minute": 2}]})
+            yesterday = (datetime.now(timezone.utc).date() - timedelta(days=1)).isoformat()
+            with store._connect() as db:
+                db.execute("UPDATE events SET event_date=?", (yesterday,))
+            nas = root / "Trade"
+            nas.mkdir()
+            with patch("archive_store._verify_gzip", side_effect=IOError("simulated readback failure")):
+                with self.assertRaisesRegex(IOError, "simulated readback failure"):
+                    store.flush_closed_days(nas, root, require_mount=False)
+            with store._connect() as db:
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM events").fetchone()[0], 1)
 
 
 if __name__ == "__main__":
