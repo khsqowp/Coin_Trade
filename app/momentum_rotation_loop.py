@@ -522,7 +522,7 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> bool
     if len(entry_log) > 4000:
         state["entry_log"] = entry_log[-4000:]
     log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 완료 — 진입 {result['opened']}, 청산 {result['closed']}, "
-                     f"스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
+                     f"리사이즈 {result.get('resized', [])}, 스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
     return True
 
 

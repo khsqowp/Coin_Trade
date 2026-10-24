@@ -109,17 +109,112 @@ def flatten_all(client, log, owned: set | None = None, tag: str = "KILL") -> Non
             log(f"[{tag}] {base} 청산 실패: {exc}")
 
 
+def _resize_tolerance() -> float:
+    try:
+        return max(0.0, float(os.environ.get("MOMENTUM_ROTATION_RESIZE_TOLERANCE", "0.15")))
+    except ValueError:
+        return 0.15
+
+
+def _market_mins(client, symbol: str):
+    limits = client.market(symbol).get("limits", {}) or {}
+    min_cost = (limits.get("cost", {}) or {}).get("min") or 5.0
+    min_amount = (limits.get("amount", {}) or {}).get("min") or 0.0
+    return min_cost, min_amount
+
+
+def _place_market(client, symbol: str, side: str, amount: float, reduce_only: bool = False) -> None:
+    """side: 'long'=매수, 'short'=매도 주문 방향. 진입/증액/감액 공통 주문 헬퍼."""
+    params = {"reduceOnly": True} if reduce_only else None
+    fn = client.create_market_buy_order if side == "long" else client.create_market_sell_order
+    if params:
+        fn(symbol, amount, params)
+    else:
+        fn(symbol, amount)
+
+
+def _available_margin(client) -> float | None:
+    balance = retry_read(client.fetch_balance)
+    info = balance.get("info", {}) or {}
+    try:
+        return float(info["availableBalance"])
+    except (KeyError, TypeError, ValueError):
+        pass
+    free = (balance.get("USDT", {}) or {}).get("free")
+    return float(free) if free is not None else None
+
+
+def _plan_resize(client, base: str, pos: dict, price, notional_per_pos: float, tol: float, result: dict):
+    """유지 포지션의 증감 계획. (kind, amount, delta_notional) 또는 None(허용오차 내/스킵)."""
+    mark = pos.get("mark_price") or price
+    if not mark or notional_per_pos <= 0:
+        return None
+    current_notional = pos["contracts"] * mark
+    delta = notional_per_pos - current_notional
+    if abs(delta) / notional_per_pos <= tol:
+        return None
+    symbol = perp_symbol(base)
+    try:
+        min_cost, min_amount = _market_mins(client, symbol)
+        amount = abs(delta) / mark
+        kind = "up" if delta > 0 else "down"
+        if kind == "down":
+            amount = min(amount, pos["contracts"])
+        amount = float(client.amount_to_precision(symbol, amount))
+    except Exception as exc:  # noqa: BLE001
+        result["errors"].append(f"{base} 리사이즈 계획: {exc}")
+        return None
+    if amount <= 0 or abs(delta) < min_cost or amount < min_amount:
+        result["skipped"].append(f"{base}(리사이즈 델타 ${abs(delta):.2f} 최소 미달)")
+        return None
+    if kind == "down" and amount >= pos["contracts"]:
+        result["skipped"].append(f"{base}(감액이 전량 청산 수준 — 스킵)")
+        return None
+    return kind, amount, abs(delta)
+
+
+def _exec_resize(client, base: str, pos: dict, plan, leverage: int, log, result: dict) -> None:
+    kind, amount, delta = plan
+    symbol = perp_symbol(base)
+    side = pos["side"]
+    try:
+        if kind == "up":
+            avail = _available_margin(client)
+            need = delta / max(leverage, 1)
+            if avail is None or need > avail * 0.9:
+                msg = f"{base}(증액 마진부족: 필요 ${need:.2f} / 가용 {avail})"
+                result["skipped"].append(msg)
+                log(f"[RESIZE] {msg}")
+                return
+            try:
+                client.set_leverage(leverage, symbol)
+            except Exception as exc:  # noqa: BLE001
+                log(f"{base}: set_leverage 경고 ({exc})")
+            _place_market(client, symbol, side, amount)
+        else:
+            order_side = "short" if side == "long" else "long"
+            _place_market(client, symbol, order_side, amount, reduce_only=True)
+        result["resized"].append(f"{base}/{side} {'+' if kind == 'up' else '-'}{amount:g} (${delta:.2f})")
+        log(f"[RESIZE] {base} {side} {'증액' if kind == 'up' else '감액'} {amount:g} (델타 ${delta:.2f})")
+    except Exception as exc:  # noqa: BLE001
+        result["errors"].append(f"{base} 리사이즈: {exc}")
+
+
 def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
-                  leverage: int, log, owned: set | None = None) -> dict:
+                  leverage: int, log, owned: set | None = None,
+                  resize_tolerance: float | None = None) -> dict:
     """targets: base -> 'long'|'short'. 최소주문 미달은 스킵.
 
     owned: 이 전략이 직접 연 것으로 아는 base 집합. 지정되면 이 집합 + targets 안의
     종목만 건드린다(같은 선물지갑을 다른 전략이 쓰고 있어도 그 포지션은 안 닫음).
 
     1) owned 중 타겟에 없거나 방향이 바뀐 포지션 청산
-    2) 타겟에 있는데 없는(또는 방향 다른) 포지션 진입
+    2) 유지(같은 방향) 포지션 중 목표 명목 초과분 감액(reduceOnly, 마진 확보)
+    3) 타겟에 있는데 없는(또는 방향 다른) 포지션 진입
+    4) 유지 포지션 중 목표 명목 미달분 증액(마진 가용 확인) — |현재-목표|/목표 > 허용오차(기본 0.15)일 때만
     """
-    result = {"opened": [], "closed": [], "skipped": [], "errors": []}
+    result = {"opened": [], "closed": [], "skipped": [], "errors": [], "resized": []}
+    tol = _resize_tolerance() if resize_tolerance is None else resize_tolerance
     current = sync_positions(client)
     manageable = set(targets) | (owned if owned is not None else set(current))
 
@@ -135,9 +230,15 @@ def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
             result["errors"].append(f"{base} 청산: {exc}")
 
     current = sync_positions(client)
+    retained = {b: p for b, p in current.items() if b in targets and targets[b] == p["side"]}
+    plans = {b: _plan_resize(client, b, p, prices.get(b), notional_per_pos, tol, result)
+             for b, p in retained.items()}
+    for base, plan in plans.items():
+        if plan and plan[0] == "down":
+            _exec_resize(client, base, retained[base], plan, leverage, log, result)
 
     for base, side in targets.items():
-        if current.get(base, {}).get("side") == side:
+        if base in retained:
             continue
         symbol = perp_symbol(base)
         price = prices.get(base)
@@ -179,5 +280,15 @@ def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
             result["opened"].append(f"{base}/{side}")
         except Exception as exc:  # noqa: BLE001
             result["errors"].append(f"{base} 진입: {exc}")
+
+    for base, plan in plans.items():
+        if plan and plan[0] == "up":
+            _exec_resize(client, base, retained[base], plan, leverage, log, result)
+
+    if result["resized"]:
+        final = sync_positions(client)
+        longs = sum(p["notional"] for b, p in final.items() if b in targets and p["side"] == "long")
+        shorts = sum(p["notional"] for b, p in final.items() if b in targets and p["side"] == "short")
+        log(f"[RESIZE] 리사이즈 후 총명목 long ${longs:.2f} / short ${shorts:.2f}")
 
     return result
