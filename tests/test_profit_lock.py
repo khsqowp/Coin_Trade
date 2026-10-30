@@ -101,6 +101,9 @@ def test_loss_precedence_same_day_and_while_locked(enabled, monkeypatch):
     assert s['halted'] and not s['profit_lock_active']
     assert s['profit_lock_last_eval_date'] == NOW.date().isoformat()
     s = trigger(enabled, monkeypatch)
+    # 가짜 클라이언트는 upnl 없이 equity 만 138->110 으로 바꾼다 = 이체 기록 없는 지갑 변동. 이체 가드는 이를 10분 보류하므로,
+    # 직전 표본이 오래된(사이클 간격이 큰) 상황으로 만들어 이 테스트의 의도(손실 킬 우선)만 검증한다.
+    s['tg_prev_ms'], s['tg_unexplained'] = 0, None
     cycle(enabled, s, monkeypatch, 2, 110)
     assert s['halted'] and s['profit_lock_trigger_count'] == 1
 

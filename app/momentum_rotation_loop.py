@@ -19,6 +19,7 @@ import pandas as pd
 from app.ccxt_retry import retry_read
 from app.futures_data import fetch_perp_ohlcv
 from app.momentum_state import load_state, log_event, now_iso, save_state
+from app import transfer_guard
 from app.trading_control import read_command
 from app.watchdog import run_with_timeout
 
@@ -569,7 +570,10 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
     # 순서: 이체 → RESET_HALT/손실 쿨다운 → hwm/dd → 손실 halt 반환 →
     # LOSS KILL(최우선) → PROFIT LOCK → BTC 급락필터 → 디레버/리밸런스.
     # PROFIT 재무장 시에만 hwm을 리셋하며, 같은 사이클 손실 kill이면 보호 평가를 하지 않는다.
-    _apply_external_transfers(state, client)
+    _upnl = sum(p["unrealized_pnl"] for p in sync_positions(client).values())
+    transfer_guard.apply_external_transfers(
+        state, lambda ms: client.fapiPrivateGetIncome({"incomeType": "TRANSFER", "startTime": ms, "limit": 1000}),
+        equity, int(time.time() * 1000), lambda m: log_event(state, m), upnl=_upnl)
     now = datetime.now(timezone.utc)
 
     if RESET_HALT and state.get("halted"):
@@ -608,6 +612,17 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         log_event(state, f"[LIVE] 경고: 이 전략이 모르는 선물 포지션 {sorted(unmanaged)} — "
                          f"다른 전략과 지갑을 공유 중이면 equity/드로다운 계산이 오염됨. 전용 지갑 권장.")
 
+    if dd >= KILL_DD:
+        verdict, info = transfer_guard.confirm_kill(state, equity, int(time.time() * 1000), KILL_DD)
+        if verdict == "DEFER":
+            log_event(state, f"[LIVE][GUARD] 킬 보류 — dd {dd*100:.1f}% 이지만 {info['why']}")
+            return
+        if verdict == "BLOCK_REPAIR":
+            log_event(state, f"[LIVE][GUARD] 킬 차단 — 상태 hwm {hwm:.2f} 은 원시 equity 이력과 불일치: {info['why']}. hwm 을 {info['hwm']:.2f} 로 복구")
+            hwm = max(info["hwm"], equity)
+            state["hwm_usdt"] = hwm
+            dd = 1.0 - equity / hwm
+            state["drawdown"] = dd
     if dd >= KILL_DD:
         log_event(state, f"[LIVE] 킬 스위치 발동 — dd {dd*100:.1f}% >= {KILL_DD*100:.0f}%. 전량 청산 후 정지.")
         flatten_all(client, lambda m: log_event(state, m), owned=owned)

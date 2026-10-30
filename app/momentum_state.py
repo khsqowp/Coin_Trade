@@ -32,6 +32,7 @@ _DEFAULT_STATE = {
     "manual_flat_ts": None,      # 마지막 수동 청산 시각
     "manual_flat_equity_usdt": None,  # 수동 청산 시점 equity 스냅샷 (재량판단 성과 추적용)
     "consumed_control_nonce": None,   # 마지막으로 처리한 제어 명령 nonce (재실행 방지)
+    "last_transfer_check_ms": None,
 }
 
 
@@ -41,15 +42,37 @@ def now_iso() -> str:
 
 def load_state() -> dict:
     if not STATE_PATH.exists():
-        return json.loads(json.dumps(_DEFAULT_STATE))
-    state = json.loads(STATE_PATH.read_text())
-    for key, default in _DEFAULT_STATE.items():
-        state.setdefault(key, json.loads(json.dumps(default)))
+        state = json.loads(json.dumps(_DEFAULT_STATE))
+    else:
+        state = json.loads(STATE_PATH.read_text())
+        for key, default in _DEFAULT_STATE.items():
+            state.setdefault(key, json.loads(json.dumps(default)))
+    state.setdefault("state_seq", 0)
+    state["_loaded_seq"] = state["state_seq"]
     return state
 
 
+class StaleStateError(Exception):
+    """Raised when a stale in-memory state would overwrite a newer save."""
+
+
 def save_state(state: dict) -> None:
-    atomic_write_json(STATE_PATH, state)
+    try:
+        disk_state = json.loads(STATE_PATH.read_text())
+        disk_seq = disk_state.get("state_seq", 0)
+    except (OSError, json.JSONDecodeError, UnicodeDecodeError):
+        disk_seq = 0
+    loaded_seq = state.get("_loaded_seq", disk_seq)
+    if disk_seq > loaded_seq:
+        message = f"[상태저장 거부] stale state: disk seq {disk_seq} > loaded seq {loaded_seq}"
+        print(message, flush=True)
+        raise StaleStateError(message)
+    new_seq = disk_seq + 1
+    output = {key: value for key, value in state.items() if key != "_loaded_seq"}
+    output["state_seq"] = new_seq
+    atomic_write_json(STATE_PATH, output)
+    state["state_seq"] = new_seq
+    state["_loaded_seq"] = new_seq
 
 
 def log_event(state: dict, message: str) -> None:
