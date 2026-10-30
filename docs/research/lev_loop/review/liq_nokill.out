@@ -1,0 +1,7 @@
+lev kill | cushion tier f=1 (min over paths) | list distinct per-phase(offset0) | gross/eq on 10-10 | final eq | #distinct finals over 24 paths
+4.0 0.35 | 0.312 0.312 | gross/eq [2.83 2.83 2.83] | distinct finals 17 of 24 | liq-legacy 0
+4.0 1.0 | 0.312 0.345 | gross/eq [2.83 3.06 3.07] | distinct finals 17 of 24 | liq-legacy 0
+4.0 0.5 | 0.312 0.312 | gross/eq [2.83 2.83 2.83] | distinct finals 17 of 24 | liq-legacy 0
+5.0 1.0 | 0.18 0.191 | gross/eq [3.29 3.6  3.6 ] | distinct finals 17 of 24 | liq-legacy 0
+3.0 1.0 | 0.446 0.475 | gross/eq [2.31 2.46 2.47] | distinct finals 17 of 24 | liq-legacy 0
+6.0 1.0 | 0.004 0.079 | gross/eq [3.71 4.1  4.11] | distinct finals 17 of 24 | liq-legacy 0

@@ -1,0 +1,8 @@
+BEFORE 2026-10-12T05:47:39: equity 135.633 dd 0.2030 implied hwm 170.18 total_pnl -9.35 implied inception 144.99
+AFTER  2026-10-12T05:52:44: equity 135.487 dd 0.4452 implied hwm 244.19 total_pnl -83.51 implied inception 219.00
+hwm shift 74.01; inception shift 74.01; equity change across event -0.146 USDT
+CORRECT dd at kill = 1 - 135.487/170.18 = 0.2039 (threshold 0.35); mistaken dd = 0.4452
+raw max equity 10-05..10-12 05:50 = 149.19; min equity since = 135.11
+killed positions 16, gross 283.8 USDT (2.09x equity)
+counterfactual hold-through PnL +5.00 USDT (+3.69% of equity) from kill to 10-14 09:14 (excl. fees/funding; kill closing fee/slippage unmodelled)
+counterfactual path: min +0.03 (+0.02%), max +7.01 (+5.18%) vs equity 135.5

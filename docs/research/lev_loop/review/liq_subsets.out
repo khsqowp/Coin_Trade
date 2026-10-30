@@ -1,0 +1,30 @@
+LEV 3.0 {'n': 90, 'breach': {'anti_f1': 0, 'anti_f0.75': 0, 'anti_f0.5': 0, 'sync_f1': 0}, 'min': {'anti_f1': 0.1590252157982702, 'anti_f0.75': 0.36537622680267295, 'anti_f0.5': 0.5717272378070756, 'sync_f1': 0.6566905598458668}, 'p10': {'anti_f1': 0.31451804955577833, 'anti_f0.75': 0.48584575718880396, 'anti_f0.5': 0.6562709742136776, 'sync_f1': 0.6958974178377209}}
+  lev 4.0 subset 23 ph 0 anti_f1 cushion -0.032 sync 0.775 f.5 0.487
+  lev 4.0 subset 23 ph 1 anti_f1 cushion -0.032 sync 0.775 f.5 0.487
+  lev 4.0 subset 23 ph 2 anti_f1 cushion -0.032 sync 0.775 f.5 0.487
+LEV 4.0 {'n': 90, 'breach': {'anti_f1': 3, 'anti_f0.75': 0, 'anti_f0.5': 0, 'sync_f1': 0}, 'min': {'anti_f1': -0.0322941805636897, 'anti_f0.75': 0.22740100759141685, 'anti_f0.5': 0.4870961957465234, 'sync_f1': 0.5945774487987731}, 'p10': {'anti_f1': 0.09247776432547868, 'anti_f0.75': 0.3234987428479272, 'anti_f0.5': 0.5546068035309746, 'sync_f1': 0.6209188952252425}}
+  lev 5.0 subset 1 ph 0 anti_f1 cushion -0.136 sync 0.626 f.5 0.438
+  lev 5.0 subset 1 ph 1 anti_f1 cushion -0.136 sync 0.626 f.5 0.438
+  lev 5.0 subset 1 ph 2 anti_f1 cushion -0.136 sync 0.626 f.5 0.438
+  lev 5.0 subset 2 ph 0 anti_f1 cushion -0.124 sync 0.684 f.5 0.425
+  lev 5.0 subset 2 ph 1 anti_f1 cushion -0.124 sync 0.675 f.5 0.425
+  lev 5.0 subset 2 ph 2 anti_f1 cushion -0.124 sync 0.675 f.5 0.425
+  lev 5.0 subset 3 ph 0 anti_f1 cushion -0.018 sync 0.686 f.5 0.479
+  lev 5.0 subset 3 ph 1 anti_f1 cushion -0.018 sync 0.686 f.5 0.479
+  lev 5.0 subset 3 ph 2 anti_f1 cushion -0.018 sync 0.686 f.5 0.479
+  lev 5.0 subset 6 ph 0 anti_f1 cushion -0.123 sync 0.637 f.5 0.428
+  lev 5.0 subset 6 ph 1 anti_f1 cushion -0.123 sync 0.637 f.5 0.428
+  lev 5.0 subset 6 ph 2 anti_f1 cushion -0.123 sync 0.637 f.5 0.428
+  lev 5.0 subset 9 ph 0 anti_f1 cushion -0.083 sync 0.605 f.5 0.453
+  lev 5.0 subset 9 ph 1 anti_f1 cushion -0.083 sync 0.72 f.5 0.453
+  lev 5.0 subset 9 ph 2 anti_f1 cushion -0.083 sync 0.605 f.5 0.453
+  lev 5.0 subset 11 ph 0 anti_f1 cushion -0.015 sync 0.648 f.5 0.481
+  lev 5.0 subset 11 ph 1 anti_f1 cushion -0.155 sync 0.706 f.5 0.411
+  lev 5.0 subset 11 ph 2 anti_f1 cushion -0.155 sync 0.706 f.5 0.411
+  lev 5.0 subset 19 ph 0 anti_f1 cushion -0.161 sync 0.458 f.5 0.401
+  lev 5.0 subset 19 ph 1 anti_f1 cushion -0.161 sync 0.458 f.5 0.401
+  lev 5.0 subset 19 ph 2 anti_f1 cushion -0.161 sync 0.458 f.5 0.401
+  lev 5.0 subset 23 ph 0 anti_f1 cushion -0.37 sync 0.731 f.5 0.304
+  lev 5.0 subset 23 ph 1 anti_f1 cushion -0.37 sync 0.731 f.5 0.304
+  lev 5.0 subset 23 ph 2 anti_f1 cushion -0.37 sync 0.731 f.5 0.304
+LEV 5.0 {'n': 90, 'breach': {'anti_f1': 24, 'anti_f0.75': 3, 'anti_f0.5': 0, 'sync_f1': 0}, 'min': {'anti_f1': -0.36960817835815013, 'anti_f0.75': -0.032837908251450665, 'anti_f0.5': 0.30393236185524886, 'sync_f1': 0.45789669877139744}, 'p10': {'anti_f1': -0.13557177393872952, 'anti_f0.75': 0.15045480374919215, 'anti_f0.5': 0.42534129148537553, 'sync_f1': 0.5360595965081455}}

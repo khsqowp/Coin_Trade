@@ -1,0 +1,142 @@
+=== period IS ===
+
+## Tail state (pooled over 60 paths, day-close, after caps) p50/p95/p99/max  [kill=daily]
+C0_control       gross/eq [3.81 4.24 4.49 5.27] | |net|/eq [0.14 0.43 0.52 0.72] | max-sym/eq [0.285 0.444 0.592 0.685]
+C1_norm          gross/eq [3.81 4.12 4.39 5.41] | |net|/eq [0.01 0.1  0.14 0.33] | max-sym/eq [0.245 0.294 0.329 0.434]
+G42              gross/eq [3.75 4.03 4.14 4.19] | |net|/eq [0.14 0.39 0.48 0.68] | max-sym/eq [0.277 0.396 0.504 0.569]
+G46              gross/eq [3.81 4.21 4.42 4.6 ] | |net|/eq [0.14 0.42 0.51 0.72] | max-sym/eq [0.283 0.441 0.579 0.641]
+N03              gross/eq [3.81 4.23 4.49 5.33] | |net|/eq [0.12 0.26 0.29 0.3 ] | max-sym/eq [0.285 0.415 0.533 0.619]
+N05              gross/eq [3.81 4.24 4.5  5.27] | |net|/eq [0.14 0.4  0.46 0.5 ] | max-sym/eq [0.285 0.436 0.587 0.685]
+S12              gross/eq [3.81 4.23 4.47 5.12] | |net|/eq [0.14 0.4  0.5  0.71] | max-sym/eq [0.285 0.428 0.449 0.456]
+X1_G42_S12       gross/eq [3.75 4.03 4.14 4.19] | |net|/eq [0.14 0.37 0.47 0.68] | max-sym/eq [0.277 0.396 0.438 0.456]
+X2_G46_N05_S12   gross/eq [3.8  4.19 4.42 4.6 ] | |net|/eq [0.14 0.38 0.45 0.5 ] | max-sym/eq [0.285 0.42  0.449 0.456]
+
+## kill model daily: n_unique ctl=38 MDE0=1.88/yr
+cell | f*anti med (min) | P anti f=.5/.75/1 | P sync .75 | P hedged .75 | dGross% held | dGross% all | subsets4b worse strict/tol02 | min4b (cell vs ctl) | real cmin min | A1 A2 A3 A4 | kills | n_uniq | episodes(union/path) | blocks15 liq/total
+C0_control       | 0.634 (0.629) | 0.000/0.093/0.586 | 0.000 | 0.000 | +0.00 | +0.00 | 0/0 | -0.965 vs -0.965 | +0.407 | - | 4.0 | 38 | 10/9.2 | 23/61
+C1_norm          | 0.698 (0.673) | 0.000/0.015/0.534 | 0.000 | 0.000 | +0.14 | +1.73 | 3/1 | -0.638 vs -0.965 | +0.473 | n Y Y n | 2.9 | 24 | 7/6.2 | 13/61
+G42              | 0.676 (0.654) | 0.000/0.041/0.558 | 0.000 | 0.000 | -2.15 | -1.27 | 3/2 | -0.584 vs -0.965 | +0.468 | n Y Y n | 3.6 | 36 | 9/5.0 | 13/61
+G46              | 0.634 (0.629) | 0.000/0.080/0.583 | 0.000 | 0.000 | -0.44 | -0.44 | 3/0 | -0.698 vs -0.965 | +0.427 | n n Y n | 4.0 | 38 | 10/7.7 | 19/61
+N03              | 0.665 (0.662) | 0.000/0.064/0.578 | 0.000 | 0.000 | -0.11 | +0.04 | 2/1 | -0.949 vs -0.965 | +0.427 | n n Y n | 3.9 | 41 | 12/8.6 | 22/61
+N05              | 0.648 (0.629) | 0.000/0.086/0.582 | 0.000 | 0.000 | -0.04 | -0.04 | 5/1 | -0.965 vs -0.965 | +0.407 | n n Y n | 4.0 | 38 | 10/9.2 | 23/61
+S12              | 0.642 (0.632) | 0.000/0.089/0.584 | 0.000 | 0.000 | -0.18 | -0.12 | 9/2 | -0.785 vs -0.965 | +0.408 | n n Y n | 4.0 | 37 | 11/8.8 | 22/61
+X1_G42_S12       | 0.679 (0.654) | 0.000/0.041/0.558 | 0.000 | 0.000 | -2.17 | -1.33 | 3/2 | -0.598 vs -0.965 | +0.473 | n Y Y n | 3.6 | 33 | 9/5.2 | 13/61
+X2_G46_N05_S12   | 0.643 (0.632) | 0.000/0.074/0.584 | 0.000 | 0.000 | -0.51 | +0.37 | 7/2 | -0.662 vs -0.965 | +0.454 | n n Y n | 3.6 | 26 | 10/8.1 | 19/61
+
+## kill model hourly: n_unique ctl=46 MDE0=1.94/yr
+cell | f*anti med (min) | P anti f=.5/.75/1 | P sync .75 | P hedged .75 | dGross% held | dGross% all | subsets4b worse strict/tol02 | min4b (cell vs ctl) | real cmin min | A1 A2 A3 A4 | kills | n_uniq | episodes(union/path) | blocks15 liq/total
+C0_control       | 0.634 (0.629) | 0.000/0.089/0.574 | 0.000 | 0.000 | +0.00 | +0.00 | 0/0 | -0.851 vs -0.851 | +0.378 | - | 4.2 | 46 | 10/8.2 | 23/61
+C1_norm          | 0.698 (0.673) | 0.000/0.015/0.545 | 0.000 | 0.000 | +0.28 | -0.11 | 2/0 | -0.739 vs -0.851 | +0.477 | n Y Y n | 4.4 | 41 | 7/5.7 | 13/61
+G42              | 0.676 (0.672) | 0.000/0.043/0.549 | 0.000 | 0.000 | -2.07 | -2.28 | 1/1 | -0.569 vs -0.851 | +0.451 | n Y Y n | 4.3 | 47 | 8/4.9 | 12/61
+G46              | 0.634 (0.629) | 0.000/0.077/0.570 | 0.000 | 0.000 | -0.42 | -0.42 | 2/1 | -0.680 vs -0.851 | +0.451 | n n Y n | 4.2 | 46 | 9/7.3 | 19/61
+N03              | 0.662 (0.662) | 0.000/0.061/0.562 | 0.000 | 0.000 | -0.14 | -0.18 | 2/1 | -0.737 vs -0.851 | +0.411 | n n Y n | 4.2 | 49 | 11/7.8 | 21/61
+N05              | 0.648 (0.629) | 0.000/0.082/0.570 | 0.000 | 0.000 | -0.04 | -0.08 | 2/1 | -0.720 vs -0.851 | +0.385 | n n Y n | 4.2 | 48 | 10/8.2 | 23/61
+S12              | 0.642 (0.632) | 0.000/0.087/0.583 | 0.000 | 0.000 | -0.05 | -0.05 | 4/2 | -0.785 vs -0.851 | +0.422 | n n Y n | 4.2 | 34 | 10/8.2 | 22/61
+X1_G42_S12       | 0.679 (0.672) | 0.000/0.042/0.550 | 0.000 | 0.000 | -2.02 | -1.57 | 1/1 | -0.569 vs -0.851 | +0.458 | n Y Y n | 4.0 | 35 | 9/5.2 | 13/61
+X2_G46_N05_S12   | 0.643 (0.632) | 0.000/0.073/0.575 | 0.000 | 0.000 | -0.45 | -0.21 | 1/1 | -0.662 vs -0.851 | +0.459 | n n Y n | 4.0 | 27 | 9/7.7 | 19/61
+
+## kill model lam05: n_unique ctl=52 MDE0=1.96/yr
+cell | f*anti med (min) | P anti f=.5/.75/1 | P sync .75 | P hedged .75 | dGross% held | dGross% all | subsets4b worse strict/tol02 | min4b (cell vs ctl) | real cmin min | A1 A2 A3 A4 | kills | n_uniq | episodes(union/path) | blocks15 liq/total
+C0_control       | 0.634 (0.629) | 0.000/0.091/0.579 | 0.000 | 0.000 | +0.00 | +0.00 | 0/0 | -0.851 vs -0.851 | +0.378 | - | 4.5 | 52 | 10/8.3 | 23/61
+C1_norm          | 0.698 (0.673) | 0.000/0.015/0.545 | 0.000 | 0.000 | +0.24 | +0.49 | 2/0 | -0.739 vs -0.851 | +0.476 | n Y Y n | 4.4 | 41 | 7/5.7 | 13/61
+G42              | 0.676 (0.672) | 0.000/0.044/0.550 | 0.000 | 0.000 | -2.09 | -1.57 | 0/0 | -0.569 vs -0.851 | +0.451 | n Y Y Y | 4.2 | 45 | 8/5.0 | 12/61
+G46              | 0.634 (0.629) | 0.000/0.078/0.572 | 0.000 | 0.000 | -0.43 | +0.10 | 2/1 | -0.680 vs -0.851 | +0.451 | n n Y n | 4.2 | 47 | 9/7.3 | 19/61
+N03              | 0.667 (0.662) | 0.000/0.061/0.560 | 0.000 | 0.000 | -0.19 | +0.34 | 2/1 | -0.737 vs -0.851 | +0.411 | n n Y n | 4.3 | 49 | 11/7.8 | 21/61
+N05              | 0.648 (0.629) | 0.000/0.082/0.572 | 0.000 | 0.000 | -0.04 | +0.45 | 3/1 | -0.720 vs -0.851 | +0.385 | n n Y n | 4.3 | 47 | 10/8.3 | 23/61
+S12              | 0.642 (0.632) | 0.000/0.088/0.585 | 0.000 | 0.000 | -0.09 | +0.33 | 5/3 | -0.785 vs -0.851 | +0.422 | n n Y n | 4.3 | 34 | 10/8.3 | 22/61
+X1_G42_S12       | 0.679 (0.672) | 0.000/0.042/0.547 | 0.000 | 0.000 | -2.11 | -1.23 | 0/0 | -0.525 vs -0.851 | +0.458 | n Y Y Y | 4.0 | 38 | 9/5.2 | 13/61
+X2_G46_N05_S12   | 0.643 (0.632) | 0.000/0.074/0.578 | 0.000 | 0.000 | -0.45 | +0.36 | 1/1 | -0.662 vs -0.851 | +0.459 | n n Y n | 4.1 | 29 | 9/7.7 | 19/61
+
+## kill model lam15: n_unique ctl=52 MDE0=1.95/yr
+cell | f*anti med (min) | P anti f=.5/.75/1 | P sync .75 | P hedged .75 | dGross% held | dGross% all | subsets4b worse strict/tol02 | min4b (cell vs ctl) | real cmin min | A1 A2 A3 A4 | kills | n_uniq | episodes(union/path) | blocks15 liq/total
+C0_control       | 0.634 (0.629) | 0.000/0.092/0.576 | 0.000 | 0.000 | +0.00 | +0.00 | 0/0 | -0.851 vs -0.851 | +0.378 | - | 4.5 | 52 | 10/8.3 | 23/61
+C1_norm          | 0.698 (0.673) | 0.000/0.014/0.542 | 0.000 | 0.000 | +0.27 | +0.93 | 3/0 | -0.739 vs -0.851 | +0.473 | n Y Y n | 4.3 | 36 | 7/5.6 | 13/61
+G42              | 0.676 (0.672) | 0.000/0.044/0.549 | 0.000 | 0.000 | -2.08 | -1.51 | 1/0 | -0.552 vs -0.851 | +0.455 | n Y Y n | 4.2 | 46 | 8/5.0 | 12/61
+G46              | 0.634 (0.629) | 0.000/0.079/0.573 | 0.000 | 0.000 | -0.43 | -0.43 | 4/3 | -0.684 vs -0.851 | +0.440 | n n Y n | 4.5 | 52 | 9/7.4 | 19/61
+N03              | 0.662 (0.662) | 0.000/0.061/0.559 | 0.000 | 0.000 | -0.17 | +0.27 | 4/3 | -0.700 vs -0.851 | +0.411 | n n Y n | 4.3 | 48 | 11/7.9 | 21/61
+N05              | 0.648 (0.629) | 0.000/0.084/0.568 | 0.000 | 0.000 | -0.05 | +0.50 | 6/1 | -0.720 vs -0.851 | +0.385 | n n Y n | 4.2 | 45 | 10/8.3 | 23/61
+S12              | 0.642 (0.632) | 0.000/0.089/0.584 | 0.000 | 0.000 | -0.11 | -0.14 | 7/5 | -0.785 vs -0.851 | +0.422 | n n Y n | 4.5 | 40 | 10/8.3 | 22/61
+X1_G42_S12       | 0.679 (0.672) | 0.000/0.043/0.546 | 0.000 | 0.000 | -2.10 | -1.18 | 3/0 | -0.545 vs -0.851 | +0.458 | n Y Y n | 4.0 | 37 | 9/5.2 | 13/61
+X2_G46_N05_S12   | 0.643 (0.632) | 0.000/0.072/0.575 | 0.000 | 0.000 | -0.51 | -0.09 | 3/2 | -0.650 vs -0.851 | +0.459 | n n Y n | 4.3 | 34 | 9/7.8 | 19/61
+
+## kill model lam30: n_unique ctl=52 MDE0=1.96/yr
+cell | f*anti med (min) | P anti f=.5/.75/1 | P sync .75 | P hedged .75 | dGross% held | dGross% all | subsets4b worse strict/tol02 | min4b (cell vs ctl) | real cmin min | A1 A2 A3 A4 | kills | n_uniq | episodes(union/path) | blocks15 liq/total
+C0_control       | 0.634 (0.629) | 0.000/0.092/0.575 | 0.000 | 0.000 | +0.00 | +0.00 | 0/0 | -0.851 vs -0.851 | +0.408 | - | 4.5 | 52 | 10/8.3 | 23/61
+C1_norm          | 0.698 (0.673) | 0.000/0.015/0.543 | 0.000 | 0.000 | +0.27 | +0.63 | 3/1 | -0.739 vs -0.851 | +0.476 | n Y Y n | 4.5 | 37 | 7/5.6 | 13/61
+G42              | 0.676 (0.672) | 0.000/0.043/0.545 | 0.000 | 0.000 | -2.10 | -1.56 | 0/0 | -0.569 vs -0.851 | +0.478 | n Y Y Y | 4.2 | 48 | 8/5.0 | 12/61
+G46              | 0.634 (0.629) | 0.000/0.080/0.572 | 0.000 | 0.000 | -0.41 | -0.41 | 3/3 | -0.640 vs -0.851 | +0.440 | n n Y n | 4.5 | 52 | 9/7.4 | 19/61
+N03              | 0.662 (0.662) | 0.000/0.061/0.562 | 0.000 | 0.000 | -0.13 | +0.31 | 4/1 | -0.700 vs -0.851 | +0.398 | n n Y n | 4.3 | 48 | 11/8.1 | 21/61
+N05              | 0.648 (0.629) | 0.000/0.084/0.567 | 0.000 | 0.000 | -0.06 | +0.53 | 4/2 | -0.779 vs -0.851 | +0.408 | n n Y n | 4.2 | 47 | 10/8.3 | 23/61
+S12              | 0.642 (0.632) | 0.000/0.090/0.585 | 0.000 | 0.000 | -0.10 | -0.12 | 6/2 | -0.785 vs -0.851 | +0.401 | n n Y n | 4.5 | 40 | 10/8.3 | 22/61
+X1_G42_S12       | 0.679 (0.672) | 0.000/0.043/0.542 | 0.000 | 0.000 | -2.15 | -1.61 | 0/0 | -0.545 vs -0.851 | +0.478 | n Y Y Y | 4.2 | 42 | 9/5.3 | 13/61
+X2_G46_N05_S12   | 0.643 (0.632) | 0.000/0.073/0.576 | 0.000 | 0.000 | -0.49 | -0.07 | 3/2 | -0.624 vs -0.851 | +0.447 | n n Y n | 4.3 | 34 | 9/7.8 | 19/61
+
+## P with flat3 MM, f=.75 anti / sync (daily kill model) and f* sync/hedged median
+C0_control       flat3 anti.75=0.196 anti1.0=0.674 | f* sync med 1.24 hedged med 1.24 | f*anti flat3 0.582 | turnover(sum trade/eq) caps events g/n/s [0. 0. 0. 0.]
+C1_norm          flat3 anti.75=0.071 anti1.0=0.634 | f* sync med 1.73 hedged med 1.73 | f*anti flat3 0.634 | turnover(sum trade/eq) caps events g/n/s [ 0.   0.   0.  46.5]
+G42              flat3 anti.75=0.115 anti1.0=0.650 | f* sync med 1.30 hedged med 1.30 | f*anti flat3 0.630 | turnover(sum trade/eq) caps events g/n/s [50.   0.   0.  12.2]
+G46              flat3 anti.75=0.172 anti1.0=0.669 | f* sync med 1.24 hedged med 1.24 | f*anti flat3 0.585 | turnover(sum trade/eq) caps events g/n/s [10.6  0.   0.   3. ]
+N03              flat3 anti.75=0.163 anti1.0=0.672 | f* sync med 1.37 hedged med 1.37 | f*anti flat3 0.613 | turnover(sum trade/eq) caps events g/n/s [ 0.  38.2  0.   4.4]
+N05              flat3 anti.75=0.191 anti1.0=0.673 | f* sync med 1.24 hedged med 1.24 | f*anti flat3 0.600 | turnover(sum trade/eq) caps events g/n/s [0.  5.9 0.  0.6]
+S12              flat3 anti.75=0.191 anti1.0=0.671 | f* sync med 1.23 hedged med 1.23 | f*anti flat3 0.589 | turnover(sum trade/eq) caps events g/n/s [ 0.   0.  66.7  0.3]
+X1_G42_S12       flat3 anti.75=0.117 anti1.0=0.653 | f* sync med 1.31 hedged med 1.31 | f*anti flat3 0.632 | turnover(sum trade/eq) caps events g/n/s [49.2  0.  25.3 12. ]
+X2_G46_N05_S12   flat3 anti.75=0.174 anti1.0=0.671 | f* sync med 1.24 hedged med 1.24 | f*anti flat3 0.594 | turnover(sum trade/eq) caps events g/n/s [ 8.6  4.9 54.5  3.3]
+
+## Bootstrap CIs (daily kill) for key P and relative drop; growth diffs
+-- daily
+C1_norm          P75 cell CI [0.006 0.026] ctl CI [0.052 0.143] reldrop CI [0.76 0.91] | dg -0.032/yr SEboot 0.117 CI95 [-0.276  0.183] Bonf [-0.366  0.264] | path dg -0.032+-0.142 P(+)=0.38 | label uninformative (MDE0 1.88)
+G42              P75 cell CI [0.01  0.078] ctl CI [0.052 0.143] reldrop CI [0.38 0.82] | dg -0.069/yr SEboot 0.044 CI95 [-0.154  0.02 ] Bonf [-0.188  0.062] | path dg -0.069+-0.074 P(+)=0.08 | label uninformative (MDE0 1.88)
+G46              P75 cell CI [0.041 0.128] ctl CI [0.052 0.143] reldrop CI [0.07 0.27] | dg -0.017/yr SEboot 0.010 CI95 [-0.037  0.001] Bonf [-0.047  0.007] | path dg -0.017+-0.003 P(+)=0.00 | label uninformative (MDE0 1.88)
+N03              P75 cell CI [0.035 0.1  ] ctl CI [0.052 0.143] reldrop CI [0.18 0.44] | dg -0.049/yr SEboot 0.058 CI95 [-0.164  0.061] Bonf [-0.214  0.107] | path dg -0.049+-0.127 P(+)=0.38 | label uninformative (MDE0 1.88)
+N05              P75 cell CI [0.046 0.133] ctl CI [0.052 0.143] reldrop CI [0.02 0.17] | dg +0.003/yr SEboot 0.006 CI95 [-0.008  0.016] Bonf [-0.012  0.021] | path dg +0.003+-0.006 P(+)=0.77 | label uninformative (MDE0 1.88)
+S12              P75 cell CI [0.049 0.138] ctl CI [0.052 0.143] reldrop CI [0.01 0.08] | dg +0.015/yr SEboot 0.021 CI95 [-0.026  0.057] Bonf [-0.043  0.073] | path dg +0.015+-0.159 P(+)=0.68 | label uninformative (MDE0 1.88)
+X1_G42_S12       P75 cell CI [0.011 0.077] ctl CI [0.052 0.143] reldrop CI [0.38 0.82] | dg -0.089/yr SEboot 0.049 CI95 [-0.186  0.009] Bonf [-0.224  0.051] | path dg -0.089+-0.105 P(+)=0.15 | label uninformative (MDE0 1.88)
+X2_G46_N05_S12   P75 cell CI [0.036 0.118] ctl CI [0.052 0.143] reldrop CI [0.1  0.36] | dg -0.017/yr SEboot 0.034 CI95 [-0.081  0.053] Bonf [-0.107  0.09 ] | path dg -0.017+-0.036 P(+)=0.35 | label uninformative (MDE0 1.88)
+-- hourly
+C1_norm          P75 cell CI [0.006 0.025] ctl CI [0.046 0.141] reldrop CI [0.75 0.9 ] | dg -0.275/yr SEboot 0.138 CI95 [-0.566 -0.025] Bonf [-0.669  0.048] | path dg -0.275+-0.185 P(+)=0.03 | label uninformative (MDE0 1.94)
+G42              P75 cell CI [0.01  0.085] ctl CI [0.046 0.141] reldrop CI [0.32 0.81] | dg -0.103/yr SEboot 0.043 CI95 [-0.189 -0.023] Bonf [-0.232  0.003] | path dg -0.103+-0.104 P(+)=0.17 | label uninformative (MDE0 1.94)
+G46              P75 cell CI [0.037 0.128] ctl CI [0.046 0.141] reldrop CI [0.05 0.25] | dg -0.018/yr SEboot 0.010 CI95 [-0.039 -0.001] Bonf [-0.051  0.005] | path dg -0.018+-0.006 P(+)=0.00 | label uninformative (MDE0 1.94)
+N03              P75 cell CI [0.031 0.098] ctl CI [0.046 0.141] reldrop CI [0.23 0.4 ] | dg -0.102/yr SEboot 0.061 CI95 [-0.238  0.001] Bonf [-0.287  0.03 ] | path dg -0.102+-0.137 P(+)=0.18 | label uninformative (MDE0 1.94)
+N05              P75 cell CI [0.041 0.13 ] ctl CI [0.046 0.141] reldrop CI [0.02 0.16] | dg -0.014/yr SEboot 0.016 CI95 [-0.045  0.02 ] Bonf [-0.056  0.034] | path dg -0.014+-0.059 P(+)=0.58 | label uninformative (MDE0 1.94)
+S12              P75 cell CI [0.046 0.139] ctl CI [0.046 0.141] reldrop CI [-0.01  0.04] | dg -0.036/yr SEboot 0.023 CI95 [-0.084  0.008] Bonf [-0.103  0.026] | path dg -0.036+-0.123 P(+)=0.32 | label uninformative (MDE0 1.94)
+X1_G42_S12       P75 cell CI [0.011 0.08 ] ctl CI [0.046 0.141] reldrop CI [0.35 0.8 ] | dg -0.110/yr SEboot 0.050 CI95 [-0.212 -0.016] Bonf [-0.261  0.016] | path dg -0.110+-0.130 P(+)=0.28 | label uninformative (MDE0 1.94)
+X2_G46_N05_S12   P75 cell CI [0.035 0.118] ctl CI [0.046 0.141] reldrop CI [0.08 0.34] | dg -0.050/yr SEboot 0.049 CI95 [-0.15   0.046] Bonf [-0.19   0.078] | path dg -0.050+-0.117 P(+)=0.30 | label uninformative (MDE0 1.94)
+-- lam05
+C1_norm          P75 cell CI [0.006 0.025] ctl CI [0.048 0.143] reldrop CI [0.76 0.91] | dg -0.216/yr SEboot 0.139 CI95 [-0.509  0.03 ] Bonf [-0.606  0.123] | path dg -0.216+-0.202 P(+)=0.13 | label uninformative (MDE0 1.96)
+G42              P75 cell CI [0.01  0.085] ctl CI [0.048 0.143] reldrop CI [0.33 0.81] | dg -0.033/yr SEboot 0.044 CI95 [-0.124  0.049] Bonf [-0.161  0.086] | path dg -0.033+-0.151 P(+)=0.42 | label uninformative (MDE0 1.96)
+G46              P75 cell CI [0.038 0.128] ctl CI [0.048 0.143] reldrop CI [0.06 0.27] | dg +0.019/yr SEboot 0.021 CI95 [-0.018  0.062] Bonf [-0.032  0.084] | path dg +0.019+-0.068 P(+)=0.25 | label uninformative (MDE0 1.96)
+N03              P75 cell CI [0.031 0.097] ctl CI [0.048 0.143] reldrop CI [0.26 0.42] | dg -0.034/yr SEboot 0.064 CI95 [-0.173  0.078] Bonf [-0.214  0.113] | path dg -0.034+-0.134 P(+)=0.35 | label uninformative (MDE0 1.96)
+N05              P75 cell CI [0.042 0.13 ] ctl CI [0.048 0.143] reldrop CI [0.04 0.18] | dg +0.022/yr SEboot 0.023 CI95 [-0.02   0.069] Bonf [-0.035  0.088] | path dg +0.022+-0.082 P(+)=0.57 | label uninformative (MDE0 1.96)
+S12              P75 cell CI [0.046 0.139] ctl CI [0.048 0.143] reldrop CI [-0.    0.08] | dg +0.007/yr SEboot 0.034 CI95 [-0.065  0.071] Bonf [-0.095  0.096] | path dg +0.008+-0.148 P(+)=0.50 | label uninformative (MDE0 1.96)
+X1_G42_S12       P75 cell CI [0.011 0.081] ctl CI [0.048 0.143] reldrop CI [0.36 0.8 ] | dg -0.039/yr SEboot 0.053 CI95 [-0.145  0.064] Bonf [-0.194  0.095] | path dg -0.039+-0.144 P(+)=0.37 | label uninformative (MDE0 1.96)
+X2_G46_N05_S12   P75 cell CI [0.035 0.119] ctl CI [0.048 0.143] reldrop CI [0.09 0.35] | dg -0.008/yr SEboot 0.043 CI95 [-0.094  0.077] Bonf [-0.135  0.106] | path dg -0.008+-0.149 P(+)=0.48 | label uninformative (MDE0 1.96)
+-- lam15
+C1_norm          P75 cell CI [0.006 0.024] ctl CI [0.049 0.144] reldrop CI [0.77 0.91] | dg -0.215/yr SEboot 0.140 CI95 [-0.512  0.029] Bonf [-0.614  0.125] | path dg -0.215+-0.173 P(+)=0.12 | label uninformative (MDE0 1.95)
+G42              P75 cell CI [0.01  0.085] ctl CI [0.049 0.144] reldrop CI [0.34 0.82] | dg -0.051/yr SEboot 0.051 CI95 [-0.157  0.046] Bonf [-0.194  0.082] | path dg -0.051+-0.151 P(+)=0.33 | label uninformative (MDE0 1.95)
+G46              P75 cell CI [0.038 0.129] ctl CI [0.049 0.144] reldrop CI [0.06 0.28] | dg -0.024/yr SEboot 0.016 CI95 [-0.057  0.004] Bonf [-0.071  0.013] | path dg -0.024+-0.059 P(+)=0.08 | label uninformative (MDE0 1.95)
+N03              P75 cell CI [0.032 0.098] ctl CI [0.049 0.144] reldrop CI [0.26 0.42] | dg -0.044/yr SEboot 0.064 CI95 [-0.179  0.071] Bonf [-0.219  0.108] | path dg -0.044+-0.173 P(+)=0.42 | label uninformative (MDE0 1.95)
+N05              P75 cell CI [0.043 0.133] ctl CI [0.049 0.144] reldrop CI [0.04 0.18] | dg +0.026/yr SEboot 0.025 CI95 [-0.018  0.079] Bonf [-0.035  0.101] | path dg +0.026+-0.084 P(+)=0.62 | label uninformative (MDE0 1.95)
+S12              P75 cell CI [0.047 0.141] ctl CI [0.049 0.144] reldrop CI [0.   0.09] | dg -0.029/yr SEboot 0.036 CI95 [-0.106  0.034] Bonf [-0.143  0.055] | path dg -0.028+-0.158 P(+)=0.35 | label uninformative (MDE0 1.95)
+X1_G42_S12       P75 cell CI [0.011 0.082] ctl CI [0.049 0.144] reldrop CI [0.36 0.81] | dg -0.049/yr SEboot 0.057 CI95 [-0.162  0.061] Bonf [-0.213  0.099] | path dg -0.049+-0.143 P(+)=0.30 | label uninformative (MDE0 1.95)
+X2_G46_N05_S12   P75 cell CI [0.034 0.118] ctl CI [0.049 0.144] reldrop CI [0.11 0.39] | dg -0.016/yr SEboot 0.042 CI95 [-0.104  0.06 ] Bonf [-0.141  0.088] | path dg -0.016+-0.146 P(+)=0.45 | label uninformative (MDE0 1.95)
+-- lam30
+C1_norm          P75 cell CI [0.006 0.025] ctl CI [0.049 0.144] reldrop CI [0.77 0.91] | dg -0.212/yr SEboot 0.138 CI95 [-0.505  0.032] Bonf [-0.613  0.117] | path dg -0.212+-0.168 P(+)=0.10 | label uninformative (MDE0 1.96)
+G42              P75 cell CI [0.01  0.084] ctl CI [0.049 0.144] reldrop CI [0.34 0.82] | dg -0.045/yr SEboot 0.050 CI95 [-0.149  0.049] Bonf [-0.187  0.083] | path dg -0.045+-0.135 P(+)=0.35 | label uninformative (MDE0 1.96)
+G46              P75 cell CI [0.039 0.131] ctl CI [0.049 0.144] reldrop CI [0.05 0.28] | dg -0.014/yr SEboot 0.010 CI95 [-0.036  0.005] Bonf [-0.046  0.012] | path dg -0.014+-0.056 P(+)=0.12 | label uninformative (MDE0 1.96)
+N03              P75 cell CI [0.032 0.098] ctl CI [0.049 0.144] reldrop CI [0.25 0.42] | dg -0.013/yr SEboot 0.048 CI95 [-0.106  0.08 ] Bonf [-0.144  0.112] | path dg -0.013+-0.176 P(+)=0.48 | label uninformative (MDE0 1.96)
+N05              P75 cell CI [0.043 0.134] ctl CI [0.049 0.144] reldrop CI [0.03 0.19] | dg +0.047/yr SEboot 0.023 CI95 [0.009 0.096] Bonf [-0.001  0.12 ] | path dg +0.047+-0.078 P(+)=0.72 | label uninformative (MDE0 1.96)
+S12              P75 cell CI [0.048 0.142] ctl CI [0.049 0.144] reldrop CI [-0.01  0.07] | dg -0.033/yr SEboot 0.035 CI95 [-0.109  0.029] Bonf [-0.144  0.051] | path dg -0.033+-0.154 P(+)=0.32 | label uninformative (MDE0 1.96)
+X1_G42_S12       P75 cell CI [0.01  0.084] ctl CI [0.049 0.144] reldrop CI [0.34 0.81] | dg -0.040/yr SEboot 0.051 CI95 [-0.144  0.056] Bonf [-0.182  0.095] | path dg -0.040+-0.144 P(+)=0.38 | label uninformative (MDE0 1.96)
+X2_G46_N05_S12   P75 cell CI [0.034 0.12 ] ctl CI [0.049 0.144] reldrop CI [0.11 0.38] | dg -0.018/yr SEboot 0.042 CI95 [-0.105  0.06 ] Bonf [-0.143  0.086] | path dg -0.018+-0.151 P(+)=0.43 | label uninformative (MDE0 1.96)
+
+## ADMISSION (all five kill models required)
+C1_norm          IS_PASS_ALL5=False fails={'daily': ['c1', 'c4'], 'hourly': ['c1', 'c4'], 'lam05': ['c1', 'c4'], 'lam15': ['c1', 'c4'], 'lam30': ['c1', 'c4']}
+G42              IS_PASS_ALL5=False fails={'daily': ['c1', 'c4'], 'hourly': ['c1', 'c4'], 'lam05': ['c1'], 'lam15': ['c1', 'c4'], 'lam30': ['c1']}
+G46              IS_PASS_ALL5=False fails={'daily': ['c1', 'c2', 'c4'], 'hourly': ['c1', 'c2', 'c4'], 'lam05': ['c1', 'c2', 'c4'], 'lam15': ['c1', 'c2', 'c4'], 'lam30': ['c1', 'c2', 'c4']}
+N03              IS_PASS_ALL5=False fails={'daily': ['c1', 'c2', 'c4'], 'hourly': ['c1', 'c2', 'c4'], 'lam05': ['c1', 'c2', 'c4'], 'lam15': ['c1', 'c2', 'c4'], 'lam30': ['c1', 'c2', 'c4']}
+N05              IS_PASS_ALL5=False fails={'daily': ['c1', 'c2', 'c4'], 'hourly': ['c1', 'c2', 'c4'], 'lam05': ['c1', 'c2', 'c4'], 'lam15': ['c1', 'c2', 'c4'], 'lam30': ['c1', 'c2', 'c4']}
+S12              IS_PASS_ALL5=False fails={'daily': ['c1', 'c2', 'c4'], 'hourly': ['c1', 'c2', 'c4'], 'lam05': ['c1', 'c2', 'c4'], 'lam15': ['c1', 'c2', 'c4'], 'lam30': ['c1', 'c2', 'c4']}
+X1_G42_S12       IS_PASS_ALL5=False fails={'daily': ['c1', 'c4'], 'hourly': ['c1', 'c4'], 'lam05': ['c1'], 'lam15': ['c1', 'c4'], 'lam30': ['c1']}
+X2_G46_N05_S12   IS_PASS_ALL5=False fails={'daily': ['c1', 'c2', 'c4'], 'hourly': ['c1', 'c2', 'c4'], 'lam05': ['c1', 'c2', 'c4'], 'lam15': ['c1', 'c2', 'c4'], 'lam30': ['c1', 'c2', 'c4']}
+
+real-history (4a) per-cell min over subsets/paths: real cmin ctl {'daily': 0.487, 'hourly': 0.487, 'lam05': 0.487, 'lam15': 0.487, 'lam30': 0.487}

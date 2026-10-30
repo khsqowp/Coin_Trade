@@ -1,0 +1,13 @@
+USDT-perp symbols with 1d klines (ascii): 895 | ever PIT members: 407 | member-months: 3440
+PIT members whose data ended before 2026-08-31 (delisted/renamed/migrated): 19
+[('LENDUSDT', '2020-11-10'), ('BZRXUSDT', '2021-12-19'), ('BTTUSDT', '2022-01-26'), ('KEEPUSDT', '2022-02-15'), ('YFIIUSDT', '2022-04-12'), ('LUNAUSDT', '2022-05-13'), ('DODOUSDT', '2022-05-27'), ('HNTUSDT', '2024-05-28'), ('AUDIOUSDT', '2024-05-28'), ('TOMOUSDT', '2024-05-28'), ('COCOSUSDT', '2024-05-28'), ('SRMUSDT', '2024-05-28'), ('GALUSDT', '2024-07-30'), ('RNDRUSDT', '2024-07-30'), ('MATICUSDT', '2024-09-11'), ('FRONTUSDT', '2024-09-11'), ('EOSUSDT', '2025-05-21'), ('SXPUSDT', '2026-05-31'), ('AERGOUSDT', '2026-06-30')]
+share of PIT member-months by year belonging to symbols that later died/delisted:
+{'2020': 0.072, '2021': 0.091, '2022': 0.067, '2023': 0.069, '2024': 0.026, '2025': 0.004, '2026': 0.0}
+NEW period (<2022-01): member-months 875 dead-later share 0.083 distinct members 98 dead 11
+OLD 45 vs PIT top-45 in 2022-01..2026-09: PIT member-months that are in OLD 45: 0.471 | OLD 45 that were ever PIT members 2022+: 42 of 45
+per-month overlap |PIT45 ∩ OLD45|: min/median/max 13 22 26
+2022-01 overlap 22 PIT not in OLD (sample): ['LUNAUSDT', 'MATICUSDT', 'SANDUSDT', 'GALAUSDT', '1000SHIBUSDT', 'MANAUSDT', 'FTMUSDT', 'SUSHIUSDT']
+2023-01 overlap 20 PIT not in OLD (sample): ['AXSUSDT', 'MATICUSDT', 'MASKUSDT', 'APEUSDT', 'CHZUSDT', 'BNXUSDT', 'DYDXUSDT', 'FTMUSDT']
+2024-01 overlap 24 PIT not in OLD (sample): ['ORDIUSDT', 'TRBUSDT', '1000BONKUSDT', 'TIAUSDT', 'MATICUSDT', 'BIGTIMEUSDT', 'BAKEUSDT', '1000LUNCUSDT']
+2025-01 overlap 26 PIT not in OLD (sample): ['1000PEPEUSDT', 'PNUTUSDT', 'WIFUSDT', 'UXLINKUSDT', 'NEIROUSDT', '1000SHIBUSDT', '1MBABYDOGEUSDT', 'MOVEUSDT']
+2026-01 overlap 20 PIT not in OLD (sample): ['PIPPINUSDT', 'BEATUSDT', 'HYPEUSDT', 'LIGHTUSDT', '1000PEPEUSDT', 'ASTERUSDT', 'FOLKSUSDT', '1000LUNCUSDT']

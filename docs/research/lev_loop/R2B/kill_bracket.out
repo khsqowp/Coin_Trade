@@ -1,0 +1,23 @@
+lambda | CAGR | mean kills (3 phases)
+0.00 | +102.1% | 9.7
+0.01 | +102.0% | 9.7
+0.02 | +95.6% | 10.0
+0.03 | +62.5% | 13.0
+0.05 | +68.3% | 12.0
+0.10 | +68.3% | 12.0
+0.15 | +68.3% | 12.0
+0.20 | +48.5% | 14.0
+0.25 | +65.1% | 14.0
+0.30 | +64.4% | 14.0
+0.35 | +64.1% | 14.0
+0.40 | +64.1% | 14.0
+0.45 | +48.6% | 16.0
+0.50 | +47.7% | 16.0
+0.55 | +18.1% | 17.3
+0.60 | +6.8% | 17.3
+window empirical_lo_hi lambda [0.20,0.35] n=16: mean CAGR +61.6% median +64.5% min +48.1% max +65.3%
+window empirical_mid_pm0_05 lambda [0.20,0.30] n=11: mean CAGR +60.3% median +64.5% min +48.1% max +65.3%
+window review_0_1_to_0_3 lambda [0.10,0.30] n=21: mean CAGR +63.3% median +65.1% min +48.1% max +68.5%
+window tail_0_1_to_0_5 lambda [0.10,0.50] n=41: mean CAGR +60.9% median +64.4% min +46.9% max +71.2%
+no-kill CAGR +128.3%
+/opt/anaconda3/bin/python3 -I app/rs_lev_r2b_kill.py 0.20 0.25 0.35  18.83s user 0.18s system 96% cpu 19.666 total

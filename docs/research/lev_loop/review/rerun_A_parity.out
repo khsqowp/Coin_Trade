@@ -1,0 +1,3 @@
+PARITY OK: 54 runs bit-exact (eq, worst, kills, liq).
+V0 live cell ends (phases 0/1/2): [14.5027, 18.4064, 15.8459]
+IDENTITY OK: eq path depends on lev*deploy only (4x0.95 == 3.8x1.0 == 2.0x1.9), intraday mode too.

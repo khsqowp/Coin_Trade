@@ -1,0 +1,24 @@
+PASS V0 final published ph0
+PASS V0 kills published ph0
+PASS V0 engine==indep_sim ph0
+PASS V0 no-trade-cost-cap counters zero ph0
+PASS V0 final published ph1
+PASS V0 kills published ph1
+PASS V0 engine==indep_sim ph1
+PASS V0 no-trade-cost-cap counters zero ph1
+PASS V0 final published ph2
+PASS V0 kills published ph2
+PASS V0 engine==indep_sim ph2
+PASS V0 no-trade-cost-cap counters zero ph2
+PASS lambda-kill hourly ph0
+PASS lambda-kill hourly ph1
+PASS lambda-kill hourly ph2
+PASS lambda-kill lam05 ph0
+PASS lambda-kill lam05 ph1
+PASS lambda-kill lam05 ph2
+PASS U1 4x min cushion .312
+PASS U3_23 4x cushion -0.032
+PASS 4x subsets liquidated == 1/30
+PASS inert gcap identity
+PASS gross cap enforced at day close (<= cap+tol)
+SMOKE_OK

@@ -1,0 +1,2 @@
+IS 25920 runs 13.9 s
+$SP/rv/bin/python stage.py IS  81.89s user 3.99s system 580% cpu 14.796 total

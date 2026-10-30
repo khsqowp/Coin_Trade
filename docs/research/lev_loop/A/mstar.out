@@ -1,0 +1,9 @@
+cell scen: min cushion TIER(0.5%), min cushion FLAT3, approx breakeven maintenance rate m* (same-hour approx)
+(3.0, 1.0) BASE: tier +0.45 flat +0.40 gross/E~2.1 m*~21.9% | VOL: tier +0.16 flat +0.14 gross/E~0.9 m*~18.7% | COMB: tier +0.18 flat +0.13 gross/E~2.0 m*~9.7%
+(3.5, 1.0) BASE: tier +0.38 flat +0.32 gross/E~2.3 m*~16.7% | VOL: tier -0.01 flat -0.00 gross/E~-0.2 m*~nan% | COMB: tier +0.03 flat -0.01 gross/E~1.6 m*~2.5%
+(4.0, 0.35) BASE: tier +0.30 flat +0.25 gross/E~1.9 m*~16.2% | VOL: tier +0.05 flat +0.10 gross/E~1.2 m*~11.5% | COMB: tier +0.13 flat +0.09 gross/E~2.4 m*~6.7%
+(4.0, 1.0) BASE: tier +0.30 flat +0.25 gross/E~2.3 m*~14.0% | VOL: tier -0.19 flat -0.15 gross/E~-1.9 m*~nan% | COMB: tier -0.13 flat -0.15 gross/E~1.0 m*~-13.1%
+(5.0, 0.35) BASE: tier +0.17 flat +0.12 gross/E~2.8 m*~7.3% | VOL: tier -0.45 flat -0.30 gross/E~-6.1 m*~nan% | COMB: tier +0.03 flat +0.01 gross/E~0.7 m*~4.8%
+(5.0, 1.0) BASE: tier +0.17 flat +0.07 gross/E~4.1 m*~4.6% | VOL: tier -0.78 flat -0.46 gross/E~-4.2 m*~nan% | COMB: tier -0.76 flat -0.55 gross/E~-5.4 m*~nan%
+(6.0, 0.35) BASE: tier +0.05 flat -0.00 gross/E~2.4 m*~3.0% | VOL: tier -0.10 flat -0.10 gross/E~-0.1 m*~nan% | COMB: tier -0.06 flat -0.10 gross/E~1.8 m*~-2.5%
+(6.0, 1.0) BASE: tier -0.06 flat -0.13 gross/E~4.6 m*~0.1% | VOL: tier -1.24 flat -0.92 gross/E~-13.0 m*~nan% | COMB: tier -1.27 flat -0.94 gross/E~-13.1 m*~nan%

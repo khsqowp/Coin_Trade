@@ -1,0 +1,7 @@
+15s samples: 1936 median dt 16.726034
+hours 9 mean dip 15s 0.0110 vs 5min-sub 0.0090  (ratio 1.21); p90 0.0193 vs 0.0180; max 0.0251 vs 0.0209
+W1 09-25..10-11 (gross~3.8): hours 387 dip mean 0.0036 p50 0.0021 p90 0.0090 p99 0.0202 max 0.0329 | hourly range p50 0.0065 p99 0.0216
+W2 10-24..10-30 (gross~3.6): hours 150 dip mean 0.0041 p50 0.0026 p90 0.0094 p99 0.0272 max 0.0446 | hourly range p50 0.0072 p99 0.0272
+W1 overlap with panel 09-25..10-09: hours 330 dip mean 0.0038 p50 0.0024 p90 0.0096 p99 0.0205 max 0.0329 | hourly range p50 0.0066 p99 0.0220
+W1 maxDD 5min 0.1791 | hourly-close 0.1786 | daily-close 0.1715
+W2 maxDD 5min 0.0860 | hourly-close 0.0815 | daily-close 0.0424

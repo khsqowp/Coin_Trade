@@ -1,0 +1,55 @@
+cell | win | mode: g_mean / W_p10-med-p90 / CAGR_med / mddClose_med / mddIntra_med,p90 / kills | cushVOLmin
+(4.0, 0.35) IS   m0: g +0.50 | W   2.67-  3.31-  4.01 | CAGR     63% | mdd  60% | mddI  49/ 49% | kills  4.9 | VOLcush +nan
+(4.0, 0.35) IS   m3: g +0.87 | W   6.82-  8.25-  9.96 | CAGR    136% | mdd  53% | mddI  49/ 49% | kills  3.4 | VOLcush +0.28
+(4.0, 0.35) IS   m1: g -0.56 | W   0.18-  0.27-  0.32 | CAGR    -41% | mdd  89% | mddI  49/ 49% | kills  9.2 | VOLcush +0.33
+(4.0, 0.35) OOS  m0: g +0.66 | W   2.36-  5.12-  7.23 | CAGR    105% | mdd  62% | mddI  67/ 67% | kills  4.5 | VOLcush +nan
+(4.0, 0.35) OOS  m3: g +0.43 | W   1.43-  2.25-  5.56 | CAGR     44% | mdd  69% | mddI  70/ 70% | kills  7.4 | VOLcush +0.10
+(4.0, 0.35) OOS  m1: g -0.36 | W   0.37-  0.42-  0.66 | CAGR    -33% | mdd  84% | mddI  70/ 70% | kills 10.8 | VOLcush +0.17
+(4.0, 0.35) FULL m0: g +0.61 | W  14.45- 17.91- 21.69 | CAGR     84% | mdd  62% | mddI  67/ 67% | kills  8.9 | VOLcush +nan
+(4.0, 0.35) FULL m3: g +0.72 | W  24.48- 29.63- 35.75 | CAGR    104% | mdd  62% | mddI  70/ 70% | kills  9.4 | VOLcush +0.10
+(4.0, 0.35) FULL m1: g -0.49 | W   0.07-  0.11-  0.13 | CAGR    -37% | mdd  96% | mddI  70/ 70% | kills 20.1 | VOLcush +0.17
+(4.0, 1.0) IS   m0: g +0.86 | W   6.92-  8.44-  9.19 | CAGR    139% | mdd  52% | mddI  60/ 63% | kills  0.0 | VOLcush +nan
+(4.0, 1.0) IS   m3: g +0.86 | W   6.92-  8.44-  9.19 | CAGR    139% | mdd  52% | mddI  60/ 64% | kills  0.0 | VOLcush +0.18
+(4.0, 1.0) IS   m1: g +0.86 | W   6.92-  8.44-  9.19 | CAGR    139% | mdd  52% | mddI  60/ 64% | kills  0.0 | VOLcush +0.18
+(4.0, 1.0) OOS  m0: g +0.90 | W   3.80-  6.32- 17.35 | CAGR    132% | mdd  56% | mddI  74/ 75% | kills  0.0 | VOLcush +nan
+(4.0, 1.0) OOS  m3: g +0.90 | W   3.80-  6.32- 17.35 | CAGR    132% | mdd  56% | mddI  75/ 76% | kills  0.0 | VOLcush -0.15
+(4.0, 1.0) OOS  m1: g +0.90 | W   3.80-  6.32- 17.35 | CAGR    132% | mdd  56% | mddI  75/ 76% | kills  0.0 | VOLcush -0.15
+(4.0, 1.0) FULL m0: g +0.85 | W  29.46- 51.09-118.06 | CAGR    130% | mdd  56% | mddI  74/ 75% | kills  0.0 | VOLcush +nan
+(4.0, 1.0) FULL m3: g +0.85 | W  29.46- 51.09-118.06 | CAGR    130% | mdd  56% | mddI  75/ 76% | kills  0.0 | VOLcush -0.15
+(4.0, 1.0) FULL m1: g +0.85 | W  29.46- 51.09-118.06 | CAGR    130% | mdd  56% | mddI  75/ 76% | kills  0.0 | VOLcush -0.15
+(3.0, 1.0) IS   m0: g +0.70 | W   5.06-  5.64-  6.00 | CAGR    103% | mdd  42% | mddI  49/ 51% | kills  0.0 | VOLcush +nan
+(3.0, 1.0) IS   m3: g +0.70 | W   5.06-  5.64-  6.00 | CAGR    103% | mdd  42% | mddI  49/ 52% | kills  0.0 | VOLcush +0.35
+(3.0, 1.0) IS   m1: g +0.70 | W   5.06-  5.64-  6.00 | CAGR    103% | mdd  42% | mddI  49/ 52% | kills  0.0 | VOLcush +0.35
+(3.0, 1.0) OOS  m0: g +0.79 | W   3.56-  5.14- 10.60 | CAGR    111% | mdd  46% | mddI  60/ 62% | kills  0.0 | VOLcush +nan
+(3.0, 1.0) OOS  m3: g +0.79 | W   3.56-  5.14- 10.60 | CAGR    111% | mdd  46% | mddI  62/ 64% | kills  0.0 | VOLcush +0.14
+(3.0, 1.0) OOS  m1: g +0.79 | W   3.56-  5.14- 10.60 | CAGR    111% | mdd  46% | mddI  62/ 64% | kills  0.0 | VOLcush +0.14
+(3.0, 1.0) FULL m0: g +0.72 | W  18.89- 28.00- 53.51 | CAGR    103% | mdd  46% | mddI  60/ 62% | kills  0.0 | VOLcush +nan
+(3.0, 1.0) FULL m3: g +0.72 | W  18.89- 28.00- 53.51 | CAGR    103% | mdd  46% | mddI  62/ 64% | kills  0.0 | VOLcush +0.14
+(3.0, 1.0) FULL m1: g +0.72 | W  18.89- 28.00- 53.51 | CAGR    103% | mdd  46% | mddI  62/ 64% | kills  0.0 | VOLcush +0.14
+(3.0, 0.35) IS   m0: g +0.60 | W   3.10-  4.48-  5.79 | CAGR     85% | mdd  50% | mddI  40/ 44% | kills  1.7 | VOLcush +nan
+(3.0, 0.35) IS   m3: g +0.52 | W   2.06-  3.74-  5.48 | CAGR     72% | mdd  44% | mddI  43/ 43% | kills  2.3 | VOLcush +0.47
+(3.0, 0.35) IS   m1: g +0.01 | W   0.53-  0.76-  2.63 | CAGR    -11% | mdd  65% | mddI  40/ 41% | kills  6.3 | VOLcush +0.47
+(3.0, 0.35) OOS  m0: g +0.84 | W   3.97-  7.50- 10.10 | CAGR    147% | mdd  48% | mddI  51/ 60% | kills  2.3 | VOLcush +nan
+(3.0, 0.35) OOS  m3: g +0.88 | W   6.19-  7.14-  7.96 | CAGR    142% | mdd  47% | mddI  53/ 55% | kills  2.7 | VOLcush +0.27
+(3.0, 0.35) OOS  m1: g -0.01 | W   0.68-  0.90-  1.63 | CAGR     -5% | mdd  71% | mddI  46/ 48% | kills  5.7 | VOLcush +0.27
+(3.0, 0.35) FULL m0: g +0.64 | W  11.58- 21.45- 32.91 | CAGR     92% | mdd  65% | mddI  60/ 60% | kills  4.7 | VOLcush +nan
+(3.0, 0.35) FULL m3: g +0.69 | W  16.24- 29.41- 34.42 | CAGR    105% | mdd  47% | mddI  48/ 55% | kills  5.7 | VOLcush +0.27
+(3.0, 0.35) FULL m1: g -0.03 | W   0.44-  0.63-  2.18 | CAGR     -9% | mdd  71% | mddI  46/ 46% | kills 12.3 | VOLcush +0.27
+(5.0, 1.0) IS   m0: g +0.99 | W   8.94- 11.33- 12.99 | CAGR    170% | mdd  61% | mddI  69/ 73% | kills  0.0 | VOLcush +nan
+(5.0, 1.0) IS   m3: g +0.99 | W   8.94- 11.33- 12.99 | CAGR    170% | mdd  61% | mddI  69/ 74% | kills  0.0 | VOLcush +0.01
+(5.0, 1.0) IS   m1: g +0.99 | W   8.94- 11.33- 12.99 | CAGR    170% | mdd  61% | mddI  69/ 74% | kills  0.0 | VOLcush +0.01
+(5.0, 1.0) OOS  m0: g +0.96 | W   3.48-  6.89- 25.44 | CAGR    142% | mdd  65% | mddI  85/ 86% | kills  0.0 | VOLcush +nan
+(5.0, 1.0) OOS  m3: g +0.96 | W   3.48-  6.89- 25.44 | CAGR    142% | mdd  65% | mddI  85/ 87% | kills  0.0 | VOLcush -0.46
+(5.0, 1.0) OOS  m1: g +0.96 | W   3.48-  6.89- 25.44 | CAGR    142% | mdd  65% | mddI  85/ 87% | kills  0.0 | VOLcush -0.46
+(5.0, 1.0) FULL m0: g +0.93 | W  36.58- 76.69-210.70 | CAGR    151% | mdd  65% | mddI  85/ 86% | kills  0.0 | VOLcush +nan
+(5.0, 1.0) FULL m3: g +0.93 | W  36.58- 76.69-210.70 | CAGR    151% | mdd  65% | mddI  85/ 87% | kills  0.0 | VOLcush -0.46
+(5.0, 1.0) FULL m1: g +0.93 | W  36.58- 76.69-210.70 | CAGR    151% | mdd  65% | mddI  85/ 87% | kills  0.0 | VOLcush -0.46
+(5.0, 0.35) IS   m0: g +1.12 | W   9.27- 14.80- 25.04 | CAGR    202% | mdd  49% | mddI  56/ 56% | kills  4.2 | VOLcush +nan
+(5.0, 0.35) IS   m3: g +0.49 | W   2.47-  3.48-  4.22 | CAGR     65% | mdd  57% | mddI  62/ 62% | kills  7.2 | VOLcush +0.17
+(5.0, 0.35) IS   m1: g -1.31 | W   0.03-  0.04-  0.06 | CAGR    -74% | mdd  98% | mddI  49/ 49% | kills 16.7 | VOLcush +0.19
+(5.0, 0.35) OOS  m0: g +0.61 | W   1.78-  4.14-  8.06 | CAGR     88% | mdd  72% | mddI  79/ 79% | kills  7.6 | VOLcush +nan
+(5.0, 0.35) OOS  m3: g +0.62 | W   2.95-  4.16-  5.75 | CAGR     89% | mdd  81% | mddI  81/ 81% | kills 10.6 | VOLcush -0.30
+(5.0, 0.35) OOS  m1: g -0.94 | W   0.08-  0.13-  0.16 | CAGR    -61% | mdd  97% | mddI  81/ 81% | kills 14.7 | VOLcush +0.03
+(5.0, 0.35) FULL m0: g +0.72 | W  17.65- 28.20- 47.70 | CAGR    103% | mdd  75% | mddI  79/ 79% | kills 12.2 | VOLcush +nan
+(5.0, 0.35) FULL m3: g +0.58 | W  11.37- 16.04- 19.44 | CAGR     79% | mdd  81% | mddI  81/ 81% | kills 18.2 | VOLcush -0.30
+(5.0, 0.35) FULL m1: g -1.23 | W   0.00-  0.00-  0.00 | CAGR    -71% | mdd 100% | mddI  81/ 81% | kills 32.7 | VOLcush +0.03

@@ -1,0 +1,4 @@
+C0_control daily  NEW f*med=0.6341 P75=0.0930 P1.0=0.5861 n_uniq=38 | STORED f*med=0.6341 P75=0.0930 n_uniq=38 | match=True (3s)
+G42        daily  NEW f*med=0.6761 P75=0.0409 P1.0=0.5579 n_uniq=36 | STORED f*med=0.6761 P75=0.0409 n_uniq=36 | match=True (0s)
+C0_control lam15  NEW f*med=0.6341 P75=0.0923 P1.0=0.5755 n_uniq=52 | STORED f*med=0.6341 P75=0.0923 n_uniq=52 | match=True (0s)
+G42        lam15  NEW f*med=0.6761 P75=0.0435 P1.0=0.5493 n_uniq=46 | STORED f*med=0.6761 P75=0.0435 n_uniq=46 | match=True (0s)
