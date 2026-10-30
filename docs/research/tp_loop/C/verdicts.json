@@ -1,0 +1,342 @@
+{
+ "LIVE": {
+  "A1": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": true,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A3": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A4": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A5": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": true,
+    "regimes": true,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": true,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A6": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "B1": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "B2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "R1": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": true,
+    "regimes": true,
+    "subsets": false,
+    "placebo": true,
+    "cost2x": false,
+    "neighbors": true,
+    "boot": false,
+    "research": true
+   }
+  },
+  "R2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": true,
+    "regimes": true,
+    "subsets": false,
+    "placebo": true,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "C1": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "C2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  }
+ },
+ "RESEARCH": {
+  "A1": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A2": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A3": {
+   "verdict": "noise",
+   "crit": {
+    "IS": true,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A4": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A5": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "A6": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "B1": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "B2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "R1": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": true,
+    "regimes": true,
+    "subsets": false,
+    "placebo": true,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": true
+   }
+  },
+  "R2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": true,
+    "placebo": true,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "C1": {
+   "verdict": "hurts",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  },
+  "C2": {
+   "verdict": "noise",
+   "crit": {
+    "IS": false,
+    "OOS": false,
+    "regimes": false,
+    "subsets": false,
+    "placebo": false,
+    "cost2x": false,
+    "neighbors": false,
+    "boot": false,
+    "research": false
+   }
+  }
+ }
+}

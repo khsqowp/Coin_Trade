@@ -1,0 +1,18 @@
+A V0 IS {'cagr': 0.551, 'imdd': 0.655, 'mdd': 0.602, 'cal': 0.841, 'end': 3.001} kills 9.333333333333334
+A V0 OOS {'cagr': 1.046, 'imdd': 0.796, 'mdd': 0.619, 'cal': 1.314, 'end': 5.104} kills 9.333333333333334
+A V0 full {'cagr': 0.792, 'imdd': 0.796, 'mdd': 0.619, 'cal': 0.994, 'end': 16.252} kills 9.333333333333334
+A T09 IS {'cagr': 1.478, 'imdd': 0.567, 'mdd': 0.479, 'cal': 2.608, 'end': 9.683} kills 9.333333333333334
+A T09 OOS {'cagr': 1.174, 'imdd': 0.796, 'mdd': 0.619, 'cal': 1.474, 'end': 5.86} kills 9.333333333333334
+A T09 full {'cagr': 1.357, 'imdd': 0.796, 'mdd': 0.619, 'cal': 1.704, 'end': 60.24} kills 9.333333333333334
+A T03 IS {'cagr': 1.029, 'imdd': 0.611, 'mdd': 0.535, 'cal': 1.692, 'end': 5.945} kills 8.0
+A T03 OOS {'cagr': 0.86, 'imdd': 0.617, 'mdd': 0.516, 'cal': 1.395, 'end': 4.109} kills 8.0
+A T03 full {'cagr': 0.969, 'imdd': 0.654, 'mdd': 0.626, 'cal': 1.482, 'end': 25.935} kills 8.0
+B V0 Sharpe IS/OOS/full 0.926 1.27 1.093 d 0.0 0.0 0.0
+B S_8 Sharpe IS/OOS/full 1.293 0.76 1.035 d 0.367 -0.509 -0.058
+B T_atr2 Sharpe IS/OOS/full 1.011 -0.443 0.315 d 0.085 -1.713 -0.778
+C LIVE V0 Calmar/CAGR/MDD [1.279 0.792 0.619] kills 9.333333333333334
+C LIVE A1 Calmar/CAGR/MDD [1.626 0.937 0.586] kills 5.333333333333333
+C LIVE R2 Calmar/CAGR/MDD [2.299 1.498 0.652] kills 7.0
+C RESEARCH V0 Calmar/CAGR/MDD [1.881 0.732 0.401] kills 1.0
+C RESEARCH A1 Calmar/CAGR/MDD [1.159 0.416 0.396] kills 1.3333333333333333
+C RESEARCH R2 Calmar/CAGR/MDD [1.677 0.711 0.419] kills 1.5
