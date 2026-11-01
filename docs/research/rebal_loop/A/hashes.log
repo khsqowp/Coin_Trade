@@ -1,0 +1,14 @@
+2026-11-01T06:57:32Z c633d7d9baacfd5e24ba9112e05b7a2cdc9d953f29df0183797ba486180bef15 docs/research/rebal_loop/A/prereg.md prereg_and_engine
+2026-11-01T06:57:32Z 3cde2d00e50d406daee923b649ce4d02e5a366c960bcedd9736d12fc75de26e2 app/rs_rebal_A_engine.py prereg_and_engine
+2026-11-01T06:57:54Z 94c3f9c6b97950db4be7f433410eba76e70264a34cf26b4dfe163c697bff3ac7 app/rs_rebal_A_run.py parity_runner
+2026-11-01T06:59:28Z e868a758c36048097cb8ac2d30a6b354ae31d0f4b6ba8bc3b559558dfa3a7bbd app/rs_rebal_A_run.py parity_runner_offset_fix
+2026-11-01T07:32:26Z a67073418ad92859e12b8b623865843f235048e88b4880be5ed993fa10d592f7 docs/research/rebal_loop/A/prereg.md amendment: bugfix before any performance result; no sweep outcome seen
+2026-11-01T07:32:26Z 9a40386dcda9228b04e70d3c0900b7356281c82621df6d9002b62f977e150092 app/rs_rebal_A_engine.py amendment: bugfix before any performance result; no sweep outcome seen
+2026-11-01T07:32:26Z f9998e77e8222a13c3e66acd50a0baf2f796b141252f4e247bb1466608b552a7 app/rs_rebal_A_run.py parity runner corrected and verified before sweep
+2026-11-01T07:40:09Z 72f50357af82cfe51cc380b3c9e2247fce42739cd9d6b7703fee0756882c56f0 app/rs_rebal_A_sweep.py post-result correction: hourly 336h score and crash signal; preregistration unchanged; prior output discarded
+2026-11-01T07:48:56Z 7f87311f16f3bcd5da1a6563cc2f5ca93def09d0174b7123d8bf18fe7265e35f app/rs_rebal_A_engine.py final stage C run and report artifact
+2026-11-01T07:48:56Z f9998e77e8222a13c3e66acd50a0baf2f796b141252f4e247bb1466608b552a7 app/rs_rebal_A_run.py final stage C run and report artifact
+2026-11-01T07:48:56Z 72f50357af82cfe51cc380b3c9e2247fce42739cd9d6b7703fee0756882c56f0 app/rs_rebal_A_sweep.py final stage C run and report artifact
+2026-11-01T07:48:56Z 51445421e02fd9164b0031ea0f579d08471a26ef3d40f07cb2f9f229de6ebb75 app/rs_rebal_A_stats.py final stage C run and report artifact
+2026-11-01T07:48:56Z cca9e6c5f419df3dbee9c38f203f1cee40536e20a046d8a5ae44ee2ed08c5fa9 docs/research/rebal_loop/A/report.md final stage C run and report artifact
+2026-11-01T07:48:56Z a67073418ad92859e12b8b623865843f235048e88b4880be5ed993fa10d592f7 docs/research/rebal_loop/A/prereg.md final stage C run and report artifact

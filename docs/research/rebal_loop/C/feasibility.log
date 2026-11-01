@@ -1,0 +1,8 @@
+FEASIBILITY AUDIT — no strategy outputs calculated
+OLD configured: False panel present: False
+OLD-PIT configured: False panel present: False
+NEW panel: {'present': True, 'keys': ['C', 'FD', 'H', 'L', 'days', 'live', 'member', 'names'], 'H_shape': [731, 24, 98], 'L_shape': [731, 24, 98], 'C_shape': [731, 24, 98], 'FD_shape': [731, 98], 'names_count': 98, 'days_count': 731, 'hourly_bars_per_day_axis': 24}
+R2C hourly panel builder source: daily x 24 array layout; see r2c_build_panel.py
+R2C runner cadence source: int rebal compared with day index i-last_reb; see rs_lev_r2c_engine.py
+Parity status: NOT RUN; required OLD panel absent or unavailable
+Decision: hourly 1..72h backtest is not identified by the legacy engine without a new hourly clock implementation and OLD baseline parity

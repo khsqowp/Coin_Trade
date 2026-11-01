@@ -1,0 +1,6 @@
+DONE IS cost=0.00000 resize=0 seconds=2.04 file=IS_slip-5_resize0.npz
+DONE IS cost=0.00000 resize=1 seconds=1.88 file=IS_slip-5_resize1.npz
+DONE OOS cost=0.00000 resize=0 seconds=1.70 file=OOS_slip-5_resize0.npz
+DONE OOS cost=0.00000 resize=1 seconds=1.56 file=OOS_slip-5_resize1.npz
+DONE FULL cost=0.00000 resize=0 seconds=3.66 file=FULL_slip-5_resize0.npz
+DONE FULL cost=0.00000 resize=1 seconds=3.47 file=FULL_slip-5_resize1.npz
