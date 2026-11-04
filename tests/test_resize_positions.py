@@ -20,10 +20,13 @@ class Fake:
                               notional=notional, entryPrice=PRICE, markPrice=PRICE, unrealizedPnl=0.0)
 
     def market(self, symbol):
-        return {"limits": {"cost": {"min": self.min_cost}, "amount": {"min": 0}}}
+        return {"limits": {"cost": {"min": self.min_cost}, "amount": {"min": 0}}, "precision": {"amount": 4}}
 
     def set_leverage(self, lev, symbol):
         pass
+
+    def set_margin_mode(self, mode, symbol):
+        self.margin_mode = mode
 
     def amount_to_precision(self, symbol, amount):
         return f"{amount:.4f}"
@@ -101,6 +104,15 @@ def test_below_min_skip():
     assert c.orders == [] and r["skipped"]
 
 
+def test_delta_below_min_cost_skips_even_when_one_step_is_within_tolerance():
+    c = Fake(min_cost=10)
+    c.add("A", "long", 24)
+    result = run(c, {"A": "long"}, notional=30)
+    assert c.orders == []
+    assert result["resized"] == []
+    assert any("RESIZE-SKIP" in item for item in result["skipped"])
+
+
 def test_insufficient_margin_skip():
     c = Fake(avail=2.0)  # need 14/4=3.5 > 1.8
     c.add("A", "long", 16)
@@ -129,3 +141,30 @@ def test_second_run_noop_and_order_sequence():
     n = len(c.orders)
     r = run(c, {"A": "long", "T": "long", "N": "short"})
     assert len(c.orders) == n and r["resized"] == []
+
+
+def test_qnt_unrepresentable_target_is_a_clean_skip():
+    c = Fake()
+    c.add("QNT", "long", 1.0)
+    c.pos["QNT"].update(contracts=0.1, notional=19.3, markPrice=193.0)
+    c.market = lambda symbol: {"limits": {"cost": {"min": 5}, "amount": {"min": 0.1}}, "precision": {"amount": 1}}
+    c.amount_to_precision = lambda symbol, amount: f"{amount:.1f}" if amount >= 0.1 else (_ for _ in ()).throw(ValueError("below precision"))
+    r = ex.apply_targets(c, {"QNT": 193}, {"QNT": "long"}, 30.24, 4, lambda m: None, resize_tolerance=.15)
+    assert not r["errors"] and not c.orders
+    assert any("표현 불가" in item for item in r["skipped"])
+
+
+def test_cross_margin_set_before_new_entry_and_entry_continues_if_rejected():
+    c = Fake()
+    c.set_margin_mode = lambda mode, symbol: (_ for _ in ()).throw(RuntimeError("-4048 position exists"))
+    r = run(c, {"QNT": "long"})
+    assert r["opened"] == ["QNT/long"] and len(c.orders) == 1
+
+
+def test_cross_margin_success_and_already_cross_are_non_blocking():
+    c = Fake()
+    assert run(c, {"A": "long"})["opened"] == ["A/long"]
+    assert c.margin_mode == "cross"
+    c = Fake()
+    c.set_margin_mode = lambda mode, symbol: (_ for _ in ()).throw(RuntimeError("No need to change margin type."))
+    assert run(c, {"A": "long"})["opened"] == ["A/long"]

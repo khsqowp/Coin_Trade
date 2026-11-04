@@ -123,6 +123,13 @@ def _market_mins(client, symbol: str):
     return min_cost, min_amount
 
 
+def _amount_step(client, symbol: str) -> float:
+    precision = (client.market(symbol).get("precision", {}) or {}).get("amount")
+    if precision is None:
+        return 0.0
+    return 10.0 ** (-int(precision)) if isinstance(precision, int) else float(precision)
+
+
 def _place_market(client, symbol: str, side: str, amount: float, reduce_only: bool = False) -> None:
     """side: 'long'=매수, 'short'=매도 주문 방향. 진입/증액/감액 공통 주문 헬퍼."""
     params = {"reduceOnly": True} if reduce_only else None
@@ -156,16 +163,31 @@ def _plan_resize(client, base: str, pos: dict, price, notional_per_pos: float, t
     symbol = perp_symbol(base)
     try:
         min_cost, min_amount = _market_mins(client, symbol)
+        if abs(delta) < min_cost:
+            result["skipped"].append(f"{base}(RESIZE-SKIP: 델타 ${abs(delta):.2f}가 최소 명목 ${min_cost:.2f} 미만)")
+            return None
         amount = abs(delta) / mark
         kind = "up" if delta > 0 else "down"
-        if kind == "down":
-            amount = min(amount, pos["contracts"])
-        amount = float(client.amount_to_precision(symbol, amount))
+        current = float(pos["contracts"])
+        try:
+            amount = float(client.amount_to_precision(symbol, amount))
+        except Exception:
+            amount = 0.0
+        if amount <= 0 or amount < min_amount or amount * mark < min_cost:
+            step = max(_amount_step(client, symbol), min_amount)
+            if step <= 0:
+                raise ValueError("수량 step 확인 불가")
+            candidates = [q for q in (current + step, current - step) if q > 0 and ((q > current) == (kind == "up"))]
+            best = min(candidates, key=lambda q: abs(q * mark - notional_per_pos), default=current)
+            if best == current or abs(best * mark - notional_per_pos) / notional_per_pos > tol:
+                result["skipped"].append(f"{base}(표현 불가: 목표 허용오차 {tol:.0%} 초과)")
+                return None
+            amount = float(client.amount_to_precision(symbol, abs(best - current)))
     except Exception as exc:  # noqa: BLE001
         result["errors"].append(f"{base} 리사이즈 계획: {exc}")
         return None
-    if amount <= 0 or abs(delta) < min_cost or amount < min_amount:
-        result["skipped"].append(f"{base}(리사이즈 델타 ${abs(delta):.2f} 최소 미달)")
+    if amount <= 0 or amount * mark < min_cost or amount < min_amount:
+        result["skipped"].append(f"{base}(표현 불가: 최소 수량/명목 미달)")
         return None
     if kind == "down" and amount >= pos["contracts"]:
         result["skipped"].append(f"{base}(감액이 전량 청산 수준 — 스킵)")
@@ -231,8 +253,12 @@ def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
 
     current = sync_positions(client)
     retained = {b: p for b, p in current.items() if b in targets and targets[b] == p["side"]}
-    plans = {b: _plan_resize(client, b, p, prices.get(b), notional_per_pos, tol, result)
-             for b, p in retained.items()}
+    plans = {}
+    for b, p in retained.items():
+        skipped_before = len(result["skipped"])
+        plans[b] = _plan_resize(client, b, p, prices.get(b), notional_per_pos, tol, result)
+        for reason in result["skipped"][skipped_before:]:
+            log(f"[RESIZE-SKIP] {reason}")
     for base, plan in plans.items():
         if plan and plan[0] == "down":
             _exec_resize(client, base, retained[base], plan, leverage, log, result)
@@ -263,6 +289,12 @@ def apply_targets(client, prices: dict, targets: dict, notional_per_pos: float,
             continue
 
         try:
+            try:
+                client.set_margin_mode("cross", symbol)
+            except Exception as exc:  # already-cross or locked mode must not block a new entry
+                message = str(exc).lower()
+                if "no need to change margin type" not in message:
+                    log(f"{base}: set_margin_mode 경고 ({exc})")
             client.set_leverage(leverage, symbol)
         except Exception as exc:  # noqa: BLE001
             # 이미 같은 값이면 바이낸스가 에러를 안 낸다. 다른 에러면 진입 시도는 계속.
