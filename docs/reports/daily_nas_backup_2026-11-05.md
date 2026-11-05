@@ -84,3 +84,8 @@ Validation results after review 4 changes:
 - Placeholder-filled daily plist copy at `/private/tmp/daily-nas-backup-filled.plist`: `plutil -lint` passed. The scratch plist was removed after validation.
 
 No launchd operation, real NAS write, real archive deletion, commit, push, or deployment was performed.
+
+
+## As deployed (2026-11-05)
+
+The supervised pilot already ran on 2026-10-18: NAS audit data contains 63 paths, each with one `intent` and one `complete` record, totaling 2.0 GB. The daily LaunchAgent is installed with `DAILY_NAS_ENABLE_DELETE=1`. Day-level legacy files, including `2026/10/18/kr.jsonl`, `2026/10/19/kr.jsonl` (90 MB), and `opening-scan-kr.jsonl` (64 MB), are outside this job's hour-based archive scope and are not backed up by it. Proposed follow-up, not implemented: make a separate small one-time copy of these files to a distinct NAS location and verify their hashes.

@@ -744,26 +744,36 @@ def main(argv=None, now=None):
                             uploaded_count += 1
                         except BackupError as exc:
                             if "mount" in str(exc).lower(): LOG.critical("mount lost; aborting: %s", exc); return 2
-                            LOG.warning("upload deferred for %s: %s", rel, exc); failures += 1; mark_failure(src, current_epoch); continue
+                            LOG.warning("upload deferred for %s: %s", rel, exc); failures += 1
+                            if not readonly: mark_failure(src, current_epoch)
+                            continue
                         except (OSError, TimeoutError) as exc:
                             if isinstance(exc, TimeoutError) and time.monotonic() >= deadline:
                                 LOG.info("deadline during upload; deferring remainder of UTC day=%s", day)
                                 break
-                            LOG.warning("upload deferred for %s: %s", rel, exc); failures += 1; mark_failure(src, current_epoch); continue
+                            LOG.warning("upload deferred for %s: %s", rel, exc); failures += 1
+                            if not readonly: mark_failure(src, current_epoch)
+                            continue
                     gz = dest / rel.parent / upload.get("remote_name", src.name + ".gz")
                     progress("verifying", candidate_index - 1, len(candidates), pending_bytes, force=True)
                     try: valid = _verify(src, gz, upload, deadline, args.throttle_mbps, beat)
                     except (EOFError, gzip.BadGzipFile, zlib.error) as exc:
                         if not readonly: _json_append(manifest, {"type": "invalid", "path": rel.as_posix(), "sha256": upload.get("sha256"), "upload_id": upload.get("upload_id"), "invalid_at": datetime.fromtimestamp(current_epoch, timezone.utc).isoformat()})
-                        LOG.warning("invalid NAS content for %s: %s", rel, exc); failures += 1; mark_failure(src, current_epoch); continue
+                        LOG.warning("invalid NAS content for %s: %s", rel, exc); failures += 1
+                        if not readonly: mark_failure(src, current_epoch)
+                        continue
                     except (OSError, TimeoutError) as exc:
                         if isinstance(exc, TimeoutError) and time.monotonic() >= deadline:
                             LOG.info("deadline during verification; deferring remainder of UTC day=%s", day)
                             break
-                        LOG.warning("verification deferred for %s: %s", rel, exc); failures += 1; mark_failure(src, current_epoch); continue
+                        LOG.warning("verification deferred for %s: %s", rel, exc); failures += 1
+                        if not readonly: mark_failure(src, current_epoch)
+                        continue
                     if not valid:
                         if not readonly: _json_append(manifest, {"type": "invalid", "path": rel.as_posix(), "sha256": upload.get("sha256"), "upload_id": upload.get("upload_id"), "invalid_at": datetime.fromtimestamp(current_epoch, timezone.utc).isoformat()})
-                        failures += 1; mark_failure(src, current_epoch); continue
+                        failures += 1
+                        if not readonly: mark_failure(src, current_epoch)
+                        continue
                     verified_count += 1
                     if not readonly and not _verified(_records(manifest), rel, upload):
                         _json_append(manifest, {"type": "verified", "path": rel.as_posix(), "sha256": upload.get("sha256"), "upload_id": upload.get("upload_id"), "verified_at": datetime.fromtimestamp(current_epoch, timezone.utc).isoformat()})

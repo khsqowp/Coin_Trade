@@ -2,9 +2,37 @@ import os
 import subprocess
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[2]
 NO_TICK = ROOT / "scripts/backup-tick-archive-to-nas.sh"
 WRAPPER = ROOT / "scripts/daily_nas_backup.sh"
+
+
+@pytest.fixture(autouse=True)
+def isolate_wrapper_home(tmp_path, monkeypatch):
+    """Keep wrapper defaults and any script HOME-relative paths inside pytest's temp tree."""
+    real_home = Path(os.environ["HOME"])
+    guarded = [real_home / "Library/Application Support/ochestration-archive",
+               real_home / "Library/Logs/daily_nas_backup.log"]
+
+    def snapshot():
+        result = {}
+        for path in guarded:
+            if path.is_dir():
+                result[str(path)] = ("dir", path.stat().st_mtime_ns,
+                                     tuple(sorted((str(p.relative_to(path)), p.stat().st_mtime_ns)
+                                                  for p in path.rglob("*") if p.exists())))
+            elif path.exists():
+                result[str(path)] = ("file", path.stat().st_mtime_ns, path.stat().st_size)
+            else:
+                result[str(path)] = None
+        return result
+
+    before = snapshot()
+    monkeypatch.setenv("HOME", str(tmp_path / "home"))
+    yield
+    assert snapshot() == before, "pytest touched real daily NAS backup state or log"
 
 
 def executable(path, content):
@@ -84,13 +112,16 @@ def test_wrapper_rejects_modes_and_backup_script_rejects_legacy_modes(tmp_path):
     bin_dir = tmp_path / "bin"; bin_dir.mkdir()
     executable(bin_dir / "mount", f"#!/bin/sh\necho 'server on {tmp_path}/nas (smbfs)'\n")
     env = os.environ | {"PROJECT_ROOT": str(project), "MOUNT_POINT": str(tmp_path / "nas"),
-                        "BACKUP_LOG_FILE": str(tmp_path / "backup.log"), "MOUNT_BIN": str(bin_dir / "mount")}
+                        "BACKUP_LOG_FILE": str(tmp_path / "backup.log"), "MOUNT_BIN": str(bin_dir / "mount"),
+                        "STATE_DIR": str(tmp_path / "state"), "DAILY_BACKUP_LOG": str(tmp_path / "daily.log")}
     for args in (["all"], ["tick-only"], ["no-tick"]):
         result = subprocess.run(["/bin/bash", str(NO_TICK), *args], env=env, capture_output=True, text=True)
         assert result.returncode == 2
         assert (tick / "a.jsonl").read_text() == "keep"
     result = subprocess.run(["/bin/bash", str(WRAPPER), "no-tick"], env=env, capture_output=True, text=True)
     assert result.returncode == 2
+    assert (tmp_path / "state").is_dir()
+    assert (tmp_path / "daily.log").exists()
 
 
 def test_wrapper_defaults_no_delete_and_records_success_per_step(tmp_path):

@@ -436,6 +436,23 @@ def test_corrupt_truncated_gzip_is_per_file_failure_without_traceback(env, caplo
     assert not any(record.exc_info for record in caplog.records)
 
 
+@pytest.mark.parametrize("mode", ["--dry-run", "--report"])
+def test_readonly_corrupt_gzip_does_not_create_or_change_state(env, mode):
+    now = fixed_now(); path = add_file(env, now - timedelta(days=9), mtime=(now - timedelta(days=8)).timestamp())
+    assert run(env, ["--no-delete"], now) == 0
+    gz = env[1] / path.relative_to(env[0]).parent / (path.name + ".gz")
+    gz.write_bytes(b"\x1f\x8b\x08\x00truncated")
+    state = env[3]
+    before = {str(p.relative_to(state)): (p.read_bytes(), p.stat().st_mtime_ns)
+              for p in state.rglob("*") if p.is_file()} if state.exists() else None
+    result = job.main(["--source", str(env[0]), "--dest", str(env[1]), "--mount", str(env[2]),
+                       "--state-dir", str(state), mode], now=now + timedelta(hours=25))
+    assert result == (1 if mode == "--dry-run" else 0)
+    after = {str(p.relative_to(state)): (p.read_bytes(), p.stat().st_mtime_ns)
+             for p in state.rglob("*") if p.is_file()} if state.exists() else None
+    assert after == before
+
+
 def test_truncated_gzip_at_delete_stage_isolated_and_other_day_continues(env, monkeypatch, caplog):
     now = fixed_now()
     first = add_file(env, now - timedelta(days=9), "first.jsonl", mtime=(now - timedelta(days=8)).timestamp())
