@@ -7,11 +7,13 @@
 """
 from __future__ import annotations
 
+import json
 import math
 import os
 import threading
 import time
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import ccxt
 import pandas as pd
@@ -24,6 +26,26 @@ from app.trading_control import read_command
 from app.watchdog import run_with_timeout
 
 BOT_ID = "momentum-rotation"
+HEARTBEAT_PATH = os.environ.get("MOMENTUM_ROTATION_HEARTBEAT_PATH", "/app/data/heartbeat.json")
+_heartbeat_cycle = 0
+
+
+def _write_heartbeat() -> None:
+    """Write best-effort monitor liveness; heartbeat failures never affect the bot loop."""
+    global _heartbeat_cycle
+    try:
+        _heartbeat_cycle += 1
+        path = Path(HEARTBEAT_PATH)
+        temporary = path.with_name(path.name + ".tmp")
+        payload = {
+            "ts_utc": datetime.now(timezone.utc).isoformat(),
+            "epoch": time.time(),
+            "cycle": _heartbeat_cycle,
+        }
+        temporary.write_text(json.dumps(payload), encoding="utf-8")
+        os.replace(temporary, path)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[경고] heartbeat 기록 실패(모니터링 전용): {exc!r}", flush=True)
 
 # TON, MKR는 2026-09-23 확인 결과 바이낸스 선물에서 상장폐지(active=False) 상태라 뺐다 —
 # 가격이 상폐 시점에 얼어붙어(거래량 0) 모멘텀이 항상 0%에 가깝게 나오고, 이 구간 나머지
@@ -962,12 +984,26 @@ def main() -> None:
 
             # 2) 주기 실행: 무거운 모니터링/리밸런스 사이클
             if time.monotonic() - last_full >= CHECK_INTERVAL_SECONDS:
-                run_with_timeout(
-                    run_cycle, CYCLE_TIMEOUT_SECONDS,
-                    on_timeout=lambda: print(
-                        f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
-                    ),
-                )
+                cycle_finished = threading.Event()
+
+                def monitored_cycle() -> None:
+                    try:
+                        run_cycle()
+                    finally:
+                        cycle_finished.set()
+
+                try:
+                    run_with_timeout(
+                        monitored_cycle, CYCLE_TIMEOUT_SECONDS,
+                        on_timeout=lambda: print(
+                            f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
+                        ),
+                    )
+                finally:
+                    if cycle_finished.is_set():
+                        _write_heartbeat()
+                    else:
+                        print("[경고] 모니터링 사이클 미완료 — heartbeat 갱신 생략", flush=True)
                 last_full = time.monotonic()
         except Exception:
             import traceback

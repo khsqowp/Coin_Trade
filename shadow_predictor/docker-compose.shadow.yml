@@ -1,5 +1,9 @@
 services:
   crypto-shadow-predictor:
+    mem_limit: 768m
+    memswap_limit: 768m
+    pids_limit: 48
+    oom_score_adj: 500
     build:
       context: ..
       dockerfile: shadow_predictor/Dockerfile
@@ -33,4 +37,3 @@ services:
     init: true
     logging:
       driver: none
-
