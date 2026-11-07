@@ -331,3 +331,12 @@ Next generation must test materially distinct families, preregister rules/accoun
 - The frozen Gen15 data gate requires valid volume and explicitly blocks on input-field quality failure. Disposition: `DATA_BLOCKED` before performance. No IS/OOS returns, signal-performance comparison, or candidate metrics were computed. No row was corrected, dropped, or silently reinterpreted. The candidate is neither performance-rejected nor passed.
 - Independent synthetic-only implementation checks passed: A 15/15, B 24/24, C 24/24. These validate mechanics only, not market performance. The three runners embed the frozen preregistration SHA.
 - Next action: continue no-cost data-source feasibility research and prepare a materially distinct, preregistered close-only hypothesis only if its input and adjustment rules pass a separate data gate. The 0/2 valid-strategy count does not change.
+
+
+## 2026-11-07 — Gen16 preregistration and input gate (status only)
+
+- Frozen preregistration: `trading/docs/research/PREREG_calendar_closeonly_gen16_20261107.md`; SHA-256 `d43cb7cb869e19ad138b7a099583b2b288527572b3f2b6857447a92e6b0954ab`.
+- Two fixed close-only calendar hypotheses: (C1) first observed union-session close entry, fourth observed same-month session exit, with a causal next-month-first-session exit if the month changes before a fourth session; (C2) exact five-year same-calendar-month cross-sectional score, OOS-only, full ranked fallback, and next-month-first-session exit. No parameter grid.
+- Three independent prereg readers identified issues in earlier drafts; the final revision resolved the stated timing/accounting ambiguities. This is specification review only; synthetic and independent implementation gates remain pending.
+- The local close-only input gate verified the frozen 28-file manifest `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4` and 58,796 rows for timestamp/close structure only. No returns, signals, benchmark performance, or derived performance figures were calculated.
+- Price-source rights, adjustment/vintage, corporate-action provenance, and PIT membership remain unresolved. If the exploratory screen proceeds, this repository will retain method/status/hashes only until those rights are verified; no derived performance numbers or pass/fail results are published here. No strategy count changes.
