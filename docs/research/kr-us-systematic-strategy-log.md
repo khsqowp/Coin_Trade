@@ -140,3 +140,12 @@ Primary sources:
 - API use and internal-use restrictions: https://www.tiingo.com/documentation/
 
 This lead may be revisited only if a permitted token/data route is already available; do not create an account or accept terms on the user's behalf. Keep the final research scope intact.
+
+
+## 2026-11-07 — Alpha Vantage terms wording correction
+
+The earlier Alpha Vantage note that described private research/testing as clearly within non-commercial personal use is too definite and is superseded here. The official Terms of Service currently state that commercial use includes a purpose “that goes beyond personal usage including investment analysis, research, testing, monitoring, and any other activities that are individual in nature.” The wording does not clearly resolve whether a private individual's backtest is affirmatively covered as personal use or treated as commercial. No affirmative provider confirmation for storing raw history or publicizing strategy-derived outputs was found.
+
+Decision remains `UNRESOLVED / DO NOT USE FOR PERFORMANCE TESTING WITHOUT CLEARER TERMS`. This corrects the prior interpretation; it does not mean the provider definitively prohibits private research. No provider was contacted, no account/key was created, and no data was fetched.
+
+Primary source: https://www.alphavantage.co/terms_of_service/
