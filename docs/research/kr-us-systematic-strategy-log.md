@@ -349,3 +349,13 @@ Next generation must test materially distinct families, preregister rules/accoun
 - The local exploratory run is complete. Detailed metrics and candidate screen disposition are retained only in the local research log because price-source rights, adjusted-price vintage/corporate-action provenance, and PIT membership remain unresolved. This entry deliberately does not publish derived performance figures or pass/fail outcomes, and does not change the count of valid strategies.
 - CAGR day-count basis (365.2425 versus 365.25) was not specified in the frozen text. This does not affect paired terminal-NAV ordering, but the basis must be explicitly frozen before the next generation's performance output.
 - No Oracle server was accessed, no live orders were placed, and no Ochestration commit or push was made.
+
+
+## 2026-11-07 — Gen17 low-skew factor (method/status only)
+
+- Preregistration SHA-256: `ecd75ddbae7b59813bbc4837aba2f58d139adb8ec117c89087d07e7334e6cc58`.
+- Input-manifest SHA-256: `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4`.
+- Candidate: fixed 63-return, bias-corrected Fisher–Pearson G1 cross-sectional low-skew rank, fixed K, 21-union-session schedule, frozen base/stress costs. It is a known factor variant on the current survivor cohort and reused OOS window, not a newly validated independent strategy.
+- Three synthetic independent implementations passed their test suites (A 29/29, B 39/39, C 14/14). Actual overlap diagnostics agreed across A/B/C on all preregistered dates.
+- A local exploratory market screen has been recorded. Numerical results are intentionally not reproduced here: price-data use rights, adjustment/vintage, point-in-time membership and cumulative trial-count gates are unresolved, and the required full per-date independent reconciliation was completed after metric exposure. Accordingly no valid-strategy pass, significance claim, or strategy count increase is recorded.
+- Disposition: exploratory only; **valid strategy count remains 0/2**. Do not tune this frozen candidate post-result. The detailed local evidence remains in the Ochestration workspace; this repository records method/status/hashes only until the data-use and validation gates are cleared.
