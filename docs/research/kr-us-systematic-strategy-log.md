@@ -359,3 +359,12 @@ Next generation must test materially distinct families, preregister rules/accoun
 - Three synthetic independent implementations passed their test suites (A 29/29, B 39/39, C 14/14). Actual overlap diagnostics agreed across A/B/C on all preregistered dates.
 - A local exploratory market screen has been recorded. Numerical results are intentionally not reproduced here: price-data use rights, adjustment/vintage, point-in-time membership and cumulative trial-count gates are unresolved, and the required full per-date independent reconciliation was completed after metric exposure. Accordingly no valid-strategy pass, significance claim, or strategy count increase is recorded.
 - Disposition: exploratory only; **valid strategy count remains 0/2**. Do not tune this frozen candidate post-result. The detailed local evidence remains in the Ochestration workspace; this repository records method/status/hashes only until the data-use and validation gates are cleared.
+
+
+## 2026-11-07 — Gen18 candidate feasibility (status only)
+
+- Three independent strategy reviews found no materially distinct close-only candidate ready for another performance test; existing local generations already cover trend/momentum, reversal, calendar, low-risk/semivariance, gap acceptance, panic reversal, and low-skew families. Do not add renamed indicator variants to inflate the trial count.
+- Low-beta ranking is a correlated low-risk variant, not treated as an independent family.
+- Distinct information/ownership leads include US 13F ownership flow and as-filed earnings drift (PEAD/SUE), plus Korean DART disclosures. They remain feasibility-only pending primary-source coverage, terms/use rights, filing-vintage/security mapping, and PIT prices/universe.
+- Approved agent-reach research was blocked: executable unavailable; documented Exa MCP call failed version negotiation. No alternate web route, accounts, keys, paid data, downloads, or performance runs were used.
+- Disposition: `FEASIBILITY_BLOCKED`; no Gen18 preregistration. Valid-strategy count remains **0/2**. This repository records method/status only until data rights and PIT gates clear.
