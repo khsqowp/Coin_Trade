@@ -94,3 +94,29 @@ The primary-source Terms of Service distinguish personal, non-commercial use fro
 ### Countercheck evidence
 
 Red-team report: `/private/tmp/agent_c_source_audit_countercheck_20261107.md`, SHA-256 `49e6bae662bb5aac9edc774d329897081c533682f263cea9835a8d4df807c058`. This report checked source documentation and terms, not price values; it did not download data, create accounts, request keys, or accept terms.
+
+
+## 2026-11-07 — Source-license and KR PIT follow-up
+
+### US daily-source follow-up
+
+- **Cboe DataShop EOD:** Cboe documents daily US equity/ETF OHLCV and VWAP from 2010, but its standard license bars strategy creation/validation without a separate written agreement. This is not a qualifying free route for the current research gate. PIT ticker lifecycle and full adjusted-price/distribution coverage were not established.
+- **Alpha Vantage demo check:** An unauthenticated/public `apikey=demo` request for SPY full daily data returned a key-registration instruction, not a time series. No key was created and no price values were downloaded.
+- **Alpha Vantage ToS wording correction:** One agent report characterized personal research/testing as commercial use. The official Section 2(i) wording instead describes commercial use as going beyond investment analysis, research, testing, monitoring, and activities private and individual in nature. Therefore this review does **not** classify private individual research as categorically forbidden. The remaining issue is narrower: the reviewed terms do not expressly settle retaining provider data or persisting backtest-derived series, and documentation does not establish complete delisted security prices/event vintages. Adjusted daily OHLCV is marked Premium; the free tier is limited to 25 requests/day for most datasets. Current decision stays `LEAD / UNRESOLVED`, not an asserted terms violation and not a data-gate pass.
+- **Agent A follow-up:** `/private/tmp/US_DAILY_DATA_SOURCE_FOLLOWUP.md`; it records the Cboe review and demo response. Its Alpha Vantage interpretation is superseded by the primary-terms reread above; preserve the discrepancy rather than repeating it as fact.
+
+### Korea daily-source follow-up
+
+Agent B's KR source audit found no free source documented to jointly allow automated collection and derived backtesting while providing full-universe PIT, delisted returns, corporate actions, and historical vintages.
+
+- EODHD was identified as a paid near-miss whose individual personal noncommercial terms appear to allow backtesting and retaining derived results, but its free tier covers only one year of EOD data. The audit did not establish complete delisted history, point-in-time universe, or revision vintages; historical updates overwrite prior values. Not used because this task is limited to free data and the PIT gate remains open.
+- Twelve Data's terms may permit individual derived analysis, but KRX third-party licensing, free access and full delisted/vintage coverage were not cleared.
+- KIS API and its backtester are oriented to the user's own account/assets and do not establish a historical delisted PIT universe.
+- Stooq terms could not be verified through its JavaScript challenge; Yahoo automated collection remains outside the verified permission scope.
+- No data values were requested or inspected, no account/key action occurred, and no performance test ran.
+
+KR report: `/home/opc/isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/KR_daily_legal_data_gate_audit_20261107.md`, SHA-256 `6b6d7419a083eb9e0922eb636f04e700568767c2e322471b9f6efe23342b207f`.
+
+Cboe sources:
+- EOD product description: https://datashop.cboe.com/equity-eod-summary
+- Standard license: https://datashop.cboe.com/documents/Cboe_LiveVol_DataShop_License_Agreement.pdf
