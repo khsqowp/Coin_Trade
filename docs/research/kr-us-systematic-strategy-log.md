@@ -184,3 +184,12 @@ Primary-source records:
 ### Cycle disposition
 
 No price file was acquired and no KR/US strategy performance test ran. No candidate is performance-rejected, and no strategy passes. This round adds one **paid-only potential US source** and closes the free tier as non-licensed; it does not change the performance evidence. Continue searching for admissible free sources and retain all prior preregistrations unchanged.
+
+
+### Independent 3-agent review of the new source leads
+
+- **US source audit (Agent A):** Wiki Prices Parquet's repository wrapper does not prove the data-file license or PIT completeness. MarketParquet's free sample is explicitly unlicensed; paid archive is a possible future source, not acquired or approved. No file download, parsing, or backtest. Report SHA-256: `4860999c8723cf6e0a468313912d9eec55a63e22e0979f31575cba6dd6df0c35` (`trading/docs/research/us_candidate_rights_audit_20261107.md`).
+- **KR source audit (Agent B):** PyKRX adjusted prices route to Naver; source policy does not establish permission for automated collection. FinanceDataReader's code license is not its upstream data license. Public KRX/Naver GitHub mirrors have no verified data reuse grant or PIT guarantee. Issuer ETF UI shows market close and NAV but not reuse rights or complete delisted/PIT coverage. No download, API key, account, or price-value inspection. Report SHA-256: `3489fcfeb4ff5b58278ce67fdcc119bca2cc6f6da761792300b24702bff5ea48` (`trading/docs/research/kr_public_daily_sources_audit_20261107.md`).
+- **Independent red-team (Agent C):** Wiki WIKI start-year claims conflict (Nasdaq search index says Jan 1996; secondary mirrors/wrappers say 1962), official access/license details remain unresolved, and its use for investment/analysis is discouraged. Stock-Data is a point-in-time directory/action project, not a complete OHLC feed. aikstockdata is current-names-only and unadjusted. Report SHA-256: `33baeb1bd5f1b2e58c791c5408fad3faa08a1374f096553e2ccb2a12eff33a08` (`/private/tmp/agent_c_candidate_redteam_wiki_marketparquet_stockdata_aik_20261107.md`).
+
+**Disposition:** no new source meets the free-data gate. MarketParquet is a documented paid internal-research option at `$79` one-time, but was not purchased or downloaded; no authorization to incur cost was inferred. This source audit is not evidence that strategy edges do not exist. No performance test was run and the two-strategy success condition remains unmet.
