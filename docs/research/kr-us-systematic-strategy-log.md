@@ -166,3 +166,21 @@ Primary-source records:
 - Nasdaq Data Link terms: https://data.nasdaq.com/terms
 - Free-data sign-up/access description: https://next-qc.cdn.data.nasdaq.com/sign-up
 - Nasdaq Data Link client docs: https://github.com/Nasdaq/data-link-python/blob/main/FOR_DEVELOPERS.md
+
+
+## 2026-11-07 — Additional public-source feasibility round
+
+### Newly checked US sources
+
+- **MarketParquet** advertises a free sample/free account tier and a full daily archive to 2000 with delisted names. Its own license page says internal research/backtesting and derived, non-reconstructable performance results are permitted, but the license is granted only **on payment for an archive**. Its free-tier guide explicitly says those files carry **no license** and are a sample for trying the service. The free tier also requires a free account/API key for the full recent-year window. No account was created, no key was requested, and no file was downloaded. Since this round is limited to free data, it is not eligible. The paid archive is a possible future US source only if separately authorized; its docs say prices are split-adjusted but dividends are excluded, the vendor disclaims accuracy warranties, and PIT membership/calendar/corporate-action completeness still requires independent verification. Sources: https://marketparquet.com/pricing, https://marketparquet.com/license, https://marketparquet.com/guides/free-historical-stock-data, https://marketparquet.com/documentation.
+- **Wiki Prices / Quandl WIKI** is surfaced by a third-party ML4T provider wrapper as a 3,199-stock, 15.4-million-row local Parquet archive covering 1962–2018 and including delisted companies. That wrapper is not the data origin or a license grant. The exact dataset license, source-vintage/PIT coverage, delisting terminal-return treatment, and a lawfully reusable no-account archive were not verified. No archive was downloaded. It does not pass the current gate; it could only be reconsidered for a separately preregistered historical-only study if primary-source rights and provenance are established.
+- **Stock-Data GitHub project** describes a universe/event archive derived from SEC and Nasdaq symbol-directory snapshots, but the repository is not itself an authoritative price feed. Its claim does not repair gaps in historical OHLC, security identity, action-adjusted execution prices, or source rights. No data was downloaded.
+
+### KR near-miss reconfirmation
+
+- The public aikstockdata history page states that its open data is non-commercial use only and that KRX/FSC-origin price series inherit Gonggongnuri Type 4 (attribution, non-commercial, no derivatives); it also states that only currently included names are published, delisted symbols are removed, and prices are unadjusted for splits/dividends. Its recent history endpoint is useful for current-name inspection, not a free PIT backtest panel. No price values were downloaded or read. Source: https://aikstockdata.com/downloads/history.
+- The FSC listed-stock-information API is metadata, not a price history. The official portal states Type 4 reuse terms. Source: https://www.data.go.kr/en/data/15094775/openapi.do.
+
+### Cycle disposition
+
+No price file was acquired and no KR/US strategy performance test ran. No candidate is performance-rejected, and no strategy passes. This round adds one **paid-only potential US source** and closes the free tier as non-licensed; it does not change the performance evidence. Continue searching for admissible free sources and retain all prior preregistrations unchanged.
