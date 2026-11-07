@@ -60,3 +60,37 @@ The following artifacts remain in the isolated Oracle research workspace; only t
 ## Ongoing logging rules
 
 For every future candidate, record a stable ID, market, hypothesis, exact signal/entry/exit/position rules, data source and vintage, preregistration hash/time, trial-count basis, fees/slippage, IS/OOS dates, benchmark, metrics, independent reproduction status, and final gate decision. Keep blocked, failed, and duplicate candidates in the log. Never change a frozen rule after seeing OOS results without a dated addendum; never call a data-blocked idea an unsuccessful performance test.
+
+
+## 2026-11-07 — Public-data countercheck
+
+### Correction to the scope of the data conclusion
+
+The earlier wording must not be read as “no free market-data endpoint exists.” A red-team search found additional endpoints and free/personal-use tiers. The supported conclusion is narrower: no source was established in this review that clears the complete price-data, use-rights, PIT/corporate-action and survivorship gates for the frozen KR/US equity backtests. The candidates below are recorded so they are not rediscovered as new strategies.
+
+| Source | Documented capability | Unresolved gate | Status |
+|---|---|---|---|
+| Polygon/Massive US | Daily OHLCV, split adjustment, date-specific ticker status/delisted-date fields; free tier described as two years | Published market-data terms restrict non-display use and investment-strategy/derived-work creation absent a separate license; no dividend adjustment; two years do not cover frozen long-history tests | `FAIL — rights/coverage` |
+| Alpha Vantage | Official docs describe raw daily OHLCV (25+ years), adjusted OHLCV with split/dividend events (premium), US listing-status lookup including delisted status, and 25 free requests/day for most datasets | The terms allow personal non-commercial use and include private individual investment analysis/research/testing in that scope, but do not expressly settle storing/using provider data for derived backtest series; complete delisted price/event history and revision-vintage guarantees were not established. Adjusted daily data is marked premium. No account, key, or data request was made. | `LEAD — rights/PIT/data completeness not cleared`; do not treat as a pass or performance result |
+| Financial Modeling Prep | EOD OHLCV, adjusted-price endpoints, some delisted-company coverage and a free request tier | Terms restrict downloading/copying/derivative works absent permission; provider documents incomplete delisted coverage | `FAIL — rights/coverage` |
+| FSC/KRX | Daily stock and ETF/ETN/ELW OHLCV APIs exist | Published KOGL Type 4/no-modification and third-party rights; PIT, delisting returns, distributions, and revisions remain unproven | `FAIL/UNKNOWN — rights/PIT` |
+| FRED `SP500` / Ken French Data Library | Public daily index or aggregate portfolio/factor series | Not executable OHLCV/total-return ETF data for the frozen test; third-party rights and full signal-derived use are not established | `FAIL for current execution gate` |
+
+### Alpha Vantage interpretation note
+
+The primary-source Terms of Service distinguish personal, non-commercial use from activities beyond private individual investment analysis/research/testing. This is not a basis to claim that personal backtesting is categorically forbidden. Conversely, the reviewed terms do not explicitly grant a data-specific right to download, retain, transform, and store strategy-derived return series, and the historical adjusted endpoint is marked Premium. Treat the source as an unresolved lead pending an allowed data route and verification of the relevant dataset terms; do not report it as definitively prohibited or permitted.
+
+### Primary-source register
+
+- Alpha Vantage API documentation: https://www.alphavantage.co/documentation/
+- Alpha Vantage support/API request limits: https://www.alphavantage.co/support/
+- Alpha Vantage Terms of Service: https://www.alphavantage.co/terms_of_service/
+- Alpha Vantage market-data policies: https://www.alphavantage.co/realtime_data_policy/
+- Polygon/Massive market-data terms: https://polygon.io/terms/market_data_terms.pdf
+- Financial Modeling Prep Terms: https://site.financialmodelingprep.com/developer/docs/terms-of-service
+- FSC/KRX ETF daily quote API: https://www.data.go.kr/data/15094806/openapi.do
+- FSC/KRX stock daily quote API: https://www.data.go.kr/data/15094808/openapi.do
+
+### Countercheck evidence
+
+Red-team report: `/private/tmp/agent_c_source_audit_countercheck_20261107.md`, SHA-256 `49e6bae662bb5aac9edc774d329897081c533682f263cea9835a8d4df807c058`. This report checked source documentation and terms, not price values; it did not download data, create accounts, request keys, or accept terms.
