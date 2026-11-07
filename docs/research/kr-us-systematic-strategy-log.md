@@ -368,3 +368,12 @@ Next generation must test materially distinct families, preregister rules/accoun
 - Distinct information/ownership leads include US 13F ownership flow and as-filed earnings drift (PEAD/SUE), plus Korean DART disclosures. They remain feasibility-only pending primary-source coverage, terms/use rights, filing-vintage/security mapping, and PIT prices/universe.
 - Approved agent-reach research was blocked: executable unavailable; documented Exa MCP call failed version negotiation. No alternate web route, accounts, keys, paid data, downloads, or performance runs were used.
 - Disposition: `FEASIBILITY_BLOCKED`; no Gen18 preregistration. Valid-strategy count remains **0/2**. This repository records method/status only until data rights and PIT gates clear.
+
+
+### 2026-11-07 — Gen18 SEC 13F source clarification (method/status only)
+
+- After Agent Reach/Exa failed, an announced fallback search/read used official SEC and DART pages only. No filing archive/API or market prices were downloaded/called.
+- SEC's official Form 13F archive currently lists as-filed structured records from July 2013 to August 2026, refreshed quarterly; its page warns that flattened compilations can have extraction errors and omit filing metadata. SEC's data.sec.gov submissions/XBRL API requires no authentication/API key. Form 13F is due within 45 days of quarter-end; original and amended filings must be separated and signals timestamped by actual acceptance, not quarter-end.
+- The source lead is useful for a US-only lagged institutional-ownership breadth hypothesis, but no performance preregistration is frozen. Historical point-in-time CUSIP/security mapping, share-split/corporate-action treatment, manager/joint-filing deduplication and completeness, price rights/PIT universe, and the full execution rule remain unresolved.
+- Disposition: `SOURCE LEAD PASS / STRATEGY DATA GATE BLOCKED`. No Gen18 market-performance test and no change to the **0/2 valid strategy** count.
+- Official source pages: https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets ; https://www.sec.gov/search-filings/edgar-application-programming-interfaces ; https://www.sec.gov/rules-regulations/staff-guidance/frequently-asked-questions-about-form-13f ; https://www.sec.gov/about/developer-resources
