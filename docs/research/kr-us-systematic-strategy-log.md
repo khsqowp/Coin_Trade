@@ -230,3 +230,35 @@ No full-gate data source was acquired. No preregistration was changed and no per
 ### Cycle disposition
 
 No new source passed. No strategy preregistration was altered, no market-price data was acquired, and no performance backtest ran. This records additional source failures, not evidence of absent strategy edge. Continue with the full KR/US scope and unchanged two-strategy OOS success criterion; do not substitute academic-only data, factor returns, current-survivor panels, or index-only statistics for PIT execution prices.
+
+
+## 2026-11-07 — Index-constituent fallback opened
+
+### Scope decision
+
+The earlier data-access blockage is not a strategy-search termination. A separate restricted-universe research path is now open for S&P 500 and KODEX 100/200 member stocks, as well as a separately labeled single-index-ETF path. This does not alter or replace the existing full-universe preregistrations.
+
+### Official-source checks
+
+- KRX Open API's public service list documents daily KOSPI/KOSDAQ stock prices, index prices, and ETF trading data from 2010-01-04. The published service list does not establish historical KODEX 100/200 membership snapshots or constituent effective dates.
+- KRX's index information product explicitly describes constituent files (including constituents, index shares, prices, weights and float ratios) and corporate-action/change files. Access, licensing, cost, historical coverage, and permitted research transformations still require confirmation.
+- The FSC/KOGL Type 4 KRX ETF quote catalog states attribution, non-commercial use, no-derivatives, and restrictions on third-party redistribution. It is not treated as permission to build transformed strategy signals until the exact data use right is resolved.
+- S&P DJI says SPICE is subscription-based and lists S&P 500 constituent data from 1964. Its data licensing page describes subscriptions for index, constituent, and corporate-action data. No free personal entitlement was verified.
+
+Primary sources:
+- KRX Open API service list: https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd
+- KRX index information products: https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA005.jsp
+- FSC/KOGL KRX ETF quote catalog: https://www.data.go.kr/data/15094806/openapi.do
+- S&P SPICE coverage/access: https://www.spglobal.com/spdji/en/landing/topic/spice/
+- S&P data licensing: https://www.spglobal.com/spdji/en/about-us/data-index-licensing/
+
+### Red-team gate
+
+Applying today's constituents backward creates survivorship and constituent-lookahead bias. Such a run may be retained as `SURVIVOR-COHORT / exploratory only`, but it cannot count as an OOS pass or one of the two target strategies. Valid routes are (1) historical point-in-time membership plus price/corporate-action/delisting outcomes, (2) a hash-frozen present-day cohort evaluated prospectively from its freeze date, or (3) one index ETF treated as a single instrument, with distributions, fees, tracking error, and termination risk accounted for. These are distinct research claims.
+
+### Execution status
+
+- No account, API key, paid subscription, terms acceptance, or server access was attempted.
+- No market-price values were downloaded or backtested in this update.
+- Strategy performance passes: 0. This is an active fallback research track, not project closure.
+- Local plan: `trading/docs/research/kr_us_index_universe_research_plan_20261107.md`.
