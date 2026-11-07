@@ -340,3 +340,12 @@ Next generation must test materially distinct families, preregister rules/accoun
 - Three independent prereg readers identified issues in earlier drafts; the final revision resolved the stated timing/accounting ambiguities. This is specification review only; synthetic and independent implementation gates remain pending.
 - The local close-only input gate verified the frozen 28-file manifest `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4` and 58,796 rows for timestamp/close structure only. No returns, signals, benchmark performance, or derived performance figures were calculated.
 - Price-source rights, adjustment/vintage, corporate-action provenance, and PIT membership remain unresolved. If the exploratory screen proceeds, this repository will retain method/status/hashes only until those rights are verified; no derived performance numbers or pass/fail results are published here. No strategy count changes.
+
+## 2026-11-07 — Gen16 close-only calendar screen execution (status and provenance only)
+
+- Final frozen preregistration SHA-256: `1d85c35f9696ee3c982f62027f96599aeed7f3d3d3e99dc8efbabf250a350342`. This supersedes the earlier draft hash `d43cb7cb869e19ad138b7a099583b2b288527572b3f2b6857447a92e6b0954ab` listed in the initial Gen16 status entry.
+- Frozen 28-file input manifest verified as `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4`.
+- Three synthetic-only independent implementations passed their frozen tests: A 31/31, B 29/29, C 16/16. A/B independently executed the frozen local screen and reconciled 20 candidate/market/segment/cost cells; daily NAV maximum absolute difference was `6.22e-15`, with fills, shares, notionals, fees and cash matching within `1e-10`.
+- The local exploratory run is complete. Detailed metrics and candidate screen disposition are retained only in the local research log because price-source rights, adjusted-price vintage/corporate-action provenance, and PIT membership remain unresolved. This entry deliberately does not publish derived performance figures or pass/fail outcomes, and does not change the count of valid strategies.
+- CAGR day-count basis (365.2425 versus 365.25) was not specified in the frozen text. This does not affect paired terminal-NAV ordering, but the basis must be explicitly frozen before the next generation's performance output.
+- No Oracle server was accessed, no live orders were placed, and no Ochestration commit or push was made.
