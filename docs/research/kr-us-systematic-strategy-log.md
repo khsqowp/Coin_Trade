@@ -206,3 +206,27 @@ No price file was acquired and no KR/US strategy performance test ran. No candid
 ### Disposition
 
 No full-gate data source was acquired. No preregistration was changed and no performance backtest ran. The two-strategy success condition remains unmet. A free sample may support file-format/pipeline evaluation only where the provider explicitly permits it; it is not a substitute for the registered full-universe, cost-adjusted OOS tests. Paid sources remain unpurchased and require separate authorization; this project has not been changed into a paid-data task.
+
+
+## 2026-11-07 — Academic/public repository sweep (four-agent round)
+
+### Newly checked US evidence
+
+- **HF Data Library** advertises CC BY 4.0, but its own terms page restricts the data to academic/educational research and says it must not be used to build or operate trading strategies. Its stated source is IEX HIST, the universe is a fixed ~1,253-ticker panel, and coverage begins 2022-03-07; these facts also fail the consolidated S&P PIT/OOS requirement. No account/key or data was obtained. Sources: https://hfdatalibrary.com/, https://hfdatalibrary.com/pages/terms, https://hfdatalibrary.com/pages/docs.
+- **CRSP / CRSPMI and NYSE TAQ** are the closest official-quality reference paths found for active/inactive securities, long historical returns, corporate actions and/or constituents, but they are institutional/licensed products rather than freely accessible public datasets. No institutional credentials or paid access were assumed. CRSPMI's precise S&P membership entitlement would also need contract-level verification.
+- **Ken French Data Library and SEC EDGAR** are not daily individual-stock OHLC feeds: French supplies factor/portfolio returns; SEC supplies filings/XBRL. Neither substitutes for executable stock prices.
+- The public Zenodo/Mendeley candidate surfaced in search is a 16-stock Yahoo-derived adjusted-price panel for 2022–2024, not a delisted/PIT universe or raw executable OHLC source. Other academic prediction datasets explicitly apply a continuous-listing filter, which preserves survivorship bias. None changes the US data gate.
+- Detailed Agent A audit SHA-256: `c8067a988c2e8bdb3c3de9a8e4a8d6408c4adc04d423765889f8e048dcf757aa` (`trading/docs/research/us_free_pit_ohlc_sources_audit_20261107.md`).
+
+### Newly checked KR evidence
+
+- A broader academic/public-repository pass found KRX OHLCV in a paper replication package, a Naver-scraped OHLCV study, an academic purchased-KRX 1-minute sample, a public delisted-ticker metadata list, and a KRX index-indicator catalog. The replication package's MIT code license does not grant rights to underlying KRX bars; the Naver scrape does not establish source reuse permission; the purchased research sample is not a free PIT universe; a delisted-ticker list is not a price panel; and Inofin's index-indicator feed is not individual-stock OHLC, with its license field blank. The KRX/FSC API remains gated by application/key and its listed-stock price data has KOGL Type 4 terms. No price file/value was downloaded or read.
+- Detailed Agent B audit SHA-256: `be1abd4431fbb7dd774760cd715e203f8ad9424a929ed69e770ce45d7f697d05` (`trading/docs/research/kr_public_daily_sources_audit_20261107.md`).
+
+### Independent red-team disposition
+
+- Agent C found no counterexample that passes all gates. The closest Korean path remains the KRX Open API, but public documentation does not settle delisted coverage in daily bars, adjustment/corporate-action handling, or whether the intended local PIT backtest/archive use is permitted; account/key/terms acceptance were not attempted. Its report SHA-256: `8063659b16c1408d9e36a1c3701c351954c59ef7a9fb3371234c62d6125a9a61` (`/private/tmp/agent_c_counterexample_audit_20261107.md`).
+
+### Cycle disposition
+
+No new source passed. No strategy preregistration was altered, no market-price data was acquired, and no performance backtest ran. This records additional source failures, not evidence of absent strategy edge. Continue with the full KR/US scope and unchanged two-strategy OOS success criterion; do not substitute academic-only data, factor returns, current-survivor panels, or index-only statistics for PIT execution prices.
