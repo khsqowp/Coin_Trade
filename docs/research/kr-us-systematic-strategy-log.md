@@ -120,3 +120,23 @@ KR report: `/home/opc/isolated_research/kr_us_loop_v1/round_20261107/agent_b_fac
 Cboe sources:
 - EOD product description: https://datashop.cboe.com/equity-eod-summary
 - Standard license: https://datashop.cboe.com/documents/Cboe_LiveVol_DataShop_License_Agreement.pdf
+
+
+## 2026-11-07 — Tiingo EOD near-miss for a fixed US ETF test
+
+Official Tiingo documentation adds a potentially useful route for a narrowly scoped US ETF test:
+
+- The Individual Starter plan is listed at $0/month, with 30+ years of historical price coverage, up to 500 unique symbols/month, 1,000 requests/day and 1 GB/month. It labels the license “Internal Use Only” and defines this as personal use that may not be displayed or shared.
+- The EOD endpoint documents raw and adjusted daily OHLCV, dividend cash and split fields. Its adjustment method incorporates both splits and dividends. The provider says prices may be corrected through 8 PM Eastern and updates prices as corrections arrive.
+- The supported-ticker list reflects current coverage/reservations; the reviewed documentation does not establish a complete point-in-time universe, delisted-price coverage, or frozen historical vintages. This makes the free tier unsuitable for the frozen all-stock US PIT test as currently documented.
+- A pre-specified long-lived ETF such as SPY could avoid constituent survivorship and could be evaluated as an ETF-only regime strategy, but this is a narrower claim than the existing all-stock KR/US objective. Do not substitute it into a frozen all-stock preregistration or label it a full-market result.
+- API use requires an account/token. No Tiingo variable was present in this workspace's `.env`/ `.env.example` name-only check. No account was created, no terms were accepted, no token was requested, and no API values/backtest were obtained. This does not establish whether a token exists in another environment.
+
+Decision: `POTENTIAL US ETF-ONLY LEAD; DATA ACCESS AND PUBLIC-DERIVED-RESULTS RIGHTS UNRESOLVED; NOT A FULL-GATE PASS`.
+
+Primary sources:
+- Pricing and plan limits: https://www.tiingo.com/pricing
+- EOD price fields/adjustment and correction behavior: https://www.tiingo.com/documentation/end-of-day
+- API use and internal-use restrictions: https://www.tiingo.com/documentation/
+
+This lead may be revisited only if a permitted token/data route is already available; do not create an account or accept terms on the user's behalf. Keep the final research scope intact.
