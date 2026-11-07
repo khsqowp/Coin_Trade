@@ -281,3 +281,34 @@ These independent checks reinforce the data-access limitation but do not end str
 - The earlier 35 US OHLC invariant violations are confined to `Open` on 2021-05-05 (22 rows) and 2023-06-05 (13 rows); Gen14 does not use `Open`. The exact KIS domestic endpoint used locally documents `FID_ORG_ADJ_PRC=0` as adjusted and `1` as raw; a different KIS endpoint uses the opposite mapping, so endpoint semantics must not be transferred between APIs.
 - Independent prereg/data/red-team review found and resolved manifest serialization, missing-bar execution, B&H sizing/fees, and terminal liquidation ambiguities before performance values were calculated.
 - Performance is now being run independently by three implementations over the complete US/KR × base/stress × IS/OOS matrix. Results remain pending. No candidate counts as a valid strategy because the input cohort is current/survivor-selected and data vintage/rights are not established.
+
+## 2026-11-07 — Gen14 independent close-only candidate results
+
+### Registration and data boundary
+
+- Registration: `PREREG_survivor_closeonly_gen14_20261107.md`, SHA-256 `1524185587405bde943c3b947701a3e4bcf3bf15378b2bca7cdf7ca7236e3893`; addenda v1 `eda5028211d69b55faf28522989bdb39baff5ce8f592b1fa064eb13874416248`, v2 `7bf48257b3b4a8aaed2af371b1c45fd29cb8d9f42b45b48e717df3eaec437768`.
+- Input manifest SHA-256: `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4`. It is a 7-name current US cohort and 21-name current KR KODEX 200 holdings/cache intersection, not historical PIT constituents. The run is exploratory and cannot count as a valid index strategy.
+- OOS spans US 962 sessions (2023-01-03–2026-11-02) and KR 934 sessions (2023-01-02–2026-11-02). Benchmark is equal-weight buy-and-hold on the same fixed cohort. Candidate rules were preregistered: C1 KAMA adaptive trend, C2 Vortex + SMA100, C3 risk-adjusted 126-day momentum above SMA200.
+
+### Corrected independent reproduction
+
+Agents A and B independently reproduced 16 OOS daily NAV paths across benchmark/candidates, both markets, and base/stress costs. Root compared all dates and daily NAVs; maximum absolute difference was 1.24e-14 versus the frozen 1e-10 tolerance. Fill counts, turnover and costs matched. Two 12-decimal hashes differed at a floating-point rounding boundary; hashes are not claimed identical for those cells.
+
+Agent C's first KR-stress run used a wrong sell-cost parameter (0.00345 instead of the registered 0.00295). Its first-pass KR stress metrics and hashes are discarded. C corrected and reran; corrected stress curves matched Agent A. Only corrected A/B values are used.
+
+| Market | Candidate | Base CAGR / Sharpe / MDD | Stress CAGR / Sharpe / MDD |
+|---|---|---|---|
+| US | C1 KAMA | 36.57% / 1.346 / -16.49% | 32.97% / 1.241 / -17.21% |
+| US | C2 Vortex + SMA100 | 27.24% / 1.074 / -30.50% | 23.63% / 0.959 / -31.33% |
+| US | C3 risk-adjusted MOM126 + SMA200 | 26.39% / 1.009 / -29.29% | 21.13% / 0.847 / -31.20% |
+| KR | C1 KAMA | 19.19% / 0.669 / -55.80% | 18.53% / 0.654 / -55.89% |
+| KR | C2 Vortex + SMA100 | 37.42% / 1.012 / -50.92% | 36.69% / 0.999 / -50.92% |
+| KR | C3 risk-adjusted MOM126 + SMA200 | 12.23% / 0.509 / -45.21% | 11.36% / 0.487 / -45.37% |
+
+Same-cohort B&H: US base 50.78% CAGR / 1.543 Sharpe / -30.61% MDD; stress 50.56% / 1.538 / -30.61%. KR base 49.14% / 1.269 / -48.44%; stress 49.10% / 1.268 / -48.44%.
+
+### Decision
+
+The frozen gate requires beating same-cohort B&H on CAGR and Sharpe without worse MDD under both cost cases. **0/6 candidate-market combinations passed; 0/12 candidate-cost cells passed.** Gen14 found no valid strategy and does not change the target of two valid strategies. No post-result data exclusions were made. Cache vintage/request provenance remains absent, and 21 >20% close-to-close changes were observed (several KR names on 2026-07-31); cache-only evidence cannot classify their cause.
+
+Next generation must test materially distinct families, preregister rules/accounting before reading performance, retain exploratory labels on these current cohorts, and continue the separate PIT data work.
