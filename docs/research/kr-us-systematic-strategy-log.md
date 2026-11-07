@@ -149,3 +149,20 @@ The earlier Alpha Vantage note that described private research/testing as clearl
 Decision remains `UNRESOLVED / DO NOT USE FOR PERFORMANCE TESTING WITHOUT CLEARER TERMS`. This corrects the prior interpretation; it does not mean the provider definitively prohibits private research. No provider was contacted, no account/key was created, and no data was fetched.
 
 Primary source: https://www.alphavantage.co/terms_of_service/
+
+
+## 2026-11-07 — Nasdaq WIKI EOD public-domain archive check
+
+- Nasdaq's WIKI Prices page is currently indexed as describing daily EOD prices, dividends and splits for 3,000+ US tickers from January 1996, with the dataset “released into the public domain.”
+- The same record says community support ended 2018-04-11 and explicitly recommends against using it for investment or analysis. Direct page fetch returned 404 in this review; official docs say API use/data export requires login, and the free-data path requires a free account.
+- Current Nasdaq general terms describe access under an Order Form/internal-business-use license and incorporate third-party data terms. The relationship between those terms and the WIKI public-domain statement was not resolved. No account, acceptance, or download was performed.
+- No official evidence was found that the 3,000+ tickers are point-in-time constituents or that delisted names and their final returns are complete. The dataset therefore does not meet the frozen PIT/full-universe/OOS gate.
+- A lawfully obtained pre-2018 archive might only support a separate, explicitly historical exploratory study after a fresh preregistration; it cannot validate contemporary strategy performance, and no such archive is currently available in this workspace.
+
+Decision: `DATA_BLOCKED — PUBLIC-DOMAIN LABEL EXISTS, BUT ACCESS/TERMS APPLICATION, PIT COMPLETENESS, AND DATA AVAILABILITY ARE UNRESOLVED`.
+
+Primary-source records:
+- WIKI Prices: https://data.nasdaq.com/databases/WIKIP
+- Nasdaq Data Link terms: https://data.nasdaq.com/terms
+- Free-data sign-up/access description: https://next-qc.cdn.data.nasdaq.com/sign-up
+- Nasdaq Data Link client docs: https://github.com/Nasdaq/data-link-python/blob/main/FOR_DEVELOPERS.md
