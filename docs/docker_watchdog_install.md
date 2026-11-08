@@ -8,6 +8,7 @@ watchdog은 120초마다 Docker 엔진과 momentum-rotation 상태를 확인한�
 2. `plutil -lint`로 plist를 확인한 뒤 launchd에 등록한다.
 
 ```bash
+REPO="$(git rev-parse --show-toplevel)"
 mkdir -p "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
 plutil -lint "$HOME/Library/LaunchAgents/com.ochestration.docker-watchdog.plist"
 launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.ochestration.docker-watchdog.plist"
@@ -16,11 +17,12 @@ launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.ochestration.
 launchd와 스크립트 양쪽에서 제한된 PATH를 설정한다. Docker CLI를 찾지 못하면 `CONFIG ERROR`를 기록하고 Docker Desktop을 건드리지 않는다. `HOME`이 비어 있으면 dscl 및 셸 홈 조회를 시도한 뒤 안전한 임시 위치를 사용한다. dry-run은 별도 임시 상태 디렉터리를 사용하고 실제 카운터를 바꾸지 않으며, 예상 동작 로그를 stderr에 출력한다. 기존 상태를 기준으로 재시작 조건을 미리 보려면 `--dry-run-from-state DIR`을 지정한다. 이 옵션은 상태 파일을 임시 디렉터리로 복사해 판정하며 원본 디렉터리에는 쓰지 않는다.
 
 ```bash
+REPO="$(git rev-parse --show-toplevel)"
 env -i HOME="$HOME" PATH=/usr/bin:/bin:/usr/sbin:/sbin \
-  /bin/bash /Users/user/Desktop/CODE/Ochestration/scripts/docker_watchdog.sh --dry-run --check-once
+  /bin/bash "$REPO/scripts/docker_watchdog.sh" --dry-run --check-once
 
 # 운영 상태를 읽기 전용으로 사용해 재시작 판정 미리보기
-/bin/bash /Users/user/Desktop/CODE/Ochestration/scripts/docker_watchdog.sh \
+/bin/bash "$REPO/scripts/docker_watchdog.sh" \
   --dry-run-from-state "$HOME/Library/Application Support/ochestration-watchdog" --check-once
 ```
 

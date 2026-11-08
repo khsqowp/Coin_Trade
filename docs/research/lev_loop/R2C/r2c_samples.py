@@ -1,6 +1,9 @@
 """R2C sample loaders (OLD survivor panel, NEW pre-2022 PIT, OLD-PIT 2022-2026 PIT)."""
 import os, sys
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading")
+from pathlib import Path
+
+TRADING_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(TRADING_ROOT))
 import numpy as np, pandas as pd
 from app import rs_lev_r2c_data as D, rs_lev_r2c_lib as LIB
 HERE = os.path.dirname(os.path.abspath(__file__))

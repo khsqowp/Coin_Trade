@@ -1,10 +1,11 @@
 """Reviewer re-run of R2A headline: control f* median & P(anti,.75,tier) and G42 -- fresh engine runs, compared to stored stage1 pickle. Output only here."""
 import sys, os, pickle, numpy as np, time
+from pathlib import Path
 sys.dont_write_bytecode = True
-ROOT = "/Users/user/Desktop/CODE/Ochestration/trading"
-sys.path.insert(0, ROOT)
+ROOT = Path(__file__).resolve().parents[5]
+sys.path.insert(0, str(ROOT))
 from app import rs_lev_r2a_run as R
-st = pickle.load(open(ROOT + "/docs/research/lev_loop/R2A/out/stage1_IS.pkl", "rb"))
+st = pickle.load(open(ROOT / "docs" / "research" / "lev_loop" / "R2A" / "out" / "stage1_IS.pkl", "rb"))
 for km in ("daily", "lam15"):
     for cell in ("C0_control", "G42"):
         t = time.time()

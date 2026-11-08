@@ -1,0 +1,1 @@
+$PY app/rs_lev_r2a_smoke.py > $R/r2a_smoke.out 2>&1  3.15s user 0.19s system 94% cpu 3.521 total

@@ -2,10 +2,12 @@
 cushion = (W + pnl - MM)/prev_eq, MM tier r1 (BTC/ETH 0.4%, others 1.0%) and flat 3%; min over time. Models: hourly anti-sync LAST (review), hourly anti-sync MARK,
 1m MARK close, 1m LAST close, 1m MARK anti-sync (minute low/high). Read-only."""
 import json, os, sys
+from pathlib import Path
 import numpy as np, pandas as pd
-HERE = "/Users/user/Desktop/CODE/Ochestration/trading/app"
-R2B = os.path.join(HERE, "..", "docs", "research", "lev_loop", "R2B")
-sys.path.insert(0, os.path.join(HERE, "..", "docs", "research", "lev_loop", "review"))
+TRADING_ROOT = Path(__file__).resolve().parents[5]
+HERE = TRADING_ROOT / "app"
+R2B = TRADING_ROOT / "docs" / "research" / "lev_loop" / "R2B"
+sys.path.insert(0, str(TRADING_ROOT / "docs" / "research" / "lev_loop" / "review"))
 import indep_sim as S
 DAY = sys.argv[1] if len(sys.argv) > 1 else "2025-10-10"
 z = np.load(os.path.join(R2B, "data", DAY + ".npz"))
@@ -43,7 +45,7 @@ for lev in (4.0, 5.0, 6.0):
         agg["min_mark_anti_tier"].append(cush(q, e, W, peq, Pm_a, r1))
         agg["min_mark_close_flat3"].append(cush(q, e, W, peq, Pm, 0.03)); agg["min_mark_anti_flat3"].append(cush(q, e, W, peq, Pm_a, 0.03))
     res[lev] = {k: dict(n=len(v), n_neg=int(sum(x < 0 for x in v)), min=float(min(v)), med=float(np.median(v))) for k, v in agg.items() if v}
-json.dump(res, open("/Users/user/Desktop/CODE/Ochestration/trading/docs/research/lev_loop/review2/rerun/liq_rerun_"+DAY+".json", "w"), indent=1)
+json.dump(res, (Path(__file__).resolve().parent / f"liq_rerun_{DAY}.json").open("w"), indent=1)
 print(f"{DAY}: subsets with negative cushion / 30 (min cushion across subsets, median)")
 for lev, d in res.items():
     print(f"lev {lev:.0f}x")

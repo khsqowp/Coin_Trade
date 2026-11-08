@@ -1,6 +1,9 @@
 """R2C post-hoc descriptive (declared in AMENDMENT-2; NOT used in verdicts): where do liquidation-buffer minima occur? Same seeds as r2c_main full runs."""
 import os, sys
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading"); sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
+
+TRADING_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(TRADING_ROOT)); sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np, pandas as pd
 from app import rs_lev_r2c_lib as LIB, rs_lev_r2c_engine as E
 import r2c_samples as RS

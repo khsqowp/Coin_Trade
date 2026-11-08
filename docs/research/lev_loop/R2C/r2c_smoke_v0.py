@@ -1,7 +1,11 @@
 """R2C smoke: V0 replication asserts on the OLD sample (asserts only; prints PASS lines, no result series)."""
 import os, sys
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading")
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/lev_loop/review")
+from pathlib import Path
+
+TRADING_ROOT = Path(__file__).resolve().parents[4]
+REVIEW_DIR = Path(__file__).resolve().parents[1] / "review"
+sys.path.insert(0, str(TRADING_ROOT))
+sys.path.insert(0, str(REVIEW_DIR))
 import numpy as np
 from app import rs_lev_r2c_engine as E, rs_lev_r2c_data as D
 import indep_sim as s, lambda_kill as lk

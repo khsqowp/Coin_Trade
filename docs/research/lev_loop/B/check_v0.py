@@ -1,5 +1,10 @@
 """V0 replication proof: rs_lev_b_engine (all new features off) vs rs_final_engine.Sim.run, bit-exact."""
-import sys; sys.dont_write_bytecode=True; sys.path.insert(0,"/Users/user/Desktop/CODE/Ochestration/trading")
+import sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+TRADING_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(TRADING_ROOT))
 import numpy as np
 from app.rs_final_data import load_panel
 from app.rs_final_engine import window_metrics

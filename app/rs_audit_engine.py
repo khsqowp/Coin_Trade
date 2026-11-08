@@ -8,16 +8,17 @@ Conventions (all daily indices i refer to UTC day i; close[i] = close of the 23:
 import ast
 import gzip
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = "/Users/user/Desktop/CODE/Ochestration/trading"
-CACHE = f"{ROOT}/.rs_cache/vision"
+ROOT = Path(__file__).resolve().parents[1]
+CACHE = ROOT / ".rs_cache" / "vision"
 DAY = 86_400_000
 
 
 def universe():
-    src = open(f"{ROOT}/app/momentum_rotation_loop.py").read()
+    src = (ROOT / "app" / "momentum_rotation_loop.py").read_text()
     for node in ast.parse(src).body:
         if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "UNIVERSE":
             return list(ast.literal_eval(node.value))
@@ -30,7 +31,7 @@ def load_panel(bases=None, kline_hook=None, fund_hook=None, fund_shift_ms=0):
     bases = bases or universe()
     closes, qvs, funds = {}, {}, {}
     for b in bases:
-        k = pd.read_csv(f"{CACHE}/klines_1h/{b}USDT.csv.gz", header=None, usecols=[0, 4, 7],
+        k = pd.read_csv(CACHE / "klines_1h" / f"{b}USDT.csv.gz", header=None, usecols=[0, 4, 7],
                         names=["t", "c", "qv"], dtype={"t": "int64", "c": "float64", "qv": "float64"})
         if kline_hook:
             k = kline_hook(b, k)
@@ -38,14 +39,14 @@ def load_panel(bases=None, kline_hook=None, fund_hook=None, fund_shift_ms=0):
         g = k.sort_values("t").groupby("d")
         closes[b] = g["c"].last()
         qvs[b] = g["qv"].sum()
-        f = pd.read_csv(f"{CACHE}/funding/{b}USDT.csv.gz", header=None, names=["t", "iv", "r"])
+        f = pd.read_csv(CACHE / "funding" / f"{b}USDT.csv.gz", header=None, names=["t", "iv", "r"])
         if fund_hook:
             f = fund_hook(b, f)
         f["d"] = (f["t"] - fund_shift_ms) // DAY
         funds[b] = f.groupby("d")["r"].sum()
     # last full day: all 24 bars present for BTC-like check -> use last day whose last bar is 23:00
     c = pd.DataFrame(closes)
-    last_bar = pd.read_csv(f"{CACHE}/klines_1h/BTCUSDT.csv.gz", header=None, usecols=[0])[0].iloc[-1]
+    last_bar = pd.read_csv(CACHE / "klines_1h" / "BTCUSDT.csv.gz", header=None, usecols=[0])[0].iloc[-1]
     last_day = last_bar // DAY if (last_bar % DAY) == 23 * 3600_000 else last_bar // DAY - 1
     idx = np.arange(c.index.min(), last_day + 1)
     c = c.reindex(idx)

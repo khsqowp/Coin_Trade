@@ -1,0 +1,1 @@
+$S/r2cvenv/bin/python docs/research/lev_loop/R2C/r2c_smoke_v0.py >  2>&1  5.77s user 0.31s system 89% cpu 6.801 total

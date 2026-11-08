@@ -1,9 +1,10 @@
 """R2-B step 5: reconstruct LIVE equity from state (entry_log snapshots) + public 1m mark prices; calibrate vs live equity_history; empirical lambda.
 Read-only on a COPY of the state (state_fresh.json taken via docker exec read-only). usage: python rs_lev_r2b_live.py <state.json> <live_dir>"""
 import json, os, sys, bisect
+from pathlib import Path
 import numpy as np, pandas as pd
 st_path, live_dir = sys.argv[1], sys.argv[2]
-OUT = "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/lev_loop/review2/rerun/_out_r2b_live"
+OUT = Path(__file__).resolve().parent / "_out_r2b_live"
 s = json.load(open(st_path))
 T0 = int(pd.Timestamp("2026-09-24", tz="UTC").timestamp() * 1000)
 syms = sorted(set(e["symbol"] for e in s["entry_log"]))
@@ -94,7 +95,7 @@ print(f"live samples total {n_total}, in flat windows {sum(len(r[2]) for r in ro
 print(f"PRIMARY level RMSE (segment-median removed): {100*rmse:.3f}% of equity | anchored-at-start RMSE {100*rmse_a:.3f}% | 5-min increment RMSE {100*rmse5:.3f}% (live 5-min increment std {100*np.std(live5):.3f}%)")
 print("segment table: start | n | rmse(demeaned) % | rmse(anchored) % | offset/E %")
 for k, t0_, n, a, b, c in seg_stats: print(k, str(t0_)[:19], n, f"{100*a:.3f}", f"{100*b:.3f}", f"{100*c:.2f}")
-os.makedirs(OUT, exist_ok=True)
+OUT.mkdir(parents=True, exist_ok=True)
 json.dump(dict(rmse=rmse, rmse_anchored=rmse_a, rmse_5min_incr=rmse5, live_5min_std=float(np.std(live5)), coverage=cover, qty_dev_max=max(dev), qty_dev_median=float(np.median(dev)),
                segs=[(int(k), str(t), int(n), a, b, c) for k, t, n, a, b, c in seg_stats]), open(os.path.join(OUT, "live_calib.json"), "w"), indent=1)
 # ================= lambda stage (always computed; labelled CALIBRATED / NOT by RMSE rule) =================

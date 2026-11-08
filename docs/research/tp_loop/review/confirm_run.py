@@ -1,14 +1,18 @@
 """REVIEWER confirmatory run (prereg_confirm.md). Also V0 leverage ladder (exploratory). stdout + json in review/."""
-import sys, json, os; sys.dont_write_bytecode = True
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/A")
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/review")
+import sys, json, os
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+REVIEW_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(REVIEW_DIR.parent / "A"))
+sys.path.insert(0, str(REVIEW_DIR))
 import numpy as np, pandas as pd, lib
 from lib import ENVS, IS, OOS
 from rs_tp_review_engine import TPSim
 from app.rs_tp_engine import TPSim as ASim
 from app.rs_final_data import load_panel
 from app.rs_final_engine import window_metrics
-OUT = "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/review/"
+OUT = REVIEW_DIR
 P = load_panel(); CF = lib.load_all()[1]; S = TPSim(P, CF); SA = ASim(P, CF)
 T09 = dict(XL=0, XS=.4, frac=1, lockout=0)
 BASE = dict(rebal=3, K=8, kill=.35, cool=14, cost=.001, fund=1, minn=0., eq0=1.)
@@ -92,4 +96,4 @@ for lev, dep in [(2.0, .95), (2.0, 1.0), (2.5, .95), (2.5, 1.0), (3.0, .95), (3.
     print("lev %.1f dep %.2f gross %.2f | full CAGR %.3f MDD %.3f iMDD %.3f Cal_i %.2f Sh %.2f kills %.1f end %.1f worst-phase-end %.1f | IS Cal_i %.2f OOS Cal_i %.2f | liq %s" % (
         lev, dep, lev * dep, row["full"]["cagr"], row["full"]["mdd"], row["full"]["imdd"], row["full"]["cal"], row["full"]["sh"], row["kills"], row["full"]["end"], row["worst_phase_end"], row["IS"]["cal"], row["OOS"]["cal"], row["liq"]))
 OUTJ["ladder"] = lad
-json.dump(OUTJ, open(OUT + "confirm_results.json", "w"), indent=1, default=float)
+json.dump(OUTJ, (OUT / "confirm_results.json").open("w"), indent=1, default=float)

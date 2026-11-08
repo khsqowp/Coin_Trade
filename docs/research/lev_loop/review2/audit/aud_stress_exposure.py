@@ -1,9 +1,10 @@
 """Reviewer audit of R2C 'safety asymmetry': was the current cell simply FLAT (post-kill) on the stress days, or exposed with what gross/eq?
 Uses a copy of the R2C engine (aud_engine.py) that additionally records held-at-day-open and gross/eq-at-open. Same seeds as r2c_main full runs."""
 import os, sys
+from pathlib import Path
 sys.dont_write_bytecode = True
-ROOT = "/Users/user/Desktop/CODE/Ochestration/trading"
-sys.path.insert(0, ROOT); sys.path.insert(0, ROOT + "/docs/research/lev_loop/R2C"); sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ROOT = Path(__file__).resolve().parents[5]
+sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "docs/research/lev_loop/R2C")); sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np, pandas as pd
 import aud_engine as AE
 from app import rs_lev_r2c_lib as LIB, rs_lev_r2c_engine as E

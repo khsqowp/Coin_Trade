@@ -1,6 +1,9 @@
 """R2C descriptive universe / survivorship statistics (no strategy results)."""
 import os, sys
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading"); sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
+
+TRADING_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(TRADING_ROOT)); sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 d = pd.read_csv(os.path.join(HERE, "data/daily_1d.csv.gz"), parse_dates=["date"]); last = d.groupby("sym").date.max(); first = d.groupby("sym").date.min()

@@ -1,0 +1,1 @@
+$S/r2cvenv/bin/python docs/research/lev_loop/R2C/r2c_power.py >  2>&1  26.67s user 0.51s system 291% cpu 9.328 total

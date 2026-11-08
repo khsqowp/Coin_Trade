@@ -1,6 +1,10 @@
 """REVIEWER: inspect T09 (short TP -40%) events for wick/data artifacts and post-exit behaviour."""
-import sys; sys.dont_write_bytecode = True
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/A")
+import sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+REVIEW_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(REVIEW_DIR.parent / "A"))
 import numpy as np, pandas as pd, lib
 from lib import ENVS, TPSim
 from app.rs_final_data import load_panel
@@ -25,4 +29,4 @@ print("median hold", U.hold.median(), " share where prev-day close was already <
 print("share where same-day close is >5% above fill (wick-reversal):", (U.close_day_vs_fill > 0.05).mean().round(3))
 print("share close_day > 20% above fill:", (U.close_day_vs_fill > 0.20).mean().round(3))
 print("mean nx3", U.nx3.mean().round(3), "median", U.nx3.median().round(3), " mean nx7", U.nx7.mean().round(3))
-U.to_csv("/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/review/t09_events.csv", index=False)
+U.to_csv(REVIEW_DIR / "t09_events.csv", index=False)

@@ -1,5 +1,6 @@
 """REVIEWER: independent re-run of headline numbers of A, B, C (read-only on live code). Output: stdout only."""
 import os, sys
+from pathlib import Path
 sys.dont_write_bytecode = True
 import numpy as np, pandas as pd
 from math import sqrt
@@ -8,7 +9,7 @@ from app.rs_final_engine import window_metrics
 
 P = load_panel()
 # ---------------- A (rs_tp_engine)
-sys.path.insert(0, "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/tp_loop/A")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "A"))
 import lib
 from lib import TPSim as ATP, ENVS, IS, OOS
 CF = lib.load_all()[1]
