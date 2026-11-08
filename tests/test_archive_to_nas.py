@@ -70,6 +70,8 @@ def test_utc_day_close_margin_boundary(env, now, expected):
     # Nov 4 ended at 00:00 UTC Nov 5; the six-hour margin ends at 06:00 UTC.
     path = env[0] / "2026/11/04/12/file.jsonl"
     path.parent.mkdir(parents=True); path.write_bytes(b"test")
+    fixture_mtime = datetime(2026, 11, 4, 12, tzinfo=timezone.utc).timestamp()
+    os.utime(path, (fixture_mtime, fixture_mtime))
     found = [item[1] for item in job._scan(env[0], now, 6)]
     assert (path in found) is expected
 
@@ -106,6 +108,43 @@ def test_same_run_verified_complete_day_deletes_with_audit(env):
     completed = list(env[3].glob("day-complete-*.json"))
     assert len(completed) == 1
     assert json.loads(completed[0].read_text())["file_count"] == 1
+
+
+def test_ctime_only_tombstone_change_retries_and_deletes(env, monkeypatch):
+    now = fixed_now(); path = add_file(env, now - timedelta(days=9), mtime=(now - timedelta(days=8)).timestamp())
+    assert run(env, ["--no-delete"], now) == 0
+    original_hash = job._hash_open_file; injected = [False]
+    def touch_tombstone(stream, *args, **kwargs):
+        result = original_hash(stream, *args, **kwargs)
+        tomb = Path(stream.name)
+        if ".deleting-" in tomb.name and not injected[0]:
+            injected[0] = True
+            st = tomb.stat()
+            os.utime(tomb, ns=(st.st_atime_ns, st.st_mtime_ns))
+        return result
+    monkeypatch.setattr(job, "_hash_open_file", touch_tombstone)
+    assert run(env, ["--enable-delete"], now + timedelta(hours=25)) == 0
+    assert injected[0] and not path.exists()
+
+
+def test_content_change_during_tombstone_hash_is_retained_without_retry(env, monkeypatch):
+    now = fixed_now(); path = add_file(env, now - timedelta(days=9), content=b"original", mtime=(now - timedelta(days=8)).timestamp())
+    assert run(env, ["--no-delete"], now) == 0
+    original_hash = job._hash_open_file; injected = [False]; hash_calls = [0]
+    def alter_tombstone(stream, *args, **kwargs):
+        result = original_hash(stream, *args, **kwargs)
+        tomb = Path(stream.name)
+        if ".deleting-" in tomb.name:
+            hash_calls[0] += 1
+            if not injected[0]:
+                injected[0] = True
+                with tomb.open("ab") as changed:
+                    changed.write(b"changed")
+        return result
+    monkeypatch.setattr(job, "_hash_open_file", alter_tombstone)
+    assert run(env, ["--enable-delete"], now + timedelta(hours=25)) == 1
+    assert injected[0] and hash_calls[0] == 1
+    assert path.exists() and path.read_bytes() == b"originalchanged"
 
 
 def test_no_delete_overrides_enable_delete(env):

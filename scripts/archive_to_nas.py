@@ -35,6 +35,10 @@ class BackupError(RuntimeError):
     pass
 
 
+class TransientIdentityChange(BackupError):
+    """Tombstone identity changed while its bytes still matched the archive."""
+
+
 def is_real_mount(path):
     return os.path.ismount(path)
 
@@ -414,13 +418,15 @@ def _safe_delete(src, expected, dest, root, args, manifest, upload, current, gz_
             size, digest = _hash_open_file(hashed, deadline, throttle, heartbeat)
             hashed_after = os.fstat(hashed.fileno())
             path_after = tomb.stat()
-            if size != upload.get("size") or digest != upload.get("sha256") or _stat_identity(snapshot) != _stat_identity(hashed_after) or _stat_identity(hashed_after) != _stat_identity(path_after):
-                raise BackupError("tombstoned source changed during or after final hash")
+            if size != upload.get("size") or digest != upload.get("sha256"):
+                raise BackupError("tombstoned source content changed during or after final hash")
+            if _stat_identity(snapshot) != _stat_identity(hashed_after) or _stat_identity(hashed_after) != _stat_identity(path_after):
+                raise TransientIdentityChange("tombstoned source changed during or after final hash")
             if deadline is not None and time.monotonic() >= deadline:
                 raise TimeoutError("max-minutes reached before unlink")
             _mount_check(args, root, dest)
             if _stat_identity(os.fstat(hashed.fileno())) != _stat_identity(hashed_after) or _stat_identity(tomb.stat()) != _stat_identity(hashed_after):
-                raise BackupError("tombstone metadata changed immediately before unlink")
+                raise TransientIdentityChange("tombstone metadata changed immediately before unlink")
             tomb.unlink()
     except Exception:
         if tomb.exists():
@@ -863,7 +869,20 @@ def main(argv=None, now=None):
                                     day_ok = False
                                     break
                                 try:
-                                    _safe_delete(src, {"size": upload["size"], "mtime_ns": upload["mtime_ns"], "st_ino": stable.st_ino}, dest, root, args, manifest, upload, current, gz, grace_end - safety_margin, args.throttle_mbps, beat)
+                                    delete_expected = {"size": upload["size"], "mtime_ns": upload["mtime_ns"], "st_ino": stable.st_ino}
+                                    delete_deadline = grace_end - safety_margin
+                                    for attempt in range(3):
+                                        try:
+                                            _safe_delete(src, delete_expected, dest, root, args, manifest, upload, current, gz, delete_deadline, args.throttle_mbps, beat)
+                                            break
+                                        except TransientIdentityChange:
+                                            if attempt == 2:
+                                                raise
+                                            # The failed transaction restored the source. Revalidate
+                                            # its stable file identity and bytes before retrying.
+                                            fresh = os.stat(src, follow_symlinks=False)
+                                            if (fresh.st_size, fresh.st_mtime_ns, fresh.st_ino) != (delete_expected["size"], delete_expected["mtime_ns"], delete_expected["st_ino"]) or not _verify(src, gz, upload, delete_deadline, args.throttle_mbps, beat):
+                                                raise BackupError("source changed or fresh verify failed after transient tombstone identity change")
                                 except TimeoutError as exc:
                                     LOG.info("deletion transaction reached grace cutoff; deferring remaining files for UTC day=%s: %s", day, exc)
                                     deferred_days += 1
