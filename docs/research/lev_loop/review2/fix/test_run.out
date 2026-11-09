@@ -1,0 +1,33 @@
+test_cursor_missing_is_initialised_to_now_not_zero (__main__.TestGuardUnits.test_cursor_missing_is_initialised_to_now_not_zero) ... ok
+test_cursor_never_regresses_below_seen_transfer (__main__.TestGuardUnits.test_cursor_never_regresses_below_seen_transfer) ... ok
+test_deferral_is_bounded (__main__.TestGuardUnits.test_deferral_is_bounded) ... ok
+test_duplicate_rows_in_one_response_applied_once (__main__.TestGuardUnits.test_duplicate_rows_in_one_response_applied_once) ... ok
+test_genuine_crash_kill_confirmed (__main__.TestGuardUnits.test_genuine_crash_kill_confirmed) ... ok
+test_inflated_hwm_without_any_transfer_is_blocked_and_repaired (__main__.TestGuardUnits.test_inflated_hwm_without_any_transfer_is_blocked_and_repaired) ... ok
+test_ledgered_deposit_shifts_older_samples_in_independent_hwm (__main__.TestGuardUnits.test_ledgered_deposit_shifts_older_samples_in_independent_hwm) ... ok
+test_pending_applies_once_equity_catches_up (__main__.TestGuardUnits.test_pending_applies_once_equity_catches_up) ... ok
+test_pending_becomes_phantom_after_window_and_never_returns (__main__.TestGuardUnits.test_pending_becomes_phantom_after_window_and_never_returns) ... ok
+test_real_deposit_applied_immediately_and_once (__main__.TestGuardUnits.test_real_deposit_applied_immediately_and_once) ... ok
+test_replayed_row_with_known_tranid_is_not_reapplied (__main__.TestGuardUnits.test_replayed_row_with_known_tranid_is_not_reapplied) ... ok
+test_row_key_prefers_tranId_and_falls_back (__main__.TestGuardUnits.test_row_key_prefers_tranId_and_falls_back) ... ok
+test_stale_row_equity_unchanged_is_parked_pending_and_baselines_untouched (__main__.TestGuardUnits.test_stale_row_equity_unchanged_is_parked_pending_and_baselines_untouched) ... ok
+test_two_distinct_rows_same_millisecond_both_applied (__main__.TestGuardUnits.test_two_distinct_rows_same_millisecond_both_applied) ... ok
+test_unverifiable_old_sample_is_applied_but_defers_kill (__main__.TestGuardUnits.test_unverifiable_old_sample_is_applied_but_defers_kill) ... ok
+test_withdrawal_before_record_defers_then_resolves (__main__.TestGuardUnits.test_withdrawal_before_record_defers_then_resolves) ... ok
+test_S1a_regressed_cursor__original_false_kills (__main__.TestIncidentReplay.test_S1a_regressed_cursor__original_false_kills) ... ok
+test_S1b_regressed_cursor__patched_floor_holds (__main__.TestIncidentReplay.test_S1b_regressed_cursor__patched_floor_holds) ... ok
+test_S1c_full_state_restore__patched_continuity_check_parks_it (__main__.TestIncidentReplay.test_S1c_full_state_restore__patched_continuity_check_parks_it) ... ok
+test_S2a_cursor_key_missing__original_false_kills (__main__.TestIncidentReplay.test_S2a_cursor_key_missing__original_false_kills) ... ok
+test_S2b_cursor_key_missing__patched_inits_to_now (__main__.TestIncidentReplay.test_S2b_cursor_key_missing__patched_inits_to_now) ... ok
+test_S3_real_deposit_ok_in_both (__main__.TestIncidentReplay.test_S3_real_deposit_ok_in_both) ... ok
+test_S3b_deposit_wallet_moves_before_income_record (__main__.TestIncidentReplay.test_S3b_deposit_wallet_moves_before_income_record) ... ok
+test_S4_withdrawal_with_lagging_income_record (__main__.TestIncidentReplay.test_S4_withdrawal_with_lagging_income_record) ... ok
+test_S5_income_endpoint_failing_during_withdrawal (__main__.TestIncidentReplay.test_S5_income_endpoint_failing_during_withdrawal) ... ok
+test_S6_genuine_crash_still_kills (__main__.TestIncidentReplay.test_S6_genuine_crash_still_kills) ... ok
+test_S7_persisted_inflated_hwm_is_repaired_not_killed (__main__.TestIncidentReplay.test_S7_persisted_inflated_hwm_is_repaired_not_killed) ... ok
+test_S8_after_rebalance_wallet_change_is_not_misread_as_transfer (__main__.TestIncidentReplay.test_S8_after_rebalance_wallet_change_is_not_misread_as_transfer) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 1.204s
+
+OK

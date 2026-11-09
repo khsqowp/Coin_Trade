@@ -1,0 +1,81 @@
+--- cool 7 kmode 3 IS
+  (4.0, 0.35): g_mean +0.97 W_med   11.26 kills   3.8 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.85 W_med    7.86 kills   1.0 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.86 W_med    8.44 kills   0.0 liqBASE   0 liqVOL   0
+  (5.0, 0.25): g_mean +0.68 W_med    5.14 kills  17.3 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.46 W_med    3.36 kills   9.2 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.92 W_med    9.01 kills   2.4 liqBASE   0 liqVOL   0
+  (5.0, 1.0): g_mean +0.99 W_med   11.33 kills   0.0 liqBASE   0 liqVOL   0
+  (3.0, 0.35): g_mean +0.72 W_med    5.77 kills   1.3 liqBASE   0 liqVOL   0
+--- cool 7 kmode 1 IS
+  (4.0, 0.35): g_mean -0.21 W_med    0.63 kills   9.5 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.42 W_med    2.68 kills   3.3 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.86 W_med    8.44 kills   0.0 liqBASE   0 liqVOL   0
+  (5.0, 0.25): g_mean -2.23 W_med    0.00 kills  35.1 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean -1.28 W_med    0.05 kills  16.7 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean -0.28 W_med    0.52 kills   7.2 liqBASE   0 liqVOL   0
+  (5.0, 1.0): g_mean +0.99 W_med   11.33 kills   0.0 liqBASE   0 liqVOL   0
+  (3.0, 0.35): g_mean +0.35 W_med    2.33 kills   5.4 liqBASE   0 liqVOL   0
+--- cool 7 kmode 0 IS
+  (4.0, 0.35): g_mean +0.82 W_med    7.52 kills   3.4 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.79 W_med    6.86 kills   0.7 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.86 W_med    8.44 kills   0.0 liqBASE   0 liqVOL   0
+  (5.0, 0.25): g_mean +0.50 W_med    3.57 kills  14.6 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.62 W_med    4.56 kills   6.5 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.99 W_med   10.68 kills   1.3 liqBASE   0 liqVOL   0
+  (5.0, 1.0): g_mean +0.99 W_med   11.33 kills   0.0 liqBASE   0 liqVOL   0
+  (3.0, 0.35): g_mean +0.64 W_med    4.84 kills   1.3 liqBASE   0 liqVOL   0
+--- cool 7 kmode 3 OOS
+  (4.0, 0.35): g_mean +0.55 W_med    3.50 kills   8.7 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.76 W_med    4.48 kills   2.3 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.90 W_med    6.32 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean +0.33 W_med    2.19 kills  20.7 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.64 W_med    4.24 kills  10.7 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.72 W_med    5.05 kills   3.4 liqBASE   0 liqVOL 120
+  (5.0, 1.0): g_mean +0.96 W_med    6.89 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean +0.30 W_med    1.96 kills   5.0 liqBASE   0 liqVOL   0
+--- cool 7 kmode 1 OOS
+  (4.0, 0.35): g_mean -0.67 W_med    0.22 kills  13.1 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.05 W_med    1.14 kills   4.0 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.90 W_med    6.32 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean -1.06 W_med    0.10 kills  28.7 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean -0.34 W_med    0.46 kills  15.9 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean -0.84 W_med    0.13 kills   7.6 liqBASE   0 liqVOL   0
+  (5.0, 1.0): g_mean +0.96 W_med    6.89 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean -0.12 W_med    0.85 kills   7.0 liqBASE   0 liqVOL   0
+--- cool 7 kmode 0 OOS
+  (4.0, 0.35): g_mean +0.69 W_med    4.54 kills   4.8 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.87 W_med    6.94 kills   2.0 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.90 W_med    6.32 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean +1.19 W_med   15.33 kills  11.9 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.53 W_med    2.91 kills   7.7 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.93 W_med    7.00 kills   2.3 liqBASE   0 liqVOL 120
+  (5.0, 1.0): g_mean +0.96 W_med    6.89 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean +0.74 W_med    5.16 kills   2.3 liqBASE   0 liqVOL   0
+--- cool 7 kmode 3 FULL
+  (4.0, 0.35): g_mean +0.67 W_med   25.07 kills  13.8 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.73 W_med   30.61 kills   3.3 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.85 W_med   51.09 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean +0.52 W_med   11.23 kills  38.3 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.59 W_med   17.61 kills  20.2 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.81 W_med   51.37 kills   5.4 liqBASE   0 liqVOL 120
+  (5.0, 1.0): g_mean +0.93 W_med   76.69 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean +0.54 W_med   12.42 kills   7.3 liqBASE   0 liqVOL   0
+--- cool 7 kmode 1 FULL
+  (4.0, 0.35): g_mean -0.54 W_med    0.08 kills  23.5 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.19 W_med    2.36 kills   7.3 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.85 W_med   51.09 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean -1.64 W_med    0.00 kills  64.1 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean -0.84 W_med    0.02 kills  33.7 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean -0.65 W_med    0.05 kills  15.2 liqBASE   0 liqVOL   0
+  (5.0, 1.0): g_mean +0.93 W_med   76.69 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean +0.13 W_med    1.83 kills  12.4 liqBASE   0 liqVOL   0
+--- cool 7 kmode 0 FULL
+  (4.0, 0.35): g_mean +0.69 W_med   26.09 kills   8.1 liqBASE   0 liqVOL   0
+  (4.0, 0.5): g_mean +0.70 W_med   29.81 kills   3.7 liqBASE   0 liqVOL   0
+  (4.0, 1.0): g_mean +0.85 W_med   51.09 kills   0.0 liqBASE   0 liqVOL  40
+  (5.0, 0.25): g_mean +0.73 W_med   32.76 kills  27.6 liqBASE   0 liqVOL   0
+  (5.0, 0.35): g_mean +0.49 W_med   10.18 kills  15.5 liqBASE   0 liqVOL   0
+  (5.0, 0.5): g_mean +0.88 W_med   59.23 kills   5.3 liqBASE   0 liqVOL 120
+  (5.0, 1.0): g_mean +0.93 W_med   76.69 kills   0.0 liqBASE   0 liqVOL 120
+  (3.0, 0.35): g_mean +0.66 W_med   23.71 kills   4.7 liqBASE   0 liqVOL   0

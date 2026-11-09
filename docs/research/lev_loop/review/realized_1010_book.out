@@ -1,0 +1,19 @@
+positions held entering 2025-10-10 (4x0.95, phase0): name side notional/eq  hour21 L/ref  H/ref  C/ref
+  APT     L  0.16  -0.62 +0.01 -0.17
+  BNB     L  0.16  -0.31 +0.00 -0.08
+  CRV     L  0.19  -0.70 +0.02 -0.25
+  ZEC     L  0.51  -0.35 +0.06 -0.14
+  CAKE    L  0.21  -0.58 +0.01 -0.20
+  XMR     L  0.17  -0.16 +0.02 -0.12
+  QNT     L  0.13  -0.31 +0.02 -0.07
+  LTC     L  0.20  -0.58 +0.02 -0.18
+  ATOM    S  0.20  -0.61 +0.02 -0.21
+  ARB     S  0.10  -0.71 +0.01 -0.22
+  AVAX    S  0.20  -0.66 +0.01 -0.13
+  UNI     S  0.09  -0.68 +0.01 -0.20
+  WLD     S  0.11  -0.75 +0.01 -0.25
+  ENA     S  0.10  -0.72 +0.02 -0.12
+  RENDER  S  0.18  -0.82 +0.01 -0.29
+  JUP     S  0.13  -0.71 +0.02 -0.16
+{'long': np.float64(1.7282214416098238), 'short': np.float64(1.106352656828767)} universe median L/ref -0.60, p25 -0.68, p75 -0.46
+longs at L: -0.759 of equity ; shorts at the same hour's LOW: +0.778 (gain if negative move) ; shorts at HIGH: -0.016 (loss)

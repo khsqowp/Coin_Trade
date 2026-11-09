@@ -23,10 +23,12 @@ MAX_SLOTS(6)개까지만 동시 보유 — "가장 수익 확률이 높은" 종�
 from __future__ import annotations
 
 import os
+import time
 from datetime import datetime, timedelta, timezone
 
 import ccxt
 
+from app.ccxt_retry import retry_read
 from app.coin_swing6_state import load_state, log_event, now_iso, save_state
 from app.futures_data import fetch_perp_ohlcv
 from app.momentum_rotation_loop import UNIVERSE, _rollup_daily_history, _should_sample_equity_history
@@ -47,6 +49,26 @@ LOOKBACK_DAYS = 200 + 30  # SMA200 워밍업 + EMA 안정화 여유
 EQUITY_HISTORY_MAX_POINTS = int(os.environ.get("COIN_SWING6_EQUITY_HISTORY_MAX_POINTS", "25920"))
 
 
+_EXCHANGE_TIMEOUT_MS = 15000
+_MARKETS_REFRESH_SECONDS = 24 * 3600
+_exchange: ccxt.binance | None = None
+_markets_loaded_at = 0.0
+
+
+def _get_exchange() -> ccxt.binance:
+    """사이클마다 새로 만들지 않고 재사용 — 명시적 타임아웃(15초), 마켓 정보는 하루 1회만 갱신."""
+    global _exchange, _markets_loaded_at
+    if _exchange is None:
+        _exchange = ccxt.binance({
+            "enableRateLimit": True, "timeout": _EXCHANGE_TIMEOUT_MS,
+            "options": {"defaultType": "future"},
+        })
+    if not _exchange.markets or time.monotonic() - _markets_loaded_at >= _MARKETS_REFRESH_SECONDS:
+        retry_read(_exchange.load_markets, True)
+        _markets_loaded_at = time.monotonic()
+    return _exchange
+
+
 def _perp_symbol(base: str) -> str:
     return f"{base}/USDT:USDT"
 
@@ -54,7 +76,7 @@ def _perp_symbol(base: str) -> str:
 def _fetch_prices(exchange: ccxt.binance) -> dict[str, float]:
     # 45종목을 개별 fetch_ticker로 부르면 비효율 — momentum_rotation_loop.py와 같은 이유로
     # 한 번에 받는다.
-    tickers = exchange.fetch_tickers([_perp_symbol(b) for b in UNIVERSE])
+    tickers = retry_read(exchange.fetch_tickers, [_perp_symbol(b) for b in UNIVERSE])
     prices = {}
     for base in UNIVERSE:
         last = (tickers.get(_perp_symbol(base)) or {}).get("last")
@@ -125,8 +147,8 @@ def run_cycle() -> None:
             f"(슬롯당 {START_CAPITAL_USDT * SLOT_FRACTION:,.0f} USDT)",
         )
 
-    exchange = ccxt.binance({"enableRateLimit": True, "options": {"defaultType": "future"}})
     try:
+        exchange = _get_exchange()
         prices = _fetch_prices(exchange)
     except Exception as exc:  # noqa: BLE001
         log_event(state, f"시세조회 실패 ({exc}) — 이번 사이클 건너뜀")

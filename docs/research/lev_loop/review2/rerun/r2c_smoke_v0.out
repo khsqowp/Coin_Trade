@@ -1,0 +1,4 @@
+PASS V0 daily-close (3 phases) vs published 14.5027/18.4064/15.8459 and indep_sim bit-level
+PASS lambda-kill (0,0.3,1.0 x phases 0,1) bit-level vs lambda_kill.py
+PASS kill-none vs lambda_kill nokill
+settle events on old panel (must be 0): 0.0

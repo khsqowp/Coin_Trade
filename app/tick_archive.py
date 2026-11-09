@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import os
 import fcntl
+import re
 from pathlib import Path
 from typing import Iterable, Mapping
 
@@ -17,6 +18,8 @@ ARCHIVE_DIR = Path(os.environ.get("TICK_ARCHIVE_DIR", "/app/archive"))
 
 
 def _hour_path(category: str, timestamp: str) -> Path:
+    if not isinstance(category, str) or re.fullmatch(r"[A-Za-z0-9_-]{1,64}", category) is None:
+        raise ValueError("category must contain only 1-64 ASCII letters, digits, '_' or '-'")
     if len(timestamp) < 13 or timestamp[10] != "T":
         raise ValueError(f"ts must be an ISO-8601 timestamp: {timestamp!r}")
     year, month, date = timestamp[:10].split("-")

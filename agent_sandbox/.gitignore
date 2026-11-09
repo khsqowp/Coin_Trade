@@ -1,0 +1,8 @@
+state/
+__pycache__/
+.pytest_cache/
+.pytest_tmp/
+.mypy_cache/
+.tool_cache/
+.agent-*/
+config.json

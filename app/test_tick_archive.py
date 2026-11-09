@@ -70,6 +70,13 @@ class TickArchiveTests(unittest.TestCase):
             tick_archive.append_batch("crypto_perp", [{"symbol": "BTC", "ts": "bad"}])
         self.assertEqual(list(self.archive_dir.rglob("*.jsonl")), [])
 
+    def test_path_like_categories_are_rejected_before_writing(self) -> None:
+        record = {"symbol": "BTC", "ts": "2026-10-18T02:00:00+00:00", "price": 1}
+        for category in ("../escape", "../../../../tmp/escape", "bad/category", ""):
+            with self.subTest(category=category), self.assertRaises(ValueError):
+                tick_archive.append_batch(category, [record])
+        self.assertEqual(list(Path(self.temp_dir.name).rglob("*.jsonl")), [])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,13 @@
+{
+ "(3.5, 0.35)": "unsupported(harm)",
+ "(3.5, 0.5)": "uninformative",
+ "(3.5, 0.6)": "uninformative",
+ "(3.5, None)": "uninformative",
+ "(4.0, 0.5)": "uninformative",
+ "(4.0, 0.6)": "uninformative",
+ "(4.0, None)": "uninformative",
+ "(5.0, 0.35)": "uninformative",
+ "(5.0, 0.5)": "uninformative",
+ "(5.0, 0.6)": "uninformative",
+ "(5.0, None)": "unsupported(liquidation)"
+}

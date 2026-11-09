@@ -1,0 +1,79 @@
+# Gen16 preregistration — calendar-only close strategies
+
+Status: revised after three independent document-only reviews; no Gen16 performance values have been opened. This is an exploratory survivor-cohort screen, not PIT/index evidence and not eligible to increase the valid-strategy count.
+
+## 1. Purpose and hard limits
+
+Gen15's volume-confirmed panic-reversal candidate is `DATA_BLOCKED` before performance because the frozen local source contains 30 zero-volume rows in three KR symbols. Gen16 tests two calendar mechanisms using only date and closing-price fields. It does not repair, drop, or change Gen15 inputs or results.
+
+The objective is to test fixed calendar rules against the same-cohort buy-and-hold comparator after registered costs. A numeric screen pass remains exploratory only. Local price source rights, adjustment/vintage, corporate-action provenance, and survivor selection remain unresolved. The Oracle global trial databases are unavailable and will not be requested again; Gen16 cannot claim DSR/PSR or Bonferroni/BH significance and cannot qualify as a valid strategy.
+
+## 2. Frozen inputs, cohort, timestamps, and quality gates
+
+- Read only `timestamp` and `Close` from local `.kis-cache/{US,KR}_{symbol}.csv`. Do not read `Open`, `High`, `Low`, or `Volume` in signal, execution, accounting, or benchmark code.
+- Frozen US cohort: AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA; benchmark N=7; C2 slot count K=2.
+- Frozen KR cohort: 000270, 000660, 000810, 005380, 005490, 005930, 006400, 009150, 012330, 017670, 028260, 032830, 034730, 035420, 055550, 068270, 086790, 105560, 316140, 373220, 402340; benchmark N=21; C2 slot count K=5.
+- Frozen data is the local cache snapshot, not a current feed. The 28-file input manifest must reproduce exactly as `395e3acc608493164700e2fcdfebebe9bca541bfa6e952a3cebdb15ab81a85b4`. Canonical method: sort the UTF-8 relative paths bytewise; for each append `relative_path + TAB + lowercase_hex(SHA256(file_bytes)) + LF`; SHA-256 the concatenated UTF-8 bytes. Any mismatch blocks the run; do not rewrite this manifest.
+- Parse every `timestamp` as ISO-8601 with an explicit timezone offset; reject naive/ambiguous timestamps. Convert to UTC and group by UTC date/month. Duplicate dates in a ticker file or dates not strictly increasing block that ticker's data gate. This convention reflects the local snapshot format; it does not claim to represent the exchange-local calendar.
+- A valid close is finite and strictly positive. Do not interpolate, forward-fill for signals/trading, or synthesize closes. For interim NAV only, carry the last actual close for a ticker with no row on a union date; this does not create a signal, fill, or holding-period observation.
+- Candidate-specific missing rules override only the general entry check: missing C1 entry leaves that cohort slot in cash; missing C2 entry cancels that ranked order and tries the next rank. A required scheduled exit or terminal liquidation without an actual valid close blocks that candidate-market-segment cell. Any present but invalid close used by a rule blocks the cell; no row is repaired or removed.
+- Before performance, verify exact manifest, schema, timestamp parsing/order/uniqueness, positive finite closes, and that required exits/terminal holdings have actual close observations. Expected missing entry closes handled above are not a gate failure. Any other failure is `DATA_BLOCKED` before metrics.
+
+## 3. Calendar proxy and monthly windows
+
+- For each market, derive a sorted union calendar from the dates actually present in the frozen cohort. This is an observed-cohort calendar proxy, not an official exchange calendar. Do not use it to claim historical ex-ante knowledge of unpublished exchange schedules.
+- A UTC calendar month is labeled using the converted UTC date. Monthly returns use the last union date of each completed UTC month. For a ticker, the corresponding month-end close is usable only if that ticker has an actual valid close on that exact union date; no earlier stale close substitution.
+- Use the union calendar causally: a first session is recognized on its own observed date; a fourth session is recognized by counting dates as they occur. No rule may select a date by counting backward from a future month-end.
+
+## 4. Candidate rules — two fixed hypotheses, no parameter grid
+
+### C1 — first-session-close to fourth-session-close fixed-cohort exposure
+
+- On the first union date of each UTC month, after observing that date and at its close, buy the full fixed cohort equal-weight. Capture one `NAV_batch` immediately before the entire day's buy batch. For each name, total spend budget is `NAV_batch/N`; gross notional is `(NAV_batch/N)/(1+buy_fee)`. If a name has no valid entry close on that date, its slot remains cash for the window; do not substitute another name.
+- Hold the purchased share quantity unchanged. Sell each entered position at the earlier of (a) the close of that month's fourth union date or (b) the close of the first union date of the next UTC month if the month changes before a fourth union date is observed. The second rule is an online fallback; do not decide at entry by looking ahead to the completed month's union-date count. At a month-transition close, process the prior position exit before the new month's entry.
+- A missing/invalid scheduled exit close for any held name blocks the candidate-market-segment cell. Record early month-transition exits and all cash slots. The fixed rule cannot overlap positions across windows.
+- C1 tests first-session exposure, not the fifth-to-last-session turn-of-month rule. It uses only dates observable up to the current session; it does not reverse-count from a future month-end.
+
+### Close-fill limitation for both candidates
+
+- All fills use the observed close of the execution date and fractional shares; share quantity and notional may therefore be derived from that close. This is an idealized closing-price accounting convention, not a realizable market-on-close order simulation. Do not present it as evidence of executable performance.
+- When any scheduled exit and new entry occur on the same union-date close (C1 short-month fallback or C2 month transition), sell proceeds are credited and available to the new same-close buy batch immediately. This is a simplifying buying-power assumption; no settlement lag is modeled. Any result depending on this assumption is exploratory only and cannot qualify as valid without a separate settlement-aware rerun.
+
+### C2 — five-year same-calendar-month cross-sectional seasonality
+
+- C2 is tested on OOS only (2023-01-01 through the final OOS date); 2018–2022 is feature warm-up, not a C2 IS performance period. OOS starts with fresh NAV and no position/order. At the first union date of target month M, calculate each ticker's score from exactly five completed historical monthly returns for calendar month M in the five preceding years. For each historical year y, return is `Close(last union date of month M in year y) / Close(last union date of month M-1 in year y) - 1`. Both closes must be actual valid observations for that ticker on those exact union dates. If any required monthly close is absent/invalid, the ticker is ineligible; no stale price, shorter window, or imputation.
+- The cache begins in January 2018, so a January 2023 target score requires the missing December 2017 month-end close for the January 2018 return. Therefore no ticker can qualify for January 2023 under the exact-five rule and that month remains cash. February 2023 is the earliest possible target month for tickers with complete 2018 history; symbols with later listing/cache starts remain ineligible until they independently satisfy all five returns. This is fixed by input coverage, not a post-result exclusion.
+- Score is the arithmetic mean of those five returns. A ticker is eligible only if all five returns exist and the mean is strictly positive. Rank the full eligible cohort by score descending, then ticker symbol ascending. Do not truncate to K before checking execution. No other feature, sector grouping, risk scaling, or post-result tuning.
+- On the first union date of M, rank the full eligible cohort before trades using only historical complete months, then attempt entry at that date's close. Capture one `NAV_batch` after due exits and before buys. Each filled slot's total spend is `NAV_batch/K`; gross notional is `(NAV_batch/K)/(1+buy_fee)`. Iterate the full ranked list until K names are filled or the list is exhausted; if a ranked ticker lacks a valid entry close or the account cannot fund its fixed slot spend, cancel/skip that candidate and try the next rank. If no eligible candidates remain, unused slots stay cash. Orders do not carry beyond that first-date close.
+- Exit each position at the close of the first union date of the next UTC calendar month. Process due exits first, then form and execute the new month's ranked batch at the same close; charge both sell and buy costs. This is a causal month-transition rule: the new month is known from its observed first date, and the next month's first date is not inferred from future rows. Missing required exit or terminal close blocks the cell.
+- C2 uses only preceding completed calendar months for score; the target-month return is not part of the score. It has no C2 IS result. The first OOS month's scores may use 2018–2022 historical feature data because the signal is formed at the observed first date of that OOS month, not carried in as a pre-segment order.
+
+## 5. Accounting, costs, and comparator
+
+- Independent account per market and candidate segment; initial NAV 1.0 in cash. C1: IS 2018-01-01 through 2022-12-30 and OOS 2023-01-01 through the final OOS union date. Each segment starts with fresh NAV and no holdings/orders. C2: OOS only, with 2018–2022 used solely as historical feature warm-up.
+- US one-way base/stress costs: 0.08% / 0.36%. KR base buy 0.065%, sell 0.245%; stress buy 0.115%, sell 0.295%. Charge each gross buy/sell. Add no dividends, financing, interest, leverage, tax changes, or market-impact model. Given unverified adjusted-price provenance, results are not total-return claims.
+- Comparator: same fixed-cohort cost-matched buy-and-hold as Gen14/15. Each name's all-in budget is `1/N`; fixed gross notional `G=1/(N*(1+buy_fee))`. If the first segment date lacks a valid close, retain the slot budget in cash until the ticker's first actual valid close; if none, it remains cash. Hold shares to segment end and liquidate only at a valid terminal close with sell cost. A missing terminal close blocks that benchmark cell.
+- Record each fill's date, ticker, side, close, shares, gross, fee, cash before/after, NAV, reason, and rank where applicable. Record each union date's NAV, cash, holdings, event/window state, and stale marks. `pre_trade_NAV_t` means NAV after marking prior holdings to date t's close but before any t transactions. `daily_turnover_t=(gross_buys_t+gross_sells_t)/pre_trade_NAV_t`; total turnover is the sum of daily turnover. Use a single pre-trade NAV for each simultaneous batch. Cash cannot be negative; any ledger/NAV reconciliation residual above `1e-10` blocks the cell.
+
+## 6. Metrics, screen, and terminal rules
+
+- C1 reports IS and OOS; C2 reports OOS only. Report CAGR, Sharpe, MDD, terminal NAV, total turnover, total costs, trades, canceled entries, windows, average daily cash share, and daily NAV path. C2 additionally reports per-month eligible count, exact five-return completeness count, selected names, and skipped slots.
+- NAV is marked at each union-date close after fills/costs. For each segment, include a synthetic initial NAV point of 1.0 at the UTC calendar date one day before the first union session. Daily simple returns include the initial-to-first-session close change/cost and then `NAV_t/NAV_(t-1)-1`. Sharpe is mean daily simple return / population standard deviation × `sqrt(252)`, risk-free rate 0. If standard deviation is zero, Sharpe is undefined and cannot pass. CAGR annualization elapsed days are `last_union_date - (first_union_date - 1 calendar day)` so the first daily return is included consistently. MDD includes initial NAV 1 as a high-water mark. Average daily cash share is the arithmetic mean of `cash_t/NAV_t` across union dates after that date's close actions; nonpositive NAV blocks the cell. Terminal NAV is after required terminal liquidation costs.
+- The performance screen uses OOS only for both candidates; C1 IS results are descriptive and cannot pass the gate. A candidate-market OOS screen passes only if it strictly exceeds same-cohort B&H CAGR and Sharpe and has MDD no worse than B&H in both base and stress costs. Publish every candidate/market/cost cell locally. A screen pass is not significance, live readiness, or a valid strategy.
+- At each segment end, cancel unfilled orders. Liquidate open holdings only at a valid actual close on the final segment date and charge sell costs. If any terminal holding lacks that actual close, record `DATA_BLOCKED`; never liquidate at a stale mark.
+- Do not initiate new entries on a segment's final union date, even if it is also a candidate's scheduled entry date. Process any due/forced exits at that close, then end the segment in cash. A signal/window that would start only on the terminal date is skipped and recorded; it is not a zero-duration round trip.
+- Do not assert DSR/PSR/Bonferroni/BH significance because complete global `trials.sqlite` counts are unavailable. Gen16 outcomes cannot count toward the two valid strategies while source rights, price vintage/corporate actions, PIT universe, authoritative exchange-calendar validation, and global multiple-testing burden remain unresolved.
+
+## 7. Pre-performance synthetic and independent implementation gates
+
+Before reading any Gen16 market-performance output:
+
+1. Three independent implementations must pass synthetic tests for causal first/fourth-session boundaries, target-month transitions, C2 five-year same-month lookback, month and segment isolation, missing/invalid closes, cohort and tie-break, missing-entry fallback, fee-inclusive fixed batch sizing, fixed share quantities, exit ordering, terminal liquidation, interim stale marks, benchmark delayed start, future-mutation/prefix invariance, and daily ledger/NAV reconciliation.
+2. At least two independently written market implementations must agree per union date within `1e-10` on signal eligibility, ranks, entries/exits, shares, fees, cash, holdings, and NAV for every candidate/market/segment/cost tested.
+3. Any preregistration/input hash mismatch, input gate failure, unresolved date interpretation, or implementation disagreement stops performance work. Record `DATA_BLOCKED` or `IMPLEMENTATION_BLOCKED`. A repair requires a dated addendum or new preregistration frozen before any performance output is exposed.
+
+## 8. Family classification and reporting
+
+- C1 is a calendar/month-start exposure rule, within the broader calendar/seasonality family; prior calendar filters exist, so do not call it a novel strategy family without reconciling the complete prior trial ledger.
+- C2 is cross-sectional calendar-month seasonality and may overlap prior seasonality research. It is one fixed hypothesis, not a grid to expand after results.
+- The three prior reviewers found and blocked issues in the earlier draft; their issues are addressed in this revision. Record their review, this final preregistration hash, input manifest, source/rights caveats, each implementation/test hash, and every gate in the local loop log. Until source terms are verified, Coin_Trade may contain method/status/hashes only; do not publish any derived per-market performance figures or pass/fail screen outcomes there. Local exploratory result details remain local. Failures and blocked cells remain recorded. No Ochestration commit/push and no live trading.

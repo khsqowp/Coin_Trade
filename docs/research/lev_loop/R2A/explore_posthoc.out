@@ -1,0 +1,17 @@
+C0_control  days 727 | f* min 0.648 p5 0.716 med 0.939 | corr(f*,1/gross)=0.54 corr(f*,net)=-0.23 | f*xgross med 3.58 min 2.66 | worst day: gross 4.35 net +0.25 long 2.30 short 2.05 long-wick-loss/eq 1.46 short-H-loss/eq 0.03
+   8 lowest-f* days (gross, net, longwick): [(np.float64(4.35), np.float64(0.25), np.float64(1.46), np.float64(0.648)), (np.float64(4.49), np.float64(0.24), np.float64(1.44), np.float64(0.648)), (np.float64(4.34), np.float64(0.34), np.float64(1.41), np.float64(0.657)), (np.float64(4.79), np.float64(0.05), np.float64(1.37), np.float64(0.665)), (np.float64(4.2), np.float64(0.27), np.float64(1.41), np.float64(0.669)), (np.float64(4.13), np.float64(0.26), np.float64(1.4), np.float64(0.669)), (np.float64(4.12), np.float64(0.31), np.float64(1.41), np.float64(0.671)), (np.float64(4.23), np.float64(0.32), np.float64(1.39), np.float64(0.675))]
+   gross range on those days 4.12 4.79 | overall gross p50/p95/max [3.77 4.38 5.  ]
+   implied: worst-day f*xgross=2.82; to reach f*=0.768 worst-day gross would have to be 3.67 (nominal 3.80)
+G42         days 741 | f* min 0.669 p5 0.761 med 0.956 | corr(f*,1/gross)=0.45 corr(f*,net)=-0.18 | f*xgross med 3.57 min 2.66 | worst day: gross 4.13 net +0.26 long 2.20 short 1.94 long-wick-loss/eq 1.40 short-H-loss/eq 0.04
+N03         days 739 | f* min 0.667 p5 0.757 med 0.956 | corr(f*,1/gross)=0.52 corr(f*,net)=-0.08 | f*xgross med 3.63 min 2.74 | worst day: gross 4.69 net -0.18 long 2.25 short 2.43 long-wick-loss/eq 1.38 short-H-loss/eq 0.06
+C1_norm     days 751 | f* min 0.673 p5 0.786 med 0.966 | corr(f*,1/gross)=0.29 corr(f*,net)=0.15 | f*xgross med 3.67 min 2.78 | worst day: gross 4.50 net -0.13 long 2.18 short 2.31 long-wick-loss/eq 1.36 short-H-loss/eq 0.07
+P at f=1.0 (daily kill) hedged / sync / anti, tier:
+  C0_control       hedged 0.000 sync 0.000 anti 0.586 | f* hedged median 1.24
+  C1_norm          hedged 0.000 sync 0.000 anti 0.534 | f* hedged median 1.73
+  G42              hedged 0.000 sync 0.000 anti 0.558 | f* hedged median 1.30
+  G46              hedged 0.000 sync 0.000 anti 0.583 | f* hedged median 1.24
+  N03              hedged 0.000 sync 0.000 anti 0.578 | f* hedged median 1.37
+  N05              hedged 0.000 sync 0.000 anti 0.582 | f* hedged median 1.24
+  S12              hedged 0.000 sync 0.000 anti 0.584 | f* hedged median 1.23
+  X1_G42_S12       hedged 0.000 sync 0.000 anti 0.558 | f* hedged median 1.31
+  X2_G46_N05_S12   hedged 0.000 sync 0.000 anti 0.584 | f* hedged median 1.24

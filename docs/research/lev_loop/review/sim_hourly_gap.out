@@ -1,0 +1,10 @@
+sim V0 4x0.95 (positions from sim), hourly gap = (close eq - adverse eq)/close eq
+-- live overlap 2026-09-25..10-09 hours 360
+anti-sync L/H (A/B/C model)        mean 0.0334 p50 0.0298 p90 0.0535 p99 0.0808 max 0.1219
+sync low/high                      mean 0.0136 p50 0.0115 p90 0.0275 p99 0.0453 max 0.0575
+range (best-worst)/close anti      mean 0.0679 p50 0.0604 p90 0.1044 p99 0.1570 max 0.2836
+-- all history hours 34152
+anti-sync L/H (A/B/C model)        mean 0.0282 p50 0.0245 p90 0.0463 p99 0.0848 max 0.6698
+sync low/high                      mean 0.0054 p50 0.0035 p90 0.0143 p99 0.0354 max 0.1309
+range (best-worst)/close anti      mean 0.0570 p50 0.0499 p90 0.0918 p99 0.1661 max 1.4557
+ratio live-5min p50/p99 dip vs sim anti-sync (overlap):  0.05713267940401491 0.23776542802202943

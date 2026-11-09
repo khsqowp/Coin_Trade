@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-16",
+  "scope": "US/KR equities and crypto tick feasibility for Jev (TypeSafe System One) assisted paper research",
+  "repository": {
+    "path": "/Users/user/Desktop/CODE/Ochestration/trading",
+    "head": "e3222c82216453f1b5b0f22748f9c7849b2045ff",
+    "head_date": "2026-10-16",
+    "dirty": true,
+    "observed_changes": [
+      "M app/momentum_rotation_loop.py",
+      "D app/crypto_tick_state.py",
+      "D app/crypto_tick_stream.py",
+      "?? .rs_cache/",
+      "?? agent_sandbox/"
+    ],
+    "changes_modified_by_research": false
+  },
+  "equity_local_cache": {
+    "source": "Ochestration/trading/docs/research/equity_transfer_2026-10/DATA_AVAILABILITY.md; documented 2026-10-14 inventory",
+    "us_daily_files": 54,
+    "kr_daily_files": 64,
+    "rows_total": 249592,
+    "intraday_timestamp_rows": 0,
+    "us_date_range": ["2018-01-02", "2026-10-12"],
+    "kr_date_range": ["2018-01-02", "2026-10-02"],
+    "historical_tick_available": false,
+    "historical_intraday_bar_available_locally": false,
+    "limitations": [
+      "Local evidence is daily OHLCV only.",
+      "The inventory is cited from the dated repo report, not re-enumerated during this task.",
+      "Do not synthesize minute/second paths from daily bars."
+    ]
+  },
+  "nas_tick_archive": {
+    "path": "/Volumes/HDD2TB/Trade/tick-archive",
+    "du_sh": "158G",
+    "inspection_method": [
+      "find file names only for inventory",
+      "du -sh directory",
+      "3-line samples from one KR and one crypto_spot JSONL",
+      "no recursive content scan"
+    ],
+    "files": {
+      "crypto_spot.jsonl": 43,
+      "crypto_perp.jsonl": 43,
+      "kr.jsonl": 36,
+      "us.jsonl": 0
+    },
+    "kr_date_range_by_filename": ["2026-09-01", "2026-10-16"],
+    "sampled_fields": ["symbol", "ts", "price"],
+    "sampled_schema_only": true,
+    "full_archive_schema_verified": false,
+    "crypto_trades_source_event_time_qty_maker_side_preserved": false,
+    "l2_orderbook_depth_available": false,
+    "can_test": [
+      "price-only event/change/return proxies with explicit receive-time caveat",
+      "basic stream/archive and event-trigger plumbing"
+    ],
+    "cannot_test": [
+      "historically exact source-time trade replay",
+      "signed volume delta or aggressor/maker flow",
+      "trade or quote imbalance",
+      "bid/ask depth imbalance",
+      "queue position, spread-crossing execution, or calibrated market impact"
+    ],
+    "caveats": [
+      "Counts are filename inventory, not row counts or coverage proof.",
+      "Only three sample lines per category were read.",
+      "An initially broad *kr.jsonl pattern overcounted crypto_perp; exact basename kr.jsonl was recounted and returned 36."
+    ]
+  },
+  "code_feed_support_not_data_coverage": {
+    "Coin_Trade/app/tick_stream.py": {
+      "supports_public_trade_subscriptions": ["KR H0STCNT0", "US HDFSCNT0"],
+      "actual_us_archive_files": 0,
+      "interpretation": "Subscription code does not establish successful coverage, no-delay status, or historical availability. The KIS catalog labels overseas trade feed as delayed real-time execution price."
+    },
+    "Coin_Trade/app/crypto_tick_stream.py": {
+      "streams": ["Binance spot @trade", "Binance futures @trade", "Binance futures @markPrice@1s"],
+      "handler_discards": ["exchange event timestamp T/E", "trade quantity q", "maker-side flag m"],
+      "stored_trade_fields": ["symbol", "receive timestamp now_iso()", "price"],
+      "l2_depth_stream": false,
+      "strategy_tick_signal_connected_to_trade_decisions": false
+    }
+  },
+  "broker_api": {
+    "provider": "Korea Investment & Securities Open API",
+    "official_catalog_lists": {
+      "kr_intraday_bars": true,
+      "kr_trade_and_quote_websocket": true,
+      "us_intraday_bars": true,
+      "us_quote_and_trade_websocket_entries": true
+    },
+    "us_trade_catalog_label": "해외주식 실시간지연체결가",
+    "paper_account_real_time_coverage_verified": false,
+    "historical_depth_and_retention_verified": false,
+    "current_subscription_limit_verified": false,
+    "current_account_commission_verified": false,
+    "official_source": "https://apiportal.koreainvestment.com/apiservice"
+  },
+  "jev": {
+    "provider": "TypeSafe AI",
+    "official_endpoint": "https://api.typesafe.ai/v1/systemone",
+    "official_api_reference": "https://docs.typesafe.ai/api",
+    "request_response_style": "HTTPS request returning typed answers and token usage",
+    "streaming_response_documented": false,
+    "numeric_latency_sla_or_distribution_published_in_docs": false,
+    "numeric_rate_limit_published_in_checked_api_reference": false,
+    "documented_http_errors": [429, 529],
+    "live_latency_test_performed": false,
+    "api_key_or_credentials_used": false,
+    "decision": "Cannot infer second-level feasibility from Jev latency alone; measure p50/p90/p95/p99/end-to-end under representative shadow traffic and enforce local deadline/fail-closed behavior."
+  },
+  "market_rules": {
+    "us_core_session_et": "09:30-16:00",
+    "us_dst_note": "KST local conversion changes with EST/EDT; use exchange timezone and calendar",
+    "kr_regular_session_kst": "09:00-15:30",
+    "us_short_sale": "Regulation SHO marking and locate requirements; Rule 201 10% circuit breaker restricts short-sale price for remainder of day and following trading day",
+    "kr_short_sale": "Covered short only under borrowing/verification constraints; KRX uptick rule applies",
+    "us_tick_rule": "Do not hardcode one cent for all NMS stocks; SEC Rule 612 symbol assignments and 2026 compliance relief require current verification",
+    "kr_tick_rule": "KRX price-band tick schedule; instrument-specific exceptions require validation",
+    "fees": "Account- and date-specific rates were not verified; historical repo research assumptions are not current fee guarantees"
+  },
+  "research_boundary": {
+    "true_second_or_tick_historical_us_equity_test": "not feasible with current local archive/cache",
+    "true_second_or_tick_historical_kr_equity_orderflow_test": "not feasible with price-only archive",
+    "crypto_price_only_proxy_test": "feasible with caveats; not exact exchange-event replay",
+    "equity_minute_proxy": "possible only after broker/API data access and endpoint retention/coverage validation; not a substitute for tick/orderbook history",
+    "local_engine_tests": [
+      "session/timezone/DST and holiday handling",
+      "Jev request-response fixture integration",
+      "feed staleness/gap/duplicate/out-of-order fail-closed behavior",
+      "risk gate and paper order lifecycle",
+      "latency instrumentation and retry/error handling",
+      "fee/tick/slippage scenario sensitivity"
+    ],
+    "external_prerequisites": [
+      "KIS paper account and API authorization",
+      "verify current KIS WebSocket support, US delay, symbol caps, and historical minute limits",
+      "licensed historical trades plus quotes/depth and source timestamps for actual orderflow replay",
+      "TypeSafe account/API access, current quota/cost terms, representative shadow latency measurement",
+      "account-specific commissions, taxes, FX, borrow and slippage schedule"
+    ],
+    "live_orders_placed": false,
+    "credentials_accessed": false
+  },
+  "official_sources": [
+    {"name": "TypeSafe API reference", "url": "https://docs.typesafe.ai/api", "supports": "System One endpoint, typed request/response, token usage, 429/529 handling"},
+    {"name": "NYSE Trading Information", "url": "https://www.nyse.com/trade/trading-information", "supports": "US exchange session hours"},
+    {"name": "KIS Developers API catalog", "url": "https://apiportal.koreainvestment.com/apiservice", "supports": "KIS REST/WebSocket endpoint inventory"},
+    {"name": "KRX trading guide", "url": "https://global.krx.co.kr/contents/GLB/01/0109/0109000000/guide_to_trading_in_the_korean_stock_market.pdf", "supports": "KR session hours"},
+    {"name": "KRX short selling", "url": "https://global.krx.co.kr/contents/GLB/06/0602/0602010204/GLB0602010204T5.jsp", "supports": "Covered short and uptick rules"},
+    {"name": "KRX tick sizes", "url": "https://global.krx.co.kr/contents/GLB/06/0602/0602010201/GLB0602010201T3.jsp", "supports": "KR equity tick bands"},
+    {"name": "SEC Regulation SHO FAQ", "url": "https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions-8", "supports": "US short sale marking, locate, close-out"},
+    {"name": "SEC Rule 201 FAQ", "url": "https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions-7", "supports": "US short sale price test circuit breaker"},
+    {"name": "SEC Tick Sizes Guide", "url": "https://www.sec.gov/resources-small-businesses/small-business-compliance-guides/tick-sizes", "supports": "Rule 612 tick increment framework"},
+    {"name": "SEC 2026-06-11 tick rule update", "url": "https://www.sec.gov/newsroom/speeches-statements/atkins-statement-minimum-pricing-increments-access-fee-caps-061126", "supports": "2026 implementation relief status"}
+  ]
+}

@@ -1,0 +1,63 @@
+D00 T2 IS: term med 8.25 (p10 6.76, p90 9.95) logg +0.85 MDD close 0.53 iMDD 0.61 kills 3 avg_g 3.79 liq(sc0..)0/0/0/0
+D00 T2 OOS: term med 2.22 (p10 1.43, p90 5.38) logg +0.36 MDD close 0.69 iMDD 0.71 kills 7 avg_g 3.82 liq(sc0..)0/0/0/0
+D00 T1 IS: term med 0.58 (p10 0.43, p90 0.68) logg -0.22 MDD close 0.78 iMDD 0.79 kills 9 avg_g 3.79 liq(sc0..)0/0/0/0/0
+D00 T1 OOS: term med 1.04 (p10 0.88, p90 1.50) logg +0.02 MDD close 0.71 iMDD 0.72 kills 11 avg_g 3.79 liq(sc0..)0/0/0/0/0
+NK4 T2 IS: term med 8.44 (p10 6.92, p90 9.19) logg +0.87 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0
+NK4 T2 OOS: term med 6.32 (p10 3.80, p90 17.35) logg +0.84 MDD close 0.56 iMDD 0.74 kills 0 avg_g 3.84 liq(sc0..)0/0/40/0
+NK4 T1 IS: term med 8.44 (p10 6.92, p90 9.19) logg +0.87 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0/0
+NK4 T1 OOS: term med 6.32 (p10 3.80, p90 17.35) logg +0.84 MDD close 0.56 iMDD 0.74 kills 0 avg_g 3.84 liq(sc0..)0/0/40/0/0
+NK5 T2 IS: term med 11.33 (p10 8.94, p90 12.99) logg +0.99 MDD close 0.61 iMDD 0.69 kills 0 avg_g 4.73 liq(sc0..)0/0/0/0
+NK5 T2 OOS: term med 6.89 (p10 3.48, p90 25.44) logg +0.88 MDD close 0.65 iMDD 0.85 kills 0 avg_g 4.79 liq(sc0..)0/0/120/0
+NK5 T1 IS: term med 11.33 (p10 8.94, p90 12.99) logg +0.99 MDD close 0.61 iMDD 0.69 kills 0 avg_g 4.73 liq(sc0..)0/0/0/0/0
+NK5 T1 OOS: term med 6.89 (p10 3.48, p90 25.44) logg +0.88 MDD close 0.65 iMDD 0.85 kills 0 avg_g 4.79 liq(sc0..)0/0/120/0/0
+NK6 T2 IS: term med 14.36 (p10 10.18, p90 17.17) logg +1.08 MDD close 0.68 iMDD 0.77 kills 0 avg_g 5.65 liq(sc0..)0/0/120/0
+NK6 T2 OOS: term med 6.72 (p10 2.70, p90 33.71) logg +0.87 MDD close 0.73 iMDD 0.92 kills 0 avg_g 5.76 liq(sc0..)40/40/120/40
+NK6 T1 IS: term med 14.36 (p10 10.18, p90 17.17) logg +1.08 MDD close 0.68 iMDD 0.77 kills 0 avg_g 5.65 liq(sc0..)0/0/120/0/0
+NK6 T1 OOS: term med 6.72 (p10 2.70, p90 33.71) logg +0.87 MDD close 0.73 iMDD 0.92 kills 0 avg_g 5.76 liq(sc0..)40/40/120/40/40
+K60 T2 IS: term med 8.44 (p10 6.92, p90 9.19) logg +0.87 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0
+K60 T2 OOS: term med 9.37 (p10 7.03, p90 17.35) logg +1.01 MDD close 0.64 iMDD 0.68 kills 1 avg_g 3.80 liq(sc0..)0/0/0/0
+K60 T1 IS: term med 7.08 (p10 4.33, p90 8.64) logg +0.79 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0/0
+K60 T1 OOS: term med 0.65 (p10 0.40, p90 1.21) logg -0.20 MDD close 0.89 iMDD 0.90 kills 4 avg_g 3.81 liq(sc0..)0/0/0/0/0
+K70 T2 IS: term med 8.44 (p10 6.92, p90 9.19) logg +0.87 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0
+K70 T2 OOS: term med 6.32 (p10 2.72, p90 17.35) logg +0.84 MDD close 0.56 iMDD 0.74 kills 0 avg_g 3.84 liq(sc0..)0/0/40/0
+K70 T1 IS: term med 8.44 (p10 6.92, p90 9.19) logg +0.87 MDD close 0.52 iMDD 0.60 kills 0 avg_g 3.79 liq(sc0..)0/0/0/0/0
+K70 T1 OOS: term med 2.58 (p10 1.01, p90 17.35) logg +0.43 MDD close 0.74 iMDD 0.80 kills 2 avg_g 3.82 liq(sc0..)0/0/0/0/0
+
+Paired bootstrap vs D00 (ann. log-growth diff, 90% CI)
+NK4 IS: T1 +1.12 [+0.48,+1.81] liq0 | T2 -0.00 [-0.25,+0.24] liq0
+NK4 OOS: T1 +0.88 [+0.32,+1.50] liq40 | T2 +0.49 [+0.09,+0.94] liq40
+NK5 IS: T1 +1.25 [+0.56,+2.03] liq0 | T2 +0.13 [-0.20,+0.45] liq0
+NK5 OOS: T1 +0.95 [+0.28,+1.69] liq120 | T2 +0.56 [+0.04,+1.11] liq120
+K60 IS: T1 +1.02 [+0.39,+1.70] liq0 | T2 -0.00 [-0.25,+0.24] liq0
+K60 OOS: T1 -0.24 [-1.18,+0.62] liq0 | T2 +0.63 [+0.15,+1.13] liq0
+K70 IS: T1 +1.12 [+0.48,+1.81] liq0 | T2 -0.00 [-0.25,+0.24] liq0
+K70 OOS: T1 +0.52 [-0.16,+1.24] liq0 | T2 +0.44 [+0.03,+0.88] liq40
+D18 IS: T1 +0.45 [-0.10,+1.02] liq0 | T2 -0.10 [-0.49,+0.28] liq0
+D18 OOS: T1 +0.02 [-0.77,+0.78] liq0 | T2 +0.48 [+0.01,+0.97] liq0
+D18a IS: T1 -0.00 [-0.23,+0.26] liq0 | T2 -0.27 [-0.64,+0.10] liq0
+D18a OOS: T1 -0.25 [-0.77,+0.27] liq0 | T2 +0.27 [-0.18,+0.77] liq0
+D18b IS: T1 +0.96 [+0.41,+1.54] liq0 | T2 -0.00 [-0.25,+0.24] liq0
+D18b OOS: T1 +0.07 [-0.63,+0.74] liq0 | T2 +0.43 [+0.07,+0.83] liq0
+D18c IS: T1 +0.64 [-0.05,+1.37] liq0 | T2 -0.01 [-0.20,+0.17] liq0
+D18c OOS: T1 +0.33 [-0.41,+1.08] liq0 | T2 +0.34 [-0.09,+0.80] liq0
+D18d IS: T1 +0.90 [+0.29,+1.56] liq0 | T2 -0.21 [-0.55,+0.14] liq0
+D18d OOS: T1 +0.14 [-0.61,+0.83] liq0 | T2 +0.31 [-0.12,+0.78] liq0
+D06 IS: T1 +0.18 [-0.31,+0.66] liq0 | T2 +0.10 [-0.32,+0.52] liq0
+D06 OOS: T1 -0.32 [-0.98,+0.27] liq0 | T2 +0.12 [-0.32,+0.57] liq0
+D06a IS: T1 -0.48 [-0.95,-0.06] liq0 | T2 -0.04 [-0.12,+0.02] liq0
+D06a OOS: T1 +0.09 [-0.25,+0.38] liq0 | T2 +0.26 [-0.07,+0.59] liq0
+D06b IS: T1 -0.23 [-0.91,+0.37] liq0 | T2 +0.03 [-0.33,+0.37] liq0
+D06b OOS: T1 -0.24 [-0.90,+0.33] liq0 | T2 +0.15 [-0.24,+0.57] liq0
+D06c IS: T1 -0.50 [-1.22,+0.18] liq0 | T2 -0.53 [-1.02,-0.06] liq0
+D06c OOS: T1 -0.23 [-0.88,+0.40] liq0 | T2 +0.37 [-0.41,+1.07] liq0
+D06d IS: T1 +0.68 [+0.01,+1.41] liq0 | T2 -0.05 [-0.45,+0.36] liq0
+D06d OOS: T1 -0.02 [-0.70,+0.70] liq0 | T2 +0.40 [-0.11,+0.93] liq0
+D00a IS: T1 -0.89 [-1.67,-0.19] liq0 | T2 -0.20 [-0.62,+0.19] liq0
+D00a OOS: T1 +0.31 [-0.28,+0.88] liq0 | T2 +0.22 [-0.19,+0.62] liq0
+D00b IS: T1 +0.25 [-0.31,+0.89] liq0 | T2 -0.30 [-0.72,+0.08] liq0
+D00b OOS: T1 +0.26 [-0.37,+0.88] liq0 | T2 +0.68 [+0.23,+1.17] liq0
+D00c IS: T1 +0.19 [-0.22,+0.62] liq0 | T2 +0.11 [-0.29,+0.52] liq0
+D00c OOS: T1 -0.59 [-1.27,+0.02] liq0 | T2 -0.01 [-0.41,+0.42] liq0
+D00d IS: T1 +0.15 [-0.55,+0.80] liq0 | T2 +0.06 [-0.32,+0.42] liq0
+D00d OOS: T1 -0.38 [-1.01,+0.24] liq0 | T2 +0.07 [-0.31,+0.50] liq0
+$SP/rv/bin/python -I app/rs_lev_b_explore.py  143.90s user 2.14s system 95% cpu 2:32.68 total

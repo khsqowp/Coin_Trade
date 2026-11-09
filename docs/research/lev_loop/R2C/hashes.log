@@ -1,0 +1,43 @@
+2026-10-30T19:23:30Z 735caaa39d6ce21fd559ec351213810b437fdc178d07f7f18d361fd578155957 docs/research/lev_loop/R2C/prereg.md PREREG frozen before any strategy result
+2026-10-30T19:23:30Z 76e9975300d34fa3fe73d4192388f397bad3f612e139713944ed59820717013f app/rs_lev_r2c_engine.py engine/lib/data sources (V0 parity smoke PASS prior)
+2026-10-30T19:23:30Z 2878f4db3e4d19f0ca54bff67af70f2e4fe8124afa40ddb23a70f9aeb8bb3054 app/rs_lev_r2c_lib.py engine/lib/data sources (V0 parity smoke PASS prior)
+2026-10-30T19:23:30Z 237c4e6ce684c1f441981f9599f43f4a89a264f5c62e16df08fd6dfab4dd2784 app/rs_lev_r2c_data.py engine/lib/data sources (V0 parity smoke PASS prior)
+2026-10-30T19:23:30Z 5cf1b46891b37ed8ef9461326463641e2d45b51f0dbef03e1fb45a4e2e3f2bf7 docs/research/lev_loop/R2C/r2c_samples.py runner sources
+2026-10-30T19:23:30Z 44fc909de45f4dd2133648f3d831350cfee32a39c5de76a824ff87931f4e23a4 docs/research/lev_loop/R2C/r2c_power.py runner sources
+2026-10-30T19:23:30Z e2de1b56139d0a9a0aaff7693f51cfdd0ad9f4833d82aa8db1f52524ec223605 docs/research/lev_loop/R2C/r2c_main.py runner sources
+2026-10-30T19:23:30Z 916cde4d35530fe878655700ef19edd5f504d00d8aa872d81a5da056d76ad63d docs/research/lev_loop/R2C/r2c_fetch_data.py runner sources
+2026-10-30T19:23:30Z 3a548ae3f62e3a603b52ae266bacff08ea8dad5b4f1a14038a89de7dd396bcff docs/research/lev_loop/R2C/r2c_fetch_list.py runner sources
+2026-10-30T19:23:30Z 9709bc60fbc05352e02bf1192838462e5ca9cb83f4eb02e6834292a723bedfc6 docs/research/lev_loop/R2C/r2c_pit_universe.py runner sources
+2026-10-30T19:23:30Z 9cf3489448d6806d5d43173c08d5212e3ca7d7a44ef7fef7e56f14fc5728a495 docs/research/lev_loop/R2C/r2c_build_panel.py runner sources
+2026-10-30T19:23:30Z 7aec85b2435fcc31069557c957a0679cdcc4778034647e71043701ccf1affbb5 docs/research/lev_loop/R2C/r2c_smoke_v0.py runner sources
+2026-10-30T19:23:30Z b280de7ecf8e7d855c5bef448b8b6776fdc38b325ff18b254c2a7382b864eeeb docs/research/lev_loop/R2C/r2c_smoke_lib.py runner sources
+2026-10-30T19:23:30Z 8a5db7163dd04805b585e6ca1499f2e0100458cfcf9344715311b6bc138660f9 docs/research/lev_loop/R2C/r2c_smoke_data.py runner sources
+2026-10-30T19:23:30Z 8f967acd72f1c5192975430fbfeeac82e58cff50d2f9bc8b981fc75dc9fd99d0 docs/research/lev_loop/R2C/data/symbols_all.json data file
+2026-10-30T19:23:30Z 04a5ab28337bc7c2a2a1f9ca1c1bc0f82cdfe500857a57f1c18c1519ab5c02e3 docs/research/lev_loop/R2C/data/daily_1d.csv.gz data file
+2026-10-30T19:23:31Z 4f251a7cf4e4ed90ce97df3b5837bcc8aa19857942e49a2daaa52ac0b6596af7 docs/research/lev_loop/R2C/data/pit_membership.csv.gz data file
+2026-10-30T19:23:31Z 554a3cfd28b78aac40b8299ace2638a9d764a70e455a4285739cce5cf0c94f7b docs/research/lev_loop/R2C/data/pit_symbols.json data file
+2026-10-30T19:23:31Z e84021d7734fef5c1d97c7dcbaefb5ec864f0c305d5d1d4c5acef1813ecc9118 docs/research/lev_loop/R2C/data/new_panel_2020_2021.npz data file
+2026-10-30T19:23:31Z 262058b2c8ae78760d08c94892bc5f9c86a0bb95b20928ffd8cc4526cc666eee docs/research/lev_loop/R2C/data_check.out data file
+2026-10-30T19:23:31Z d3044156c7c9b6b3f80340a13db4763b1fa50989665ef8976308c79f8666532f /private/tmp/claude-501/-Users-user-Desktop-CODE-Ochestration/b40d7700-4bab-493b-9b2c-b8bac464cd8e/scratchpad/pit_panel.npz scratch-stored panel (70MB; not copied to repo)
+2026-10-30T19:23:31Z 0ac5e33ca83109db5626a955daf78d0e44d8bcc1d7aab65368278980f08619c0 /private/tmp/claude-501/-Users-user-Desktop-CODE-Ochestration/b40d7700-4bab-493b-9b2c-b8bac464cd8e/scratchpad/rs_final_panel.npz scratch-stored panel (70MB; not copied to repo)
+2026-10-30T19:23:49Z 94f7b52bae1ea50f0be146bc7358cff632630e140bec33cb2a44194ed9dc2135 docs/research/lev_loop/R2C/power.out power stage output (variance-only), produced BEFORE main results
+2026-10-30T19:26:27Z 013c82c15a969d1e123a4fa9c65c8492291408d218dd4e5cfcf16d21d53008c8 app/rs_lev_r2c_engine.py AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:27Z f72054159c70251b23a74fff66c3c75209714d1287be85a8ab55f50b18928f0b docs/research/lev_loop/R2C/prereg.md AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:27Z 209a68dfb6f11ed5558930d48e36273298248dbab6ddd672f1c8972701b27e8c docs/research/lev_loop/R2C/r2c_main.py AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:27Z 47e7b59777c2c87e6077095e5c7a60e2ecf4028e7e67f01485a6f2c2c0945be8 docs/research/lev_loop/R2C/results_v1.out AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:27Z 94f7b52bae1ea50f0be146bc7358cff632630e140bec33cb2a44194ed9dc2135 docs/research/lev_loop/R2C/power_v1.out AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:27Z e053d07798dc0f9fad9b1ee4d4c4bf8f00acd64c0b12a5a3f28ab077565fd778 docs/research/lev_loop/R2C/verdicts_v1.json AMENDMENT-1 (ruin termination); v1 engine was 76e99753...; results_v1/power_v1 preserved
+2026-10-30T19:26:42Z c8db882f2c4d50079081666392abb80706899894d66dc665064419174a1eb869 docs/research/lev_loop/R2C/power.out power v2 (post-amendment, variance only)
+2026-10-30T19:26:42Z 44fc909de45f4dd2133648f3d831350cfee32a39c5de76a824ff87931f4e23a4 docs/research/lev_loop/R2C/r2c_power.py power v2 (post-amendment, variance only)
+2026-10-30T19:27:03Z c3d5b4a579de56578228cd603fd602574e1f6699838a57fafba580e8f9c9fd37 docs/research/lev_loop/R2C/results.out results v2 (post-amendment) final
+2026-10-30T19:27:03Z e053d07798dc0f9fad9b1ee4d4c4bf8f00acd64c0b12a5a3f28ab077565fd778 docs/research/lev_loop/R2C/verdicts.json results v2 (post-amendment) final
+2026-10-30T19:27:03Z 27eba23d9a54b81ff76646edbc991c6dfcb145d5cbd4662b6ca696fa02343317 docs/research/lev_loop/R2C/results_arrays.npz results v2 (post-amendment) final
+2026-10-30T19:29:02Z 23d85f5b7725a9949e3f6d14d799dd9fc1346feb4f83cf09d1a316cd56c4ded3 app/rs_lev_r2c_engine.py AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z 7fb2ecd09d23dd658316eb498767754a55f54b9f124e77aee3083d95cc20eb12 docs/research/lev_loop/R2C/prereg.md AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z 7db61bcff23a297a71d372fb6a557bc4dcf2c56d842bb6ce790b9549ce8b3797 docs/research/lev_loop/R2C/r2c_events.py AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z 404904fc8274e4fb1a099a791ced0f94c252b2624b95ce93d0ebe0f195fc01db docs/research/lev_loop/R2C/r2c_universe_stats.py AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z a7bf4bda1bfe9f00ff93489f5e16b5255bb5b1788aff7321d026910a4a382035 docs/research/lev_loop/R2C/events.out AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z 4adc93c15eeb81100dc09cc8380f0ae6300e7b5e38396d2433629d0d665e898e docs/research/lev_loop/R2C/universe_stats.out AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z c3d5b4a579de56578228cd603fd602574e1f6699838a57fafba580e8f9c9fd37 docs/research/lev_loop/R2C/results.out AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z e053d07798dc0f9fad9b1ee4d4c4bf8f00acd64c0b12a5a3f28ab077565fd778 docs/research/lev_loop/R2C/verdicts.json AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical
+2026-10-30T19:29:02Z c8db882f2c4d50079081666392abb80706899894d66dc665064419174a1eb869 docs/research/lev_loop/R2C/power.out AMENDMENT-2 diag-only (min-buffer day columns); main re-run identical

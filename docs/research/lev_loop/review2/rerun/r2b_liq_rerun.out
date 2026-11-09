@@ -1,0 +1,28 @@
+2025-10-10: subsets with negative cushion / 30 (min cushion across subsets, median)
+lev 4x
+   hourly_last_anti_tier      neg  1/30  min -0.032  med +0.270
+   hourly_mark_anti_tier      neg  1/30  min -0.021  med +0.286
+   min_mark_close_tier        neg  0/30  min +0.796  med +0.938
+   min_last_close_tier        neg  0/30  min +0.792  med +0.938
+   min_mark_anti_tier         neg  0/30  min +0.698  med +0.902
+   hourly_last_anti_flat3     neg  2/30  min -0.078  med +0.227
+   min_mark_close_flat3       neg  0/30  min +0.755  med +0.871
+   min_mark_anti_flat3        neg  0/30  min +0.664  med +0.848
+lev 5x
+   hourly_last_anti_tier      neg  8/30  min -0.370  med +0.154
+   hourly_mark_anti_tier      neg  7/30  min -0.357  med +0.163
+   min_mark_close_tier        neg  0/30  min +0.762  med +0.932
+   min_last_close_tier        neg  0/30  min +0.754  med +0.934
+   min_mark_anti_tier         neg  0/30  min +0.633  med +0.899
+   hourly_last_anti_flat3     neg 10/30  min -0.427  med +0.101
+   min_mark_close_flat3       neg  0/30  min +0.724  med +0.851
+   min_mark_anti_flat3        neg  0/30  min +0.594  med +0.831
+lev 6x
+   hourly_last_anti_tier      neg 12/30  min -0.625  med +0.089
+   hourly_mark_anti_tier      neg 12/30  min -0.610  med +0.107
+   min_mark_close_tier        neg  0/30  min +0.722  med +0.916
+   min_last_close_tier        neg  0/30  min +0.713  med +0.916
+   min_mark_anti_tier         neg  0/30  min +0.568  med +0.882
+   hourly_last_anti_flat3     neg 14/30  min -0.694  med +0.032
+   min_mark_close_flat3       neg  0/30  min +0.677  med +0.830
+   min_mark_anti_flat3        neg  0/30  min +0.522  med +0.813

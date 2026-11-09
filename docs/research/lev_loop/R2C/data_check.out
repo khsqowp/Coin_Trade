@@ -1,0 +1,55 @@
+BTC     hourly-C common bars  46752 max rel diff 5.66e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 3.96e-06
+ETH     hourly-C common bars  46752 max rel diff 5.72e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 2.28e-07
+BNB     hourly-C common bars  46752 max rel diff 5.71e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 5.74e-08
+XRP     hourly-C common bars  46632 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 1.61e-10
+SOL     hourly-C common bars  46632 max rel diff 5.78e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 3.32e-08
+TRX     hourly-C common bars  38616 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.1704 | FD max abs diff 2.06e-11
+DOGE    hourly-C common bars  46752 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 4.39e-11
+ZEC     hourly-C common bars  46632 max rel diff 5.71e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 1.81e-07
+LINK    hourly-C common bars  46752 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 2.16e-09
+XMR     hourly-C common bars  42360 max rel diff 5.70e-08 | share of old-finite bars missing in PIT 0.0929 | FD max abs diff 8.44e-08
+ADA     hourly-C common bars  46752 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 2.60e-10
+XLM     hourly-C common bars  45912 max rel diff 5.87e-08 | share of old-finite bars missing in PIT 0.0144 | FD max abs diff 4.11e-11
+BCH     hourly-C common bars  46032 max rel diff 5.72e-08 | share of old-finite bars missing in PIT 0.0144 | FD max abs diff 5.90e-08
+LTC     hourly-C common bars  43704 max rel diff 5.71e-08 | share of old-finite bars missing in PIT 0.0616 | FD max abs diff 1.36e-08
+HBAR    hourly-C common bars  19752 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.5760 | FD max abs diff 1.72e-11
+AVAX    hourly-C common bars  46032 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0144 | FD max abs diff 6.77e-09
+SUI     hourly-C common bars  29912 max rel diff 5.87e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 2.09e-10
+UNI     hourly-C common bars  46752 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 1.98e-09
+NEAR    hourly-C common bars  46632 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 1.85e-09
+TAO     hourly-C common bars  17520 max rel diff 5.72e-08 | share of old-finite bars missing in PIT 0.0875 | FD max abs diff 3.24e-08
+AAVE    hourly-C common bars  46752 max rel diff 5.71e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 6.40e-08
+ONDO    hourly-C common bars  22656 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0208 | FD max abs diff 1.91e-10
+THETA   hourly-C common bars  12432 max rel diff 5.86e-08 | share of old-finite bars missing in PIT 0.7331 | FD max abs diff 4.56e-10
+DOT     hourly-C common bars  44544 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0462 | FD max abs diff 2.62e-09
+ENA     hourly-C common bars  21876 max rel diff 5.87e-08 | share of old-finite bars missing in PIT 0.0000 | FD max abs diff 2.00e-10
+WLD     hourly-C common bars  27768 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0039 | FD max abs diff 7.08e-10
+ICP     hourly-C common bars  40318 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.1232 | FD max abs diff 1.35e-09
+ETC     hourly-C common bars  38736 max rel diff 5.89e-08 | share of old-finite bars missing in PIT 0.1704 | FD max abs diff 7.74e-09
+ALGO    hourly-C common bars  14640 max rel diff 5.86e-08 | share of old-finite bars missing in PIT 0.6858 | FD max abs diff 1.82e-10
+ATOM    hourly-C common bars  24840 max rel diff 5.81e-08 | share of old-finite bars missing in PIT 0.4677 | FD max abs diff 3.10e-09
+JUP     hourly-C common bars  10920 max rel diff 5.87e-08 | share of old-finite bars missing in PIT 0.2650 | FD max abs diff 8.21e-11
+ARB     hourly-C common bars  23400 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.1593 | FD max abs diff 2.20e-10
+FIL     hourly-C common bars  45912 max rel diff 5.80e-08 | share of old-finite bars missing in PIT 0.0144 | FD max abs diff 7.12e-09
+VET     hourly-C common bars   8640 max rel diff 5.85e-08 | share of old-finite bars missing in PIT 0.8116 | FD max abs diff 2.05e-11
+CAKE    hourly-C common bars   7344 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.3878 | FD max abs diff 3.76e-10
+LDO     hourly-C common bars  24840 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.2220 | FD max abs diff 4.26e-10
+CRV     hourly-C common bars  38736 max rel diff 5.77e-08 | share of old-finite bars missing in PIT 0.1704 | FD max abs diff 2.53e-10
+INJ     hourly-C common bars  33600 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.0533 | FD max abs diff 6.27e-09
+OP      hourly-C common bars  29962 max rel diff 5.85e-08 | share of old-finite bars missing in PIT 0.1704 | FD max abs diff 6.38e-10
+APT     hourly-C common bars  27768 max rel diff 5.87e-08 | share of old-finite bars missing in PIT 0.1457 | FD max abs diff 2.12e-09
+IMX     hourly-C common bars  15312 max rel diff 5.88e-08 | share of old-finite bars missing in PIT 0.5390 | FD max abs diff 4.66e-10
+STX     hourly-C common bars  10248 max rel diff 5.85e-08 | share of old-finite bars missing in PIT 0.4561 | FD max abs diff 3.01e-10
+symbols compared 42 problems [('missing', 'POL'), ('missing', 'QNT'), ('missing', 'RENDER')]
+2020 members/day min/med/max 0 26 45 | members ever in year 59 | of which not live at year end (dead/delisted/renamed) 2
+2021 members/day min/med/max 45 45 45 | members ever in year 92 | of which not live at year end (dead/delisted/renamed) 10
+2022 members/day min/med/max 25 45 45 | members ever in year 102 | of which not live at year end (dead/delisted/renamed) 15
+2023 members/day min/med/max 45 45 45 | members ever in year 136 | of which not live at year end (dead/delisted/renamed) 45
+2024 members/day min/med/max 44 45 45 | members ever in year 129 | of which not live at year end (dead/delisted/renamed) 37
+2025 members/day min/med/max 44 45 45 | members ever in year 168 | of which not live at year end (dead/delisted/renamed) 95
+2026 members/day min/med/max 45 45 45 | members ever in year 147 | of which not live at year end (dead/delisted/renamed) 89
+NEW: panel (731, 24, 98) float32 first active 2020-03-01 last 2021-12-31 active days 671 windows 7
+NEW eligible (score finite) per day min/med/max after start: 21 45 45
+NEW columns 98 | columns with no bar at 2021-12-31 (dead/not yet listed): 13 ['BALUSDT', 'BZRXUSDT', 'CVCUSDT', 'DENTUSDT', 'DODOUSDT', 'HOTUSDT', 'IOSTUSDT', 'IOTAUSDT', 'KSMUSDT', 'LENDUSDT', 'QTUMUSDT', 'XEMUSDT', 'YFIIUSDT']
+OLD-PIT cols 391 windows 19 last 2026-09-30
+PASS data

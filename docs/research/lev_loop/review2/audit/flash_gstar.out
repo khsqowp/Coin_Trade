@@ -1,0 +1,10 @@
+Flash-liquidation distance from R2B 1-minute replay: critical gross/eq G* = 1/(u+0.01) where u = worst-hour equity loss per unit of gross/eq (alt MM 1%).
+day | book gross/eq | anti-hourly(last) G* | 1m L/H-sync G* | 1m close G* | G*(1m L/H)/3.8 | /5.85 (kill cap)
+2025-10-10 | 2.87 |    4.2 |   24.0 |   46.8 |   6.3x |   4.1x  (V0-kill.35)
+2024-12-09 | 3.65 |   10.6 |   18.2 |   27.9 |   4.8x |   3.1x  (V0-kill.35)
+2025-05-10 | 4.65 |   38.9 |   77.4 |   92.2 |  20.4x |  13.2x  (V0-kill.35)
+2024-08-05 | 3.07 |   17.7 |   38.6 |   46.5 |  10.2x |   6.6x  (HYP-nocrashfilter)
+2022-05-11 | 2.97 |    9.7 |   21.0 |   22.6 |   5.5x |   3.6x  (HYP-nocrashfilter)
+2025-02-03 | 2.87 |   11.1 |   27.8 |   33.0 |   7.3x |   4.7x  (V0-kill.35)
+min over days of 1m L/H-sync G*: 18.249507247538364
+min over days of hourly-anti G*: 4.190657657956289

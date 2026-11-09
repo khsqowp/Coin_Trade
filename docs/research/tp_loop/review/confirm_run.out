@@ -1,0 +1,43 @@
+review engine == A engine (mask all ones): OK
+K33 {'dSh': 0.247, 'dCal': 0.65, 'cagr_ratio': 1.603, 'dCalIS': -0.016, 'dCalOOS': 1.291, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 9.333, 'kills_tp': 11.333, 'ntp': 28.667, 'expo_v0': 2.808, 'expo_tp': 2.751, 'informative': True, 'PASS': False}
+    IS V0 cagr 1.249 imdd 0.605 sh 1.34 cal 2.06 | T09 cagr 1.205 imdd 0.588 sh 1.31 cal 2.05
+    OOS V0 cagr 0.449 imdd 0.794 sh 0.86 cal 0.57 | T09 cagr 1.467 imdd 0.790 sh 1.41 cal 1.86
+    full V0 cagr 0.845 imdd 0.794 sh 1.12 cal 1.06 | T09 cagr 1.355 imdd 0.790 sh 1.37 cal 1.71
+K37 {'dSh': -0.204, 'dCal': -0.409, 'cagr_ratio': 0.641, 'dCalIS': -0.405, 'dCalOOS': -0.498, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 9.333, 'kills_tp': 11.0, 'ntp': 20.667, 'expo_v0': 2.825, 'expo_tp': 2.745, 'informative': True, 'PASS': False}
+    IS V0 cagr 1.133 imdd 0.590 sh 1.28 cal 1.92 | T09 cagr 0.985 imdd 0.679 sh 1.18 cal 1.51
+    OOS V0 cagr 0.520 imdd 0.774 sh 0.91 cal 0.67 | T09 cagr 0.139 imdd 0.798 sh 0.59 cal 0.17
+    full V0 cagr 0.836 imdd 0.774 sh 1.11 cal 1.08 | T09 cagr 0.535 imdd 0.798 sh 0.91 cal 0.67
+KOFF {'dSh': 0.08, 'dCal': 0.249, 'cagr_ratio': 1.161, 'dCalIS': 0.14, 'dCalOOS': 0.465, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 0.0, 'kills_tp': 0.0, 'ntp': 29.667, 'expo_v0': 3.015, 'expo_tp': 3.014, 'informative': True, 'PASS': False}
+    IS V0 cagr 1.258 imdd 0.581 sh 1.34 cal 2.18 | T09 cagr 1.331 imdd 0.578 sh 1.37 cal 2.32
+    OOS V0 cagr 1.318 imdd 0.718 sh 1.32 cal 1.88 | T09 cagr 1.690 imdd 0.730 sh 1.45 cal 2.35
+    full V0 cagr 1.295 imdd 0.718 sh 1.34 cal 1.82 | T09 cagr 1.504 imdd 0.730 sh 1.42 cal 2.07
+L15 {'dSh': 0.086, 'dCal': 0.115, 'cagr_ratio': 1.121, 'dCalIS': 0.077, 'dCalOOS': 0.248, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 0.0, 'kills_tp': 0.0, 'ntp': 29.667, 'expo_v0': 1.149, 'expo_tp': 1.148, 'informative': True, 'PASS': False}
+    IS V0 cagr 0.466 imdd 0.266 sh 1.24 cal 1.77 | T09 cagr 0.486 imdd 0.265 sh 1.27 cal 1.85
+    OOS V0 cagr 0.588 imdd 0.349 sh 1.33 cal 1.70 | T09 cagr 0.705 imdd 0.361 sh 1.47 cal 1.95
+    full V0 cagr 0.529 imdd 0.349 sh 1.30 cal 1.52 | T09 cagr 0.593 imdd 0.361 sh 1.38 cal 1.64
+L20 {'dSh': 0.051, 'dCal': -0.011, 'cagr_ratio': 1.088, 'dCalIS': 0.092, 'dCalOOS': 0.08, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 0.333, 'kills_tp': 0.333, 'ntp': 29.333, 'expo_v0': 1.52, 'expo_tp': 1.52, 'informative': True, 'PASS': False}
+    IS V0 cagr 0.628 imdd 0.340 sh 1.26 cal 1.87 | T09 cagr 0.657 imdd 0.338 sh 1.30 cal 1.96
+    OOS V0 cagr 0.787 imdd 0.432 sh 1.36 cal 1.84 | T09 cagr 0.895 imdd 0.478 sh 1.43 cal 1.92
+    full V0 cagr 0.711 imdd 0.432 sh 1.32 cal 1.65 | T09 cagr 0.773 imdd 0.478 sh 1.37 cal 1.64
+L30 {'dSh': 0.122, 'dCal': 0.371, 'cagr_ratio': 1.219, 'dCalIS': 0.057, 'dCalOOS': 0.667, 'liq_v0': False, 'liq_tp': False, 'kills_v0': 4.667, 'kills_tp': 4.667, 'ntp': 28.333, 'expo_v0': 2.189, 'expo_tp': 2.182, 'informative': True, 'PASS': False}
+    IS V0 cagr 0.773 imdd 0.566 sh 1.16 cal 1.36 | T09 cagr 0.796 imdd 0.560 sh 1.18 cal 1.42
+    OOS V0 cagr 0.951 imdd 0.631 sh 1.25 cal 1.56 | T09 cagr 1.347 imdd 0.606 sh 1.48 cal 2.23
+    full V0 cagr 0.866 imdd 0.640 sh 1.22 cal 1.37 | T09 cagr 1.056 imdd 0.606 sh 1.34 cal 1.75
+INFORMATIVE ['K33', 'K37', 'KOFF', 'L15', 'L20', 'L30'] PASS [] low-chaos pass []
+D1 events 27 distinct dates 11 cluster days(>=3) ['2024-04-13', '2025-02-03', '2025-10-10'] share of events on cluster days 0.667
+D2 K35 T09 full {'dSh': 0.288, 'dCal': 0.71, 'cagr_ratio': 1.715, 'dCalIS': 1.767, 'dCalOOS': 0.161, 'kills_tp': 9.333, 'ntp': 27.667, 'expo_v0': 2.791, 'expo_tp': 2.779}
+D2 K35 T09 minus cluster days {'dSh': 0.238, 'dCal': 0.552, 'cagr_ratio': 1.555, 'dCalIS': 1.587, 'dCalOOS': -0.017, 'kills_tp': 9.333, 'ntp': 10.667, 'expo_v0': 2.791, 'expo_tp': 2.78}
+D2 L20 T09 full {'dSh': 0.051, 'dCal': -0.011, 'cagr_ratio': 1.088, 'dCalIS': 0.092, 'dCalOOS': 0.08, 'kills_tp': 0.333, 'ntp': 29.333, 'expo_v0': 1.52, 'expo_tp': 1.52}
+D2 L20 T09 minus cluster days {'dSh': 0.007, 'dCal': 0.007, 'cagr_ratio': 1.009, 'dCalIS': 0.019, 'dCalOOS': 0.014, 'kills_tp': 0.333, 'ntp': 13.0, 'expo_v0': 1.52, 'expo_tp': 1.521}
+paired bootstrap dSharpe(T09-V0) LIVE: point 0.289  SE 0.198  90%CI [-0.02,0.62]  => MDE(80% power, 5% two-sided) ~ 0.56
+V0 sleeve Sharpe 1.10 ; analytic SE of an annualised Sharpe over 4.8 y: 0.58
+LEVERAGE LADDER (V0, kill .35 cool 14)
+lev 2.0 dep 0.95 gross 1.90 | full CAGR 0.711 MDD 0.360 iMDD 0.432 Cal_i 1.65 Sh 1.32 kills 0.3 end 13.3 worst-phase-end 10.4 | IS Cal_i 1.87 OOS Cal_i 1.84 | liq False
+lev 2.0 dep 1.00 gross 2.00 | full CAGR 0.732 MDD 0.401 iMDD 0.484 Cal_i 1.55 Sh 1.31 kills 1.0 end 14.3 worst-phase-end 9.1 | IS Cal_i 1.89 OOS Cal_i 1.71 | liq False
+lev 2.5 dep 0.95 gross 2.38 | full CAGR 0.753 MDD 0.447 iMDD 0.522 Cal_i 1.47 Sh 1.22 kills 2.0 end 15.1 worst-phase-end 11.7 | IS Cal_i 1.61 OOS Cal_i 1.68 | liq False
+lev 2.5 dep 1.00 gross 2.50 | full CAGR 0.684 MDD 0.449 iMDD 0.559 Cal_i 1.22 Sh 1.13 kills 3.7 end 12.5 worst-phase-end 7.6 | IS Cal_i 1.69 OOS Cal_i 1.15 | liq False
+lev 3.0 dep 0.95 gross 2.85 | full CAGR 0.866 MDD 0.615 iMDD 0.640 Cal_i 1.37 Sh 1.22 kills 4.7 end 20.9 worst-phase-end 11.5 | IS Cal_i 1.36 OOS Cal_i 1.56 | liq False
+lev 3.0 dep 1.00 gross 3.00 | full CAGR 0.963 MDD 0.682 iMDD 0.708 Cal_i 1.36 Sh 1.27 kills 5.7 end 25.7 worst-phase-end 18.0 | IS Cal_i 2.06 OOS Cal_i 1.29 | liq False
+lev 3.8 dep 1.00 gross 3.80 | full CAGR 0.792 MDD 0.619 iMDD 0.796 Cal_i 0.99 Sh 1.09 kills 9.3 end 16.3 worst-phase-end 14.5 | IS Cal_i 0.84 OOS Cal_i 1.31 | liq False
+lev 4.0 dep 0.95 gross 3.80 | full CAGR 0.792 MDD 0.619 iMDD 0.796 Cal_i 0.99 Sh 1.09 kills 9.3 end 16.3 worst-phase-end 14.5 | IS Cal_i 0.84 OOS Cal_i 1.31 | liq False
+lev 4.0 dep 1.00 gross 4.00 | full CAGR 0.798 MDD 0.651 iMDD 0.817 Cal_i 0.98 Sh 1.08 kills 11.3 end 16.6 worst-phase-end 13.9 | IS Cal_i 1.13 OOS Cal_i 0.97 | liq False

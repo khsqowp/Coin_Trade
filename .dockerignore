@@ -1,0 +1,12 @@
+**/.git
+**/.DS_Store
+**/__pycache__/
+**/.pytest_cache/
+**/node_modules/
+**/backups/
+docs/
+data/
+*.npz
+*.pkl
+*.pickle
+*.log

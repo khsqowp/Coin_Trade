@@ -7,41 +7,45 @@
 """
 from __future__ import annotations
 
+import json
 import math
 import os
+import threading
 import time
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import ccxt
 import pandas as pd
 
-from app.crypto_tick_state import load_state as load_tick_state
+from app.ccxt_retry import retry_read
 from app.futures_data import fetch_perp_ohlcv
 from app.momentum_state import load_state, log_event, now_iso, save_state
+from app import transfer_guard
 from app.trading_control import read_command
 from app.watchdog import run_with_timeout
 
 BOT_ID = "momentum-rotation"
+HEARTBEAT_PATH = os.environ.get("MOMENTUM_ROTATION_HEARTBEAT_PATH", "/app/data/heartbeat.json")
+_heartbeat_cycle = 0
 
-# crypto_tick_stream.py가 이 시간 안에 갱신한 선물 체결틱이 있으면 REST fetch_ticker 대신 씀.
-_TICK_STALE_SECONDS = 90
 
-
-def _tick_price(tick_state: dict, base: str) -> float | None:
-    points = tick_state.get("perp_ticks", {}).get(base)
-    if not points:
-        return None
-    last = points[-1]
+def _write_heartbeat() -> None:
+    """Write best-effort monitor liveness; heartbeat failures never affect the bot loop."""
+    global _heartbeat_cycle
     try:
-        ts = datetime.fromisoformat(last["ts"])
-    except (KeyError, ValueError):
-        return None
-    if (datetime.now(timezone.utc) - ts).total_seconds() > _TICK_STALE_SECONDS:
-        return None
-    try:
-        return float(last["price"])
-    except (KeyError, ValueError, TypeError):
-        return None
+        _heartbeat_cycle += 1
+        path = Path(HEARTBEAT_PATH)
+        temporary = path.with_name(path.name + ".tmp")
+        payload = {
+            "ts_utc": datetime.now(timezone.utc).isoformat(),
+            "epoch": time.time(),
+            "cycle": _heartbeat_cycle,
+        }
+        temporary.write_text(json.dumps(payload), encoding="utf-8")
+        os.replace(temporary, path)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[경고] heartbeat 기록 실패(모니터링 전용): {exc!r}", flush=True)
 
 # TON, MKR는 2026-09-23 확인 결과 바이낸스 선물에서 상장폐지(active=False) 상태라 뺐다 —
 # 가격이 상폐 시점에 얼어붙어(거래량 0) 모멘텀이 항상 0%에 가깝게 나오고, 이 구간 나머지
@@ -322,41 +326,64 @@ def _rollup_daily_history(state: dict, value: float) -> None:
             state["equity_history_daily"] = daily[-EQUITY_HISTORY_DAILY_MAX_POINTS:]
 
 
+_PRICE_CLIENT_TIMEOUT_MS = 15000
+_MARKETS_REFRESH_SECONDS = 24 * 3600
+_price_client = None
+_price_client_loaded_at = 0.0
+_price_client_lock = threading.Lock()
+
+
+def _get_price_client():
+    """공개 시세 전용 ccxt 클라이언트 — 15초 사이클마다 새로 만들지 않고 재사용한다.
+    마켓 정보(exchangeInfo)는 최초 1회 로드하고 하루에 한 번만 갱신."""
+    global _price_client, _price_client_loaded_at
+    with _price_client_lock:
+        if _price_client is None:
+            _price_client = ccxt.binance({
+                "enableRateLimit": True, "timeout": _PRICE_CLIENT_TIMEOUT_MS,
+                "options": {"defaultType": "future"},
+            })
+            _price_client_loaded_at = 0.0
+        if time.monotonic() - _price_client_loaded_at >= _MARKETS_REFRESH_SECONDS or not _price_client.markets:
+            retry_read(_price_client.load_markets, True)
+            _price_client_loaded_at = time.monotonic()
+        return _price_client
+
+
 def _fetch_current_prices() -> dict[str, float]:
-    try:
-        tick_state = load_tick_state()
-    except Exception:  # noqa: BLE001
-        tick_state = {}
-
     prices = {}
-    missing = []
-    for base in UNIVERSE:
-        tick = _tick_price(tick_state, base)
-        if tick is not None:
-            prices[base] = tick
-        else:
-            missing.append(base)
-
-    if not missing:
-        return prices
-
-    exchange = ccxt.binance({"enableRateLimit": True, "options": {"defaultType": "future"}})
-    want = {_perp_symbol(b): b for b in missing}
+    want = {_perp_symbol(b): b for b in UNIVERSE}
     try:
+        exchange = _get_price_client()
         # 47종목을 개별 fetch_ticker 로 부르면 IP 밴(-1003) 위험 — 한 번에 받는다.
-        tickers = exchange.fetch_tickers(list(want))
+        tickers = retry_read(exchange.fetch_tickers, list(want))
         for symbol, base in want.items():
             last = (tickers.get(symbol) or {}).get("last")
             if last:
                 prices[base] = last
     except Exception as exc:  # noqa: BLE001
         print(f"  일괄 시세조회 실패, 개별 폴백 ({exc})", flush=True)
+        try:
+            exchange = _get_price_client()
+        except Exception as exc2:  # noqa: BLE001
+            print(f"  시세 클라이언트 초기화 실패 ({exc2})", flush=True)
+            return prices
         for symbol, base in want.items():
             try:
                 prices[base] = exchange.fetch_ticker(symbol)["last"]
             except Exception as exc2:  # noqa: BLE001
                 print(f"  {base}: 시세조회 실패 ({exc2})", flush=True)
     return prices
+
+
+def _price_gap_blocks_rebalance(prices: dict[str, float], held, ranked_all) -> list[str]:
+    """부분 시세 실패 시 리밸런스를 막아야 하는 누락 종목 목록(없으면 빈 리스트).
+
+    시세 없는 종목은 랭킹에서 빠지고(타겟 대체) 보유 종목이면 타겟에 못 들어가 apply_targets 가
+    멀쩡한 보유분을 청산해버린다. 보유 종목 또는 상/하위 TOP_K 후보에 시세가 없으면 막는다.
+    (상폐 등으로 영구 누락된 중하위 종목 때문에 리밸런스가 영구 정지되지 않게 그 외는 무시.)"""
+    critical = set(held) | set(ranked_all.index[:TOP_K]) | set(ranked_all.index[-TOP_K:])
+    return sorted(b for b in critical if not prices.get(b))
 
 
 def _fetch_momentum_ranking() -> pd.Series:
@@ -451,7 +478,8 @@ def _target_sides():
     return targets, {b: float(ranked[b]) for b in targets}
 
 
-def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None:
+def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> bool:
+    """리밸런스를 실행했으면 True, 건너뛰었으면 False."""
     from app.momentum_rotation_exec import account_equity_usdt, apply_targets, exec_client, sync_positions
 
     client = exec_client(EXCHANGE_MODE)
@@ -460,7 +488,11 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
     ranked = _ranked_momentum()
     if len(ranked) < TOP_K * 2:
         log_event(state, "모멘텀 데이터 부족 — 이번 리밸런스 건너뜀")
-        return
+        return False
+    gap = _price_gap_blocks_rebalance(prices, state.get("positions", {}), ranked)
+    if gap:
+        log_event(state, f"[LIVE] 시세 누락 {gap} — 보유/상하위 후보 시세가 없어 이번 리밸런스 건너뜀(다음 사이클 재시도, 주문 없음)")
+        return False
     ranked = ranked.loc[[b for b in ranked.index if prices.get(b)]]
     targets, scores, skipped = ({}, {}, []) if sizing["flat"] else select_targets(
         ranked, sizing["k_eff"], sizing["notional_per_pos"],
@@ -513,7 +545,8 @@ def _rebalance_live(state: dict, prices: dict[str, float], eff_lev: int) -> None
     if len(entry_log) > 4000:
         state["entry_log"] = entry_log[-4000:]
     log_event(state, f"[LIVE:{EXCHANGE_MODE}] 리밸런스 완료 — 진입 {result['opened']}, 청산 {result['closed']}, "
-                     f"스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
+                     f"리사이즈 {result.get('resized', [])}, 스킵 {result['skipped']}, 오류 {result['errors']} / 실보유 {len(positions)}종목")
+    return True
 
 
 def _apply_external_transfers(state: dict, client) -> None:
@@ -559,7 +592,10 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
     # 순서: 이체 → RESET_HALT/손실 쿨다운 → hwm/dd → 손실 halt 반환 →
     # LOSS KILL(최우선) → PROFIT LOCK → BTC 급락필터 → 디레버/리밸런스.
     # PROFIT 재무장 시에만 hwm을 리셋하며, 같은 사이클 손실 kill이면 보호 평가를 하지 않는다.
-    _apply_external_transfers(state, client)
+    _upnl = sum(p["unrealized_pnl"] for p in sync_positions(client).values())
+    transfer_guard.apply_external_transfers(
+        state, lambda ms: client.fapiPrivateGetIncome({"incomeType": "TRANSFER", "startTime": ms, "limit": 1000}),
+        equity, int(time.time() * 1000), lambda m: log_event(state, m), upnl=_upnl)
     now = datetime.now(timezone.utc)
 
     if RESET_HALT and state.get("halted"):
@@ -598,6 +634,17 @@ def _run_cycle_live(state: dict, prices: dict[str, float]) -> None:
         log_event(state, f"[LIVE] 경고: 이 전략이 모르는 선물 포지션 {sorted(unmanaged)} — "
                          f"다른 전략과 지갑을 공유 중이면 equity/드로다운 계산이 오염됨. 전용 지갑 권장.")
 
+    if dd >= KILL_DD:
+        verdict, info = transfer_guard.confirm_kill(state, equity, int(time.time() * 1000), KILL_DD)
+        if verdict == "DEFER":
+            log_event(state, f"[LIVE][GUARD] 킬 보류 — dd {dd*100:.1f}% 이지만 {info['why']}")
+            return
+        if verdict == "BLOCK_REPAIR":
+            log_event(state, f"[LIVE][GUARD] 킬 차단 — 상태 hwm {hwm:.2f} 은 원시 equity 이력과 불일치: {info['why']}. hwm 을 {info['hwm']:.2f} 로 복구")
+            hwm = max(info["hwm"], equity)
+            state["hwm_usdt"] = hwm
+            dd = 1.0 - equity / hwm
+            state["drawdown"] = dd
     if dd >= KILL_DD:
         log_event(state, f"[LIVE] 킬 스위치 발동 — dd {dd*100:.1f}% >= {KILL_DD*100:.0f}%. 전량 청산 후 정지.")
         flatten_all(client, lambda m: log_event(state, m), owned=owned)
@@ -713,7 +760,9 @@ def _manual_enter(state: dict, prices: dict[str, float]) -> None:
         eff_lev = _effective_leverage(dd)
         if state.get("crash_flat"):
             state["crash_flatten_pending"] = False
-        _rebalance_live(state, prices, eff_lev)
+        if not _rebalance_live(state, prices, eff_lev):
+            log_event(state, "[수동] 진입 보류 — 리밸런스가 건너뛰어져 flat 상태 유지(다시 시도하세요)")
+            return
     else:
         _rebalance(state, prices)
 
@@ -760,18 +809,50 @@ def _stamp_rebalance_schedule(state: dict) -> None:
     )
 
 
+CYCLE_FAILURE_ALERT_THRESHOLD = 3
+_consecutive_cycle_failures = 0
+
+
+def _note_cycle_failure(exc: BaseException) -> None:
+    """LIVE 사이클 연속 실패 카운터. 실패 중엔 킬스위치(-35%) 등 보호 점검이 못 돌고 있다는 뜻이라
+    임계치 이상이면 눈에 띄는 로그를 남긴다(레포에 별도 알림 채널 없음 — docker logs 로 확인)."""
+    global _consecutive_cycle_failures
+    _consecutive_cycle_failures += 1
+    n = _consecutive_cycle_failures
+    if n >= CYCLE_FAILURE_ALERT_THRESHOLD:
+        print(f"[!!! 경고] LIVE 사이클 연속 {n}회 실패 — 킬스위치/보호 점검 불가 상태. 원인: {exc!r}", flush=True)
+    else:
+        print(f"[경고] LIVE 사이클 실패 {n}회 연속: {exc!r}", flush=True)
+
+
+def _note_cycle_success() -> None:
+    global _consecutive_cycle_failures
+    if _consecutive_cycle_failures >= CYCLE_FAILURE_ALERT_THRESHOLD:
+        print(f"[복구] LIVE 사이클 정상 복귀 (직전 연속 실패 {_consecutive_cycle_failures}회)", flush=True)
+    _consecutive_cycle_failures = 0
+
+
 def run_cycle() -> None:
     state = load_state()
     _stamp_rebalance_schedule(state)
 
     prices = _fetch_current_prices()
-    if not prices:
+    if not prices and not LIVE:
         log_event(state, "시세 조회 전체 실패 — 이번 사이클 건너뜀")
         save_state(state)
         return
+    if not prices:
+        # LIVE: 킬스위치(-35%)/급락필터/손절성 점검은 시세가 아니라 계좌 equity·포지션만 필요하다.
+        # 시세 실패로 이걸 통째로 건너뛰면 안 되므로 계속 진행 — 리밸런스는 시세 누락 가드가 막는다.
+        log_event(state, "[LIVE] 시세 조회 전체 실패 — 킬스위치 점검은 계속, 리밸런스는 건너뜀")
 
     if LIVE:
-        _run_cycle_live(state, prices)
+        try:
+            _run_cycle_live(state, prices)
+        except Exception as exc:  # noqa: BLE001
+            _note_cycle_failure(exc)
+            raise
+        _note_cycle_success()
         inception_equity = float(state.get("inception_equity_usdt") or state["equity_usdt"])
         total_pnl = state["equity_usdt"] - inception_equity
         gross_notional = sum(abs(p.get("notional_usdt", 0.0)) for p in state.get("positions", {}).values())
@@ -903,12 +984,26 @@ def main() -> None:
 
             # 2) 주기 실행: 무거운 모니터링/리밸런스 사이클
             if time.monotonic() - last_full >= CHECK_INTERVAL_SECONDS:
-                run_with_timeout(
-                    run_cycle, CYCLE_TIMEOUT_SECONDS,
-                    on_timeout=lambda: print(
-                        f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
-                    ),
-                )
+                cycle_finished = threading.Event()
+
+                def monitored_cycle() -> None:
+                    try:
+                        run_cycle()
+                    finally:
+                        cycle_finished.set()
+
+                try:
+                    run_with_timeout(
+                        monitored_cycle, CYCLE_TIMEOUT_SECONDS,
+                        on_timeout=lambda: print(
+                            f"사이클이 {CYCLE_TIMEOUT_SECONDS}초 넘게 안 끝나 hang으로 보고 포기, 다음 사이클로 넘어감", flush=True,
+                        ),
+                    )
+                finally:
+                    if cycle_finished.is_set():
+                        _write_heartbeat()
+                    else:
+                        print("[경고] 모니터링 사이클 미완료 — heartbeat 갱신 생략", flush=True)
                 last_full = time.monotonic()
         except Exception:
             import traceback

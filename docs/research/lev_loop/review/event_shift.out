@@ -1,0 +1,36 @@
+shock bar: median long move -60.2%, median short(H) move +1.5%, p10 long -74.2%
+lev 3.0x0.95 holding-days 1490
+   f=1.00 anti   P(liq|event on random day): tier 16.1% flat3 26.9% | worst-day tier cushion -0.28
+   f=1.00 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.37
+   f=0.75 anti   P(liq|event on random day): tier 0.0% flat3 0.4% | worst-day tier cushion +0.03
+   f=0.75 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.52
+   f=0.50 anti   P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.35
+   f=0.50 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.67
+lev 3.5x0.95 holding-days 1461
+   f=1.00 anti   P(liq|event on random day): tier 42.2% flat3 55.2% | worst-day tier cushion -0.45
+   f=1.00 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.16
+   f=0.75 anti   P(liq|event on random day): tier 2.0% flat3 7.4% | worst-day tier cushion -0.10
+   f=0.75 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.36
+   f=0.50 anti   P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.26
+   f=0.50 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.56
+lev 4.0x0.95 holding-days 1423
+   f=1.00 anti   P(liq|event on random day): tier 63.9% flat3 72.7% | worst-day tier cushion -0.75
+   f=1.00 hedged P(liq|event on random day): tier 0.0% flat3 0.6% | worst-day tier cushion +0.02
+   f=0.75 anti   P(liq|event on random day): tier 16.6% flat3 30.8% | worst-day tier cushion -0.32
+   f=0.75 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.25
+   f=0.50 anti   P(liq|event on random day): tier 0.0% flat3 0.1% | worst-day tier cushion +0.10
+   f=0.50 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.49
+lev 5.0x0.95 holding-days 1382
+   f=1.00 anti   P(liq|event on random day): tier 83.9% flat3 90.2% | worst-day tier cushion -1.17
+   f=1.00 hedged P(liq|event on random day): tier 0.6% flat3 1.4% | worst-day tier cushion -0.23
+   f=0.75 anti   P(liq|event on random day): tier 53.3% flat3 67.2% | worst-day tier cushion -0.64
+   f=0.75 hedged P(liq|event on random day): tier 0.0% flat3 0.4% | worst-day tier cushion +0.06
+   f=0.50 anti   P(liq|event on random day): tier 1.4% flat3 8.0% | worst-day tier cushion -0.11
+   f=0.50 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.36
+lev 6.0x0.95 holding-days 1297
+   f=1.00 anti   P(liq|event on random day): tier 94.8% flat3 96.9% | worst-day tier cushion -1.74
+   f=1.00 hedged P(liq|event on random day): tier 1.7% flat3 3.5% | worst-day tier cushion -0.55
+   f=0.75 anti   P(liq|event on random day): tier 76.0% flat3 85.4% | worst-day tier cushion -1.08
+   f=0.75 hedged P(liq|event on random day): tier 0.2% flat3 1.0% | worst-day tier cushion -0.18
+   f=0.50 anti   P(liq|event on random day): tier 16.3% flat3 37.4% | worst-day tier cushion -0.42
+   f=0.50 hedged P(liq|event on random day): tier 0.0% flat3 0.0% | worst-day tier cushion +0.19

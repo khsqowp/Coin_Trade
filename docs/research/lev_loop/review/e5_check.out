@@ -1,0 +1,5 @@
+Beta posterior 1/30: 95% [0.008,0.167]
+Beta posterior 8/30: 95% [0.142,0.447]
+Beta posterior 0/30: 95% [0.001,0.113]
+lev 4.0: FLAT3 min cushion adverse-price notional +0.273 vs A-style high-price notional +0.250  (diff -0.023)
+lev 6.0: FLAT3 min cushion adverse-price notional +0.029 vs A-style high-price notional -0.001  (diff -0.030)

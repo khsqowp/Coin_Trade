@@ -1,0 +1,50 @@
+lev 3.0 done
+lev 3.5 done
+lev 4.0 done
+lev 5.0 done
+lev 6.0 done
+== lev 3.0 x0.95 gross 2.85 paths 24 legacy-daily-liq paths 0
+  f=1.00 tier  min cushion +0.475 median +0.501 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-10-10': 8}
+  f=1.00 flat3 min cushion +0.441 median +0.444 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-10-10': 8}
+  f=0.75 tier  min cushion +0.580 median +0.580 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-10-10': 8}
+  f=0.75 flat3 min cushion +0.523 median +0.523 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-10-10': 8}
+  f=0.50 tier  min cushion +0.660 median +0.660 paths<=0: 0/24  argmin days {'2024-12-09': 24}
+  f=0.50 flat3 min cushion +0.601 median +0.601 paths<=0: 0/24  argmin days {'2024-12-09': 24}
+  f=0.25 tier  min cushion +0.739 median +0.739 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-11-10': 8}
+  f=0.25 flat3 min cushion +0.679 median +0.679 paths<=0: 0/24  argmin days {'2024-12-09': 16, '2025-11-10': 8}
+== lev 3.5 x0.95 gross 3.32 paths 24 legacy-daily-liq paths 0
+  f=1.00 tier  min cushion +0.413 median +0.413 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=1.00 flat3 min cushion +0.374 median +0.374 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 tier  min cushion +0.578 median +0.578 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 flat3 min cushion +0.536 median +0.536 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 tier  min cushion +0.720 median +0.720 paths<=0: 0/24  argmin days {'2024-12-09': 24}
+  f=0.50 flat3 min cushion +0.664 median +0.664 paths<=0: 0/24  argmin days {'2024-03-05': 24}
+  f=0.25 tier  min cushion +0.764 median +0.764 paths<=0: 0/24  argmin days {'2025-11-10': 24}
+  f=0.25 flat3 min cushion +0.690 median +0.690 paths<=0: 0/24  argmin days {'2025-11-10': 24}
+== lev 4.0 x0.95 gross 3.8 paths 24 legacy-daily-liq paths 0
+  f=1.00 tier  min cushion +0.312 median +0.312 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=1.00 flat3 min cushion +0.273 median +0.273 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 tier  min cushion +0.492 median +0.492 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 flat3 min cushion +0.450 median +0.450 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 tier  min cushion +0.673 median +0.673 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 flat3 min cushion +0.602 median +0.602 paths<=0: 0/24  argmin days {'2024-03-05': 24}
+  f=0.25 tier  min cushion +0.715 median +0.715 paths<=0: 0/24  argmin days {'2026-09-28': 24}
+  f=0.25 flat3 min cushion +0.638 median +0.638 paths<=0: 0/24  argmin days {'2026-09-28': 24}
+== lev 5.0 x0.95 gross 4.75 paths 24 legacy-daily-liq paths 0
+  f=1.00 tier  min cushion +0.191 median +0.191 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=1.00 flat3 min cushion +0.146 median +0.146 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 tier  min cushion +0.402 median +0.402 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 flat3 min cushion +0.353 median +0.353 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 tier  min cushion +0.613 median +0.613 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 flat3 min cushion +0.553 median +0.553 paths<=0: 0/24  argmin days {'2024-03-05': 24}
+  f=0.25 tier  min cushion +0.663 median +0.663 paths<=0: 0/24  argmin days {'2025-11-10': 24}
+  f=0.25 flat3 min cushion +0.572 median +0.572 paths<=0: 0/24  argmin days {'2025-11-10': 24}
+== lev 6.0 x0.95 gross 5.7 paths 24 legacy-daily-liq paths 0
+  f=1.00 tier  min cushion +0.079 median +0.079 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=1.00 flat3 min cushion +0.029 median +0.029 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 tier  min cushion +0.318 median +0.318 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.75 flat3 min cushion +0.264 median +0.264 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 tier  min cushion +0.557 median +0.557 paths<=0: 0/24  argmin days {'2025-10-10': 24}
+  f=0.50 flat3 min cushion +0.477 median +0.477 paths<=0: 0/24  argmin days {'2026-08-22': 24}
+  f=0.25 tier  min cushion +0.610 median +0.610 paths<=0: 0/24  argmin days {'2026-09-28': 24}
+  f=0.25 flat3 min cushion +0.506 median +0.506 paths<=0: 0/24  argmin days {'2025-11-10': 24}

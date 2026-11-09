@@ -1,0 +1,50 @@
+PANEL old_survivor names=45 days=1957 hours_per_day=24 range=2021-06-01..2026-10-09
+WINDOW IS=2022-01-01..2024-06-30 OOS=2024-07-01..2026-10-09 flash_2025-10-10_in_panel=True
+ENGINE numba=0.61.2; prereg phases=8; lambda=0/.15/.30; fee=5bp/side; slip=0; failure=0
+PARITY {"hourly_final": 61.648292720585, "hourly_kills": 12, "r2c_final": 42.600798374519854, "r2c_gross_note": "V0 kept-quantity R2C; same input/fee/lambda, daily aggregate funding timing differs from hourly approximation", "r2c_kills": 11.0, "relative_error": 0.4471159009418406}
+GRID lambda=0.00 p=01 phases=1 mean_final=0.076866 mean_MDD=0.9615
+GRID lambda=0.00 p=06 phases=6 mean_final=8.3015 mean_MDD=0.7734
+GRID lambda=0.00 p=12 phases=8 mean_final=11.652 mean_MDD=0.7768
+GRID lambda=0.00 p=18 phases=8 mean_final=25.967 mean_MDD=0.7369
+GRID lambda=0.00 p=24 phases=8 mean_final=55.999 mean_MDD=0.6819
+GRID lambda=0.00 p=30 phases=8 mean_final=24.521 mean_MDD=0.7299
+GRID lambda=0.00 p=36 phases=8 mean_final=55.955 mean_MDD=0.6680
+GRID lambda=0.00 p=42 phases=8 mean_final=44.131 mean_MDD=0.6874
+GRID lambda=0.00 p=48 phases=8 mean_final=56.216 mean_MDD=0.6800
+GRID lambda=0.00 p=54 phases=8 mean_final=29.912 mean_MDD=0.6793
+GRID lambda=0.00 p=60 phases=8 mean_final=19.781 mean_MDD=0.6926
+GRID lambda=0.00 p=66 phases=8 mean_final=26.878 mean_MDD=0.6480
+GRID lambda=0.00 p=72 phases=8 mean_final=26.894 mean_MDD=0.6632
+GRID lambda=0.15 p=01 phases=1 mean_final=0.0735 mean_MDD=0.9633
+GRID lambda=0.15 p=06 phases=6 mean_final=6.4991 mean_MDD=0.7712
+GRID lambda=0.15 p=12 phases=8 mean_final=10.944 mean_MDD=0.7788
+GRID lambda=0.15 p=18 phases=8 mean_final=25.582 mean_MDD=0.7393
+GRID lambda=0.15 p=24 phases=8 mean_final=47.249 mean_MDD=0.7217
+GRID lambda=0.15 p=30 phases=8 mean_final=24.701 mean_MDD=0.7339
+GRID lambda=0.15 p=36 phases=8 mean_final=48.885 mean_MDD=0.6914
+GRID lambda=0.15 p=42 phases=8 mean_final=38.223 mean_MDD=0.6900
+GRID lambda=0.15 p=48 phases=8 mean_final=53.209 mean_MDD=0.6754
+GRID lambda=0.15 p=54 phases=8 mean_final=26.983 mean_MDD=0.6904
+GRID lambda=0.15 p=60 phases=8 mean_final=16.002 mean_MDD=0.7064
+GRID lambda=0.15 p=66 phases=8 mean_final=24.724 mean_MDD=0.6537
+GRID lambda=0.15 p=72 phases=8 mean_final=26.231 mean_MDD=0.6620
+GRID lambda=0.30 p=01 phases=1 mean_final=0.050323 mean_MDD=0.9625
+GRID lambda=0.30 p=06 phases=6 mean_final=5.775 mean_MDD=0.7862
+GRID lambda=0.30 p=12 phases=8 mean_final=10.098 mean_MDD=0.7857
+GRID lambda=0.30 p=18 phases=8 mean_final=21.837 mean_MDD=0.7492
+GRID lambda=0.30 p=24 phases=8 mean_final=47.759 mean_MDD=0.7171
+GRID lambda=0.30 p=30 phases=8 mean_final=21.321 mean_MDD=0.7440
+GRID lambda=0.30 p=36 phases=8 mean_final=44.029 mean_MDD=0.7042
+GRID lambda=0.30 p=42 phases=8 mean_final=35.924 mean_MDD=0.6980
+GRID lambda=0.30 p=48 phases=8 mean_final=45.242 mean_MDD=0.6800
+GRID lambda=0.30 p=54 phases=8 mean_final=18.289 mean_MDD=0.7057
+GRID lambda=0.30 p=60 phases=8 mean_final=14.885 mean_MDD=0.7080
+GRID lambda=0.30 p=66 phases=8 mean_final=22.894 mean_MDD=0.6685
+GRID lambda=0.30 p=72 phases=8 mean_final=23.463 mean_MDD=0.6674
+SENS p=01 finished scenarios=12
+SENS p=06 finished scenarios=12
+SENS p=12 finished scenarios=12
+SENS p=24 finished scenarios=12
+SENS p=48 finished scenarios=12
+SENS p=72 finished scenarios=12
+DONE seconds=28.6 result=/Users/user/Desktop/CODE/Ochestration/trading/docs/research/rebal_loop/C/results.json

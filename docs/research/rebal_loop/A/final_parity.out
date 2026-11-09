@@ -1,0 +1,14 @@
+panel 1957 45 2021-06-01 00:00:00+00:00 2026-10-09 00:00:00+00:00
+funding_reconstruction_max_abs_daily_FD_diff 0.0
+FULL phase 0 n 1743 max_abs 1.9539925233402755e-13 max_rel 1.0685085319528482e-14 sim_final 14.502704800341714 hourly_final 14.50270480034184 bit_exact False
+FULL phase 1 n 1743 max_abs 2.4158453015843406e-13 max_rel 8.31434285264286e-15 sim_final 18.40639896186857 hourly_final 18.40639896186865 bit_exact False
+FULL phase 2 n 1743 max_abs 1.9184653865522705e-13 max_rel 9.215262240110911e-15 sim_final 15.845931442214095 hourly_final 15.845931442214212 bit_exact False
+IS phase 0 n 912 max_abs 1.1546319456101628e-14 max_rel 4.146041977796702e-15 sim_final 2.677790120241748 hourly_final 2.677790120241759 bit_exact False
+IS phase 1 n 912 max_abs 1.7763568394002505e-14 max_rel 4.486190878315488e-15 sim_final 3.3985710919357754 hourly_final 3.3985710919357883 bit_exact False
+IS phase 2 n 912 max_abs 3.019806626980426e-14 max_rel 8.282399259311896e-15 sim_final 2.9258044789678883 hourly_final 2.92580447896791 bit_exact False
+OOS phase 0 n 831 max_abs 6.661338147750939e-15 max_rel 3.841159297598875e-15 sim_final 1.8487520660950543 hourly_final 1.84875206609505 bit_exact False
+OOS phase 1 n 831 max_abs 1.7763568394002505e-14 max_rel 3.4746380977747196e-15 sim_final 5.1175273261213095 hourly_final 5.1175273261213015 bit_exact False
+OOS phase 2 n 831 max_abs 1.2878587085651816e-14 max_rel 5.140961464346727e-15 sim_final 2.3644775679371213 hourly_final 2.3644775679371195 bit_exact False
+GENERALITY 24 h max_abs 2.7000623958883807e-13 max_rel 3.885937290634055e-15 bit_exact False
+GENERALITY 48 h max_abs 1.5631940186722204e-13 max_rel 3.5510558443493346e-15 bit_exact False
+V0 parity passed; the preregistered sweep may proceed

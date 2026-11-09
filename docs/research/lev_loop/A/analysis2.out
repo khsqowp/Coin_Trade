@@ -1,0 +1,163 @@
+
+#### kill_mode 3: verdict vs CURRENT (4|0.35) ; point diff IS / OOS / FULL in annual log-growth [95% CI IS ; OOS]
+  2.5|0.25  ND          IS -0.32 [-0.79,+0.15]  OOS -0.13 [-0.83,+0.58]  FULL -0.27  adm IS/OOS/FULL True/True/True
+  2.5|0.35  ND          IS -0.30 [-0.80,+0.20]  OOS +0.23 [-0.61,+1.14]  FULL -0.19  adm IS/OOS/FULL True/True/True
+  2.5| 0.5  ND          IS -0.25 [-0.72,+0.24]  OOS +0.28 [-0.62,+1.20]  FULL -0.08  adm IS/OOS/FULL True/True/True
+  2.5|none  ND          IS -0.25 [-0.73,+0.23]  OOS +0.28 [-0.61,+1.17]  FULL -0.08  adm IS/OOS/FULL True/True/True
+  3.0|0.25  ND          IS -0.17 [-0.67,+0.37]  OOS +0.03 [-0.90,+0.72]  FULL -0.17  adm IS/OOS/FULL True/True/True
+  3.0|0.35  ND          IS -0.35 [-0.92,+0.11]  OOS +0.45 [-0.30,+1.19]  FULL -0.03  adm IS/OOS/FULL True/True/True
+  3.0| 0.5  ND          IS -0.16 [-0.58,+0.30]  OOS +0.44 [-0.34,+1.28]  FULL +0.04  adm IS/OOS/FULL True/True/True
+  3.0|none  ND          IS -0.16 [-0.59,+0.30]  OOS +0.36 [-0.54,+1.25]  FULL +0.00  adm IS/OOS/FULL True/True/True
+  3.5|0.25  ND          IS -0.29 [-0.75,+0.15]  OOS +0.25 [-0.52,+0.98]  FULL -0.07  adm IS/OOS/FULL True/True/True
+  3.5|0.35  ND          IS -0.30 [-0.77,+0.17]  OOS +0.30 [-0.38,+1.02]  FULL -0.11  adm IS/OOS/FULL True/True/True
+  3.5| 0.5  ND          IS -0.14 [-0.61,+0.38]  OOS +0.35 [-0.69,+1.29]  FULL -0.04  adm IS/OOS/FULL True/True/True
+  3.5|none  WORSE-inadm IS -0.08 [-0.50,+0.38]  OOS +0.42 [-0.54,+1.40]  FULL +0.07  adm IS/OOS/FULL True/False/False
+  4.0|0.25  ND          IS -0.24 [-0.77,+0.27]  OOS +0.38 [-0.49,+1.19]  FULL +0.01  adm IS/OOS/FULL True/True/True
+  4.0|0.35  REF         IS +0.00 [+0.00,+0.00]  OOS +0.00 [+0.00,+0.00]  FULL +0.00  adm IS/OOS/FULL True/True/True
+  4.0| 0.5  ND          IS -0.10 [-0.65,+0.44]  OOS +0.47 [-0.39,+1.34]  FULL +0.17  adm IS/OOS/FULL True/True/True
+  4.0|none  WORSE-inadm IS -0.00 [-0.49,+0.48]  OOS +0.47 [-0.55,+1.46]  FULL +0.13  adm IS/OOS/FULL True/False/False
+  5.0|0.25  ND          IS -0.01 [-0.77,+0.67]  OOS +0.27 [-0.77,+1.23]  FULL +0.08  adm IS/OOS/FULL True/True/True
+  5.0|0.35  WORSE-inadm IS -0.37 [-1.10,+0.31]  OOS +0.19 [-0.86,+1.20]  FULL -0.14  adm IS/OOS/FULL True/False/False
+  5.0| 0.5  WORSE-inadm IS -0.06 [-0.78,+0.68]  OOS +0.20 [-0.89,+1.32]  FULL -0.15  adm IS/OOS/FULL True/False/False
+  5.0|none  WORSE-inadm IS +0.12 [-0.45,+0.68]  OOS +0.53 [-0.76,+1.68]  FULL +0.22  adm IS/OOS/FULL True/False/False
+  6.0|0.25  WORSE-inadm IS -0.55 [-1.45,+0.27]  OOS -0.71 [-1.88,+0.33]  FULL -0.71  adm IS/OOS/FULL True/False/False
+  6.0|0.35  WORSE-inadm IS -0.04 [-0.81,+0.69]  OOS +0.52 [-0.50,+1.56]  FULL +0.18  adm IS/OOS/FULL True/False/False
+  6.0| 0.5  WORSE-inadm IS -0.24 [-1.08,+0.65]  OOS +0.67 [-0.28,+1.69]  FULL +0.14  adm IS/OOS/FULL False/False/False
+  6.0|none  WORSE-inadm IS +0.21 [-0.52,+0.95]  OOS +0.53 [-1.18,+1.94]  FULL +0.26  adm IS/OOS/FULL False/False/False
+
+#### kill_mode 1: verdict vs CURRENT (4|0.35) ; point diff IS / OOS / FULL in annual log-growth [95% CI IS ; OOS]
+  2.5|0.25  ND          IS +0.43 [-0.15,+1.08]  OOS -0.02 [-0.74,+0.67]  FULL +0.28  adm IS/OOS/FULL True/True/True
+  2.5|0.35  ND          IS +1.03 [+0.08,+2.14]  OOS +0.32 [-0.62,+1.27]  FULL +0.71  adm IS/OOS/FULL True/True/True
+  2.5| 0.5  ND          IS +1.17 [+0.19,+2.19]  OOS +0.82 [-0.29,+2.23]  FULL +1.01  adm IS/OOS/FULL True/True/True
+  2.5|none  BETTER      IS +1.17 [+0.21,+2.28]  OOS +1.07 [+0.04,+2.47]  FULL +1.12  adm IS/OOS/FULL True/True/True
+  3.0|0.25  ND          IS +0.49 [-0.21,+1.24]  OOS +0.41 [-0.18,+1.01]  FULL +0.42  adm IS/OOS/FULL True/True/True
+  3.0|0.35  ND          IS +0.57 [-0.41,+1.65]  OOS +0.35 [-0.73,+1.45]  FULL +0.45  adm IS/OOS/FULL True/True/True
+  3.0| 0.5  ND          IS +1.19 [+0.26,+2.28]  OOS +0.58 [-0.63,+1.84]  FULL +0.98  adm IS/OOS/FULL True/True/True
+  3.0|none  BETTER      IS +1.26 [+0.31,+2.33]  OOS +1.15 [+0.05,+2.54]  FULL +1.21  adm IS/OOS/FULL True/True/True
+  3.5|0.25  ND          IS -0.13 [-1.05,+0.74]  OOS +0.25 [-0.62,+1.05]  FULL +0.03  adm IS/OOS/FULL True/True/True
+  3.5|0.35  ND          IS +0.17 [-0.33,+0.67]  OOS -0.21 [-1.15,+0.68]  FULL -0.09  adm IS/OOS/FULL True/True/True
+  3.5| 0.5  ND          IS +1.18 [+0.13,+2.25]  OOS +0.19 [-0.82,+1.23]  FULL +0.72  adm IS/OOS/FULL True/True/True
+  3.5|none  WORSE-inadm IS +1.35 [+0.40,+2.50]  OOS +1.21 [+0.10,+2.74]  FULL +1.28  adm IS/OOS/FULL True/False/False
+  4.0|0.25  ND          IS -0.94 [-2.11,+0.11]  OOS +0.11 [-0.81,+0.98]  FULL -0.40  adm IS/OOS/FULL True/True/True
+  4.0|0.35  REF         IS +0.00 [+0.00,+0.00]  OOS +0.00 [+0.00,+0.00]  FULL +0.00  adm IS/OOS/FULL True/True/True
+  4.0| 0.5  ND          IS +0.75 [-0.27,+1.93]  OOS +0.11 [-1.03,+1.14]  FULL +0.35  adm IS/OOS/FULL True/True/True
+  4.0|none  WORSE-inadm IS +1.42 [+0.44,+2.59]  OOS +1.26 [+0.07,+2.60]  FULL +1.34  adm IS/OOS/FULL True/False/False
+  5.0|0.25  ND          IS -1.39 [-2.71,-0.10]  OOS -1.32 [-2.86,+0.08]  FULL -1.31  adm IS/OOS/FULL True/True/True
+  5.0|0.35  ND          IS -0.75 [-1.87,+0.28]  OOS -0.58 [-1.89,+0.53]  FULL -0.74  adm IS/OOS/FULL True/True/True
+  5.0| 0.5  ND          IS +0.43 [-0.85,+1.70]  OOS -0.74 [-2.26,+0.69]  FULL -0.13  adm IS/OOS/FULL True/True/True
+  5.0|none  WORSE-inadm IS +1.55 [+0.52,+2.69]  OOS +1.32 [-0.08,+2.98]  FULL +1.42  adm IS/OOS/FULL True/False/False
+  6.0|0.25  WORSE       IS -2.02 [-3.56,-0.56]  OOS -2.12 [-3.91,-0.57]  FULL -2.05  adm IS/OOS/FULL False/False/False
+  6.0|0.35  WORSE-inadm IS -1.64 [-2.95,-0.38]  OOS -0.13 [-1.65,+1.14]  FULL -1.17  adm IS/OOS/FULL True/False/False
+  6.0| 0.5  WORSE-inadm IS -0.51 [-1.44,+0.42]  OOS -1.46 [-3.53,+0.21]  FULL -0.85  adm IS/OOS/FULL False/False/False
+  6.0|none  WORSE-inadm IS +1.64 [+0.50,+3.01]  OOS +1.32 [-0.36,+3.19]  FULL +1.46  adm IS/OOS/FULL False/False/False
+
+#### kill_mode 0: verdict vs CURRENT (4|0.35) ; point diff IS / OOS / FULL in annual log-growth [95% CI IS ; OOS]
+  2.5|0.25  ND          IS +0.01 [-0.50,+0.51]  OOS +0.05 [-0.70,+0.78]  FULL -0.03  adm IS/OOS/FULL True/True/True
+  2.5|0.35  ND          IS +0.03 [-0.48,+0.58]  OOS -0.07 [-0.78,+0.65]  FULL -0.04  adm IS/OOS/FULL True/True/True
+  2.5| 0.5  ND          IS +0.12 [-0.39,+0.66]  OOS +0.05 [-0.72,+0.85]  FULL +0.02  adm IS/OOS/FULL True/True/True
+  2.5|none  ND          IS +0.12 [-0.37,+0.65]  OOS +0.05 [-0.75,+0.85]  FULL +0.02  adm IS/OOS/FULL True/True/True
+  3.0|0.25  ND          IS +0.26 [-0.21,+0.75]  OOS +0.02 [-0.54,+0.60]  FULL +0.05  adm IS/OOS/FULL True/True/True
+  3.0|0.35  ND          IS +0.11 [-0.40,+0.66]  OOS +0.18 [-0.48,+0.93]  FULL +0.02  adm IS/OOS/FULL True/True/True
+  3.0| 0.5  ND          IS +0.21 [-0.23,+0.71]  OOS +0.14 [-0.62,+0.94]  FULL +0.12  adm IS/OOS/FULL True/True/True
+  3.0|none  ND          IS +0.21 [-0.25,+0.70]  OOS +0.13 [-0.66,+0.94]  FULL +0.11  adm IS/OOS/FULL True/True/True
+  3.5|0.25  ND          IS +0.11 [-0.57,+0.72]  OOS +0.01 [-0.56,+0.63]  FULL -0.07  adm IS/OOS/FULL True/True/True
+  3.5|0.35  ND          IS +0.22 [-0.33,+0.80]  OOS +0.31 [-0.35,+1.01]  FULL +0.25  adm IS/OOS/FULL True/True/True
+  3.5| 0.5  ND          IS +0.25 [-0.22,+0.76]  OOS +0.31 [-0.42,+1.07]  FULL +0.15  adm IS/OOS/FULL True/True/True
+  3.5|none  ND          IS +0.29 [-0.13,+0.78]  OOS +0.19 [-0.66,+1.07]  FULL +0.18  adm IS/OOS/FULL True/True/True
+  4.0|0.25  ND          IS +0.08 [-0.63,+0.72]  OOS +0.12 [-0.47,+0.77]  FULL +0.09  adm IS/OOS/FULL True/True/True
+  4.0|0.35  REF         IS +0.00 [+0.00,+0.00]  OOS +0.00 [+0.00,+0.00]  FULL +0.00  adm IS/OOS/FULL True/True/True
+  4.0| 0.5  ND          IS +0.24 [-0.25,+0.83]  OOS +0.12 [-0.70,+0.99]  FULL +0.11  adm IS/OOS/FULL True/True/True
+  4.0|none  ND          IS +0.37 [-0.07,+0.89]  OOS +0.24 [-0.67,+1.11]  FULL +0.24  adm IS/OOS/FULL True/True/True
+  5.0|0.25  ND          IS -0.15 [-1.10,+0.74]  OOS -0.27 [-1.21,+0.59]  FULL -0.22  adm IS/OOS/FULL True/True/True
+  5.0|0.35  ND          IS +0.62 [+0.02,+1.24]  OOS -0.05 [-0.70,+0.61]  FULL +0.10  adm IS/OOS/FULL True/True/True
+  5.0| 0.5  ND          IS +0.27 [-0.31,+0.91]  OOS +0.42 [-0.38,+1.32]  FULL +0.12  adm IS/OOS/FULL True/True/True
+  5.0|none  ND          IS +0.49 [-0.05,+1.11]  OOS +0.30 [-0.91,+1.41]  FULL +0.32  adm IS/OOS/FULL True/True/True
+  6.0|0.25  ND          IS +0.61 [-0.26,+1.48]  OOS -0.15 [-1.78,+1.22]  FULL +0.28  adm IS/OOS/FULL True/True/True
+  6.0|0.35  WORSE-inadm IS +0.23 [-0.71,+1.13]  OOS -0.08 [-0.98,+0.78]  FULL +0.00  adm IS/OOS/FULL True/False/False
+  6.0| 0.5  WORSE-inadm IS +0.34 [-0.33,+1.01]  OOS +0.33 [-0.50,+1.31]  FULL +0.34  adm IS/OOS/FULL True/False/False
+  6.0|none  WORSE-inadm IS +0.58 [-0.15,+1.36]  OOS +0.30 [-1.23,+1.61]  FULL +0.36  adm IS/OOS/FULL True/False/False
+
+#### region verdict counts (per lev row; per kill column)
+  mode3 lev 2.5:  {'ND': 4}
+  mode3 lev 3.0:  {'ND': 4}
+  mode3 lev 3.5:  {'ND': 3, 'WORSE-inadm': 1}
+  mode3 lev 4.0:  {'ND': 2, 'WORSE-inadm': 1, 'REF': 1}
+  mode3 lev 5.0:  {'ND': 1, 'WORSE-inadm': 3}
+  mode3 lev 6.0:  {'WORSE-inadm': 4}
+  mode3 kill 0.25:  {'ND': 5, 'WORSE-inadm': 1}
+  mode3 kill 0.35:  {'ND': 3, 'WORSE-inadm': 2, 'REF': 1}
+  mode3 kill 0.5:  {'ND': 4, 'WORSE-inadm': 2}
+  mode3 kill none:  {'ND': 2, 'WORSE-inadm': 4}
+  mode1 lev 2.5:  {'ND': 3, 'BETTER': 1}
+  mode1 lev 3.0:  {'ND': 3, 'BETTER': 1}
+  mode1 lev 3.5:  {'ND': 3, 'WORSE-inadm': 1}
+  mode1 lev 4.0:  {'ND': 2, 'WORSE-inadm': 1, 'REF': 1}
+  mode1 lev 5.0:  {'ND': 3, 'WORSE-inadm': 1}
+  mode1 lev 6.0:  {'WORSE': 1, 'WORSE-inadm': 3}
+  mode1 kill 0.25:  {'WORSE': 1, 'ND': 5}
+  mode1 kill 0.35:  {'ND': 4, 'WORSE-inadm': 1, 'REF': 1}
+  mode1 kill 0.5:  {'ND': 5, 'WORSE-inadm': 1}
+  mode1 kill none:  {'WORSE-inadm': 4, 'BETTER': 2}
+  mode0 lev 2.5:  {'ND': 4}
+  mode0 lev 3.0:  {'ND': 4}
+  mode0 lev 3.5:  {'ND': 4}
+  mode0 lev 4.0:  {'ND': 3, 'REF': 1}
+  mode0 lev 5.0:  {'ND': 4}
+  mode0 lev 6.0:  {'ND': 1, 'WORSE-inadm': 3}
+  mode0 kill 0.25:  {'ND': 6}
+  mode0 kill 0.35:  {'ND': 4, 'WORSE-inadm': 1, 'REF': 1}
+  mode0 kill 0.5:  {'ND': 5, 'WORSE-inadm': 1}
+  mode0 kill none:  {'ND': 5, 'WORSE-inadm': 1}
+
+#### min flat3 cushion over 120 paths (p10 in brackets), kill_mode 3, by scenario; FULL window
+  2.5|0.25  BASE +0.57(+0.57) liq   0 | VOL +0.35(+0.35) liq   0 | COST +0.47(+0.47) liq   0 | COMB +0.35(+0.35) liq   0
+  2.5|0.35  BASE +0.50(+0.50) liq   0 | VOL +0.43(+0.43) liq   0 | COST +0.49(+0.49) liq   0 | COMB +0.35(+0.35) liq   0
+  2.5| 0.5  BASE +0.48(+0.48) liq   0 | VOL +0.37(+0.37) liq   0 | COST +0.47(+0.47) liq   0 | COMB +0.37(+0.37) liq   0
+  2.5|none  BASE +0.48(+0.48) liq   0 | VOL +0.27(+0.27) liq   0 | COST +0.47(+0.47) liq   0 | COMB +0.26(+0.26) liq   0
+  3.0|0.25  BASE +0.40(+0.40) liq   0 | VOL +0.27(+0.27) liq   0 | COST +0.51(+0.51) liq   0 | COMB +0.30(+0.30) liq   0
+  3.0|0.35  BASE +0.42(+0.42) liq   0 | VOL +0.27(+0.27) liq   0 | COST +0.39(+0.39) liq   0 | COMB +0.27(+0.27) liq   0
+  3.0| 0.5  BASE +0.42(+0.42) liq   0 | VOL +0.27(+0.27) liq   0 | COST +0.42(+0.42) liq   0 | COMB +0.29(+0.29) liq   0
+  3.0|none  BASE +0.40(+0.40) liq   0 | VOL +0.14(+0.14) liq   0 | COST +0.39(+0.39) liq   0 | COMB +0.13(+0.13) liq   0
+  3.5|0.25  BASE +0.32(+0.32) liq   0 | VOL +0.20(+0.20) liq   0 | COST +0.32(+0.32) liq   0 | COMB +0.13(+0.13) liq   0
+  3.5|0.35  BASE +0.46(+0.46) liq   0 | VOL +0.14(+0.14) liq   0 | COST +0.35(+0.35) liq   0 | COMB +0.14(+0.14) liq   0
+  3.5| 0.5  BASE +0.32(+0.32) liq   0 | VOL +0.17(+0.17) liq   0 | COST +0.35(+0.35) liq   0 | COMB +0.17(+0.17) liq   0
+  3.5|none  BASE +0.32(+0.32) liq   0 | VOL -0.00(-0.00) liq  40 | COST +0.32(+0.32) liq   0 | COMB -0.01(-0.01) liq  40
+  4.0|0.25  BASE +0.25(+0.25) liq   0 | VOL +0.14(+0.14) liq   0 | COST +0.25(+0.25) liq   0 | COMB +0.13(+0.13) liq   0
+  4.0|0.35  BASE +0.25(+0.25) liq   0 | VOL +0.10(+0.10) liq   0 | COST +0.25(+0.25) liq   0 | COMB +0.09(+0.09) liq   0
+  4.0| 0.5  BASE +0.29(+0.29) liq   0 | VOL +0.14(+0.14) liq   0 | COST +0.25(+0.25) liq   0 | COMB +0.05(+0.05) liq   0
+  4.0|none  BASE +0.25(+0.25) liq   0 | VOL -0.15(-0.15) liq  40 | COST +0.25(+0.25) liq   0 | COMB -0.15(-0.15) liq  40
+  5.0|0.25  BASE +0.17(+0.17) liq   0 | VOL +0.01(+0.01) liq   0 | COST +0.16(+0.16) liq   0 | COMB +0.01(+0.01) liq   0
+  5.0|0.35  BASE +0.12(+0.12) liq   0 | VOL -0.30(-0.30) liq 120 | COST +0.12(+0.12) liq   0 | COMB +0.01(+0.01) liq   0
+  5.0| 0.5  BASE +0.21(+0.21) liq   0 | VOL -0.10(-0.10) liq 120 | COST +0.16(+0.16) liq   0 | COMB -0.12(-0.12) liq 120
+  5.0|none  BASE +0.07(+0.07) liq   0 | VOL -0.46(-0.46) liq 120 | COST +0.06(+0.06) liq   0 | COMB -0.55(-0.55) liq 120
+  6.0|0.25  BASE -0.00(-0.00) liq 120 | VOL -0.08(-0.08) liq 120 | COST -0.00(-0.00) liq 120 | COMB -0.09(-0.09) liq 120
+  6.0|0.35  BASE -0.00(-0.00) liq 120 | VOL -0.10(-0.10) liq 120 | COST +0.03(+0.03) liq   0 | COMB -0.10(-0.10) liq 120
+  6.0| 0.5  BASE -0.00(-0.00) liq 120 | VOL -0.54(-0.54) liq 120 | COST +0.05(+0.05) liq   0 | COMB -0.56(-0.56) liq 120
+  6.0|none  BASE -0.13(-0.13) liq  80 | VOL -0.92(-0.92) liq 120 | COST -0.15(-0.15) liq  80 | COMB -0.94(-0.94) liq 120
+
+#### concentration (kill_mode 3 BASE): top5 symbols share of net gain / top5 trades share; median [p90] over paths with gain>0
+  IS   (4.0, 0.35): syms 1.05 [1.06]  trades 0.60 [0.62]  n=120 median-path top syms [np.str_('THETA'), np.str_('IMX'), np.str_('STX'), np.str_('NEAR'), np.str_('APT')]
+  IS   (4.0, 1.0): syms 1.05 [1.22]  trades 0.93 [1.14]  n=120 median-path top syms [np.str_('IMX'), np.str_('WLD'), np.str_('AVAX'), np.str_('ONDO'), np.str_('STX')]
+  IS   (5.0, 1.0): syms 1.16 [1.43]  trades 1.06 [1.43]  n=120 median-path top syms [np.str_('JUP'), np.str_('WLD'), np.str_('ARB'), np.str_('THETA'), np.str_('VET')]
+  IS   (5.0, 0.5): syms 1.29 [1.34]  trades 1.54 [1.65]  n=120 median-path top syms [np.str_('JUP'), np.str_('UNI'), np.str_('WLD'), np.str_('ONDO'), np.str_('VET')]
+  IS   (3.0, 1.0): syms 0.98 [1.06]  trades 0.84 [0.92]  n=120 median-path top syms [np.str_('IMX'), np.str_('WLD'), np.str_('AVAX'), np.str_('ONDO'), np.str_('STX')]
+  OOS  (4.0, 0.35): syms 4.08 [11.01]  trades 3.20 [8.41]  n=120 median-path top syms [np.str_('ZEC'), np.str_('HBAR'), np.str_('TAO'), np.str_('DOGE'), np.str_('RENDER')]
+  OOS  (4.0, 1.0): syms 1.99 [3.20]  trades 1.29 [1.96]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('ARB'), np.str_('IMX')]
+  OOS  (5.0, 1.0): syms 2.41 [4.44]  trades 1.55 [2.72]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('ARB'), np.str_('IMX')]
+  OOS  (5.0, 0.5): syms 3.70 [5.09]  trades 2.47 [3.71]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('VET'), np.str_('TAO'), np.str_('HBAR')]
+  OOS  (3.0, 1.0): syms 1.66 [2.43]  trades 1.07 [1.48]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('ARB'), np.str_('XLM')]
+  FULL (4.0, 0.35): syms 2.35 [2.37]  trades 1.45 [1.46]  n=120 median-path top syms [np.str_('ZEC'), np.str_('TAO'), np.str_('NEAR'), np.str_('RENDER'), np.str_('HBAR')]
+  FULL (4.0, 1.0): syms 1.80 [2.52]  trades 1.11 [1.49]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('IMX'), np.str_('ARB')]
+  FULL (5.0, 1.0): syms 2.18 [3.36]  trades 1.35 [1.99]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('IMX'), np.str_('ARB')]
+  FULL (5.0, 0.5): syms 2.99 [3.04]  trades 2.12 [2.18]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('XRP'), np.str_('UNI'), np.str_('HBAR')]
+  FULL (3.0, 1.0): syms 1.46 [1.91]  trades 0.89 [1.12]  n=120 median-path top syms [np.str_('ZEC'), np.str_('NEAR'), np.str_('TAO'), np.str_('IMX'), np.str_('STX')]
+
+#### multiple-testing for S3 = (5.0, 1.0)
+  IS: point diff vs current +0.121/yr, SE_boot 0.284, E[max_24]=1.98 -> haircut 0.563 -> adj -0.442
+  IS: point diff vs current +0.121/yr, SE_boot 0.284, E[max_150]=2.67 -> haircut 0.760 -> adj -0.639
+  IS: DSR(N=24) = 0.954  (daily SR 0.075 ann 1.43, SR0 0.021 ann 0.40, skew 1.14, kurt 8.4, T 895)
+  IS: DSR(N=150) = 0.928  (daily SR 0.075 ann 1.43, SR0 0.028 ann 0.54, skew 1.14, kurt 8.4, T 895)
+  OOS: point diff vs current +0.528/yr, SE_boot 0.643, E[max_24]=1.98 -> haircut 1.273 -> adj -0.745
+  OOS: point diff vs current +0.528/yr, SE_boot 0.643, E[max_150]=2.67 -> haircut 1.717 -> adj -1.189
+  OOS: DSR(N=24) = 0.854  (daily SR 0.070 ann 1.34, SR0 0.033 ann 0.63, skew 0.46, kurt 7.8, T 795)
+  OOS: DSR(N=150) = 0.767  (daily SR 0.070 ann 1.34, SR0 0.044 ann 0.85, skew 0.46, kurt 7.8, T 795)

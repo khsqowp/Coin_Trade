@@ -8,18 +8,20 @@ from __future__ import annotations
 
 import glob
 import os
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-CACHE = os.environ.get("US_CACHE", "/Users/user/Desktop/CODE/Ochestration/.kis-cache")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+CACHE = Path(os.environ.get("US_CACHE", PROJECT_ROOT / ".kis-cache"))
 ANN = 252
 
 
 # ---------------------------------------------------------------- data
 def load_panel() -> dict[str, pd.DataFrame]:
     cols = {}
-    for f in sorted(glob.glob(f"{CACHE}/US_*.csv")):
+    for f in sorted(glob.glob(str(CACHE / "US_*.csv"))):
         sym = os.path.basename(f)[3:-4]
         d = pd.read_csv(f, parse_dates=["timestamp"], index_col="timestamp")
         d.index = d.index.tz_localize(None).normalize() if d.index.tz is None else d.index.tz_convert(None).normalize()

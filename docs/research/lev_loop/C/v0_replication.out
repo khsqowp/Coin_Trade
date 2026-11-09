@@ -1,0 +1,5 @@
+phase 0 end 14.5027 kills 10.0 EXACT == rs_final_engine; ref 14.5027
+phase 1 end 18.4064 kills 9.0 EXACT == rs_final_engine; ref 18.4064
+phase 2 end 15.8459 kills 9.0 EXACT == rs_final_engine; ref 15.8459
+wick range 0.11910345851269111 0.842967542503864 fund window 2024-02-27 2024-03-27
+ALL V0 REPLICATION ASSERTS PASSED

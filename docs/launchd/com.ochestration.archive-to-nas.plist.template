@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.ochestration.archive-to-nas</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/anaconda3/bin/python3</string>
+    <string>__REPO__/trading/scripts/archive_to_nas.py</string>
+    <string>--no-delete</string>
+    <string>--max-minutes</string><string>40</string>
+    <string>--throttle-mbps</string><string>10</string>
+  </array>
+  <key>StartInterval</key><integer>3600</integer>
+  <key>Nice</key><integer>10</integer>
+  <key>LowPriorityIO</key><true/>
+  <key>StandardOutPath</key><string>__HOME__/Library/Logs/archive_to_nas.log</string>
+  <key>StandardErrorPath</key><string>__HOME__/Library/Logs/archive_to_nas.error.log</string>
+</dict>
+</plist>
