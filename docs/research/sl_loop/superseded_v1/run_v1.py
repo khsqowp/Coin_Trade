@@ -1,0 +1,150 @@
+"""Pre-registered hourly SL grid. Run from trading/: python docs/research/sl_loop/run.py."""
+from __future__ import annotations
+import os, sys, json, math, hashlib, concurrent.futures as cf
+from pathlib import Path
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[3]
+os.environ["RS_FINAL_SCRATCH"] = str(ROOT / ".rs_cache/sl_panel")
+os.environ["NUMBA_CACHE_DIR"] = str(ROOT / ".rs_cache/sl_nbc")
+sys.path.insert(0, str(ROOT))
+from docs.research.sl_loop.lib import load_all, ENVA, phase_mean
+
+OUT = Path(__file__).resolve().parent
+PHASES = (0,1,2)
+_ENGINE = None
+
+def _json(obj): return json.dumps(obj,separators=(",",":"),default=lambda x: x.item() if isinstance(x,np.generic) else str(x))
+
+def _init_worker():
+    global _ENGINE
+    panel_cache = np.load(os.path.join(os.environ["RS_FINAL_SCRATCH"], "rs_final_panel.npz"), allow_pickle=True)
+    P = {k: np.load(os.path.join(os.environ["RS_FINAL_SCRATCH"], k + ".npy"), mmap_mode="r") for k in ("H","L","C","FD")}
+    P["names"] = list(panel_cache["names"]); P["days"] = __import__("pandas").DatetimeIndex(panel_cache["days"], tz="UTC")
+    from app.rs_sl_engine import TPSim
+    CF = np.load(os.path.join(os.environ["RS_FINAL_SCRATCH"], "CF.npy"), mmap_mode="r")
+    _ENGINE = TPSim(P, CF)
+
+def _one(cell, phase):
+    global _ENGINE
+    kw = dict(ENVA); kw["lev"] = cell.get("lev",4.); kw["cost"] = cell.get("cost",.001)
+    sl = dict(SL=cell.get("sL",0.), SS=cell.get("sS",0.), lockout=int(cell.get("lock",0)),
+              fillmode=cell.get("fill",1), slipx=.003)
+    tp = dict(XL=cell.get("xL",0.), XS=cell.get("xS",0.), frac=1., lockout=int(cell.get("lock",0)),
+              fillmode=cell.get("fill",1), slipx=.003)
+    r = _ENGINE.run(sl=sl, tp=tp, phase=phase, crash_mode=cell.get("crash",1), **kw)
+    from app.rs_final_engine import window_metrics
+    m = {w: window_metrics(r,a,b) for w,(a,b) in {"IS":("2022-01-01","2024-06-30"),"OOS":("2024-07-01",None),"full":(None,None)}.items()}
+    m["years"] = {str(y): window_metrics(r,f"{y}-01-01",f"{y}-12-31") for y in range(2022,2027)}
+    trades = r["trades"]
+    types = {"reb":0,"tp":0,"sl":0,"kill":0}
+    tnames = {0:"reb",1:"tp",2:"tp",3:"kill",4:"sl"}
+    for row in trades: types[tnames.get(int(row[4]),"reb")] += 1
+    days = len(r["eq"].dropna())
+    m["operating"] = dict(kills=int(r["kills"]), liq=int(r["liq"]), stops=int(r.get("nsl",0)), tps=int(r.get("ntp",0)),
+                          stop_long=sum(int(x[4])==4 and x[1]>0 for x in trades), stop_short=sum(int(x[4])==4 and x[1]<0 for x in trades),
+                          events=types, exposure=float(r["expo"].replace([np.inf,-np.inf],np.nan).mean()),
+                          flat_share=float((r["expo"]==0).mean()), mean_npos=float(r["npos"]), days=days,
+                          avg_equity=float(r["eq"].dropna().mean()), cost_paid=float(r["cost_paid"]), turnover=float(r["turnover"]))
+    return cell["id"], phase, m, trades.tolist()
+
+def _cell_id(d):
+    keys=("lev","sL","sS","xL","xS","lock","fill","crash")
+    canon = json.dumps({k:d[k] for k in keys},sort_keys=True,separators=(",",":"))
+    return hashlib.sha1(canon.encode()).hexdigest()[:12]
+
+def _add(reg, **kw):
+    d=dict(lev=4.,sL=0.,sS=0.,xL=0.,xS=0.,lock=0,fill=1,crash=1,family="base")
+    d.update(kw)
+    d["id"]=_cell_id(d); reg[d["id"]]=d; return d["id"]
+
+def _primary():
+    reg={}; _add(reg, family="baseline")
+    levels=(.03,.05,.075,.10,.125,.15,.20,.25,.30)
+    for s in levels:
+        for side in ("both","long","short"):
+            _add(reg,sL=s if side in ("both","long") else 0.,sS=s if side in ("both","short") else 0.,family=f"{side}_reentry",s=s)
+        _add(reg,sL=s,sS=s,lock=1,family="both_lockout",s=s)
+    return reg,levels
+
+def _write_cell(cell, phase_results, phase_trades, allcells):
+    row={"id":cell["id"],"params":cell,"phase_results":{str(p):phase_results[p] for p in PHASES}}
+    for w in ("IS","OOS","full"):
+        mm=[phase_results[p][w] for p in PHASES]
+        row[w]={k:float(np.mean([x[k] for x in mm])) for k in ("cagr","mdd","imdd","sharpe","end")}
+        row[w]["calmar_i"]=float(np.mean([x["cagr"]/x["imdd"] if x["imdd"]>0 else 0 for x in mm]))
+        row[w]["calmar_i_worst"]=float(min(x["cagr"]/x["imdd"] if x["imdd"]>0 else 0 for x in mm))
+        row[w]["end_wealth_multiple"] = row[w]["end"]
+    row["kills_mean"]=float(np.mean([phase_results[p]["operating"]["kills"] for p in PHASES]))
+    row["liquidations"]=int(sum(phase_results[p]["operating"]["liq"] for p in PHASES))
+    yrs=float(np.mean([phase_results[p]["operating"]["days"] for p in PHASES]))/365.
+    row["stops_per_year"]={side:float(np.mean([phase_results[p]["operating"]["stop_"+side] for p in PHASES])/max(yrs,1e-9)) for side in ("long","short")}
+    row["stops_per_year"]["all"]=sum(row["stops_per_year"].values())
+    row["kills_per_year"]=row["kills_mean"]/yrs
+    row["turnover_x_per_year"]=float(np.mean([phase_results[p]["operating"]["turnover"]/max(phase_results[p]["operating"]["avg_equity"],1e-12)/yrs for p in PHASES]))
+    row["cost_pct_avg_equity_per_year"]=float(np.mean([phase_results[p]["operating"]["cost_paid"]/max(phase_results[p]["operating"]["avg_equity"],1e-12)/yrs for p in PHASES]))
+    # retain compact close event rows for audit and follow-on attribution
+    eventpath=OUT/"events"/(cell["id"]+".jsonl"); eventpath.parent.mkdir(exist_ok=True)
+    with eventpath.open("w") as f:
+        for p in PHASES:
+            for t in phase_trades[p]:
+                f.write(_json({"phase":p,"symbol_index":int(t[0]),"side":int(t[1]),"entry_day":int(t[2]),"exit_day":int(t[3]),"type":int(t[4]),"pnl":t[5],"equity_entry":t[6],"notional":t[7],"entry_px":t[8],"exit_px":t[9],"hour":int(t[10]),"adverse_excursion":t[11]})+"\n")
+    row["events_file"]=str(eventpath.relative_to(OUT))
+    allcells[cell["id"]]=row
+    with (OUT/"ledger.jsonl").open("a") as f: f.write(_json(row)+"\n")
+    return row
+
+def _run_batch(reg, workers):
+    rows={}; pending={}
+    with cf.ProcessPoolExecutor(max_workers=workers,initializer=_init_worker) as pool:
+        for d in reg.values():
+            pending[d["id"]]={p:pool.submit(_one,d,p) for p in PHASES}
+        for cid,d in reg.items():
+            pres={}; ptr={}
+            for p in PHASES:
+                got= pending[cid][p].result(); pres[p]=got[2]; ptr[p]=got[3]
+            rows[cid]=_write_cell(d,pres,ptr,rows)
+    return rows
+
+def main():
+    P,CFUND=load_all()
+    if (OUT/"ledger.jsonl").exists(): (OUT/"ledger.jsonl").unlink()
+    reg,levels=_primary(); primary=_run_batch(reg,9)
+    base=next(v for v in primary.values() if v["params"]["family"]=="baseline")
+    eligible=[]
+    for cid,row in primary.items():
+        p=row["params"]
+        if p["family"] in ("both_reentry","long_reentry","short_reentry") and p.get("s",0)>0:
+            if row["IS"]["end"]>=.85*base["IS"]["end"]: eligible.append(row)
+    def ordered(family):
+        return sorted((r for r in eligible if r["params"]["family"]==family),key=lambda x:x["IS"]["calmar_i"],reverse=True)
+    best_both=ordered("both_reentry")[0]; best_long=ordered("long_reentry")[0]; best_short=ordered("short_reentry")[0]
+    top3=ordered("both_reentry")[:3]; chosen=[*top3,best_long,best_short]
+    extra={}
+    # TP x SL cross. Parameter deduplication shares baseline and any identical primary rows.
+    for x in (0.,.10,.15,.25,.40,.60):
+        for s in (0.,.05,.10,.15,.20):
+            _add(extra,sL=s,sS=s,xL=x,xS=x,family="tp_sl",s=s,x=x)
+    # Leverage robustness (baseline and all both-side levels at 2x/3x).
+    for lev in (2.,3.):
+        _add(extra,lev=lev,family="leverage_baseline")
+        for s in levels: _add(extra,lev=lev,sL=s,sS=s,family="leverage_both",s=s)
+    # Non-primary crash reference rows.
+    for crash in (0,2):
+        _add(extra,crash=crash,family="crash_reference",crash_name=crash,ref_stop="none")
+        _add(extra,crash=crash,sL=best_both["params"]["s"],sS=best_both["params"]["s"],family="crash_reference",crash_name=crash,ref_stop=best_both["params"]["s"])
+    # Fill mode robustness for fixed IS-selected cells, including baseline.
+    fixed=[base,*chosen]
+    for cand in fixed:
+        p=cand["params"]
+        for fill in (0,2):
+            _add(extra,lev=p["lev"],sL=p["sL"],sS=p["sS"],xL=p["xL"],xS=p["xS"],lock=p["lock"],fill=fill,crash=1,family="fill_robustness",ref=p["id"])
+    # Exclude already-run identical parameter tuples; IDs are parameter-hashed.
+    extra={cid:d for cid,d in extra.items() if cid not in primary}
+    secondary=_run_batch(extra,9)
+    cells={**primary,**secondary}
+    data={"meta":{"prereg":"prereg.md","panel_days":len(P["days"]),"panel_first":str(P["days"][0]),"panel_last":str(P["days"][-1]),"phases":PHASES,"unique_trials":len(cells),"phase_jobs":len(cells)*3,"primary_family_cells":len(primary),"secondary_unique_cells":len(secondary),"workers":9,"engine":"app/rs_sl_engine.py"},"baseline_id":base["id"],"selected":{"both":best_both["id"],"long":best_long["id"],"short":best_short["id"],"top3_both":[x["id"] for x in top3]},"cells":cells}
+    (OUT/"results.json").write_text(json.dumps(data,indent=2,allow_nan=False,default=lambda x: x.item() if isinstance(x,np.generic) else str(x)))
+    print(json.dumps(data["meta"],indent=2)); print("SELECTED",json.dumps(data["selected"]))
+
+if __name__=="__main__": main()
