@@ -8,19 +8,19 @@ from app.rs_tp_engine import TPSim as TPSim
 from app.rs_final_engine import Sim as BaseSim, params
 
 
-def toy(sl=None, tp=None, score=None, day_low=None, day_high=None, day_close=None, crash=None, nday=6, score_by_day=None):
+def toy(sl=None, tp=None, score=None, day_low=None, day_high=None, day_close=None, crash=None, nday=6, score_by_day=None, kill=1., cool=0):
     n = len(score[0]) if score is not None else 2
     C = np.full((nday, 24, n), 100., dtype=float); H = C.copy(); L = C.copy()
     for d, j, v in (day_low or []): L[d, :, j] = v
     for d, j, v in (day_high or []): H[d, :, j] = v
-    for d, j, v in (day_close or []): C[d, 0, j] = v
+    for d, j, v in (day_close or []): C[d, 0, j] = v; C[d, 23, j] = v
     sc = np.asarray(score if score is not None else np.tile([1., -1.], (nday, 1)), dtype=float)
     if score_by_day:
         for d, row in score_by_day.items(): sc[d] = row
     flag = np.asarray(crash if crash is not None else np.zeros(nday), dtype=float)
     log = np.zeros((200, 12))
     out = _sim_tp(H, L, C, np.zeros((nday,n)), np.zeros((nday,24,n)), sc, flag,
-                  params(rebal=3, K=1, lev=2, deploy=1, cost=0, kill=1., cool=0),
+                  params(rebal=3, K=1, lev=2, deploy=1, cost=0, kill=kill, cool=cool),
                   np.zeros(n), np.zeros(n), 0, nday,
                   tp_params(**(tp or {})), sl_params(**(sl or {})), 0, log)
     return out, log
@@ -108,6 +108,47 @@ def test_future_perturbation_does_not_change_prefix():
     for aa,bb in zip(a[0],b[0]): np.testing.assert_array_equal(aa[:4],bb[:4])
     ta=a[1][a[1][:,3]<=3]; tb=b[1][b[1][:,3]<=3]
     np.testing.assert_array_equal(ta,tb)
+
+
+def test_kill_off_keeps_liquidation_active_on_crash():
+    out, _ = toy(kill=1., nday=5, day_low=[(1, 0, .01)], day_high=[(1, 1, 200.)])
+    assert out[3][2] == 0  # no close-based kill events when kill is off
+    assert out[3][4] == 1  # intraday cross-margin liquidation still fires
+
+
+def test_zero_cooldown_is_permanent_and_positive_cooldown_rearms():
+    crash = [(1, 0, 85.)]
+    closes = [(1, 0, 85.)]
+    permanent, _ = toy(kill=.10, cool=0, nday=7, day_low=crash, day_close=closes)
+    rearmed, _ = toy(kill=.10, cool=1, nday=7, day_low=crash, day_close=closes)
+    assert permanent[3][2] >= 1 and rearmed[3][2] >= 1
+    assert np.all(permanent[2][2:] == 0.)
+    assert np.any(rearmed[2][2:] > 0.)
+
+
+def test_legacy_baselines_match_ledger_metrics_bit_exactly():
+    from pathlib import Path
+    import json
+    from docs.research.sl_loop.lib import load_all
+    from app.rs_final_engine import window_metrics
+    ledger = json.loads(Path("docs/research/sl_loop/results_v2.json").read_text())
+    P, CF = load_all(); sim = SLSim(P, CF)
+    for lev in (2., 3., 4.):
+        row = next(x for x in ledger["cells"].values()
+                   if x["params"].get("lev") == lev and x["params"].get("sL") == -1.
+                   and x["params"].get("sS") == -1. and x["params"].get("fill") == 1
+                   and x["params"].get("crash") == 1)
+        for phase in (0, 1, 2):
+            result = sim.run(sl={}, phase=phase, crash_mode=1, rebal=3, K=8, lev=lev,
+                             deploy=.95, kill=.35, cool=14, cost=.001, fund=1,
+                             minn=0., eq0=1.)
+            for window, bounds in {"IS": ("2022-01-01", "2024-06-30"),
+                                   "OOS": ("2024-07-01", None),
+                                   "full": (None, None)}.items():
+                actual = window_metrics(result, *bounds)
+                expected = row["phase_results"][str(phase)][window]
+                for metric in ("cagr", "mdd", "imdd", "sharpe", "end"):
+                    assert actual[metric] == expected[metric]
 
 
 def _real_data():
