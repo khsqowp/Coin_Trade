@@ -1,0 +1,8 @@
+{
+  "market": "US",
+  "family": "F8",
+  "grade": "N/A",
+  "decision": "NOT_APPLICABLE",
+  "reason": "F8 is KR-only by specification",
+  "search_trials": 0
+}

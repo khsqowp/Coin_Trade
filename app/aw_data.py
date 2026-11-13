@@ -71,10 +71,15 @@ def _us_stock_eligibility(med: pd.DataFrame, symbols: list[str], listed200: pd.D
     return rank.le(30) & listed200[symbols]
 
 
-def load_panel(market: str) -> Panel:
+DATA_END = pd.Timestamp("2026-11-11")
+
+
+def load_panel(market: str, include_stocks: bool | None = None) -> Panel:
     """캐시만 읽어 패널과 PIT 상장/유동성 마스크를 구성한다."""
     market = market.upper()
-    defs = all_symbols(market)
+    if include_stocks is None:
+        include_stocks = os.environ.get("AW_ETFS_ONLY", "0").lower() not in ("1", "true", "yes")
+    defs = all_symbols(market) if include_stocks else etfs(market)
     frames, missing = {}, []
     for item in defs:
         path = _cache_path(market, item["code"])
@@ -86,7 +91,8 @@ def load_panel(market: str) -> Panel:
         if idx.tz is not None:
             idx = idx.tz_convert("UTC").tz_localize(None)
         df.index = idx.normalize()
-        frames[item["code"]] = df[~df.index.duplicated(keep="last")].sort_index()
+        df = df[~df.index.duplicated(keep="last")].sort_index()
+        frames[item["code"]] = df.loc[df.index <= DATA_END]
     for sym in missing:
         print(f"캐시 누락: {market}:{sym}", flush=True)
     if not frames:

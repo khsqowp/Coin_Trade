@@ -1,0 +1,10 @@
+{
+  "market": "US",
+  "family": "F5",
+  "grade": "C",
+  "decision": "REJECTED",
+  "reason": "No verifiable sector-stock mapping",
+  "search_trials": 0,
+  "data_start": "2010-12-17",
+  "data_end": "2026-11-11"
+}

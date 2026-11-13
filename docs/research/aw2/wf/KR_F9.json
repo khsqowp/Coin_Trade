@@ -1,0 +1,8 @@
+{
+  "market": "KR",
+  "family": "F9",
+  "grade": "C",
+  "decision": "REJECTED",
+  "reason": "No F1-F8 strategy reached A or B; ensemble has zero eligible components",
+  "search_trials": 0
+}
