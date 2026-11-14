@@ -1,0 +1,21 @@
+{
+  "run_id": "GEN05-20261106T102632-99205",
+  "prereg_sha256": "45f8a67a65675febfbe5a639f26c53d9489f716daac32c399608221d8e544671",
+  "runner_sha256": "7f798833000e06943b0607116b0478554ba7f254bfffbee8e1e6c84ea090394d",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "gen03_runner_sha256": "2be8b342e154952d2536308311db38eaf875f5267a9fce64dc24791c6161e3cc",
+  "gen04_runner_sha256": "a3720b907a93ef974dbbe880167f80d44c5c7b9aa782fdad9fbddc04d118b731",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T10:26:32.445134+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102632-99205.jsonl",
+  "planned_attempts": 2,
+  "status": "FINISHED",
+  "evidence_status": "EXPLORATORY_ONLY_HISTORIC_WINDOWS_AND_TRIALS_UNRESOLVED",
+  "finished_utc": "2026-11-06T10:26:50.971422+00:00",
+  "attempt_events_sha256": "b2b32fe50c9b44a91c083281a1f6a131a9a8adfead64b9ed36df6cc141fd535d",
+  "attempt_events": 4,
+  "curve_file": null
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": "GEN11A1-20261106-SPY_VOL_BURST_MOM5_H5",
+  "prereg_sha256": "454704a4937d13f8a0f4bb82ec7a3d672a21ad88f781eab2739bb046bda7672f",
+  "addendum_sha256": "bd5877e2e8b000b18fd138b4c306eeb2278d373de247eb7a9b9b67ebac15142b",
+  "runner_sha256": "688705599ad19c8a9272af326214c61fb66b6429c059e5f282575bb497f9ad8d",
+  "test_sha256": "ee7c9d83bdc9ccde80d89d905fde2ed8108b576628abade3925dcf7b18631a74",
+  "data_sha256": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba",
+  "row_count": 8498,
+  "first_date": "1993-01-29",
+  "last_date": "2026-11-02",
+  "status": "COMPLETED_EXPLORATORY"
+}

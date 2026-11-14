@@ -1,0 +1,64 @@
+{
+ "id": "ct-volume-spike-quiet",
+ "name": "Volume spike without price reaction ('quiet accumulation')",
+ "family": "volume/event",
+ "one_line": "Volume >= 3x 20-day mean while daily change < 3%; buy next open, hold 5-60 days. Edge only in crypto.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "app/volume_spike_signal_core.py",
+   "docs/전략-백테스트-종합.md (section 12)",
+   "docs/루프엔지니어링-신규전략탐색-2026-10-05.md"
+  ]
+ },
+ "markets": [
+  "crypto (edge), KR/US equities (rejected)"
+ ],
+ "timeframe": "1d",
+ "direction": "long_only",
+ "status_in_source": "hold ('champion' of branch A, not adopted)",
+ "idea": "Signal at close of day t when volume[t] >= 3 * mean(volume[t-20..t-1]) and close-to-close change < 3% (upper bound only). Enter at next open, hold N days.",
+ "rules": [
+  {
+   "name": "volume_spike_entry",
+   "kind": "entry",
+   "description": "volume >= 3x trailing 20-bar mean (excluding current)"
+  },
+  {
+   "name": "quiet_price_filter",
+   "kind": "filter",
+   "description": "daily close change < 3%"
+  },
+  {
+   "name": "time_exit",
+   "kind": "exit",
+   "description": "exit after fixed holding bars (20 in portfolio tests)"
+  }
+ ],
+ "parameters": {
+  "lookback": 20,
+  "volume_multiple": 3.0,
+  "max_price_change_pct": 3.0,
+  "hold_days": 20
+ },
+ "rationale": "Heavy volume with muted price may show absorbed supply (early accumulation).",
+ "evidence": "Crypto 45-coin portfolio: CAGR 62.4%, MDD 53.4%, Sharpe 1.165 (0.04% fee); with 0.10% fee and funding: 52.0/57.4. 20-day edge about +6pp. Random-entry control passed 3/3.",
+ "limitations": [
+  "top 10 trades = 103% of profit (concentration)",
+  "2022: -41%",
+  "MDD >50%",
+  "stop/take-profit/filters all reduced returns in the source's tests",
+  "equities: rejected",
+  "survivorship bias in the coin list",
+  "needs cross-asset portfolio for the reported statistics; single-asset signals are sparse (few trades -> gate TOO_FEW_TRADES risk)"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Few signals per single asset; trade-count gate (>=30 total, >=10 OOS) may fail. Not a good first choice for BTC only."
+ },
+ "schema_version": 1
+}

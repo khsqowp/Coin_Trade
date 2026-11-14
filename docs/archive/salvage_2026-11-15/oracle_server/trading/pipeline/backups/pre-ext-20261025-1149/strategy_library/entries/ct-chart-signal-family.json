@@ -1,0 +1,39 @@
+{
+ "id": "ct-chart-signal-family",
+ "name": "Chart-pattern family: Heikin-Ashi, FRVP, VWAP, FVG, order block, liquidity sweep, Fibonacci, Elliott, RSI/EMA",
+ "family": "discretionary-style indicators",
+ "one_line": "10 TJR/ICT-style signals approximated on daily bars; only Heikin-Ashi and FRVP passed baseline, all later rejected.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/전략-백테스트-종합.md (sections 13-24)",
+   "docs/research/strategy_catalog.md (R1-R9)"
+  ]
+ },
+ "markets": [
+  "crypto perpetuals, long only"
+ ],
+ "timeframe": "1d",
+ "direction": "long_only",
+ "status_in_source": "rejected",
+ "idea": "Approximate popular chart-pattern concepts with daily OHLCV rules (Heikin-Ashi colour runs, fixed-range volume profile, VWAP reclaim, fair-value gaps, order blocks, liquidity sweeps, Fibonacci retracements, Elliott counts, RSI/EMA).",
+ "rules": [],
+ "parameters": {},
+ "rationale": "Owner-supplied ideas from TJR/ICT videos tested systematically.",
+ "evidence": "Heikin-Ashi base CAGR 71.3%/MDD 72.2%; +25% circuit-breaker + BTC-resume 129%/52.9% (later rejected: flapping 92-96%). FRVP 67.5/73.1. VWAP 108/87. Others 0-45% with MDD 55-86%.",
+ "limitations": [
+  "MDD 50-90%",
+  "daily approximations, not faithful ICT",
+  "variants selected on same sample (53 combos for R3 winner)",
+  "mostly lose to BTC in recent 2 years"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "not_recommended",
+  "notes": "Use only as negative evidence: drawdown-heavy; do not propose without a drawdown control that is itself tested."
+ },
+ "schema_version": 1
+}

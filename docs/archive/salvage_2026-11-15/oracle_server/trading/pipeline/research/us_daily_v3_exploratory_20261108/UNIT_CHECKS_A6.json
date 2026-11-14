@@ -1,0 +1,13 @@
+{
+  "scope": "synthetic execution mechanics only; no market data or strategy performance metrics",
+  "checks": {
+    "target_per_symbol_deferred_once": true,
+    "target_fee_and_turnover": true,
+    "full_investment_20_slots_affordable": true,
+    "spy_full_target_affordable": true,
+    "slot_open_fill_defers_and_exits": true,
+    "slot_fee_and_turnover": true,
+    "gap_close_exit_defers_on_missing_close": true,
+    "gap_fee_and_turnover": true
+  }
+}

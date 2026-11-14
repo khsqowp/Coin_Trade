@@ -1,0 +1,87 @@
+{
+  "run_utc": "2026-10-25T08:58:26.445616+00:00",
+  "source": "Binance USD-M Futures public REST API",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "XRPUSDT",
+    "ADAUSDT"
+  ],
+  "intervals": [
+    "1m",
+    "5m",
+    "15m",
+    "1h",
+    "4h"
+  ],
+  "data_days_by_interval": {
+    "1m": 90,
+    "5m": 365,
+    "15m": 1095,
+    "1h": 1825,
+    "4h": 1825
+  },
+  "evaluation_windows_days": [
+    7,
+    30,
+    90,
+    180,
+    365,
+    730,
+    1095,
+    1825
+  ],
+  "strategy_variants_per_symbol_interval": {
+    "BTCUSDT:1m": 135,
+    "BTCUSDT:5m": 135,
+    "BTCUSDT:15m": 135,
+    "BTCUSDT:1h": 135,
+    "BTCUSDT:4h": 135,
+    "ETHUSDT:1m": 135,
+    "ETHUSDT:5m": 135,
+    "ETHUSDT:15m": 135,
+    "ETHUSDT:1h": 135,
+    "ETHUSDT:4h": 135,
+    "BNBUSDT:1m": 135,
+    "BNBUSDT:5m": 135,
+    "BNBUSDT:15m": 135,
+    "BNBUSDT:1h": 135,
+    "BNBUSDT:4h": 135,
+    "XRPUSDT:1m": 135,
+    "XRPUSDT:5m": 135,
+    "XRPUSDT:15m": 135,
+    "XRPUSDT:1h": 135,
+    "XRPUSDT:4h": 135,
+    "ADAUSDT:1m": 135,
+    "ADAUSDT:5m": 135,
+    "ADAUSDT:15m": 135,
+    "ADAUSDT:1h": 135,
+    "ADAUSDT:4h": 135
+  },
+  "fee_per_side": 0.0005,
+  "slippage_per_side": 0.0002,
+  "fee_assumption_note": "Generic taker assumption; actual VIP/BNB discount unknown.",
+  "slippage_assumption_note": "Fixed assumption, not measured from order book.",
+  "execution": "Signal uses completed candle; exposure starts at next candle open; open-to-open PnL.",
+  "funding": "Public historical funding rate charged/credited using exposure active at funding timestamp.",
+  "constraints": [
+    "No authenticated account endpoints",
+    "No order endpoints",
+    "1x exposure only",
+    "Current symbols only; delisted-asset survivorship bias remains",
+    "Close-price signals do not model intrabar stop execution or market impact",
+    "Thousands of comparisons create selection bias; top results are exploratory only"
+  ],
+  "results_csv": "results/strategy_results_20261025T085825Z.csv",
+  "family_summary_csv": "results/family_summary_20261025T085825Z.csv",
+  "baseline_variants": [
+    "buy_hold_long",
+    "buy_hold_short",
+    "cash"
+  ],
+  "baseline_rows": 465,
+  "results_rows": 20925,
+  "baseline_added_utc": "2026-10-25T09:02:28.669553+00:00",
+  "initial_equity_usdt": 128.88323162
+}

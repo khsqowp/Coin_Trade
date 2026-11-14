@@ -1,0 +1,69 @@
+{
+ "id": "ft-bandtastic",
+ "name": "Bandtastic: Bollinger-band lower-band entry with optional RSI/MFI/EMA filters",
+ "family": "mean reversion",
+ "one_line": "Buy when close < chosen lower Bollinger band (1-4 sigma), optionally RSI/MFI/EMA-trend gated; exit on RSI/MFI/EMA/upper band.",
+ "source": {
+  "repo": "freqtrade/freqtrade-strategies",
+  "url": "https://github.com/freqtrade/freqtrade-strategies",
+  "commit": "f3340ce11f5bdf62f598522e64d1f5638eaa13f5",
+  "license": "GPL-3.0 (repo LICENSE). Only ideas are summarised here; no code copied.",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "user_data/Bandtastic.py"
+  ],
+  "author_in_file": "Robert Roman (file header: MIT)"
+ },
+ "markets": [
+  "crypto spot"
+ ],
+ "timeframe": "15m (as shipped)",
+ "direction": "long_only",
+ "status_in_source": "hyperopt-tuned example",
+ "idea": "Pick one of four Bollinger lower bands as trigger; filters are individually switchable by boolean parameters.",
+ "rules": [
+  {
+   "name": "bb_lower_trigger",
+   "kind": "entry",
+   "description": "close < Bollinger lower band k sigma"
+  },
+  {
+   "name": "rsi_filter",
+   "kind": "filter",
+   "description": "RSI < buy threshold (optional)"
+  },
+  {
+   "name": "mfi_filter",
+   "kind": "filter",
+   "description": "MFI < buy threshold (optional)"
+  },
+  {
+   "name": "ema_trend_filter",
+   "kind": "filter",
+   "description": "fast EMA > slow EMA (optional)"
+  },
+  {
+   "name": "band_rsi_exit",
+   "kind": "exit",
+   "description": "close > upper band or RSI/MFI above sell level"
+  }
+ ],
+ "parameters": {
+  "buy_rsi": 52,
+  "buy_mfi": 30,
+  "fast_ema": 211,
+  "slow_ema": 250,
+  "stoploss": -0.345
+ },
+ "rationale": "Statistical band excursions revert.",
+ "evidence": "Shipped parameters are hyperopt output (in-sample); no published statistics.",
+ "limitations": [
+  "parameters look overfit (EMA 211/250, stop -34.5%)",
+  "mean reversion buys falling knives in bear trends"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Fix 2-sigma band, RSI 30 style a-priori; switchable filters map directly to named RULES."
+ },
+ "schema_version": 1
+}

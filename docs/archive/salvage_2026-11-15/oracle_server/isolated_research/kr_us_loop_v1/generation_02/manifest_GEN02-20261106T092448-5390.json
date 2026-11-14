@@ -1,0 +1,85 @@
+{
+  "run_id": "GEN02-20261106T092448-5390",
+  "prereg_sha256": "9f1fc16657cd1161b3eb41fdc672514c5b8bd4c092902fbb643f71fc4fcca04a",
+  "runner_sha256": "6e2b17e502e02bb3b697ad1fe71b3e3173b88f4935bb250635afd4767f9a85eb",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T09:24:48.123443+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_02/attempts_GEN02-20261106T092448-5390.jsonl",
+  "status": "COMPLETED_WITH_ATTEMPTS",
+  "markets": {
+    "US": {
+      "sessions": 8498,
+      "symbols": 688,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2001-01-04",
+          "end": "2016-12-30",
+          "bars": 4023,
+          "cagr": 0.05216389353290585,
+          "sharpe": 0.35786297597176736,
+          "mdd": -0.5518947580534723,
+          "total_return": 1.2518819306916913,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 0
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2017-01-04",
+          "end": "2026-11-02",
+          "bars": 2471,
+          "cagr": 0.14838340171826858,
+          "sharpe": 0.8561282409639144,
+          "mdd": -0.337172572108114,
+          "total_return": 2.883161939283836,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 0
+        }
+      },
+      "data_note": "PIT members with local prices only; missing price history remains an optimistic coverage bias; 688 tickers"
+    },
+    "KR": {
+      "sessions": 3811,
+      "symbols": 3233,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2012-06-04",
+          "end": "2019-12-30",
+          "bars": 1863,
+          "cagr": 0.001277952174083774,
+          "sharpe": 0.09622422726988564,
+          "mdd": -0.38247250296357127,
+          "total_return": 0.00948639946169294,
+          "annual_turnover": 7.828989795715838,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 0
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2020-01-03",
+          "end": "2026-11-03",
+          "bars": 1676,
+          "cagr": 0.019912106878897218,
+          "sharpe": 0.21241463000305247,
+          "mdd": -0.4846742469279752,
+          "total_return": 0.14011606214900585,
+          "annual_turnover": 8.143890409746117,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 0
+        }
+      },
+      "data_note": "KR KODEX file absent; 005930 supplies calendar only; daily equal-weight eligible-name returns supply regime series; a separate monthly rebalanced equal-weight eligible-name portfolio is the comparison benchmark; exact A2 universe unresolved; exploratory only"
+    }
+  },
+  "finished_utc": "2026-11-06T09:25:55.884259+00:00",
+  "attempt_events_sha256": "f9a79f768f63d4b3d3bc5fadbd99cadd586491572e8a93c77e928b38df3b7c68",
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_02/equity_curves_GEN02-20261106T092448-5390.csv.gz",
+  "curve_file_sha256": "6b39f6e23ace54e8fc287a23e71a9ab449dd0bf165f60da643a4f3289c7a40b3"
+}

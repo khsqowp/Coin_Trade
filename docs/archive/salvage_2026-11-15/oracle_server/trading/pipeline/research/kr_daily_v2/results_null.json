@@ -1,0 +1,227 @@
+{
+  "diagnostic": "post-hoc Addendum A3; selection_count=0",
+  "metric": "annualized Sharpe of daily strategy returns minus B1 daily returns",
+  "draws_non_slot": 200,
+  "draws_slot": 100,
+  "trials": {
+    "V1_XS_MOM12_1": {
+      "draws": 200,
+      "seed": 20261105,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.7071880033770566,
+        "OOS": -0.9724891105192388
+      },
+      "p": {
+        "IS": 0.308458,
+        "OOS": 0.248756
+      },
+      "null_median": {
+        "IS": -0.8264,
+        "OOS": -1.1381
+      },
+      "null_p95": {
+        "IS": -0.453,
+        "OOS": -0.7875
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 0.373134
+    },
+    "V2_XS_MOM12_1_MF": {
+      "draws": 200,
+      "seed": 20261106,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.36382518412238685,
+        "OOS": -0.8374548658030686
+      },
+      "p": {
+        "IS": 0.029851,
+        "OOS": 0.348259
+      },
+      "null_median": {
+        "IS": -0.7073,
+        "OOS": -0.8986
+      },
+      "null_p95": {
+        "IS": -0.407,
+        "OOS": -0.6264
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 0.447762
+    },
+    "V3_XS_MOM60_REPL": {
+      "draws": 200,
+      "seed": 20261107,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.8172171824395446,
+        "OOS": -1.2077458915230066
+      },
+      "p": {
+        "IS": 0.527363,
+        "OOS": 0.985075
+      },
+      "null_median": {
+        "IS": -0.8031,
+        "OOS": -0.6598
+      },
+      "null_p95": {
+        "IS": -0.3563,
+        "OOS": -0.1779
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 1.0
+    },
+    "V4_XS_52WH": {
+      "draws": 200,
+      "seed": 20261108,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.38803780080749495,
+        "OOS": -0.6723857925054396
+      },
+      "p": {
+        "IS": 0.049751,
+        "OOS": 0.024876
+      },
+      "null_median": {
+        "IS": -0.7865,
+        "OOS": -1.1056
+      },
+      "null_p95": {
+        "IS": -0.4039,
+        "OOS": -0.799
+      },
+      "bonferroni_OOS": 0.223884,
+      "bh_q_OOS": 0.074628
+    },
+    "V5_XS_LOWVOL": {
+      "draws": 200,
+      "seed": 20261109,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.20654709955979186,
+        "OOS": -0.5939041904337234
+      },
+      "p": {
+        "IS": 0.004975,
+        "OOS": 0.00995
+      },
+      "null_median": {
+        "IS": -0.8192,
+        "OOS": -1.1242
+      },
+      "null_p95": {
+        "IS": -0.4803,
+        "OOS": -0.778
+      },
+      "bonferroni_OOS": 0.08955,
+      "bh_q_OOS": 0.044775
+    },
+    "V6_XS_MOM_LOWVOL": {
+      "draws": 200,
+      "seed": 20261110,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": 0.08067539799344492,
+        "OOS": -0.651867090441077
+      },
+      "p": {
+        "IS": 0.004975,
+        "OOS": 0.00995
+      },
+      "null_median": {
+        "IS": -0.8111,
+        "OOS": -1.0967
+      },
+      "null_p95": {
+        "IS": -0.3966,
+        "OOS": -0.7318
+      },
+      "bonferroni_OOS": 0.08955,
+      "bh_q_OOS": 0.044775
+    },
+    "V7_TS_DONCHIAN_70_25": {
+      "draws": 100,
+      "seed": 20261111,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -1.3111040158256915,
+        "OOS": -0.6735047902799446
+      },
+      "p": {
+        "IS": 1.0,
+        "OOS": 0.138614
+      },
+      "null_median": {
+        "IS": -0.5845,
+        "OOS": -0.9623
+      },
+      "null_p95": {
+        "IS": -0.2666,
+        "OOS": -0.5909
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 0.250745
+    },
+    "V8_EV_VOLSPIKE20": {
+      "draws": 100,
+      "seed": 20261112,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -0.9484741387714851,
+        "OOS": -1.7525566440289568
+      },
+      "p": {
+        "IS": 0.841584,
+        "OOS": 1.0
+      },
+      "null_median": {
+        "IS": -0.7146,
+        "OOS": -1.0316
+      },
+      "null_p95": {
+        "IS": -0.3611,
+        "OOS": -0.6788
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 1.0
+    },
+    "V9_XS_STREV_W": {
+      "draws": 200,
+      "seed": 20261113,
+      "selection_count": 0,
+      "real_active_sharpe": {
+        "IS": -1.2189243374168708,
+        "OOS": -1.7914653101912474
+      },
+      "p": {
+        "IS": 0.004975,
+        "OOS": 0.139303
+      },
+      "null_median": {
+        "IS": -2.0801,
+        "OOS": -2.0375
+      },
+      "null_p95": {
+        "IS": -1.6846,
+        "OOS": -1.6807
+      },
+      "bonferroni_OOS": 1.0,
+      "bh_q_OOS": 0.250745
+    }
+  },
+  "is_pick_from_main": "V6_XS_MOM_LOWVOL",
+  "correction_family": [
+    "V1_XS_MOM12_1",
+    "V2_XS_MOM12_1_MF",
+    "V3_XS_MOM60_REPL",
+    "V4_XS_52WH",
+    "V5_XS_LOWVOL",
+    "V6_XS_MOM_LOWVOL",
+    "V7_TS_DONCHIAN_70_25",
+    "V8_EV_VOLSPIKE20",
+    "V9_XS_STREV_W"
+  ]
+}

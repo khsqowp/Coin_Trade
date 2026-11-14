@@ -1,0 +1,2830 @@
+{
+ "A": {
+  "cik": "0001090872",
+  "matched_name": "AGILENT TECHNOLOGIES INC  (A)  (CIK 0001090872)"
+ },
+ "AAL": {
+  "cik": "0000006201",
+  "matched_name": "American Airlines Group Inc.  (AAL)  (CIK 0000006201)"
+ },
+ "AAP": {
+  "cik": "0001158449",
+  "matched_name": "ADVANCE AUTO PARTS INC  (AAP)  (CIK 0001158449)"
+ },
+ "AAPL": {
+  "cik": "0000320193",
+  "matched_name": "Apple Inc.  (AAPL)  (CIK 0000320193)"
+ },
+ "ABBV": {
+  "cik": "0001551152",
+  "matched_name": "AbbVie Inc.  (ABBV)  (CIK 0001551152)"
+ },
+ "ABI": {
+  "unresolved": true,
+  "longname": "VictoryShares Pioneer Asset-Based Inc ETF"
+ },
+ "ABNB": {
+  "cik": "0001559720",
+  "matched_name": "Airbnb, Inc.  (ABNB)  (CIK 0001559720)"
+ },
+ "ABT": {
+  "cik": "0000001800",
+  "matched_name": "ABBOTT LABORATORIES  (ABT)  (CIK 0000001800)"
+ },
+ "ABX": {
+  "cik": "0001814287",
+  "matched_name": "Abacus Global Management, Inc.  (ABX, ABXL)  (CIK 0001814287)"
+ },
+ "ACGL": {
+  "cik": "0000947484",
+  "matched_name": "ARCH CAPITAL GROUP LTD  (ACGL, ACGLN, ACGLO)  (CIK 0000947484)"
+ },
+ "ACN": {
+  "cik": "0001467373",
+  "matched_name": "Accenture plc  (ACN)  (CIK 0001467373)"
+ },
+ "ACV": {
+  "unresolved": true,
+  "longname": "Virtus Diversified Income & Convertible Fund"
+ },
+ "ADBE": {
+  "cik": "0000796343",
+  "matched_name": "ADOBE INC.  (ADBE)  (CIK 0000796343)"
+ },
+ "ADCT": {
+  "cik": "0001771910",
+  "matched_name": "ADC Therapeutics SA  (ADCT)  (CIK 0001771910)"
+ },
+ "ADI": {
+  "cik": "0000006281",
+  "matched_name": "ANALOG DEVICES INC  (ADI)  (CIK 0000006281)"
+ },
+ "ADM": {
+  "cik": "0000007084",
+  "matched_name": "ARCHER DANIELS MIDLAND CO  (ADM)  (CIK 0000007084)"
+ },
+ "ADP": {
+  "cik": "0000008670",
+  "matched_name": "AUTOMATIC DATA PROCESSING INC  (ADP)  (CIK 0000008670)"
+ },
+ "ADSK": {
+  "cik": "0000769397",
+  "matched_name": "AUTODESK INC  (ADSK)  (CIK 0000769397)"
+ },
+ "ADT": {
+  "cik": "0001703056",
+  "matched_name": "ADT Inc.  (ADT)  (CIK 0001703056)"
+ },
+ "AEE": {
+  "cik": "0001002910",
+  "matched_name": "AMEREN CORP  (AEE)  (CIK 0001002910)"
+ },
+ "AEP": {
+  "cik": "0000004904",
+  "matched_name": "AMERICAN ELECTRIC POWER CO INC  (AEP)  (CIK 0000004904)"
+ },
+ "AES": {
+  "cik": "0000874761",
+  "matched_name": "AES CORP  (AES)  (CIK 0000874761)"
+ },
+ "AFL": {
+  "cik": "0000004977",
+  "matched_name": "AFLAC INC  (AFL)  (CIK 0000004977)"
+ },
+ "AIG": {
+  "cik": "0000005272",
+  "matched_name": "AMERICAN INTERNATIONAL GROUP INC  (AIG)  (CIK 0000005272)"
+ },
+ "AIT": {
+  "cik": "0000109563",
+  "matched_name": "APPLIED INDUSTRIAL TECHNOLOGIES INC  (AIT)  (CIK 0000109563)"
+ },
+ "AIV": {
+  "cik": "0000922864",
+  "matched_name": "APARTMENT INVESTMENT & MANAGEMENT CO  (AIV)  (CIK 0000922864)"
+ },
+ "AIZ": {
+  "unresolved": true,
+  "longname": "Assurant, Inc."
+ },
+ "AJG": {
+  "cik": "0000354190",
+  "matched_name": "GALLAGHER ARTHUR J & CO  (AJG)  (CIK 0000354190)"
+ },
+ "AKAM": {
+  "cik": "0001086222",
+  "matched_name": "AKAMAI TECHNOLOGIES INC  (AKAM)  (CIK 0001086222)"
+ },
+ "ALB": {
+  "cik": "0000915913",
+  "matched_name": "ALBEMARLE CORP  (ALB, ALB-PA)  (CIK 0000915913)"
+ },
+ "ALGN": {
+  "cik": "0001097149",
+  "matched_name": "ALIGN TECHNOLOGY INC  (ALGN)  (CIK 0001097149)"
+ },
+ "ALK": {
+  "cik": "0000766421",
+  "matched_name": "ALASKA AIR GROUP, INC.  (ALK)  (CIK 0000766421)"
+ },
+ "ALL": {
+  "cik": "0000899051",
+  "matched_name": "ALLSTATE CORP  (ALL, ALL-PB, ALL-PH, ALL-PI, ALL-PJ)  (CIK 0000899051)"
+ },
+ "ALLE": {
+  "cik": "0001579241",
+  "matched_name": "Allegion plc  (ALLE)  (CIK 0001579241)"
+ },
+ "AM": {
+  "cik": "0001623925",
+  "matched_name": "Antero Midstream Corp  (AM)  (CIK 0001623925)"
+ },
+ "AMAT": {
+  "cik": "0000006951",
+  "matched_name": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)"
+ },
+ "AMCR": {
+  "cik": "0001748790",
+  "matched_name": "Amcor plc  (AMCR, AMCCF)  (CIK 0001748790)"
+ },
+ "AMD": {
+  "cik": "0000002488",
+  "matched_name": "ADVANCED MICRO DEVICES INC  (AMD)  (CIK 0000002488)"
+ },
+ "AME": {
+  "cik": "0001037868",
+  "matched_name": "AMETEK INC/  (AME)  (CIK 0001037868)"
+ },
+ "AMG": {
+  "cik": "0001004434",
+  "matched_name": "AFFILIATED MANAGERS GROUP, INC.  (AMG, MGR, MGRB, MGRD, MGRE)  (CIK 0001004434)"
+ },
+ "AMGN": {
+  "cik": "0000318154",
+  "matched_name": "AMGEN INC  (AMGN)  (CIK 0000318154)"
+ },
+ "AMP": {
+  "cik": "0000820027",
+  "matched_name": "AMERIPRISE FINANCIAL INC  (AMP)  (CIK 0000820027)"
+ },
+ "AMT": {
+  "cik": "0001053507",
+  "matched_name": "AMERICAN TOWER CORP /MA/  (AMT)  (CIK 0001053507)"
+ },
+ "AMTM": {
+  "cik": "0002011286",
+  "matched_name": "Amentum Holdings, Inc.  (AMTM)  (CIK 0002011286)"
+ },
+ "AMZN": {
+  "cik": "0001018724",
+  "matched_name": "AMAZON COM INC  (AMZN)  (CIK 0001018724)"
+ },
+ "AN": {
+  "cik": "0000350698",
+  "matched_name": "AUTONATION, INC.  (AN)  (CIK 0000350698)"
+ },
+ "ANET": {
+  "cik": "0001596532",
+  "matched_name": "Arista Networks, Inc.  (ANET)  (CIK 0001596532)"
+ },
+ "ANF": {
+  "cik": "0001018840",
+  "matched_name": "ABERCROMBIE & FITCH CO /DE/  (ANF)  (CIK 0001018840)"
+ },
+ "ANV": {
+  "unresolved": true,
+  "longname": "Graniteshares Autocallable Nvda ETF"
+ },
+ "AON": {
+  "cik": "0000315293",
+  "matched_name": "Aon plc  (AON)  (CIK 0000315293)"
+ },
+ "AOS": {
+  "cik": "0000091142",
+  "matched_name": "SMITH A O CORP  (AOS)  (CIK 0000091142)"
+ },
+ "APA": {
+  "cik": "0001841666",
+  "matched_name": "APA Corp  (APA)  (CIK 0001841666)"
+ },
+ "APC": {
+  "cik": "0002080921",
+  "matched_name": "ARKO Petroleum Corp.  (APC)  (CIK 0002080921)"
+ },
+ "APD": {
+  "cik": "0000002969",
+  "matched_name": "AIR PRODUCTS & CHEMICALS INC /DE/  (APD)  (CIK 0000002969)"
+ },
+ "APH": {
+  "cik": "0000820313",
+  "matched_name": "AMPHENOL CORP /DE/  (APH)  (CIK 0000820313)"
+ },
+ "APO": {
+  "cik": "0001858681",
+  "matched_name": "Apollo Global Management, Inc.  (APO, APOS, APO-PA)  (CIK 0001858681)"
+ },
+ "APP": {
+  "cik": "0001751008",
+  "matched_name": "AppLovin Corp  (APP)  (CIK 0001751008)"
+ },
+ "APTV": {
+  "cik": "0001521332",
+  "matched_name": "Aptiv PLC  (APTV)  (CIK 0001521332)"
+ },
+ "AR": {
+  "cik": "0001433270",
+  "matched_name": "ANTERO RESOURCES Corp  (AR)  (CIK 0001433270)"
+ },
+ "ARE": {
+  "cik": "0001035443",
+  "matched_name": "ALEXANDRIA REAL ESTATE EQUITIES, INC.  (ARE)  (CIK 0001035443)"
+ },
+ "ARES": {
+  "cik": "0001176948",
+  "matched_name": "Ares Management Corp  (ARES, ARES-PB)  (CIK 0001176948)"
+ },
+ "ASC": {
+  "unresolved": true,
+  "longname": "Ardmore Shipping Corporation"
+ },
+ "ASH": {
+  "unresolved": true,
+  "longname": "Ashland Inc."
+ },
+ "ASND": {
+  "unresolved": true,
+  "longname": "Ascendis Pharma A/S"
+ },
+ "ASO": {
+  "cik": "0001817358",
+  "matched_name": "Academy Sports & Outdoors, Inc.  (ASO)  (CIK 0001817358)"
+ },
+ "ATI": {
+  "cik": "0001018963",
+  "matched_name": "ATI INC  (ATI)  (CIK 0001018963)"
+ },
+ "ATO": {
+  "cik": "0000731802",
+  "matched_name": "ATMOS ENERGY CORP  (ATO)  (CIK 0000731802)"
+ },
+ "AV": {
+  "unresolved": true,
+  "longname": "Corgi Aerospace & Commercial Aviation ETF"
+ },
+ "AVGO": {
+  "cik": "0001730168",
+  "matched_name": "Broadcom Inc.  (AVGO)  (CIK 0001730168)"
+ },
+ "AVY": {
+  "cik": "0000008818",
+  "matched_name": "AVERY DENNISON CORPORATION  (AVY)  (CIK 0000008818)"
+ },
+ "AWK": {
+  "cik": "0001410636",
+  "matched_name": "American Water Works Company, Inc.  (AWK)  (CIK 0001410636)"
+ },
+ "AXON": {
+  "cik": "0001069183",
+  "matched_name": "AXON ENTERPRISE, INC.  (AXON)  (CIK 0001069183)"
+ },
+ "AXP": {
+  "cik": "0000004962",
+  "matched_name": "AMERICAN EXPRESS CO  (AXP)  (CIK 0000004962)"
+ },
+ "AYI": {
+  "cik": "0001144215",
+  "matched_name": "ACUITY INC. (DE)  (AYI)  (CIK 0001144215)"
+ },
+ "AZO": {
+  "cik": "0000866787",
+  "matched_name": "AUTOZONE INC  (AZO)  (CIK 0000866787)"
+ },
+ "BA": {
+  "cik": "0000012927",
+  "matched_name": "BOEING CO  (BA)  (CIK 0000012927)"
+ },
+ "BAC": {
+  "cik": "0000070858",
+  "matched_name": "BANK OF AMERICA CORP /DE/  (BAC, BAC-PB, BAC-PE, BAC-PK, BAC-PL, BAC-PM, BAC-PN, BAC-PO, BAC-PP, BML-PG, BML-PH, BML-PJ, BML-PL)  (CIK 0000070858)"
+ },
+ "BALL": {
+  "cik": "0000009389",
+  "matched_name": "BALL CORP  (BALL)  (CIK 0000009389)"
+ },
+ "BAX": {
+  "cik": "0000010456",
+  "matched_name": "BAXTER INTERNATIONAL INC  (BAX)  (CIK 0000010456)"
+ },
+ "BBBY": {
+  "unresolved": true,
+  "longname": "Bed Bath & Beyond, Inc."
+ },
+ "BBWI": {
+  "cik": "0000701985",
+  "matched_name": "Bath & Body Works, Inc.  (BBWI)  (CIK 0000701985)"
+ },
+ "BBY": {
+  "cik": "0000764478",
+  "matched_name": "BEST BUY CO INC  (BBY)  (CIK 0000764478)"
+ },
+ "BC": {
+  "cik": "0000014930",
+  "matched_name": "BRUNSWICK CORP  (BC, BC-PA, BC-PB, BC-PC)  (CIK 0000014930)"
+ },
+ "BDX": {
+  "cik": "0000010795",
+  "matched_name": "BECTON DICKINSON & CO  (BDX)  (CIK 0000010795)"
+ },
+ "BEAM": {
+  "cik": "0001745999",
+  "matched_name": "Beam Therapeutics Inc.  (BEAM)  (CIK 0001745999)"
+ },
+ "BEN": {
+  "cik": "0000038777",
+  "matched_name": "FRANKLIN TEMPLETON INC  (BEN)  (CIK 0000038777)"
+ },
+ "BF-B": {
+  "cik": "0000014693",
+  "matched_name": "BROWN FORMAN CORP  (BF-A, BF-B)  (CIK 0000014693)"
+ },
+ "BIIB": {
+  "cik": "0000875045",
+  "matched_name": "BIOGEN IDEC INC  (BIIB)  (CIK 0000875045)"
+ },
+ "BIO": {
+  "cik": "0000012208",
+  "matched_name": "BIO RAD LABORATORIES INC  (BIO, BIO-B)  (CIK 0000012208)"
+ },
+ "BKR": {
+  "cik": "0001701605",
+  "matched_name": "Baker Hughes Co  (BKR)  (CIK 0001701605)"
+ },
+ "BLDR": {
+  "cik": "0001316835",
+  "matched_name": "Builders FirstSource, Inc.  (BLDR)  (CIK 0001316835)"
+ },
+ "BLK": {
+  "cik": "0002012383",
+  "matched_name": "BlackRock, Inc.  (BLK)  (CIK 0002012383)"
+ },
+ "BNY": {
+  "unresolved": true,
+  "longname": "The Bank of New York Mellon Corporation"
+ },
+ "BR": {
+  "cik": "0001383312",
+  "matched_name": "BROADRIDGE FINANCIAL SOLUTIONS, INC.  (BR)  (CIK 0001383312)"
+ },
+ "BRK-B": {
+  "cik": "0001067983",
+  "matched_name": "BERKSHIRE HATHAWAY INC  (BRK-A, BRK-B)  (CIK 0001067983)"
+ },
+ "BRO": {
+  "cik": "0000079282",
+  "matched_name": "BROWN & BROWN, INC.  (BRO)  (CIK 0000079282)"
+ },
+ "BSX": {
+  "cik": "0000885725",
+  "matched_name": "BOSTON SCIENTIFIC CORP  (BSX)  (CIK 0000885725)"
+ },
+ "BUD": {
+  "unresolved": true,
+  "longname": "Anheuser-Busch InBev SA/NV"
+ },
+ "BWA": {
+  "cik": "0000908255",
+  "matched_name": "BORGWARNER INC  (BWA)  (CIK 0000908255)"
+ },
+ "BX": {
+  "cik": "0001393818",
+  "matched_name": "Blackstone Inc.  (BX)  (CIK 0001393818)"
+ },
+ "BXP": {
+  "cik": "0001037540",
+  "matched_name": "BXP, Inc.  (BXP)  (CIK 0001037540)"
+ },
+ "C": {
+  "cik": "0000831001",
+  "matched_name": "CITIGROUP INC  (C, C-PN)  (CIK 0000831001)"
+ },
+ "CAG": {
+  "cik": "0000023217",
+  "matched_name": "CONAGRA BRANDS INC.  (CAG)  (CIK 0000023217)"
+ },
+ "CAH": {
+  "cik": "0000721371",
+  "matched_name": "CARDINAL HEALTH INC  (CAH)  (CIK 0000721371)"
+ },
+ "CAM": {
+  "unresolved": true,
+  "longname": "AB California Intermediate Municipal ETF"
+ },
+ "CAR": {
+  "cik": "0000723612",
+  "matched_name": "AVIS BUDGET GROUP, INC.  (CAR)  (CIK 0000723612)"
+ },
+ "CARR": {
+  "cik": "0001783180",
+  "matched_name": "CARRIER GLOBAL Corp  (CARR)  (CIK 0001783180)"
+ },
+ "CASY": {
+  "cik": "0000726958",
+  "matched_name": "CASEYS GENERAL STORES INC  (CASY)  (CIK 0000726958)"
+ },
+ "CAT": {
+  "cik": "0000018230",
+  "matched_name": "CATERPILLAR INC  (CAT)  (CIK 0000018230)"
+ },
+ "CB": {
+  "cik": "0000896159",
+  "matched_name": "Chubb Ltd  (CB)  (CIK 0000896159)"
+ },
+ "CBOE": {
+  "cik": "0001374310",
+  "matched_name": "Cboe Global Markets, Inc.  (CBOE)  (CIK 0001374310)"
+ },
+ "CBRE": {
+  "cik": "0001138118",
+  "matched_name": "CBRE GROUP, INC.  (CBRE)  (CIK 0001138118)"
+ },
+ "CCEP": {
+  "unresolved": true,
+  "longname": "Coca-Cola Europacific Partners PLC"
+ },
+ "CCI": {
+  "cik": "0001051470",
+  "matched_name": "CROWN CASTLE INC.  (CCI)  (CIK 0001051470)"
+ },
+ "CCK": {
+  "cik": "0001219601",
+  "matched_name": "CROWN HOLDINGS INC  (CCK)  (CIK 0001219601)"
+ },
+ "CCL": {
+  "cik": "0000815097",
+  "matched_name": "CARNIVAL CORP  (CCL)  (CIK 0000815097)"
+ },
+ "CDNS": {
+  "cik": "0000813672",
+  "matched_name": "CADENCE DESIGN SYSTEMS INC  (CDNS)  (CIK 0000813672)"
+ },
+ "CDW": {
+  "cik": "0001402057",
+  "matched_name": "CDW Corp  (CDW)  (CIK 0001402057)"
+ },
+ "CE": {
+  "cik": "0001306830",
+  "matched_name": "Celanese CORP  (CE)  (CIK 0001306830)"
+ },
+ "CEG": {
+  "cik": "0001868275",
+  "matched_name": "Constellation Energy Corp  (CEG)  (CIK 0001868275)"
+ },
+ "CF": {
+  "cik": "0001324404",
+  "matched_name": "CF Industries Holdings, Inc.  (CF)  (CIK 0001324404)"
+ },
+ "CFG": {
+  "cik": "0000759944",
+  "matched_name": "CITIZENS FINANCIAL GROUP INC/RI  (CFG, CFG-PE, CFG-PH)  (CIK 0000759944)"
+ },
+ "CG": {
+  "cik": "0001527166",
+  "matched_name": "Carlyle Group Inc.  (CG, CGABL)  (CIK 0001527166)"
+ },
+ "CHA": {
+  "unresolved": true,
+  "longname": "Chagee Holdings Limited"
+ },
+ "CHD": {
+  "cik": "0000313927",
+  "matched_name": "CHURCH & DWIGHT CO INC /DE/  (CHD)  (CIK 0000313927)"
+ },
+ "CHRW": {
+  "cik": "0001043277",
+  "matched_name": "C H ROBINSON WORLDWIDE INC  (CHRW)  (CIK 0001043277)"
+ },
+ "CHTR": {
+  "cik": "0001091667",
+  "matched_name": "CHARTER COMMUNICATIONS INC /MO/  (CHTR)  (CIK 0001091667)"
+ },
+ "CI": {
+  "cik": "0001739940",
+  "matched_name": "Cigna Group  (CI)  (CIK 0001739940)"
+ },
+ "CIEN": {
+  "cik": "0000936395",
+  "matched_name": "CIENA CORP  (CIEN)  (CIK 0000936395)"
+ },
+ "CL": {
+  "cik": "0000021665",
+  "matched_name": "COLGATE PALMOLIVE CO  (CL)  (CIK 0000021665)"
+ },
+ "CLF": {
+  "cik": "0000764065",
+  "matched_name": "CLEVELAND-CLIFFS INC.  (CLF)  (CIK 0000764065)"
+ },
+ "CLX": {
+  "cik": "0000021076",
+  "matched_name": "CLOROX CO /DE/  (CLX)  (CIK 0000021076)"
+ },
+ "CMCSA": {
+  "cik": "0001166691",
+  "matched_name": "COMCAST CORP  (CCZ, CMCSA)  (CIK 0001166691)"
+ },
+ "CME": {
+  "cik": "0001156375",
+  "matched_name": "CME GROUP INC.  (CME)  (CIK 0001156375)"
+ },
+ "CMG": {
+  "cik": "0001058090",
+  "matched_name": "CHIPOTLE MEXICAN GRILL INC  (CMG)  (CIK 0001058090)"
+ },
+ "CMI": {
+  "cik": "0000026172",
+  "matched_name": "CUMMINS INC  (CMI)  (CIK 0000026172)"
+ },
+ "CMS": {
+  "cik": "0000811156",
+  "matched_name": "CMS ENERGY CORP  (CMS, CMSA, CMSC, CMSD, CMS-PC)  (CIK 0000811156)"
+ },
+ "CNC": {
+  "cik": "0001071739",
+  "matched_name": "CENTENE CORP  (CNC)  (CIK 0001071739)"
+ },
+ "CNP": {
+  "cik": "0001130310",
+  "matched_name": "CENTERPOINT ENERGY INC  (CNP)  (CIK 0001130310)"
+ },
+ "CNX": {
+  "cik": "0001070412",
+  "matched_name": "CNX Resources Corp  (CNX)  (CIK 0001070412)"
+ },
+ "CNXT": {
+  "unresolved": true,
+  "longname": "VanEck ChiNext Innovators ETF"
+ },
+ "COF": {
+  "cik": "0000927628",
+  "matched_name": "CAPITAL ONE FINANCIAL CORP  (COF, COF-PI, COF-PJ, COF-PK, COF-PL, COF-PN)  (CIK 0000927628)"
+ },
+ "COHR": {
+  "cik": "0000820318",
+  "matched_name": "COHERENT CORP.  (COHR)  (CIK 0000820318)"
+ },
+ "COIN": {
+  "cik": "0001679788",
+  "matched_name": "Coinbase Global, Inc.  (COIN)  (CIK 0001679788)"
+ },
+ "COMS": {
+  "cik": "0001178727",
+  "matched_name": "COMSovereign Holding Corp.  (COMS)  (CIK 0001178727)"
+ },
+ "COO": {
+  "cik": "0000711404",
+  "matched_name": "COOPER COMPANIES INC  (COO)  (CIK 0000711404)"
+ },
+ "COP": {
+  "cik": "0001163165",
+  "matched_name": "CONOCOPHILLIPS  (COP)  (CIK 0001163165)"
+ },
+ "COR": {
+  "cik": "0001140859",
+  "matched_name": "Cencora, Inc.  (COR)  (CIK 0001140859)"
+ },
+ "COST": {
+  "cik": "0000909832",
+  "matched_name": "COSTCO WHOLESALE CORP /NEW  (COST)  (CIK 0000909832)"
+ },
+ "COTY": {
+  "cik": "0001024305",
+  "matched_name": "COTY INC.  (COTY)  (CIK 0001024305)"
+ },
+ "CPAY": {
+  "cik": "0001175454",
+  "matched_name": "CORPAY, INC.  (CPAY)  (CIK 0001175454)"
+ },
+ "CPB": {
+  "cik": "0000016732",
+  "matched_name": "CAMPBELL'S Co  (CPB)  (CIK 0000016732)"
+ },
+ "CPRI": {
+  "cik": "0001530721",
+  "matched_name": "Capri Holdings Ltd  (CPRI)  (CIK 0001530721)"
+ },
+ "CPRT": {
+  "cik": "0000900075",
+  "matched_name": "COPART INC  (CPRT)  (CIK 0000900075)"
+ },
+ "CPT": {
+  "cik": "0000906345",
+  "matched_name": "CAMDEN PROPERTY TRUST  (CPT)  (CIK 0000906345)"
+ },
+ "CR": {
+  "cik": "0001944013",
+  "matched_name": "Crane Co  (CR)  (CIK 0001944013)"
+ },
+ "CRH": {
+  "cik": "0000849395",
+  "matched_name": "CRH PUBLIC LTD CO  (CRH)  (CIK 0000849395)"
+ },
+ "CRL": {
+  "cik": "0001100682",
+  "matched_name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.  (CRL)  (CIK 0001100682)"
+ },
+ "CRM": {
+  "cik": "0001108524",
+  "matched_name": "Salesforce, Inc.  (CRM)  (CIK 0001108524)"
+ },
+ "CRWD": {
+  "cik": "0001535527",
+  "matched_name": "CrowdStrike Holdings, Inc.  (CRWD)  (CIK 0001535527)"
+ },
+ "CSCO": {
+  "cik": "0000858877",
+  "matched_name": "CISCO SYSTEMS INC  (CSCO)  (CIK 0000858877)"
+ },
+ "CSGP": {
+  "cik": "0001057352",
+  "matched_name": "COSTAR GROUP, INC.  (CSGP)  (CIK 0001057352)"
+ },
+ "CSRA": {
+  "unresolved": true,
+  "longname": "Cohen & Steers Real Assets Active ETF"
+ },
+ "CSX": {
+  "cik": "0000277948",
+  "matched_name": "CSX CORP  (CSX)  (CIK 0000277948)"
+ },
+ "CTAS": {
+  "cik": "0000723254",
+  "matched_name": "CINTAS CORP  (CTAS)  (CIK 0000723254)"
+ },
+ "CTSH": {
+  "cik": "0001058290",
+  "matched_name": "COGNIZANT TECHNOLOGY SOLUTIONS CORP  (CTSH)  (CIK 0001058290)"
+ },
+ "CTVA": {
+  "cik": "0001755672",
+  "matched_name": "Corteva, Inc.  (CTVA)  (CIK 0001755672)"
+ },
+ "CVNA": {
+  "cik": "0001690820",
+  "matched_name": "CARVANA CO.  (CVNA)  (CIK 0001690820)"
+ },
+ "CVS": {
+  "cik": "0000064803",
+  "matched_name": "CVS HEALTH Corp  (CVS)  (CIK 0000064803)"
+ },
+ "CVX": {
+  "cik": "0000093410",
+  "matched_name": "CHEVRON CORP  (CVX)  (CIK 0000093410)"
+ },
+ "CZR": {
+  "cik": "0001590895",
+  "matched_name": "Caesars Entertainment, Inc.  (CZR)  (CIK 0001590895)"
+ },
+ "D": {
+  "cik": "0000715957",
+  "matched_name": "DOMINION ENERGY, INC  (D)  (CIK 0000715957)"
+ },
+ "DAL": {
+  "cik": "0000027904",
+  "matched_name": "DELTA AIR LINES INC /DE/  (DAL)  (CIK 0000027904)"
+ },
+ "DASH": {
+  "cik": "0001792789",
+  "matched_name": "DoorDash, Inc.  (DASH)  (CIK 0001792789)"
+ },
+ "DD": {
+  "cik": "0001666700",
+  "matched_name": "DuPont de Nemours, Inc.  (DD)  (CIK 0001666700)"
+ },
+ "DDOG": {
+  "cik": "0001561550",
+  "matched_name": "Datadog, Inc.  (DDOG)  (CIK 0001561550)"
+ },
+ "DDS": {
+  "cik": "0000028917",
+  "matched_name": "DILLARDS INC  (DDS, DDT)  (CIK 0000028917)"
+ },
+ "DE": {
+  "unresolved": true,
+  "longname": "Deere & Company"
+ },
+ "DECK": {
+  "cik": "0000910521",
+  "matched_name": "DECKERS OUTDOOR CORP  (DECK)  (CIK 0000910521)"
+ },
+ "DELL": {
+  "cik": "0001571996",
+  "matched_name": "Dell Technologies Inc.  (DELL)  (CIK 0001571996)"
+ },
+ "DG": {
+  "cik": "0000029534",
+  "matched_name": "DOLLAR GENERAL CORP  (DG)  (CIK 0000029534)"
+ },
+ "DGX": {
+  "cik": "0001022079",
+  "matched_name": "QUEST DIAGNOSTICS INC  (DGX)  (CIK 0001022079)"
+ },
+ "DHI": {
+  "cik": "0000882184",
+  "matched_name": "HORTON D R INC /DE/  (DHI)  (CIK 0000882184)"
+ },
+ "DHR": {
+  "cik": "0000313616",
+  "matched_name": "DANAHER CORP /DE/  (DHR)  (CIK 0000313616)"
+ },
+ "DIS": {
+  "cik": "0001744489",
+  "matched_name": "Walt Disney Co  (DIS)  (CIK 0001744489)"
+ },
+ "DLR": {
+  "cik": "0001297996",
+  "matched_name": "Digital Realty Trust, Inc.  (DLR, DLR-PJ, DLR-PK, DLR-PL)  (CIK 0001297996)"
+ },
+ "DLTR": {
+  "cik": "0000935703",
+  "matched_name": "DOLLAR TREE INC  (DLTR)  (CIK 0000935703)"
+ },
+ "DLX": {
+  "cik": "0000027996",
+  "matched_name": "DELUXE CORP  (DLX)  (CIK 0000027996)"
+ },
+ "DOC": {
+  "cik": "0000765880",
+  "matched_name": "HEALTHPEAK PROPERTIES, INC.  (DOC)  (CIK 0000765880)"
+ },
+ "DOV": {
+  "cik": "0000029905",
+  "matched_name": "DOVER Corp  (DOV)  (CIK 0000029905)"
+ },
+ "DOW": {
+  "cik": "0001751788",
+  "matched_name": "DOW INC.  (DOW)  (CIK 0001751788)"
+ },
+ "DPZ": {
+  "cik": "0001286681",
+  "matched_name": "DOMINOS PIZZA INC  (DPZ)  (CIK 0001286681)"
+ },
+ "DRI": {
+  "cik": "0000940944",
+  "matched_name": "DARDEN RESTAURANTS INC  (DRI)  (CIK 0000940944)"
+ },
+ "DTE": {
+  "cik": "0000936340",
+  "matched_name": "DTE ENERGY CO  (DTB, DTE, DTG, DTW)  (CIK 0000936340)"
+ },
+ "DUK": {
+  "cik": "0001326160",
+  "matched_name": "Duke Energy CORP  (DUK, DUKB, DUKH, DUK-PA)  (CIK 0001326160)"
+ },
+ "DVA": {
+  "cik": "0000927066",
+  "matched_name": "DAVITA INC  (DVA)  (CIK 0000927066)"
+ },
+ "DVN": {
+  "cik": "0001090012",
+  "matched_name": "DEVON ENERGY CORP/DE  (DVN)  (CIK 0001090012)"
+ },
+ "DXC": {
+  "cik": "0001688568",
+  "matched_name": "DXC Technology Co  (DXC)  (CIK 0001688568)"
+ },
+ "DXCM": {
+  "cik": "0001093557",
+  "matched_name": "DEXCOM INC  (DXCM)  (CIK 0001093557)"
+ },
+ "DYN": {
+  "cik": "0001818794",
+  "matched_name": "Dyne Therapeutics, Inc.  (DYN)  (CIK 0001818794)"
+ },
+ "EBAY": {
+  "cik": "0001065088",
+  "matched_name": "EBAY INC  (EBAY)  (CIK 0001065088)"
+ },
+ "EC": {
+  "unresolved": true,
+  "longname": "Ecopetrol S.A."
+ },
+ "ECHO": {
+  "unresolved": true,
+  "longname": "EchoStar Corporation"
+ },
+ "ECL": {
+  "cik": "0000031462",
+  "matched_name": "ECOLAB INC  (ECL)  (CIK 0000031462)"
+ },
+ "ED": {
+  "cik": "0001047862",
+  "matched_name": "CONSOLIDATED EDISON INC  (ED)  (CIK 0001047862)"
+ },
+ "EFU": {
+  "unresolved": true,
+  "longname": "ProShares UltraShort MSCI EAFE"
+ },
+ "EFX": {
+  "cik": "0000033185",
+  "matched_name": "EQUIFAX INC  (EFX)  (CIK 0000033185)"
+ },
+ "EG": {
+  "cik": "0001095073",
+  "matched_name": "EVEREST GROUP, LTD.  (EG)  (CIK 0001095073)"
+ },
+ "EHC": {
+  "cik": "0000785161",
+  "matched_name": "Encompass Health Corp  (EHC)  (CIK 0000785161)"
+ },
+ "EIX": {
+  "cik": "0000827052",
+  "matched_name": "EDISON INTERNATIONAL  (EIX)  (CIK 0000827052)"
+ },
+ "EL": {
+  "unresolved": true,
+  "longname": "The Est\u00e9e Lauder Companies Inc."
+ },
+ "ELV": {
+  "cik": "0001156039",
+  "matched_name": "Elevance Health, Inc.  (ELV)  (CIK 0001156039)"
+ },
+ "EMC": {
+  "unresolved": true,
+  "longname": "Global X Emerging Markets Great Consumer ETF"
+ },
+ "EME": {
+  "cik": "0000105634",
+  "matched_name": "EMCOR GROUP INC  (EME)  (CIK 0000105634)"
+ },
+ "EMN": {
+  "cik": "0000915389",
+  "matched_name": "EASTMAN CHEMICAL CO  (EMN)  (CIK 0000915389)"
+ },
+ "EMR": {
+  "cik": "0000032604",
+  "matched_name": "EMERSON ELECTRIC CO  (EMR)  (CIK 0000032604)"
+ },
+ "ENPH": {
+  "cik": "0001463101",
+  "matched_name": "Enphase Energy, Inc.  (ENPH)  (CIK 0001463101)"
+ },
+ "EOG": {
+  "cik": "0000821189",
+  "matched_name": "EOG RESOURCES INC  (EOG)  (CIK 0000821189)"
+ },
+ "EPAM": {
+  "cik": "0001352010",
+  "matched_name": "EPAM Systems, Inc.  (EPAM)  (CIK 0001352010)"
+ },
+ "EQ": {
+  "cik": "0001746466",
+  "matched_name": "Equillium, Inc.  (EQ)  (CIK 0001746466)"
+ },
+ "EQIX": {
+  "cik": "0001101239",
+  "matched_name": "EQUINIX INC  (EQIX)  (CIK 0001101239)"
+ },
+ "EQT": {
+  "cik": "0000033213",
+  "matched_name": "EQT Corp  (EQT)  (CIK 0000033213)"
+ },
+ "ERIE": {
+  "cik": "0000922621",
+  "matched_name": "ERIE INDEMNITY CO  (ERIE)  (CIK 0000922621)"
+ },
+ "ES": {
+  "cik": "0000072741",
+  "matched_name": "EVERSOURCE ENERGY  (ES)  (CIK 0000072741)"
+ },
+ "ESS": {
+  "cik": "0000920522",
+  "matched_name": "ESSEX PROPERTY TRUST, INC.  (ESS)  (CIK 0000920522)"
+ },
+ "ETN": {
+  "cik": "0001551182",
+  "matched_name": "Eaton Corp plc  (ETN)  (CIK 0001551182)"
+ },
+ "ETR": {
+  "cik": "0000065984",
+  "matched_name": "ENTERGY CORP /DE/  (ETR)  (CIK 0000065984)"
+ },
+ "ETS": {
+  "cik": "0002053641",
+  "matched_name": "Elite Express Holding Inc.  (ETS)  (CIK 0002053641)"
+ },
+ "ETSY": {
+  "cik": "0001370637",
+  "matched_name": "ETSY INC  (ETSY)  (CIK 0001370637)"
+ },
+ "EVRG": {
+  "cik": "0001711269",
+  "matched_name": "Evergy, Inc.  (EVRG)  (CIK 0001711269)"
+ },
+ "EW": {
+  "cik": "0001099800",
+  "matched_name": "Edwards Lifesciences Corp  (EW)  (CIK 0001099800)"
+ },
+ "EXC": {
+  "cik": "0001109357",
+  "matched_name": "EXELON CORP  (EXC)  (CIK 0001109357)"
+ },
+ "EXE": {
+  "cik": "0000895126",
+  "matched_name": "EXPAND ENERGY Corp  (EXE, EXEEL, EXEEW, EXEEZ)  (CIK 0000895126)"
+ },
+ "EXPD": {
+  "cik": "0000746515",
+  "matched_name": "EXPEDITORS INTERNATIONAL OF WASHINGTON INC  (EXPD)  (CIK 0000746515)"
+ },
+ "EXPE": {
+  "cik": "0001324424",
+  "matched_name": "Expedia Group, Inc.  (EXPE)  (CIK 0001324424)"
+ },
+ "EXR": {
+  "cik": "0001289490",
+  "matched_name": "Extra Space Storage Inc.  (EXR)  (CIK 0001289490)"
+ },
+ "F": {
+  "cik": "0000037996",
+  "matched_name": "FORD MOTOR CO  (F, F-PB, F-PC, F-PD)  (CIK 0000037996)"
+ },
+ "FANG": {
+  "cik": "0001539838",
+  "matched_name": "Diamondback Energy, Inc.  (FANG)  (CIK 0001539838)"
+ },
+ "FAST": {
+  "cik": "0000815556",
+  "matched_name": "FASTENAL CO  (FAST)  (CIK 0000815556)"
+ },
+ "FB": {
+  "unresolved": true,
+  "longname": "ProShares S&P 500 Dynamic Daily Buffer ETF"
+ },
+ "FCPT": {
+  "cik": "0001650132",
+  "matched_name": "Four Corners Property Trust, Inc.  (FCPT)  (CIK 0001650132)"
+ },
+ "FCX": {
+  "cik": "0000831259",
+  "matched_name": "FREEPORT-MCMORAN INC  (FCX)  (CIK 0000831259)"
+ },
+ "FDS": {
+  "cik": "0001013237",
+  "matched_name": "FACTSET RESEARCH SYSTEMS INC  (FDS)  (CIK 0001013237)"
+ },
+ "FDX": {
+  "cik": "0001048911",
+  "matched_name": "FEDEX CORP  (FDX)  (CIK 0001048911)"
+ },
+ "FDXF": {
+  "cik": "0002082247",
+  "matched_name": "FedEx Freight Holding Company, Inc.  (FDXF)  (CIK 0002082247)"
+ },
+ "FE": {
+  "cik": "0001031296",
+  "matched_name": "FIRSTENERGY CORP  (FE)  (CIK 0001031296)"
+ },
+ "FERG": {
+  "cik": "0002011641",
+  "matched_name": "Ferguson Enterprises Inc. /DE/  (FERG)  (CIK 0002011641)"
+ },
+ "FFIV": {
+  "cik": "0001048695",
+  "matched_name": "F5, INC.  (FFIV)  (CIK 0001048695)"
+ },
+ "FHN": {
+  "cik": "0000036966",
+  "matched_name": "FIRST HORIZON CORP  (FHN, FHN-PB, FHN-PC, FHN-PE, FHN-PF)  (CIK 0000036966)"
+ },
+ "FICO": {
+  "cik": "0000814547",
+  "matched_name": "FAIR ISAAC CORP  (FICO)  (CIK 0000814547)"
+ },
+ "FIS": {
+  "cik": "0001136893",
+  "matched_name": "Fidelity National Information Services, Inc.  (FIS)  (CIK 0001136893)"
+ },
+ "FISV": {
+  "unresolved": true,
+  "longname": "Fiserv, Inc."
+ },
+ "FITB": {
+  "cik": "0000035527",
+  "matched_name": "FIFTH THIRD BANCORP  (FITB, FITBI, FITBO, FITBP)  (CIK 0000035527)"
+ },
+ "FIX": {
+  "cik": "0001035983",
+  "matched_name": "COMFORT SYSTEMS USA INC  (FIX)  (CIK 0001035983)"
+ },
+ "FLEX": {
+  "cik": "0000866374",
+  "matched_name": "FLEX LTD.  (FLEX)  (CIK 0000866374)"
+ },
+ "FLR": {
+  "cik": "0001124198",
+  "matched_name": "FLUOR CORP  (FLR)  (CIK 0001124198)"
+ },
+ "FLS": {
+  "cik": "0000030625",
+  "matched_name": "FLOWSERVE CORP  (FLS)  (CIK 0000030625)"
+ },
+ "FMC": {
+  "cik": "0000037785",
+  "matched_name": "FMC CORP  (FMC)  (CIK 0000037785)"
+ },
+ "FMCC": {
+  "cik": "0001026214",
+  "matched_name": "FEDERAL HOME LOAN MORTGAGE CORP  (FMCC, FMCCG, FMCCI, FMCCJ, FMCCL, FMCCN, FMCCO, FMCCS, FMCCT, FMCKI, FMCKL, FMCKN, FREJN, FREJO)  (CIK 0001026214)"
+ },
+ "FMY": {
+  "unresolved": true,
+  "longname": "First Trust Mortgage Income Fund"
+ },
+ "FNMA": {
+  "cik": "0000310522",
+  "matched_name": "FEDERAL NATIONAL MORTGAGE ASSOCIATION FANNIE MAE  (FNMA, FNMAG, FNMAH, FNMAI, FNMAJ, FNMAK, FNMAL, FNMAM, FNMAN, FNMAO, FNMAS, FNMAT, FNMFM, FNMFN)  (CIK 0000310522)"
+ },
+ "FOX": {
+  "cik": "0001754301",
+  "matched_name": "Fox Corp  (FOX, FOXA)  (CIK 0001754301)"
+ },
+ "FOXA": {
+  "cik": "0001754301",
+  "matched_name": "Fox Corp  (FOX, FOXA)  (CIK 0001754301)"
+ },
+ "FRO": {
+  "unresolved": true,
+  "longname": "Frontline plc"
+ },
+ "FRT": {
+  "cik": "0000034903",
+  "matched_name": "FEDERAL REALTY INVESTMENT TRUST  (FRT, FRT-PC)  (CIK 0000034903)"
+ },
+ "FSLR": {
+  "cik": "0001274494",
+  "matched_name": "FIRST SOLAR, INC.  (FSLR)  (CIK 0001274494)"
+ },
+ "FTNT": {
+  "cik": "0001262039",
+  "matched_name": "FORTINET INC  (FTNT)  (CIK 0001262039)"
+ },
+ "FTV": {
+  "cik": "0001659166",
+  "matched_name": "Fortive Corp  (FTV)  (CIK 0001659166)"
+ },
+ "G": {
+  "cik": "0001398659",
+  "matched_name": "Genpact LTD  (G)  (CIK 0001398659)"
+ },
+ "GD": {
+  "cik": "0000040533",
+  "matched_name": "GENERAL DYNAMICS CORP  (GD)  (CIK 0000040533)"
+ },
+ "GDDY": {
+  "cik": "0001609711",
+  "matched_name": "GoDaddy Inc.  (GDDY)  (CIK 0001609711)"
+ },
+ "GE": {
+  "cik": "0000040545",
+  "matched_name": "GENERAL ELECTRIC CO  (GE)  (CIK 0000040545)"
+ },
+ "GEN": {
+  "unresolved": true,
+  "longname": "Gen Digital Inc."
+ },
+ "GENZ": {
+  "unresolved": true,
+  "longname": "VanEck Digital Native Economy ETF"
+ },
+ "GEV": {
+  "cik": "0001996810",
+  "matched_name": "GE Vernova Inc.  (GEV)  (CIK 0001996810)"
+ },
+ "GHC": {
+  "cik": "0000104889",
+  "matched_name": "Graham Holdings Co  (GHC)  (CIK 0000104889)"
+ },
+ "GILD": {
+  "cik": "0000882095",
+  "matched_name": "GILEAD SCIENCES INC  (GILD)  (CIK 0000882095)"
+ },
+ "GIS": {
+  "cik": "0000040704",
+  "matched_name": "GENERAL MILLS INC  (GIS)  (CIK 0000040704)"
+ },
+ "GL": {
+  "cik": "0000320335",
+  "matched_name": "GLOBE LIFE INC.  (GL, GL-PD)  (CIK 0000320335)"
+ },
+ "GLW": {
+  "cik": "0000024741",
+  "matched_name": "CORNING INC /NY  (GLW)  (CIK 0000024741)"
+ },
+ "GM": {
+  "cik": "0001467858",
+  "matched_name": "General Motors Co  (GM)  (CIK 0001467858)"
+ },
+ "GME": {
+  "cik": "0001326380",
+  "matched_name": "GameStop Corp.  (GME)  (CIK 0001326380)"
+ },
+ "GNRC": {
+  "cik": "0001474735",
+  "matched_name": "GENERAC HOLDINGS INC.  (GNRC)  (CIK 0001474735)"
+ },
+ "GNW": {
+  "cik": "0001276520",
+  "matched_name": "GENWORTH FINANCIAL INC  (GNW)  (CIK 0001276520)"
+ },
+ "GOOG": {
+  "cik": "0001652044",
+  "matched_name": "Alphabet Inc.  (GOOG, GOOGL)  (CIK 0001652044)"
+ },
+ "GOOGL": {
+  "cik": "0001652044",
+  "matched_name": "Alphabet Inc.  (GOOG, GOOGL)  (CIK 0001652044)"
+ },
+ "GP": {
+  "unresolved": true,
+  "longname": "GreenPower Motor Company Inc."
+ },
+ "GPC": {
+  "cik": "0000040987",
+  "matched_name": "GENUINE PARTS CO  (GPC)  (CIK 0000040987)"
+ },
+ "GPN": {
+  "cik": "0001123360",
+  "matched_name": "GLOBAL PAYMENTS INC  (GPN)  (CIK 0001123360)"
+ },
+ "GRMN": {
+  "cik": "0001121788",
+  "matched_name": "GARMIN LTD  (GRMN)  (CIK 0001121788)"
+ },
+ "GS": {
+  "cik": "0000886982",
+  "matched_name": "GOLDMAN SACHS GROUP INC  (GS, GSCE, GS-PA, GS-PC, GS-PD)  (CIK 0000886982)"
+ },
+ "GT": {
+  "cik": "0000042582",
+  "matched_name": "GOODYEAR TIRE & RUBBER CO /OH/  (GT)  (CIK 0000042582)"
+ },
+ "GTE": {
+  "cik": "0001273441",
+  "matched_name": "GRAN TIERRA ENERGY, INC.  (GTE)  (CIK 0001273441)"
+ },
+ "GWW": {
+  "cik": "0000277135",
+  "matched_name": "W.W. GRAINGER, INC.  (GWW)  (CIK 0000277135)"
+ },
+ "H": {
+  "cik": "0001468174",
+  "matched_name": "Hyatt Hotels Corp  (H)  (CIK 0001468174)"
+ },
+ "HAL": {
+  "cik": "0000045012",
+  "matched_name": "HALLIBURTON CO  (HAL)  (CIK 0000045012)"
+ },
+ "HAS": {
+  "cik": "0000046080",
+  "matched_name": "HASBRO INC  (HAS)  (CIK 0000046080)"
+ },
+ "HBAN": {
+  "cik": "0000049196",
+  "matched_name": "HUNTINGTON BANCSHARES INC/MD  (HBAN, HBANL, HBANM, HBANP)  (CIK 0000049196)"
+ },
+ "HCA": {
+  "cik": "0000860730",
+  "matched_name": "HCA Healthcare, Inc.  (HCA)  (CIK 0000860730)"
+ },
+ "HD": {
+  "cik": "0000354950",
+  "matched_name": "HOME DEPOT INC  (HD)  (CIK 0000354950)"
+ },
+ "HIG": {
+  "cik": "0000874766",
+  "matched_name": "HARTFORD INSURANCE GROUP, INC.  (HIG, HIG-PG)  (CIK 0000874766)"
+ },
+ "HII": {
+  "cik": "0001501585",
+  "matched_name": "HUNTINGTON INGALLS INDUSTRIES, INC.  (HII)  (CIK 0001501585)"
+ },
+ "HLT": {
+  "cik": "0001585689",
+  "matched_name": "Hilton Worldwide Holdings Inc.  (HLT)  (CIK 0001585689)"
+ },
+ "HOG": {
+  "cik": "0000793952",
+  "matched_name": "HARLEY-DAVIDSON, INC.  (HOG)  (CIK 0000793952)"
+ },
+ "HON": {
+  "cik": "0000773840",
+  "matched_name": "HONEYWELL INTERNATIONAL INC  (HON)  (CIK 0000773840)"
+ },
+ "HONA": {
+  "unresolved": true,
+  "longname": "Honeywell Aerospace Inc."
+ },
+ "HOOD": {
+  "cik": "0001783879",
+  "matched_name": "Robinhood Markets, Inc.  (HOOD)  (CIK 0001783879)"
+ },
+ "HP": {
+  "cik": "0000046765",
+  "matched_name": "HELMERICH & PAYNE INC  (HP)  (CIK 0000046765)"
+ },
+ "HPE": {
+  "cik": "0001645590",
+  "matched_name": "Hewlett Packard Enterprise Co  (HPE, HPE-PC)  (CIK 0001645590)"
+ },
+ "HPQ": {
+  "cik": "0000047217",
+  "matched_name": "HP INC  (HPQ)  (CIK 0000047217)"
+ },
+ "HRB": {
+  "cik": "0000012659",
+  "matched_name": "H&R BLOCK INC  (HRB)  (CIK 0000012659)"
+ },
+ "HRL": {
+  "cik": "0000048465",
+  "matched_name": "HORMEL FOODS CORP /DE/  (HRL)  (CIK 0000048465)"
+ },
+ "HSIC": {
+  "cik": "0001000228",
+  "matched_name": "HENRY SCHEIN INC  (HSIC)  (CIK 0001000228)"
+ },
+ "HST": {
+  "cik": "0001070750",
+  "matched_name": "HOST HOTELS & RESORTS, INC.  (HST)  (CIK 0001070750)"
+ },
+ "HSY": {
+  "cik": "0000047111",
+  "matched_name": "HERSHEY CO  (HSY)  (CIK 0000047111)"
+ },
+ "HUBB": {
+  "cik": "0000048898",
+  "matched_name": "HUBBELL INC  (HUBB)  (CIK 0000048898)"
+ },
+ "HUM": {
+  "cik": "0000049071",
+  "matched_name": "HUMANA INC  (HUM)  (CIK 0000049071)"
+ },
+ "HWM": {
+  "cik": "0000004281",
+  "matched_name": "Howmet Aerospace Inc.  (HWM, HWM-P)  (CIK 0000004281)"
+ },
+ "IBKR": {
+  "cik": "0001381197",
+  "matched_name": "Interactive Brokers Group, Inc.  (IBKR)  (CIK 0001381197)"
+ },
+ "IBM": {
+  "cik": "0000051143",
+  "matched_name": "INTERNATIONAL BUSINESS MACHINES CORP  (IBM)  (CIK 0000051143)"
+ },
+ "ICE": {
+  "cik": "0001571949",
+  "matched_name": "Intercontinental Exchange, Inc.  (ICE)  (CIK 0001571949)"
+ },
+ "IDXX": {
+  "cik": "0000874716",
+  "matched_name": "IDEXX LABORATORIES INC /DE  (IDXX)  (CIK 0000874716)"
+ },
+ "IEX": {
+  "cik": "0000832101",
+  "matched_name": "IDEX CORP /DE/  (IEX)  (CIK 0000832101)"
+ },
+ "IFF": {
+  "cik": "0000051253",
+  "matched_name": "INTERNATIONAL FLAVORS & FRAGRANCES INC  (IFF)  (CIK 0000051253)"
+ },
+ "ILMN": {
+  "cik": "0001110803",
+  "matched_name": "ILLUMINA INC  (ILMN)  (CIK 0001110803)"
+ },
+ "INCY": {
+  "cik": "0000879169",
+  "matched_name": "INCYTE CORP  (INCY)  (CIK 0000879169)"
+ },
+ "INFO": {
+  "unresolved": true,
+  "longname": "Harbor PanAgora Dynamic Large Cap Core ETF"
+ },
+ "INTC": {
+  "cik": "0000050863",
+  "matched_name": "INTEL CORP  (INTC)  (CIK 0000050863)"
+ },
+ "INTU": {
+  "cik": "0000896878",
+  "matched_name": "INTUIT INC  (INTU)  (CIK 0000896878)"
+ },
+ "INVH": {
+  "cik": "0001687229",
+  "matched_name": "Invitation Homes Inc.  (INVH)  (CIK 0001687229)"
+ },
+ "IP": {
+  "cik": "0000051434",
+  "matched_name": "INTERNATIONAL PAPER CO /NEW/  (IP, INPAP)  (CIK 0000051434)"
+ },
+ "IPGP": {
+  "cik": "0001111928",
+  "matched_name": "IPG PHOTONICS CORP  (IPGP)  (CIK 0001111928)"
+ },
+ "IQV": {
+  "cik": "0001478242",
+  "matched_name": "IQVIA HOLDINGS INC.  (IQV)  (CIK 0001478242)"
+ },
+ "IR": {
+  "cik": "0001699150",
+  "matched_name": "Ingersoll Rand Inc.  (IR)  (CIK 0001699150)"
+ },
+ "IRM": {
+  "cik": "0001020569",
+  "matched_name": "IRON MOUNTAIN INC/PA  (IRM)  (CIK 0001020569)"
+ },
+ "ISRG": {
+  "cik": "0001035267",
+  "matched_name": "INTUITIVE SURGICAL INC  (ISRG)  (CIK 0001035267)"
+ },
+ "IT": {
+  "cik": "0000749251",
+  "matched_name": "GARTNER INC  (IT)  (CIK 0000749251)"
+ },
+ "ITT": {
+  "cik": "0000216228",
+  "matched_name": "ITT Inc.  (ITT)  (CIK 0000216228)"
+ },
+ "ITW": {
+  "cik": "0000049826",
+  "matched_name": "ILLINOIS TOOL WORKS INC  (ITW)  (CIK 0000049826)"
+ },
+ "IVZ": {
+  "cik": "0000914208",
+  "matched_name": "Invesco Ltd.  (IVZ)  (CIK 0000914208)"
+ },
+ "J": {
+  "cik": "0000052988",
+  "matched_name": "JACOBS SOLUTIONS INC.  (J)  (CIK 0000052988)"
+ },
+ "JAVA": {
+  "unresolved": true,
+  "longname": "JPMorgan Active Value ETF"
+ },
+ "JBHT": {
+  "cik": "0000728535",
+  "matched_name": "HUNT J B TRANSPORT SERVICES INC  (JBHT)  (CIK 0000728535)"
+ },
+ "JBL": {
+  "cik": "0000898293",
+  "matched_name": "JABIL INC  (JBL)  (CIK 0000898293)"
+ },
+ "JCI": {
+  "cik": "0000833444",
+  "matched_name": "Johnson Controls International plc  (JCI)  (CIK 0000833444)"
+ },
+ "JEF": {
+  "cik": "0000096223",
+  "matched_name": "Jefferies Financial Group Inc.  (JEF)  (CIK 0000096223)"
+ },
+ "JKHY": {
+  "cik": "0000779152",
+  "matched_name": "HENRY JACK & ASSOCIATES INC  (JKHY)  (CIK 0000779152)"
+ },
+ "JNJ": {
+  "cik": "0000200406",
+  "matched_name": "JOHNSON & JOHNSON  (JNJ)  (CIK 0000200406)"
+ },
+ "JPM": {
+  "cik": "0000019617",
+  "matched_name": "J P MORGAN CHASE & CO  (JPM, AMJB, JPM-PC, JPM-PD, JPM-PJ, JPM-PK, JPM-PL, JPM-PM)  (CIK 0000019617)"
+ },
+ "KBH": {
+  "cik": "0000795266",
+  "matched_name": "KB HOME  (KBH)  (CIK 0000795266)"
+ },
+ "KDP": {
+  "cik": "0001418135",
+  "matched_name": "Keurig Dr Pepper Inc.  (KDP)  (CIK 0001418135)"
+ },
+ "KEY": {
+  "cik": "0000091576",
+  "matched_name": "KEYCORP /NEW/  (KEY, KEY-PI, KEY-PJ, KEY-PK, KEY-PL)  (CIK 0000091576)"
+ },
+ "KEYS": {
+  "cik": "0001601046",
+  "matched_name": "Keysight Technologies, Inc.  (KEYS)  (CIK 0001601046)"
+ },
+ "KHC": {
+  "cik": "0001637459",
+  "matched_name": "Kraft Heinz Co  (KHC)  (CIK 0001637459)"
+ },
+ "KIM": {
+  "cik": "0000879101",
+  "matched_name": "KIMCO REALTY CORP  (KIM, KIM-PL, KIM-PM, KIM-PN)  (CIK 0000879101)"
+ },
+ "KKR": {
+  "cik": "0001404912",
+  "matched_name": "KKR & Co. Inc.  (KKR, KKRS)  (CIK 0001404912)"
+ },
+ "KLAC": {
+  "cik": "0000319201",
+  "matched_name": "KLA CORP  (KLAC)  (CIK 0000319201)"
+ },
+ "KMB": {
+  "cik": "0000055785",
+  "matched_name": "KIMBERLY CLARK CORP  (KMB)  (CIK 0000055785)"
+ },
+ "KMI": {
+  "cik": "0001506307",
+  "matched_name": "KINDER MORGAN, INC.  (KMI, EP-PC)  (CIK 0001506307)"
+ },
+ "KMX": {
+  "cik": "0001170010",
+  "matched_name": "CARMAX INC  (KMX)  (CIK 0001170010)"
+ },
+ "KO": {
+  "cik": "0000021344",
+  "matched_name": "COCA COLA CO  (KO)  (CIK 0000021344)"
+ },
+ "KR": {
+  "cik": "0000056873",
+  "matched_name": "KROGER CO  (KR)  (CIK 0000056873)"
+ },
+ "KSS": {
+  "cik": "0000885639",
+  "matched_name": "KOHLS Corp  (KSS)  (CIK 0000885639)"
+ },
+ "L": {
+  "cik": "0000060086",
+  "matched_name": "LOEWS CORP  (L)  (CIK 0000060086)"
+ },
+ "LB": {
+  "unresolved": true,
+  "longname": "LandBridge Corporation"
+ },
+ "LDOS": {
+  "cik": "0001336920",
+  "matched_name": "Leidos Holdings, Inc.  (LDOS)  (CIK 0001336920)"
+ },
+ "LEN": {
+  "cik": "0000920760",
+  "matched_name": "LENNAR CORP /NEW/  (LEN, LEN-B)  (CIK 0000920760)"
+ },
+ "LH": {
+  "cik": "0000920148",
+  "matched_name": "LABCORP HOLDINGS INC.  (LH)  (CIK 0000920148)"
+ },
+ "LHX": {
+  "cik": "0000202058",
+  "matched_name": "L3HARRIS TECHNOLOGIES, INC. /DE/  (LHX)  (CIK 0000202058)"
+ },
+ "LIFE": {
+  "cik": "0001788451",
+  "matched_name": "Ethos Technologies Inc.  (LIFE)  (CIK 0001788451)"
+ },
+ "LII": {
+  "cik": "0001069202",
+  "matched_name": "LENNOX INTERNATIONAL INC  (LII)  (CIK 0001069202)"
+ },
+ "LIN": {
+  "cik": "0001707925",
+  "matched_name": "LINDE PLC  (LIN)  (CIK 0001707925)"
+ },
+ "LITE": {
+  "cik": "0001633978",
+  "matched_name": "Lumentum Holdings Inc.  (LITE)  (CIK 0001633978)"
+ },
+ "LKQ": {
+  "cik": "0001065696",
+  "matched_name": "LKQ CORP  (LKQ)  (CIK 0001065696)"
+ },
+ "LLY": {
+  "cik": "0000059478",
+  "matched_name": "LILLY ELI & CO  (LLY)  (CIK 0000059478)"
+ },
+ "LMT": {
+  "cik": "0000936468",
+  "matched_name": "LOCKHEED MARTIN CORP  (LMT)  (CIK 0000936468)"
+ },
+ "LNC": {
+  "cik": "0000059558",
+  "matched_name": "LINCOLN NATIONAL CORP  (LNC, LNC-PD)  (CIK 0000059558)"
+ },
+ "LNT": {
+  "cik": "0000352541",
+  "matched_name": "ALLIANT ENERGY CORP  (LNT)  (CIK 0000352541)"
+ },
+ "LOW": {
+  "cik": "0000060667",
+  "matched_name": "LOWES COMPANIES INC  (LOW)  (CIK 0000060667)"
+ },
+ "LPX": {
+  "cik": "0000060519",
+  "matched_name": "LOUISIANA-PACIFIC CORP  (LPX)  (CIK 0000060519)"
+ },
+ "LRCX": {
+  "cik": "0000707549",
+  "matched_name": "LAM RESEARCH CORP  (LRCX)  (CIK 0000707549)"
+ },
+ "LU": {
+  "unresolved": true,
+  "longname": "Lufax Holding Ltd"
+ },
+ "LULU": {
+  "cik": "0001397187",
+  "matched_name": "lululemon athletica inc.  (LULU)  (CIK 0001397187)"
+ },
+ "LUMN": {
+  "cik": "0000018926",
+  "matched_name": "Lumen Technologies, Inc.  (LUMN)  (CIK 0000018926)"
+ },
+ "LUV": {
+  "cik": "0000092380",
+  "matched_name": "SOUTHWEST AIRLINES CO  (LUV)  (CIK 0000092380)"
+ },
+ "LVS": {
+  "cik": "0001300514",
+  "matched_name": "LAS VEGAS SANDS CORP  (LVS)  (CIK 0001300514)"
+ },
+ "LW": {
+  "cik": "0001679273",
+  "matched_name": "Lamb Weston Holdings, Inc.  (LW)  (CIK 0001679273)"
+ },
+ "LYB": {
+  "cik": "0001489393",
+  "matched_name": "LyondellBasell Industries N.V.  (LYB)  (CIK 0001489393)"
+ },
+ "LYV": {
+  "cik": "0001335258",
+  "matched_name": "Live Nation Entertainment, Inc.  (LYV)  (CIK 0001335258)"
+ },
+ "M": {
+  "cik": "0000794367",
+  "matched_name": "Macy's, Inc.  (M)  (CIK 0000794367)"
+ },
+ "MA": {
+  "cik": "0001141391",
+  "matched_name": "MASTERCARD INC  (MA)  (CIK 0001141391)"
+ },
+ "MAA": {
+  "cik": "0000912595",
+  "matched_name": "MID AMERICA APARTMENT COMMUNITIES INC  (MAA, MAA-PI)  (CIK 0000912595)"
+ },
+ "MAC": {
+  "cik": "0000912242",
+  "matched_name": "MACERICH CO  (MAC)  (CIK 0000912242)"
+ },
+ "MAR": {
+  "cik": "0001048286",
+  "matched_name": "MARRIOTT INTERNATIONAL INC /MD/  (MAR)  (CIK 0001048286)"
+ },
+ "MAS": {
+  "cik": "0000062996",
+  "matched_name": "MASCO CORP /DE/  (MAS)  (CIK 0000062996)"
+ },
+ "MAT": {
+  "cik": "0000063276",
+  "matched_name": "MATTEL INC /DE/  (MAT)  (CIK 0000063276)"
+ },
+ "MBI": {
+  "cik": "0000814585",
+  "matched_name": "MBIA INC  (MBI)  (CIK 0000814585)"
+ },
+ "MCD": {
+  "cik": "0000063908",
+  "matched_name": "MCDONALDS CORP  (MCD)  (CIK 0000063908)"
+ },
+ "MCHP": {
+  "cik": "0000827054",
+  "matched_name": "MICROCHIP TECHNOLOGY INC  (MCHP)  (CIK 0000827054)"
+ },
+ "MCK": {
+  "cik": "0000927653",
+  "matched_name": "MCKESSON CORP  (MCK)  (CIK 0000927653)"
+ },
+ "MCO": {
+  "cik": "0001059556",
+  "matched_name": "MOODYS CORP /DE/  (MCO)  (CIK 0001059556)"
+ },
+ "MDLZ": {
+  "cik": "0001103982",
+  "matched_name": "Mondelez International, Inc.  (MDLZ)  (CIK 0001103982)"
+ },
+ "MDT": {
+  "cik": "0001613103",
+  "matched_name": "Medtronic plc  (MDT)  (CIK 0001613103)"
+ },
+ "MEDI": {
+  "unresolved": true,
+  "longname": "Harbor Health Care ETF"
+ },
+ "MET": {
+  "unresolved": true,
+  "longname": "MetLife, Inc."
+ },
+ "META": {
+  "cik": "0001326801",
+  "matched_name": "Meta Platforms, Inc.  (META)  (CIK 0001326801)"
+ },
+ "MGM": {
+  "cik": "0000789570",
+  "matched_name": "MGM Resorts International  (MGM)  (CIK 0000789570)"
+ },
+ "MHK": {
+  "cik": "0000851968",
+  "matched_name": "MOHAWK INDUSTRIES INC  (MHK)  (CIK 0000851968)"
+ },
+ "MI": {
+  "unresolved": true,
+  "longname": "NFT Limited"
+ },
+ "MIR": {
+  "cik": "0001809987",
+  "matched_name": "Mirion Technologies, Inc.  (MIR)  (CIK 0001809987)"
+ },
+ "MKC": {
+  "cik": "0000063754",
+  "matched_name": "MCCORMICK & CO INC  (MKC, MKC-V)  (CIK 0000063754)"
+ },
+ "MKTX": {
+  "cik": "0001278021",
+  "matched_name": "MARKETAXESS HOLDINGS INC  (MKTX)  (CIK 0001278021)"
+ },
+ "MLM": {
+  "cik": "0000916076",
+  "matched_name": "MARTIN MARIETTA MATERIALS INC  (MLM)  (CIK 0000916076)"
+ },
+ "MMI": {
+  "cik": "0001578732",
+  "matched_name": "Marcus & Millichap, Inc.  (MMI)  (CIK 0001578732)"
+ },
+ "MMM": {
+  "cik": "0000066740",
+  "matched_name": "3M CO  (MMM)  (CIK 0000066740)"
+ },
+ "MNST": {
+  "cik": "0000865752",
+  "matched_name": "Monster Beverage Corp  (MNST)  (CIK 0000865752)"
+ },
+ "MO": {
+  "cik": "0000764180",
+  "matched_name": "ALTRIA GROUP, INC.  (MO)  (CIK 0000764180)"
+ },
+ "MOB": {
+  "unresolved": true,
+  "longname": "Mobilicom Limited"
+ },
+ "MOH": {
+  "cik": "0001179929",
+  "matched_name": "MOLINA HEALTHCARE INC  (MOH)  (CIK 0001179929)"
+ },
+ "MOS": {
+  "cik": "0001285785",
+  "matched_name": "MOSAIC CO  (MOS)  (CIK 0001285785)"
+ },
+ "MPC": {
+  "cik": "0001510295",
+  "matched_name": "Marathon Petroleum Corp  (MPC)  (CIK 0001510295)"
+ },
+ "MPWR": {
+  "cik": "0001280452",
+  "matched_name": "MONOLITHIC POWER SYSTEMS INC  (MPWR)  (CIK 0001280452)"
+ },
+ "MRK": {
+  "cik": "0000310158",
+  "matched_name": "Merck & Co., Inc.  (MRK)  (CIK 0000310158)"
+ },
+ "MRNA": {
+  "cik": "0001682852",
+  "matched_name": "Moderna, Inc.  (MRNA)  (CIK 0001682852)"
+ },
+ "MRSH": {
+  "unresolved": true,
+  "longname": "Marsh & McLennan Companies, Inc."
+ },
+ "MRVL": {
+  "cik": "0001835632",
+  "matched_name": "Marvell Technology, Inc.  (MRVL)  (CIK 0001835632)"
+ },
+ "MS": {
+  "cik": "0000895421",
+  "matched_name": "MORGAN STANLEY  (MS, MS-PA, MS-PE, MS-PF, MS-PI, MS-PK, MS-PL, MS-PO, MS-PP, MS-PQ, MSTLW)  (CIK 0000895421)"
+ },
+ "MSCI": {
+  "cik": "0001408198",
+  "matched_name": "MSCI Inc.  (MSCI)  (CIK 0001408198)"
+ },
+ "MSFT": {
+  "cik": "0000789019",
+  "matched_name": "MICROSOFT CORP  (MSFT)  (CIK 0000789019)"
+ },
+ "MSI": {
+  "cik": "0000068505",
+  "matched_name": "Motorola Solutions, Inc.  (MSI)  (CIK 0000068505)"
+ },
+ "MTB": {
+  "cik": "0000036270",
+  "matched_name": "M&T BANK CORP  (MTB, MTB-PH, MTB-PJ)  (CIK 0000036270)"
+ },
+ "MTCH": {
+  "cik": "0000891103",
+  "matched_name": "Match Group, Inc.  (MTCH)  (CIK 0000891103)"
+ },
+ "MTD": {
+  "cik": "0001037646",
+  "matched_name": "METTLER TOLEDO INTERNATIONAL INC/  (MTD)  (CIK 0001037646)"
+ },
+ "MTG": {
+  "cik": "0000876437",
+  "matched_name": "MGIC INVESTMENT CORP  (MTG)  (CIK 0000876437)"
+ },
+ "MTW": {
+  "cik": "0000061986",
+  "matched_name": "MANITOWOC CO INC  (MTW)  (CIK 0000061986)"
+ },
+ "MU": {
+  "cik": "0000723125",
+  "matched_name": "MICRON TECHNOLOGY INC  (MU)  (CIK 0000723125)"
+ },
+ "MUR": {
+  "cik": "0000717423",
+  "matched_name": "MURPHY OIL CORP  (MUR)  (CIK 0000717423)"
+ },
+ "NAVI": {
+  "cik": "0001593538",
+  "matched_name": "NAVIENT CORP  (JSM, NAVI)  (CIK 0001593538)"
+ },
+ "NBR": {
+  "cik": "0001163739",
+  "matched_name": "NABORS INDUSTRIES LTD  (NBR, NBRWF)  (CIK 0001163739)"
+ },
+ "NC": {
+  "cik": "0000789933",
+  "matched_name": "NACCO INDUSTRIES INC  (NC)  (CIK 0000789933)"
+ },
+ "NCLH": {
+  "cik": "0001513761",
+  "matched_name": "Norwegian Cruise Line Holdings Ltd.  (NCLH)  (CIK 0001513761)"
+ },
+ "NDAQ": {
+  "cik": "0001120193",
+  "matched_name": "NASDAQ STOCK MARKET INC  (NDAQ)  (CIK 0001120193)"
+ },
+ "NDSN": {
+  "cik": "0000072331",
+  "matched_name": "NORDSON CORP  (NDSN)  (CIK 0000072331)"
+ },
+ "NE": {
+  "cik": "0001895262",
+  "matched_name": "Noble Corp plc  (NE, NBLWF, NE-WT, NE-WTA)  (CIK 0001895262)"
+ },
+ "NEE": {
+  "cik": "0000753308",
+  "matched_name": "NEXTERA ENERGY INC  (NEE, NEE-PN, NEE-PR, NEE-PS)  (CIK 0000753308)"
+ },
+ "NEM": {
+  "cik": "0001164727",
+  "matched_name": "NEWMONT Corp /DE/  (NEM, NEMCL)  (CIK 0001164727)"
+ },
+ "NFLX": {
+  "cik": "0001065280",
+  "matched_name": "NETFLIX INC  (NFLX)  (CIK 0001065280)"
+ },
+ "NFX": {
+  "unresolved": true,
+  "longname": "Corgi NFLX 2x Daily ETF"
+ },
+ "NKE": {
+  "cik": "0000320187",
+  "matched_name": "NIKE INC  (NKE)  (CIK 0000320187)"
+ },
+ "NKTR": {
+  "cik": "0000906709",
+  "matched_name": "NEKTAR THERAPEUTICS  (NKTR)  (CIK 0000906709)"
+ },
+ "NOC": {
+  "cik": "0001133421",
+  "matched_name": "NORTHROP GRUMMAN CORP /DE/  (NOC)  (CIK 0001133421)"
+ },
+ "NOV": {
+  "cik": "0001021860",
+  "matched_name": "NOV Inc.  (NOV)  (CIK 0001021860)"
+ },
+ "NOW": {
+  "cik": "0001373715",
+  "matched_name": "ServiceNow, Inc.  (NOW)  (CIK 0001373715)"
+ },
+ "NRG": {
+  "cik": "0001013871",
+  "matched_name": "NRG ENERGY, INC.  (NRG)  (CIK 0001013871)"
+ },
+ "NSC": {
+  "cik": "0000702165",
+  "matched_name": "NORFOLK SOUTHERN CORP  (NSC)  (CIK 0000702165)"
+ },
+ "NTAP": {
+  "cik": "0001002047",
+  "matched_name": "NetApp, Inc.  (NTAP)  (CIK 0001002047)"
+ },
+ "NTRS": {
+  "cik": "0000073124",
+  "matched_name": "NORTHERN TRUST CORP  (NTRS, NTRSO)  (CIK 0000073124)"
+ },
+ "NUE": {
+  "cik": "0000073309",
+  "matched_name": "NUCOR CORP  (NUE)  (CIK 0000073309)"
+ },
+ "NVDA": {
+  "cik": "0001045810",
+  "matched_name": "NVIDIA CORP  (NVDA)  (CIK 0001045810)"
+ },
+ "NVR": {
+  "cik": "0000906163",
+  "matched_name": "NVR INC  (NVR)  (CIK 0000906163)"
+ },
+ "NWL": {
+  "cik": "0000814453",
+  "matched_name": "NEWELL BRANDS INC.  (NWL)  (CIK 0000814453)"
+ },
+ "NWS": {
+  "unresolved": true,
+  "longname": "News Corporation"
+ },
+ "NWSA": {
+  "unresolved": true,
+  "longname": "News Corporation"
+ },
+ "NXPI": {
+  "cik": "0001413447",
+  "matched_name": "NXP Semiconductors N.V.  (NXPI)  (CIK 0001413447)"
+ },
+ "NYT": {
+  "cik": "0000071691",
+  "matched_name": "NEW YORK TIMES CO  (NYT)  (CIK 0000071691)"
+ },
+ "O": {
+  "cik": "0000726728",
+  "matched_name": "REALTY INCOME CORP  (O, O-P)  (CIK 0000726728)"
+ },
+ "ODFL": {
+  "cik": "0000878927",
+  "matched_name": "OLD DOMINION FREIGHT LINE INC/VA  (ODFL)  (CIK 0000878927)"
+ },
+ "OGN": {
+  "cik": "0001821825",
+  "matched_name": "Organon & Co.  (OGN)  (CIK 0001821825)"
+ },
+ "OI": {
+  "cik": "0000812074",
+  "matched_name": "O-I Glass, Inc. /DE/  (OI)  (CIK 0000812074)"
+ },
+ "OKE": {
+  "cik": "0001039684",
+  "matched_name": "ONEOK INC /NEW/  (OKE)  (CIK 0001039684)"
+ },
+ "OMC": {
+  "cik": "0000029989",
+  "matched_name": "OMNICOM GROUP INC.  (OMC)  (CIK 0000029989)"
+ },
+ "ON": {
+  "cik": "0001097864",
+  "matched_name": "ON SEMICONDUCTOR CORP  (ON)  (CIK 0001097864)"
+ },
+ "ORCL": {
+  "cik": "0001341439",
+  "matched_name": "ORACLE CORP  (ORCL)  (CIK 0001341439)"
+ },
+ "ORLY": {
+  "cik": "0000898173",
+  "matched_name": "O REILLY AUTOMOTIVE INC  (ORLY)  (CIK 0000898173)"
+ },
+ "OTIS": {
+  "cik": "0001781335",
+  "matched_name": "Otis Worldwide Corp  (OTIS)  (CIK 0001781335)"
+ },
+ "OXY": {
+  "cik": "0000797468",
+  "matched_name": "OCCIDENTAL PETROLEUM CORP /DE/  (OXY, OXY-WT)  (CIK 0000797468)"
+ },
+ "PANW": {
+  "cik": "0001327567",
+  "matched_name": "Palo Alto Networks Inc  (PANW)  (CIK 0001327567)"
+ },
+ "PAYC": {
+  "cik": "0001590955",
+  "matched_name": "Paycom Software, Inc.  (PAYC)  (CIK 0001590955)"
+ },
+ "PAYX": {
+  "cik": "0000723531",
+  "matched_name": "PAYCHEX INC  (PAYX)  (CIK 0000723531)"
+ },
+ "PBI": {
+  "cik": "0000078814",
+  "matched_name": "PITNEY BOWES INC /DE/  (PBI, PBI-PB)  (CIK 0000078814)"
+ },
+ "PCAR": {
+  "cik": "0000075362",
+  "matched_name": "PACCAR INC  (PCAR)  (CIK 0000075362)"
+ },
+ "PCG": {
+  "cik": "0001004980",
+  "matched_name": "PG&E Corp  (PCG, PCG-PA, PCG-PB, PCG-PC, PCG-PD, PCG-PE, PCG-PG, PCG-PH, PCG-PI)  (CIK 0001004980)"
+ },
+ "PCL": {
+  "unresolved": true,
+  "longname": "PGIM Corporate Bond 10+ Year ETF"
+ },
+ "PCS": {
+  "unresolved": true,
+  "longname": "PGIM Corporate Bond 0-5 Year ETF"
+ },
+ "PD": {
+  "cik": "0001568100",
+  "matched_name": "PagerDuty, Inc.  (PD)  (CIK 0001568100)"
+ },
+ "PEG": {
+  "cik": "0000788784",
+  "matched_name": "PUBLIC SERVICE ENTERPRISE GROUP INC  (PEG)  (CIK 0000788784)"
+ },
+ "PENN": {
+  "cik": "0000921738",
+  "matched_name": "PENN Entertainment, Inc.  (PENN)  (CIK 0000921738)"
+ },
+ "PEP": {
+  "cik": "0000077476",
+  "matched_name": "PEPSICO INC  (PEP)  (CIK 0000077476)"
+ },
+ "PFE": {
+  "cik": "0000078003",
+  "matched_name": "PFIZER INC  (PFE)  (CIK 0000078003)"
+ },
+ "PFG": {
+  "cik": "0001126328",
+  "matched_name": "PRINCIPAL FINANCIAL GROUP INC  (PFG)  (CIK 0001126328)"
+ },
+ "PG": {
+  "cik": "0000080424",
+  "matched_name": "PROCTER & GAMBLE CO  (PG)  (CIK 0000080424)"
+ },
+ "PGR": {
+  "cik": "0000080661",
+  "matched_name": "PROGRESSIVE CORP/OH/  (PGR)  (CIK 0000080661)"
+ },
+ "PH": {
+  "cik": "0000076334",
+  "matched_name": "PARKER HANNIFIN CORP  (PH)  (CIK 0000076334)"
+ },
+ "PHM": {
+  "cik": "0000822416",
+  "matched_name": "PULTEGROUP INC/MI/  (PHM)  (CIK 0000822416)"
+ },
+ "PKG": {
+  "cik": "0000075677",
+  "matched_name": "PACKAGING CORP OF AMERICA  (PKG)  (CIK 0000075677)"
+ },
+ "PLD": {
+  "cik": "0001045609",
+  "matched_name": "Prologis, Inc.  (PLD, PLDGP)  (CIK 0001045609)"
+ },
+ "PLTR": {
+  "cik": "0001321655",
+  "matched_name": "Palantir Technologies Inc.  (PLTR)  (CIK 0001321655)"
+ },
+ "PM": {
+  "cik": "0001413329",
+  "matched_name": "Philip Morris International Inc.  (PM)  (CIK 0001413329)"
+ },
+ "PNC": {
+  "cik": "0000713676",
+  "matched_name": "PNC FINANCIAL SERVICES GROUP, INC.  (PNC)  (CIK 0000713676)"
+ },
+ "PNR": {
+  "cik": "0000077360",
+  "matched_name": "PENTAIR plc  (PNR)  (CIK 0000077360)"
+ },
+ "PNW": {
+  "cik": "0000764622",
+  "matched_name": "PINNACLE WEST CAPITAL CORP  (PNW)  (CIK 0000764622)"
+ },
+ "PODD": {
+  "cik": "0001145197",
+  "matched_name": "INSULET CORP  (PODD)  (CIK 0001145197)"
+ },
+ "POM": {
+  "unresolved": true,
+  "longname": "Pomdoctor Limited"
+ },
+ "POOL": {
+  "cik": "0000945841",
+  "matched_name": "POOL CORP  (POOL)  (CIK 0000945841)"
+ },
+ "PPG": {
+  "cik": "0000079879",
+  "matched_name": "PPG INDUSTRIES INC  (PPG)  (CIK 0000079879)"
+ },
+ "PPL": {
+  "cik": "0000922224",
+  "matched_name": "PPL Corp  (PPL)  (CIK 0000922224)"
+ },
+ "PRGO": {
+  "cik": "0001585364",
+  "matched_name": "PERRIGO Co plc  (PRGO)  (CIK 0001585364)"
+ },
+ "PRU": {
+  "cik": "0001137774",
+  "matched_name": "PRUDENTIAL FINANCIAL INC  (PFH, PRH, PRS, PRU)  (CIK 0001137774)"
+ },
+ "PSA": {
+  "cik": "0001393311",
+  "matched_name": "Public Storage  (PSA, PSA-PF, PSA-PG, PSA-PH, PSA-PI, PSA-PJ, PSA-PK, PSA-PL, PSA-PM, PSA-PN, PSA-PO, PSA-PP, PSA-PQ)  (CIK 0001393311)"
+ },
+ "PSKY": {
+  "unresolved": true,
+  "longname": "Paramount Skydance Corp"
+ },
+ "PSX": {
+  "cik": "0001534701",
+  "matched_name": "Phillips 66  (PSX)  (CIK 0001534701)"
+ },
+ "PTC": {
+  "cik": "0000857005",
+  "matched_name": "PTC INC.  (PTC)  (CIK 0000857005)"
+ },
+ "PVH": {
+  "cik": "0000078239",
+  "matched_name": "PVH CORP. /DE/  (PVH)  (CIK 0000078239)"
+ },
+ "PWER": {
+  "unresolved": true,
+  "longname": "Nomura Energy Transition ETF"
+ },
+ "PWR": {
+  "cik": "0001050915",
+  "matched_name": "QUANTA SERVICES INC  (PWR)  (CIK 0001050915)"
+ },
+ "PYPL": {
+  "cik": "0001633917",
+  "matched_name": "PayPal Holdings, Inc.  (PYPL)  (CIK 0001633917)"
+ },
+ "Q": {
+  "cik": "0002058873",
+  "matched_name": "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)"
+ },
+ "QCOM": {
+  "cik": "0000804328",
+  "matched_name": "QUALCOMM INC/DE  (QCOM)  (CIK 0000804328)"
+ },
+ "R": {
+  "cik": "0000085961",
+  "matched_name": "RYDER SYSTEM INC  (R)  (CIK 0000085961)"
+ },
+ "RAL": {
+  "cik": "0002041385",
+  "matched_name": "Ralliant Corp  (RAL)  (CIK 0002041385)"
+ },
+ "RCL": {
+  "cik": "0000884887",
+  "matched_name": "ROYAL CARIBBEAN CRUISES LTD  (RCL)  (CIK 0000884887)"
+ },
+ "RDDT": {
+  "cik": "0001713445",
+  "matched_name": "Reddit, Inc.  (RDDT)  (CIK 0001713445)"
+ },
+ "REG": {
+  "cik": "0000910606",
+  "matched_name": "REGENCY CENTERS CORP  (REG, REGCO, REGCP)  (CIK 0000910606)"
+ },
+ "REGN": {
+  "cik": "0000872589",
+  "matched_name": "REGENERON PHARMACEUTICALS INC  (REGN)  (CIK 0000872589)"
+ },
+ "RF": {
+  "cik": "0001281761",
+  "matched_name": "REGIONS FINANCIAL CORP  (RF, RF-PB, RF-PC, RF-PE, RF-PF)  (CIK 0001281761)"
+ },
+ "RHI": {
+  "cik": "0000315213",
+  "matched_name": "ROBERT HALF INC.  (RHI)  (CIK 0000315213)"
+ },
+ "RIG": {
+  "cik": "0001451505",
+  "matched_name": "Transocean Ltd.  (RIG)  (CIK 0001451505)"
+ },
+ "RJF": {
+  "cik": "0000720005",
+  "matched_name": "RAYMOND JAMES FINANCIAL INC  (RJF, RJF-PB)  (CIK 0000720005)"
+ },
+ "RL": {
+  "cik": "0001037038",
+  "matched_name": "POLO RALPH LAUREN CORP  (RL)  (CIK 0001037038)"
+ },
+ "RMD": {
+  "cik": "0000943819",
+  "matched_name": "RESMED INC  (RMD, RSMDF)  (CIK 0000943819)"
+ },
+ "ROK": {
+  "cik": "0001024478",
+  "matched_name": "ROCKWELL AUTOMATION INC  (ROK)  (CIK 0001024478)"
+ },
+ "ROL": {
+  "cik": "0000084839",
+  "matched_name": "ROLLINS INC  (ROL)  (CIK 0000084839)"
+ },
+ "ROP": {
+  "cik": "0000882835",
+  "matched_name": "ROPER TECHNOLOGIES INC  (ROP)  (CIK 0000882835)"
+ },
+ "ROST": {
+  "cik": "0000745732",
+  "matched_name": "ROSS STORES INC  (ROST)  (CIK 0000745732)"
+ },
+ "RRC": {
+  "cik": "0000315852",
+  "matched_name": "RANGE RESOURCES CORP  (RRC)  (CIK 0000315852)"
+ },
+ "RSG": {
+  "cik": "0001060391",
+  "matched_name": "REPUBLIC SERVICES, INC.  (RSG)  (CIK 0001060391)"
+ },
+ "RTX": {
+  "cik": "0000101829",
+  "matched_name": "RTX Corp  (RTX)  (CIK 0000101829)"
+ },
+ "RVTY": {
+  "cik": "0000031791",
+  "matched_name": "REVVITY, INC.  (RVTY)  (CIK 0000031791)"
+ },
+ "SANM": {
+  "cik": "0000897723",
+  "matched_name": "SANMINA CORP  (SANM)  (CIK 0000897723)"
+ },
+ "SBAC": {
+  "cik": "0001034054",
+  "matched_name": "SBA COMMUNICATIONS CORP  (SBAC)  (CIK 0001034054)"
+ },
+ "SBNY": {
+  "unresolved": true,
+  "longname": "Signature Bank"
+ },
+ "SBUX": {
+  "cik": "0000829224",
+  "matched_name": "STARBUCKS CORP  (SBUX)  (CIK 0000829224)"
+ },
+ "SCHW": {
+  "cik": "0000316709",
+  "matched_name": "SCHWAB CHARLES CORP  (SCHW, SCHW-PD, SCHW-PJ)  (CIK 0000316709)"
+ },
+ "SCI": {
+  "cik": "0000089089",
+  "matched_name": "SERVICE CORP INTERNATIONAL  (SCI)  (CIK 0000089089)"
+ },
+ "SDS": {
+  "unresolved": true,
+  "longname": "ProShares UltraShort S&P500"
+ },
+ "SE": {
+  "unresolved": true,
+  "longname": "Sea Limited"
+ },
+ "SEDG": {
+  "cik": "0001419612",
+  "matched_name": "SOLAREDGE TECHNOLOGIES, INC.  (SEDG)  (CIK 0001419612)"
+ },
+ "SEG": {
+  "cik": "0002009684",
+  "matched_name": "Seaport Entertainment Group Inc.  (SEG)  (CIK 0002009684)"
+ },
+ "SGP": {
+  "cik": "0001778922",
+  "matched_name": "SpyGlass Pharma, Inc.  (SGP)  (CIK 0001778922)"
+ },
+ "SHLD": {
+  "unresolved": true,
+  "longname": "Global X Defense Tech ETF"
+ },
+ "SHW": {
+  "cik": "0000089800",
+  "matched_name": "SHERWIN WILLIAMS CO  (SHW)  (CIK 0000089800)"
+ },
+ "SIG": {
+  "cik": "0000832988",
+  "matched_name": "SIGNET JEWELERS LTD  (SIG)  (CIK 0000832988)"
+ },
+ "SJM": {
+  "cik": "0000091419",
+  "matched_name": "SMUCKER J M CO  (SJM)  (CIK 0000091419)"
+ },
+ "SLB": {
+  "cik": "0000087347",
+  "matched_name": "SLB LIMITED/NV  (SLB)  (CIK 0000087347)"
+ },
+ "SLG": {
+  "cik": "0001040971",
+  "matched_name": "SL GREEN REALTY CORP  (SLG, SLG-PI)  (CIK 0001040971)"
+ },
+ "SLM": {
+  "cik": "0001032033",
+  "matched_name": "SLM CORP  (SLM, SLMBP)  (CIK 0001032033)"
+ },
+ "SMCI": {
+  "cik": "0001375365",
+  "matched_name": "Super Micro Computer, Inc.  (SMCI)  (CIK 0001375365)"
+ },
+ "SNA": {
+  "cik": "0000091440",
+  "matched_name": "SNAP-ON Inc  (SNA)  (CIK 0000091440)"
+ },
+ "SNDK": {
+  "unresolved": true,
+  "longname": "Sandisk Corporation"
+ },
+ "SNPS": {
+  "cik": "0000883241",
+  "matched_name": "SYNOPSYS INC  (SNPS)  (CIK 0000883241)"
+ },
+ "SO": {
+  "cik": "0000092122",
+  "matched_name": "SOUTHERN CO  (SO, SOJC, SOJD, SOJE)  (CIK 0000092122)"
+ },
+ "SOLS": {
+  "cik": "0002064953",
+  "matched_name": "Solstice Advanced Materials Inc.  (SOLS)  (CIK 0002064953)"
+ },
+ "SOLV": {
+  "cik": "0001964738",
+  "matched_name": "Solventum Corp  (SOLV)  (CIK 0001964738)"
+ },
+ "SPG": {
+  "cik": "0001063761",
+  "matched_name": "SIMON PROPERTY GROUP INC /DE/  (SPG, SPG-PJ)  (CIK 0001063761)"
+ },
+ "SPGI": {
+  "cik": "0000064040",
+  "matched_name": "S&P Global Inc.  (SPGI)  (CIK 0000064040)"
+ },
+ "SPLS": {
+  "unresolved": true,
+  "longname": "PIMCO US Stocks PLUS Active Bond Exchange Traded Fund"
+ },
+ "SRE": {
+  "cik": "0001032208",
+  "matched_name": "SEMPRA ENERGY  (SRE, SREA)  (CIK 0001032208)"
+ },
+ "SSP": {
+  "cik": "0000832428",
+  "matched_name": "SCRIPPS E W CO /DE  (SSP)  (CIK 0000832428)"
+ },
+ "STE": {
+  "cik": "0001757898",
+  "matched_name": "STERIS plc  (STE)  (CIK 0001757898)"
+ },
+ "STI": {
+  "cik": "0001881551",
+  "matched_name": "Solidion Technology Inc.  (STI)  (CIK 0001881551)"
+ },
+ "STLD": {
+  "cik": "0001022671",
+  "matched_name": "STEEL DYNAMICS INC  (STLD)  (CIK 0001022671)"
+ },
+ "STT": {
+  "cik": "0000093751",
+  "matched_name": "STATE STREET CORP  (STT, STT-PG)  (CIK 0000093751)"
+ },
+ "STX": {
+  "cik": "0001137789",
+  "matched_name": "Seagate Technology Holdings plc  (STX)  (CIK 0001137789)"
+ },
+ "STZ": {
+  "cik": "0000016918",
+  "matched_name": "CONSTELLATION BRANDS, INC.  (STZ)  (CIK 0000016918)"
+ },
+ "SUB": {
+  "unresolved": true,
+  "longname": "iShares Short-Term National Muni Bond ETF"
+ },
+ "SW": {
+  "cik": "0002005951",
+  "matched_name": "Smurfit Westrock plc  (SW)  (CIK 0002005951)"
+ },
+ "SWK": {
+  "cik": "0000093556",
+  "matched_name": "STANLEY BLACK & DECKER, INC.  (SWK)  (CIK 0000093556)"
+ },
+ "SWKS": {
+  "cik": "0000004127",
+  "matched_name": "SKYWORKS SOLUTIONS, INC.  (SWKS)  (CIK 0000004127)"
+ },
+ "SYF": {
+  "cik": "0001601712",
+  "matched_name": "Synchrony Financial  (SYF, SYF-PA, SYF-PB)  (CIK 0001601712)"
+ },
+ "SYK": {
+  "cik": "0000310764",
+  "matched_name": "STRYKER CORP  (SYK)  (CIK 0000310764)"
+ },
+ "SYY": {
+  "cik": "0000096021",
+  "matched_name": "SYSCO CORP  (SYY)  (CIK 0000096021)"
+ },
+ "T": {
+  "cik": "0000732717",
+  "matched_name": "AT&T INC.  (T, TBB, TBC, T-PA, T-PC)  (CIK 0000732717)"
+ },
+ "TAP": {
+  "cik": "0000024545",
+  "matched_name": "MOLSON COORS BEVERAGE CO  (TAP, TAP-A)  (CIK 0000024545)"
+ },
+ "TDC": {
+  "cik": "0000816761",
+  "matched_name": "TERADATA CORP /DE/  (TDC)  (CIK 0000816761)"
+ },
+ "TDG": {
+  "cik": "0001260221",
+  "matched_name": "TransDigm Group INC  (TDG)  (CIK 0001260221)"
+ },
+ "TDY": {
+  "cik": "0001094285",
+  "matched_name": "TELEDYNE TECHNOLOGIES INC  (TDY)  (CIK 0001094285)"
+ },
+ "TECH": {
+  "cik": "0000842023",
+  "matched_name": "BIO-TECHNE Corp  (TECH)  (CIK 0000842023)"
+ },
+ "TEL": {
+  "cik": "0001385157",
+  "matched_name": "TE Connectivity plc  (TEL)  (CIK 0001385157)"
+ },
+ "TER": {
+  "cik": "0000097210",
+  "matched_name": "TERADYNE, INC  (TER)  (CIK 0000097210)"
+ },
+ "TEX": {
+  "cik": "0000097216",
+  "matched_name": "TEREX CORP  (TEX)  (CIK 0000097216)"
+ },
+ "TFC": {
+  "cik": "0000092230",
+  "matched_name": "TRUIST FINANCIAL CORP  (TFC, TFC-PI, TFC-PO, TFC-PR)  (CIK 0000092230)"
+ },
+ "TFX": {
+  "cik": "0000096943",
+  "matched_name": "TELEFLEX INC  (TFX)  (CIK 0000096943)"
+ },
+ "TGT": {
+  "cik": "0000027419",
+  "matched_name": "TARGET CORP  (TGT)  (CIK 0000027419)"
+ },
+ "THC": {
+  "cik": "0000070318",
+  "matched_name": "TENET HEALTHCARE CORP  (THC)  (CIK 0000070318)"
+ },
+ "TJX": {
+  "cik": "0000109198",
+  "matched_name": "TJX COMPANIES INC /DE/  (TJX)  (CIK 0000109198)"
+ },
+ "TKO": {
+  "cik": "0001973266",
+  "matched_name": "TKO Group Holdings, Inc.  (TKO)  (CIK 0001973266)"
+ },
+ "TKR": {
+  "cik": "0000098362",
+  "matched_name": "TIMKEN CO  (TKR)  (CIK 0000098362)"
+ },
+ "TMC": {
+  "cik": "0001798562",
+  "matched_name": "TMC the metals Co Inc.  (TMC, TMCWW)  (CIK 0001798562)"
+ },
+ "TMO": {
+  "cik": "0000097745",
+  "matched_name": "THERMO FISHER SCIENTIFIC INC.  (TMO)  (CIK 0000097745)"
+ },
+ "TMUS": {
+  "cik": "0001283699",
+  "matched_name": "T-Mobile US, Inc.  (TMUS)  (CIK 0001283699)"
+ },
+ "TOS": {
+  "unresolved": true,
+  "longname": "Twin Oak Strategic Solutions ETF"
+ },
+ "TPL": {
+  "cik": "0001811074",
+  "matched_name": "Texas Pacific Land Corp  (TPL)  (CIK 0001811074)"
+ },
+ "TPR": {
+  "cik": "0001116132",
+  "matched_name": "TAPESTRY, INC.  (TPR)  (CIK 0001116132)"
+ },
+ "TRGP": {
+  "cik": "0001389170",
+  "matched_name": "Targa Resources Corp.  (TRGP)  (CIK 0001389170)"
+ },
+ "TRIP": {
+  "cik": "0001526520",
+  "matched_name": "TripAdvisor, Inc.  (TRIP)  (CIK 0001526520)"
+ },
+ "TRMB": {
+  "cik": "0000864749",
+  "matched_name": "TRIMBLE INC.  (TRMB)  (CIK 0000864749)"
+ },
+ "TROW": {
+  "cik": "0001113169",
+  "matched_name": "PRICE T ROWE GROUP INC  (TROW)  (CIK 0001113169)"
+ },
+ "TRV": {
+  "cik": "0000086312",
+  "matched_name": "TRAVELERS COMPANIES, INC.  (TRV)  (CIK 0000086312)"
+ },
+ "TSCO": {
+  "cik": "0000916365",
+  "matched_name": "TRACTOR SUPPLY CO /DE/  (TSCO)  (CIK 0000916365)"
+ },
+ "TSLA": {
+  "cik": "0001318605",
+  "matched_name": "Tesla, Inc.  (TSLA)  (CIK 0001318605)"
+ },
+ "TSN": {
+  "cik": "0000100493",
+  "matched_name": "TYSON FOODS INC  (TSN)  (CIK 0000100493)"
+ },
+ "TT": {
+  "cik": "0001466258",
+  "matched_name": "Trane Technologies plc  (TT)  (CIK 0001466258)"
+ },
+ "TTD": {
+  "cik": "0001671933",
+  "matched_name": "Trade Desk, Inc.  (TTD)  (CIK 0001671933)"
+ },
+ "TTWO": {
+  "cik": "0000946581",
+  "matched_name": "TAKE TWO INTERACTIVE SOFTWARE INC  (TTWO)  (CIK 0000946581)"
+ },
+ "TX": {
+  "unresolved": true,
+  "longname": "Ternium S.A."
+ },
+ "TXN": {
+  "cik": "0000097476",
+  "matched_name": "TEXAS INSTRUMENTS INC  (TXN)  (CIK 0000097476)"
+ },
+ "TXT": {
+  "cik": "0000217346",
+  "matched_name": "TEXTRON INC  (TXT)  (CIK 0000217346)"
+ },
+ "TYL": {
+  "cik": "0000860731",
+  "matched_name": "TYLER TECHNOLOGIES INC  (TYL)  (CIK 0000860731)"
+ },
+ "UA": {
+  "cik": "0001336917",
+  "matched_name": "Under Armour, Inc.  (UA, UAA)  (CIK 0001336917)"
+ },
+ "UAA": {
+  "cik": "0001336917",
+  "matched_name": "Under Armour, Inc.  (UA, UAA)  (CIK 0001336917)"
+ },
+ "UAL": {
+  "cik": "0000100517",
+  "matched_name": "United Airlines Holdings, Inc.  (UAL)  (CIK 0000100517)"
+ },
+ "UBER": {
+  "cik": "0001543151",
+  "matched_name": "Uber Technologies, Inc  (UBER)  (CIK 0001543151)"
+ },
+ "UCC": {
+  "unresolved": true,
+  "longname": "ProShares Ultra Consumer Discretionary"
+ },
+ "UCL": {
+  "unresolved": true,
+  "longname": "uCloudlink Group Inc."
+ },
+ "UDR": {
+  "cik": "0000074208",
+  "matched_name": "UDR, Inc.  (UDR)  (CIK 0000074208)"
+ },
+ "UHS": {
+  "cik": "0000352915",
+  "matched_name": "UNIVERSAL HEALTH SERVICES INC  (UHS)  (CIK 0000352915)"
+ },
+ "UIS": {
+  "cik": "0000746838",
+  "matched_name": "UNISYS CORP  (UIS)  (CIK 0000746838)"
+ },
+ "UK": {
+  "unresolved": true,
+  "longname": "Ucommune International Ltd"
+ },
+ "ULTA": {
+  "cik": "0001403568",
+  "matched_name": "Ulta Beauty, Inc.  (ULTA)  (CIK 0001403568)"
+ },
+ "UN": {
+  "unresolved": true,
+  "longname": "Corgi UNH 2x Daily ETF"
+ },
+ "UNH": {
+  "cik": "0000731766",
+  "matched_name": "UNITEDHEALTH GROUP INC  (UNH)  (CIK 0000731766)"
+ },
+ "UNM": {
+  "cik": "0000005513",
+  "matched_name": "Unum Group  (UNM, UNMA)  (CIK 0000005513)"
+ },
+ "UNP": {
+  "cik": "0000100885",
+  "matched_name": "UNION PACIFIC CORP  (UNP)  (CIK 0000100885)"
+ },
+ "UPC": {
+  "unresolved": true,
+  "longname": "Universe Pharmaceuticals INC"
+ },
+ "UPS": {
+  "cik": "0001090727",
+  "matched_name": "UNITED PARCEL SERVICE INC  (UPS)  (CIK 0001090727)"
+ },
+ "URBN": {
+  "cik": "0000912615",
+  "matched_name": "URBAN OUTFITTERS INC  (URBN)  (CIK 0000912615)"
+ },
+ "URI": {
+  "cik": "0001067701",
+  "matched_name": "UNITED RENTALS INC /DE  (URI)  (CIK 0001067701)"
+ },
+ "USB": {
+  "cik": "0000036104",
+  "matched_name": "US BANCORP \\DE\\  (USB, USB-PA, USB-PH, USB-PP, USB-PQ, USB-PR, USB-PS)  (CIK 0000036104)"
+ },
+ "UST": {
+  "unresolved": true,
+  "longname": "ProShares Ultra 7-10 Year Treasury"
+ },
+ "V": {
+  "cik": "0001403161",
+  "matched_name": "Visa Inc.  (V)  (CIK 0001403161)"
+ },
+ "VEEV": {
+  "cik": "0001393052",
+  "matched_name": "VEEVA SYSTEMS INC  (VEEV)  (CIK 0001393052)"
+ },
+ "VFC": {
+  "cik": "0000103379",
+  "matched_name": "V F CORP  (VFC)  (CIK 0000103379)"
+ },
+ "VIAV": {
+  "cik": "0000912093",
+  "matched_name": "VIAVI SOLUTIONS INC.  (VIAV)  (CIK 0000912093)"
+ },
+ "VICI": {
+  "cik": "0001705696",
+  "matched_name": "VICI PROPERTIES INC.  (VICI)  (CIK 0001705696)"
+ },
+ "VLO": {
+  "cik": "0001035002",
+  "matched_name": "VALERO ENERGY CORP/TX  (VLO)  (CIK 0001035002)"
+ },
+ "VLTO": {
+  "cik": "0001967680",
+  "matched_name": "Veralto Corp  (VLTO)  (CIK 0001967680)"
+ },
+ "VMC": {
+  "cik": "0001396009",
+  "matched_name": "Vulcan Materials CO  (VMC)  (CIK 0001396009)"
+ },
+ "VMRK": {
+  "unresolved": true,
+  "longname": "AvalonBay Communities, Inc."
+ },
+ "VNO": {
+  "cik": "0000899689",
+  "matched_name": "VORNADO REALTY TRUST  (VNO, VNORP, VNO-PL, VNO-PM, VNO-PN, VNO-PO)  (CIK 0000899689)"
+ },
+ "VNT": {
+  "cik": "0001786842",
+  "matched_name": "Vontier Corp  (VNT)  (CIK 0001786842)"
+ },
+ "VO": {
+  "unresolved": true,
+  "longname": "Vanguard Morningstar Mid-Cap ETF"
+ },
+ "VRSK": {
+  "cik": "0001442145",
+  "matched_name": "Verisk Analytics, Inc.  (VRSK)  (CIK 0001442145)"
+ },
+ "VRSN": {
+  "cik": "0001014473",
+  "matched_name": "VERISIGN INC/CA  (VRSN)  (CIK 0001014473)"
+ },
+ "VRT": {
+  "cik": "0001674101",
+  "matched_name": "Vertiv Holdings Co  (VRT)  (CIK 0001674101)"
+ },
+ "VRTS": {
+  "cik": "0000883237",
+  "matched_name": "VIRTUS INVESTMENT PARTNERS, INC.  (VRTS)  (CIK 0000883237)"
+ },
+ "VRTX": {
+  "cik": "0000875320",
+  "matched_name": "VERTEX PHARMACEUTICALS INC / MA  (VRTX)  (CIK 0000875320)"
+ },
+ "VST": {
+  "cik": "0001692819",
+  "matched_name": "Vistra Corp.  (VST)  (CIK 0001692819)"
+ },
+ "VTR": {
+  "cik": "0000740260",
+  "matched_name": "VENTAS INC  (VTR)  (CIK 0000740260)"
+ },
+ "VTRS": {
+  "cik": "0001792044",
+  "matched_name": "Viatris Inc  (VTRS)  (CIK 0001792044)"
+ },
+ "VZ": {
+  "cik": "0000732712",
+  "matched_name": "VERIZON COMMUNICATIONS INC  (VZ)  (CIK 0000732712)"
+ },
+ "WAB": {
+  "cik": "0000943452",
+  "matched_name": "WESTINGHOUSE AIR BRAKE TECHNOLOGIES CORP  (WAB)  (CIK 0000943452)"
+ },
+ "WAT": {
+  "cik": "0001000697",
+  "matched_name": "WATERS CORP /DE/  (WAT)  (CIK 0001000697)"
+ },
+ "WDAY": {
+  "cik": "0001327811",
+  "matched_name": "Workday, Inc.  (WDAY)  (CIK 0001327811)"
+ },
+ "WDC": {
+  "cik": "0000106040",
+  "matched_name": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)"
+ },
+ "WEC": {
+  "unresolved": true,
+  "longname": "WEC Energy Group, Inc."
+ },
+ "WELL": {
+  "cik": "0000766704",
+  "matched_name": "WELLTOWER INC.  (WELL)  (CIK 0000766704)"
+ },
+ "WEN": {
+  "cik": "0000030697",
+  "matched_name": "Wendy's Co  (WEN)  (CIK 0000030697)"
+ },
+ "WFC": {
+  "cik": "0000072971",
+  "matched_name": "WELLS FARGO & COMPANY/MN  (WFC, WFCNP, WFC-PA, WFC-PC, WFC-PD, WFC-PL, WFC-PY, WFC-PZ)  (CIK 0000072971)"
+ },
+ "WHR": {
+  "cik": "0000106640",
+  "matched_name": "WHIRLPOOL CORP /DE/  (WHR)  (CIK 0000106640)"
+ },
+ "WM": {
+  "cik": "0000823768",
+  "matched_name": "WASTE MANAGEMENT INC  (WM)  (CIK 0000823768)"
+ },
+ "WMB": {
+  "cik": "0000107263",
+  "matched_name": "WILLIAMS COMPANIES INC  (WMB)  (CIK 0000107263)"
+ },
+ "WMT": {
+  "cik": "0000104169",
+  "matched_name": "Walmart Inc.  (WMT)  (CIK 0000104169)"
+ },
+ "WOR": {
+  "cik": "0000108516",
+  "matched_name": "WORTHINGTON ENTERPRISES, INC.  (WOR)  (CIK 0000108516)"
+ },
+ "WRB": {
+  "cik": "0000011544",
+  "matched_name": "BERKLEY W R CORP  (WRB, WRB-PE, WRB-PF, WRB-PG, WRB-PH)  (CIK 0000011544)"
+ },
+ "WSM": {
+  "cik": "0000719955",
+  "matched_name": "WILLIAMS SONOMA INC  (WSM)  (CIK 0000719955)"
+ },
+ "WST": {
+  "cik": "0000105770",
+  "matched_name": "WEST PHARMACEUTICAL SERVICES INC  (WST)  (CIK 0000105770)"
+ },
+ "WTW": {
+  "cik": "0001140536",
+  "matched_name": "WILLIS TOWERS WATSON PLC  (WTW)  (CIK 0001140536)"
+ },
+ "WU": {
+  "cik": "0001365135",
+  "matched_name": "Western Union CO  (WU)  (CIK 0001365135)"
+ },
+ "WY": {
+  "cik": "0000106535",
+  "matched_name": "WEYERHAEUSER CO  (WY)  (CIK 0000106535)"
+ },
+ "WYNN": {
+  "cik": "0001174922",
+  "matched_name": "WYNN RESORTS LTD  (WYNN)  (CIK 0001174922)"
+ },
+ "XEL": {
+  "cik": "0000072903",
+  "matched_name": "XCEL ENERGY INC  (XEL)  (CIK 0000072903)"
+ },
+ "XOM": {
+  "unresolved": true,
+  "longname": "ExxonMobil Holdings Corporation"
+ },
+ "XRAY": {
+  "cik": "0000818479",
+  "matched_name": "DENTSPLY SIRONA Inc.  (XRAY)  (CIK 0000818479)"
+ },
+ "XRX": {
+  "cik": "0001770450",
+  "matched_name": "Xerox Holdings Corp  (XRX)  (CIK 0001770450)"
+ },
+ "XYL": {
+  "cik": "0001524472",
+  "matched_name": "Xylem Inc.  (XYL)  (CIK 0001524472)"
+ },
+ "XYZ": {
+  "unresolved": true,
+  "longname": "Block, Inc."
+ },
+ "YUM": {
+  "cik": "0001041061",
+  "matched_name": "YUM BRANDS INC  (YUM)  (CIK 0001041061)"
+ },
+ "ZBH": {
+  "cik": "0001136869",
+  "matched_name": "ZIMMER BIOMET HOLDINGS, INC.  (ZBH)  (CIK 0001136869)"
+ },
+ "ZBRA": {
+  "cik": "0000877212",
+  "matched_name": "ZEBRA TECHNOLOGIES CORP  (ZBRA)  (CIK 0000877212)"
+ },
+ "ZION": {
+  "cik": "0000109380",
+  "matched_name": "ZIONS BANCORPORATION, NATIONAL ASSOCIATION /UT/  (ZION, ZIONP)  (CIK 0000109380)"
+ },
+ "ZTS": {
+  "cik": "0001555280",
+  "matched_name": "Zoetis Inc.  (ZTS)  (CIK 0001555280)"
+ },
+ "BG": {
+  "cik": "0001996862",
+  "matched_name": "Bunge Global SA  (BG)  (CIK 0001996862)"
+ },
+ "BHF": {
+  "cik": "0001685040",
+  "matched_name": "Brighthouse Financial, Inc.  (BHF, BHFAL, BHFAM, BHFAN, BHFAO, BHFAP)  (CIK 0001685040)"
+ },
+ "BKNG": {
+  "cik": "0001075531",
+  "matched_name": "Booking Holdings Inc.  (BKNG)  (CIK 0001075531)"
+ },
+ "BMY": {
+  "cik": "0000014272",
+  "matched_name": "BRISTOL MYERS SQUIBB CO  (BMY, BMYMP, CELG-RI)  (CIK 0000014272)"
+ },
+ "CINF": {
+  "cik": "0000020286",
+  "matched_name": "CINCINNATI FINANCIAL CORP  (CINF)  (CIK 0000020286)"
+ },
+ "FOSL": {
+  "cik": "0000883569",
+  "matched_name": "Fossil Group, Inc.  (FOSL, FOSLL)  (CIK 0000883569)"
+ },
+ "FTI": {
+  "cik": "0001681459",
+  "matched_name": "TechnipFMC plc  (FTI)  (CIK 0001681459)"
+ },
+ "GDT": {
+  "unresolved": true,
+  "longname": "WisdomTree Efficient TIPS Plus Gold Fund"
+ },
+ "GEHC": {
+  "cik": "0001932393",
+  "matched_name": "GE HealthCare Technologies Inc.  (GEHC)  (CIK 0001932393)"
+ },
+ "NI": {
+  "cik": "0001111711",
+  "matched_name": "NISOURCE INC/DE  (NI)  (CIK 0001111711)"
+ },
+ "NSI": {
+  "unresolved": true,
+  "longname": "National Security Emerging Markets Index ETF"
+ },
+ "S": {
+  "cik": "0001583708",
+  "matched_name": "SentinelOne, Inc.  (S)  (CIK 0001583708)"
+ },
+ "TE": {
+  "cik": "0001992243",
+  "matched_name": "T1 Energy Inc.  (TE, TE-WT)  (CIK 0001992243)"
+ },
+ "TEK": {
+  "unresolved": true,
+  "longname": "iShares Technology Opportunities Active ETF"
+ },
+ "TEN": {
+  "unresolved": true,
+  "longname": "Tsakos Energy Navigation Limited"
+ },
+ "WB": {
+  "unresolved": true,
+  "longname": "Weibo Corporation"
+ }
+}

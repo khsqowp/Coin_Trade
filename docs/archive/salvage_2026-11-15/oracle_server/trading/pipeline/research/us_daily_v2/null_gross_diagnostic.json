@@ -1,0 +1,32 @@
+{
+ "mom12_1": {
+  "real_gross_OOS": 0.612,
+  "p": 0.3781,
+  "null_median": 0.589
+ },
+ "mom12_1_mkt": {
+  "real_gross_OOS": 0.276,
+  "p": 0.9602,
+  "null_median": 0.401
+ },
+ "riskadj_mom": {
+  "real_gross_OOS": 0.559,
+  "p": 0.6269,
+  "null_median": 0.585
+ },
+ "high52w": {
+  "real_gross_OOS": 0.505,
+  "p": 0.9303,
+  "null_median": 0.585
+ },
+ "low_vol": {
+  "real_gross_OOS": 0.525,
+  "p": 0.806,
+  "null_median": 0.579
+ },
+ "trend_breadth": {
+  "real_gross_OOS": 0.639,
+  "p": 0.0249,
+  "null_median": 0.589
+ }
+}

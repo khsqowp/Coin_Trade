@@ -1,0 +1,68 @@
+{
+ "id": "ct-donchian70-sma200-btcregime",
+ "name": "Donchian-70 breakout + own SMA200 + BTC200 hysteresis (long only)",
+ "family": "trend/breakout",
+ "one_line": "Close breaks prior 70-day high while above own SMA200 and BTC above its SMA200 (+/-3% hysteresis); 25-day hold.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/전략-백테스트-종합.md (sections 77-79)",
+   "docs/research/strategy_catalog.md (R14 row)"
+  ]
+ },
+ "markets": [
+  "crypto perpetual futures universe (long only)"
+ ],
+ "timeframe": "1d",
+ "direction": "long_only",
+ "status_in_source": "hold ('most interesting'); rejected after multiple-testing correction (R15) which the owner's own notes call structurally unpassable",
+ "idea": "Enter when close exceeds the previous 70-day high and the asset closes above its own SMA200; market regime filter: BTC above SMA200 with +/-3% hysteresis band to avoid flapping; inverse-volatility sizing (risk budget 1.0, cap 25% per asset); fixed 25-day expiry; no stop/take-profit.",
+ "rules": [
+  {
+   "name": "donchian_breakout_entry",
+   "kind": "entry",
+   "description": "close > max(high[t-70..t-1])"
+  },
+  {
+   "name": "own_sma200_filter",
+   "kind": "filter",
+   "description": "close > SMA200 of the asset"
+  },
+  {
+   "name": "btc_regime_filter",
+   "kind": "filter",
+   "description": "BTC close > SMA200*(1+3%) to enable, < SMA200*(1-3%) to disable (hysteresis)"
+  },
+  {
+   "name": "time_expiry_exit",
+   "kind": "exit",
+   "description": "exit after 25 bars"
+  }
+ ],
+ "parameters": {
+  "donchian": 70,
+  "sma": 200,
+  "btc_sma": 200,
+  "hysteresis": 0.03,
+  "hold_days": 25,
+  "top_k": 8
+ },
+ "rationale": "Slow channel breakout filtered by trend and market regime reduces whipsaw; 55-day variant failed period-split tests, 70/25 passed 7/8.",
+ "evidence": "Gross CAGR +68.6%, MDD 35.9%, Sharpe 1.463, 258 trades. Passed 5 robustness checks (7/8 period splits) but only 1 of 239 combinations tried.",
+ "limitations": [
+  "gross of realistic costs",
+  "2022-09..2024-09 lagged BTC",
+  "adjacent parameters pass only 5/8",
+  "selection bias, survivorship bias acknowledged by source",
+  "no truly unseen out-of-sample window"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "direct",
+  "notes": "For BTC use own SMA200 only (BTC regime filter is the same series). For ETH the BTC regime filter would need BTC data (not available in generate_signals(df))."
+ },
+ "schema_version": 1
+}

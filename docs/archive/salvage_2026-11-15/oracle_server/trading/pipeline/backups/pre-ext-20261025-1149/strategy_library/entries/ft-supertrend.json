@@ -1,0 +1,70 @@
+{
+ "id": "ft-supertrend",
+ "name": "Supertrend triple-confirmation (3 Supertrend indicators must agree)",
+ "family": "trend following",
+ "one_line": "Enter when three Supertrend indicators (different ATR period/multiplier) are all 'up'; exit when three 'down'.",
+ "source": {
+  "repo": "freqtrade/freqtrade-strategies",
+  "url": "https://github.com/freqtrade/freqtrade-strategies",
+  "commit": "f3340ce11f5bdf62f598522e64d1f5638eaa13f5",
+  "license": "GPL-3.0 (repo LICENSE). Only ideas are summarised here; no code copied.",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "user_data/Supertrend.py"
+  ],
+  "author_in_file": "@juankysoriano"
+ },
+ "markets": [
+  "crypto spot"
+ ],
+ "timeframe": "1h (as shipped)",
+ "direction": "long_only",
+ "status_in_source": "hyperopt-tuned example",
+ "idea": "Supertrend = ATR-band trailing line; three instances with different (multiplier, period) must agree; trailing stop + wide -26.5% stoploss.",
+ "rules": [
+  {
+   "name": "supertrend_fast_up",
+   "kind": "entry",
+   "description": "supertrend(mult 4, period 8) direction up"
+  },
+  {
+   "name": "supertrend_mid_up",
+   "kind": "entry",
+   "description": "second supertrend direction up"
+  },
+  {
+   "name": "supertrend_slow_up",
+   "kind": "entry",
+   "description": "third supertrend direction up"
+  },
+  {
+   "name": "supertrend_all_down_exit",
+   "kind": "exit",
+   "description": "all three down"
+  }
+ ],
+ "parameters": {
+  "multiplier_range": [
+   1,
+   7
+  ],
+  "period_range": [
+   7,
+   21
+  ],
+  "stoploss": -0.265,
+  "trailing_offset": 0.144
+ },
+ "rationale": "ATR-adaptive trend following; agreement reduces whipsaws.",
+ "evidence": "Shipped parameters come from hyperopt (in-sample); no out-of-sample data in the repo.",
+ "limitations": [
+  "hyperopt-fitted parameters",
+  "three correlated indicators: some are likely redundant (ablation candidate)",
+  "wide stoploss"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "direct",
+  "notes": "Pick fixed a-priori multiplier=3, period=10 style values; do not hyperopt."
+ },
+ "schema_version": 1
+}

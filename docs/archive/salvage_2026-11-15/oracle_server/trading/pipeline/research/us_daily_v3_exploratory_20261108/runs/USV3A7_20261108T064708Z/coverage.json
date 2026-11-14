@@ -1,0 +1,20 @@
+{
+  "study_start": "2012-06-01",
+  "study_end": "2026-08-18",
+  "bar_end": "2026-08-18",
+  "universe_equity_series": 678,
+  "pit_snapshot_last": "2026-08-18",
+  "stale_membership_tail_excluded": true,
+  "eligible_avg": 419.82675622726,
+  "eligible_min": 334,
+  "pit_unique_ticker_symbols": 1209,
+  "pit_ticker_spells": 1262,
+  "pit_symbols_with_price_parquet": 717,
+  "pit_symbols_without_price_parquet": 492,
+  "equity_symbols_loaded_after_v2_exclusions": 678,
+  "v2_reused_tickers_excluded": 10,
+  "last_snapshot_member_count": 503,
+  "top50_mean_member_count": 50.0,
+  "top100_mean_member_count": 100.0,
+  "top200_mean_member_count": 200.0
+}

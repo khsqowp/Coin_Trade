@@ -1,0 +1,66 @@
+{
+ "id": "ct-ema-cross-swing",
+ "name": "EMA 9/21 golden cross swing with SMA200 filter and -2% stop",
+ "family": "trend following",
+ "one_line": "Owner's KR/US equity paper swing bot: EMA9 crosses above EMA21 while above SMA200; -2% intraday stop.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "README.md (strategy table)",
+   "app/kr_swing_loop.py",
+   "app/ema_cross_signal_core.py",
+   "docs/research/strategy_catalog.md"
+  ]
+ },
+ "markets": [
+  "KOSPI/KOSDAQ 64 symbols, NASDAQ/NYSE 55 symbols (KIS paper)"
+ ],
+ "timeframe": "1d",
+ "direction": "long_only",
+ "status_in_source": "adopted for KIS paper trading; transfer test of coin variant negative",
+ "idea": "Enter on EMA(9) crossing above EMA(21) when close > SMA(200); exit on reverse cross or -2% intraday stop.",
+ "rules": [
+  {
+   "name": "ema_golden_cross_entry",
+   "kind": "entry",
+   "description": "EMA9 crosses above EMA21"
+  },
+  {
+   "name": "sma200_trend_filter",
+   "kind": "filter",
+   "description": "close > SMA200"
+  },
+  {
+   "name": "ema_dead_cross_exit",
+   "kind": "exit",
+   "description": "EMA9 crosses below EMA21"
+  },
+  {
+   "name": "intraday_stop",
+   "kind": "exit",
+   "description": "-2% stop (needs intraday data; daily approximation: close < entry*0.98)"
+  }
+ ],
+ "parameters": {
+  "ema_fast": 9,
+  "ema_slow": 21,
+  "sma_filter": 200,
+  "stop_pct": 0.02
+ },
+ "rationale": "Simple trend following on liquid large caps, walk-forward screened watchlist.",
+ "evidence": "Selected symbols passed backtest screening in the source; KR transfer of the coin_swing6 variant (EMA9/21 long-short, 6 symbols): -7.2% annualised, MDD 47%, all 9 variants negative.",
+ "limitations": [
+  "watchlist chosen by backtest (selection bias)",
+  "tight stop cuts winners in volatile crypto",
+  "no trade log or OOS in this summary"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "direct",
+  "notes": "Candidate for 005930/000660; expect whipsaw cost drag. The -2% stop is the rule most likely to be a dead/over-active rule: verify with ablation."
+ },
+ "schema_version": 1
+}

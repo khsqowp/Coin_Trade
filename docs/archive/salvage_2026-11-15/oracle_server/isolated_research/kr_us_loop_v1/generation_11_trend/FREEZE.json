@@ -1,0 +1,16 @@
+{
+  "run_id": "GEN11-20261106-SPY_VOL_BURST_MOM5_H5",
+  "status": "PREREGISTERED_NOT_RUN",
+  "frozen_at_utc": "2026-11-06T12:40:07Z",
+  "frozen_at_timezone": "Asia/Seoul",
+  "prereg_sha256": "454704a4937d13f8a0f4bb82ec7a3d672a21ad88f781eab2739bb046bda7672f",
+  "runner_sha256": "1596140683c8ec1f42b564f133738c40340b8da77a0a7dd33826e75227ca7583",
+  "test_sha256": "adbb02ac2e588456097d30ab31ae3149657736fb3f4e4d2ad1d8b426571afde9",
+  "data_path": "trading/docs/research/kr_us_loop_v1/data_mirror/us_daily/SPY.parquet",
+  "data_sha256": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba",
+  "source_path": "trading/app/new_strategy_screening.py",
+  "source_sha256": "27cfd55ff2d6158e6b3002be1652a5279f53371e7c5b517fb3ca99ccf0efdb8f",
+  "pre_market_test": "6 passed; compileall passed",
+  "review_status": "independent_review_requested_pending",
+  "performance_data_opened": false
+}

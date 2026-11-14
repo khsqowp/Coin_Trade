@@ -1,0 +1,62 @@
+{
+ "id": "ct-dual-thrust-daily",
+ "name": "Dual Thrust daily range breakout (long/short)",
+ "family": "breakout",
+ "one_line": "Close breaks open +/- K*range(4-bar) -> trade breakout direction; best blind-period candidate in owner's catalog.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/신규전략100-정밀검증.md (section '2. Dual Thrust Intraday')",
+   "app/new_strategy_screening.py::dual_thrust",
+   "docs/research/strategy_catalog.md"
+  ]
+ },
+ "markets": [
+  "crypto perpetual futures (45-47 symbols)"
+ ],
+ "timeframe": "1d",
+ "direction": "long_short (dollar-neutral portfolio, TOP_K=8, 20-day hold)",
+ "status_in_source": "hold (best 'reference' candidate, not adopted)",
+ "idea": "Range-expansion breakout. Range = max(HH-LC, HC-LL) over previous 4 bars (HH highest high, LC lowest close, HC highest close, LL lowest low, all shifted by 1). Long when close > open + K*range, short when close < open - K*range.",
+ "rules": [
+  {
+   "name": "upper_breakout_entry",
+   "kind": "entry",
+   "description": "close > open + K*range4 (range from prior 4 bars only)"
+  },
+  {
+   "name": "lower_breakout_exit",
+   "kind": "exit",
+   "description": "long/flat adaptation: go flat when close < open - K*range4"
+  },
+  {
+   "name": "time_exit",
+   "kind": "exit",
+   "description": "source holds 20 days then rebalances"
+  }
+ ],
+ "parameters": {
+  "lookback_bars": 4,
+  "K": 0.5,
+  "K_variant": 0.7,
+  "hold_days": 20
+ },
+ "rationale": "Volatility-breakout momentum; event study 10d edge +1.09pp, 20d edge +2.17pp across the universe.",
+ "evidence": "Portfolio (0.05%/side fees, no funding/slippage): full CAGR +53.8%, MDD 34.5%, Sharpe 1.42, 909 trades; blind 2024-26 CAGR +57.7%, MDD 31.9%, Sharpe 1.51. Year returns: 2020 -1.4%, 2022 -14.1%.",
+ "limitations": [
+  "no funding or slippage in the source numbers",
+  "K=0.7 variant collapses (CAGR 38.9%, MDD 48.9%) -> parameter sensitive",
+  "2022 bear defense failed",
+  "single configuration among ~142 tested -> selection bias",
+  "source is a cross-sectional market-neutral portfolio; single-asset long/flat will differ"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Use only the long side on BTC or ETH; treat K as fixed a-priori (0.5), do not tune."
+ },
+ "schema_version": 1
+}

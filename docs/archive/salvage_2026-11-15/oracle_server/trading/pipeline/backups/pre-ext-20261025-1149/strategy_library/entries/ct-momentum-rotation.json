@@ -1,0 +1,65 @@
+{
+ "id": "ct-momentum-rotation",
+ "name": "Cross-sectional momentum rotation (14d, top/bottom 8, dollar-neutral)",
+ "family": "cross-sectional momentum",
+ "one_line": "Rank 47 perps by 14d return, long top 8 / short bottom 8, rebalance every 3 days; BTC 14d<-10% -> cash.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "app/momentum_rotation_loop.py",
+   "docs/research/strategy_catalog.md",
+   "docs/research/risk.md",
+   "docs/research/regime.md",
+   "README.md"
+  ]
+ },
+ "markets": [
+  "Binance USD-M perpetuals (paper only in source)"
+ ],
+ "timeframe": "1d",
+ "direction": "market_neutral",
+ "status_in_source": "adopted (running as paper test in owner's repo)",
+ "idea": "Relative-strength rotation: momentum = close[t]/close[t-14]-1; hold equal-weight longs in top K and shorts in bottom K; rebalance every 3 days; optional crash filter: if BTC 14-day return < -10%, move to cash.",
+ "rules": [
+  {
+   "name": "momentum_rank_selection",
+   "kind": "entry",
+   "description": "top/bottom K by 14d return"
+  },
+  {
+   "name": "rebalance_every_3d",
+   "kind": "exit",
+   "description": "re-rank every 3 days"
+  },
+  {
+   "name": "btc_crash_cash_filter",
+   "kind": "filter",
+   "description": "BTC 14d return < -10% -> flat"
+  }
+ ],
+ "parameters": {
+  "lookback_days": 14,
+  "rebalance_days": 3,
+  "top_k": 8,
+  "crash_lookback_days": 14,
+  "crash_threshold": -0.1
+ },
+ "rationale": "Cross-sectional momentum persists in crypto; dollar-neutral construction removes market beta.",
+ "evidence": "0.04% fee, no funding: CAGR 28.9%, MDD 18.6%. With 0.10% fee + funding, phase-averaged: 17.8-20% (source's own correction). IS 27.0 -> OOS 41.3 (genuine split). Sharpe 95% CI [0.07, 1.64]. Crash filter improved 10/10 combos but threshold was chosen with full-sample diagnostics.",
+ "limitations": [
+  "only 4.8 years of data",
+  "results swing 12-21% by start phase",
+  "survivorship bias in universe",
+  "overlays (vol target, regime switch, 5,953 alpha variants) overfit: IS best -> OOS collapse",
+  "not expressible as single-asset long/flat"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "not_applicable",
+  "notes": "Only the BTC crash-to-cash filter (14d return < -10% -> flat) is reusable as a single-asset risk overlay."
+ },
+ "schema_version": 1
+}

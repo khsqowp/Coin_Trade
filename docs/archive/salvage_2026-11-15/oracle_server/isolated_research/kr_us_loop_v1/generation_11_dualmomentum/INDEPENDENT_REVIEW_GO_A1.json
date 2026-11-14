@@ -1,0 +1,22 @@
+{
+  "decision": "GO",
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-11-06T13:06:00Z",
+  "freeze_sha256": "2052fd80dcdcc9f23d32b174fff69cb7ac7664934d112d399f79de91cf84e662",
+  "scope": "One exploratory performance run only; no deployment, trading, remote access, commit, or parameter variants.",
+  "checks": {
+    "frozen_rule_and_windows": "PASS",
+    "causal_month_end_to_next_open_timing": "PASS",
+    "fee_accounting_against_pre_rebalance_nav": "PASS",
+    "fail_closed_ordered_dates": "PASS",
+    "parquet_and_metadata_hash_gate": "PASS",
+    "single_run_and_append_only_attempt_gate": "PASS",
+    "unit_tests": "12/12 PASS",
+    "compile": "PASS"
+  },
+  "known_limits": [
+    "Yahoo-derived local snapshot is not independently validated.",
+    "The 2017+ segment and related momentum family are historically inspected; no untouched OOS claim is available.",
+    "A descriptive pass would remain exploratory and would not justify investment or live execution."
+  ]
+}

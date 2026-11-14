@@ -1,0 +1,77 @@
+{
+ "T1_IDX_SMA10M": {
+  "PRE_2008_06_2012_05": {
+   "days": 1002,
+   "total_return": 0.2031,
+   "cagr": 0.0476,
+   "sharpe": 0.38,
+   "vol": 0.1535,
+   "mdd": 0.2565,
+   "psr0": 0.774,
+   "time_in_market": 0.688
+  },
+  "round_trips": 3,
+  "win_rate": 0.333,
+  "avg_trade": 0.085
+ },
+ "T2_IDX_TSMOM12": {
+  "PRE_2008_06_2012_05": {
+   "days": 1002,
+   "total_return": 0.0157,
+   "cagr": 0.0039,
+   "sharpe": 0.105,
+   "vol": 0.161,
+   "mdd": 0.3039,
+   "psr0": 0.583,
+   "time_in_market": 0.604
+  },
+  "round_trips": 4,
+  "win_rate": 0.5,
+  "avg_trade": 0.0068
+ },
+ "T3_IDX_VOLTGT15": {
+  "PRE_2008_06_2012_05": {
+   "days": 1002,
+   "total_return": 0.0604,
+   "cagr": 0.0149,
+   "sharpe": 0.173,
+   "vol": 0.1577,
+   "mdd": 0.2615,
+   "psr0": 0.634,
+   "time_in_market": 1.0
+  },
+  "round_trips": 1,
+  "win_rate": 1.0,
+  "avg_trade": 0.0141
+ },
+ "T4_IDX_RSI2": {
+  "PRE_2008_06_2012_05": {
+   "days": 1002,
+   "total_return": 0.1606,
+   "cagr": 0.0382,
+   "sharpe": 0.586,
+   "vol": 0.0678,
+   "mdd": 0.1004,
+   "psr0": 0.879,
+   "time_in_market": 0.104
+  },
+  "round_trips": 31,
+  "win_rate": 0.71,
+  "avg_trade": 0.005
+ },
+ "B1_BH_069500": {
+  "PRE_2008_06_2012_05": {
+   "days": 1002,
+   "total_return": 0.0908,
+   "cagr": 0.0221,
+   "sharpe": 0.219,
+   "vol": 0.2831,
+   "mdd": 0.4865,
+   "psr0": 0.669,
+   "time_in_market": 1.0
+  },
+  "round_trips": 1,
+  "win_rate": 1.0,
+  "avg_trade": 0.0903
+ }
+}

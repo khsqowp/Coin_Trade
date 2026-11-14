@@ -1,0 +1,21 @@
+{
+  "addendum": "A8",
+  "scope": "Provenance-only gates. No strategy rules or calculations changed.",
+  "expected_sha256": {
+    "fetch_log.jsonl": "c713f103a801507393dad2f83ffe69760ea45e3d013dc1c5967189ba10181aab",
+    "universe_raw.csv": "cb58796a785b6a3f2abdc1dd1a0deb5772dfc836fcf6506a1d0832aab0844c7b",
+    "run_v3.py": "47ddb2d3580b158bd1e8f07b45421b197f0a070c367353cf6aed51e99d56ba77",
+    "engine_v2copy.py": "185426a1b6ea3abde3501a906db6dca00aad46f19e41fafa9c149cf06f0139d8"
+  },
+  "us_a3_expected_sha256": {
+    "prereg_sha256": null,
+    "script_sha256": null,
+    "pending_reason": "Awaiting root-provided exact hashes after US A7 final review. Aligned calculations must fail closed until populated."
+  },
+  "provenance_notes": {
+    "fetch_log": "research/kr_daily_v2/fetch_log.jsonl; source for delisted status used by A7 outcome handling",
+    "universe_raw": "research/kr_daily_v2/universe/universe_raw.csv; instrument identity/listing provenance",
+    "runner": "KR exploratory V3 strategy runner",
+    "engine": "research-only copy of the prior engine"
+  }
+}

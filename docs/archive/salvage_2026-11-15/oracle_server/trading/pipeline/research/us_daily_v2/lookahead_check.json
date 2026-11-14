@@ -1,0 +1,11 @@
+{
+ "mom12_1": true,
+ "mom12_1_mkt": true,
+ "riskadj_mom": true,
+ "high52w": true,
+ "low_vol": true,
+ "st_reversal_w": true,
+ "rsi2_pullback": true,
+ "volume_drift": true,
+ "trend_breadth": true
+}

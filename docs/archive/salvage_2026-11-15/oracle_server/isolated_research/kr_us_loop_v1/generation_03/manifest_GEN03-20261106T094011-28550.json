@@ -1,0 +1,58 @@
+{
+  "run_id": "GEN03-20261106T094011-28550",
+  "prereg_sha256": "1ae3c7a74a3882b8a5cf0b1fbb9c7cc559e145e2416cb98c6b594188f5ef1d68",
+  "runner_sha256": "2be8b342e154952d2536308311db38eaf875f5267a9fce64dc24791c6161e3cc",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T09:40:11.142270+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "planned_attempts": 10,
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_03/attempts_GEN03-20261106T094011-28550.jsonl",
+  "status": "FINISHED_WITH_FAILED_ATTEMPTS",
+  "markets": {
+    "US": {
+      "sessions": 8498,
+      "symbols": 688,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2001-01-04",
+          "end": "2016-12-30",
+          "bars": 4023,
+          "cagr": 0.05216389353290585,
+          "sharpe": 0.35786297597176736,
+          "mdd": -0.5518947580534723,
+          "total_return": 1.2518819306916913,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2017-01-04",
+          "end": "2026-11-02",
+          "bars": 2471,
+          "cagr": 0.14838340171826858,
+          "sharpe": 0.8561282409639144,
+          "mdd": -0.337172572108114,
+          "total_return": 2.883161939283836,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0
+        }
+      },
+      "data_note": "PIT members with local prices only; missing price history remains an optimistic coverage bias; 688 tickers",
+      "raw_price_audit": null
+    }
+  },
+  "finished_utc": "2026-11-06T09:40:24.514533+00:00",
+  "event_counts": {
+    "attempt_start": 10,
+    "attempt_finish": 5,
+    "attempt_fail": 5
+  },
+  "attempt_ledger_integrity": true,
+  "attempt_events_sha256": "9936086180dcf9fb308c5e80d8168c41de247a9435219e30cddd6d8abc4e33e8",
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_03/equity_curves_GEN03-20261106T094011-28550.csv.gz",
+  "curve_file_sha256": "6dff508ffeb749f21908a53f33a262feebc1bac240a334acfe852f6d07f2fd01"
+}

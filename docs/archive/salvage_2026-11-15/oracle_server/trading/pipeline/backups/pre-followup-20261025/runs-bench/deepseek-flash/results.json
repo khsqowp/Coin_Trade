@@ -1,0 +1,1206 @@
+{
+ "model": "deepseek-flash",
+ "dataqa": [
+  {
+   "rep": 0,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.816,
+    "up_days": 13,
+    "avg_volume": 14248.87,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 1160,
+    "out_tok": 90,
+    "cost": 0.000228,
+    "latency": 0.9226977825164795,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 1,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.816,
+    "up_days": 13,
+    "avg_volume": 14248.66,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 1160,
+    "out_tok": 107,
+    "cost": 0.0002382,
+    "latency": 0.8724799156188965,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 2,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.816,
+    "up_days": 13,
+    "avg_volume": 14273.87,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 1160,
+    "out_tok": 90,
+    "cost": 0.000228,
+    "latency": 1.05057692527771,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ],
+ "codegen": [
+  {
+   "spec": "sma",
+   "rep": 0,
+   "file": "/app/runs/bench/deepseek-flash/codegen/sma_r0/strategy.py",
+   "meta": {
+    "in_tok": 181,
+    "out_tok": 143,
+    "cost": 0.00011295,
+    "latency": 0.9155948162078857
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 1,
+   "file": "/app/runs/bench/deepseek-flash/codegen/sma_r1/strategy.py",
+   "meta": {
+    "in_tok": 181,
+    "out_tok": 143,
+    "cost": 0.00011295,
+    "latency": 1.1603624820709229
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 2,
+   "file": "/app/runs/bench/deepseek-flash/codegen/sma_r2/strategy.py",
+   "meta": {
+    "in_tok": 181,
+    "out_tok": 143,
+    "cost": 0.00011295,
+    "latency": 0.9941854476928711
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 0,
+   "file": "/app/runs/bench/deepseek-flash/codegen/rsi_r0/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 345,
+    "cost": 0.0002403,
+    "latency": 1.5341300964355469
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 1,
+   "file": "/app/runs/bench/deepseek-flash/codegen/rsi_r1/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 345,
+    "cost": 0.0002403,
+    "latency": 1.6253480911254883
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 2,
+   "file": "/app/runs/bench/deepseek-flash/codegen/rsi_r2/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 345,
+    "cost": 0.0002403,
+    "latency": 1.622401237487793
+   }
+  }
+ ],
+ "audit": [
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 763,
+    "out_tok": 329,
+    "cost": 0.00031185,
+    "latency": 2.3248753547668457,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 763,
+    "out_tok": 378,
+    "cost": 0.00034125,
+    "latency": 2.538954257965088,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 763,
+    "out_tok": 386,
+    "cost": 0.00034605000000000004,
+    "latency": 2.765141248703003,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 760,
+    "out_tok": 352,
+    "cost": 0.0003252,
+    "latency": 2.5555460453033447,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 760,
+    "out_tok": 319,
+    "cost": 0.0003054,
+    "latency": 2.6141185760498047,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 760,
+    "out_tok": 307,
+    "cost": 0.0002982,
+    "latency": 2.2061145305633545,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 776,
+    "out_tok": 351,
+    "cost": 0.000327,
+    "latency": 2.501890182495117,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 776,
+    "out_tok": 374,
+    "cost": 0.0003408,
+    "latency": 2.5678751468658447,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 776,
+    "out_tok": 332,
+    "cost": 0.0003156,
+    "latency": 2.2352495193481445,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 843,
+    "out_tok": 569,
+    "cost": 0.00046784999999999996,
+    "latency": 3.355330467224121,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "suspected",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 843,
+    "out_tok": 576,
+    "cost": 0.00047204999999999995,
+    "latency": 3.7838618755340576,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 843,
+    "out_tok": 584,
+    "cost": 0.00047684999999999996,
+    "latency": 3.9920623302459717,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 789,
+    "out_tok": 479,
+    "cost": 0.00040575,
+    "latency": 3.1903531551361084,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 789,
+    "out_tok": 395,
+    "cost": 0.00035535000000000005,
+    "latency": 2.787921667098999,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 789,
+    "out_tok": 550,
+    "cost": 0.00044835000000000003,
+    "latency": 3.8799142837524414,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 807,
+    "out_tok": 407,
+    "cost": 0.00036525,
+    "latency": 2.888976573944092,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 807,
+    "out_tok": 400,
+    "cost": 0.00036105,
+    "latency": 2.3769702911376953,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 807,
+    "out_tok": 444,
+    "cost": 0.00038745,
+    "latency": 3.200037717819214,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 781,
+    "out_tok": 383,
+    "cost": 0.00034695,
+    "latency": 2.5993034839630127,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 781,
+    "out_tok": 330,
+    "cost": 0.00031515,
+    "latency": 2.7743077278137207,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 781,
+    "out_tok": 332,
+    "cost": 0.00031634999999999996,
+    "latency": 2.517399311065674,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "other",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 773,
+    "out_tok": 369,
+    "cost": 0.00033735000000000004,
+    "latency": 2.419971227645874,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "costs_missing",
+    "data_leakage",
+    "lookahead_bias",
+    "overfitting",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 773,
+    "out_tok": 551,
+    "cost": 0.00044654999999999993,
+    "latency": 3.476867198944092,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "costs_missing",
+    "data_leakage",
+    "lookahead_bias",
+    "overfitting",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 773,
+    "out_tok": 590,
+    "cost": 0.00046995,
+    "latency": 3.6715896129608154,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 877,
+    "out_tok": 309,
+    "cost": 0.00031695,
+    "latency": 2.441859006881714,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "logic_error",
+    "lookahead_bias",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 877,
+    "out_tok": 491,
+    "cost": 0.00042615,
+    "latency": 3.2167117595672607,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "costs_missing",
+    "data_leakage",
+    "lookahead_bias",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 877,
+    "out_tok": 482,
+    "cost": 0.00042075,
+    "latency": 3.319239377975464,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 861,
+    "out_tok": 435,
+    "cost": 0.00039014999999999997,
+    "latency": 3.169257164001465,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 861,
+    "out_tok": 447,
+    "cost": 0.00039735000000000004,
+    "latency": 3.101172685623169,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 861,
+    "out_tok": 403,
+    "cost": 0.00037095,
+    "latency": 2.8945484161376953,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "costs_missing",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 783,
+    "out_tok": 498,
+    "cost": 0.00041625,
+    "latency": 3.2233622074127197,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "other",
+    "sample_insufficient"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 783,
+    "out_tok": 464,
+    "cost": 0.00039584999999999995,
+    "latency": 3.0946831703186035,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "INCONCLUSIVE",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 783,
+    "out_tok": 323,
+    "cost": 0.00031125,
+    "latency": 2.5004868507385254,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 798,
+    "out_tok": 374,
+    "cost": 0.0003441,
+    "latency": 2.5015294551849365,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 798,
+    "out_tok": 448,
+    "cost": 0.0003885,
+    "latency": 2.8303747177124023,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 798,
+    "out_tok": 427,
+    "cost": 0.0003759,
+    "latency": 2.869112968444824,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 790,
+    "out_tok": 476,
+    "cost": 0.00040409999999999996,
+    "latency": 2.9713997840881348,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 790,
+    "out_tok": 557,
+    "cost": 0.0004527,
+    "latency": 3.605804920196533,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "deepseek-flash",
+    "in_tok": 790,
+    "out_tok": 516,
+    "cost": 0.00042809999999999994,
+    "latency": 3.4808523654937744,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ]
+}

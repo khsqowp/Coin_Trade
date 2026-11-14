@@ -1,0 +1,28 @@
+{
+  "candidate_id": "GEN11-US-SECTOR-BREADTH-200SMA-5OF9-SPY-CASH-A1",
+  "review_status": "GO",
+  "performance_data_opened": false,
+  "artifacts": {
+    "prereg_sha256": "8edc2e5b053964fe1750856abb996408fdbcd8298bff13bdf08ca9944771b010",
+    "addendum_sha256": "6cd29998444c53828f9e9ac69cf68ed3d35066d8627eaa65cb719789a0ab9adb",
+    "runner_sha256": "2af000b8bcd47b643d04724b62844c2bb1235c83d77f941acc2f66cf28ff51fd",
+    "tests_sha256": "b1c8216b1de83217e8c07d8e5ab500870412e53307314bfc0e60a41350af3336"
+  },
+  "inputs_sha256": {
+    "XLB.parquet": "516c2e9f2e66f1f85aa749eefe178a8258a493f3c93d5f0ddaa70271c672c781",
+    "XLE.parquet": "fe06aaab951e425e9b41ef5d61c3ca0924dc10c836d471b8d5862246c27a69ef",
+    "XLF.parquet": "1c3c409cf1fe98e2e909f61d562fdd41e66d710cfca95035bff61c1c5844b844",
+    "XLI.parquet": "ec183fc4b478862775200bf68bc7c6b3d9e7a157052b67c9afb40d0160e24104",
+    "XLK.parquet": "cbf1001174c22974dc0e5089222e6d4d07a8e1f5b60817eb3a97c73f553f69c7",
+    "XLP.parquet": "6ae34466045556b1a1ba7122c91e89edbd7b79e20c6195ff2d5e0423011e1e53",
+    "XLU.parquet": "b6006c3af45a03364652fd72326836279f8e92a32a799fa5d8878cff8a55fe3e",
+    "XLV.parquet": "e029fadb7fa0398185aae0a504541b89db73f3faa7958dc50ea593445aff1f4f",
+    "XLY.parquet": "01454d31308693e6f1fa817a495289e09b5e687bb509d4906ac2358733600616",
+    "SPY.parquet": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba"
+  },
+  "notes": [
+    "Only directory presence and raw SHA-256 fingerprints were checked; parquet values and performance metrics were not read.",
+    "Root reviewer must independently inspect overlap, timing, costs, tests and hashes before changing review_status to GO.",
+    "The runner refuses to access parquet price data while review_status is not GO or if any frozen hash differs."
+  ]
+}

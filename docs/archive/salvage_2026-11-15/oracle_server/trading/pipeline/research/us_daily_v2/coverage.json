@@ -1,0 +1,1523 @@
+{
+ "is_start": "2008-01-02",
+ "yearly": [
+  {
+   "date": 1998,
+   "members": 123518.0,
+   "with_data": 52605,
+   "eligible": 0,
+   "coverage": 0.4259,
+   "eligible_share": 0.0
+  },
+  {
+   "date": 1999,
+   "members": 123736.0,
+   "with_data": 55427,
+   "eligible": 53721,
+   "coverage": 0.4479,
+   "eligible_share": 0.4342
+  },
+  {
+   "date": 2000,
+   "members": 124055.0,
+   "with_data": 57626,
+   "eligible": 57249,
+   "coverage": 0.4645,
+   "eligible_share": 0.4615
+  },
+  {
+   "date": 2001,
+   "members": 122812.0,
+   "with_data": 59314,
+   "eligible": 58893,
+   "coverage": 0.483,
+   "eligible_share": 0.4795
+  },
+  {
+   "date": 2002,
+   "members": 124688.0,
+   "with_data": 61918,
+   "eligible": 61442,
+   "coverage": 0.4966,
+   "eligible_share": 0.4928
+  },
+  {
+   "date": 2003,
+   "members": 124496.0,
+   "with_data": 63571,
+   "eligible": 63571,
+   "coverage": 0.5106,
+   "eligible_share": 0.5106
+  },
+  {
+   "date": 2004,
+   "members": 124695.0,
+   "with_data": 64633,
+   "eligible": 64633,
+   "coverage": 0.5183,
+   "eligible_share": 0.5183
+  },
+  {
+   "date": 2005,
+   "members": 124975.0,
+   "with_data": 65788,
+   "eligible": 65725,
+   "coverage": 0.5264,
+   "eligible_share": 0.5259
+  },
+  {
+   "date": 2006,
+   "members": 124778.0,
+   "with_data": 68822,
+   "eligible": 68575,
+   "coverage": 0.5516,
+   "eligible_share": 0.5496
+  },
+  {
+   "date": 2007,
+   "members": 124782.0,
+   "with_data": 71603,
+   "eligible": 71216,
+   "coverage": 0.5738,
+   "eligible_share": 0.5707
+  },
+  {
+   "date": 2008,
+   "members": 125875.0,
+   "with_data": 75372,
+   "eligible": 74804,
+   "coverage": 0.5988,
+   "eligible_share": 0.5943
+  },
+  {
+   "date": 2009,
+   "members": 125718.0,
+   "with_data": 78176,
+   "eligible": 78026,
+   "coverage": 0.6218,
+   "eligible_share": 0.6206
+  },
+  {
+   "date": 2010,
+   "members": 125553.0,
+   "with_data": 80876,
+   "eligible": 80876,
+   "coverage": 0.6442,
+   "eligible_share": 0.6442
+  },
+  {
+   "date": 2011,
+   "members": 125261.0,
+   "with_data": 82355,
+   "eligible": 82179,
+   "coverage": 0.6575,
+   "eligible_share": 0.6561
+  },
+  {
+   "date": 2012,
+   "members": 124260.0,
+   "with_data": 84781,
+   "eligible": 84040,
+   "coverage": 0.6823,
+   "eligible_share": 0.6763
+  },
+  {
+   "date": 2013,
+   "members": 125260.0,
+   "with_data": 88240,
+   "eligible": 87628,
+   "coverage": 0.7045,
+   "eligible_share": 0.6996
+  },
+  {
+   "date": 2014,
+   "members": 125548.0,
+   "with_data": 89774,
+   "eligible": 89217,
+   "coverage": 0.7151,
+   "eligible_share": 0.7106
+  },
+  {
+   "date": 2015,
+   "members": 126174.0,
+   "with_data": 92445,
+   "eligible": 92075,
+   "coverage": 0.7327,
+   "eligible_share": 0.7297
+  },
+  {
+   "date": 2016,
+   "members": 127383.0,
+   "with_data": 97267,
+   "eligible": 96482,
+   "coverage": 0.7636,
+   "eligible_share": 0.7574
+  },
+  {
+   "date": 2017,
+   "members": 127023.0,
+   "with_data": 100695,
+   "eligible": 100237,
+   "coverage": 0.7927,
+   "eligible_share": 0.7891
+  },
+  {
+   "date": 2018,
+   "members": 126941.0,
+   "with_data": 102941,
+   "eligible": 102701,
+   "coverage": 0.8109,
+   "eligible_share": 0.809
+  },
+  {
+   "date": 2019,
+   "members": 127288.0,
+   "with_data": 106781,
+   "eligible": 106034,
+   "coverage": 0.8389,
+   "eligible_share": 0.833
+  },
+  {
+   "date": 2020,
+   "members": 127787.0,
+   "with_data": 111407,
+   "eligible": 110697,
+   "coverage": 0.8718,
+   "eligible_share": 0.8663
+  },
+  {
+   "date": 2021,
+   "members": 127281.0,
+   "with_data": 113382,
+   "eligible": 113063,
+   "coverage": 0.8908,
+   "eligible_share": 0.8883
+  },
+  {
+   "date": 2022,
+   "members": 126461.0,
+   "with_data": 115774,
+   "eligible": 115446,
+   "coverage": 0.9155,
+   "eligible_share": 0.9129
+  },
+  {
+   "date": 2023,
+   "members": 125769.0,
+   "with_data": 118155,
+   "eligible": 117828,
+   "coverage": 0.9395,
+   "eligible_share": 0.9369
+  },
+  {
+   "date": 2024,
+   "members": 126777.0,
+   "with_data": 120826,
+   "eligible": 120187,
+   "coverage": 0.9531,
+   "eligible_share": 0.948
+  },
+  {
+   "date": 2025,
+   "members": 125773.0,
+   "with_data": 121682,
+   "eligible": 121450,
+   "coverage": 0.9675,
+   "eligible_share": 0.9656
+  },
+  {
+   "date": 2026,
+   "members": 105649.0,
+   "with_data": 104221,
+   "eligible": 103762,
+   "coverage": 0.9865,
+   "eligible_share": 0.9821
+  }
+ ],
+ "daily_avg_counts": [
+  {
+   "date": 1998,
+   "members": 490.2,
+   "with_data": 208.8,
+   "eligible": 0.0
+  },
+  {
+   "date": 1999,
+   "members": 491.0,
+   "with_data": 219.9,
+   "eligible": 213.2
+  },
+  {
+   "date": 2000,
+   "members": 492.3,
+   "with_data": 228.7,
+   "eligible": 227.2
+  },
+  {
+   "date": 2001,
+   "members": 495.2,
+   "with_data": 239.2,
+   "eligible": 237.5
+  },
+  {
+   "date": 2002,
+   "members": 494.8,
+   "with_data": 245.7,
+   "eligible": 243.8
+  },
+  {
+   "date": 2003,
+   "members": 494.0,
+   "with_data": 252.3,
+   "eligible": 252.3
+  },
+  {
+   "date": 2004,
+   "members": 494.8,
+   "with_data": 256.5,
+   "eligible": 256.5
+  },
+  {
+   "date": 2005,
+   "members": 495.9,
+   "with_data": 261.1,
+   "eligible": 260.8
+  },
+  {
+   "date": 2006,
+   "members": 497.1,
+   "with_data": 274.2,
+   "eligible": 273.2
+  },
+  {
+   "date": 2007,
+   "members": 497.1,
+   "with_data": 285.3,
+   "eligible": 283.7
+  },
+  {
+   "date": 2008,
+   "members": 497.5,
+   "with_data": 297.9,
+   "eligible": 295.7
+  },
+  {
+   "date": 2009,
+   "members": 498.9,
+   "with_data": 310.2,
+   "eligible": 309.6
+  },
+  {
+   "date": 2010,
+   "members": 498.2,
+   "with_data": 320.9,
+   "eligible": 320.9
+  },
+  {
+   "date": 2011,
+   "members": 497.1,
+   "with_data": 326.8,
+   "eligible": 326.1
+  },
+  {
+   "date": 2012,
+   "members": 497.0,
+   "with_data": 339.1,
+   "eligible": 336.2
+  },
+  {
+   "date": 2013,
+   "members": 497.1,
+   "with_data": 350.2,
+   "eligible": 347.7
+  },
+  {
+   "date": 2014,
+   "members": 498.2,
+   "with_data": 356.2,
+   "eligible": 354.0
+  },
+  {
+   "date": 2015,
+   "members": 500.7,
+   "with_data": 366.8,
+   "eligible": 365.4
+  },
+  {
+   "date": 2016,
+   "members": 505.5,
+   "with_data": 386.0,
+   "eligible": 382.9
+  },
+  {
+   "date": 2017,
+   "members": 506.1,
+   "with_data": 401.2,
+   "eligible": 399.4
+  },
+  {
+   "date": 2018,
+   "members": 505.7,
+   "with_data": 410.1,
+   "eligible": 409.2
+  },
+  {
+   "date": 2019,
+   "members": 505.1,
+   "with_data": 423.7,
+   "eligible": 420.8
+  },
+  {
+   "date": 2020,
+   "members": 505.1,
+   "with_data": 440.3,
+   "eligible": 437.5
+  },
+  {
+   "date": 2021,
+   "members": 505.1,
+   "with_data": 449.9,
+   "eligible": 448.7
+  },
+  {
+   "date": 2022,
+   "members": 503.8,
+   "with_data": 461.3,
+   "eligible": 459.9
+  },
+  {
+   "date": 2023,
+   "members": 503.1,
+   "with_data": 472.6,
+   "eligible": 471.3
+  },
+  {
+   "date": 2024,
+   "members": 503.1,
+   "with_data": 479.5,
+   "eligible": 476.9
+  },
+  {
+   "date": 2025,
+   "members": 503.1,
+   "with_data": 486.7,
+   "eligible": 485.8
+  },
+  {
+   "date": 2026,
+   "members": 503.1,
+   "with_data": 496.3,
+   "eligible": 494.1
+  }
+ ],
+ "n_symbols_with_data": 678,
+ "adj_repairs": {
+  "DHR": [
+   "2016-07-05"
+  ],
+  "DLX": [
+   "2001-01-02"
+  ],
+  "ETN": [
+   "2001-01-02"
+  ]
+ },
+ "n_pit_symbols": 1209,
+ "nonequity_excluded": [
+  "ABI",
+  "ANV",
+  "AV",
+  "CAM",
+  "CNXT",
+  "CSRA",
+  "EFU",
+  "EMC",
+  "FB",
+  "GDT",
+  "GENZ",
+  "INFO",
+  "JAVA",
+  "MEDI",
+  "NFX",
+  "NSI",
+  "PCL",
+  "PCS",
+  "PWER",
+  "SDS",
+  "SHLD",
+  "SPLS",
+  "SUB",
+  "TEK",
+  "TOS",
+  "UCC",
+  "UN",
+  "UST",
+  "VO"
+ ],
+ "reuse_audit_old_spells_with_data": [
+  [
+   "ABI",
+   [
+    [
+     "1996-01-02",
+     "2008-11-24"
+    ]
+   ],
+   "VictoryShares Pioneer Asset-Based Inc ETF",
+   "ETF"
+  ],
+  [
+   "ABX",
+   [
+    [
+     "1996-01-02",
+     "2002-07-22"
+    ]
+   ],
+   "Abacus Global Management, Inc.",
+   "EQUITY"
+  ],
+  [
+   "ACV",
+   [
+    [
+     "1996-01-02",
+     "2006-11-17"
+    ]
+   ],
+   "Virtus Diversified Income & Convertible Fund",
+   "EQUITY"
+  ],
+  [
+   "ADCT",
+   [
+    [
+     "1999-08-02",
+     "2007-07-02"
+    ]
+   ],
+   "ADC Therapeutics SA",
+   "EQUITY"
+  ],
+  [
+   "AIT",
+   [
+    [
+     "1996-01-02",
+     "1999-10-11"
+    ]
+   ],
+   "Applied Industrial Technologies, Inc.",
+   "EQUITY"
+  ],
+  [
+   "AM",
+   [
+    [
+     "1996-01-02",
+     "2004-05-03"
+    ]
+   ],
+   "Antero Midstream Corporation",
+   "EQUITY"
+  ],
+  [
+   "ANF",
+   [
+    [
+     "2007-03-29",
+     "2013-12-23"
+    ]
+   ],
+   "Abercrombie & Fitch Co.",
+   "EQUITY"
+  ],
+  [
+   "ANV",
+   [
+    [
+     "1996-01-02",
+     "1999-04-12"
+    ]
+   ],
+   "Graniteshares Autocallable Nvda ETF",
+   "ETF"
+  ],
+  [
+   "AR",
+   [
+    [
+     "1996-01-02",
+     "1999-10-27"
+    ]
+   ],
+   "Antero Resources Corporation",
+   "EQUITY"
+  ],
+  [
+   "ASC",
+   [
+    [
+     "1996-01-02",
+     "1999-06-24"
+    ]
+   ],
+   "Ardmore Shipping Corporation",
+   "EQUITY"
+  ],
+  [
+   "ASH",
+   [
+    [
+     "1996-01-02",
+     "2008-11-14"
+    ]
+   ],
+   "Ashland Inc.",
+   "EQUITY"
+  ],
+  [
+   "ASND",
+   [
+    [
+     "1998-06-12",
+     "1999-06-25"
+    ]
+   ],
+   "Ascendis Pharma A/S",
+   "EQUITY"
+  ],
+  [
+   "ASO",
+   [
+    [
+     "1999-03-10",
+     "2006-11-06"
+    ]
+   ],
+   "Academy Sports and Outdoors, Inc.",
+   "EQUITY"
+  ],
+  [
+   "AV",
+   [
+    [
+     "2000-10-02",
+     "2007-10-26"
+    ]
+   ],
+   "Corgi Aerospace & Commercial Aviation ETF",
+   "ETF"
+  ],
+  [
+   "BC",
+   [
+    [
+     "1996-01-02",
+     "2008-06-23"
+    ]
+   ],
+   "Brunswick Corporation",
+   "EQUITY"
+  ],
+  [
+   "BEAM",
+   [
+    [
+     "1996-01-02",
+     "2014-05-01"
+    ]
+   ],
+   "Beam Therapeutics Inc.",
+   "EQUITY"
+  ],
+  [
+   "BUD",
+   [
+    [
+     "1996-01-02",
+     "2008-11-18"
+    ]
+   ],
+   "Anheuser-Busch InBev SA/NV",
+   "EQUITY"
+  ],
+  [
+   "CAR",
+   [
+    [
+     "1996-01-02",
+     "2006-08-01"
+    ]
+   ],
+   "Avis Budget Group, Inc.",
+   "EQUITY"
+  ],
+  [
+   "CCK",
+   [
+    [
+     "1996-01-02",
+     "2000-12-11"
+    ]
+   ],
+   "Crown Holdings, Inc.",
+   "EQUITY"
+  ],
+  [
+   "CG",
+   [
+    [
+     "1996-01-02",
+     "2000-11-02"
+    ]
+   ],
+   "The Carlyle Group Inc.",
+   "EQUITY"
+  ],
+  [
+   "CHA",
+   [
+    [
+     "1996-01-02",
+     "2000-06-19"
+    ]
+   ],
+   "Chagee Holdings Limited",
+   "EQUITY"
+  ],
+  [
+   "CLF",
+   [
+    [
+     "2009-12-21",
+     "2014-04-02"
+    ]
+   ],
+   "Cleveland-Cliffs Inc.",
+   "EQUITY"
+  ],
+  [
+   "CNXT",
+   [
+    [
+     "2000-01-31",
+     "2002-06-26"
+    ]
+   ],
+   "VanEck ChiNext Innovators ETF",
+   "ETF"
+  ],
+  [
+   "COMS",
+   [
+    [
+     "1996-01-02",
+     "2000-07-28"
+    ]
+   ],
+   "COMSovereign Holding Corp.",
+   "EQUITY"
+  ],
+  [
+   "CR",
+   [
+    [
+     "1996-01-02",
+     "2004-12-20"
+    ]
+   ],
+   "Crane Company",
+   "EQUITY"
+  ],
+  [
+   "DDS",
+   [
+    [
+     "1996-01-02",
+     "2008-10-22"
+    ]
+   ],
+   "Dillard's, Inc.",
+   "EQUITY"
+  ],
+  [
+   "DLX",
+   [
+    [
+     "1996-01-02",
+     "2004-12-20"
+    ]
+   ],
+   "Deluxe Corporation",
+   "EQUITY"
+  ],
+  [
+   "DYN",
+   [
+    [
+     "2000-10-03",
+     "2009-12-21"
+    ]
+   ],
+   "Dyne Therapeutics, Inc.",
+   "EQUITY"
+  ],
+  [
+   "EC",
+   [
+    [
+     "1996-01-02",
+     "2006-06-06"
+    ]
+   ],
+   "Ecopetrol S.A.",
+   "EQUITY"
+  ],
+  [
+   "EFU",
+   [
+    [
+     "1996-01-02",
+     "2000-11-02"
+    ]
+   ],
+   "ProShares UltraShort MSCI EAFE",
+   "ETF"
+  ],
+  [
+   "EHC",
+   [
+    [
+     "1997-01-08",
+     "2003-03-21"
+    ]
+   ],
+   "Encompass Health Corporation",
+   "EQUITY"
+  ],
+  [
+   "EQ",
+   [
+    [
+     "2006-05-18",
+     "2009-07-01"
+    ]
+   ],
+   "Equillium, Inc.",
+   "EQUITY"
+  ],
+  [
+   "ETS",
+   [
+    [
+     "1996-01-02",
+     "2001-08-06"
+    ]
+   ],
+   "Elite Express Holding Inc.",
+   "EQUITY"
+  ],
+  [
+   "FHN",
+   [
+    [
+     "2002-05-06",
+     "2013-06-24"
+    ]
+   ],
+   "First Horizon Corporation",
+   "EQUITY"
+  ],
+  [
+   "FMCC",
+   [
+    [
+     "1996-01-02",
+     "2008-09-11"
+    ]
+   ],
+   "Federal Home Loan Mortgage Corporation",
+   "EQUITY"
+  ],
+  [
+   "FMY",
+   [
+    [
+     "1998-07-10",
+     "1999-05-28"
+    ]
+   ],
+   "First Trust Mortgage Income Fund",
+   "EQUITY"
+  ],
+  [
+   "FNMA",
+   [
+    [
+     "1996-01-02",
+     "2008-09-11"
+    ]
+   ],
+   "Federal National Mortgage Association",
+   "EQUITY"
+  ],
+  [
+   "FRO",
+   [
+    [
+     "1997-01-02",
+     "1999-09-29"
+    ]
+   ],
+   "Frontline plc",
+   "EQUITY"
+  ],
+  [
+   "G",
+   [
+    [
+     "1996-01-02",
+     "2005-10-03"
+    ]
+   ],
+   "Genpact Limited",
+   "EQUITY"
+  ],
+  [
+   "GDT",
+   [
+    [
+     "1996-12-19",
+     "2006-04-24"
+    ]
+   ],
+   "WisdomTree Efficient TIPS Plus Gold Fund",
+   "ETF"
+  ],
+  [
+   "GENZ",
+   [
+    [
+     "2001-12-14",
+     "2011-04-04"
+    ]
+   ],
+   "VanEck Digital Native Economy ETF",
+   "ETF"
+  ],
+  [
+   "GHC",
+   [
+    [
+     "2007-12-31",
+     "2014-09-22"
+    ]
+   ],
+   "Graham Holdings Company",
+   "EQUITY"
+  ],
+  [
+   "GP",
+   [
+    [
+     "1996-01-02",
+     "2005-12-20"
+    ]
+   ],
+   "GreenPower Motor Company Inc.",
+   "EQUITY"
+  ],
+  [
+   "GTE",
+   [
+    [
+     "1996-01-02",
+     "2000-07-03"
+    ]
+   ],
+   "Gran Tierra Energy Inc.",
+   "EQUITY"
+  ],
+  [
+   "H",
+   [
+    [
+     "1996-01-02",
+     "2001-06-29"
+    ],
+    [
+     "2006-08-01",
+     "2007-04-10"
+    ]
+   ],
+   "Hyatt Hotels Corporation",
+   "EQUITY"
+  ],
+  [
+   "ITT",
+   [
+    [
+     "1996-01-02",
+     "2011-11-01"
+    ]
+   ],
+   "ITT Inc.",
+   "EQUITY"
+  ],
+  [
+   "JAVA",
+   [
+    [
+     "1996-01-02",
+     "2010-01-27"
+    ]
+   ],
+   "JPMorgan Active Value ETF",
+   "ETF"
+  ],
+  [
+   "KBH",
+   [
+    [
+     "1996-01-02",
+     "2009-12-21"
+    ]
+   ],
+   "KB Home",
+   "EQUITY"
+  ],
+  [
+   "LIFE",
+   [
+    [
+     "2008-11-24",
+     "2014-01-24"
+    ]
+   ],
+   "Ethos Technologies Inc.",
+   "EQUITY"
+  ],
+  [
+   "LPX",
+   [
+    [
+     "1996-01-02",
+     "2006-11-10"
+    ]
+   ],
+   "Louisiana-Pacific Corporation",
+   "EQUITY"
+  ],
+  [
+   "LU",
+   [
+    [
+     "1996-10-01",
+     "2006-12-01"
+    ]
+   ],
+   "Lufax Holding Ltd",
+   "EQUITY"
+  ],
+  [
+   "MBI",
+   [
+    [
+     "1996-12-03",
+     "2009-12-21"
+    ]
+   ],
+   "MBIA Inc.",
+   "EQUITY"
+  ],
+  [
+   "MEDI",
+   [
+    [
+     "2000-06-16",
+     "2007-06-01"
+    ]
+   ],
+   "Harbor Health Care ETF",
+   "ETF"
+  ],
+  [
+   "MI",
+   [
+    [
+     "2002-02-11",
+     "2011-07-06"
+    ]
+   ],
+   "NFT Limited",
+   "EQUITY"
+  ],
+  [
+   "MIR",
+   [
+    [
+     "1997-08-07",
+     "2000-06-01"
+    ],
+    [
+     "2001-04-03",
+     "2003-07-17"
+    ]
+   ],
+   "Mirion Technologies, Inc.",
+   "EQUITY"
+  ],
+  [
+   "MMI",
+   [
+    [
+     "2011-01-04",
+     "2012-05-22"
+    ]
+   ],
+   "Marcus & Millichap, Inc.",
+   "EQUITY"
+  ],
+  [
+   "MOB",
+   [
+    [
+     "1996-01-02",
+     "1999-12-01"
+    ]
+   ],
+   "Mobilicom Limited",
+   "EQUITY"
+  ],
+  [
+   "MTG",
+   [
+    [
+     "1996-07-19",
+     "2008-10-31"
+    ]
+   ],
+   "MGIC Investment Corporation",
+   "EQUITY"
+  ],
+  [
+   "MTW",
+   [
+    [
+     "2007-11-16",
+     "2009-09-01"
+    ]
+   ],
+   "The Manitowoc Company, Inc.",
+   "EQUITY"
+  ],
+  [
+   "NC",
+   [
+    [
+     "1996-01-02",
+     "2000-06-05"
+    ]
+   ],
+   "NACCO Industries, Inc.",
+   "EQUITY"
+  ],
+  [
+   "NSI",
+   [
+    [
+     "1996-01-02",
+     "2001-12-03"
+    ]
+   ],
+   "National Security Emerging Markets Index ETF",
+   "ETF"
+  ],
+  [
+   "NYT",
+   [
+    [
+     "1996-01-02",
+     "2010-12-20"
+    ]
+   ],
+   "The New York Times Company",
+   "EQUITY"
+  ],
+  [
+   "PCS",
+   [
+    [
+     "1998-11-24",
+     "2004-04-23"
+    ]
+   ],
+   "PGIM Corporate Bond 0-5 Year ETF",
+   "ETF"
+  ],
+  [
+   "PD",
+   [
+    [
+     "1996-01-02",
+     "2007-03-20"
+    ]
+   ],
+   "PagerDuty, Inc.",
+   "EQUITY"
+  ],
+  [
+   "PWER",
+   [
+    [
+     "2000-10-23",
+     "2005-03-14"
+    ]
+   ],
+   "Nomura Energy Transition ETF",
+   "ETF"
+  ],
+  [
+   "RAL",
+   [
+    [
+     "1996-01-02",
+     "2001-12-13"
+    ]
+   ],
+   "Ralliant Corporation",
+   "EQUITY"
+  ],
+  [
+   "S",
+   [
+    [
+     "1996-01-02",
+     "2013-07-09"
+    ]
+   ],
+   "SentinelOne, Inc.",
+   "EQUITY"
+  ],
+  [
+   "SANM",
+   [
+    [
+     "2000-06-21",
+     "2007-07-02"
+    ]
+   ],
+   "Sanmina Corporation",
+   "EQUITY"
+  ],
+  [
+   "SCI",
+   [
+    [
+     "1996-01-02",
+     "2000-03-16"
+    ]
+   ],
+   "Service Corporation International",
+   "EQUITY"
+  ],
+  [
+   "SDS",
+   [
+    [
+     "2002-07-22",
+     "2005-08-12"
+    ]
+   ],
+   "ProShares UltraShort S&P500",
+   "ETF"
+  ],
+  [
+   "SEG",
+   [
+    [
+     "1996-08-16",
+     "2000-11-22"
+    ]
+   ],
+   "Seaport Entertainment Group Inc.",
+   "EQUITY"
+  ],
+  [
+   "SGP",
+   [
+    [
+     "1996-01-02",
+     "2009-11-04"
+    ]
+   ],
+   "SpyGlass Pharma, Inc.",
+   "EQUITY"
+  ],
+  [
+   "SHLD",
+   [
+    [
+     "2005-03-28",
+     "2012-09-05"
+    ]
+   ],
+   "Global X Defense Tech ETF",
+   "ETF"
+  ],
+  [
+   "SLM",
+   [
+    [
+     "1998-07-01",
+     "2014-05-01"
+    ]
+   ],
+   "SLM Corporation",
+   "EQUITY"
+  ],
+  [
+   "SSP",
+   [
+    [
+     "2005-12-20",
+     "2008-07-01"
+    ]
+   ],
+   "The E.W. Scripps Company",
+   "EQUITY"
+  ],
+  [
+   "SUB",
+   [
+    [
+     "1998-01-28",
+     "2001-03-01"
+    ]
+   ],
+   "iShares Short-Term National Muni Bond ETF",
+   "ETF"
+  ],
+  [
+   "TEK",
+   [
+    [
+     "1996-01-02",
+     "2007-11-16"
+    ]
+   ],
+   "iShares Technology Opportunities Active ETF",
+   "ETF"
+  ],
+  [
+   "TEN",
+   [
+    [
+     "1996-01-02",
+     "1999-11-05"
+    ]
+   ],
+   "Tsakos Energy Navigation Limited",
+   "EQUITY"
+  ],
+  [
+   "TEX",
+   [
+    [
+     "2006-12-20",
+     "2008-11-06"
+    ]
+   ],
+   "Terex Corporation",
+   "EQUITY"
+  ],
+  [
+   "TKR",
+   [
+    [
+     "1996-01-02",
+     "2001-08-07"
+    ]
+   ],
+   "The Timken Company",
+   "EQUITY"
+  ],
+  [
+   "TMC",
+   [
+    [
+     "1996-01-02",
+     "2000-06-13"
+    ]
+   ],
+   "TMC the metals company Inc.",
+   "EQUITY"
+  ],
+  [
+   "TOS",
+   [
+    [
+     "1999-09-20",
+     "2001-09-17"
+    ]
+   ],
+   "Twin Oak Strategic Solutions ETF",
+   "ETF"
+  ],
+  [
+   "TX",
+   [
+    [
+     "1996-01-02",
+     "2001-10-10"
+    ]
+   ],
+   "Ternium S.A.",
+   "EQUITY"
+  ],
+  [
+   "UCC",
+   [
+    [
+     "1996-01-02",
+     "1999-05-03"
+    ]
+   ],
+   "ProShares Ultra Consumer Discretionary",
+   "ETF"
+  ],
+  [
+   "UCL",
+   [
+    [
+     "1996-01-02",
+     "2005-08-11"
+    ]
+   ],
+   "uCloudlink Group Inc.",
+   "EQUITY"
+  ],
+  [
+   "UIS",
+   [
+    [
+     "1996-01-02",
+     "2008-11-11"
+    ]
+   ],
+   "Unisys Corporation",
+   "EQUITY"
+  ],
+  [
+   "UK",
+   [
+    [
+     "1996-01-02",
+     "2001-02-07"
+    ]
+   ],
+   "Ucommune International Ltd",
+   "EQUITY"
+  ],
+  [
+   "UN",
+   [
+    [
+     "1996-01-02",
+     "2002-07-22"
+    ]
+   ],
+   "Corgi UNH 2x Daily ETF",
+   "ETF"
+  ],
+  [
+   "UPC",
+   [
+    [
+     "1998-10-01",
+     "2004-07-01"
+    ]
+   ],
+   "Universe Pharmaceuticals INC",
+   "EQUITY"
+  ],
+  [
+   "UST",
+   [
+    [
+     "1996-01-02",
+     "2009-01-06"
+    ]
+   ],
+   "ProShares Ultra 7-10 Year Treasury",
+   "ETF"
+  ],
+  [
+   "VIAV",
+   [
+    [
+     "2000-07-27",
+     "2013-12-23"
+    ]
+   ],
+   "Viavi Solutions Inc.",
+   "EQUITY"
+  ],
+  [
+   "VO",
+   [
+    [
+     "1996-01-02",
+     "2000-12-11"
+    ]
+   ],
+   "Vanguard Morningstar Mid-Cap ETF",
+   "ETF"
+  ],
+  [
+   "VRTS",
+   [
+    [
+     "2000-04-03",
+     "2005-07-05"
+    ]
+   ],
+   "Virtus Investment Partners, Inc.",
+   "EQUITY"
+  ],
+  [
+   "WB",
+   [
+    [
+     "1996-01-02",
+     "2009-01-02"
+    ]
+   ],
+   "Weibo Corporation",
+   "EQUITY"
+  ],
+  [
+   "WEN",
+   [
+    [
+     "1996-01-02",
+     "2008-09-30"
+    ]
+   ],
+   "The Wendy's Company",
+   "EQUITY"
+  ],
+  [
+   "WOR",
+   [
+    [
+     "1996-01-02",
+     "2004-12-20"
+    ]
+   ],
+   "Worthington Enterprises, Inc.",
+   "EQUITY"
+  ]
+ ]
+}

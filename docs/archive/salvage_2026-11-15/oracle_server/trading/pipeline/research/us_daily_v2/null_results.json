@@ -1,0 +1,191 @@
+{
+ "mom12_1": {
+  "draws": 200,
+  "real": {
+   "IS": 0.304,
+   "OOS": 0.58
+  },
+  "p": {
+   "IS": 0.995,
+   "OOS": 0.0398
+  },
+  "null_median": {
+   "IS": 0.425,
+   "OOS": 0.478
+  },
+  "null_p95": {
+   "IS": 0.509,
+   "OOS": 0.556
+  },
+  "bonferroni_OOS": 0.3582,
+  "bh_q_OOS": 0.0896
+ },
+ "mom12_1_mkt": {
+  "draws": 200,
+  "real": {
+   "IS": 0.74,
+   "OOS": 0.236
+  },
+  "p": {
+   "IS": 0.7114,
+   "OOS": 0.6617
+  },
+  "null_median": {
+   "IS": 0.774,
+   "OOS": 0.27
+  },
+  "null_p95": {
+   "IS": 0.867,
+   "OOS": 0.385
+  },
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.802
+ },
+ "riskadj_mom": {
+  "draws": 200,
+  "real": {
+   "IS": 0.335,
+   "OOS": 0.52
+  },
+  "p": {
+   "IS": 0.9801,
+   "OOS": 0.2687
+  },
+  "null_median": {
+   "IS": 0.428,
+   "OOS": 0.476
+  },
+  "null_p95": {
+   "IS": 0.503,
+   "OOS": 0.58
+  },
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.4254
+ },
+ "high52w": {
+  "draws": 200,
+  "real": {
+   "IS": 0.353,
+   "OOS": 0.401
+  },
+  "p": {
+   "IS": 0.9403,
+   "OOS": 0.8905
+  },
+  "null_median": {
+   "IS": 0.433,
+   "OOS": 0.468
+  },
+  "null_p95": {
+   "IS": 0.518,
+   "OOS": 0.573
+  },
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.8905
+ },
+ "low_vol": {
+  "draws": 200,
+  "real": {
+   "IS": 0.701,
+   "OOS": 0.507
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.2836
+  },
+  "null_median": {
+   "IS": 0.424,
+   "OOS": 0.473
+  },
+  "null_p95": {
+   "IS": 0.505,
+   "OOS": 0.566
+  },
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.4254
+ },
+ "st_reversal_w": {
+  "draws": 200,
+  "real": {
+   "IS": 0.376,
+   "OOS": 0.376
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.187,
+   "OOS": 0.104
+  },
+  "null_p95": {
+   "IS": 0.278,
+   "OOS": 0.196
+  },
+  "bonferroni_OOS": 0.045,
+  "bh_q_OOS": 0.0225
+ },
+ "rsi2_pullback": {
+  "draws": 100,
+  "real": {
+   "IS": 0.372,
+   "OOS": 0.038
+  },
+  "p": {
+   "IS": 0.0099,
+   "OOS": 0.0099
+  },
+  "null_median": {
+   "IS": 0.12,
+   "OOS": -0.408
+  },
+  "null_p95": {
+   "IS": 0.284,
+   "OOS": -0.209
+  },
+  "bonferroni_OOS": 0.0891,
+  "bh_q_OOS": 0.0297
+ },
+ "volume_drift": {
+  "draws": 100,
+  "real": {
+   "IS": 0.312,
+   "OOS": 0.226
+  },
+  "p": {
+   "IS": 0.0396,
+   "OOS": 0.7129
+  },
+  "null_median": {
+   "IS": 0.154,
+   "OOS": 0.311
+  },
+  "null_p95": {
+   "IS": 0.291,
+   "OOS": 0.463
+  },
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.802
+ },
+ "trend_breadth": {
+  "draws": 200,
+  "real": {
+   "IS": 0.493,
+   "OOS": 0.61
+  },
+  "p": {
+   "IS": 0.4876,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.491,
+   "OOS": 0.524
+  },
+  "null_p95": {
+   "IS": 0.539,
+   "OOS": 0.564
+  },
+  "bonferroni_OOS": 0.045,
+  "bh_q_OOS": 0.0225
+ }
+}

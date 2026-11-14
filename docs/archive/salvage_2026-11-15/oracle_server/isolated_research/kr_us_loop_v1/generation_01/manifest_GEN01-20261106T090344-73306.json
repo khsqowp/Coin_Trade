@@ -1,0 +1,16 @@
+{
+  "run_id": "GEN01-20261106T090344-73306",
+  "prereg_sha256": "43f6747d59bc7e623ab82a06d9baaa369bcd72517a7d3ad1a5ab64bb8af98213",
+  "runner_sha256": "fd700712ab46ac8be4230e002ef383bed148e72e13303ed5e9e03c65a0ad688b",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T09:03:44.986200+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "data_note": "See PREREG.md; source snapshot is non-atomic and universe reconciliation is unresolved",
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_01/attempts_GEN01-20261106T090344-73306.jsonl",
+  "finished_utc": "2026-11-06T09:04:52.638265+00:00",
+  "attempt_events_sha256": "30a38495b22dafdf5d8202561984b088af0ac2ec366d79e9973e7fb9424bcce8",
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_01/equity_curves_GEN01-20261106T090344-73306.csv.gz",
+  "curve_file_sha256": "eb6a0d6222398cd6e2802fc4c12b70c51890b82b441a1cfbcda394e117c76a73"
+}

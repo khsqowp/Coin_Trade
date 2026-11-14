@@ -1,0 +1,65 @@
+{
+  "run_id": "GEN06-20261106T104009-21424",
+  "prereg_sha256": "b502329c7344eb55038a14eaa83076b645707da9ba4d489a2a4e2c50808b3e44",
+  "runner_sha256": "d07cc9d7e539f233865d89bdfed9fb46a9ab8e030043c66c1cb227cb94b78c7f",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "gen03_runner_sha256": "2be8b342e154952d2536308311db38eaf875f5267a9fce64dc24791c6161e3cc",
+  "gen05_runner_sha256": "e705d9296f83544aaace24b6379884e81595b801246c175f95fcb28121e15c47",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T10:40:09.789162+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_06/attempts_GEN06-20261106T104009-21424.jsonl",
+  "planned_attempts": 2,
+  "status": "FINISHED",
+  "evidence_status": "EXPLORATORY_ONLY_HISTORIC_WINDOWS_AND_TRIALS_UNRESOLVED",
+  "markets": {
+    "US": {
+      "sessions": 8498,
+      "symbols": 688,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2001-01-04",
+          "end": "2016-12-30",
+          "bars": 4023,
+          "cagr": 0.05216389353290585,
+          "sharpe": 0.35786297597176736,
+          "mdd": -0.5518947580534723,
+          "total_return": 1.2518819306916913,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 192
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2017-01-04",
+          "end": "2026-11-02",
+          "bars": 2471,
+          "cagr": 0.14838340171826858,
+          "sharpe": 0.8561282409639144,
+          "mdd": -0.337172572108114,
+          "total_return": 2.883161939283836,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 119
+        }
+      },
+      "data_note": "PIT members with local prices only; missing price history remains an optimistic coverage bias; 688 tickers",
+      "market_proxy_note": "SPY adjusted close",
+      "input_snapshot": {
+        "sha256": "f71e1d3a3bd5e2a90e1e8cdf317005eabb4fd3e1e89d1c5cd9ccc53a37688e74",
+        "files": 1378,
+        "scope": "files actually used plus universe/calendar inputs"
+      }
+    }
+  },
+  "finished_utc": "2026-11-06T10:40:35.123924+00:00",
+  "attempt_events_sha256": "9692fe3bc7514273930e884e7a23dd86ac3240563a7046c0ea8139ed02d9c427",
+  "attempt_events": 4,
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_06/equity_curves_GEN06-20261106T104009-21424.csv.gz",
+  "curve_file_sha256": "a05e00925f4d517436020360ab0824e8588c82a085803013ae3bca5186d1dec9",
+  "selection_audit_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_06/selection_audit_GEN06-20261106T104009-21424.csv.gz",
+  "selection_audit_sha256": "6844b526e208f05e9511c87ee1d01b78b77eebbfc3664777720fd6555db73b90"
+}

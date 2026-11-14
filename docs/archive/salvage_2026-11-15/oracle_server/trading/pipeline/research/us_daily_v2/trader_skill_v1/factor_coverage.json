@@ -1,0 +1,18 @@
+{
+ "coverage": {
+  "rev_growth_yoy": {
+   "pct_eligible_days_with_value": 0.6016
+  },
+  "gross_margin": {
+   "pct_eligible_days_with_value": 0.4609
+  },
+  "margin_chg": {
+   "pct_eligible_days_with_value": 0.4184
+  },
+  "earn_yield": {
+   "pct_eligible_days_with_value": 0.5782
+  }
+ },
+ "screener_pass_rate_of_eligible": 0.2487,
+ "n_symbols_total": 678
+}

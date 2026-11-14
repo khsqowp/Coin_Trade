@@ -1,0 +1,40 @@
+{
+ "id": "ct-paper-20-catalog",
+ "name": "20 minute-bar paper strategies catalog (entry/exit templates)",
+ "family": "catalog",
+ "one_line": "Forward paper test of 20 templates on BTC/ETH 1-minute bars; no results documented yet.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/crypto-paper-strategy-test.md"
+  ]
+ },
+ "markets": [
+  "BTC/ETH USD-M futures, 1-minute"
+ ],
+ "timeframe": "1m",
+ "direction": "long_short",
+ "status_in_source": "forward test running, no conclusion",
+ "idea": "Templates: HA 3-candle trend, EMA9/21 cross, EMA20/50 pullback, MACD 12/26/9, RSI reversal, Bollinger re-entry, Donchian20 breakout (2 ATR initial, 2.5 ATR trail, opposite 10-bar exit), VWAP reclaim, ATR trend band, Keltner 1.5 ATR, BB squeeze release, stochastic reversal, OBV confirmation, taker imbalance, funding extremes, ATR range expansion.",
+ "rules": [],
+ "parameters": {
+  "fee_per_side": 0.0005,
+  "slippage_per_side": 0.0002,
+  "start_equity": 142
+ },
+ "rationale": "Breadth of simple rule templates measured under identical cost assumptions.",
+ "evidence": "None documented (state kept in a JSON file outside the repo). Source states a short winning regime is not sufficient evidence.",
+ "limitations": [
+  "minute bars; pipeline is daily",
+  "no published performance"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Useful as a checklist of exit designs (ATR initial/trailing stop, opposite-channel exit). ATR trailing stops are the rule type that was silently dead in a previous run: always give them their own rule name."
+ },
+ "schema_version": 1
+}

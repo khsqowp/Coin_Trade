@@ -1,0 +1,24 @@
+{
+  "candidate_id": "GEN11-DUALMOM-US_INDEX_ETF_12_1_CASH",
+  "frozen_at_utc": "2026-11-06T12:52:26Z",
+  "status": "FROZEN_AWAITING_INDEPENDENT_REVIEW",
+  "performance_run_authorized": false,
+  "attempt_count_authorized": 1,
+  "rule": "At shared-session month-end rank SPY/QQQ/IWM/DIA by adjusted-close t-21 over t-252 minus one; hold the sole positive leader at next common-session adjusted open, otherwise cash; 10bp per side.",
+  "artifacts": {
+    "prereg": "ab7cebb837c9a5583c0a818728e803551a6a9c8d63410536ad63d0c53bd25def",
+    "source": "27cfd55ff2d6158e6b3002be1652a5279f53371e7c5b517fb3ca99ccf0efdb8f",
+    "runner": "4c47ec2189d3d1589cd75af40e4baa30ee993680b6337ee7a820482784b8ecd0",
+    "tests": "bf9c83bf27f1bcaa746a77496d23e79bb7618a64dc07ac4428727cb1ae07e9fc",
+    "data_SPY": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba",
+    "metadata_SPY": "77b6d96fb26099efdbc8e5957f2b4744dfddd2083eb19d7b9598b690bc97dc5c",
+    "data_QQQ": "62d7e3baa09b3c8b1b6a019b228c093f3402758c03799a79fb3f4013612266c8",
+    "metadata_QQQ": "52fb9ad4df29171a8c742924b084263938bbc4adb0e2918ed82dfd895591fcaa",
+    "data_IWM": "a8c20a7fae3062dfb6da973696d83def502b8e42d948852a07ccc6b13fa344e3",
+    "metadata_IWM": "9e99736e9cf1b8f75fe1eddd9e8fb4c172b123cf67274155a2038888f83a71b0",
+    "data_DIA": "36af44bd5f8da7ec6006280baab991016958f018cc57edd6a5f13f20cd7a708a",
+    "metadata_DIA": "12e4c501b15c5f41b661c9c100d14b2b00acf6bc8084013195450575ac2277e2"
+  },
+  "review_sha256": null,
+  "results_sha256": null
+}

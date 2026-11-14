@@ -1,0 +1,46 @@
+{
+ "open": {
+  "gdelt_degraded": 1793210231.4226844,
+  "kis_ratelimit": 1793233537.9008045
+ },
+ "heartbeat": "2026-10-29T04:11:26.254766+00:00",
+ "export_ts": 1793245826.1821947,
+ "export_withheld": {},
+ "summary_day": "2026-10-28",
+ "last_error": null,
+ "kis_rl": {
+  "hold": false,
+  "ratio_active": true,
+  "ex_active": false,
+  "active": true,
+  "msg": "KIS pacing (informational, not a hard quota): 465 of 1749 API calls rate-limited today (KST 2026-10-29) = 26.6%, sustained above 25%",
+  "ex_events": [
+   1793233069.499849,
+   1793234828.44438,
+   1793236629.511686,
+   1793237001.905289,
+   1793238113.901853,
+   1793238831.356041
+  ],
+  "day": "2026-10-29",
+  "prev_total": 0,
+  "calls_seen": 1749,
+  "await_reset": false,
+  "await_cycle": "2026-10-29T09:00:05.004624+09:00",
+  "last_error_at_seen": "2026-10-29T12:14:43.134775+09:00"
+ },
+ "fwd_err_first": {},
+ "fail_streak": 0,
+ "last_error_last": {
+  "msg": "operands could not be broadcast together with shapes (17536,) (17583,) "
+ },
+ "last_error_resolved_at": "2026-10-28T15:16:08Z",
+ "export_fail_n": 0,
+ "export_error": null,
+ "fwd_err_msg": null,
+ "open_cls": {
+  "gdelt_degraded": "known",
+  "kis_ratelimit": "std"
+ },
+ "cls_ts": {}
+}

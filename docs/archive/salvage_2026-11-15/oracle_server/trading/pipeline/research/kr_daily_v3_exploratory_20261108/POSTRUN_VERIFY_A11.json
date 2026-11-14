@@ -1,0 +1,40 @@
+{
+  "run_id": "KR-V3-EXPLORATORY-20261108T075447Z",
+  "verified_utc": "2026-11-08T08:19:20+00:00",
+  "status": "PASS_EXPLORATORY_ONLY",
+  "checks": {
+    "run_exit_zero": true,
+    "exact_13_result_keys": true,
+    "aligned_13_records": true,
+    "runner_hash_matches_A11": true,
+    "engine_hash_matches_A11": true,
+    "A11_hash_matches_manifest": true,
+    "aligned_cutoff": true,
+    "all_numeric_values_finite": true,
+    "nav_has_all_series": true,
+    "summary_rows_present": true
+  },
+  "result_key_count": 13,
+  "aligned_key_count": 13,
+  "numeric_leaf_count": 2906,
+  "nav_rows_excluding_header": 3541,
+  "nav_series_count": 13,
+  "summary_rows_excluding_header": 65,
+  "exit_status": "0 2026-11-08T08:02:13.0577744Z",
+  "file_sha256": {
+    "A11.md": "aa430717bebcd129330b4c466fcdaa78dd7a48c0215a13b034facbe644dc0c41",
+    "A11.json": "1229c6c7f07947dafdf32531a56bc161a2f415aef5c115967bc5f740ea26b278",
+    "run_v3.py": "2e8cd2f7f7bb77cacca2d77e3f6f42564184c359d8d447f62116e6095f5cfc76",
+    "engine_v2copy.py": "0ba6201ae243ca94ff032cd06b6ca8a42e8fb66b7ccc4d67339c8fcb434ad38c",
+    "run_manifest.json": "2718959013f81f98870d9db36c12adaf95b69a6ddddcdbcf5d5e19d36b0c57db",
+    "run_A11_full_20261108.log": "4c01f5fba288f4b026e118a3a934f79a3c8d4b7164adf7458e65c5ba2705401c",
+    "run_A11_exit_status.txt": "3409dcea20f5ca400c2b9f595312cad9a855627ee5ae7097823355e4b22bac9a",
+    "results.json": "d9faff875c9f6f1549c62a805defafe2f07947b32fbd88fa386b2e0bc3479b90",
+    "nav.csv": "f046617459e21a17fede82da698d8d06eaf38c6695361665d4b87d5807fda1bb",
+    "summary.csv": "3146c7714ffdf05d589040f6c73e57476945937af1fc42df0e6cad8e6f357aa2",
+    "REPORT.md": "13395d31db9a959c5b818491231d9c9004e48f8c1b494edd60995d9c469fd194",
+    "aligned_results.json": "137efe82c79cb74e3b1241b2f5b421fe39c7019f9ef56c33fe2c64a9a220a385",
+    "aligned_summary.csv": "4046ba01a7fac37512c5b61c4d5c55c7509f02c726b4a93e410bd5bcfed363a6",
+    "ALIGNED_REPORT.md": "90b500f321f97a05e7dc127383f08e2acf13fd0187ddacdd5e4356642bc6a896"
+  }
+}

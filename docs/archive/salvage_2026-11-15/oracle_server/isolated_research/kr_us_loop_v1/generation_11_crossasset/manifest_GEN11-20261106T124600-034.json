@@ -1,0 +1,101 @@
+{
+  "attempt_id": "GEN11-20261106T124600-034-US_SECTOR_BOTTOM3_PREV_MONTH",
+  "benchmark": "SPY",
+  "benchmark_diagnostics": {
+    "rebalance_count": 1,
+    "terminal_liquidation_turnover": 1.0,
+    "turnover": 1.0
+  },
+  "data_scope": "local non-atomic Yahoo-derived mirror; exploratory only",
+  "data_sha256": {
+    "SPY": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba",
+    "XLB": "516c2e9f2e66f1f85aa749eefe178a8258a493f3c93d5f0ddaa70271c672c781",
+    "XLE": "fe06aaab951e425e9b41ef5d61c3ca0924dc10c836d471b8d5862246c27a69ef",
+    "XLF": "1c3c409cf1fe98e2e909f61d562fdd41e66d710cfca95035bff61c1c5844b844",
+    "XLI": "ec183fc4b478862775200bf68bc7c6b3d9e7a157052b67c9afb40d0160e24104",
+    "XLK": "cbf1001174c22974dc0e5089222e6d4d07a8e1f5b60817eb3a97c73f553f69c7",
+    "XLP": "6ae34466045556b1a1ba7122c91e89edbd7b79e20c6195ff2d5e0423011e1e53",
+    "XLU": "b6006c3af45a03364652fd72326836279f8e92a32a799fa5d8878cff8a55fe3e",
+    "XLV": "e029fadb7fa0398185aae0a504541b89db73f3faa7958dc50ea593445aff1f4f",
+    "XLY": "01454d31308693e6f1fa817a495289e09b5e687bb509d4906ac2358733600616"
+  },
+  "date_end": "2026-11-02",
+  "date_start": "1998-12-22",
+  "finished_utc": "2026-11-06T12:46:00.911903+00:00",
+  "portfolio_diagnostics": {
+    "rebalance_count": 333,
+    "terminal_liquidation_turnover": 1.0,
+    "turnover": 450.01798901807365
+  },
+  "prereg_sha256": "d69c543ec24f2a6ca2a18fdc5af546eb2adff77484e358fe73ba7308af86adda",
+  "run_id": "GEN11-20261106T124600-034",
+  "runner_sha256": "a7a97c455a32dcbdf89cd2ddc5ac4441ee0c67b5ea50a99b5d79a992cbe8c1bb",
+  "started_utc": "2026-11-06T12:46:00.034826+00:00",
+  "status": "COMPLETED_EXPLORATORY",
+  "target_diagnostics": {
+    "rebalance_targets": 333,
+    "terminal_censored": 1
+  },
+  "test_sha256": "9823b64383bf70824cfda7ff5d55ab6b2584d2dbc49b660a713e65e8e2855b8c",
+  "universe": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "windows": {
+    "2001_2016": {
+      "spy_buy_hold": {
+        "cagr": 0.05294933615058506,
+        "max_drawdown": -0.5542291205293965,
+        "observations": 4025,
+        "sharpe": 0.36238711904956755,
+        "terminal_wealth": 2.279802218902804
+      },
+      "strategy": {
+        "cagr": 0.04334403159924416,
+        "max_drawdown": -0.616676396566869,
+        "observations": 4025,
+        "sharpe": 0.29944593493350796,
+        "terminal_wealth": 1.9693762694351193
+      }
+    },
+    "2017_plus": {
+      "spy_buy_hold": {
+        "cagr": 0.14972440727787095,
+        "max_drawdown": -0.32048952757645865,
+        "observations": 2472,
+        "sharpe": 0.8931893424863518,
+        "terminal_wealth": 3.9300297980076597
+      },
+      "strategy": {
+        "cagr": 0.08508731451969198,
+        "max_drawdown": -0.4394648367301066,
+        "observations": 2472,
+        "sharpe": 0.5137813889102923,
+        "terminal_wealth": 2.2278794342657093
+      }
+    },
+    "full": {
+      "spy_buy_hold": {
+        "cagr": 0.08702924571140103,
+        "max_drawdown": -0.5542291205293961,
+        "observations": 7007,
+        "sharpe": 0.5373187116071584,
+        "terminal_wealth": 10.179055811400188
+      },
+      "strategy": {
+        "cagr": 0.05640917415481472,
+        "max_drawdown": -0.6166763965668689,
+        "observations": 7007,
+        "sharpe": 0.3609588848577983,
+        "terminal_wealth": 4.599033388591243
+      }
+    }
+  }
+}

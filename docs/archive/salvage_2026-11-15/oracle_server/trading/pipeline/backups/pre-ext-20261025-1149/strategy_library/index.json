@@ -1,0 +1,107 @@
+[
+ {
+  "id": "ct-chart-signal-family",
+  "family": "discretionary-style indicators",
+  "fit": "not_recommended",
+  "status": "rejected",
+  "one_line": "10 TJR/ICT-style signals approximated on daily bars; only Heikin-Ashi and FRVP passed baseline, all later rejected."
+ },
+ {
+  "id": "ct-donchian70-sma200-btcregime",
+  "family": "trend/breakout",
+  "fit": "direct",
+  "status": "hold",
+  "one_line": "Close breaks prior 70-day high while above own SMA200 and BTC above its SMA200 (+/-3% hysteresis); 25-day hold."
+ },
+ {
+  "id": "ct-dual-thrust-daily",
+  "family": "breakout",
+  "fit": "adaptable",
+  "status": "hold",
+  "one_line": "Close breaks open +/- K*range(4-bar) -> trade breakout direction; best blind-period candidate in owner's catalog."
+ },
+ {
+  "id": "ct-ema-cross-swing",
+  "family": "trend following",
+  "fit": "direct",
+  "status": "adopted for KIS paper trading",
+  "one_line": "Owner's KR/US equity paper swing bot: EMA9 crosses above EMA21 while above SMA200; -2% intraday stop."
+ },
+ {
+  "id": "ct-funding-arb",
+  "family": "carry",
+  "fit": "not_applicable",
+  "status": "live in source",
+  "one_line": "Collect 8-hour funding while hedged; the owner's live strategy; backtests show fees eat the carry."
+ },
+ {
+  "id": "ct-lessons-learned",
+  "family": "methodology",
+  "fit": "guidance",
+  "status": "methodology",
+  "one_line": "Next-bar execution, costs, selection bias, concentration, period-split, bfill/shift look-ahead, stop/TP usually hurt."
+ },
+ {
+  "id": "ct-mach7-pullback",
+  "family": "pullback in trend",
+  "fit": "direct",
+  "status": "rejected / hold",
+  "one_line": "EMA fast>mid>slow trend; pulled back to fast EMA; enter on rebound bar above prior high; exit below EMA50."
+ },
+ {
+  "id": "ct-momentum-rotation",
+  "family": "cross-sectional momentum",
+  "fit": "not_applicable",
+  "status": "adopted",
+  "one_line": "Rank 47 perps by 14d return, long top 8 / short bottom 8, rebalance every 3 days; BTC 14d<-10% -> cash."
+ },
+ {
+  "id": "ct-paper-20-catalog",
+  "family": "catalog",
+  "fit": "adaptable",
+  "status": "forward test running, no conclusion",
+  "one_line": "Forward paper test of 20 templates on BTC/ETH 1-minute bars; no results documented yet."
+ },
+ {
+  "id": "ct-volume-spike-quiet",
+  "family": "volume/event",
+  "fit": "adaptable",
+  "status": "hold",
+  "one_line": "Volume >= 3x 20-day mean while daily change < 3%; buy next open, hold 5-60 days. Edge only in crypto."
+ },
+ {
+  "id": "ft-bandtastic",
+  "family": "mean reversion",
+  "fit": "adaptable",
+  "status": "hyperopt-tuned example",
+  "one_line": "Buy when close < chosen lower Bollinger band (1-4 sigma), optionally RSI/MFI/EMA-trend gated; exit on RSI/MFI/EMA/upper band."
+ },
+ {
+  "id": "ft-lookahead-examples",
+  "family": "methodology",
+  "fit": "guidance",
+  "status": "documented bias examples",
+  "one_line": "Freqtrade's own examples of look-ahead: full-sample min/max normalisation, future-looking indicators."
+ },
+ {
+  "id": "ft-strategy001-ema-ha",
+  "family": "trend following",
+  "fit": "adaptable",
+  "status": "educational example",
+  "one_line": "Enter when EMA20 crosses above EMA50, HA close above EMA20 and HA bar green; exit on EMA50/100 cross with red HA bar."
+ },
+ {
+  "id": "ft-strategy002-rsi-stoch-bb",
+  "family": "mean reversion",
+  "fit": "adaptable",
+  "status": "educational example",
+  "one_line": "Oversold confluence (RSI, slow stochastic, close under 2-sigma lower band, hammer) -> long; exit SAR above price and Fisher RSI > 0.3."
+ },
+ {
+  "id": "ft-supertrend",
+  "family": "trend following",
+  "fit": "direct",
+  "status": "hyperopt-tuned example",
+  "one_line": "Enter when three Supertrend indicators (different ATR period/multiplier) are all 'up'; exit when three 'down'."
+ }
+]

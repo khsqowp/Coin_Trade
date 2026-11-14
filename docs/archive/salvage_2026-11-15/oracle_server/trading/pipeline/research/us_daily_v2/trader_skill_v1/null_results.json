@@ -1,0 +1,266 @@
+{
+ "xbrl_growth": {
+  "draws": 200,
+  "real": {
+   "IS": 0.549,
+   "OOS": 0.514
+  },
+  "p": {
+   "IS": 1.0,
+   "OOS": 0.2438
+  },
+  "null_median": {
+   "IS": 0.738,
+   "OOS": 0.473
+  },
+  "null_p95": {
+   "IS": 0.834,
+   "OOS": 0.565
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.266
+ },
+ "xbrl_margin": {
+  "draws": 200,
+  "real": {
+   "IS": 0.921,
+   "OOS": 0.668
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.01
+  },
+  "null_median": {
+   "IS": 0.747,
+   "OOS": 0.475
+  },
+  "null_p95": {
+   "IS": 0.844,
+   "OOS": 0.557
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.12,
+  "bh_q_OOS": 0.0133
+ },
+ "xbrl_margin_chg": {
+  "draws": 200,
+  "real": {
+   "IS": 0.695,
+   "OOS": 0.733
+  },
+  "p": {
+   "IS": 0.2289,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.646,
+   "OOS": 0.473
+  },
+  "null_p95": {
+   "IS": 0.742,
+   "OOS": 0.57
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "xbrl_value": {
+  "draws": 200,
+  "real": {
+   "IS": 1.081,
+   "OOS": 0.707
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.74,
+   "OOS": 0.483
+  },
+  "null_p95": {
+   "IS": 0.839,
+   "OOS": 0.581
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "quality_composite": {
+  "draws": 200,
+  "real": {
+   "IS": 0.646,
+   "OOS": 0.77
+  },
+  "p": {
+   "IS": 0.0647,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.548,
+   "OOS": 0.48
+  },
+  "null_p95": {
+   "IS": 0.649,
+   "OOS": 0.575
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "screener_ew": {
+  "draws": 200,
+  "real": {
+   "IS": 0.737,
+   "OOS": 0.66
+  },
+  "p": {
+   "IS": 0.0498,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.657,
+   "OOS": 0.519
+  },
+  "null_p95": {
+   "IS": 0.733,
+   "OOS": 0.556
+  },
+  "null_draws_from": "full eligible set E, same monthly count as the real strategy",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "screener_mom": {
+  "draws": 200,
+  "real": {
+   "IS": 0.792,
+   "OOS": 0.64
+  },
+  "p": {
+   "IS": 0.2388,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.734,
+   "OOS": 0.479
+  },
+  "null_p95": {
+   "IS": 0.855,
+   "OOS": 0.573
+  },
+  "null_draws_from": "full eligible set E, same monthly count as the real strategy",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "screener_lowvol": {
+  "draws": 200,
+  "real": {
+   "IS": 0.834,
+   "OOS": 0.619
+  },
+  "p": {
+   "IS": 0.0796,
+   "OOS": 0.0149
+  },
+  "null_median": {
+   "IS": 0.72,
+   "OOS": 0.471
+  },
+  "null_p95": {
+   "IS": 0.842,
+   "OOS": 0.565
+  },
+  "null_draws_from": "full eligible set E, same monthly count as the real strategy",
+  "bonferroni_OOS": 0.1788,
+  "bh_q_OOS": 0.0179
+ },
+ "mom_quality": {
+  "draws": 200,
+  "real": {
+   "IS": 0.721,
+   "OOS": 0.751
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.542,
+   "OOS": 0.47
+  },
+  "null_p95": {
+   "IS": 0.641,
+   "OOS": 0.588
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "xbrl_growth_mkt": {
+  "draws": 200,
+  "real": {
+   "IS": 0.504,
+   "OOS": 0.114
+  },
+  "p": {
+   "IS": 0.9751,
+   "OOS": 0.9453
+  },
+  "null_median": {
+   "IS": 0.639,
+   "OOS": 0.253
+  },
+  "null_p95": {
+   "IS": 0.758,
+   "OOS": 0.371
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 1.0,
+  "bh_q_OOS": 0.9453
+ },
+ "value_momentum": {
+  "draws": 200,
+  "real": {
+   "IS": 1.029,
+   "OOS": 0.693
+  },
+  "p": {
+   "IS": 0.005,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.73,
+   "OOS": 0.467
+  },
+  "null_p95": {
+   "IS": 0.83,
+   "OOS": 0.575
+  },
+  "null_draws_from": "full eligible set E, same fixed N=50",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ },
+ "screener_trend_breadth": {
+  "draws": 200,
+  "real": {
+   "IS": 0.755,
+   "OOS": 0.592
+  },
+  "p": {
+   "IS": 0.0149,
+   "OOS": 0.005
+  },
+  "null_median": {
+   "IS": 0.633,
+   "OOS": 0.421
+  },
+  "null_p95": {
+   "IS": 0.718,
+   "OOS": 0.489
+  },
+  "null_draws_from": "full eligible set E, same monthly count as the real strategy",
+  "bonferroni_OOS": 0.06,
+  "bh_q_OOS": 0.0075
+ }
+}

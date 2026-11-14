@@ -1,0 +1,10 @@
+# Candidate override for the existing 'freqtrade' service. NOT applied automatically.
+services:
+  freqtrade:
+    command: >
+      trade
+      --logfile /freqtrade/user_data/logs/freqtrade.log
+      --db-url sqlite:////freqtrade/user_data/tradesv3_BTCUSDT_H1_332a1992.sqlite
+      --config /freqtrade/user_data/config.json
+      --config /freqtrade/user_data/strategies/TPC_BTCUSDT_H1_332a1992.config.json
+      --strategy TPC_BTCUSDT_H1_332a1992

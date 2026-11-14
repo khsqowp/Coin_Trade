@@ -1,0 +1,57 @@
+{
+  "status": "CONDITIONAL_EXPLORATORY_ONLY_NO_GO_FOR_FULL_UNIVERSE_OR_PROMOTION",
+  "membership": {
+    "ticker_spells": 1262,
+    "unique_symbols": 1209,
+    "symbols_without_parquet": 492,
+    "symbols_with_parquet": 717,
+    "snapshot_rows": 2720,
+    "first_snapshot": "1996-01-02",
+    "last_snapshot": "2026-08-18",
+    "latest_snapshot_member_count": 503,
+    "study_end": "2026-08-18",
+    "stale_tail_days": 0,
+    "post_snapshot_dates_excluded_from_primary": true
+  },
+  "price_data_quality_from_us_daily_v2": {
+    "equity_symbols": 717,
+    "rows": 4133396,
+    "missing_ohlc_rows": 66,
+    "ohlc_inconsistent_rows": 41,
+    "zero_volume_days": 16791,
+    "adjusted_returns_abs_gt_50pct": 449,
+    "adjustment_factor_jumps": 205,
+    "v2_reused_ticker_exclusions": 10,
+    "v2_adjustment_repairs": 3
+  },
+  "pit_member_day_data_coverage": {
+    "2012": 0.6823,
+    "2019": 0.8389,
+    "2020": 0.8718,
+    "2025": 0.9675,
+    "2026_available_dates": 0.9865
+  },
+  "split_dollar_volume_spot_checks": {
+    "basis": "raw split-adjusted close * raw volume; excludes dividend-adjusted close",
+    "observations": 6,
+    "ticker_dates": [
+      "AAPL 2014-06-06/2014-06-09",
+      "AAPL 2020-08-28/2020-08-31",
+      "NVDA 2024-06-07/2024-06-10"
+    ],
+    "interpretation": "no split-sized dollar-volume discontinuity in these samples; not a comprehensive audit"
+  },
+  "rules": {
+    "maximum_concurrent_holdings": 20,
+    "universe_sizes": [
+      50,
+      100,
+      200
+    ],
+    "entry_on_invalid_ohlc_or_zero_volume": false,
+    "clip_extreme_returns": false,
+    "post_2026_08_18_membership": "excluded from primary evaluation",
+    "fixed_holdings_K": 20,
+    "unused_slot_weight": "cash; each held slot fixed at 5% NAV"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "frozen_at_utc": "2026-11-06T12:40:08Z",
+  "candidate": "SPY_OVERNIGHT_ONLY_MOC_MOO",
+  "prereg_sha256": "afbf5d9dc49ba368638fa1d30e7a6ceba2eaf7827e278dd17f039a612efc0ce6",
+  "market_performance_data_read": false,
+  "independent_review": "GO_BY_ROOT_REVIEW_2026-11-06",
+  "planned_runs": 1,
+  "parameter_variants": 0
+}

@@ -1,0 +1,18 @@
+{
+  "run_id": "GEN12-20261106-US-SPY_DOWNSIDE_RMS63_TARGET10",
+  "status": "PENDING_ROOT_REVIEW_NOT_RUN",
+  "frozen_at_timezone": "Asia/Seoul",
+  "review_status": "PENDING_ROOT_REVIEW",
+  "data_gate_status": "DATA_BLOCKED",
+  "data_gate_reason": "No authoritative pinned NYSE Arca session calendar is present locally; do not open SPY values or run performance.",
+  "prereg_sha256": "cb31e994c862e3154336f738404855add57b18d2df65efb3b14f336f398e7296",
+  "addendum_sha256": "834cc570598fbffdc666eef6237cf8e4c7976322c50d23d453c85d92a69f7c2b",
+  "addendum_a2_sha256": "397d6e6bf9378dc80d7276cb4ad2092ee37a8457489ba7faff1e612c4d4ae3bb",
+  "runner_sha256": "dff46a6d114df3f08b315ec35d5f18310253f8020bc6c324eeb7e2f75c942bc4",
+  "test_sha256": "161a3ddb9f9395285104d9833e64f7c9b8bcfe2a8d00a1c1d7e8dce39d397c03",
+  "data_path": "trading/docs/research/kr_us_loop_v1/data_mirror/us_daily/SPY.parquet",
+  "data_sha256": null,
+  "pre_market_tests": "18 synthetic tests passed; root rerun with /opt/homebrew/bin/python3.12; compileall previously passed",
+  "performance_data_opened": false,
+  "performance_run_authorized": false
+}

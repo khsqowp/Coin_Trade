@@ -1,0 +1,1034 @@
+# Oracle Server Salvage Manifest — Forward alphabetical pass (2026-11-15)
+
+Source: `/Users/user/CODE/oracle_server` (read-only). Destination: this directory. Approximate reviewed count: 8005 files in traversable paths. Files copied: 927 (1,552,709,707 bytes).
+
+## (a) Everything copied, by top-level path
+
+- `CLAUDE.md` (4,125 bytes) — source/research artifact preserved.
+- `Source_Collector_공개데이터_코인백테스트_2026-10-25.md` (4,791 bytes) — source/research artifact preserved.
+- `Source_Collector_대화맥락_및_백테스트_상태_2026-10-25.md` (10,183 bytes) — source/research artifact preserved.
+- `Source_Collector_코인백테스트_2026-10-25.md` (6,320 bytes) — source/research artifact preserved.
+- `append_backtest_baselines.py` (4,053 bytes) — source/research artifact preserved.
+- `cointrade_us_reconciliation_audit.md` (6,427 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/FEASIBILITY.md` (117,622 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/ORACLE_KR_US_LOOP_LOG_2026-11-07.md` (49,709 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/ORACLE_KR_US_LOOP_LOG_2026-11-07.md` (11,590 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/backtest_alt.md` (4,345 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/backtest_macro.md` (10,971 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/backtest_reversal.md` (3,879 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/data_recovery.md` (10,284 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/agent_reports/free_market_data_scout.md` (13,190 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/ADDENDUM_A1.md` (1,867 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/ADDENDUM_A2.md` (2,085 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/ADDENDUM_A3.md` (1,645 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/ADDENDUM_A4.md` (1,215 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/ADDENDUM_A5.md` (1,849 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/PREREG.md` (8,906 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/RESULTS.md` (3,371 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/RESULTS_CORRECTED.md` (4,217 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_GEN01-20261106T090344-73306.jsonl` (45,988 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_GEN01-20261106T092112-99213.jsonl` (46,709 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_preflight.jsonl` (4,346 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/manifest_GEN01-20261106T090344-73306.json` (1,140 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/manifest_GEN01-20261106T092112-99213.json` (1,140 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/run_gen01.py` (27,478 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_01/test_runner_smoke.py` (3,428 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/PREREG.md` (5,905 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/RESULTS.md` (2,820 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/attempts_GEN02-20261106T092448-5390.jsonl` (26,934 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/attempts_preflight.jsonl` (1,693 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/manifest_GEN02-20261106T092448-5390.json` (3,498 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/run_gen02.py` (13,490 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_02/test_gen02_smoke.py` (3,023 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/ADDENDUM_A1.md` (1,474 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/PREREG.md` (5,536 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/RESULTS.md` (3,186 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/attempts_GEN03-20261106T094011-28550.jsonl` (34,558 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/manifest_GEN03-20261106T094011-28550.json` (2,357 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/run_gen03.py` (18,808 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_03/test_gen03_smoke.py` (4,626 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/ADDENDUM_A1.md` (1,940 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/ADDENDUM_A2.md` (1,365 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/CANDIDATE_REVIEW.md` (9,952 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/PREREG.md` (3,829 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T100527-66055.jsonl` (8,580 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T101019-73296.jsonl` (7,094 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T101249-77989.jsonl` (8,025 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/manifest_GEN04-20261106T100527-66055.json` (3,713 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/manifest_GEN04-20261106T101019-73296.json` (4,228 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/manifest_GEN04-20261106T101249-77989.json` (4,345 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/run_gen04.py` (15,793 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_04/test_gen04.py` (4,855 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/ADDENDUM_A1.md` (1,482 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/ADDENDUM_A2.md` (871 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/PREREG.md` (3,706 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/RESULTS.md` (2,175 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102256-93331.jsonl` (3,846 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102632-99205.jsonl` (2,505 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102735-1318.jsonl` (3,843 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/manifest_GEN05-20261106T102256-93331.json` (2,765 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/manifest_GEN05-20261106T102632-99205.json` (1,241 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/manifest_GEN05-20261106T102735-1318.json` (2,762 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/run_gen05.py` (12,837 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_05/test_gen05.py` (2,975 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/PREREG.md` (3,892 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/RESULTS.md` (2,274 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/attempts_GEN06-20261106T104009-21424.jsonl` (4,079 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/manifest_GEN06-20261106T104009-21424.json` (3,078 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/run_gen06.py` (14,137 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_06/test_gen06.py` (3,567 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/ADDENDUM_A1.md` (2,272 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/PREREG.md` (3,591 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/RESULTS.md` (3,601 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/attempts_GEN07-20261106T111704-72994.jsonl` (2,239 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/attempts_GEN07-20261106T112047-78406.jsonl` (2,253 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/coverage_audit_GEN07-20261106T111704-72994.csv` (106,043 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/coverage_audit_GEN07-20261106T112047-78406.csv` (51,194 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/manifest_GEN07-20261106T111704-72994.json` (3,331 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/manifest_GEN07-20261106T112047-78406.json` (3,640 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/run_gen07.py` (16,170 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_07/test_gen07.py` (4,209 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/PREREG.md` (4,220 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/RESULTS.md` (2,333 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/attempts_GEN08-20261106T113802-4574.jsonl` (2,100 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/coverage_audit_GEN08-20261106T113802-4574.csv` (49,983 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/manifest_GEN08-20261106T113802-4574.json` (3,869 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/run_gen08.py` (16,605 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_08/test_gen08.py` (4,549 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/PREREG.md` (3,811 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/RESULTS.md` (2,291 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/attempts_GEN09-20261106T120246-41107.jsonl` (2,868 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/manifest_GEN09-20261106T120246-41107.json` (4,096 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/run_gen09.py` (12,332 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_09/test_gen09.py` (3,938 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/FREEZE.md` (340 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/PREREG.md` (3,560 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/RESULTS.md` (2,681 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/attempts_GEN10-20261106T122721-77015.jsonl` (3,204 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/manifest_GEN10-20261106T122721-77015.json` (4,628 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/run_gen10.py` (14,750 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_10/test_gen10.py` (4,794 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/ADDENDUM_A1.md` (2,132 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/ADDENDUM_A2.md` (3,056 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/ADDENDUM_A3.md` (1,366 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/BUILD_LOG.md` (2,762 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/BUILD_LOG_A2.md` (1,407 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/FREEZE.json` (1,793 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/FREEZE_A2.json` (2,641 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/PREREG.md` (6,163 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/RESULTS.md` (2,979 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/attempts_gen11-breadth-20261106-a1.jsonl` (308 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/attempts_gen11-breadth-20261106-a2.jsonl` (242 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/manifest_gen11-breadth-20261106-a1.json` (278 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/manifest_gen11-breadth-20261106-a2.json` (4,055 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/run_gen11.py` (15,588 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/run_gen11_a2.py` (11,276 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/test_gen11.py` (7,675 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/test_gen11_a2.py` (4,956 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/BUILD_LOG.md` (3,327 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/FREEZE.md` (1,186 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/PREREG.md` (8,386 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/RESULTS.md` (4,212 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/attempts_GEN11-20261106T124600-034.jsonl` (1,385 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/attempts_preflight.jsonl` (646 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/manifest_GEN11-20261106T124600-034.json` (3,408 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/run_gen11.py` (15,754 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/test_gen11.py` (4,663 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/ADDENDUM_A1.md` (2,398 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/FREEZE.json` (1,519 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/FREEZE_A1.json` (1,497 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/INDEPENDENT_REVIEW_GO_A1.json` (974 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/PREREG.md` (7,633 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/RESULTS.md` (2,588 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/attempts_GEN11-DUALMOM-US_INDEX_ETF_12_1_CASH.jsonl` (285 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/attempts_GEN11A1-DUALMOM-US_INDEX_ETF_12_1_CASH.jsonl` (4,160 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/manifest_GEN11A1-DUALMOM-US_INDEX_ETF_12_1_CASH.json` (150 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/run_gen11.py` (16,176 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/test_gen11.py` (4,013 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_event/CANDIDATE_AND_BLOCKER.md` (4,492 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/ARTIFACT_HASHES.md` (1,270 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/CORPORATE_ACTION_AUDIT.md` (1,392 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/FREEZE.json` (323 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/PREREG.md` (6,290 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/RESULTS.md` (4,981 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/attempts_GEN11-20261106T124221.jsonl` (3,301 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/attempts_preflight.jsonl` (2,207 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/manifest_GEN11-20261106T124221.json` (4,912 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/run_gen11.py` (10,907 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/test_gen11.py` (4,513 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/ADDENDUM_A1.md` (1,347 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/FREEZE.json` (896 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/FREEZE_A1.json` (1,053 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/PREREG.md` (5,308 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/RESULTS.md` (3,435 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/attempts_GEN11A1-20261106-SPY_VOL_BURST_MOM5_H5.jsonl` (2,603 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/manifest_GEN11A1-20261106-SPY_VOL_BURST_MOM5_H5.json` (607 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/results_GEN11A1-20261106-SPY_VOL_BURST_MOM5_H5.json` (2,466 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/run_gen11.py` (10,129 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/test_gen11.py` (4,535 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_crosssectional/IMPLEMENTATION_PLAN.md` (6,492 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_crosssectional/PREFLIGHT_RESULT.md` (5,488 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_crosssectional/PREREG.md` (8,458 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_crosssectional/attempts.jsonl` (1,527 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_macro/FREEZE.md` (687 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_macro/PREREG.md` (7,390 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_macro/STATUS.md` (1,212 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_review/REVIEW.md` (8,192 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/ADDENDUM_A1.md` (2,017 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/ADDENDUM_A2.md` (3,249 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/FREEZE.json` (1,116 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/PREREG.md` (9,135 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/run_gen12_volatility.py` (27,837 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_12_volatility/test_gen12_volatility.py` (18,563 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_13_custom_trend/FREEZE.json` (2,114 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_13_custom_trend/PREREG.md` (11,763 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_13_custom_trend/run_gen13_custom_trend.py` (31,205 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_13_custom_trend/test_gen13_custom_trend.py` (10,844 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_13_event/FEASIBILITY.md` (10,319 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/gen17_A.py` (30,794 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/gen17_B.py` (22,844 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/gen17_C.py` (21,256 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/test_gen17_A.py` (15,134 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/test_gen17_B.py` (18,749 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/implementation/test_gen17_C.py` (13,546 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/records/GEN17_daily_nav_paths_20261107.md` (158,111 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/records/GEN17_overlap_diagnostics_20261107.md` (8,059 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/records/GEN17_signal_rank_ledger_20261107.md` (92,925 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_17_low_skew/records/PREREG_low_skew_factor_gen17_20261107.md` (13,773 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/generation_18_13f_feasibility/records/GEN18_candidate_feasibility_20261107.md` (6,442 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_a_us_macro/DATA_GATE.md` (6,044 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_a_us_macro/FREEZE.json` (394 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_a_us_macro/PREREG.md` (7,723 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_a_us_macro/SSGA_DATA_GATE.md` (7,217 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/ADDENDUM_stooq_yahoo_fred_20261107.md` (5,014 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/FEASIBILITY_BLOCKED_macro_cftc.md` (4,717 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/FEASIBILITY_public_etf_alternatives_20261107.md` (5,052 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/KR_daily_legal_data_gate_audit_20261107.md` (12,085 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_b_factor_rotation/REVIEW_agent_a_cftc_prereg_20261107.md` (4,922 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_c_kr_data/agent_c_distinct_candidates_20261107.md` (14,573 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_c_kr_data/agent_c_index_etf_data.md` (8,256 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_c_kr_data/agent_c_kr_data.md` (11,919 bytes) — source/research artifact preserved.
+- `isolated_research/kr_us_loop_v1/round_20261107/agent_c_kr_data/agent_c_price_data_source_audit_20261107.md` (10,585 bytes) — source/research artifact preserved.
+- `ma40_weekly_backtest.py` (7,817 bytes) — source/research artifact preserved.
+- `source_collector_backtest.py` (21,160 bytes) — source/research artifact preserved.
+- `source_collector_backtest_results/family_summary_20261025T085825Z.csv` (27,224 bytes) — source/research artifact preserved.
+- `source_collector_backtest_results/manifest_20261025T085825Z.json` (2,274 bytes) — source/research artifact preserved.
+- `source_collector_backtest_results/strategy_results_20261025T085825Z.csv` (3,782,511 bytes) — source/research artifact preserved.
+- `trading/CLAUDE.md` (4,125 bytes) — source/research artifact preserved.
+- `trading/docker-compose.hermes.yml` (510 bytes) — source/research artifact preserved.
+- `trading/docker-compose.yml` (497 bytes) — source/research artifact preserved.
+- `trading/freqtrade/user_data/backups/20261103T142313Z/DryRunStrategy.py` (17,174 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/backups/20261103T142313Z/config.json` (1,272 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/backups/20261103T142313Z/tradesv3.sqlite` (110,592 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/config.json` (1,324 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/hyperopts/sample_hyperopt_loss.py` (1,871 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/strategies/DryRunStrategy.py` (18,063 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/strategies/sample_strategy.py` (17,167 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/freqtrade/user_data/tradesv3.sqlite` (196,608 bytes) — source/research artifact preserved. **RETIRED/DEAD — historical record only, do not revive**
+- `trading/pipeline/Dockerfile` (251 bytes) — source/research artifact preserved.
+- `trading/pipeline/FREQTRADE_TELEGRAM.md` (1,939 bytes) — source/research artifact preserved.
+- `trading/pipeline/PROGRESS.md` (5,207 bytes) — source/research artifact preserved.
+- `trading/pipeline/README.md` (18,605 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000733Z_notify_korean/cli.py` (32,138 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000733Z_notify_korean/notify.py` (7,837 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000733Z_notify_korean/watch.py` (52,062 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000740Z_notify_korean/cli.py` (32,138 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000740Z_notify_korean/notify.py` (7,837 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261105T000740Z_notify_korean/watch.py` (52,062 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261106_notify_redesign/notify.py` (7,947 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/20261106_notify_redesign/watch.py` (52,191 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/gdelt-429-20261026-0852/news.py` (22,953 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/gdelt-429-20261026-0852/test_news_collector.py` (4,676 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/gdelt-429-20261026-0852/watch.py` (10,830 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/Dockerfile` (251 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/README.md` (3,255 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/driver.py` (13,831 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/run.sh` (2,219 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/__init__.py` (0 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/ablation.py` (7,822 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/agents.py` (14,204 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/bench.py` (11,659 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/bt.py` (4,828 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/budget.py` (1,252 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/cli.py` (15,899 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/codecheck.py` (2,478 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/config.py` (1,377 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/deploy.py` (11,249 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/fixtures.py` (6,629 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/kis.py` (3,991 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/library.py` (3,364 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/llm.py` (6,520 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/notify.py` (6,803 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/pricing.py` (1,542 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/risk.py` (8,033 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/schemas.py` (4,319 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/store.py` (4,493 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/src/tp/summary.py` (2,042 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/README.md` (1,872 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-chart-signal-family.json` (1,846 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-donchian70-sma200-btcregime.json` (2,686 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-dual-thrust-daily.json` (2,540 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-ema-cross-swing.json` (2,316 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-funding-arb.json` (1,661 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-lessons-learned.json` (2,004 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-mach7-pullback.json` (2,391 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-momentum-rotation.json` (2,526 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-paper-20-catalog.json` (1,856 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ct-volume-spike-quiet.json` (2,440 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ft-bandtastic.json` (2,113 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ft-lookahead-examples.json` (1,309 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ft-strategy001-ema-ha.json` (1,997 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ft-strategy002-rsi-stoch-bb.json` (2,140 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/entries/ft-supertrend.json` (2,054 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/strategy_library/index.json` (3,736 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/conftest.py` (42 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/fixtures_ablation.py` (7,196 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/test_ablation.py` (5,683 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/test_deploy.py` (6,032 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/test_gate_ablation_cfg.py` (460 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/test_library.py` (2,020 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-ext-20261025-1149/tests/test_risk.py` (5,732 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/README.md` (1,186 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/bench/ablation.py` (395 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/bench/check_fixtures.py` (781 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/bench/dq_truth.py` (357 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/bench/smoke.py` (1,565 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/bench/smoke2.py` (525 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/docker-compose.yml` (497 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/driver.py` (10,614 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/freqtrade-config.json` (1,272 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/freqtrade-strategies/DryRunStrategy.py` (17,174 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/freqtrade-strategies/sample_strategy.py` (17,167 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/run.sh` (1,307 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codecheck.json` (1,064 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/rsi_r0/strategy.py` (1,092 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/rsi_r1/strategy.py` (1,146 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/rsi_r2/strategy.py` (1,082 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/sma_r0/strategy.py` (875 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/sma_r1/strategy.py` (727 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/codegen/sma_r2/strategy.py` (507 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/claude-haiku-5-5/results.json` (25,016 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codecheck.json` (1,064 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/rsi_r0/strategy.py` (992 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/rsi_r1/strategy.py` (992 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/rsi_r2/strategy.py` (992 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/sma_r0/strategy.py` (414 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/sma_r1/strategy.py` (414 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/codegen/sma_r2/strategy.py` (414 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/deepseek-flash/results.json` (25,685 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codecheck.json` (1,064 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/rsi_r0/strategy.py` (710 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/rsi_r1/strategy.py` (708 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/rsi_r2/strategy.py` (803 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/sma_r0/strategy.py` (327 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/sma_r1/strategy.py` (340 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/codegen/sma_r2/strategy.py` (376 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/gpt-5.4-mini/results.json` (23,953 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/runs-bench/scores.json` (5,846 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/__init__.py` (0 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/agents.py` (7,447 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/bench.py` (11,659 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/bt.py` (4,545 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/budget.py` (1,080 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/cli.py` (9,403 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/codecheck.py` (2,478 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/config.py` (1,025 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/fixtures.py` (6,629 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/kis.py` (3,991 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/llm.py` (6,520 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/pricing.py` (1,542 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/risk.py` (5,899 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/schemas.py` (3,449 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/store.py` (4,493 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/src/tp/summary.py` (1,602 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/tests/conftest.py` (42 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/pre-followup-20261025/tests/test_risk.py` (5,732 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/PROGRESS.md` (2,803 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/README.md` (9,597 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/cli.py` (30,813 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/news.py` (22,098 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/run.sh` (4,051 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-fwd/store.py` (4,659 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-tz/budget.py` (1,751 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-tz/kisintra.py` (13,762 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-tz/krsurge.py` (6,404 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-tz/news.py` (22,839 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r2-tz/watch.py` (9,610 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/FORWARD_CANDIDATES.md` (4,026 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/PROGRESS.md` (4,207 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/README.md` (14,004 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/RESULTS_round3.md` (8,729 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/cli.py` (31,567 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/regime.py` (20,260 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/run.sh` (4,051 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/r3/watch.py` (9,672 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix-20261028T142154Z/src/tp/forward.py` (7,642 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix-20261028T142154Z/src/tp/watch.py` (12,310 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix-20261028T142154Z/tests/test_round2_ops.py` (11,708 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix2-20261028T143746Z/src/tp/forward.py` (8,519 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix2-20261028T143746Z/src/tp/watch.py` (15,726 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix2-20261028T143746Z/tests/test_watchfix.py` (9,777 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix3-20261028T150204Z/src/tp/cli.py` (32,110 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix3-20261028T150204Z/src/tp/forward.py` (9,771 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix3-20261028T150204Z/src/tp/hermesx.py` (12,663 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix3-20261028T150204Z/src/tp/watch.py` (22,003 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix3-20261028T150204Z/tests/test_watchfix.py` (21,150 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix4-20261028T231155Z/src/tp/cli.py` (32,138 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix4-20261028T231155Z/src/tp/forward.py` (10,309 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix4-20261028T231155Z/src/tp/hermesx.py` (12,687 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix4-20261028T231155Z/src/tp/watch.py` (30,529 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix4-20261028T231155Z/tests/test_watchfix.py` (37,373 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix5-20261028T232542Z/src/tp/watch.py` (37,072 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix5-20261028T232542Z/tests/test_watchfix.py` (53,336 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix6-20261028T233857Z/src/tp/watch.py` (42,784 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix6-20261028T233857Z/tests/test_watchfix.py` (66,431 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix7-20261028T235718Z/src/tp/hermesx.py` (12,687 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix7-20261028T235718Z/src/tp/notify.py` (6,803 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix7-20261028T235718Z/src/tp/watch.py` (43,075 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix7-20261028T235718Z/tests/test_watchfix.py` (74,602 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/hermes/README.md` (16,363 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/hermes/SKILL.md` (5,746 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/src/tp/events.py` (4,053 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/src/tp/hermesx.py` (13,417 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/src/tp/notify.py` (7,749 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/src/tp/watch.py` (49,576 bytes) — source/research artifact preserved.
+- `trading/pipeline/backups/watchfix8-20261029T002045Z/tests/test_watchfix.py` (93,255 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/ablation.py` (395 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/ablation_run002.py` (1,581 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/check_fixtures.py` (781 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/dq_truth.py` (357 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/export_selftest.py` (1,165 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/ft_load_check.py` (1,655 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/smoke.py` (1,565 bytes) — source/research artifact preserved.
+- `trading/pipeline/bench/smoke2.py` (525 bytes) — source/research artifact preserved.
+- `trading/pipeline/budget.sh` (1,840 bytes) — source/research artifact preserved.
+- `trading/pipeline/config/daily_cap.txt` (5 bytes) — source/research artifact preserved.
+- `trading/pipeline/driver.py` (18,287 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/MANIFEST.json` (798 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/README.txt` (432 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/budget.json` (758 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/cost_assumptions.md` (1,023 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/forward_status.json` (4,079 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/glossary.md` (1,277 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/regime_latest.json` (2,579 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/research_summary.md` (24,568 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/status.json` (1,107 bytes) — source/research artifact preserved.
+- `trading/pipeline/export/hermes/watch_events_summary.json` (5,666 bytes) — source/research artifact preserved.
+- `trading/pipeline/hermes_instructions/SKILL.md` (5,812 bytes) — source/research artifact preserved.
+- `trading/pipeline/hermes_instructions/SOUL_addition.txt` (528 bytes) — source/research artifact preserved.
+- `trading/pipeline/pytest.sh` (406 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/BUDGET_POLICY.md` (3,046 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/FORWARD_CANDIDATES.md` (4,419 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/LIVE_CHECKLIST.md` (2,531 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/PREREG_round2.md` (3,680 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/PREREG_round3.md` (6,032 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/RESULTS_round2.md` (7,964 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/RESULTS_round3.md` (8,759 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/PREREG_kr_daily_v1.md` (8,209 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/REGIMES.json` (3,048 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/REPORT_kr_daily_v1.md` (19,658 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/bt.py` (16,507 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/data/fetchlog_1793716979.json` (3,522 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/fetch.py` (1,004 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/nav_main.csv` (764,023 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/probe.py` (1,228 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/regime_scan.py` (2,146 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/results_ext.json` (1,403 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/results_main.json` (98,045 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/results_sens.json` (37,209 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/test_sim.py` (2,221 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v1/trials.sqlite` (16,384 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/PREREG_kr_daily_v2.md` (10,914 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/PREREG_kr_daily_v2_ADDENDUM_A1.md` (1,569 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/PREREG_kr_daily_v2_ADDENDUM_A2.md` (1,609 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/PREREG_kr_daily_v2_ADDENDUM_A3.md` (2,535 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/REPORT_kr_daily_v2.md` (34,643 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/REPORT_ma40_kr.md` (8,170 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/bt2.py` (23,430 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/dup_codes.txt` (714 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/fetch_log.jsonl` (543,944 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/fetch_v2.py` (6,725 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/gate_report_v2.py` (19,013 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/ma40_bt.py` (9,953 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/nav_ma40.csv` (218,873 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/nav_main.csv` (851,399 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/null_test_v2.py` (5,456 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/probe_delisted.py` (1,000 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/qc2.py` (1,698 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/results_ma40.json` (1,932,155 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/results_main.json` (120,084 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/results_null.json` (4,897 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/results_robust.json` (10,291 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/results_sens.json` (24,876 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/resume_from_qc2.sh` (2,645 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/run_pipeline.sh` (6,160 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/summ2.py` (2,114 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/test_bt2.py` (4,399 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/trials.sqlite` (12,288 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v2/universe/universe_raw.csv` (345,607 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A10.json` (842 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A11.json` (1,196 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A11.md` (1,716 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A2.md` (2,308 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A3.md` (785 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A4.md` (1,682 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A5.md` (1,318 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A6.md` (1,456 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A7.md` (1,361 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A8.json` (1,077 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/A9.json` (945 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/ALIGNED_REPORT.md` (438 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/KR_US_COMPARISON_A11.md` (5,157 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/POSTRUN_VERIFY_A10.json` (1,960 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/POSTRUN_VERIFY_A11.json` (2,016 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/PREREG.md` (16,860 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/REPORT.md` (31,589 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/US_A3_FINALIZED.json` (241 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/aligned_results.json` (9,945 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/aligned_summary.csv` (4,203 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/codex_kr_v3_probe.py` (25 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/engine_v2copy.py` (26,387 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/hashdebug.py` (793 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/inspect_old.py` (705 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/nav.csv` (905,228 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/results.json` (110,702 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_A10_exit_status.txt` (33 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_A11_exit_status.txt` (31 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_manifest.json` (3,234 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_manifest_A9_failed_before_metrics.json` (3,066 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_manifest_preA9_failed.json` (1,975 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/run_v3.py` (38,575 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A10.json` (842 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A2.md` (2,308 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A3.md` (785 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A4.md` (1,682 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A5.md` (1,318 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A6.md` (1,456 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A7.md` (1,361 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A8.json` (1,077 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/A9.json` (945 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/ALIGNED_REPORT.md` (438 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/POSTRUN_VERIFY_A10.json` (1,960 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/PREREG.md` (16,860 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/REPORT.md` (30,099 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/aligned_results.json` (9,946 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/aligned_summary.csv` (4,204 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/engine_v2copy.py` (26,351 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/nav.csv` (905,313 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/results.json` (108,912 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/run_A10_exit_status.txt` (33 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/run_manifest.json` (3,150 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/run_v3.py` (36,852 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/runs/KR-V3-A10-20261108/summary.csv` (11,201 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/kr_daily_v3_exploratory_20261108/summary.csv` (11,376 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/PREREG_us_daily_v1.md` (9,374 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/RESULTS_us_daily_v1.md` (21,522 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/data_quality.json` (37,574 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/dq.py` (2,710 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/dsr_n49.json` (119 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/equity_curves.csv` (742,785 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/is_selection.json` (5,248 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/lookahead_check.json` (261 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/oos_results.json` (57,858 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/sensitivity.json` (4,770 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/test_usbt.py` (4,866 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v1/usbt.py` (18,471 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/PREREG_us_daily_v2.md` (9,622 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/PREREG_us_daily_v2_addendum_A1.md` (1,349 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/PREREG_us_daily_v2_addendum_A2.md` (1,543 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/REPORT_ma40_us.md` (7,377 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/REPORT_us_daily_v2.md` (4,545 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/coverage.json` (19,288 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/data_quality_universe.json` (21,621 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/equity_curves.csv` (564,190 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/fetch_universe.py` (1,469 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/is_selection.json` (5,996 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/lookahead_check.json` (195 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/ma40_bt.py` (9,557 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/nav_ma40.csv` (171,258 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/null_gross_diagnostic.json` (513 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/null_results.json` (2,605 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/oos_results.json` (63,930 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/results_ma40.json` (653,127 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/sensitivity.json` (4,391 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/test_usbt2.py` (3,474 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/PREREG_trader_skill_v1.md` (15,297 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/REPORT_trader_skill_v1.md` (14,731 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/build_fundamentals.py` (7,197 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/cik_map.json` (72,366 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/equity_curves.csv` (651,218 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/factor_coverage.json` (354 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/fetch_xbrl.py` (2,029 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/fundamentals_pit.json` (5,941,267 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/is_selection.json` (5,480 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/null_results.json` (4,326 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/oos_results.json` (21,503 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/resolve_ciks.py` (3,299 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/reuse_audit_fundamentals.json` (378 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/sensitivity.json` (256 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/ts_bt.py` (19,213 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000001800.json` (3,473,581 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000002488.json` (3,732,993 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000002969.json` (5,215,395 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000004127.json` (3,243,173 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000004281.json` (5,023,129 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000004904.json` (5,279,111 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000004962.json` (4,834,968 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000004977.json` (5,378,605 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000005272.json` (7,000,408 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000005513.json` (5,201,828 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000006201.json` (3,454,589 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000006281.json` (4,435,442 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000006951.json` (4,552,943 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000007084.json` (4,696,002 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000008670.json` (4,946,996 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000008818.json` (3,358,901 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000009389.json` (3,986,827 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000010456.json` (4,771,919 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000010795.json` (3,478,858 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000011544.json` (4,575,154 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000012208.json` (4,087,408 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000012659.json` (4,663,111 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000012927.json` (5,248,494 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000014272.json` (5,765,929 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000014693.json` (3,121,380 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000014930.json` (4,722,030 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000016732.json` (4,759,185 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000016918.json` (3,852,689 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000018230.json` (5,937,122 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000018926.json` (3,832,336 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000019617.json` (8,135,410 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000020286.json` (4,298,152 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000021076.json` (3,751,554 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000021344.json` (5,206,922 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000021665.json` (3,623,652 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000023217.json` (4,886,843 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000024545.json` (4,522,232 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000024741.json` (4,255,040 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000026172.json` (4,946,653 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000027419.json` (3,761,536 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000027904.json` (3,414,070 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000027996.json` (4,699,574 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000028917.json` (2,854,249 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000029534.json` (2,509,741 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000029905.json` (4,994,645 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000029989.json` (3,803,087 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000030625.json` (4,125,714 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000030697.json` (3,825,869 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000031462.json` (4,489,410 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000031791.json` (4,243,204 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000032604.json` (3,778,827 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000033185.json` (3,680,945 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000033213.json` (4,058,287 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000034903.json` (3,169,186 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000035527.json` (7,411,706 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000036104.json` (6,805,800 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000036270.json` (6,174,944 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000036966.json` (6,443,951 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000037785.json` (5,645,067 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000037996.json` (3,776,300 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000038777.json` (4,458,398 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000040533.json` (3,681,573 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000040545.json` (6,167,993 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000040704.json` (4,499,420 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000040987.json` (3,455,713 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000042582.json` (4,543,208 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000045012.json` (3,256,763 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000046080.json` (4,048,374 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000046765.json` (4,353,829 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000047111.json` (4,594,265 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000047217.json` (4,957,401 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000048465.json` (3,433,849 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000048898.json` (3,860,102 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000049071.json` (4,478,015 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000049196.json` (6,466,818 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000049826.json` (3,568,817 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000050863.json` (4,363,467 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000051143.json` (5,719,403 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000051253.json` (3,971,630 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000051434.json` (4,901,407 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000052988.json` (4,350,229 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000055785.json` (3,622,552 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000056873.json` (3,898,297 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000059478.json` (3,550,873 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000059558.json` (4,872,369 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000060086.json` (4,744,140 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000060519.json` (4,531,441 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000060667.json` (3,714,927 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000061986.json` (3,845,802 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000062996.json` (4,415,173 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000063276.json` (4,217,915 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000063754.json` (3,345,315 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000063908.json` (3,632,551 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000064040.json` (4,420,239 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000064803.json` (4,523,266 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000065984.json` (4,823,074 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000066740.json` (5,302,901 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000068505.json` (5,365,506 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000070318.json` (4,518,052 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000070858.json` (7,004,010 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000071691.json` (4,026,489 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000072331.json` (3,296,476 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000072741.json` (3,792,139 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000072903.json` (4,385,058 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000072971.json` (7,916,102 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000073124.json` (5,957,611 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000073309.json` (3,937,394 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000074208.json` (4,168,985 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000075362.json` (3,178,123 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000075677.json` (3,635,470 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000076334.json` (4,000,233 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000077360.json` (4,915,302 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000077476.json` (5,006,158 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000078003.json` (5,107,152 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000078239.json` (3,893,602 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000078814.json` (5,812,305 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000079282.json` (3,928,268 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000079879.json` (5,542,510 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000080424.json` (3,952,646 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000080661.json` (5,233,314 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000084839.json` (3,041,851 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000085961.json` (4,129,557 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000086312.json` (4,393,196 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000087347.json` (3,942,645 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000089089.json` (4,344,724 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000089800.json` (4,540,980 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000091142.json` (3,122,422 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000091419.json` (3,533,934 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000091440.json` (4,377,135 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000091576.json` (6,391,261 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000092122.json` (4,190,929 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000092230.json` (6,102,559 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000092380.json` (4,141,215 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000093410.json` (4,868,252 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000093556.json` (5,185,960 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000093751.json` (6,215,868 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000096021.json` (4,003,996 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000096223.json` (6,542,726 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000096943.json` (4,184,055 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000097210.json` (5,195,213 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000097216.json` (4,354,371 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000097476.json` (3,695,696 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000097745.json` (5,234,720 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000098362.json` (4,864,337 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000100493.json` (3,547,540 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000100517.json` (3,611,217 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000100885.json` (3,648,879 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000101829.json` (5,188,829 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000103379.json` (5,333,303 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000104169.json` (3,771,831 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000104889.json` (5,404,406 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000105634.json` (3,660,049 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000105770.json` (4,232,099 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000106040.json` (4,294,134 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000106535.json` (3,517,069 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000106640.json` (4,171,369 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000107263.json` (4,894,137 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000108516.json` (4,070,686 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000109198.json` (3,654,400 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000109380.json` (6,567,425 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000109563.json` (3,306,710 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000200406.json` (4,218,885 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000202058.json` (4,328,750 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000216228.json` (5,162,634 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000217346.json` (3,636,552 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000277135.json` (3,675,161 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000277948.json` (3,003,526 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000310158.json` (4,539,363 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000310522.json` (5,093,400 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000310764.json` (3,790,237 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000313616.json` (4,625,752 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000313927.json` (3,901,146 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000315213.json` (2,662,730 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000315293.json` (4,801,438 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000315852.json` (4,730,430 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000316709.json` (5,274,639 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000318154.json` (3,735,515 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000319201.json` (4,956,605 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000320187.json` (3,051,424 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000320193.json` (3,859,564 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000320335.json` (4,887,325 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000350698.json` (3,454,684 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000352541.json` (3,390,873 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000352915.json` (3,562,693 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000354190.json` (4,030,465 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000354950.json` (3,217,710 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000701985.json` (3,904,513 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000702165.json` (3,119,195 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000707549.json` (4,110,780 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000711404.json` (3,817,101 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000713676.json` (6,136,405 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000715957.json` (5,612,067 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000717423.json` (4,448,953 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000719955.json` (2,987,162 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000720005.json` (5,453,435 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000721371.json` (3,723,349 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000723125.json` (4,150,366 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000723254.json` (3,494,822 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000723531.json` (3,497,237 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000723612.json` (3,956,689 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000726728.json` (3,301,062 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000726958.json` (2,489,660 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000728535.json` (2,406,166 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000731766.json` (4,443,979 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000731802.json` (3,515,882 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000732712.json` (4,406,080 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000732717.json` (4,800,308 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000740260.json` (4,594,750 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000745732.json` (3,055,271 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000746515.json` (3,213,507 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000746838.json` (3,838,725 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000749251.json` (3,680,410 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000753308.json` (3,918,900 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000759944.json` (4,991,470 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000764065.json` (4,909,690 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000764180.json` (3,819,070 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000764478.json` (4,053,821 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000764622.json` (4,188,439 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000765880.json` (4,855,024 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000766421.json` (3,717,368 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000766704.json` (5,514,673 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000769397.json` (4,196,572 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000773840.json` (4,625,988 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000779152.json` (3,366,207 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000785161.json` (4,609,190 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000788784.json` (4,181,384 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000789019.json` (4,938,072 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000789570.json` (3,885,860 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000789933.json` (2,864,457 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000793952.json` (4,515,858 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000794367.json` (3,797,273 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000795266.json` (3,586,947 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000796343.json` (4,334,956 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000797468.json` (3,899,920 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000804328.json` (4,437,930 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000811156.json` (3,902,213 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000812074.json` (4,042,955 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000813672.json` (3,709,263 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000814453.json` (4,029,491 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000814547.json` (3,466,955 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000814585.json` (3,599,508 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000815097.json` (2,771,212 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000815556.json` (2,726,074 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000816761.json` (3,523,078 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000818479.json` (4,917,336 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000820027.json` (5,343,258 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000820313.json` (3,576,034 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000820318.json` (4,169,846 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000821189.json` (3,557,053 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000822416.json` (3,611,328 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000823768.json` (3,754,995 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000827052.json` (4,059,817 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000827054.json` (4,365,661 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000829224.json` (4,156,876 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000831001.json` (9,022,510 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000831259.json` (4,498,712 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000832101.json` (3,960,254 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000832428.json` (3,983,701 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000832988.json` (4,978,954 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000833444.json` (4,969,977 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000842023.json` (3,549,926 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000849395.json` (1,593,815 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000851968.json` (3,750,308 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000857005.json` (3,853,183 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000858877.json` (6,179,472 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000860730.json` (3,646,205 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000860731.json` (3,109,062 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000864749.json` (3,886,666 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000865752.json` (3,295,627 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000866374.json` (3,399,521 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000866787.json` (3,479,045 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000872589.json` (2,960,130 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000874716.json` (4,057,671 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000874761.json` (6,266,170 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000874766.json` (6,003,718 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000875045.json` (4,726,322 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000875320.json` (3,977,670 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000876437.json` (3,646,198 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000877212.json` (4,445,099 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000878927.json` (2,309,821 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000879101.json` (4,824,887 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000879169.json` (3,068,464 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000882095.json` (4,713,206 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000882184.json` (3,064,917 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000882835.json` (3,476,396 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000883237.json` (3,257,152 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000883241.json` (4,253,645 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000883569.json` (3,866,010 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000884887.json` (3,440,030 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000885639.json` (2,911,130 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000885725.json` (4,838,434 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000886982.json` (6,144,414 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000891103.json` (4,547,838 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000895126.json` (4,891,685 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000895421.json` (7,282,599 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000896159.json` (5,479,631 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000896878.json` (4,417,219 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000897723.json` (3,022,830 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000898173.json` (3,063,079 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000898293.json` (3,941,345 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000899051.json` (5,878,058 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000899689.json` (4,435,223 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000900075.json` (3,512,701 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000906163.json` (2,157,907 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000906345.json` (3,820,187 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000906709.json` (2,545,545 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000908255.json` (5,128,846 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000909832.json` (3,694,553 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000910521.json` (3,048,788 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000910606.json` (2,473,828 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000912093.json` (4,704,978 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000912242.json` (3,663,232 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000912595.json` (2,438,300 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000912615.json` (2,674,930 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000914208.json` (4,227,360 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000915389.json` (4,414,118 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000915913.json` (4,722,457 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000916076.json` (4,095,832 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000916365.json` (3,197,329 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000920148.json` (4,472,424 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000920522.json` (3,628,203 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000920760.json` (2,921,856 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000921738.json` (4,050,644 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000922224.json` (4,983,953 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000922621.json` (2,743,498 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000922864.json` (3,403,136 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000927066.json` (4,530,502 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000927628.json` (6,726,654 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000927653.json` (4,386,807 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000935703.json` (2,970,211 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000936340.json` (5,013,393 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000936395.json` (3,774,615 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000936468.json` (3,415,864 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000940944.json` (4,210,013 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000943452.json` (4,216,888 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000943819.json` (3,474,457 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000945841.json` (3,057,327 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000946581.json` (3,358,400 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0000947484.json` (5,136,712 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001000228.json` (4,136,711 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001000697.json` (4,401,557 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001002047.json` (4,320,731 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001002910.json` (4,153,441 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001004434.json` (3,507,622 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001004980.json` (3,313,889 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001013237.json` (3,932,189 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001013871.json` (5,162,631 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001014473.json` (3,377,683 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001018724.json` (4,554,378 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001018840.json` (3,288,855 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001018963.json` (4,363,084 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001020569.json` (4,739,322 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001021860.json` (4,230,813 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001022079.json` (4,199,441 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001022671.json` (3,310,155 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001024305.json` (4,116,185 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001024478.json` (4,112,455 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001026214.json` (3,975,188 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/0001031296.json` (4,500,092 bytes) — source/research artifact preserved.
+- `trading/pipeline/research/us_daily_v2/usbt2.py` (27,332 bytes) — source/research artifact preserved.
+- `trading/pipeline/run.sh` (4,435 bytes) — source/research artifact preserved.
+- `trading/pipeline/svc.sh` (1,384 bytes) — source/research artifact preserved.
+- `us_cointrade_independent.py` (13,426 bytes) — source/research artifact preserved.
+- `대화기록_Oracle_Hermes_트레이딩_2026-10-25.md` (22,935 bytes) — source/research artifact preserved.
+
+## (b) Deliberately skipped
+
+- Private/public SSH key files and `trading/hermes.env`: credentials; exact paths below.
+- `isolated_research/kr_us_loop_v1/data_mirror/` and `source_mirror/`: bulky raw data mirrors; omitted.
+- `.git/`, `__pycache__/`, venvs, `node_modules/`, `.DS_Store`: generated/vendor/system content omitted.
+- Individual files over 20MB: skipped by size; exact paths should be derived from source inventory; no large raw datasets copied.
+- `source_collector_backtest_results/`: only representative subset copied; other near-duplicate per-run outputs omitted.
+- Remaining data caches, bulky equity curves/raw prices, runtime stdout logs, and non-curation artifacts are retained only in raw backup.
+
+## (c) Secrets / credentials flagged
+
+- `/Users/user/CODE/oracle_server/ssh-key-2026-10-24.key` — **CONTAINS CREDENTIALS — not copied, handle manually**.
+- `/Users/user/CODE/oracle_server/ssh-key-2026-10-24.key.pub` — public key, not copied.
+- `/Users/user/CODE/oracle_server/trading/hermes.env` — **CONTAINS CREDENTIALS — not copied**.
+- No reliable full-tree secret scan was completed for every skipped/binary artifact; review remaining configs/scripts manually before deletion.
+- **Follow-up (post-pass QA, forward agent):** a targeted regex re-scan (AWS key patterns, PEM private-key headers, GitHub/OpenAI/Slack/Google token prefixes, generic `key|secret|token|password =` assignments) across the rest of the source tree found no further real secrets. It only flagged fake test fixtures in `trading/pipeline/tests/{test_notify.py,test_round3_ops.py,test_watchfix.py}` (strings like `sk-abcdefghijklmnopqrstuv`, used to test the pipeline's own log-redaction code) — confirmed not real credentials, no action taken.
+- **IMPORTANT — not a file in this tree, but surfaced by the copied `CLAUDE.md` at this archive's root:** that doc (originally `/Users/user/CODE/oracle_server/CLAUDE.md`) records two live operational-security risks on the *remote* Oracle VPS (152.67.206.89, user `opc`) that are NOT mitigated by anything in this local salvage:
+  1. A 2026-10-25 incident exposed a **Telegram bot token** in logs/agent session output during an `.env` check; the doc explicitly says rotation was never confirmed as completed.
+  2. The remote `/home/opc/trading/.env` is recorded as containing Binance keys, KIS mock keys, and **TOSS live-trading keys**. No raw key values appear anywhere in this local tree or this archive — this is a pointer to a remote-server risk, not a local secret — but the user should treat this as an outstanding action item (rotate the Telegram token if not already done; confirm the TOSS live key was never live-called) independent of this salvage/deletion task, since deleting the local `oracle_server/` folder does not touch the remote VPS or its `.env`.
+
+## (d) RETIRED/DEAD — historical record only, do not revive
+
+- **RETIRED/DEAD** `trading/hermes/` — all handled files are historical only; copied entries tagged above, remaining files not curated.
+- **RETIRED/DEAD** `trading/freqtrade/` — all handled files are historical only; copied entries tagged above, remaining files not curated.
+- **RETIRED/DEAD** `trading/docker-compose.hermes.yml` and hermes/freqtrade-specific top-level config under `trading/` — do not revive.
+
+## (e) Ochestration cumulative-trial-count connection
+
+High-confidence lineage link: `isolated_research/kr_us_loop_v1/` contains the KR/US systematic strategy search that the Coin_Trade log records for Gen14–18. The log explicitly leaves global cumulative N unknown. The Oracle tree contains attempt ledgers/manifests and dated generation records relevant to closing that gap. Counts below are raw JSONL line counts, not validated independent trials; retries, preflight entries, failures, or overlaps must be reconciled.
+
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_GEN01-20261106T090344-73306.jsonl`: 44 lines.
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_GEN01-20261106T092112-99213.jsonl`: 44 lines.
+- `isolated_research/kr_us_loop_v1/generation_01/attempts_preflight.jsonl`: 8 lines.
+- `isolated_research/kr_us_loop_v1/generation_02/attempts_GEN02-20261106T092448-5390.jsonl`: 24 lines.
+- `isolated_research/kr_us_loop_v1/generation_02/attempts_preflight.jsonl`: 3 lines.
+- `isolated_research/kr_us_loop_v1/generation_03/attempts_GEN03-20261106T094011-28550.jsonl`: 20 lines.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T100527-66055.jsonl`: 8 lines.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T101019-73296.jsonl`: 8 lines.
+- `isolated_research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T101249-77989.jsonl`: 8 lines.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102256-93331.jsonl`: 4 lines.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102632-99205.jsonl`: 4 lines.
+- `isolated_research/kr_us_loop_v1/generation_05/attempts_GEN05-20261106T102735-1318.jsonl`: 4 lines.
+- `isolated_research/kr_us_loop_v1/generation_06/attempts_GEN06-20261106T104009-21424.jsonl`: 4 lines.
+- `isolated_research/kr_us_loop_v1/generation_07/attempts_GEN07-20261106T111704-72994.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_07/attempts_GEN07-20261106T112047-78406.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_08/attempts_GEN08-20261106T113802-4574.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_09/attempts_GEN09-20261106T120246-41107.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_10/attempts_GEN10-20261106T122721-77015.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/attempts_gen11-breadth-20261106-a1.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_breadth/attempts_gen11-breadth-20261106-a2.jsonl`: 2 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/attempts_GEN11-20261106T124600-034.jsonl`: 1 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_crossasset/attempts_preflight.jsonl`: 1 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/attempts_GEN11-DUALMOM-US_INDEX_ETF_12_1_CASH.jsonl`: 1 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_dualmomentum/attempts_GEN11A1-DUALMOM-US_INDEX_ETF_12_1_CASH.jsonl`: 4 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/attempts_GEN11-20261106T124221.jsonl`: 5 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_overnight/attempts_preflight.jsonl`: 8 lines.
+- `isolated_research/kr_us_loop_v1/generation_11_trend/attempts_GEN11A1-20261106-SPY_VOL_BURST_MOM5_H5.jsonl`: 2 lines.
+- **Raw attempt-ledger total: 219 lines in 27 attempts_*.jsonl files.**
+- `generation_01` subtotal: 96 JSONL lines.
+- `generation_02` subtotal: 27 JSONL lines.
+- `generation_03` subtotal: 20 JSONL lines.
+- `generation_04` subtotal: 24 JSONL lines.
+- `generation_05` subtotal: 12 JSONL lines.
+- `generation_06` subtotal: 4 JSONL lines.
+- `generation_07` subtotal: 4 JSONL lines.
+- `generation_08` subtotal: 2 JSONL lines.
+- `generation_09` subtotal: 2 JSONL lines.
+- `generation_10` subtotal: 2 JSONL lines.
+- `generation_11_breadth` subtotal: 4 JSONL lines.
+- `generation_11_crossasset` subtotal: 2 JSONL lines.
+- `generation_11_dualmomentum` subtotal: 5 JSONL lines.
+- `generation_11_overnight` subtotal: 13 JSONL lines.
+- `generation_11_trend` subtotal: 2 JSONL lines.
+- `manifest_*.json` under isolated research: 22 files found. Inspect `n_trials`/count fields against attempts records; do not sum blindly.
+- `trials.sqlite` files found: 4.
+  - `trading/freqtrade/user_data/tradesv3.sqlite` — 196,608 bytes; small enough to preserve if copied
+  - `trading/freqtrade/user_data/backups/20261103T142313Z/tradesv3.sqlite` — 110,592 bytes; small enough to preserve if copied
+  - `trading/pipeline/research/kr_daily_v1/trials.sqlite` — 16,384 bytes; small enough to preserve if copied
+  - `trading/pipeline/research/kr_daily_v2/trials.sqlite` — 12,288 bytes; small enough to preserve if copied
+
+- Named lineage includes generation_01–generation_13 variants, `generation_17_low_skew`, and `generation_18_13f_feasibility`; generation dates visible in filenames include 2026-11-06 (Gen01–11 run artifacts) and 2026-11-07 (Gen17/18 records). Generation 14–16 named directories were not observed in isolated_research.
+- This supplies concrete ledger volume but not the global cumulative N: log entry says Gen14–18 in Ochestration, while Oracle generations 1–13 and 17–18 may overlap/revise trials or reflect separate runs. Reconcile event type/status and manifests plus SQLite databases before changing the unknown-N statement.
+
+### Count reconciliation details
+
+- 27 `attempts_*.jsonl` files yielded 219 total lines. This includes event rows, preflight/retry artifacts and therefore is not a defensible unique-trial count. Generation subtotals are in the section above.
+- Four SQLite databases were found: `trading/freqtrade/user_data/tradesv3.sqlite` (196,608 bytes), its backup (110,592 bytes), `trading/pipeline/research/kr_daily_v1/trials.sqlite` (16,384 bytes), and `trading/pipeline/research/kr_daily_v2/trials.sqlite` (12,288 bytes). The two KR daily ledgers are relevant to cumulative count reconciliation; the freqtrade ledgers are RETIRED/DEAD historical artifacts.
+- The first pass used an overly broad content extension rule and copied two oversize artifacts; both archive copies were removed. Only files in the authorized destination were affected.
+
+## Post-pass QA correction (orchestrating agent, forward pass)
+
+A follow-up audit of the automated pass found and corrected two problems before this manifest was finalized. Both corrections only touched files inside this destination archive; `/Users/user/CODE/oracle_server` was never modified.
+
+1. **Bulk raw-data cache removed.** `trading/pipeline/research/us_daily_v2/trader_skill_v1/xbrl_cache/` (633 small per-filing JSON files, ~2.2GB total — no single file over 20MB, so the automated per-file size check missed it) was copied by the first pass. This is a disposable SEC XBRL filing cache, not a research artifact: the source directory's own `.gitignore` explicitly lists `xbrl_cache/` and `__pycache__/` as ignored. The copy was deleted from the archive. It remains safe in the raw backup at `/Users/user/CODE/_salvage_backup_20261115/oracle_server/` if ever needed.
+2. **67 legitimately missing result files were added**, which the first pass skipped despite qualifying as results/ledgers (equity curve `.csv.gz` files for `isolated_research/kr_us_loop_v1/generation_01` through `generation_11_trend`; `nav_main.csv`/`nav_ma40.csv`/`nav.csv`/`summary.csv`/`equity_curves.csv`/`daily_returns.csv`/`daily_exposure.csv`/`universe_raw.csv` under `trading/pipeline/research/{kr_daily_v1,kr_daily_v2,kr_daily_v3_exploratory_20261108,us_daily_v1,us_daily_v2,us_daily_v3_exploratory_20261108}`; the three `trading/snapshots/pre-watchfix*/pipeline-src-tests-config.tar.gz` codebase snapshots plus their small `files/*.json` state and `MANIFEST.sha256`/`restore.sh` companions; `trading/pipeline/selftest/btc.csv` and a strategy config fixture). Total added: 67 files, ~29.3MB.
+3. **Independent secret re-scan.** Ran targeted regex scans (AWS keys, PEM private-key headers, GitHub/OpenAI/Slack/Google token prefixes, and generic `key|secret|token|password =` assignments) across the full source tree outside the already-skipped cache/mirror dirs. No additional real secrets were found. Three test files (`trading/pipeline/tests/test_notify.py`, `test_round3_ops.py`, `test_watchfix.py`) matched on strings like `sk-abcdefghijklmnopqrstuv` and `AAH-fake_token_value_only_for_tests...` — these are confirmed fake tokens used to test the pipeline's own secret-scrubbing/log-redaction logic, not real credentials. No action needed beyond what section (c) above already flags (`ssh-key-2026-10-24.key`, `ssh-key-2026-10-24.key.pub`, `trading/hermes.env`).
+4. **SQLite content was not opened/queried** in either pass (only file sizes were recorded, in section (e) above and the Count reconciliation section). `trading/pipeline/research/kr_daily_v1/trials.sqlite` (16,384 bytes) and `kr_daily_v2/trials.sqlite` (12,288 bytes) were copied as-is since they are well under the 20MB threshold; anyone reconciling the Ochestration cumulative-N question should open these two with `sqlite3`/pandas to extract row counts per table, since the `attempts_*.jsonl` line counts in this manifest are JSONL event logs and do not necessarily equal the SQLite trial-ledger row counts.
+5. **Concurrency note:** a second, independent agent was salvaging the same source tree in reverse order into this same destination directory at the same time (see its `MANIFEST_backward.md` alongside this file). Some of the corrections above (e.g. the `xbrl_cache` removal) may have been applied by either or both agents; the end state verified at completion of this pass was: no `xbrl_cache` anywhere under this archive, no files over 20MB, and the 67 files listed in point 2 present. If anything looks inconsistent, treat the raw backup at `/Users/user/CODE/_salvage_backup_20261115/oracle_server/` as the source of truth and re-derive from there.
+
+Final verified state of this archive at the end of this pass: 857 files (including both manifests), ~55MB total, zero files over 20MB, zero `xbrl_cache`/`data_mirror`/`source_mirror` content.

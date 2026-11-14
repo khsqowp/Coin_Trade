@@ -1,0 +1,403 @@
+{
+  "cutoff": "2026-08-18",
+  "us_a3_prereg_sha256": "119cfbcbeffd9c5d2f240ac77a3defa5ff1f691192acdb6123f53c1b31d2df13",
+  "us_a3_script_sha256": "507b1ef56df288baa7cc789a0d330d974bfbaf89dd619dbb846170434a5a38c2",
+  "us_review_status": "NO-BLOCKER",
+  "records": {
+    "B_KODEX200": {
+      "IS": {
+        "days": 1864,
+        "total_return": 0.3616,
+        "cagr": 0.0426,
+        "sharpe": 0.39,
+        "vol": 0.1282,
+        "mdd": 0.2306,
+        "psr0": 0.855
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 3.179,
+        "cagr": 0.2481,
+        "sharpe": 0.889,
+        "vol": 0.2997,
+        "mdd": 0.4081,
+        "psr0": 0.989
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": 4.6904,
+        "cagr": 0.1338,
+        "sharpe": 0.67,
+        "vol": 0.2251,
+        "mdd": 0.4081,
+        "psr0": 0.994
+      }
+    },
+    "B_EW_TOP50": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.4651,
+        "cagr": -0.0811,
+        "sharpe": -0.445,
+        "vol": 0.1609,
+        "mdd": 0.5842,
+        "psr0": 0.113
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 0.5516,
+        "cagr": 0.0705,
+        "sharpe": 0.377,
+        "vol": 0.3026,
+        "mdd": 0.5478,
+        "psr0": 0.83
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.17,
+        "cagr": -0.0134,
+        "sharpe": 0.063,
+        "vol": 0.2377,
+        "mdd": 0.6752,
+        "psr0": 0.592
+      }
+    },
+    "RSI2_MR_K20_TOP50": {
+      "IS": {
+        "days": 1864,
+        "total_return": 0.5538,
+        "cagr": 0.0614,
+        "sharpe": 0.61,
+        "vol": 0.107,
+        "mdd": 0.1199,
+        "psr0": 0.953
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 0.2194,
+        "cagr": 0.0312,
+        "sharpe": 0.257,
+        "vol": 0.1864,
+        "mdd": 0.2529,
+        "psr0": 0.746
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": 0.8948,
+        "cagr": 0.0472,
+        "sharpe": 0.383,
+        "vol": 0.1493,
+        "mdd": 0.2529,
+        "psr0": 0.927
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.21844886574569317,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.06613134870719367
+    },
+    "RESIDUAL_MOM_K20_TOP50": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.5314,
+        "cagr": -0.0974,
+        "sharpe": -0.428,
+        "vol": 0.1949,
+        "mdd": 0.589,
+        "psr0": 0.122
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 1.2615,
+        "cagr": 0.1348,
+        "sharpe": 0.528,
+        "vol": 0.3686,
+        "mdd": 0.5985,
+        "psr0": 0.909
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": 0.0598,
+        "cagr": 0.0042,
+        "sharpe": 0.159,
+        "vol": 0.2892,
+        "mdd": 0.689,
+        "psr0": 0.723
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.07172014683241874,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": 0.08059737020608074
+    },
+    "GAP_REVERSAL_K20_TOP50": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.3605,
+        "cagr": -0.0587,
+        "sharpe": -0.937,
+        "vol": 0.0624,
+        "mdd": 0.3845,
+        "psr0": 0.007
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.4699,
+        "cagr": -0.0937,
+        "sharpe": -0.542,
+        "vol": 0.1581,
+        "mdd": 0.5379,
+        "psr0": 0.083
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.661,
+        "cagr": -0.0751,
+        "sharpe": -0.608,
+        "vol": 0.1171,
+        "mdd": 0.6922,
+        "psr0": 0.012
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.35204512710972086,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.19972761007122136
+    },
+    "B_EW_TOP100": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.4184,
+        "cagr": -0.0706,
+        "sharpe": -0.381,
+        "vol": 0.1591,
+        "mdd": 0.5644,
+        "psr0": 0.149
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 0.7217,
+        "cagr": 0.0878,
+        "sharpe": 0.435,
+        "vol": 0.2914,
+        "mdd": 0.46,
+        "psr0": 0.864
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": 0.0014,
+        "cagr": 0.0001,
+        "sharpe": 0.116,
+        "vol": 0.2304,
+        "mdd": 0.6839,
+        "psr0": 0.667
+      }
+    },
+    "RSI2_MR_K20_TOP100": {
+      "IS": {
+        "days": 1864,
+        "total_return": 1.3223,
+        "cagr": 0.1206,
+        "sharpe": 0.744,
+        "vol": 0.1733,
+        "mdd": 0.2027,
+        "psr0": 0.979
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.249,
+        "cagr": -0.0434,
+        "sharpe": -0.043,
+        "vol": 0.259,
+        "mdd": 0.4123,
+        "psr0": 0.457
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": 0.7441,
+        "cagr": 0.041,
+        "sharpe": 0.293,
+        "vol": 0.2175,
+        "mdd": 0.4123,
+        "psr0": 0.863
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.2773300266786608,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.13783864397849024
+    },
+    "RESIDUAL_MOM_K20_TOP100": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.8182,
+        "cagr": -0.2059,
+        "sharpe": -0.761,
+        "vol": 0.2587,
+        "mdd": 0.8478,
+        "psr0": 0.019
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.4011,
+        "cagr": -0.0764,
+        "sharpe": -0.016,
+        "vol": 0.3823,
+        "mdd": 0.7724,
+        "psr0": 0.484
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.8912,
+        "cagr": -0.148,
+        "sharpe": -0.335,
+        "vol": 0.3223,
+        "mdd": 0.9423,
+        "psr0": 0.106
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.2725024326778499,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.13301104997767932
+    },
+    "GAP_REVERSAL_K20_TOP100": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.6789,
+        "cagr": -0.1424,
+        "sharpe": -1.456,
+        "vol": 0.1019,
+        "mdd": 0.6943,
+        "psr0": 0.001
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.7038,
+        "cagr": -0.1719,
+        "sharpe": -0.832,
+        "vol": 0.202,
+        "mdd": 0.754,
+        "psr0": 0.018
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.9049,
+        "cagr": -0.1562,
+        "sharpe": -1.005,
+        "vol": 0.1567,
+        "mdd": 0.9194,
+        "psr0": 0.0
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.43427901514451006,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.2947876324443395
+    },
+    "B_EW_TOP200": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.3586,
+        "cagr": -0.0583,
+        "sharpe": -0.279,
+        "vol": 0.1657,
+        "mdd": 0.5261,
+        "psr0": 0.223
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": 0.4468,
+        "cagr": 0.0589,
+        "sharpe": 0.345,
+        "vol": 0.2831,
+        "mdd": 0.444,
+        "psr0": 0.808
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.072,
+        "cagr": -0.0054,
+        "sharpe": 0.091,
+        "vol": 0.2281,
+        "mdd": 0.6619,
+        "psr0": 0.632
+      }
+    },
+    "RSI2_MR_K20_TOP200": {
+      "IS": {
+        "days": 1864,
+        "total_return": 0.2298,
+        "cagr": 0.0284,
+        "sharpe": 0.237,
+        "vol": 0.2335,
+        "mdd": 0.3929,
+        "psr0": 0.74
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.555,
+        "cagr": -0.1179,
+        "sharpe": -0.262,
+        "vol": 0.303,
+        "mdd": 0.6171,
+        "psr0": 0.253
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.4527,
+        "cagr": -0.0426,
+        "sharpe": -0.028,
+        "vol": 0.2681,
+        "mdd": 0.7209,
+        "psr0": 0.458
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.3458162376523116,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.17704381447769468
+    },
+    "RESIDUAL_MOM_K20_TOP200": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.8869,
+        "cagr": -0.2552,
+        "sharpe": -0.792,
+        "vol": 0.3103,
+        "mdd": 0.9058,
+        "psr0": 0.015
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.904,
+        "cagr": -0.3045,
+        "sharpe": -0.685,
+        "vol": 0.4081,
+        "mdd": 0.9483,
+        "psr0": 0.042
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.9891,
+        "cagr": -0.2786,
+        "sharpe": -0.728,
+        "vol": 0.3591,
+        "mdd": 0.9932,
+        "psr0": 0.003
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.5458883222028968,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.3771158990282799
+    },
+    "GAP_REVERSAL_K20_TOP200": {
+      "IS": {
+        "days": 1864,
+        "total_return": -0.8689,
+        "cagr": -0.2402,
+        "sharpe": -1.665,
+        "vol": 0.1579,
+        "mdd": 0.8701,
+        "psr0": 0.006
+      },
+      "ALIGNED_REUSED_OOS": {
+        "days": 1626,
+        "total_return": -0.9008,
+        "cagr": -0.301,
+        "sharpe": -1.656,
+        "vol": 0.2035,
+        "mdd": 0.9145,
+        "psr0": 0.0
+      },
+      "ALIGNED_FULL": {
+        "days": 3490,
+        "total_return": -0.987,
+        "cagr": -0.2692,
+        "sharpe": -1.647,
+        "vol": 0.1806,
+        "mdd": 0.9887,
+        "psr0": 0.0
+      },
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_KODEX200": -0.6033912498738176,
+      "ALIGNED_REUSED_OOS_EXCESS_ANN_VS_TOPN_EW": -0.4346188266992007
+    }
+  }
+}

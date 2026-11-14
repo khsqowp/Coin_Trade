@@ -1,0 +1,37 @@
+{
+ "id": "ct-lessons-learned",
+ "name": "Research-process lessons from 16 rounds (what not to repeat)",
+ "family": "methodology",
+ "one_line": "Next-bar execution, costs, selection bias, concentration, period-split, bfill/shift look-ahead, stop/TP usually hurt.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/research/strategy_catalog.md",
+   "docs/mach7-ma-pullback-backtest.md",
+   "docs/전략-백테스트-종합.md"
+  ]
+ },
+ "markets": [
+  "all"
+ ],
+ "timeframe": "1d",
+ "direction": "n/a",
+ "status_in_source": "methodology",
+ "idea": "Collected failure modes from the owner's research log that a new hypothesis should anticipate.",
+ "rules": [],
+ "parameters": {},
+ "rationale": "Avoid re-discovering known pitfalls.",
+ "evidence": "1) Look-ahead found twice: fractal signals labelled at bar i but known at i+2; bfill() of fractal lows. 2) Gross-vs-net: 0.04% gross numbers drop to 17.8-20% after 0.10% fees + funding. 3) Best in-sample variants collapsed out of sample (alpha search 5,953 variants: IS Calmar 2.5-3.3 -> OOS -0.5..0.3). 4) Stop-loss, take-profit, ATR stop and account circuit-breakers cut the profit tail and lowered CAGR in the owner's tests. 5) Profit concentration: top-10 trades can exceed 100% of profit. 6) Survivorship bias: coin list = currently alive symbols. 7) Period-definition mixing produced a false pass (Donchian55). 8) Multiple-testing: 239 combos make best-of selection weak evidence.",
+ "limitations": [
+  "owner-written conclusions, not independently re-run here"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "guidance",
+  "notes": "Prefer few fixed a-priori parameters; state each stop/exit as a separate rule so ablation can show whether it matters."
+ },
+ "schema_version": 1
+}

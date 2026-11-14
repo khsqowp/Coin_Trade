@@ -1,0 +1,29 @@
+{
+  "scope": "provenance/compile/static/synthetic only; no market metrics",
+  "runtime_hash_verification": true,
+  "synthetic_unit_checks": {
+    "target_per_symbol_deferred_once": true,
+    "target_fee_and_turnover": true,
+    "full_investment_20_slots_affordable": true,
+    "spy_full_target_affordable": true,
+    "slot_open_fill_defers_and_exits": true,
+    "slot_fee_and_turnover": true,
+    "gap_close_exit_defers_on_missing_close": true,
+    "gap_fee_and_turnover": true
+  },
+  "static_checks": {
+    "manifest_a7": true,
+    "required_helpers": true,
+    "verifier_before_metrics": true,
+    "no_order_api": true
+  },
+  "versions": {
+    "python": "3.9.25",
+    "numpy": "2.0.2",
+    "pandas": "2.2.3"
+  },
+  "hashes": {
+    "us_v3.py": "507b1ef56df288baa7cc789a0d330d974bfbaf89dd619dbb846170434a5a38c2",
+    "A7_manifest": "01b883dbdb2644763c53eba3c83eea1aed522868c8d2c37a0fa2ec71a0cc526e"
+  }
+}

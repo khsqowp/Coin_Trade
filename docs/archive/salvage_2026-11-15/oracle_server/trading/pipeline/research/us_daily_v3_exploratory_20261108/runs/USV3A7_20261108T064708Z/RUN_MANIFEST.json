@@ -1,0 +1,105 @@
+{
+  "run_id": "USV3A7_20261108T064708Z",
+  "status": "completed; 40 result cells validated",
+  "strategy_metrics_run": true,
+  "strategy_cells": 36,
+  "per_side_costs_bp": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "benchmarks": {
+    "liquidity_equal_weight_cells": 3,
+    "spy_buy_and_hold_cells": 1
+  },
+  "result_cell_count": 40,
+  "study_period": [
+    "2012-06-01",
+    "2026-08-18"
+  ],
+  "bar_end": "2026-08-18",
+  "started_utc": "2026-11-08T06:52:26.051474+00:00",
+  "finished_utc": "2026-11-08T06:53:25.954259+00:00",
+  "duration_seconds": 59.9,
+  "execution": {
+    "attempt3_pid": "2448535",
+    "python": "/home/opc/trading/pipeline/.venv_us/bin/python",
+    "wrapper": "runner_a7.py",
+    "wrapper_sha256": "93e088dc84758ef4ff1d251b6d40690788e18dc87b0890567a8d0b0e200df318",
+    "TP_ROOT": "/home/opc/trading/pipeline",
+    "frozen_script": "research/us_daily_v3_exploratory_20261108/us_v3.py",
+    "script_sha256": "507b1ef56df288baa7cc789a0d330d974bfbaf89dd619dbb846170434a5a38c2",
+    "a7_input_manifest_sha256": "01b883dbdb2644763c53eba3c83eea1aed522868c8d2c37a0fa2ec71a0cc526e",
+    "prereg_a7_sha256": "119cfbcbeffd9c5d2f240ac77a3defa5ff1f691192acdb6123f53c1b31d2df13",
+    "helpers": {
+      "research/us_daily_v2/usbt2.py": "45f7b0916f0f5eae11dca3e9f2ecfab8ccbaef9b7432500965991d4b317c6e38",
+      "research/us_daily_v1/usbt.py": "e44a46f60d175ebfb0341fc8f4884a43a08f4e64871c124e4d52c85f4eb5672d",
+      "src/tp/usdata.py": "235b102ad4ce91e108b9e4c63b924944dfac14abe0ea46841a5cfb826b510f66"
+    },
+    "versions": {
+      "python": "3.9.25",
+      "numpy": "2.0.2",
+      "pandas": "2.2.3"
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed before metrics",
+      "reason": "TP_ROOT defaulted to /app; PIT input path missing",
+      "log": "stdout.log"
+    },
+    {
+      "attempt": 2,
+      "status": "failed before metrics",
+      "reason": "pickle cache class __main__.Panel unresolved",
+      "log": "stdout_attempt2.log"
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "reason": "hashed invocation wrapper aliased __main__.Panel to imported usbt2.Panel; A7 runtime hash gate and synthetic checks ran before panel load",
+      "log": "stdout_attempt3.log",
+      "shell_exit_code": "not captured; completion inferred from 40/40 result cells and absence of traceback"
+    }
+  ],
+  "output_files": {
+    "results.json": {
+      "bytes": 129146,
+      "sha256": "66983016a9c27e9489597100609a6b3f051522a0019f67624e47ff83636ac564"
+    },
+    "coverage.json": {
+      "bytes": 644,
+      "sha256": "1d99898aed0b54f49f60549ad7a9b3f89f256a010a0462f9d4a1a816ebcffff6"
+    },
+    "daily_returns.csv": {
+      "bytes": 2804338,
+      "sha256": "db586eab28074d1757a8f4e399ba0600c36544e6cfcd6845bd3c13c838a0ee7c"
+    },
+    "daily_exposure.csv": {
+      "bytes": 2245954,
+      "sha256": "6ed0d67d2d2a3fd87fe32d08df2fa2790c0f7827e0ae9a1bbf5dc8b185571094"
+    }
+  },
+  "research_limit": "Exploratory; partial PIT S&P 500 data with documented gaps; no promotion or live orders.",
+  "report_file": {
+    "path": "US_REPORT.md",
+    "sha256": "cc602056b70335a2aaa5469ed2115ec5b69cc7c319af380e246aa24f28d4e68e"
+  },
+  "attempt_logs": {
+    "stdout.log": {
+      "bytes": 1425,
+      "sha256": "74040755abfba399cbae9782f78493bfe0f77a551fbe41a4a6dd3ba56d812917"
+    },
+    "stdout_attempt2.log": {
+      "bytes": 1538,
+      "sha256": "02743e90818c83d64dbefec1f5e02410468b34aa7e3f61ddc8e86e0113fb67ea"
+    },
+    "stdout_attempt3.log": {
+      "bytes": 130437,
+      "sha256": "141e32ecb9e54ffbe90e74138823fc88cc9fa2d5e94cc8735d86766e6f13c491"
+    }
+  },
+  "runner_a7_sha256": "93e088dc84758ef4ff1d251b6d40690788e18dc87b0890567a8d0b0e200df318"
+}

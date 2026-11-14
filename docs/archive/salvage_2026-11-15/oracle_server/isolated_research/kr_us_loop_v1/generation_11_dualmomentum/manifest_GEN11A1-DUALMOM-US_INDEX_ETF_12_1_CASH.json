@@ -1,0 +1,5 @@
+{
+  "attempt_id": "GEN11A1-DUALMOM-US_INDEX_ETF_12_1_CASH",
+  "state": "FAILED",
+  "error": "Out of range float values are not JSON compliant: inf"
+}

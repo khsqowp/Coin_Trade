@@ -1,0 +1,73 @@
+{
+  "run_id": "GEN07-20261106T112047-78406",
+  "prereg_sha256": "833117ee0d8788f2a1811562cd9e044fed5afbc8d86d516e67f203180220c329",
+  "addendum_sha256": "f3cfe201e5db5ff9309976f6a47db678882dc0ba133c44f781cd9d3da2db06f3",
+  "runner_sha256": "62b948d2405eec05c29da3c3cea35074ae212020bcb4ebfe3cb68d0700037fde",
+  "test_sha256": "b277c83712a5fa965e8129189a84444f4c2020ff45a84a0303003a8e6eafdf67",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "gen03_runner_sha256": "2be8b342e154952d2536308311db38eaf875f5267a9fce64dc24791c6161e3cc",
+  "gen05_runner_sha256": "e705d9296f83544aaace24b6379884e81595b801246c175f95fcb28121e15c47",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T11:20:47.451845+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "planned_attempts": 1,
+  "status": "COMPLETED_EXPLORATORY",
+  "evidence_status": "EXPLORATORY_ONLY_PREVIOUSLY_INSPECTED_WINDOWS_AND_UNRESOLVED_PIT_TRIAL_HISTORY",
+  "market": {
+    "sessions": 8498,
+    "symbols": 688,
+    "benchmark": {
+      "IS": {
+        "status": "OK",
+        "start": "2001-01-04",
+        "end": "2016-12-30",
+        "bars": 4023,
+        "cagr": 0.05216389353290585,
+        "sharpe": 0.35786297597176736,
+        "mdd": -0.5518947580534723,
+        "total_return": 1.2518819306916913,
+        "annual_turnover": 0.0,
+        "mean_exposure": 1.0,
+        "monthly_rebalance_decisions": 192
+      },
+      "LATER_CONTAMINATED": {
+        "status": "OK",
+        "start": "2017-01-04",
+        "end": "2026-11-02",
+        "bars": 2471,
+        "cagr": 0.14838340171826858,
+        "sharpe": 0.8561282409639144,
+        "mdd": -0.337172572108114,
+        "total_return": 2.883161939283836,
+        "annual_turnover": 0.0,
+        "mean_exposure": 1.0,
+        "monthly_rebalance_decisions": 118
+      }
+    },
+    "data_note": "PIT members with local prices only; missing price history remains an optimistic coverage bias; 688 tickers",
+    "input_snapshot": {
+      "sha256": "f71e1d3a3bd5e2a90e1e8cdf317005eabb4fd3e1e89d1c5cd9ccc53a37688e74",
+      "files": 1378,
+      "scope": "all loaded ticker parquet files, available metadata, PIT membership, and SPY",
+      "atomic": false,
+      "note": "hash is computed after loading; concurrent file mutation is not excluded"
+    },
+    "decision_months": 406,
+    "months_coverage_passed": 83,
+    "trailing_partial_month_excluded": "2026-11",
+    "monthly_signal_values": 216912,
+    "valid_daily_decompositions": 4551512
+  },
+  "finished_utc": "2026-11-06T11:20:51.904013+00:00",
+  "attempt_events_sha256": "438c659a8e1ab8b18d8d2225c537f909d5d5bc76716a4ae10a745b290e4016ec",
+  "attempt_events": 2,
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_07/equity_curves_GEN07-20261106T112047-78406.csv.gz",
+  "curve_file_sha256": "1e87d399bb5218709ca6c942c13c35e4951800b46067c56d9d92519c1e0d3162",
+  "selection_audit_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_07/selection_audit_GEN07-20261106T112047-78406.csv.gz",
+  "selection_audit_file_sha256": "e03fdb0bda91ea75eee4006eaf056c8cfc76d2a65bb9127f7dbca46b22138056",
+  "coverage_audit_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_07/coverage_audit_GEN07-20261106T112047-78406.csv",
+  "coverage_audit_file_sha256": "63481c13aea30c44b8b13498d35e4d0d1619e97f4cdf472022fe143931262221",
+  "attempt_status": "COMPLETED_EXPLORATORY"
+}

@@ -1,0 +1,26 @@
+{
+  "run_id": "KR-V3-EXPLORATORY-20261108T054458Z",
+  "created_utc": "2026-11-08T05:44:58.416739+00:00",
+  "prereg_sha256": "04099862d6c6af7a9cb2b9a4962611d557fb4306bf63c9347bceab4054621133",
+  "code_sha256": {
+    "run_v3.py": "05c9e2ce7cd551dadf9b0ccc4d11c70dcabb2a25e1f708f9bf628dde1b1a0103",
+    "engine_v2copy.py": "06f78e355dc4e9c605b5374bd84578736b74a26c30d3eed7b0fba9f9c88868b0"
+  },
+  "input_aggregate_sha256": "5d5a5126f203519a7a26b6a219e9dc93ed982bd4f0401dffdc7a3301bc245bd2",
+  "kodex_sha256": "70f5c0f4681bd1548404ccb7cbc1ae6cfbdeb6d2a00ab886db7b2b41c06c106d",
+  "regime_sha256": "5c1b7262df33a38ba2d388897161fd1055bf18ca1e4584d38c271fae8649b82d",
+  "protocol": {
+    "universe": "eligible names ranked by close-t lagged 60-session median traded value; N=50/100/200; requires >=252 bars, traded t, >=55/60 sessions traded, median value>=KRW1bn",
+    "holdings": "fixed K=20 for each universe; each position is 1/K=5% NAV; fewer than 20 signals leaves unfilled weight in cash",
+    "rsi2": "Wilder RSI2 (alpha=1/2) <=10 and close>SMA200; daily signals; exit at close>SMA5 or completed age>=5; fills next tradable open",
+    "gap": "prior close top-N liquidity universe + prior close>SMA200; at next open require gap<=-2.5%; enter at that day close, exit at next session close; K=20; tradability defers exit",
+    "residual": "month-end top-N universe; trailing252 daily log return OLS with intercept vs KODEX200 (>=200 paired); score sum of prior126 daily residuals; positive score; top20; fill next open",
+    "costs": "0.015% commission each side; 0.20% sell tax; 0.05/0.10/0.25/0.50% tier slippage by lagged 60-session median traded value",
+    "benchmarks": "KODEX200 buy-hold; monthly EW of contemporaneous top-N liquidity universe, same execution costs"
+  },
+  "start": "2012-06-01",
+  "end": "2026-11-03",
+  "is_end": "2019-12-31",
+  "reused_oos_start": "2020-01-01",
+  "contamination": "same panel and market path previously examined; not untouched OOS"
+}

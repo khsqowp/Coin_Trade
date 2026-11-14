@@ -1,0 +1,67 @@
+{
+  "bot_name": "freqtrade-dryrun",
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "trading_mode": "futures",
+  "margin_mode": "isolated",
+  "max_open_trades": 3,
+  "stake_currency": "USDT",
+  "stake_amount": 100,
+  "tradable_balance_ratio": 0.99,
+  "timeframe": "5m",
+  "initial_state": "running",
+  "force_entry_enable": false,
+  "cancel_open_orders_on_exit": true,
+  "unfilledtimeout": {
+    "entry": 10,
+    "exit": 10,
+    "unit": "minutes"
+  },
+  "entry_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "exit_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "<REDACTED>",
+    "secret": "<REDACTED>",
+    "ccxt_config": {},
+    "pair_whitelist": [
+      "BTC/USDT:USDT",
+      "ETH/USDT:USDT",
+      "SOL/USDT:USDT",
+      "BNB/USDT:USDT"
+    ],
+    "pair_blacklist": []
+  },
+  "pairlists": [
+    {
+      "method": "StaticPairList"
+    }
+  ],
+  "telegram": {
+    "enabled": false,
+    "token": "<REDACTED>",
+    "chat_id": ""
+  },
+  "api_server": {
+    "enabled": true,
+    "listen_ip_address": "0.0.0.0",
+    "listen_port": 8080,
+    "verbosity": "error",
+    "enable_openapi": false,
+    "jwt_secret_key": "<REDACTED>",
+    "CORS_origins": [],
+    "username": "admin",
+    "password": "<REDACTED>"
+  },
+  "internals": {
+    "process_throttle_secs": 5
+  }
+}

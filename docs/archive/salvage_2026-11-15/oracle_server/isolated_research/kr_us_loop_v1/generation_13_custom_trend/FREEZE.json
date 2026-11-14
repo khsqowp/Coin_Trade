@@ -1,0 +1,32 @@
+{
+  "candidate_id": "GEN13-SPY-DMI14-CHOP14-HYSTERESIS-382-618-A1",
+  "status": "DATA_BLOCKED",
+  "frozen_at_local": "2026-11-06 Asia/Seoul",
+  "preregistration_path": "trading/docs/research/kr_us_loop_v1/generation_13_custom_trend/PREREG.md",
+  "preregistration_sha256": "79cdbd97902e1aeadbf7615fb2391c7b40cf84593050394758a2bdfb2d65b6f3",
+  "data_gate_reason": "No authoritative, provenance-documented NYSE Arca session calendar is present in the local research mirror; do not infer sessions from observed bars, weekdays, or price-file gaps.",
+  "data_gate_reference": "trading/docs/research/kr_us_loop_v1/generation_12_volatility/ADDENDUM_A2.md",
+  "market_values_read": false,
+  "signals_computed": false,
+  "performance_computed": false,
+  "market_input_hash": null,
+  "runner_sha256": "7a22d44037a0e97235a0050362205e6f4e959f7c6869424dc2debdcf0bc75a5c",
+  "test_sha256": "947b6aedfa6752103ab76cfb92844ce96988c419432c43c3dd44321990b7e0da",
+  "source_fingerprints": {
+    "trading/app/rs_map_off_fam_a.py": "efdf2e80b0cd32e4d63ebb17fc162d71cd9425e33dc0137728ab62e9e71da954",
+    "trading/docs/research/kr_us_loop_v1/generation_01/PREREG.md": "43f6747d59bc7e623ab82a06d9baaa369bcd72517a7d3ad1a5ab64bb8af98213",
+    "trading/docs/research/kr_us_loop_v1/generation_02/PREREG.md": "9f1fc16657cd1161b3eb41fdc672514c5b8bd4c092902fbb643f71fc4fcca04a",
+    "trading/docs/research/kr_us_loop_v1/generation_03/PREREG.md": "1ae3c7a74a3882b8a5cf0b1fbb9c7cc559e145e2416cb98c6b594188f5ef1d68",
+    "trading/docs/research/kr_us_loop_v1/generation_04/PREREG.md": "29da9a81922ceccb6c432bec87b1b6e932c60bd5b9d70db6dad1664f81cd25b7",
+    "trading/docs/research/kr_us_loop_v1/generation_11_trend/PREREG.md": "454704a4937d13f8a0f4bb82ec7a3d672a21ad88f781eab2739bb046bda7672f",
+    "trading/docs/research/kr_us_loop_v1/generation_12_volatility/PREREG.md": "cb31e994c862e3154336f738404855add57b18d2df65efb3b14f336f398e7296"
+  },
+  "execution_constraints": {
+    "attempt_budget": 1,
+    "parameter_variants": 0,
+    "root_go_required": true,
+    "remote_access": false,
+    "live_trading": false,
+    "git_commit_or_push": false
+  }
+}

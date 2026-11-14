@@ -1,0 +1,41 @@
+{
+  "run_id": "KR-V3-EXPLORATORY-20261108T072047Z",
+  "created_utc": "2026-11-08T07:20:47.461122+00:00",
+  "prereg_sha256": "889572bb770f81d9b821df8330738e7731cb9baf75734d4d110fc2ca4c319477",
+  "prereg_addendum_sha256": {
+    "A2.md": "d6aa88e04fdc4f33d673103bf4d0b73e6f32fcb24cbbc584056f0fab7fd8dff3",
+    "A3.md": "89285241c66e49c6986fe28b313c1e8074a5a7cbdc3f56f4f47cc157f30850b1",
+    "A4.md": "16052ff36eecbb3ecd437998353d3314c4a88d0374658e049070bab7feed17b2",
+    "A5.md": "03efae0b93ce820f302a418755009e2b82c3ef423a2e433eb3815abaec84e06e",
+    "A6.md": "ae903f54282dcd028ed548bb4d1e0be1f1f74505b6b07413240e514a2131374b",
+    "A7.md": "491bf2093ab55490ae7ae7ca2b9e13068533757a42720bb206b170fb8be41eea"
+  },
+  "a8_sha256": "0e59b53514dcab91789953b97a0da4c79eadbc000847e46f97cddefd303f4a22",
+  "a9_sha256": "99b9d0475848d61cfbe61750f3d367d523f1fbeaa379779c976253d6b830f8ac",
+  "a10_sha256": "bbea213e6d1d713b68cf1c8668dc563632eb58799ff0360a317a23ad521b24e1",
+  "fetch_log_sha256": "c713f103a801507393dad2f83ffe69760ea45e3d013dc1c5967189ba10181aab",
+  "universe_raw_sha256": "cb58796a785b6a3f2abdc1dd1a0deb5772dfc836fcf6506a1d0832aab0844c7b",
+  "code_sha256": {
+    "run_v3.py": "41d7f1901c434c886d400cc91da246d57b0b985aadfab5a99c50eb6eec0b5bf5",
+    "engine_v2copy.py": "185426a1b6ea3abde3501a906db6dca00aad46f19e41fafa9c149cf06f0139d8"
+  },
+  "input_aggregate_sha256": "8458fef56e4ec99b960a3194ebc6cf59ecea5f2a23ec633d64603474b3afbc79",
+  "kodex_sha256": "70f5c0f4681bd1548404ccb7cbc1ae6cfbdeb6d2a00ab886db7b2b41c06c106d",
+  "regime_sha256": "5c1b7262df33a38ba2d388897161fd1055bf18ca1e4584d38c271fae8649b82d",
+  "protocol": {
+    "universe": "eligible names ranked by close-t lagged 60-session median traded value; N=50/100/200; requires >=252 bars, traded t, >=55/60 sessions traded, median value>=KRW1bn",
+    "holdings": "fixed K=20 for each universe; each position is 1/K=5% NAV; fewer than 20 signals leaves unfilled weight in cash",
+    "rsi2": "Wilder RSI2 (alpha=1/2) <=10 and close>SMA200; daily signals; exit at close>SMA5 or completed age>=5; fills next tradable open",
+    "gap": "prior close top-N liquidity universe + prior close>SMA200; at next open require gap<=-2.5%; enter at that day close, exit at next session close; K=20; tradability defers exit",
+    "residual": "month-end top-N universe; trailing252 daily log return OLS with intercept vs KODEX200 (>=200 paired); score sum of prior126 daily residuals; positive score; top20; fill next open",
+    "costs": "0.015% commission each side; 0.20% sell tax; 0.05/0.10/0.25/0.50% tier slippage by lagged 60-session median traded value",
+    "benchmarks": "KODEX200 buy-hold; monthly EW of contemporaneous top-N liquidity universe, same execution costs",
+    "terminal_handling": "only fetch-log confirmed delisted IDs get last-close proxy and costs; unknown data tails stay stale marked, unresolved exposure/PnL separate"
+  },
+  "start": "2012-06-01",
+  "end": "2026-11-03",
+  "is_end": "2019-12-31",
+  "reused_oos_start": "2020-01-01",
+  "aligned_end_after_US_prereg_final": "2026-08-18",
+  "contamination": "same panel and market path previously examined; not untouched OOS"
+}

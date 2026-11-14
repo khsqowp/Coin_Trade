@@ -1,0 +1,5 @@
+attempt=3
+created_utc=2026-11-08T06:52:26.051474+00:00
+runner_sha256=93e088dc84758ef4ff1d251b6d40690788e18dc87b0890567a8d0b0e200df318
+TP_ROOT=/home/opc/trading/pipeline
+cache_alias=__main__.Panel -> usbt2.Panel

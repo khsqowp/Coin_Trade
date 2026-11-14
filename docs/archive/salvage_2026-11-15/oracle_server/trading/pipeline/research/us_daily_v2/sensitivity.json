@@ -1,0 +1,298 @@
+{
+ "mom12_1": {
+  "cost_5bp": {
+   "IS": 0.32,
+   "OOS": 0.596
+  },
+  "cost_20bp": {
+   "IS": 0.273,
+   "OOS": 0.548
+  },
+  "cost_40bp": {
+   "IS": 0.212,
+   "OOS": 0.484
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.331,
+    "mdd": 0.5598,
+    "total_return": 0.5971
+   },
+   "OOS": {
+    "sharpe_ex": 0.592,
+    "mdd": 0.354,
+    "total_return": 2.7761
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.292,
+    "mdd": 0.5797,
+    "total_return": 0.4718
+   },
+   "OOS": {
+    "sharpe_ex": 0.56,
+    "mdd": 0.3565,
+    "total_return": 2.5028
+   }
+  }
+ },
+ "mom12_1_mkt": {
+  "cost_5bp": {
+   "IS": 0.759,
+   "OOS": 0.256
+  },
+  "cost_20bp": {
+   "IS": 0.703,
+   "OOS": 0.195
+  },
+  "cost_40bp": {
+   "IS": 0.628,
+   "OOS": 0.114
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.665,
+    "mdd": 0.2351,
+    "total_return": 1.3167
+   },
+   "OOS": {
+    "sharpe_ex": 0.346,
+    "mdd": 0.354,
+    "total_return": 1.086
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.433,
+    "mdd": 0.2372,
+    "total_return": 0.7007
+   },
+   "OOS": {
+    "sharpe_ex": 0.478,
+    "mdd": 0.3248,
+    "total_return": 1.6521
+   }
+  }
+ },
+ "riskadj_mom": {
+  "cost_5bp": {
+   "IS": 0.353,
+   "OOS": 0.539
+  },
+  "cost_20bp": {
+   "IS": 0.3,
+   "OOS": 0.482
+  },
+  "cost_40bp": {
+   "IS": 0.23,
+   "OOS": 0.404
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.335,
+    "mdd": 0.5591,
+    "total_return": 0.5841
+   },
+   "OOS": {
+    "sharpe_ex": 0.552,
+    "mdd": 0.3585,
+    "total_return": 2.1521
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.363,
+    "mdd": 0.5853,
+    "total_return": 0.6704
+   },
+   "OOS": {
+    "sharpe_ex": 0.48,
+    "mdd": 0.3472,
+    "total_return": 1.7348
+   }
+  }
+ },
+ "high52w": {
+  "cost_5bp": {
+   "IS": 0.393,
+   "OOS": 0.453
+  },
+  "cost_20bp": {
+   "IS": 0.274,
+   "OOS": 0.297
+  },
+  "cost_40bp": {
+   "IS": 0.115,
+   "OOS": 0.089
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.412,
+    "mdd": 0.4686,
+    "total_return": 0.7041
+   },
+   "OOS": {
+    "sharpe_ex": 0.313,
+    "mdd": 0.3627,
+    "total_return": 0.8526
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.517,
+    "mdd": 0.4456,
+    "total_return": 0.9985
+   },
+   "OOS": {
+    "sharpe_ex": 0.278,
+    "mdd": 0.387,
+    "total_return": 0.7577
+   }
+  }
+ },
+ "low_vol": {
+  "cost_5bp": {
+   "IS": 0.708,
+   "OOS": 0.516
+  },
+  "cost_20bp": {
+   "IS": 0.688,
+   "OOS": 0.489
+  },
+  "cost_40bp": {
+   "IS": 0.662,
+   "OOS": 0.452
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.757,
+    "mdd": 0.3383,
+    "total_return": 1.537
+   },
+   "OOS": {
+    "sharpe_ex": 0.519,
+    "mdd": 0.3506,
+    "total_return": 1.4511
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.715,
+    "mdd": 0.3414,
+    "total_return": 1.4044
+   },
+   "OOS": {
+    "sharpe_ex": 0.512,
+    "mdd": 0.335,
+    "total_return": 1.4151
+   }
+  }
+ },
+ "st_reversal_w": {
+  "cost_5bp": {
+   "IS": 0.51,
+   "OOS": 0.545
+  },
+  "cost_20bp": {
+   "IS": 0.109,
+   "OOS": 0.04
+  },
+  "cost_40bp": {
+   "IS": -0.419,
+   "OOS": -0.624
+  },
+  "phase_wednesday": {
+   "IS": {
+    "sharpe_ex": 0.319,
+    "mdd": 0.6264,
+    "total_return": 0.6174
+   },
+   "OOS": {
+    "sharpe_ex": 0.411,
+    "mdd": 0.5283,
+    "total_return": 1.6229
+   }
+  }
+ },
+ "rsi2_pullback": {
+  "cost_5bp": {
+   "IS": 0.631,
+   "OOS": 0.33
+  },
+  "cost_20bp": {
+   "IS": -0.145,
+   "OOS": -0.545
+  },
+  "cost_40bp": {
+   "IS": -1.171,
+   "OOS": -1.699
+  }
+ },
+ "volume_drift": {
+  "cost_5bp": {
+   "IS": 0.35,
+   "OOS": 0.275
+  },
+  "cost_20bp": {
+   "IS": 0.237,
+   "OOS": 0.127
+  },
+  "cost_40bp": {
+   "IS": 0.086,
+   "OOS": -0.07
+  }
+ },
+ "trend_breadth": {
+  "cost_5bp": {
+   "IS": 0.506,
+   "OOS": 0.624
+  },
+  "cost_20bp": {
+   "IS": 0.466,
+   "OOS": 0.58
+  },
+  "cost_40bp": {
+   "IS": 0.414,
+   "OOS": 0.521
+  },
+  "phase_minus5": {
+   "IS": {
+    "sharpe_ex": 0.542,
+    "mdd": 0.4486,
+    "total_return": 1.0623
+   },
+   "OOS": {
+    "sharpe_ex": 0.524,
+    "mdd": 0.376,
+    "total_return": 1.6028
+   }
+  },
+  "phase_minus10": {
+   "IS": {
+    "sharpe_ex": 0.576,
+    "mdd": 0.375,
+    "total_return": 1.16
+   },
+   "OOS": {
+    "sharpe_ex": 0.526,
+    "mdd": 0.3874,
+    "total_return": 1.6192
+   }
+  }
+ },
+ "ew_univ": {
+  "cost_5bp": {
+   "IS": 0.516,
+   "OOS": 0.6
+  },
+  "cost_20bp": {
+   "IS": 0.51,
+   "OOS": 0.594
+  },
+  "cost_40bp": {
+   "IS": 0.504,
+   "OOS": 0.586
+  }
+ }
+}

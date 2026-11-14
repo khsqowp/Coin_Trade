@@ -1,0 +1,23 @@
+{
+ "source": "069500 KODEX 200 closes only (regime_scan.py: 20% zigzag + 12m +/-15% band test). Fixed BEFORE any strategy backtest. Pre-window windows used only by bt.py ext.",
+ "windows": [
+  {"label": "chop_IS_boxpi_2012_2016", "type": "chop", "start": "2012-06-01", "end": "2016-10-31", "why": "every 12m window from 2011-01 to 2016-05 stays inside +/-15% of its mean; no 20% swing between 2011-09 trough and the 2017 breakout"},
+  {"label": "bull_IS_2016_11_2018_01", "type": "bull", "start": "2016-11-01", "end": "2018-01-29", "why": "breakout to 2018-01-29 peak 28519 (~+37% from the Nov-2016 month-end level; JUDGMENT CALL: just under the 40% bull threshold, the only bull leg inside IS)"},
+  {"label": "bear_IS_2018_2019", "type": "bear", "start": "2018-01-30", "end": "2019-08-07", "why": "zigzag peak 2018-01-29 -> trough 2019-08-07, -23.1%"},
+  {"label": "bear_OOS_covid_2020", "type": "bear", "start": "2020-01-23", "end": "2020-03-19", "why": "zigzag peak 2020-01-22 -> trough 2020-03-19, -34.6%"},
+  {"label": "bull_OOS_2020_2021", "type": "bull", "start": "2020-03-20", "end": "2021-07-06", "why": "trough 2020-03-19 -> peak 2021-07-06, +125.5%"},
+  {"label": "bear_OOS_2021_2022", "type": "bear", "start": "2021-07-07", "end": "2022-09-30", "why": "peak 2021-07-06 -> trough 2022-09-30, -34.3%"},
+  {"label": "chop_OOS_2023_2024", "type": "chop", "start": "2023-01-02", "end": "2024-06-28", "why": "all 12m windows starting 2023-01..2024-06 inside +/-15% band (JUDGMENT CALL: overlaps the slow +47% zigzag leg 2022-09-30 -> 2024-07-11; labelled chop by the band rule, 2022-10..12 left unlabelled)"},
+  {"label": "bear_OOS_2024_2025", "type": "bear", "start": "2024-07-12", "end": "2025-04-09", "why": "peak 2024-07-11 -> trough 2025-04-09, -21.6%"},
+  {"label": "bull_OOS_2025_2026", "type": "bull", "start": "2025-04-10", "end": "2026-02-26", "why": "trough 2025-04-09 -> peak 2026-02-26, +212.6%"},
+  {"label": "bear_OOS_2026_03", "type": "bear", "start": "2026-02-27", "end": "2026-03-31", "why": "peak 2026-02-26 -> trough 2026-03-31, -20.6% in 33 days"},
+  {"label": "bull_OOS_2026_04_06", "type": "bull", "start": "2026-04-01", "end": "2026-06-22", "why": "trough 2026-03-31 -> peak 2026-06-22, +97.6% in 83 days"},
+  {"label": "bear_OOS_2026_07", "type": "bear", "start": "2026-06-23", "end": "2026-07-30", "why": "peak 2026-06-22 -> trough 2026-07-30, -40.8% in 38 days"},
+  {"label": "bear_OOS_2026_10_ongoing", "type": "bear", "start": "2026-09-24", "end": "2026-10-26", "why": "peak 2026-09-23 -> last extreme 2026-10-26, -24.0% (not yet a confirmed trough)"}
+ ],
+ "pre_window_ext": [
+  {"label": "bear_GFC_2007_2008", "start": "2007-10-12", "end": "2008-10-24"},
+  {"label": "bear_2011", "start": "2011-05-03", "end": "2011-09-26"}
+ ],
+ "data_note": "2026 is a verified extreme-volatility regime (KOSPI +17.91% on 2026-07-31, record; 069500 +24.2% that day; 40 days with |ret|>5% in 2026 vs 0-3 in normal years). Verified against news reports (newsis, SBS Biz 2026-07-31) and Samsung close 262,500 matching KIS data."
+}

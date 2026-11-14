@@ -1,0 +1,10 @@
+{
+  "candidate_id": "A-US-TFF-Emini-LeveragedFunds-Z156-SPY-20261107",
+  "frozen_at": "2026-11-07T03:56:50Z",
+  "prereg_path": "PREREG.md",
+  "prereg_sha256": "515e709454c355a34be37266742553c84b1f695b0b13201999610ec60afc3c40",
+  "status": "PREREG_FROZEN_DATA_GATES_PENDING",
+  "macro_data_download_started": false,
+  "market_price_values_opened": false,
+  "performance_run_authorized": false
+}

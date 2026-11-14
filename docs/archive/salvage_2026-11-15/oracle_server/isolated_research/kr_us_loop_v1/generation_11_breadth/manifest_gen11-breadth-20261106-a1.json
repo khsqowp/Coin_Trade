@@ -1,0 +1,8 @@
+{
+  "created_utc": "2026-11-06T13:13:12.018290+00:00",
+  "error": "XLB: date index differs from frozen common SPY/sector calendar",
+  "error_type": "ValueError",
+  "failed_utc": "2026-11-06T13:13:12.687450+00:00",
+  "run_id": "gen11-breadth-20261106-a1",
+  "status": "FAILED"
+}

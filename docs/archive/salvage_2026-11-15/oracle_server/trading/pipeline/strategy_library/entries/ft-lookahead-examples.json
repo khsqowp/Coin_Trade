@@ -1,0 +1,35 @@
+{
+ "id": "ft-lookahead-examples",
+ "name": "Look-ahead pitfalls catalogued by Freqtrade (what to avoid)",
+ "family": "methodology",
+ "one_line": "Freqtrade's own examples of look-ahead: full-sample min/max normalisation, future-looking indicators.",
+ "source": {
+  "repo": "freqtrade/freqtrade-strategies",
+  "url": "https://github.com/freqtrade/freqtrade-strategies",
+  "commit": "f3340ce11f5bdf62f598522e64d1f5638eaa13f5",
+  "license": "GPL-3.0 (repo LICENSE). Only ideas are summarised here; no code copied.",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "user_data/strategies/lookahead_bias/readme.md"
+  ]
+ },
+ "markets": [
+  "all"
+ ],
+ "timeframe": "any",
+ "direction": "n/a",
+ "status_in_source": "documented bias examples",
+ "idea": "The folder holds strategies that deliberately contain look-ahead; the readme gives the solutions, e.g. normalize() with .min()/.max() over the full dataframe uses future data.",
+ "rules": [],
+ "parameters": {},
+ "rationale": "Recognise bias patterns before they reach the backtest.",
+ "evidence": "Qualitative (readme).",
+ "limitations": [
+  "do not import or run these strategies"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "guidance",
+  "notes": "Use rolling/expanding windows only; any whole-series statistic is look-ahead."
+ },
+ "schema_version": 1
+}

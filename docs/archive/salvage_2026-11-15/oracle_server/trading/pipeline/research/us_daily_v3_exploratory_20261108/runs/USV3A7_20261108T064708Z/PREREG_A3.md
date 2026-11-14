@@ -1,0 +1,13 @@
+# Addendum A3: common end date and executable allocation semantics
+Registered 2026-11-08 KST before any v3 performance metric is calculated. A3 supersedes conflicting end-date, stale-membership, and weight-allocation wording in PREREG.md/A2.
+
+## Primary evaluation boundary
+The final historical S&P 500 membership snapshot is 2026-08-18. Primary US evaluation ends 2026-08-18; there is no carry-forward membership after that date. IS remains 2012-06-01..2019-12-31 and reused-data OOS becomes 2020-01-01..2026-08-18. For cross-market tables, KR and US must be cut to the same 2026-08-18 end date. KR results through 2026-11-03 may appear only in a separately labeled supplementary table. Results reuse previously inspected strategies and market paths and are not independent or untouched-OOS evidence.
+
+## Fixed allocation semantics
+K=20 is the maximum simultaneous holdings across every Top-N liquidity universe (N=50/100/200). Each holding has fixed 5% of NAV at entry/rebalance; unused slots remain cash with zero return. A signal pool under 20 names is not scaled up to full investment. Gap positions enter at the signal-day close after observing the open gap and exit the next close; each event contributes a fixed 5% slot. Residual momentum selects at most 20 eligible positive-residual names, each at 5%, and rebalances monthly next open. RSI2 selects at most 20 names, each at 5%, with next-open fills. Cost is charged only on actual traded notional, 10bp/side base and 5/20/40bp sensitivities.
+
+## Liquidity/data and output scope
+Liquidity rank is computed through the preceding close for gap entries and through decision close for other strategies using cached split-adjusted raw close × raw volume, after 60-session rolling median, 55/60 valid observations, >=252 valid history, current PIT membership, and USD 5m median-dollar-volume floor. This is a liquidity proxy, not market capitalization. Split spot checks support product consistency only in six observations; raw basis remains conditional. Primary sample excludes dates after the last PIT snapshot. Entry/fills require positive, internally consistent OHLC and positive volume. Extreme adjusted returns are retained and flagged; no clipping. Report PIT candidate counts separately from prices loaded, exact date coverage, turnover, fees, exposure, available names, IS/OOS/full and descriptive regimes, and per-side cost sensitivity. Do not promote a strategy from this run.
+
+Frozen implementation: us_v3.py. It is syntax-checked and statically checked against these rules; no strategy metrics have been run. Final pre-calculation hashes are in INPUT_HASHES_PRECALC_A3.txt.

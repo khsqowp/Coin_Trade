@@ -1,0 +1,65 @@
+{
+  "run_id": "agent_crosscheck_20261105T140804Z",
+  "generated_utc": "2026-11-05",
+  "coin_trade_commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "agent_runner_sha256": "8a928cd5b47b93b4e36840d85b1173b1847ba3e64c8f2730751071ff9510203b",
+  "execution": "Independent runner executed in tp-watch; results copied from /home/opc/trading/pipeline/runs into this directory. Container lacks git; commit was verified on Oracle host.",
+  "evaluation_period": [
+    "2022-01-03",
+    "2026-10-30"
+  ],
+  "us_universe_label": "Oracle available US equity universe",
+  "us_universe": {
+    "included": 653,
+    "excluded": 84,
+    "parquets": 737,
+    "eligibility": "vendor.instrumentType EQUITY; at least 200 valid close/adjclose bars before 2022-01-03; valid data through 2026-10-30",
+    "comparison_to_agent1": {
+      "included": 653,
+      "ours_only": [],
+      "agent1_only": []
+    }
+  },
+  "us_adjustment": "Yahoo adjclose/raw close factor applied to OHLC; close uses adjclose.",
+  "us_fill": "Coin_Trade rs_us_engine semantics: close(t) signal fills close(t+1); per-side fees 0.36% KIS and 0.08% CHEAP; US S1 uses 0/7/14 phase average daily return.",
+  "kr_scope": "10 selected KRX equities + KODEX 200 benchmark; not full KRX. Yahoo Finance chart v8 adjusted data.",
+  "kr_inputs": {
+    "005930.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "000660.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "005380.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "373220.KS": "2022-01-27..2026-10-30 (1159 rows)",
+    "035420.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "105560.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "000270.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "068270.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "051910.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "207940.KS": "2021-01-04..2026-10-30 (1424 rows)",
+    "069500.KS benchmark": "2021-01-04..2026-10-30 (1404 rows)"
+  },
+  "kr_fill": "Coin_Trade semantics close signal to next tradable open; commission 0.015%/side, small/large slippage 0.10%/0.05%, sell tax 0.18%; S1 source-native single phase.",
+  "strategy_configs": [
+    "S3 EMA9/21, SL12%, slots20",
+    "S4 EMA9/21 + SMA200, slots6, TP8%, SL4%",
+    "S5 Mach7 EMA10/50/200 defaults, top5, SL8%",
+    "S5 squeeze, top5",
+    "S5 pullback SMA10 + turnover-volume filter, top5, SL3%, TP6%",
+    "S1 momentum L60/K5/rebalance21/SMA200 gate/long-only"
+  ],
+  "outputs": [
+    "strategy_summary.csv",
+    "us_strategy_summary.csv",
+    "us_trade_ledger.csv",
+    "kr_trade_ledger.csv",
+    "included_us_tickers.csv",
+    "excluded_us_tickers.csv",
+    "inputs_kr/*.csv",
+    "runner.py"
+  ],
+  "limitations": [
+    "Universe is bounded to cached Oracle equities; US listing coverage is incomplete and survivorship-biased.",
+    "KR coverage is selected 10 ticker sample, not full KRX.",
+    "Yahoo chart source is unofficial.",
+    "US next-close and KR next-open fills differ.",
+    "Historical results are research only and not live execution proof."
+  ]
+}

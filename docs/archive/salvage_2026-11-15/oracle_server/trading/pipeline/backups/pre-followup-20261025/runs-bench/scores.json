@@ -1,0 +1,374 @@
+[
+ {
+  "model": "claude-haiku-5-5",
+  "data_accuracy": 0.8,
+  "mismatch_rate": 0.19999999999999996,
+  "code_test_pass": 1.0,
+  "code_lookahead_free": 1.0,
+  "tpr": 1.0,
+  "fpr": 0.0,
+  "validation": 1.0,
+  "repro": 0.9777777777777777,
+  "repro_parts": {
+   "audit": 1.0,
+   "dataqa": 0.9333333333333333,
+   "codegen": 1.0
+  },
+  "cost_usd": 0.0195468,
+  "median_latency_s": 3.58,
+  "calls": 48,
+  "failed_calls": 0,
+  "schema_failures": 0,
+  "tool_failure_rate": 0.0,
+  "per_fixture": {
+   "B1_shift_neg": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B2_centered_ma": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B3_fullsample_zscore": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B4_fullsample_param_fit": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B5_weekly_bfill": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B6_fullsample_quantile": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B7_anchor_last_close": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "C1_sma_cross": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C2_rsi_meanrev": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C3_donchian": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C4_vol_filtered_trend": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C5_expanding_zscore": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C6_weekly_lagged": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  "efficiency": 0.8399656209712076,
+  "scores": {
+   "data": 0.8,
+   "code": 1.0,
+   "validation": 1.0,
+   "repro": 0.9777777777777777,
+   "efficiency": 0.8399656209712076
+  },
+  "total": 93.1
+ },
+ {
+  "model": "deepseek-flash",
+  "data_accuracy": 0.8,
+  "mismatch_rate": 0.19999999999999996,
+  "code_test_pass": 1.0,
+  "code_lookahead_free": 1.0,
+  "tpr": 1.0,
+  "fpr": 0.0,
+  "validation": 1.0,
+  "repro": 0.9777777777777777,
+  "repro_parts": {
+   "audit": 1.0,
+   "dataqa": 0.9333333333333333,
+   "codegen": 1.0
+  },
+  "cost_usd": 0.0164766,
+  "median_latency_s": 2.69,
+  "calls": 48,
+  "failed_calls": 0,
+  "schema_failures": 0,
+  "tool_failure_rate": 0.0,
+  "per_fixture": {
+   "B1_shift_neg": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B2_centered_ma": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B3_fullsample_zscore": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B4_fullsample_param_fit": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B5_weekly_bfill": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B6_fullsample_quantile": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B7_anchor_last_close": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "C1_sma_cross": {
+    "verdicts": [
+     "INCONCLUSIVE",
+     "INCONCLUSIVE",
+     "INCONCLUSIVE"
+    ]
+   },
+   "C2_rsi_meanrev": {
+    "verdicts": [
+     "INCONCLUSIVE",
+     "INCONCLUSIVE",
+     "INCONCLUSIVE"
+    ]
+   },
+   "C3_donchian": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C4_vol_filtered_trend": {
+    "verdicts": [
+     "INCONCLUSIVE",
+     "INCONCLUSIVE",
+     "INCONCLUSIVE"
+    ]
+   },
+   "C5_expanding_zscore": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C6_weekly_lagged": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  "efficiency": 0.9698884758364312,
+  "scores": {
+   "data": 0.8,
+   "code": 1.0,
+   "validation": 1.0,
+   "repro": 0.9777777777777777,
+   "efficiency": 0.9698884758364312
+  },
+  "total": 94.4
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "data_accuracy": 0.8,
+  "mismatch_rate": 0.19999999999999996,
+  "code_test_pass": 1.0,
+  "code_lookahead_free": 1.0,
+  "tpr": 0.8571428571428571,
+  "fpr": 0.0,
+  "validation": 0.9285714285714286,
+  "repro": 0.9555555555555556,
+  "repro_parts": {
+   "audit": 1.0,
+   "dataqa": 0.8666666666666667,
+   "codegen": 1.0
+  },
+  "cost_usd": 0.078561,
+  "median_latency_s": 2.42,
+  "calls": 48,
+  "failed_calls": 0,
+  "schema_failures": 0,
+  "tool_failure_rate": 0.0,
+  "per_fixture": {
+   "B1_shift_neg": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B2_centered_ma": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B3_fullsample_zscore": {
+    "verdicts": [
+     "INCONCLUSIVE",
+     "INCONCLUSIVE",
+     "PASS"
+    ]
+   },
+   "B4_fullsample_param_fit": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B5_weekly_bfill": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B6_fullsample_quantile": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "B7_anchor_last_close": {
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   },
+   "C1_sma_cross": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C2_rsi_meanrev": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C3_donchian": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C4_vol_filtered_trend": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C5_expanding_zscore": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   },
+   "C6_weekly_lagged": {
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  "efficiency": 0.6838920074846297,
+  "scores": {
+   "data": 0.8,
+   "code": 1.0,
+   "validation": 0.9285714285714286,
+   "repro": 0.9555555555555556,
+   "efficiency": 0.6838920074846297
+  },
+  "total": 89.4
+ }
+]

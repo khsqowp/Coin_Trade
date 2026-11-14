@@ -1,0 +1,67 @@
+{
+ "id": "ct-mach7-pullback",
+ "name": "Mach7 trend pullback (EMA alignment + pullback + rebound trigger)",
+ "family": "pullback in trend",
+ "one_line": "EMA fast>mid>slow trend; pulled back to fast EMA; enter on rebound bar above prior high; exit below EMA50.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "docs/mach7-ma-pullback-backtest.md",
+   "app/mach7_indicators.py"
+  ]
+ },
+ "markets": [
+  "crypto, KR, US (individual symbols, owner-provided idea)"
+ ],
+ "timeframe": "1d",
+ "direction": "long_only",
+ "status_in_source": "rejected / hold",
+ "idea": "Trend = EMA_fast > EMA_mid > EMA_slow. Pullback = low touched EMA_fast within last N bars. Trigger = close > EMA_fast and close > previous high. Stop = swing low of last N bars (only trade if below entry). Exit = close < EMA_exit. 3-bar cooldown.",
+ "rules": [
+  {
+   "name": "ema_alignment_filter",
+   "kind": "filter",
+   "description": "EMA_fast > EMA_mid > EMA_slow"
+  },
+  {
+   "name": "pullback_condition",
+   "kind": "entry",
+   "description": "low <= EMA_fast within last pullback_window bars"
+  },
+  {
+   "name": "rebound_trigger",
+   "kind": "entry",
+   "description": "close > EMA_fast and close > previous high"
+  },
+  {
+   "name": "ema_exit",
+   "kind": "exit",
+   "description": "close < EMA_exit"
+  }
+ ],
+ "parameters": {
+  "ema_fast": 10,
+  "ema_mid": 20,
+  "ema_slow": 50,
+  "pullback_window": 10,
+  "exit_ema": 50,
+  "cooldown_bars": 3
+ },
+ "rationale": "Buy dips inside confirmed trends; stop at structural low.",
+ "evidence": "After bug fixes: coin average annualised -15.6% vs buy&hold -16.3% (alpha +0.7%); RSI-pullback variant -3.9% (alpha +12.4%); Bollinger variant -22.5%. Portfolio of 3 symbols 2018+: +62%/MDD 72%. Sweep: exit_ema=50 best, pullback_window=10 best.",
+ "limitations": [
+  "MDD 67-72%",
+  "per-symbol average negative",
+  "rebuilt after two look-ahead bugs (see lessons entry)",
+  "sweep results are in-sample"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "direct",
+  "notes": "Several independent rules -> good ablation test case; EMA_alignment_filter may be redundant with the exit EMA."
+ },
+ "schema_version": 1
+}

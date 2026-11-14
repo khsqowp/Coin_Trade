@@ -1,0 +1,11 @@
+{
+ "dry_run": true,
+ "timeframe": "1d",
+ "bot_name": "freqtrade-dryrun-BTCUSDT_H1_332a1992",
+ "max_open_trades": 1,
+ "exchange": {
+  "pair_whitelist": [
+   "BTC/USDT"
+  ]
+ }
+}

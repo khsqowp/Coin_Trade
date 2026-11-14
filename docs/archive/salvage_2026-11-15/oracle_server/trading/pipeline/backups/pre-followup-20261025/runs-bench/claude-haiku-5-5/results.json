@@ -1,0 +1,1161 @@
+{
+ "model": "claude-haiku-5-5",
+ "dataqa": [
+  {
+   "rep": 0,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.8,
+    "up_days": 13,
+    "avg_volume": 14204.34,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1250,
+    "out_tok": 126,
+    "cost": 0.000188,
+    "latency": 1.2048072814941406,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 1,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.8,
+    "up_days": 13,
+    "avg_volume": 14201.07,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1250,
+    "out_tok": 126,
+    "cost": 0.000188,
+    "latency": 0.975567102432251,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 2,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.8,
+    "up_days": 13,
+    "avg_volume": 14158.07,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1250,
+    "out_tok": 126,
+    "cost": 0.000188,
+    "latency": 1.000511884689331,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ],
+ "codegen": [
+  {
+   "spec": "sma",
+   "rep": 0,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/sma_r0/strategy.py",
+   "meta": {
+    "in_tok": 258,
+    "out_tok": 361,
+    "cost": 0.0002063,
+    "latency": 1.856130599975586
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 1,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/sma_r1/strategy.py",
+   "meta": {
+    "in_tok": 258,
+    "out_tok": 303,
+    "cost": 0.0001773,
+    "latency": 1.698317527770996
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 2,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/sma_r2/strategy.py",
+   "meta": {
+    "in_tok": 258,
+    "out_tok": 224,
+    "cost": 0.00013780000000000002,
+    "latency": 1.2726030349731445
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 0,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/rsi_r0/strategy.py",
+   "meta": {
+    "in_tok": 323,
+    "out_tok": 531,
+    "cost": 0.00029780000000000003,
+    "latency": 2.8036153316497803
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 1,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/rsi_r1/strategy.py",
+   "meta": {
+    "in_tok": 323,
+    "out_tok": 543,
+    "cost": 0.0003038,
+    "latency": 2.359513521194458
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 2,
+   "file": "/app/runs/bench/claude-haiku-5-5/codegen/rsi_r2/strategy.py",
+   "meta": {
+    "in_tok": 323,
+    "out_tok": 531,
+    "cost": 0.00029780000000000003,
+    "latency": 2.337625503540039
+   }
+  }
+ ],
+ "audit": [
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "not_assessable",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1125,
+    "out_tok": 459,
+    "cost": 0.000342,
+    "latency": 2.576355218887329,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1125,
+    "out_tok": 688,
+    "cost": 0.0004565,
+    "latency": 3.739358425140381,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1125,
+    "out_tok": 643,
+    "cost": 0.000434,
+    "latency": 3.4104974269866943,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1122,
+    "out_tok": 722,
+    "cost": 0.0004732,
+    "latency": 3.9035089015960693,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1122,
+    "out_tok": 625,
+    "cost": 0.00042469999999999997,
+    "latency": 3.6525228023529053,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias",
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1122,
+    "out_tok": 746,
+    "cost": 0.0004852,
+    "latency": 3.9303953647613525,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1137,
+    "out_tok": 804,
+    "cost": 0.0005157,
+    "latency": 4.324702978134155,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1137,
+    "out_tok": 800,
+    "cost": 0.0005137000000000001,
+    "latency": 4.355423212051392,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1137,
+    "out_tok": 771,
+    "cost": 0.0004992,
+    "latency": 3.8481855392456055,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1222,
+    "out_tok": 854,
+    "cost": 0.0005492,
+    "latency": 4.595983505249023,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "other",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "found",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1222,
+    "out_tok": 940,
+    "cost": 0.0005922000000000001,
+    "latency": 4.587044954299927,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "overfitting"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "found",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1222,
+    "out_tok": 816,
+    "cost": 0.0005302000000000001,
+    "latency": 4.227091550827026,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 848,
+    "cost": 0.0005409,
+    "latency": 4.518734455108643,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 827,
+    "cost": 0.0005304,
+    "latency": 4.39798641204834,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 878,
+    "cost": 0.0005559,
+    "latency": 4.5882978439331055,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1141,
+    "out_tok": 425,
+    "cost": 0.0003266,
+    "latency": 2.575650215148926,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1141,
+    "out_tok": 404,
+    "cost": 0.00031610000000000004,
+    "latency": 2.407177686691284,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1141,
+    "out_tok": 450,
+    "cost": 0.0003391,
+    "latency": 2.5288619995117188,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1280,
+    "out_tok": 594,
+    "cost": 0.000425,
+    "latency": 3.6873490810394287,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1280,
+    "out_tok": 563,
+    "cost": 0.0004095,
+    "latency": 3.255995273590088,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1280,
+    "out_tok": 530,
+    "cost": 0.000393,
+    "latency": 3.923084259033203,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1252,
+    "out_tok": 544,
+    "cost": 0.0003972,
+    "latency": 3.228564739227295,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1252,
+    "out_tok": 494,
+    "cost": 0.0003722,
+    "latency": 2.835602283477783,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1252,
+    "out_tok": 418,
+    "cost": 0.0003342,
+    "latency": 2.282907724380493,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1154,
+    "out_tok": 448,
+    "cost": 0.00033939999999999996,
+    "latency": 2.604917287826538,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1154,
+    "out_tok": 437,
+    "cost": 0.0003339,
+    "latency": 2.422011375427246,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1154,
+    "out_tok": 468,
+    "cost": 0.0003494,
+    "latency": 2.813119649887085,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1177,
+    "out_tok": 843,
+    "cost": 0.0005392000000000001,
+    "latency": 4.925918817520142,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1177,
+    "out_tok": 812,
+    "cost": 0.0005237000000000001,
+    "latency": 3.9969851970672607,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1177,
+    "out_tok": 918,
+    "cost": 0.0005767000000000001,
+    "latency": 5.696608066558838,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1151,
+    "out_tok": 721,
+    "cost": 0.0004756,
+    "latency": 3.736666440963745,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1151,
+    "out_tok": 723,
+    "cost": 0.00047660000000000004,
+    "latency": 3.603605031967163,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1151,
+    "out_tok": 732,
+    "cost": 0.00048110000000000004,
+    "latency": 3.948765516281128,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1166,
+    "out_tok": 464,
+    "cost": 0.0003486,
+    "latency": 2.6500227451324463,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1166,
+    "out_tok": 521,
+    "cost": 0.0003771,
+    "latency": 3.0962564945220947,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1166,
+    "out_tok": 815,
+    "cost": 0.0005241,
+    "latency": 3.8562376499176025,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 616,
+    "cost": 0.0004249,
+    "latency": 3.5575106143951416,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 842,
+    "cost": 0.0005379,
+    "latency": 5.055742979049683,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [
+    "other"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "claude-haiku-5-5",
+    "in_tok": 1169,
+    "out_tok": 762,
+    "cost": 0.0004979,
+    "latency": 3.915027618408203,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ]
+}

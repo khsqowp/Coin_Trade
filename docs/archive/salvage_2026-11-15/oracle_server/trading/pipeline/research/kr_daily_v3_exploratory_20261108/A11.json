@@ -1,0 +1,16 @@
+{
+  "addendum": "A11",
+  "scope": "Use only positive-volume bars for indicator marks, simulator marks, price-based RSI exits, last-trade status, and jump QC; age exits keep their fixed maximum-holding rule. Recalculate all metrics because no-volume rows previously affected marks and RSI exit signals.",
+  "prior_a10_sha256": "bbea213e6d1d713b68cf1c8668dc563632eb58799ff0360a317a23ad521b24e1",
+  "prior_runner_sha256": "41d7f1901c434c886d400cc91da246d57b0b985aadfab5a99c50eb6eec0b5bf5",
+  "runner_sha256": "2e8cd2f7f7bb77cacca2d77e3f6f42564184c359d8d447f62116e6095f5cfc76",
+  "prior_engine_sha256": "185426a1b6ea3abde3501a906db6dca00aad46f19e41fafa9c149cf06f0139d8",
+  "engine_sha256": "0ba6201ae243ca94ff032cd06b6ca8a42e8fb66b7ccc4d67339c8fcb434ad38c",
+  "notes_sha256": "aa430717bebcd129330b4c466fcdaa78dd7a48c0215a13b034facbe644dc0c41",
+  "data_hashes_unchanged": {
+    "input_aggregate_sha256": "8458fef56e4ec99b960a3194ebc6cf59ecea5f2a23ec633d64603474b3afbc79",
+    "universe_raw.csv": "cb58796a785b6a3f2abdc1dd1a0deb5772dfc836fcf6506a1d0832aab0844c7b",
+    "fetch_log.jsonl": "c713f103a801507393dad2f83ffe69760ea45e3d013dc1c5967189ba10181aab"
+  },
+  "created_utc": "2026-11-08T07:53:05Z"
+}

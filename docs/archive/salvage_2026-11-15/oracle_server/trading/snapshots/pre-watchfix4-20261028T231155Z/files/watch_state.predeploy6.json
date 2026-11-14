@@ -1,0 +1,21 @@
+{
+ "open": {
+  "gdelt_degraded": 1793210231.4226844
+ },
+ "heartbeat": "2026-10-28T23:51:40.286669+00:00",
+ "export_ts": 1793231200.2723348,
+ "export_withheld": {},
+ "summary_day": "2026-10-28",
+ "last_error": null,
+ "kis_rl": {
+  "hold": false
+ },
+ "fwd_err_first": {},
+ "fail_streak": 0,
+ "last_error_last": {
+  "msg": "operands could not be broadcast together with shapes (17536,) (17583,) "
+ },
+ "last_error_resolved_at": "2026-10-28T15:16:08Z",
+ "export_fail_n": 0,
+ "export_error": null
+}

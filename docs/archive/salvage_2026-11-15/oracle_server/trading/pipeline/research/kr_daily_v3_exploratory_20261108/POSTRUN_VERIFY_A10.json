@@ -1,0 +1,39 @@
+{
+  "run_id": "KR-V3-EXPLORATORY-20261108T072047Z",
+  "verified_utc": "2026-11-08T07:32:23+00:00",
+  "status": "PASS_EXPLORATORY_ONLY",
+  "checks": {
+    "run_exit_zero": true,
+    "exact_13_result_keys": true,
+    "aligned_13_records": true,
+    "a10_hash_matches_manifest": true,
+    "runner_hash_matches_manifest": true,
+    "aligned_cutoff_2026_08_18": true,
+    "aligned_us_review_marker": true,
+    "all_numeric_values_finite": true,
+    "nav_has_all_result_series": true,
+    "summary_rows_present": true
+  },
+  "result_key_count": 13,
+  "aligned_key_count": 13,
+  "numeric_leaf_count": 2906,
+  "nav_rows_excluding_header": 3541,
+  "nav_series_count": 13,
+  "summary_rows_excluding_header": 65,
+  "exit_status": "0 2026-11-08T07:28:10.173168893Z",
+  "file_sha256": {
+    "A10.json": "bbea213e6d1d713b68cf1c8668dc563632eb58799ff0360a317a23ad521b24e1",
+    "run_v3.py": "41d7f1901c434c886d400cc91da246d57b0b985aadfab5a99c50eb6eec0b5bf5",
+    "engine_v2copy.py": "185426a1b6ea3abde3501a906db6dca00aad46f19e41fafa9c149cf06f0139d8",
+    "run_manifest.json": "404d5f1340622910fdcf97d5efd24fd5371887a4e6a6ead9a72d196106158574",
+    "run_A10_full_20261108.log": "9808597255be83b5f18453eae57e2f5ca5623a04c08bf3fa1ceff1069e5ad8ba",
+    "run_A10_exit_status.txt": "4bb585646946515f461bbbf43501da34ea6e45a8dfcf1cb7734726f6997c7e9d",
+    "results.json": "b22dce4c80c0fa41a28eed33067b7b95ce31ce4f178e88f58e48ddc947a0c483",
+    "nav.csv": "07cbcf9cb4010ce96bbca7f5accbcff8c655a95b1c157d5b39f38398d0846aff",
+    "summary.csv": "9f027ee2fdc2cb60d749b5e168966cedd436276f7be6e3c031c4330c6a93f553",
+    "REPORT.md": "8b630df4961405de573a39b21eaf80a28713019b7587f5df538b71dfa64fecff",
+    "aligned_results.json": "d4b36cee1ab792d49ee5cf3de7b11af0c3832c7bc84a14ebc17d1fe0003208ec",
+    "aligned_summary.csv": "d112b1d97f8330b27d65d84c7b6a751963b52cacf0a5dddd1ee3e291ba769754",
+    "ALIGNED_REPORT.md": "90b500f321f97a05e7dc127383f08e2acf13fd0187ddacdd5e4356642bc6a896"
+  }
+}

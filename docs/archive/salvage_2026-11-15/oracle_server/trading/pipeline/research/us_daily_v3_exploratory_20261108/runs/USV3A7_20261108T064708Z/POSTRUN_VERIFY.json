@@ -1,0 +1,98 @@
+{
+  "run_id": "USV3A7_20261108T064708Z",
+  "validation_scope": "postrun artifact validation only; no strategy code or market metrics rerun",
+  "validator_exit_code": 0,
+  "validator_stdout": "Expected matrix keys: 40; actual: 40; exact key set: True\nStrategy cells: 36; benchmark cells: 4\nFinite/expected metrics: True; invalid fields: []\nManifest output/report/log hashes: True; hash errors: []\nAttempt 3 log traceback-free: True\nCSV checks: {\"daily_exposure.csv\": {\"columns\": 40, \"expected_columns\": 40, \"nonfinite_or_invalid_cells\": 0, \"pass\": true, \"rows\": 3573}, \"daily_returns.csv\": {\"columns\": 40, \"expected_columns\": 40, \"nonfinite_or_invalid_cells\": 0, \"pass\": true, \"rows\": 3573}}",
+  "checks": {
+    "expected_key_set_exact": true,
+    "expected_key_count_40": true,
+    "coverage_matches_study_end": true,
+    "finite_expected_metrics_all_cells": true,
+    "no_invalid_metric_fields": true,
+    "run_manifest_output_hashes_match": true,
+    "successful_log_has_no_traceback": true,
+    "manifest_cell_count_matches": true,
+    "daily_csv_shape_and_finite": true
+  },
+  "invalid_metric_fields": [],
+  "hash_errors": [],
+  "files": {
+    "results.json": {
+      "exists": true,
+      "sha256_expected": "66983016a9c27e9489597100609a6b3f051522a0019f67624e47ff83636ac564",
+      "sha256_actual": "66983016a9c27e9489597100609a6b3f051522a0019f67624e47ff83636ac564",
+      "bytes_expected": 129146,
+      "bytes_actual": 129146,
+      "pass": true
+    },
+    "coverage.json": {
+      "exists": true,
+      "sha256_expected": "1d99898aed0b54f49f60549ad7a9b3f89f256a010a0462f9d4a1a816ebcffff6",
+      "sha256_actual": "1d99898aed0b54f49f60549ad7a9b3f89f256a010a0462f9d4a1a816ebcffff6",
+      "bytes_expected": 644,
+      "bytes_actual": 644,
+      "pass": true
+    },
+    "daily_returns.csv": {
+      "exists": true,
+      "sha256_expected": "db586eab28074d1757a8f4e399ba0600c36544e6cfcd6845bd3c13c838a0ee7c",
+      "sha256_actual": "db586eab28074d1757a8f4e399ba0600c36544e6cfcd6845bd3c13c838a0ee7c",
+      "bytes_expected": 2804338,
+      "bytes_actual": 2804338,
+      "pass": true
+    },
+    "daily_exposure.csv": {
+      "exists": true,
+      "sha256_expected": "6ed0d67d2d2a3fd87fe32d08df2fa2790c0f7827e0ae9a1bbf5dc8b185571094",
+      "sha256_actual": "6ed0d67d2d2a3fd87fe32d08df2fa2790c0f7827e0ae9a1bbf5dc8b185571094",
+      "bytes_expected": 2245954,
+      "bytes_actual": 2245954,
+      "pass": true
+    },
+    "US_REPORT.md": {
+      "sha256_expected": "cc602056b70335a2aaa5469ed2115ec5b69cc7c319af380e246aa24f28d4e68e",
+      "sha256_actual": "cc602056b70335a2aaa5469ed2115ec5b69cc7c319af380e246aa24f28d4e68e",
+      "pass": true
+    },
+    "stdout.log": {
+      "exists": true,
+      "sha256_expected": "74040755abfba399cbae9782f78493bfe0f77a551fbe41a4a6dd3ba56d812917",
+      "sha256_actual": "74040755abfba399cbae9782f78493bfe0f77a551fbe41a4a6dd3ba56d812917",
+      "bytes_expected": 1425,
+      "bytes_actual": 1425,
+      "pass": true
+    },
+    "stdout_attempt2.log": {
+      "exists": true,
+      "sha256_expected": "02743e90818c83d64dbefec1f5e02410468b34aa7e3f61ddc8e86e0113fb67ea",
+      "sha256_actual": "02743e90818c83d64dbefec1f5e02410468b34aa7e3f61ddc8e86e0113fb67ea",
+      "bytes_expected": 1538,
+      "bytes_actual": 1538,
+      "pass": true
+    },
+    "stdout_attempt3.log": {
+      "exists": true,
+      "sha256_expected": "141e32ecb9e54ffbe90e74138823fc88cc9fa2d5e94cc8735d86766e6f13c491",
+      "sha256_actual": "141e32ecb9e54ffbe90e74138823fc88cc9fa2d5e94cc8735d86766e6f13c491",
+      "bytes_expected": 130437,
+      "bytes_actual": 130437,
+      "pass": true
+    }
+  },
+  "csv_checks": {
+    "daily_returns.csv": {
+      "rows": 3573,
+      "columns": 40,
+      "expected_columns": 40,
+      "nonfinite_or_invalid_cells": 0,
+      "pass": true
+    },
+    "daily_exposure.csv": {
+      "rows": 3573,
+      "columns": 40,
+      "expected_columns": 40,
+      "nonfinite_or_invalid_cells": 0,
+      "pass": true
+    }
+  }
+}

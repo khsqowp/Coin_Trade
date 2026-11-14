@@ -1,0 +1,13 @@
+{
+ "spy_sma200_m": true,
+ "spy_absmom12_m": true,
+ "spy_voltgt_w": true,
+ "spy_sma200_voltgt_w": true,
+ "sector_dm3_m": true,
+ "sector_dm3_trend_m": true,
+ "spy_rsi2_mr": true,
+ "B1_spy_bh": true,
+ "B2_qqq_bh": true,
+ "B3_sector_ew_m": true,
+ "B4_tbill": true
+}

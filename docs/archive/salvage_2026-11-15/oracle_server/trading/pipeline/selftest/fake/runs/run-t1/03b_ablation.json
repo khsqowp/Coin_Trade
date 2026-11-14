@@ -1,0 +1,1 @@
+{"status": "ok", "rules": [], "dead_rules": [], "weak_rules": [], "effective_rules": ["a"], "undeclared_hypothesis_rules": [], "thresholds": {"weak_diff_frac": 0.005}, "strategy_sha256": "332a19924b8a741ef780abd4e775d1c1d91074b41c5e71b310ae8b43043a9d64"}

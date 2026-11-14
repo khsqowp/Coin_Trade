@@ -1,0 +1,69 @@
+{
+ "id": "ft-strategy002-rsi-stoch-bb",
+ "name": "Strategy002: RSI<30 + Stoch<20 + below lower Bollinger + hammer (mean reversion)",
+ "family": "mean reversion",
+ "one_line": "Oversold confluence (RSI, slow stochastic, close under 2-sigma lower band, hammer) -> long; exit SAR above price and Fisher RSI > 0.3.",
+ "source": {
+  "repo": "freqtrade/freqtrade-strategies",
+  "url": "https://github.com/freqtrade/freqtrade-strategies",
+  "commit": "f3340ce11f5bdf62f598522e64d1f5638eaa13f5",
+  "license": "GPL-3.0 (repo LICENSE). Only ideas are summarised here; no code copied.",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "user_data/Strategy002.py"
+  ],
+  "author_in_file": "Gerald Lonlas"
+ },
+ "markets": [
+  "crypto spot"
+ ],
+ "timeframe": "5m (as shipped)",
+ "direction": "long_only",
+ "status_in_source": "educational example",
+ "idea": "Buy extreme short-term oversold with candle-pattern confirmation; exit when parabolic SAR flips above price and Fisher-transformed RSI recovers.",
+ "rules": [
+  {
+   "name": "rsi_oversold",
+   "kind": "entry",
+   "description": "RSI < 30"
+  },
+  {
+   "name": "stoch_oversold",
+   "kind": "entry",
+   "description": "slow %K < 20"
+  },
+  {
+   "name": "below_lower_band",
+   "kind": "entry",
+   "description": "close < Bollinger(20,2) lower band on typical price"
+  },
+  {
+   "name": "hammer_pattern",
+   "kind": "filter",
+   "description": "TA-Lib CDLHAMMER == 100"
+  },
+  {
+   "name": "sar_fisher_exit",
+   "kind": "exit",
+   "description": "SAR > close and Fisher RSI > 0.3"
+  }
+ ],
+ "parameters": {
+  "rsi": 30,
+  "stoch_k": 20,
+  "bb_window": 20,
+  "bb_std": 2,
+  "stoploss": -0.1
+ },
+ "rationale": "Mean reversion after capitulation.",
+ "evidence": "No published results in the repo.",
+ "limitations": [
+  "many AND-ed conditions -> very few signals on daily bars (trade-count gate risk)",
+  "candle pattern needs TA-Lib (not in the sandbox image; reimplement with pandas)"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Drop the hammer rule or reimplement; with 4+ ANDed rules some will be dead on daily BTC - a good ablation case."
+ },
+ "schema_version": 1
+}

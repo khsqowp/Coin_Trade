@@ -1,0 +1,14 @@
+# Addendum A4: corrected execution and paired-sample implementation
+Registered 2026-11-08 KST before performance calculation. A4 supersedes conflicting code/execution details in earlier addenda; no strategy output metrics have been calculated.
+
+## Execution corrections
+The v2 execution helper is not used for v3 fills. Local v3 engines in us_v3.py implement unit-based NAV/cash, costs on actual traded notional, and valid-bar-only fills. RSI and monthly rebalance orders wait for the next valid open; missing/invalid bars do not produce fills at stale prior closes. Deferred orders remain pending until executable; prior valid close is used only to mark an unpriced holding, never as a fill. Uninvested slot budgets stay cash. The SPY benchmark uses the same local execution engine and pays an actual entry fee at its valid next-open fill.
+
+Gap strategy is a close-fill ledger: after observing open(t)/close(t-1), the rule enters at close(t) with up to 20 fixed 5%-NAV positions; each position exits at the first valid close strictly after the entry close (normally close(t+1)). If the planned exit close is invalid/missing, it remains invested and the exit defers to the next valid close. Entry and exit costs are posted on their actual fills. The portfolio tracks shares, cash, NAV, exposure, turnover and fill events; no missing next-close return is replaced by zero or charged as a fictional exit.
+
+Residual momentum OLS is computed per name on paired daily log returns only. Rolling 252-session sums/means/covariance/variance use the same paired rows and require at least 200 paired observations; intercept and beta are then applied to 126 complete daily residual-log-return observations. Signals are positive residual sums only, Top-N liquidity eligibility, monthly close decision, next valid open rebalance, max K=20 fixed 5% positions.
+
+## Outputs and gates
+The frozen run reports all 3 signals × 3 liquidity universes × 4 per-side costs (5/10/20/40 bp), with the 9 base-cost signal/universe cells, benchmarks, exact fee/turnover/fills/exposure, IS/reused-OOS/full and descriptive fixed regime windows. It writes daily_returns.csv and daily_exposure.csv, results.json and coverage.json. The regime labels are descriptive windows only and are not used to select a rule. If any fill remains pending at study end, report the open position/order count and mark ending NAV accordingly. No trial is promoted.
+
+The primary date range remains 2012-06-01 through the final PIT snapshot 2026-08-18; no membership carry-forward beyond that date. Data gate remains conditional exploratory only. Frozen input/script hashes are listed in INPUT_HASHES_PRECALC_A4.txt and verified at process start; any mismatch aborts before calculation. Script was only compiled and statically checked. No v3 metrics or results have been run.

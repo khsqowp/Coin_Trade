@@ -1,0 +1,67 @@
+{
+ "id": "ft-strategy001-ema-ha",
+ "name": "Strategy001: EMA20/50 cross + Heikin-Ashi confirmation",
+ "family": "trend following",
+ "one_line": "Enter when EMA20 crosses above EMA50, HA close above EMA20 and HA bar green; exit on EMA50/100 cross with red HA bar.",
+ "source": {
+  "repo": "freqtrade/freqtrade-strategies",
+  "url": "https://github.com/freqtrade/freqtrade-strategies",
+  "commit": "f3340ce11f5bdf62f598522e64d1f5638eaa13f5",
+  "license": "GPL-3.0 (repo LICENSE). Only ideas are summarised here; no code copied.",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "user_data/Strategy001.py"
+  ],
+  "author_in_file": "Gerald Lonlas"
+ },
+ "markets": [
+  "crypto spot"
+ ],
+ "timeframe": "5m (as shipped)",
+ "direction": "long_only",
+ "status_in_source": "educational example",
+ "idea": "Cross-over of medium EMAs confirmed by smoothed candle colour; ROI table plus -10% stoploss do most of the exiting.",
+ "rules": [
+  {
+   "name": "ema_cross_entry",
+   "kind": "entry",
+   "description": "EMA20 crosses above EMA50"
+  },
+  {
+   "name": "ha_confirmation",
+   "kind": "filter",
+   "description": "Heikin-Ashi close > EMA20 and HA open < HA close"
+  },
+  {
+   "name": "ema_cross_exit",
+   "kind": "exit",
+   "description": "EMA50 crosses above EMA100 with HA close < EMA20 and red HA bar"
+  }
+ ],
+ "parameters": {
+  "ema": [
+   20,
+   50,
+   100
+  ],
+  "stoploss": -0.1,
+  "minimal_roi": {
+   "0": 0.05,
+   "20": 0.04,
+   "30": 0.03,
+   "60": 0.01
+  }
+ },
+ "rationale": "Trend cross with candle-colour confirmation.",
+ "evidence": "No performance data in the repo; README says examples are educational and not for real money.",
+ "limitations": [
+  "5m timeframe, not tuned for daily",
+  "exit logic is odd (EMA50 crossing above EMA100 is a bullish event)",
+  "no published backtest"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "adaptable",
+  "notes": "Daily version: needs fixed EMAs, dedicated named rules; treat the unusual exit as a defect to avoid."
+ },
+ "schema_version": 1
+}

@@ -1,0 +1,20 @@
+{
+  "addendum": "A9",
+  "scope": "Provenance-only binding of the aligned KR-US comparison and current KR execution inputs/code.",
+  "expected_sha256": {
+    "fetch_log.jsonl": "c713f103a801507393dad2f83ffe69760ea45e3d013dc1c5967189ba10181aab",
+    "universe_raw.csv": "cb58796a785b6a3f2abdc1dd1a0deb5772dfc836fcf6506a1d0832aab0844c7b",
+    "run_v3.py": "a540ea943d54014f114c3bf57f2cdfa92a99f302cf37cb146d351b8c2d9f4ed7",
+    "engine_v2copy.py": "185426a1b6ea3abde3501a906db6dca00aad46f19e41fafa9c149cf06f0139d8"
+  },
+  "us_a3_expected_sha256": {
+    "prereg_sha256": "119cfbcbeffd9c5d2f240ac77a3defa5ff1f691192acdb6123f53c1b31d2df13",
+    "script_sha256": "507b1ef56df288baa7cc789a0d330d974bfbaf89dd619dbb846170434a5a38c2"
+  },
+  "aligned_gate": {
+    "aligned_end": "2026-08-18",
+    "review_status": "NO-BLOCKER",
+    "marker_file": "US_A3_FINALIZED.json",
+    "marker_hash_fields_must_equal_exactly": ["prereg_sha256", "script_sha256"]
+  }
+}

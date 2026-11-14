@@ -1,0 +1,1121 @@
+{
+ "model": "gpt-5.4-mini",
+ "dataqa": [
+  {
+   "rep": 0,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.81943770254677,
+    "up_days": 13,
+    "avg_volume": 14227.466593333333,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 1134,
+    "out_tok": 99,
+    "cost": 0.001296,
+    "latency": 2.8351526260375977,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 1,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.8193972374654837,
+    "up_days": 13,
+    "avg_volume": 13956.85702,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 1134,
+    "out_tok": 98,
+    "cost": 0.0012915,
+    "latency": 1.8823294639587402,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "rep": 2,
+   "answer": {
+    "last_close": 81189.43,
+    "highest_high": 87220,
+    "date_of_highest_high": "2026-10-02",
+    "window_return_pct": -3.82002306253382,
+    "up_days": 13,
+    "avg_volume": 13842.756286666667,
+    "source_exchange": "binance",
+    "sha256_prefix": "6aef0852",
+    "rows_in_window": 30,
+    "colleague_claim_matches_data": false
+   },
+   "correct": {
+    "last_close": true,
+    "highest_high": true,
+    "date_of_highest_high": true,
+    "window_return_pct": true,
+    "up_days": false,
+    "avg_volume": false,
+    "source_exchange": true,
+    "sha256_prefix": true,
+    "rows_in_window": true,
+    "colleague_claim_matches_data": true
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 1134,
+    "out_tok": 93,
+    "cost": 0.001269,
+    "latency": 1.9226372241973877,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ],
+ "codegen": [
+  {
+   "spec": "sma",
+   "rep": 0,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/sma_r0/strategy.py",
+   "meta": {
+    "in_tok": 184,
+    "out_tok": 102,
+    "cost": 0.000597,
+    "latency": 2.1890599727630615
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 1,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/sma_r1/strategy.py",
+   "meta": {
+    "in_tok": 184,
+    "out_tok": 103,
+    "cost": 0.0006015,
+    "latency": 1.3436989784240723
+   }
+  },
+  {
+   "spec": "sma",
+   "rep": 2,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/sma_r2/strategy.py",
+   "meta": {
+    "in_tok": 184,
+    "out_tok": 113,
+    "cost": 0.0006465,
+    "latency": 1.5735571384429932
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 0,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/rsi_r0/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 226,
+    "cost": 0.0011835,
+    "latency": 2.607638120651245
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 1,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/rsi_r1/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 216,
+    "cost": 0.0011385,
+    "latency": 2.735891342163086
+   }
+  },
+  {
+   "spec": "rsi",
+   "rep": 2,
+   "file": "/app/runs/bench/gpt-5.4-mini/codegen/rsi_r2/strategy.py",
+   "meta": {
+    "in_tok": 222,
+    "out_tok": 248,
+    "cost": 0.0012825,
+    "latency": 2.0984132289886475
+   }
+  }
+ ],
+ "audit": [
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 708,
+    "out_tok": 235,
+    "cost": 0.0015885,
+    "latency": 2.616238594055176,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 708,
+    "out_tok": 230,
+    "cost": 0.001566,
+    "latency": 2.2506158351898193,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B1_shift_neg",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 708,
+    "out_tok": 217,
+    "cost": 0.0015075,
+    "latency": 2.3774702548980713,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 706,
+    "out_tok": 257,
+    "cost": 0.001686,
+    "latency": 2.4618077278137207,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 706,
+    "out_tok": 239,
+    "cost": 0.001605,
+    "latency": 2.427669048309326,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B2_centered_ma",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 706,
+    "out_tok": 263,
+    "cost": 0.001713,
+    "latency": 2.8928909301757812,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "INCONCLUSIVE",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "suspected",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 722,
+    "out_tok": 255,
+    "cost": 0.001689,
+    "latency": 2.62557315826416,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "INCONCLUSIVE",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "suspected",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 722,
+    "out_tok": 225,
+    "cost": 0.001554,
+    "latency": 2.201953649520874,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B3_fullsample_zscore",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 722,
+    "out_tok": 321,
+    "cost": 0.001986,
+    "latency": 3.3346593379974365,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error"
+   ],
+   "checks": {
+    "lookahead_bias": "suspected",
+    "data_leakage": "found",
+    "overfitting": "suspected",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 786,
+    "out_tok": 458,
+    "cost": 0.0026505,
+    "latency": 4.347973346710205,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "suspected",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 786,
+    "out_tok": 384,
+    "cost": 0.0023175,
+    "latency": 3.251490592956543,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B4_fullsample_param_fit",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage"
+   ],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "found",
+    "overfitting": "suspected",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 786,
+    "out_tok": 308,
+    "cost": 0.0019755,
+    "latency": 2.9919936656951904,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 735,
+    "out_tok": 341,
+    "cost": 0.00208575,
+    "latency": 3.420274019241333,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 735,
+    "out_tok": 295,
+    "cost": 0.00187875,
+    "latency": 2.999406337738037,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B5_weekly_bfill",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 735,
+    "out_tok": 332,
+    "cost": 0.00204525,
+    "latency": 3.7099578380584717,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "logic_error"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 749,
+    "out_tok": 326,
+    "cost": 0.00202875,
+    "latency": 3.155545234680176,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "suspected",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 749,
+    "out_tok": 399,
+    "cost": 0.00235725,
+    "latency": 3.3337745666503906,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B6_fullsample_quantile",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "data_leakage",
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 749,
+    "out_tok": 297,
+    "cost": 0.00189825,
+    "latency": 2.4695403575897217,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 0,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "suspected",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 725,
+    "out_tok": 315,
+    "cost": 0.00196125,
+    "latency": 2.8994433879852295,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 1,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 725,
+    "out_tok": 275,
+    "cost": 0.00178125,
+    "latency": 2.5852510929107666,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "B7_anchor_last_close",
+   "rep": 2,
+   "label": "buggy",
+   "verdict": "FAIL",
+   "categories": [
+    "lookahead_bias"
+   ],
+   "checks": {
+    "lookahead_bias": "found",
+    "data_leakage": "found",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 725,
+    "out_tok": 296,
+    "cost": 0.00187575,
+    "latency": 2.6065709590911865,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 716,
+    "out_tok": 214,
+    "cost": 0.0015,
+    "latency": 2.0090699195861816,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 716,
+    "out_tok": 259,
+    "cost": 0.0017025,
+    "latency": 2.40645170211792,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C1_sma_cross",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 716,
+    "out_tok": 219,
+    "cost": 0.0015225,
+    "latency": 2.093574047088623,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 816,
+    "out_tok": 194,
+    "cost": 0.001485,
+    "latency": 1.985227346420288,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "clean",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 816,
+    "out_tok": 250,
+    "cost": 0.001737,
+    "latency": 2.3524508476257324,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C2_rsi_meanrev",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 816,
+    "out_tok": 224,
+    "cost": 0.00162,
+    "latency": 2.306939125061035,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 804,
+    "out_tok": 250,
+    "cost": 0.001728,
+    "latency": 2.2194719314575195,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 804,
+    "out_tok": 255,
+    "cost": 0.0017505,
+    "latency": 2.230034351348877,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C3_donchian",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 804,
+    "out_tok": 254,
+    "cost": 0.001746,
+    "latency": 2.4547460079193115,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "clean",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 729,
+    "out_tok": 256,
+    "cost": 0.00169875,
+    "latency": 2.155285358428955,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 729,
+    "out_tok": 254,
+    "cost": 0.00168975,
+    "latency": 2.1663811206817627,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C4_vol_filtered_trend",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 729,
+    "out_tok": 265,
+    "cost": 0.00173925,
+    "latency": 2.596259355545044,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 742,
+    "out_tok": 221,
+    "cost": 0.001551,
+    "latency": 2.329277753829956,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 742,
+    "out_tok": 228,
+    "cost": 0.0015825,
+    "latency": 2.2504019737243652,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C5_expanding_zscore",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 742,
+    "out_tok": 214,
+    "cost": 0.0015195,
+    "latency": 2.2033703327178955,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 0,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 736,
+    "out_tok": 234,
+    "cost": 0.001605,
+    "latency": 2.244143009185791,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 1,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 736,
+    "out_tok": 252,
+    "cost": 0.001686,
+    "latency": 2.4320068359375,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  },
+  {
+   "fixture": "C6_weekly_lagged",
+   "rep": 2,
+   "label": "clean",
+   "verdict": "PASS",
+   "categories": [],
+   "checks": {
+    "lookahead_bias": "clean",
+    "data_leakage": "clean",
+    "overfitting": "not_assessable",
+    "costs_slippage": "not_assessable",
+    "sample_size": "not_assessable"
+   },
+   "meta": {
+    "model": "gpt-5.4-mini",
+    "in_tok": 736,
+    "out_tok": 242,
+    "cost": 0.001641,
+    "latency": 2.2990798950195312,
+    "calls": 1,
+    "schema_failures": 0
+   }
+  }
+ ]
+}

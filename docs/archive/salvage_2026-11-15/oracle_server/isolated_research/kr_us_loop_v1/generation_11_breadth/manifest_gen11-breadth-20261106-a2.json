@@ -1,0 +1,99 @@
+{
+  "created_utc": "2026-11-06T13:26:19.886798+00:00",
+  "finished_utc": "2026-11-06T13:26:22.491918+00:00",
+  "result": {
+    "addendum_a1_sha256": "6cd29998444c53828f9e9ac69cf68ed3d35066d8627eaa65cb719789a0ab9adb",
+    "addendum_a2_sha256": "67bef9adfb167584f1170aeac5b07ee89f790a0989f5c474fcae0a308c1a40e2",
+    "addendum_a3_sha256": "fe31eeb3c2f2115341308c12a97af0b157f3bc2accf9b1b343a68e8808f3ddf8",
+    "breadth": {
+      "entries_including_initial_if_invested": 141,
+      "mean_exposure": 0.7750844718671955,
+      "measured_open_to_open_intervals": 6807,
+      "risk_on_close_signals": 5276,
+      "signal_driven_exits": 140,
+      "terminal_liquidations": 1,
+      "threshold": 5,
+      "turnover_units_including_entry_and_terminal_exit": 282.0,
+      "valid_breadth_observations": 6807,
+      "window": 200
+    },
+    "calendar": {
+      "alignment": "exact ten-way date intersection; no fill or interpolation",
+      "common_sessions": 7008,
+      "first": "1999-10-08",
+      "last": "2026-10-30",
+      "measured_intervals": 6807
+    },
+    "inputs_sha256": {
+      "SPY.parquet": "533ea8cccbd302d3f5faa771f0ceb461f697e1f75302497ca053a6b3d98b09ba",
+      "XLB.parquet": "516c2e9f2e66f1f85aa749eefe178a8258a493f3c93d5f0ddaa70271c672c781",
+      "XLE.parquet": "fe06aaab951e425e9b41ef5d61c3ca0924dc10c836d471b8d5862246c27a69ef",
+      "XLF.parquet": "1c3c409cf1fe98e2e909f61d562fdd41e66d710cfca95035bff61c1c5844b844",
+      "XLI.parquet": "ec183fc4b478862775200bf68bc7c6b3d9e7a157052b67c9afb40d0160e24104",
+      "XLK.parquet": "cbf1001174c22974dc0e5089222e6d4d07a8e1f5b60817eb3a97c73f553f69c7",
+      "XLP.parquet": "6ae34466045556b1a1ba7122c91e89edbd7b79e20c6195ff2d5e0423011e1e53",
+      "XLU.parquet": "b6006c3af45a03364652fd72326836279f8e92a32a799fa5d8878cff8a55fe3e",
+      "XLV.parquet": "e029fadb7fa0398185aae0a504541b89db73f3faa7958dc50ea593445aff1f4f",
+      "XLY.parquet": "01454d31308693e6f1fa817a495289e09b5e687bb509d4906ac2358733600616"
+    },
+    "prereg_sha256": "8edc2e5b053964fe1750856abb996408fdbcd8298bff13bdf08ca9944771b010",
+    "revision": "A2-common-calendar",
+    "run_id": "gen11-breadth-20261106-a2",
+    "runner_a2_sha256": "16aa0879d6b2b2abbf1fc99c7489f2b925c47f61c11b1991dc5663f90d8734ac",
+    "snapshot_note": "local Yahoo-derived non-atomic snapshot; not authoritative/untouched OOS",
+    "status": "COMPLETED_EXPLORATORY",
+    "tests_a2_sha256": "f1e3156b6cdbc9ddcb74f9cda92bad5e8320473ab5d95768dac3e030dfddf920",
+    "windows": {
+      "2001_2016_descriptive_contaminated": {
+        "spy_buy_hold": {
+          "cagr": 0.054062886586834225,
+          "intervals": 4025,
+          "mdd": -0.5542291205293965,
+          "sharpe": 0.3678474709547434,
+          "total_return": 1.3186178407069797
+        },
+        "strategy": {
+          "cagr": 0.023881415134725525,
+          "intervals": 4025,
+          "mdd": -0.2802617767414952,
+          "sharpe": 0.2655531060979763,
+          "total_return": 0.4578399511133966
+        }
+      },
+      "2017_plus_descriptive_contaminated": {
+        "spy_buy_hold": {
+          "cagr": 0.14962766134078054,
+          "intervals": 2471,
+          "mdd": -0.3204895275764583,
+          "sharpe": 0.8925580797701671,
+          "total_return": 2.924614794106344
+        },
+        "strategy": {
+          "cagr": 0.08007264029995986,
+          "intervals": 2471,
+          "mdd": -0.23344937459357984,
+          "sharpe": 0.6849104263096386,
+          "total_return": 1.1282610959581536
+        }
+      },
+      "full": {
+        "spy_buy_hold": {
+          "cagr": 0.08574001764605255,
+          "intervals": 6807,
+          "mdd": -0.5542291205293953,
+          "sharpe": 0.5305259679468737,
+          "total_return": 8.22620555127156
+        },
+        "strategy": {
+          "cagr": 0.029787625512787796,
+          "intervals": 6807,
+          "mdd": -0.46642996517727586,
+          "sharpe": 0.3037302189134898,
+          "total_return": 1.2097279842812076
+        }
+      }
+    }
+  },
+  "run_id": "gen11-breadth-20261106-a2",
+  "status": "COMPLETED_EXPLORATORY"
+}

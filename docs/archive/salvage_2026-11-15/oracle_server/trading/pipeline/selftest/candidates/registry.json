@@ -1,0 +1,17 @@
+[
+ {
+  "id": "BTCUSDT_H1_332a1992",
+  "class": "TPC_BTCUSDT_H1_332a1992",
+  "run_id": "run-t1",
+  "symbol": "BTC/USDT",
+  "status": "candidate_registered",
+  "created": "2026-10-25T00:30:46Z",
+  "strategy_sha256": "332a19924b8a741ef780abd4e775d1c1d91074b41c5e71b310ae8b43043a9d64",
+  "strategy_file": "freqtrade/user_data/strategies/TPC_BTCUSDT_H1_332a1992.py",
+  "backup_dir": "backups/strategies-20261025T003046Z",
+  "gate_warnings": [],
+  "swap_command": "cd /home/opc/trading && docker compose -f docker-compose.yml -f pipeline/candidates/BTCUSDT_H1_332a1992/compose.override.yml up -d --force-recreate freqtrade",
+  "rollback_command": "cd /home/opc/trading && docker compose -f docker-compose.yml up -d --force-recreate freqtrade",
+  "note": "Registered only. The running dry-run bot was not touched; swapping is the owner's decision."
+ }
+]

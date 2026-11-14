@@ -1,0 +1,50 @@
+{
+ "rsi_r0": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ },
+ "rsi_r1": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ },
+ "rsi_r2": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ },
+ "sma_r0": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ },
+ "sma_r1": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ },
+ "sma_r2": {
+  "load": true,
+  "t1_valid_output": true,
+  "t2_no_lookahead": true,
+  "t3_matches_reference": true,
+  "t4_pure_deterministic": true,
+  "t5_short_input": true
+ }
+}

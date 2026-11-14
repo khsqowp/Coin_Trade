@@ -1,0 +1,16 @@
+# US-36 - S126 leaders, no dip, staggered entry (US, Round 8 prereg)
+
+## Signal (fixed defaults)
+On each staggered entry day buy ALL top-quartile S126 names of the universe at the close; hold h in {10,20,40}. Trials: 3 holds x 3 universes = 9.
+
+## Common (Round 8, longer-hold family; written 2026-11-13 BEFORE any run of US-36..US-41)
+- Origin: coordinator/owner allowed longer holding horizons after rounds 1-7 found no <=5d edge. Ideas from dev findings (US-32-h20, US-34, US-35) and standard first-principles momentum/trend designs; NO holdout information used. Holdout stays locked in Stage 1.
+- Universes (stock families): U3 = {MEM, F14, F18}. MEM = membership-date PIT top-100 by value20 (US-35 definition). F14 / F18 = top-100 by value20 frozen at 2014-12-31 / 2018-12-31 (events from the next bar). Residual survivorship (removed names absent) stated and discounted. Every (spec, hold, universe) cell is one trial.
+- Holds: 10, 20, 40 trading bars (close to close). Entry: close of signal bar on staggered entry days = every 20th trading bar counted from the first bar the universe has data (no dependence on events). Overlap: for h=40 two batches overlap.
+- Leader score: S126 = close_t/close_{t-126}-1; S121 = close_{t-21}/close_{t-252}-1; SV = S126 / std(daily returns over t-125..t). Leaders = top quartile (0.25) of valid names in the universe that day.
+- Costs: USCost RT 0.403% per trade, plus 2x and 3x. Rough tax drag: mean x 0.78 (22% on positive gains, assuming gains above the 2.5M KRW/yr deduction; with ~1.3M KRW capital the exemption likely applies, so this is an upper-bound drag).
+- Statistics: event-level net mean; t clustered by ENTRY MONTH (primary; PLAN clustering adapted for overlap), also lib date-clustered t and 5-bar block t; halves at the midpoint of the event date span.
+- Portfolio view: lib slot selection (first-come, seeded), N=10 slots for stock families (ETF families: N stated), equal weight 1/N of capital per slot, cash earns 0, DAILY MARK-TO-MARKET (close-to-close, cost booked on exit), window first entry..last exit. Reported: Sharpe, max drawdown, per-year return, plus benchmarks over the same window: equal-weight daily-rebalanced buy-and-hold of the same universe (EW-BH; eligible set at t-1), and SPY. Beta/alpha of the strategy daily return vs SPY (OLS, Newey-West lag 10 t-stat for alpha).
+- Stage 1 verdict (per trial): net mean>0, month-clustered t>=3, both halves>0 => advance.
+- STRICT GATE for Stage 2 (per spec x hold; all required): (1) on ALL THREE universes: net mean>0, month-t>=2, 2x-cost mean>0; (2) on all three: portfolio Sharpe(N=10) > EW-BH Sharpe of the same universe and alpha vs SPY > 0 (MEM: alpha t>=2); (3) top-5 symbol share <= 40% on MEM; (4) Stage 1 verdict 'advance' on MEM. ETF families: gate on the single universe: Stage 1 advance, 2x>0, Sharpe > buy-and-hold Sharpe of the same ETF(s).
+- Stage 2 (survivors only): <=3 params x 3 values, plateau (>=70% cells positive with t>=2, neighbours positive), walk-forward (expanding window, annual re-selection from 2016), BH q<0.10 over the cumulative list (149 before this round), concentration and 3x checks. Stage 3 holdout only for candidates that clear all of it; every holdout look is listed (so far 3, all US-18-T100) and BH is applied over holdout looks.

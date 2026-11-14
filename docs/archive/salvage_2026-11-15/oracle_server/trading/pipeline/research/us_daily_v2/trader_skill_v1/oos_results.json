@@ -1,0 +1,1337 @@
+{
+ "selected": "xbrl_value",
+ "IS": {
+  "xbrl_growth": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 0.9877,
+   "cagr": 0.0794,
+   "vol": 0.1574,
+   "sharpe_ex": 0.549,
+   "sharpe_raw": 0.564,
+   "mdd": 0.2925,
+   "exposure": 0.704,
+   "turnover_py": 1.93,
+   "cost_drag_py": 0.00193,
+   "psr0_ex": 0.949
+  },
+  "xbrl_margin": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 2.1526,
+   "cagr": 0.1361,
+   "vol": 0.148,
+   "sharpe_ex": 0.921,
+   "sharpe_raw": 0.937,
+   "mdd": 0.1886,
+   "exposure": 0.815,
+   "turnover_py": 0.94,
+   "cost_drag_py": 0.00094,
+   "psr0_ex": 0.997
+  },
+  "xbrl_margin_chg": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.2439,
+   "cagr": 0.094,
+   "vol": 0.1399,
+   "sharpe_ex": 0.695,
+   "sharpe_raw": 0.712,
+   "mdd": 0.241,
+   "exposure": 0.676,
+   "turnover_py": 1.8,
+   "cost_drag_py": 0.0018,
+   "psr0_ex": 0.98
+  },
+  "xbrl_value": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 2.6281,
+   "cagr": 0.154,
+   "vol": 0.1394,
+   "sharpe_ex": 1.081,
+   "sharpe_raw": 1.098,
+   "mdd": 0.2077,
+   "exposure": 0.704,
+   "turnover_py": 1.88,
+   "cost_drag_py": 0.00188,
+   "psr0_ex": 0.999
+  },
+  "quality_composite": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.0789,
+   "cagr": 0.0848,
+   "vol": 0.1367,
+   "sharpe_ex": 0.646,
+   "sharpe_raw": 0.664,
+   "mdd": 0.2413,
+   "exposure": 0.639,
+   "turnover_py": 1.75,
+   "cost_drag_py": 0.00175,
+   "psr0_ex": 0.973
+  },
+  "screener_ew": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.12,
+   "cagr": 0.0871,
+   "vol": 0.1199,
+   "sharpe_ex": 0.737,
+   "sharpe_raw": 0.757,
+   "mdd": 0.1868,
+   "exposure": 0.622,
+   "turnover_py": 1.06,
+   "cost_drag_py": 0.00106,
+   "psr0_ex": 0.986
+  },
+  "screener_mom": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.4493,
+   "cagr": 0.1047,
+   "vol": 0.134,
+   "sharpe_ex": 0.792,
+   "sharpe_raw": 0.81,
+   "mdd": 0.2346,
+   "exposure": 0.704,
+   "turnover_py": 3.54,
+   "cost_drag_py": 0.00354,
+   "psr0_ex": 0.99
+  },
+  "screener_lowvol": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.3748,
+   "cagr": 0.1009,
+   "vol": 0.1213,
+   "sharpe_ex": 0.834,
+   "sharpe_raw": 0.854,
+   "mdd": 0.2346,
+   "exposure": 0.704,
+   "turnover_py": 2.01,
+   "cost_drag_py": 0.00201,
+   "psr0_ex": 0.993
+  },
+  "mom_quality": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.2255,
+   "cagr": 0.093,
+   "vol": 0.1321,
+   "sharpe_ex": 0.721,
+   "sharpe_raw": 0.74,
+   "mdd": 0.235,
+   "exposure": 0.639,
+   "turnover_py": 2.7,
+   "cost_drag_py": 0.0027,
+   "psr0_ex": 0.984
+  },
+  "xbrl_growth_mkt": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 0.7051,
+   "cagr": 0.0611,
+   "vol": 0.1298,
+   "sharpe_ex": 0.504,
+   "sharpe_raw": 0.522,
+   "mdd": 0.2387,
+   "exposure": 0.611,
+   "turnover_py": 2.21,
+   "cost_drag_py": 0.00221,
+   "psr0_ex": 0.932
+  },
+  "value_momentum": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 2.0791,
+   "cagr": 0.1332,
+   "vol": 0.1271,
+   "sharpe_ex": 1.029,
+   "sharpe_raw": 1.048,
+   "mdd": 0.1748,
+   "exposure": 0.704,
+   "turnover_py": 3.67,
+   "cost_drag_py": 0.00367,
+   "psr0_ex": 0.999
+  },
+  "screener_trend_breadth": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 0.9188,
+   "cagr": 0.0751,
+   "vol": 0.0994,
+   "sharpe_ex": 0.755,
+   "sharpe_raw": 0.779,
+   "mdd": 0.1181,
+   "exposure": 0.572,
+   "turnover_py": 2.57,
+   "cost_drag_py": 0.00257,
+   "psr0_ex": 0.987
+  },
+  "spy_bh": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 0.8428,
+   "cagr": 0.0703,
+   "vol": 0.2132,
+   "sharpe_ex": 0.414,
+   "sharpe_raw": 0.425,
+   "mdd": 0.5187,
+   "exposure": 1.0,
+   "turnover_py": 0.11,
+   "cost_drag_py": 0.00011,
+   "psr0_ex": 0.893
+  },
+  "ew_univ": {
+   "start": "2008-01-02",
+   "end": "2016-12-30",
+   "days": 2267,
+   "total_return": 1.3948,
+   "cagr": 0.1019,
+   "vol": 0.2408,
+   "sharpe_ex": 0.514,
+   "sharpe_raw": 0.524,
+   "mdd": 0.562,
+   "exposure": 1.0,
+   "turnover_py": 0.81,
+   "cost_drag_py": 0.00081,
+   "psr0_ex": 0.938
+  }
+ },
+ "OOS": {
+  "xbrl_growth": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.0118,
+   "cagr": 0.119,
+   "vol": 0.2163,
+   "sharpe_ex": 0.514,
+   "sharpe_raw": 0.628,
+   "mdd": 0.3982,
+   "exposure": 1.0,
+   "turnover_py": 3.46,
+   "cost_drag_py": 0.00346,
+   "psr0_ex": 0.945,
+   "vs_spy_bh_ci95_ann": [
+    -0.0719,
+    0.0306
+   ],
+   "vs_spy_bh_p_le0": 0.78,
+   "vs_ew_univ_ci95_ann": [
+    -0.0458,
+    0.054
+   ],
+   "vs_ew_univ_p_le0": 0.396,
+   "dsr_null_n28": 0.333,
+   "dsr_emp_n28": 0.458
+  },
+  "xbrl_margin": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.5838,
+   "cagr": 0.139,
+   "vol": 0.1829,
+   "sharpe_ex": 0.668,
+   "sharpe_raw": 0.803,
+   "mdd": 0.327,
+   "exposure": 1.0,
+   "turnover_py": 1.27,
+   "cost_drag_py": 0.00127,
+   "psr0_ex": 0.981,
+   "vs_spy_bh_ci95_ann": [
+    -0.0554,
+    0.026
+   ],
+   "vs_spy_bh_p_le0": 0.722,
+   "vs_ew_univ_ci95_ann": [
+    -0.0322,
+    0.0572
+   ],
+   "vs_ew_univ_p_le0": 0.303,
+   "dsr_null_n28": 0.519,
+   "dsr_emp_n28": 0.645
+  },
+  "xbrl_margin_chg": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 3.4857,
+   "cagr": 0.1653,
+   "vol": 0.2034,
+   "sharpe_ex": 0.733,
+   "sharpe_raw": 0.855,
+   "mdd": 0.4047,
+   "exposure": 1.0,
+   "turnover_py": 3.58,
+   "cost_drag_py": 0.00358,
+   "psr0_ex": 0.988,
+   "vs_spy_bh_ci95_ann": [
+    -0.0337,
+    0.0632
+   ],
+   "vs_spy_bh_p_le0": 0.269,
+   "vs_ew_univ_ci95_ann": [
+    0.0072,
+    0.0754
+   ],
+   "vs_ew_univ_p_le0": 0.011,
+   "dsr_null_n28": 0.598,
+   "dsr_emp_n28": 0.716
+  },
+  "xbrl_value": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 3.864,
+   "cagr": 0.175,
+   "vol": 0.2309,
+   "sharpe_ex": 0.707,
+   "sharpe_raw": 0.814,
+   "mdd": 0.4663,
+   "exposure": 1.0,
+   "turnover_py": 3.1,
+   "cost_drag_py": 0.0031,
+   "psr0_ex": 0.986,
+   "vs_spy_bh_ci95_ann": [
+    -0.0485,
+    0.0998
+   ],
+   "vs_spy_bh_p_le0": 0.245,
+   "vs_ew_univ_ci95_ann": [
+    0.0053,
+    0.0993
+   ],
+   "vs_ew_univ_p_le0": 0.018,
+   "dsr_null_n28": 0.567,
+   "dsr_emp_n28": 0.69
+  },
+  "quality_composite": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 3.9142,
+   "cagr": 0.1762,
+   "vol": 0.2066,
+   "sharpe_ex": 0.77,
+   "sharpe_raw": 0.89,
+   "mdd": 0.4038,
+   "exposure": 1.0,
+   "turnover_py": 3.71,
+   "cost_drag_py": 0.00371,
+   "psr0_ex": 0.991,
+   "vs_spy_bh_ci95_ann": [
+    -0.0264,
+    0.0767
+   ],
+   "vs_spy_bh_p_le0": 0.164,
+   "vs_ew_univ_ci95_ann": [
+    0.0153,
+    0.0873
+   ],
+   "vs_ew_univ_p_le0": 0.004,
+   "dsr_null_n28": 0.641,
+   "dsr_emp_n28": 0.754
+  },
+  "screener_ew": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.5089,
+   "cagr": 0.1365,
+   "vol": 0.1814,
+   "sharpe_ex": 0.66,
+   "sharpe_raw": 0.797,
+   "mdd": 0.3673,
+   "exposure": 1.0,
+   "turnover_py": 1.86,
+   "cost_drag_py": 0.00186,
+   "psr0_ex": 0.979,
+   "vs_spy_bh_ci95_ann": [
+    -0.0503,
+    0.0185
+   ],
+   "vs_spy_bh_p_le0": 0.818,
+   "vs_ew_univ_ci95_ann": [
+    -0.0154,
+    0.0339
+   ],
+   "vs_ew_univ_p_le0": 0.207,
+   "dsr_null_n28": 0.509,
+   "dsr_emp_n28": 0.636
+  },
+  "screener_mom": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.8251,
+   "cagr": 0.1466,
+   "vol": 0.2096,
+   "sharpe_ex": 0.64,
+   "sharpe_raw": 0.758,
+   "mdd": 0.3495,
+   "exposure": 1.0,
+   "turnover_py": 6.27,
+   "cost_drag_py": 0.00627,
+   "psr0_ex": 0.976,
+   "vs_spy_bh_ci95_ann": [
+    -0.0403,
+    0.0577
+   ],
+   "vs_spy_bh_p_le0": 0.374,
+   "vs_ew_univ_ci95_ann": [
+    -0.0302,
+    0.0977
+   ],
+   "vs_ew_univ_p_le0": 0.163,
+   "dsr_null_n28": 0.484,
+   "dsr_emp_n28": 0.612
+  },
+  "screener_lowvol": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 1.8227,
+   "cagr": 0.1116,
+   "vol": 0.1489,
+   "sharpe_ex": 0.619,
+   "sharpe_raw": 0.785,
+   "mdd": 0.31,
+   "exposure": 1.0,
+   "turnover_py": 3.09,
+   "cost_drag_py": 0.00309,
+   "psr0_ex": 0.972,
+   "vs_spy_bh_ci95_ann": [
+    -0.1066,
+    0.0158
+   ],
+   "vs_spy_bh_p_le0": 0.933,
+   "vs_ew_univ_ci95_ann": [
+    -0.0798,
+    0.0387
+   ],
+   "vs_ew_univ_p_le0": 0.756,
+   "dsr_null_n28": 0.458,
+   "dsr_emp_n28": 0.587
+  },
+  "mom_quality": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 3.6126,
+   "cagr": 0.1686,
+   "vol": 0.202,
+   "sharpe_ex": 0.751,
+   "sharpe_raw": 0.873,
+   "mdd": 0.3792,
+   "exposure": 1.0,
+   "turnover_py": 4.97,
+   "cost_drag_py": 0.00497,
+   "psr0_ex": 0.99,
+   "vs_spy_bh_ci95_ann": [
+    -0.0196,
+    0.0616
+   ],
+   "vs_spy_bh_p_le0": 0.147,
+   "vs_ew_univ_ci95_ann": [
+    0.005,
+    0.0863
+   ],
+   "vs_ew_univ_p_le0": 0.015,
+   "dsr_null_n28": 0.619,
+   "dsr_emp_n28": 0.734
+  },
+  "xbrl_growth_mkt": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 0.3475,
+   "cagr": 0.0309,
+   "vol": 0.1539,
+   "sharpe_ex": 0.114,
+   "sharpe_raw": 0.275,
+   "mdd": 0.3813,
+   "exposure": 0.831,
+   "turnover_py": 4.4,
+   "cost_drag_py": 0.0044,
+   "psr0_ex": 0.639,
+   "vs_spy_bh_ci95_ann": [
+    -0.1991,
+    -0.0331
+   ],
+   "vs_spy_bh_p_le0": 0.997,
+   "vs_ew_univ_ci95_ann": [
+    -0.1827,
+    0.001
+   ],
+   "vs_ew_univ_p_le0": 0.974,
+   "dsr_null_n28": 0.046,
+   "dsr_emp_n28": 0.088
+  },
+  "value_momentum": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.9687,
+   "cagr": 0.1509,
+   "vol": 0.1944,
+   "sharpe_ex": 0.693,
+   "sharpe_raw": 0.821,
+   "mdd": 0.3867,
+   "exposure": 1.0,
+   "turnover_py": 6.17,
+   "cost_drag_py": 0.00617,
+   "psr0_ex": 0.984,
+   "vs_spy_bh_ci95_ann": [
+    -0.0443,
+    0.0443
+   ],
+   "vs_spy_bh_p_le0": 0.468,
+   "vs_ew_univ_ci95_ann": [
+    -0.015,
+    0.0661
+   ],
+   "vs_ew_univ_p_le0": 0.093,
+   "dsr_null_n28": 0.55,
+   "dsr_emp_n28": 0.673
+  },
+  "screener_trend_breadth": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 1.9359,
+   "cagr": 0.116,
+   "vol": 0.1676,
+   "sharpe_ex": 0.592,
+   "sharpe_raw": 0.739,
+   "mdd": 0.3313,
+   "exposure": 0.981,
+   "turnover_py": 5.39,
+   "cost_drag_py": 0.00539,
+   "psr0_ex": 0.966,
+   "vs_spy_bh_ci95_ann": [
+    -0.077,
+    0.008
+   ],
+   "vs_spy_bh_p_le0": 0.939,
+   "vs_ew_univ_ci95_ann": [
+    -0.06,
+    0.0441
+   ],
+   "vs_ew_univ_p_le0": 0.627,
+   "dsr_null_n28": 0.425,
+   "dsr_emp_n28": 0.554
+  },
+  "spy_bh": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.9168,
+   "cagr": 0.1493,
+   "vol": 0.1808,
+   "sharpe_ex": 0.724,
+   "sharpe_raw": 0.861,
+   "mdd": 0.3372,
+   "exposure": 1.0,
+   "turnover_py": 0.0,
+   "cost_drag_py": 0.0,
+   "psr0_ex": 0.988
+  },
+  "ew_univ": {
+   "start": "2017-01-03",
+   "end": "2026-11-02",
+   "days": 2472,
+   "total_return": 2.2007,
+   "cagr": 0.1259,
+   "vol": 0.1861,
+   "sharpe_ex": 0.598,
+   "sharpe_raw": 0.731,
+   "mdd": 0.3966,
+   "exposure": 1.0,
+   "turnover_py": 0.73,
+   "cost_drag_py": 0.00073,
+   "psr0_ex": 0.968
+  }
+ },
+ "FULL": {
+  "xbrl_growth": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 4.9865,
+   "cagr": 0.0998,
+   "vol": 0.1904,
+   "sharpe_ex": 0.522,
+   "sharpe_raw": 0.595,
+   "mdd": 0.3982,
+   "exposure": 0.858,
+   "turnover_py": 2.73,
+   "cost_drag_py": 0.00273,
+   "psr0_ex": 0.988
+  },
+  "xbrl_margin": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 10.2983,
+   "cagr": 0.1376,
+   "vol": 0.1671,
+   "sharpe_ex": 0.771,
+   "sharpe_raw": 0.856,
+   "mdd": 0.327,
+   "exposure": 0.911,
+   "turnover_py": 1.12,
+   "cost_drag_py": 0.00112,
+   "psr0_ex": 1.0
+  },
+  "xbrl_margin_chg": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 9.0654,
+   "cagr": 0.1306,
+   "vol": 0.1759,
+   "sharpe_ex": 0.707,
+   "sharpe_raw": 0.787,
+   "mdd": 0.4047,
+   "exposure": 0.845,
+   "turnover_py": 2.73,
+   "cost_drag_py": 0.00273,
+   "psr0_ex": 0.999
+  },
+  "xbrl_value": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 16.647,
+   "cagr": 0.1649,
+   "vol": 0.1926,
+   "sharpe_ex": 0.816,
+   "sharpe_raw": 0.889,
+   "mdd": 0.4663,
+   "exposure": 0.858,
+   "turnover_py": 2.51,
+   "cost_drag_py": 0.00251,
+   "psr0_ex": 1.0
+  },
+  "quality_composite": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 9.216,
+   "cagr": 0.1315,
+   "vol": 0.1767,
+   "sharpe_ex": 0.709,
+   "sharpe_raw": 0.788,
+   "mdd": 0.4038,
+   "exposure": 0.827,
+   "turnover_py": 2.77,
+   "cost_drag_py": 0.00277,
+   "psr0_ex": 0.999
+  },
+  "screener_ew": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 6.4388,
+   "cagr": 0.1126,
+   "vol": 0.155,
+   "sharpe_ex": 0.676,
+   "sharpe_raw": 0.766,
+   "mdd": 0.3673,
+   "exposure": 0.819,
+   "turnover_py": 1.48,
+   "cost_drag_py": 0.00148,
+   "psr0_ex": 0.998
+  },
+  "screener_mom": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 8.3687,
+   "cagr": 0.1263,
+   "vol": 0.1775,
+   "sharpe_ex": 0.68,
+   "sharpe_raw": 0.759,
+   "mdd": 0.3495,
+   "exposure": 0.858,
+   "turnover_py": 4.96,
+   "cost_drag_py": 0.00496,
+   "psr0_ex": 0.998
+  },
+  "screener_lowvol": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 5.7032,
+   "cagr": 0.1065,
+   "vol": 0.1364,
+   "sharpe_ex": 0.707,
+   "sharpe_raw": 0.81,
+   "mdd": 0.31,
+   "exposure": 0.858,
+   "turnover_py": 2.57,
+   "cost_drag_py": 0.00257,
+   "psr0_ex": 0.999
+  },
+  "mom_quality": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 9.2655,
+   "cagr": 0.1318,
+   "vol": 0.1721,
+   "sharpe_ex": 0.724,
+   "sharpe_raw": 0.806,
+   "mdd": 0.3792,
+   "exposure": 0.827,
+   "turnover_py": 3.88,
+   "cost_drag_py": 0.00388,
+   "psr0_ex": 0.999
+  },
+  "xbrl_growth_mkt": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 1.2976,
+   "cagr": 0.0452,
+   "vol": 0.1429,
+   "sharpe_ex": 0.283,
+   "sharpe_raw": 0.381,
+   "mdd": 0.3813,
+   "exposure": 0.726,
+   "turnover_py": 3.35,
+   "cost_drag_py": 0.00335,
+   "psr0_ex": 0.889
+  },
+  "value_momentum": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 11.2202,
+   "cagr": 0.1424,
+   "vol": 0.1656,
+   "sharpe_ex": 0.802,
+   "sharpe_raw": 0.887,
+   "mdd": 0.3867,
+   "exposure": 0.858,
+   "turnover_py": 4.97,
+   "cost_drag_py": 0.00497,
+   "psr0_ex": 1.0
+  },
+  "screener_trend_breadth": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 4.6333,
+   "cagr": 0.0963,
+   "vol": 0.1392,
+   "sharpe_ex": 0.629,
+   "sharpe_raw": 0.73,
+   "mdd": 0.3313,
+   "exposure": 0.785,
+   "turnover_py": 4.04,
+   "cost_drag_py": 0.00404,
+   "psr0_ex": 0.996
+  },
+  "spy_bh": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 6.2177,
+   "cagr": 0.1108,
+   "vol": 0.1969,
+   "sharpe_ex": 0.561,
+   "sharpe_raw": 0.632,
+   "mdd": 0.5187,
+   "exposure": 1.0,
+   "turnover_py": 0.05,
+   "cost_drag_py": 5e-05,
+   "psr0_ex": 0.992
+  },
+  "ew_univ": {
+   "start": "2008-01-02",
+   "end": "2026-11-02",
+   "days": 4739,
+   "total_return": 6.6648,
+   "cagr": 0.1144,
+   "vol": 0.214,
+   "sharpe_ex": 0.548,
+   "sharpe_raw": 0.613,
+   "mdd": 0.562,
+   "exposure": 1.0,
+   "turnover_py": 0.77,
+   "cost_drag_py": 0.00077,
+   "psr0_ex": 0.991
+  }
+ },
+ "concentration": {
+  "xbrl_growth": {
+   "top10": [
+    [
+     "MU",
+     0.0867
+    ],
+    [
+     "WDC",
+     0.0461
+    ],
+    [
+     "MPC",
+     0.0431
+    ],
+    [
+     "NVDA",
+     0.0403
+    ],
+    [
+     "ADBE",
+     0.0367
+    ],
+    [
+     "FTNT",
+     0.0358
+    ],
+    [
+     "CRM",
+     0.0321
+    ],
+    [
+     "AMD",
+     0.0311
+    ],
+    [
+     "ALGN",
+     0.031
+    ],
+    [
+     "NFLX",
+     0.0299
+    ]
+   ],
+   "sum_top10": 0.4127,
+   "sum_all": 1.387
+  },
+  "xbrl_margin": {
+   "top10": [
+    [
+     "LLY",
+     0.0669
+    ],
+    [
+     "FTNT",
+     0.058
+    ],
+    [
+     "CDNS",
+     0.0539
+    ],
+    [
+     "VRTX",
+     0.0498
+    ],
+    [
+     "SNPS",
+     0.0455
+    ],
+    [
+     "PLTR",
+     0.0402
+    ],
+    [
+     "EXPE",
+     0.0396
+    ],
+    [
+     "AJG",
+     0.0395
+    ],
+    [
+     "MSCI",
+     0.0385
+    ],
+    [
+     "OXY",
+     0.0373
+    ]
+   ],
+   "sum_top10": 0.4693,
+   "sum_all": 1.4536
+  },
+  "xbrl_margin_chg": {
+   "top10": [
+    [
+     "MU",
+     0.0935
+    ],
+    [
+     "MRNA",
+     0.0649
+    ],
+    [
+     "AMD",
+     0.0648
+    ],
+    [
+     "STX",
+     0.0614
+    ],
+    [
+     "DVN",
+     0.0466
+    ],
+    [
+     "WDC",
+     0.0415
+    ],
+    [
+     "NRG",
+     0.0403
+    ],
+    [
+     "NVDA",
+     0.0358
+    ],
+    [
+     "CAT",
+     0.0334
+    ],
+    [
+     "HAL",
+     0.0322
+    ]
+   ],
+   "sum_top10": 0.5145,
+   "sum_all": 1.7685
+  },
+  "xbrl_value": {
+   "top10": [
+    [
+     "KLAC",
+     0.0804
+    ],
+    [
+     "NVDA",
+     0.0651
+    ],
+    [
+     "LRCX",
+     0.0616
+    ],
+    [
+     "UAL",
+     0.0493
+    ],
+    [
+     "AVGO",
+     0.0479
+    ],
+    [
+     "GM",
+     0.0415
+    ],
+    [
+     "MPC",
+     0.0411
+    ],
+    [
+     "ORLY",
+     0.0361
+    ],
+    [
+     "VLO",
+     0.0337
+    ],
+    [
+     "CMG",
+     0.0334
+    ]
+   ],
+   "sum_top10": 0.4901,
+   "sum_all": 1.8878
+  },
+  "quality_composite": {
+   "top10": [
+    [
+     "NVDA",
+     0.0787
+    ],
+    [
+     "MU",
+     0.0628
+    ],
+    [
+     "KLAC",
+     0.0607
+    ],
+    [
+     "DHI",
+     0.06
+    ],
+    [
+     "AVGO",
+     0.0468
+    ],
+    [
+     "WDC",
+     0.0441
+    ],
+    [
+     "MPC",
+     0.0434
+    ],
+    [
+     "RCL",
+     0.0424
+    ],
+    [
+     "LRCX",
+     0.0407
+    ],
+    [
+     "TPR",
+     0.0407
+    ]
+   ],
+   "sum_top10": 0.5204,
+   "sum_all": 1.8558
+  },
+  "screener_ew": {
+   "top10": [
+    [
+     "NVDA",
+     0.0242
+    ],
+    [
+     "MU",
+     0.0166
+    ],
+    [
+     "AMD",
+     0.0166
+    ],
+    [
+     "AMAT",
+     0.0163
+    ],
+    [
+     "PWR",
+     0.016
+    ],
+    [
+     "HWM",
+     0.0151
+    ],
+    [
+     "LLY",
+     0.0149
+    ],
+    [
+     "CTAS",
+     0.0147
+    ],
+    [
+     "FTNT",
+     0.0144
+    ],
+    [
+     "NFLX",
+     0.0142
+    ]
+   ],
+   "sum_top10": 0.1629,
+   "sum_all": 1.4404
+  },
+  "screener_mom": {
+   "top10": [
+    [
+     "NVDA",
+     0.0517
+    ],
+    [
+     "MU",
+     0.0479
+    ],
+    [
+     "AMD",
+     0.043
+    ],
+    [
+     "AMAT",
+     0.0404
+    ],
+    [
+     "HWM",
+     0.0404
+    ],
+    [
+     "NFLX",
+     0.0394
+    ],
+    [
+     "WDC",
+     0.0391
+    ],
+    [
+     "KLAC",
+     0.0382
+    ],
+    [
+     "PWR",
+     0.034
+    ],
+    [
+     "SNPS",
+     0.0307
+    ]
+   ],
+   "sum_top10": 0.4048,
+   "sum_all": 1.629
+  },
+  "screener_lowvol": {
+   "top10": [
+    [
+     "COST",
+     0.0387
+    ],
+    [
+     "CTAS",
+     0.0318
+    ],
+    [
+     "RSG",
+     0.0293
+    ],
+    [
+     "JNJ",
+     0.0271
+    ],
+    [
+     "WMT",
+     0.027
+    ],
+    [
+     "TMO",
+     0.0251
+    ],
+    [
+     "WM",
+     0.0247
+    ],
+    [
+     "DHR",
+     0.0243
+    ],
+    [
+     "ZTS",
+     0.0242
+    ],
+    [
+     "TJX",
+     0.021
+    ]
+   ],
+   "sum_top10": 0.2731,
+   "sum_all": 1.1763
+  },
+  "mom_quality": {
+   "top10": [
+    [
+     "NVDA",
+     0.0831
+    ],
+    [
+     "MU",
+     0.0626
+    ],
+    [
+     "KLAC",
+     0.061
+    ],
+    [
+     "AVGO",
+     0.0546
+    ],
+    [
+     "LRCX",
+     0.0537
+    ],
+    [
+     "AMD",
+     0.0459
+    ],
+    [
+     "CAT",
+     0.0447
+    ],
+    [
+     "WDC",
+     0.0441
+    ],
+    [
+     "CTAS",
+     0.0423
+    ],
+    [
+     "DHI",
+     0.0414
+    ]
+   ],
+   "sum_top10": 0.5336,
+   "sum_all": 1.7823
+  },
+  "xbrl_growth_mkt": {
+   "top10": [
+    [
+     "MU",
+     0.0654
+    ],
+    [
+     "ALGN",
+     0.0273
+    ],
+    [
+     "FTNT",
+     0.0273
+    ],
+    [
+     "ADBE",
+     0.0263
+    ],
+    [
+     "CRM",
+     0.025
+    ],
+    [
+     "MPC",
+     0.0244
+    ],
+    [
+     "WDC",
+     0.0243
+    ],
+    [
+     "TPR",
+     0.0236
+    ],
+    [
+     "NVDA",
+     0.0217
+    ],
+    [
+     "AMD",
+     0.0208
+    ]
+   ],
+   "sum_top10": 0.286,
+   "sum_all": 0.4469
+  },
+  "value_momentum": {
+   "top10": [
+    [
+     "KLAC",
+     0.0732
+    ],
+    [
+     "LRCX",
+     0.0597
+    ],
+    [
+     "NVDA",
+     0.0559
+    ],
+    [
+     "AVGO",
+     0.0503
+    ],
+    [
+     "MU",
+     0.0486
+    ],
+    [
+     "CTAS",
+     0.0404
+    ],
+    [
+     "MPC",
+     0.0349
+    ],
+    [
+     "CMG",
+     0.0316
+    ],
+    [
+     "NUE",
+     0.0288
+    ],
+    [
+     "FAST",
+     0.0261
+    ]
+   ],
+   "sum_top10": 0.4494,
+   "sum_all": 1.6188
+  },
+  "screener_trend_breadth": {
+   "top10": [
+    [
+     "NVDA",
+     0.0373
+    ],
+    [
+     "NFLX",
+     0.0302
+    ],
+    [
+     "ADBE",
+     0.0257
+    ],
+    [
+     "AMD",
+     0.0252
+    ],
+    [
+     "AAPL",
+     0.0247
+    ],
+    [
+     "AMAT",
+     0.0241
+    ],
+    [
+     "MU",
+     0.0228
+    ],
+    [
+     "HWM",
+     0.0218
+    ],
+    [
+     "LLY",
+     0.0212
+    ],
+    [
+     "MSFT",
+     0.0178
+    ]
+   ],
+   "sum_top10": 0.2508,
+   "sum_all": 1.2545
+  }
+ }
+}

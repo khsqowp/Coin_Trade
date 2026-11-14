@@ -1,0 +1,100 @@
+{
+  "run_id": "GEN04-20261106T101019-73296",
+  "prereg_sha256": "29da9a81922ceccb6c432bec87b1b6e932c60bd5b9d70db6dad1664f81cd25b7",
+  "addendum_sha256": "f05ea8939a587000c2d87694deb6bed77883a4c2c2fbcf482b1958b3a3341a23",
+  "runner_sha256": "45a3b6de9b03a706914691a143034a6d4caf8102d5062ea8673d2041b84a603e",
+  "gen01_runner_sha256": "0801a95324cf598a91483ff54ef70aa72a530a78bc6ba41fb41680972268874d",
+  "gen03_runner_sha256": "2be8b342e154952d2536308311db38eaf875f5267a9fce64dc24791c6161e3cc",
+  "python": "3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "started_utc": "2026-11-06T10:10:19.407644+00:00",
+  "data_root": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/data_mirror",
+  "attempts_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_04/attempts_GEN04-20261106T101019-73296.jsonl",
+  "planned_attempts": 4,
+  "status": "FINISHED",
+  "evidence_status": "EXPLORATORY_ONLY_HISTORIC_WINDOWS_AND_TRIALS_UNRESOLVED",
+  "markets": {
+    "US": {
+      "sessions": 8498,
+      "symbols": 688,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2001-01-04",
+          "end": "2016-12-30",
+          "bars": 4023,
+          "cagr": 0.05216389353290585,
+          "sharpe": 0.35786297597176736,
+          "mdd": -0.5518947580534723,
+          "total_return": 1.2518819306916913,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 192
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2017-01-04",
+          "end": "2026-11-02",
+          "bars": 2471,
+          "cagr": 0.14838340171826858,
+          "sharpe": 0.8561282409639144,
+          "mdd": -0.337172572108114,
+          "total_return": 2.883161939283836,
+          "annual_turnover": 0.0,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 119
+        }
+      },
+      "data_note": "PIT members with local prices only; missing price history remains an optimistic coverage bias; 688 tickers",
+      "input_snapshot": {
+        "sha256": "f71e1d3a3bd5e2a90e1e8cdf317005eabb4fd3e1e89d1c5cd9ccc53a37688e74",
+        "files": 1378,
+        "scope": "files actually used plus universe/calendar inputs"
+      }
+    },
+    "KR": {
+      "sessions": 3811,
+      "symbols": 3233,
+      "benchmark": {
+        "IS": {
+          "status": "OK",
+          "start": "2012-06-04",
+          "end": "2019-12-30",
+          "bars": 1863,
+          "cagr": 0.001277952174083774,
+          "sharpe": 0.09622422726988564,
+          "mdd": -0.38247250296357127,
+          "total_return": 0.00948639946169294,
+          "annual_turnover": 7.828989795715838,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 91
+        },
+        "LATER_CONTAMINATED": {
+          "status": "OK",
+          "start": "2020-01-03",
+          "end": "2026-11-03",
+          "bars": 1676,
+          "cagr": 0.019912106878897218,
+          "sharpe": 0.21241463000305247,
+          "mdd": -0.4846742469279752,
+          "total_return": 0.14011606214900585,
+          "annual_turnover": 8.143890409746117,
+          "mean_exposure": 1.0,
+          "monthly_rebalance_decisions": 83
+        }
+      },
+      "data_note": "KR KODEX file absent; 005930 supplies calendar only; daily equal-weight eligible-name returns supply regime series; a separate monthly rebalanced equal-weight eligible-name portfolio is the comparison benchmark; exact A2 universe unresolved; exploratory only",
+      "input_snapshot": {
+        "sha256": "e805347807c4ce4abb4ca0949654c7d544120b971bd35976ca7e50bae9ab151d",
+        "files": 3234,
+        "scope": "files actually used plus universe/calendar inputs"
+      }
+    }
+  },
+  "finished_utc": "2026-11-06T10:11:26.835602+00:00",
+  "attempt_events_sha256": "23b1c91c8b272e6b9443274a69b2266a7b5c0f58c66ca45648b06507753f6156",
+  "attempt_events": 8,
+  "curve_file": "/Users/user/Desktop/CODE/Ochestration/trading/docs/research/kr_us_loop_v1/generation_04/equity_curves_GEN04-20261106T101019-73296.csv.gz",
+  "curve_file_sha256": "863546d1adab5c2abe4265df7646a762841180d3fb4cbaa0ff1c139fbe241602"
+}

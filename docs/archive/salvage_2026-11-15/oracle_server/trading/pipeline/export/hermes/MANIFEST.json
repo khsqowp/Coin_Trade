@@ -1,0 +1,41 @@
+{
+ "generated_at_utc": "2026-11-13T13:07:52Z",
+ "files": {
+  "regime_latest.json": {
+   "bytes": 2579,
+   "sha256_16": "54d4126fa454434b"
+  },
+  "forward_status.json": {
+   "bytes": 4079,
+   "sha256_16": "fbc8fc420edbe253"
+  },
+  "budget.json": {
+   "bytes": 758,
+   "sha256_16": "f7a4d0566bacec49"
+  },
+  "status.json": {
+   "bytes": 1107,
+   "sha256_16": "49b0825793671840"
+  },
+  "watch_events_summary.json": {
+   "bytes": 5666,
+   "sha256_16": "de7647b3eea45ee4"
+  },
+  "research_summary.md": {
+   "bytes": 24568,
+   "sha256_16": "b9d6b5564a667f47"
+  },
+  "cost_assumptions.md": {
+   "bytes": 1023,
+   "sha256_16": "97f1da407bc88a51"
+  },
+  "glossary.md": {
+   "bytes": 1277,
+   "sha256_16": "6c20dbdaa7bb68a8"
+  },
+  "README.txt": {
+   "bytes": 432,
+   "sha256_16": "df404f1991ae7728"
+  }
+ }
+}

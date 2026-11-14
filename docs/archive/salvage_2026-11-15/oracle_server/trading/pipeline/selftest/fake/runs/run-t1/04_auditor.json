@@ -1,0 +1,1 @@
+{"output": {"verdict": "PASS", "findings": [], "stats_assessment": "ok", "confidence": 0.8, "rationale": "ok", "checks": {"lookahead_bias": "clean", "data_leakage": "clean", "overfitting": "clean", "costs_slippage": "clean", "sample_size": "clean"}}}

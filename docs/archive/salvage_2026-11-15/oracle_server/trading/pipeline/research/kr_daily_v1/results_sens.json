@@ -1,0 +1,1986 @@
+{
+ "slip_x2": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0791,
+    "cagr": -0.0111,
+    "sharpe": -0.084,
+    "vol": 0.0872,
+    "mdd": 0.2589,
+    "psr0": 0.409,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.716,
+    "cagr": 0.218,
+    "sharpe": 0.853,
+    "vol": 0.2753,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.422,
+    "cagr": 0.0915,
+    "sharpe": 0.537,
+    "vol": 0.1998,
+    "mdd": 0.4192,
+    "psr0": 0.979,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0018
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2738,
+    "cagr": 0.0333,
+    "sharpe": 0.41,
+    "vol": 0.0895,
+    "mdd": 0.13,
+    "psr0": 0.867,
+    "time_in_market": 0.549
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7695,
+    "cagr": 0.1654,
+    "sharpe": 0.687,
+    "vol": 0.2794,
+    "mdd": 0.4192,
+    "psr0": 0.963,
+    "time_in_market": 0.71
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.5279,
+    "cagr": 0.0939,
+    "sharpe": 0.543,
+    "vol": 0.203,
+    "mdd": 0.4192,
+    "psr0": 0.98,
+    "time_in_market": 0.625
+   },
+   "cost_drag_per_yr": 0.0015
+  },
+  "T3_IDX_VOLTGT15": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3367,
+    "cagr": 0.04,
+    "sharpe": 0.383,
+    "vol": 0.1218,
+    "mdd": 0.2239,
+    "psr0": 0.85,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.2524,
+    "cagr": 0.1298,
+    "sharpe": 0.806,
+    "vol": 0.1693,
+    "mdd": 0.3156,
+    "psr0": 0.98,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.0108,
+    "cagr": 0.0816,
+    "sharpe": 0.61,
+    "vol": 0.1463,
+    "mdd": 0.3156,
+    "psr0": 0.988,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0017
+  },
+  "T4_IDX_RSI2": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0381,
+    "cagr": -0.0052,
+    "sharpe": -0.106,
+    "vol": 0.0413,
+    "mdd": 0.0859,
+    "psr0": 0.386,
+    "time_in_market": 0.107
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 0.1604,
+    "cagr": 0.0226,
+    "sharpe": 0.217,
+    "vol": 0.158,
+    "mdd": 0.2303,
+    "psr0": 0.722,
+    "time_in_market": 0.105
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.1163,
+    "cagr": 0.0079,
+    "sharpe": 0.124,
+    "vol": 0.1128,
+    "mdd": 0.2303,
+    "psr0": 0.685,
+    "time_in_market": 0.106
+   },
+   "cost_drag_per_yr": 0.0098
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.1896,
+    "cagr": 0.0238,
+    "sharpe": 0.255,
+    "vol": 0.1209,
+    "mdd": 0.2832,
+    "psr0": 0.755,
+    "time_in_market": 0.934
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.8495,
+    "cagr": 0.1704,
+    "sharpe": 0.715,
+    "vol": 0.2716,
+    "mdd": 0.3775,
+    "psr0": 0.967,
+    "time_in_market": 0.914
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.3899,
+    "cagr": 0.0908,
+    "sharpe": 0.524,
+    "vol": 0.2065,
+    "mdd": 0.3775,
+    "psr0": 0.975,
+    "time_in_market": 0.925
+   },
+   "cost_drag_per_yr": 0.0221
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0226,
+    "cagr": 0.003,
+    "sharpe": 0.078,
+    "vol": 0.0878,
+    "mdd": 0.1843,
+    "psr0": 0.584,
+    "time_in_market": 0.517
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.4713,
+    "cagr": 0.1456,
+    "sharpe": 0.655,
+    "vol": 0.2586,
+    "mdd": 0.3915,
+    "psr0": 0.954,
+    "time_in_market": 0.645
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.5273,
+    "cagr": 0.0682,
+    "sharpe": 0.444,
+    "vol": 0.1891,
+    "mdd": 0.3915,
+    "psr0": 0.952,
+    "time_in_market": 0.578
+   },
+   "cost_drag_per_yr": 0.0188
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3451,
+    "cagr": -0.0556,
+    "sharpe": -0.228,
+    "vol": 0.1798,
+    "mdd": 0.4097,
+    "psr0": 0.267,
+    "time_in_market": 0.947
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7807,
+    "cagr": 0.1661,
+    "sharpe": 0.604,
+    "vol": 0.3621,
+    "mdd": 0.4959,
+    "psr0": 0.942,
+    "time_in_market": 0.962
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.8212,
+    "cagr": 0.0436,
+    "sharpe": 0.292,
+    "vol": 0.2814,
+    "mdd": 0.6359,
+    "psr0": 0.864,
+    "time_in_market": 0.954
+   },
+   "cost_drag_per_yr": 0.0119
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3574,
+    "cagr": -0.058,
+    "sharpe": -0.378,
+    "vol": 0.1342,
+    "mdd": 0.4163,
+    "psr0": 0.152,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.0486,
+    "cagr": 0.1823,
+    "sharpe": 0.678,
+    "vol": 0.3244,
+    "mdd": 0.4951,
+    "psr0": 0.961,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.959,
+    "cagr": 0.049,
+    "sharpe": 0.318,
+    "vol": 0.2437,
+    "mdd": 0.4951,
+    "psr0": 0.885,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0117
+  },
+  "B1_BH_069500": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3581,
+    "cagr": 0.0423,
+    "sharpe": 0.387,
+    "vol": 0.1282,
+    "mdd": 0.2306,
+    "psr0": 0.853,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.4438,
+    "cagr": 0.2042,
+    "sharpe": 0.758,
+    "vol": 0.3073,
+    "mdd": 0.4192,
+    "psr0": 0.976,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.6771,
+    "cagr": 0.116,
+    "sharpe": 0.59,
+    "vol": 0.2311,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0001
+  },
+  "B2_EQW_SECTORS": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0169,
+    "cagr": 0.0023,
+    "sharpe": 0.085,
+    "vol": 0.1371,
+    "mdd": 0.2755,
+    "psr0": 0.591,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5548,
+    "cagr": 0.1514,
+    "sharpe": 0.676,
+    "vol": 0.2584,
+    "mdd": 0.4215,
+    "psr0": 0.957,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.598,
+    "cagr": 0.0703,
+    "sharpe": 0.436,
+    "vol": 0.2038,
+    "mdd": 0.5365,
+    "psr0": 0.947,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.003
+  },
+  "B3_EQW_STOCKS10": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0046,
+    "cagr": -0.0006,
+    "sharpe": 0.076,
+    "vol": 0.1601,
+    "mdd": 0.3279,
+    "psr0": 0.582,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7019,
+    "cagr": 0.1611,
+    "sharpe": 0.669,
+    "vol": 0.2833,
+    "mdd": 0.4447,
+    "psr0": 0.957,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6896,
+    "cagr": 0.0729,
+    "sharpe": 0.424,
+    "vol": 0.227,
+    "mdd": 0.5226,
+    "psr0": 0.944,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0032
+  }
+ },
+ "slip_x3": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.086,
+    "cagr": -0.0121,
+    "sharpe": -0.096,
+    "vol": 0.0872,
+    "mdd": 0.2627,
+    "psr0": 0.397,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.706,
+    "cagr": 0.2176,
+    "sharpe": 0.852,
+    "vol": 0.2753,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.3873,
+    "cagr": 0.0907,
+    "sharpe": 0.534,
+    "vol": 0.1999,
+    "mdd": 0.4192,
+    "psr0": 0.979,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0026
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2681,
+    "cagr": 0.0326,
+    "sharpe": 0.404,
+    "vol": 0.0895,
+    "mdd": 0.1323,
+    "psr0": 0.863,
+    "time_in_market": 0.549
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7629,
+    "cagr": 0.165,
+    "sharpe": 0.685,
+    "vol": 0.2794,
+    "mdd": 0.4192,
+    "psr0": 0.963,
+    "time_in_market": 0.71
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.5036,
+    "cagr": 0.0933,
+    "sharpe": 0.541,
+    "vol": 0.203,
+    "mdd": 0.4192,
+    "psr0": 0.98,
+    "time_in_market": 0.625
+   },
+   "cost_drag_per_yr": 0.002
+  },
+  "T3_IDX_VOLTGT15": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3347,
+    "cagr": 0.0398,
+    "sharpe": 0.381,
+    "vol": 0.1218,
+    "mdd": 0.2242,
+    "psr0": 0.849,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.2421,
+    "cagr": 0.129,
+    "sharpe": 0.801,
+    "vol": 0.1693,
+    "mdd": 0.3161,
+    "psr0": 0.98,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.9924,
+    "cagr": 0.0811,
+    "sharpe": 0.607,
+    "vol": 0.1463,
+    "mdd": 0.3161,
+    "psr0": 0.988,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0023
+  },
+  "T4_IDX_RSI2": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0631,
+    "cagr": -0.0088,
+    "sharpe": -0.193,
+    "vol": 0.0414,
+    "mdd": 0.0874,
+    "psr0": 0.299,
+    "time_in_market": 0.107
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 0.1289,
+    "cagr": 0.0184,
+    "sharpe": 0.191,
+    "vol": 0.158,
+    "mdd": 0.2307,
+    "psr0": 0.697,
+    "time_in_market": 0.105
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.0576,
+    "cagr": 0.004,
+    "sharpe": 0.09,
+    "vol": 0.1128,
+    "mdd": 0.2307,
+    "psr0": 0.635,
+    "time_in_market": 0.106
+   },
+   "cost_drag_per_yr": 0.0134
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.1323,
+    "cagr": 0.0169,
+    "sharpe": 0.199,
+    "vol": 0.1213,
+    "mdd": 0.2917,
+    "psr0": 0.706,
+    "time_in_market": 0.934
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.6897,
+    "cagr": 0.1603,
+    "sharpe": 0.683,
+    "vol": 0.2719,
+    "mdd": 0.3787,
+    "psr0": 0.961,
+    "time_in_market": 0.914
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.0456,
+    "cagr": 0.0825,
+    "sharpe": 0.487,
+    "vol": 0.2068,
+    "mdd": 0.3787,
+    "psr0": 0.966,
+    "time_in_market": 0.925
+   },
+   "cost_drag_per_yr": 0.0309
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0351,
+    "cagr": -0.0048,
+    "sharpe": -0.011,
+    "vol": 0.0882,
+    "mdd": 0.1904,
+    "psr0": 0.488,
+    "time_in_market": 0.517
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.3491,
+    "cagr": 0.1369,
+    "sharpe": 0.625,
+    "vol": 0.2587,
+    "mdd": 0.3916,
+    "psr0": 0.947,
+    "time_in_market": 0.645
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.2666,
+    "cagr": 0.06,
+    "sharpe": 0.402,
+    "vol": 0.1892,
+    "mdd": 0.3916,
+    "psr0": 0.934,
+    "time_in_market": 0.578
+   },
+   "cost_drag_per_yr": 0.0262
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3688,
+    "cagr": -0.0603,
+    "sharpe": -0.256,
+    "vol": 0.18,
+    "mdd": 0.4271,
+    "psr0": 0.244,
+    "time_in_market": 0.947
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7022,
+    "cagr": 0.1611,
+    "sharpe": 0.592,
+    "vol": 0.3623,
+    "mdd": 0.4957,
+    "psr0": 0.938,
+    "time_in_market": 0.962
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.7056,
+    "cagr": 0.0387,
+    "sharpe": 0.275,
+    "vol": 0.2815,
+    "mdd": 0.6477,
+    "psr0": 0.85,
+    "time_in_market": 0.954
+   },
+   "cost_drag_per_yr": 0.0152
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3798,
+    "cagr": -0.0625,
+    "sharpe": -0.414,
+    "vol": 0.1344,
+    "mdd": 0.4293,
+    "psr0": 0.131,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.98,
+    "cagr": 0.1783,
+    "sharpe": 0.667,
+    "vol": 0.3245,
+    "mdd": 0.4953,
+    "psr0": 0.959,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.8481,
+    "cagr": 0.0447,
+    "sharpe": 0.3,
+    "vol": 0.2437,
+    "mdd": 0.4953,
+    "psr0": 0.871,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0149
+  },
+  "B1_BH_069500": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3577,
+    "cagr": 0.0422,
+    "sharpe": 0.387,
+    "vol": 0.1282,
+    "mdd": 0.2306,
+    "psr0": 0.853,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.4438,
+    "cagr": 0.2042,
+    "sharpe": 0.758,
+    "vol": 0.3073,
+    "mdd": 0.4192,
+    "psr0": 0.976,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.6757,
+    "cagr": 0.116,
+    "sharpe": 0.59,
+    "vol": 0.2311,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0001
+  },
+  "B2_EQW_SECTORS": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0097,
+    "cagr": 0.0013,
+    "sharpe": 0.078,
+    "vol": 0.1371,
+    "mdd": 0.2763,
+    "psr0": 0.584,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5363,
+    "cagr": 0.1501,
+    "sharpe": 0.671,
+    "vol": 0.2584,
+    "mdd": 0.4216,
+    "psr0": 0.956,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.561,
+    "cagr": 0.0692,
+    "sharpe": 0.431,
+    "vol": 0.2038,
+    "mdd": 0.5372,
+    "psr0": 0.945,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0044
+  },
+  "B3_EQW_STOCKS10": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0094,
+    "cagr": -0.0013,
+    "sharpe": 0.072,
+    "vol": 0.1601,
+    "mdd": 0.3285,
+    "psr0": 0.578,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.6874,
+    "cagr": 0.1602,
+    "sharpe": 0.666,
+    "vol": 0.2833,
+    "mdd": 0.4448,
+    "psr0": 0.957,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.662,
+    "cagr": 0.0722,
+    "sharpe": 0.421,
+    "vol": 0.227,
+    "mdd": 0.5232,
+    "psr0": 0.942,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0042
+  }
+ },
+ "stock_tax_0.30": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0722,
+    "cagr": -0.0101,
+    "sharpe": -0.073,
+    "vol": 0.0871,
+    "mdd": 0.2551,
+    "psr0": 0.422,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.726,
+    "cagr": 0.2185,
+    "sharpe": 0.855,
+    "vol": 0.2753,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.4571,
+    "cagr": 0.0923,
+    "sharpe": 0.541,
+    "vol": 0.1998,
+    "mdd": 0.4192,
+    "psr0": 0.98,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0011
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2796,
+    "cagr": 0.0339,
+    "sharpe": 0.417,
+    "vol": 0.0895,
+    "mdd": 0.1294,
+    "psr0": 0.871,
+    "time_in_market": 0.549
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7762,
+    "cagr": 0.1658,
+    "sharpe": 0.688,
+    "vol": 0.2794,
+    "mdd": 0.4192,
+    "psr0": 0.964,
+    "time_in_market": 0.71
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.5523,
+    "cagr": 0.0944,
+    "sharpe": 0.545,
+    "vol": 0.203,
+    "mdd": 0.4192,
+    "psr0": 0.981,
+    "time_in_market": 0.625
+   },
+   "cost_drag_per_yr": 0.0009
+  },
+  "T3_IDX_VOLTGT15": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3388,
+    "cagr": 0.0402,
+    "sharpe": 0.385,
+    "vol": 0.1218,
+    "mdd": 0.2235,
+    "psr0": 0.852,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.2628,
+    "cagr": 0.1306,
+    "sharpe": 0.81,
+    "vol": 0.1693,
+    "mdd": 0.3151,
+    "psr0": 0.981,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.0293,
+    "cagr": 0.0821,
+    "sharpe": 0.613,
+    "vol": 0.1463,
+    "mdd": 0.3151,
+    "psr0": 0.989,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.001
+  },
+  "T4_IDX_RSI2": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0123,
+    "cagr": -0.0017,
+    "sharpe": -0.02,
+    "vol": 0.0413,
+    "mdd": 0.0848,
+    "psr0": 0.478,
+    "time_in_market": 0.107
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 0.1929,
+    "cagr": 0.0269,
+    "sharpe": 0.243,
+    "vol": 0.1581,
+    "mdd": 0.2298,
+    "psr0": 0.746,
+    "time_in_market": 0.105
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.1782,
+    "cagr": 0.0117,
+    "sharpe": 0.158,
+    "vol": 0.1128,
+    "mdd": 0.2298,
+    "psr0": 0.732,
+    "time_in_market": 0.106
+   },
+   "cost_drag_per_yr": 0.0061
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2499,
+    "cagr": 0.0306,
+    "sharpe": 0.31,
+    "vol": 0.1207,
+    "mdd": 0.2747,
+    "psr0": 0.8,
+    "time_in_market": 0.934
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.0135,
+    "cagr": 0.1803,
+    "sharpe": 0.746,
+    "vol": 0.2716,
+    "mdd": 0.3771,
+    "psr0": 0.973,
+    "time_in_market": 0.914
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.7665,
+    "cagr": 0.099,
+    "sharpe": 0.561,
+    "vol": 0.2064,
+    "mdd": 0.3771,
+    "psr0": 0.982,
+    "time_in_market": 0.925
+   },
+   "cost_drag_per_yr": 0.0122
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0838,
+    "cagr": 0.0109,
+    "sharpe": 0.168,
+    "vol": 0.0874,
+    "mdd": 0.1782,
+    "psr0": 0.676,
+    "time_in_market": 0.517
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5996,
+    "cagr": 0.1544,
+    "sharpe": 0.685,
+    "vol": 0.2586,
+    "mdd": 0.3914,
+    "psr0": 0.961,
+    "time_in_market": 0.645
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.8175,
+    "cagr": 0.0765,
+    "sharpe": 0.485,
+    "vol": 0.189,
+    "mdd": 0.3914,
+    "psr0": 0.965,
+    "time_in_market": 0.578
+   },
+   "cost_drag_per_yr": 0.0104
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3325,
+    "cagr": -0.0532,
+    "sharpe": -0.214,
+    "vol": 0.1797,
+    "mdd": 0.4008,
+    "psr0": 0.28,
+    "time_in_market": 0.947
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.8206,
+    "cagr": 0.1686,
+    "sharpe": 0.61,
+    "vol": 0.362,
+    "mdd": 0.4961,
+    "psr0": 0.944,
+    "time_in_market": 0.962
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.8827,
+    "cagr": 0.0461,
+    "sharpe": 0.3,
+    "vol": 0.2813,
+    "mdd": 0.6298,
+    "psr0": 0.871,
+    "time_in_market": 0.954
+   },
+   "cost_drag_per_yr": 0.0102
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3456,
+    "cagr": -0.0557,
+    "sharpe": -0.36,
+    "vol": 0.1342,
+    "mdd": 0.4097,
+    "psr0": 0.164,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.0814,
+    "cagr": 0.1843,
+    "sharpe": 0.683,
+    "vol": 0.3243,
+    "mdd": 0.495,
+    "psr0": 0.962,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.0166,
+    "cagr": 0.0512,
+    "sharpe": 0.326,
+    "vol": 0.2436,
+    "mdd": 0.495,
+    "psr0": 0.891,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.01
+  },
+  "B1_BH_069500": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3585,
+    "cagr": 0.0423,
+    "sharpe": 0.387,
+    "vol": 0.1282,
+    "mdd": 0.2306,
+    "psr0": 0.853,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.4438,
+    "cagr": 0.2042,
+    "sharpe": 0.758,
+    "vol": 0.3073,
+    "mdd": 0.4192,
+    "psr0": 0.976,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.6785,
+    "cagr": 0.1161,
+    "sharpe": 0.59,
+    "vol": 0.2311,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0
+  },
+  "B2_EQW_SECTORS": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0242,
+    "cagr": 0.0032,
+    "sharpe": 0.092,
+    "vol": 0.1371,
+    "mdd": 0.2746,
+    "psr0": 0.599,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5734,
+    "cagr": 0.1526,
+    "sharpe": 0.68,
+    "vol": 0.2584,
+    "mdd": 0.4214,
+    "psr0": 0.958,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6358,
+    "cagr": 0.0714,
+    "sharpe": 0.441,
+    "vol": 0.2038,
+    "mdd": 0.5359,
+    "psr0": 0.949,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0016
+  },
+  "B3_EQW_STOCKS10": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0016,
+    "cagr": -0.0002,
+    "sharpe": 0.079,
+    "vol": 0.1601,
+    "mdd": 0.3275,
+    "psr0": 0.585,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7092,
+    "cagr": 0.1616,
+    "sharpe": 0.671,
+    "vol": 0.2833,
+    "mdd": 0.4447,
+    "psr0": 0.958,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.7048,
+    "cagr": 0.0734,
+    "sharpe": 0.426,
+    "vol": 0.227,
+    "mdd": 0.5224,
+    "psr0": 0.944,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0026
+  }
+ },
+ "cash_in_114260": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0449,
+    "cagr": 0.006,
+    "sharpe": 0.112,
+    "vol": 0.0879,
+    "mdd": 0.2121,
+    "psr0": 0.619,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.8348,
+    "cagr": 0.2238,
+    "sharpe": 0.869,
+    "vol": 0.2759,
+    "mdd": 0.4192,
+    "psr0": 0.988,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.007,
+    "cagr": 0.1038,
+    "sharpe": 0.593,
+    "vol": 0.2004,
+    "mdd": 0.4192,
+    "psr0": 0.988,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.003
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.4271,
+    "cagr": 0.0493,
+    "sharpe": 0.579,
+    "vol": 0.0901,
+    "mdd": 0.1342,
+    "psr0": 0.942,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.8435,
+    "cagr": 0.17,
+    "sharpe": 0.7,
+    "vol": 0.28,
+    "mdd": 0.4192,
+    "psr0": 0.966,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.0579,
+    "cagr": 0.1048,
+    "sharpe": 0.591,
+    "vol": 0.2035,
+    "mdd": 0.4192,
+    "psr0": 0.988,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0024
+  },
+  "T3_IDX_VOLTGT15": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3563,
+    "cagr": 0.0421,
+    "sharpe": 0.399,
+    "vol": 0.1217,
+    "mdd": 0.2203,
+    "psr0": 0.861,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.3433,
+    "cagr": 0.1365,
+    "sharpe": 0.834,
+    "vol": 0.1709,
+    "mdd": 0.3146,
+    "psr0": 0.983,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.1782,
+    "cagr": 0.0858,
+    "sharpe": 0.633,
+    "vol": 0.1471,
+    "mdd": 0.3146,
+    "psr0": 0.991,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0025
+  },
+  "T4_IDX_RSI2": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0552,
+    "cagr": 0.0073,
+    "sharpe": 0.185,
+    "vol": 0.0448,
+    "mdd": 0.0667,
+    "psr0": 0.691,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 0.1925,
+    "cagr": 0.0268,
+    "sharpe": 0.242,
+    "vol": 0.1604,
+    "mdd": 0.2297,
+    "psr0": 0.744,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.2584,
+    "cagr": 0.0165,
+    "sharpe": 0.198,
+    "vol": 0.1151,
+    "mdd": 0.2297,
+    "psr0": 0.783,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0156
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3047,
+    "cagr": 0.0366,
+    "sharpe": 0.359,
+    "vol": 0.1204,
+    "mdd": 0.2566,
+    "psr0": 0.835,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.0438,
+    "cagr": 0.1821,
+    "sharpe": 0.751,
+    "vol": 0.2719,
+    "mdd": 0.3771,
+    "psr0": 0.973,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.9713,
+    "cagr": 0.1031,
+    "sharpe": 0.579,
+    "vol": 0.2066,
+    "mdd": 0.3771,
+    "psr0": 0.985,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0139
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2383,
+    "cagr": 0.0293,
+    "sharpe": 0.372,
+    "vol": 0.0881,
+    "mdd": 0.1499,
+    "psr0": 0.844,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7009,
+    "cagr": 0.161,
+    "sharpe": 0.706,
+    "vol": 0.2593,
+    "mdd": 0.3914,
+    "psr0": 0.965,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.3444,
+    "cagr": 0.0897,
+    "sharpe": 0.548,
+    "vol": 0.1896,
+    "mdd": 0.3914,
+    "psr0": 0.98,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0135
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.2984,
+    "cagr": -0.0468,
+    "sharpe": -0.178,
+    "vol": 0.1791,
+    "mdd": 0.3811,
+    "psr0": 0.314,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.8413,
+    "cagr": 0.1699,
+    "sharpe": 0.613,
+    "vol": 0.362,
+    "mdd": 0.4963,
+    "psr0": 0.945,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.9935,
+    "cagr": 0.0503,
+    "sharpe": 0.314,
+    "vol": 0.2811,
+    "mdd": 0.6133,
+    "psr0": 0.882,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0092
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.2477,
+    "cagr": -0.0377,
+    "sharpe": -0.218,
+    "vol": 0.1346,
+    "mdd": 0.3633,
+    "psr0": 0.276,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.2021,
+    "cagr": 0.1911,
+    "sharpe": 0.7,
+    "vol": 0.3248,
+    "mdd": 0.495,
+    "psr0": 0.966,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.4091,
+    "cagr": 0.0646,
+    "sharpe": 0.378,
+    "vol": 0.244,
+    "mdd": 0.495,
+    "psr0": 0.923,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0105
+  }
+ },
+ "int_shares_10M_KRW": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0722,
+    "cagr": -0.0101,
+    "sharpe": -0.073,
+    "vol": 0.0871,
+    "mdd": 0.255,
+    "psr0": 0.422,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.7227,
+    "cagr": 0.2184,
+    "sharpe": 0.855,
+    "vol": 0.2752,
+    "mdd": 0.4192,
+    "psr0": 0.987,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.454,
+    "cagr": 0.0922,
+    "sharpe": 0.541,
+    "vol": 0.1998,
+    "mdd": 0.4192,
+    "psr0": 0.98,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0011
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2795,
+    "cagr": 0.0339,
+    "sharpe": 0.417,
+    "vol": 0.0894,
+    "mdd": 0.1293,
+    "psr0": 0.871,
+    "time_in_market": 0.549
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.7734,
+    "cagr": 0.1657,
+    "sharpe": 0.688,
+    "vol": 0.2792,
+    "mdd": 0.419,
+    "psr0": 0.964,
+    "time_in_market": 0.71
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.5485,
+    "cagr": 0.0943,
+    "sharpe": 0.545,
+    "vol": 0.2028,
+    "mdd": 0.419,
+    "psr0": 0.981,
+    "time_in_market": 0.625
+   },
+   "cost_drag_per_yr": 0.0009
+  },
+  "T3_IDX_VOLTGT15": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3383,
+    "cagr": 0.0402,
+    "sharpe": 0.385,
+    "vol": 0.1217,
+    "mdd": 0.2232,
+    "psr0": 0.851,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.2616,
+    "cagr": 0.1305,
+    "sharpe": 0.811,
+    "vol": 0.1689,
+    "mdd": 0.3145,
+    "psr0": 0.981,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.0267,
+    "cagr": 0.082,
+    "sharpe": 0.613,
+    "vol": 0.146,
+    "mdd": 0.3145,
+    "psr0": 0.989,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.001
+  },
+  "T4_IDX_RSI2": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.0123,
+    "cagr": -0.0017,
+    "sharpe": -0.02,
+    "vol": 0.0413,
+    "mdd": 0.0846,
+    "psr0": 0.478,
+    "time_in_market": 0.107
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 0.1931,
+    "cagr": 0.0269,
+    "sharpe": 0.244,
+    "vol": 0.1574,
+    "mdd": 0.2284,
+    "psr0": 0.747,
+    "time_in_market": 0.105
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.1784,
+    "cagr": 0.0118,
+    "sharpe": 0.158,
+    "vol": 0.1124,
+    "mdd": 0.2284,
+    "psr0": 0.733,
+    "time_in_market": 0.106
+   },
+   "cost_drag_per_yr": 0.0061
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.2494,
+    "cagr": 0.0306,
+    "sharpe": 0.31,
+    "vol": 0.1206,
+    "mdd": 0.2745,
+    "psr0": 0.8,
+    "time_in_market": 0.934
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.0136,
+    "cagr": 0.1803,
+    "sharpe": 0.747,
+    "vol": 0.2714,
+    "mdd": 0.377,
+    "psr0": 0.973,
+    "time_in_market": 0.914
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.7652,
+    "cagr": 0.0989,
+    "sharpe": 0.561,
+    "vol": 0.2063,
+    "mdd": 0.377,
+    "psr0": 0.982,
+    "time_in_market": 0.925
+   },
+   "cost_drag_per_yr": 0.0122
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0841,
+    "cagr": 0.011,
+    "sharpe": 0.169,
+    "vol": 0.0873,
+    "mdd": 0.1781,
+    "psr0": 0.677,
+    "time_in_market": 0.517
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5966,
+    "cagr": 0.1542,
+    "sharpe": 0.684,
+    "vol": 0.2583,
+    "mdd": 0.3907,
+    "psr0": 0.961,
+    "time_in_market": 0.645
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.8149,
+    "cagr": 0.0764,
+    "sharpe": 0.485,
+    "vol": 0.1888,
+    "mdd": 0.3907,
+    "psr0": 0.965,
+    "time_in_market": 0.578
+   },
+   "cost_drag_per_yr": 0.0104
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3124,
+    "cagr": -0.0494,
+    "sharpe": -0.199,
+    "vol": 0.1762,
+    "mdd": 0.3854,
+    "psr0": 0.294,
+    "time_in_market": 0.947
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.8387,
+    "cagr": 0.1697,
+    "sharpe": 0.618,
+    "vol": 0.3552,
+    "mdd": 0.4885,
+    "psr0": 0.946,
+    "time_in_market": 0.962
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.9518,
+    "cagr": 0.0487,
+    "sharpe": 0.31,
+    "vol": 0.2759,
+    "mdd": 0.6181,
+    "psr0": 0.878,
+    "time_in_market": 0.954
+   },
+   "cost_drag_per_yr": 0.0083
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.3183,
+    "cagr": -0.0505,
+    "sharpe": -0.328,
+    "vol": 0.1316,
+    "mdd": 0.3953,
+    "psr0": 0.187,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.9501,
+    "cagr": 0.1765,
+    "sharpe": 0.669,
+    "vol": 0.3186,
+    "mdd": 0.4901,
+    "psr0": 0.959,
+    "time_in_market": 0.669
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.011,
+    "cagr": 0.051,
+    "sharpe": 0.327,
+    "vol": 0.2393,
+    "mdd": 0.4901,
+    "psr0": 0.891,
+    "time_in_market": 0.601
+   },
+   "cost_drag_per_yr": 0.0081
+  },
+  "B1_BH_069500": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.358,
+    "cagr": 0.0422,
+    "sharpe": 0.387,
+    "vol": 0.1281,
+    "mdd": 0.2304,
+    "psr0": 0.853,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.4412,
+    "cagr": 0.2041,
+    "sharpe": 0.757,
+    "vol": 0.3071,
+    "mdd": 0.4191,
+    "psr0": 0.976,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 3.6732,
+    "cagr": 0.116,
+    "sharpe": 0.59,
+    "vol": 0.2309,
+    "mdd": 0.4191,
+    "psr0": 0.987,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0
+  },
+  "B2_EQW_SECTORS": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0239,
+    "cagr": 0.0032,
+    "sharpe": 0.092,
+    "vol": 0.1365,
+    "mdd": 0.2738,
+    "psr0": 0.598,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5656,
+    "cagr": 0.1521,
+    "sharpe": 0.68,
+    "vol": 0.2569,
+    "mdd": 0.4198,
+    "psr0": 0.958,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6268,
+    "cagr": 0.0711,
+    "sharpe": 0.441,
+    "vol": 0.2027,
+    "mdd": 0.5342,
+    "psr0": 0.949,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0015
+  },
+  "B3_EQW_STOCKS10": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0035,
+    "cagr": 0.0005,
+    "sharpe": 0.076,
+    "vol": 0.1466,
+    "mdd": 0.3028,
+    "psr0": 0.582,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.6472,
+    "cagr": 0.1575,
+    "sharpe": 0.692,
+    "vol": 0.2608,
+    "mdd": 0.4124,
+    "psr0": 0.962,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6565,
+    "cagr": 0.072,
+    "sharpe": 0.438,
+    "vol": 0.2087,
+    "mdd": 0.4846,
+    "psr0": 0.949,
+    "time_in_market": 1.0
+   },
+   "cost_drag_per_yr": 0.0018
+  }
+ },
+ "phase_plus5d": {
+  "T1_IDX_SMA10M": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0537,
+    "cagr": 0.0071,
+    "sharpe": 0.124,
+    "vol": 0.0891,
+    "mdd": 0.2625,
+    "psr0": 0.632,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 2.4386,
+    "cagr": 0.2039,
+    "sharpe": 0.808,
+    "vol": 0.2767,
+    "mdd": 0.4192,
+    "psr0": 0.983,
+    "time_in_market": 0.67
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.6233,
+    "cagr": 0.0959,
+    "sharpe": 0.555,
+    "vol": 0.2012,
+    "mdd": 0.4192,
+    "psr0": 0.982,
+    "time_in_market": 0.602
+   }
+  },
+  "T2_IDX_TSMOM12": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.1044,
+    "cagr": 0.0135,
+    "sharpe": 0.194,
+    "vol": 0.09,
+    "mdd": 0.1836,
+    "psr0": 0.701,
+    "time_in_market": 0.546
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5878,
+    "cagr": 0.1536,
+    "sharpe": 0.65,
+    "vol": 0.2796,
+    "mdd": 0.4192,
+    "psr0": 0.955,
+    "time_in_market": 0.71
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.8579,
+    "cagr": 0.0776,
+    "sharpe": 0.469,
+    "vol": 0.2032,
+    "mdd": 0.4192,
+    "psr0": 0.962,
+    "time_in_market": 0.624
+   }
+  },
+  "T5_SEC_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.3131,
+    "cagr": 0.0375,
+    "sharpe": 0.369,
+    "vol": 0.1192,
+    "mdd": 0.227,
+    "psr0": 0.842,
+    "time_in_market": 0.934
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.9811,
+    "cagr": 0.1784,
+    "sharpe": 0.736,
+    "vol": 0.2745,
+    "mdd": 0.4066,
+    "psr0": 0.971,
+    "time_in_market": 0.914
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 2.9145,
+    "cagr": 0.102,
+    "sharpe": 0.572,
+    "vol": 0.2078,
+    "mdd": 0.4066,
+    "psr0": 0.984,
+    "time_in_market": 0.925
+   }
+  },
+  "T6_SEC_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.1381,
+    "cagr": 0.0176,
+    "sharpe": 0.244,
+    "vol": 0.0873,
+    "mdd": 0.159,
+    "psr0": 0.746,
+    "time_in_market": 0.517
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.6234,
+    "cagr": 0.156,
+    "sharpe": 0.679,
+    "vol": 0.2651,
+    "mdd": 0.4211,
+    "psr0": 0.96,
+    "time_in_market": 0.646
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.9856,
+    "cagr": 0.081,
+    "sharpe": 0.5,
+    "vol": 0.1932,
+    "mdd": 0.4211,
+    "psr0": 0.969,
+    "time_in_market": 0.578
+   }
+  },
+  "T7_STK_MOM3": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.271,
+    "cagr": -0.0418,
+    "sharpe": -0.145,
+    "vol": 0.1816,
+    "mdd": 0.4311,
+    "psr0": 0.347,
+    "time_in_market": 0.947
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.1488,
+    "cagr": 0.1218,
+    "sharpe": 0.499,
+    "vol": 0.3589,
+    "mdd": 0.4975,
+    "psr0": 0.902,
+    "time_in_market": 0.962
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 0.5666,
+    "cagr": 0.0325,
+    "sharpe": 0.253,
+    "vol": 0.28,
+    "mdd": 0.6198,
+    "psr0": 0.83,
+    "time_in_market": 0.954
+   }
+  },
+  "T8_STK_MOM3_MF": {
+   "IS": {
+    "days": 1864,
+    "total_return": -0.2731,
+    "cagr": -0.0422,
+    "sharpe": -0.244,
+    "vol": 0.1377,
+    "mdd": 0.4421,
+    "psr0": 0.254,
+    "time_in_market": 0.54
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.9857,
+    "cagr": 0.1786,
+    "sharpe": 0.669,
+    "vol": 0.3231,
+    "mdd": 0.5013,
+    "psr0": 0.96,
+    "time_in_market": 0.67
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.1704,
+    "cagr": 0.0567,
+    "sharpe": 0.347,
+    "vol": 0.2438,
+    "mdd": 0.5013,
+    "psr0": 0.905,
+    "time_in_market": 0.602
+   }
+  },
+  "B2_EQW_SECTORS": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0299,
+    "cagr": 0.004,
+    "sharpe": 0.098,
+    "vol": 0.137,
+    "mdd": 0.2737,
+    "psr0": 0.605,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.5541,
+    "cagr": 0.1513,
+    "sharpe": 0.674,
+    "vol": 0.2594,
+    "mdd": 0.4219,
+    "psr0": 0.957,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6305,
+    "cagr": 0.0713,
+    "sharpe": 0.44,
+    "vol": 0.2044,
+    "mdd": 0.5354,
+    "psr0": 0.949,
+    "time_in_market": 1.0
+   }
+  },
+  "B3_EQW_STOCKS10": {
+   "IS": {
+    "days": 1864,
+    "total_return": 0.0165,
+    "cagr": 0.0022,
+    "sharpe": 0.094,
+    "vol": 0.1601,
+    "mdd": 0.3241,
+    "psr0": 0.601,
+    "time_in_market": 1.0
+   },
+   "OOS": {
+    "days": 1677,
+    "total_return": 1.6191,
+    "cagr": 0.1557,
+    "sharpe": 0.652,
+    "vol": 0.2837,
+    "mdd": 0.4441,
+    "psr0": 0.953,
+    "time_in_market": 1.0
+   },
+   "FULL": {
+    "days": 3541,
+    "total_return": 1.6622,
+    "cagr": 0.0722,
+    "sharpe": 0.42,
+    "vol": 0.2272,
+    "mdd": 0.5155,
+    "psr0": 0.942,
+    "time_in_market": 1.0
+   }
+  }
+ }
+}

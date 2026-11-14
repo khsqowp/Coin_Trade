@@ -1,0 +1,40 @@
+{
+ "id": "ct-funding-arb",
+ "name": "Funding-rate arbitrage (spot long + perp short, delta-neutral)",
+ "family": "carry",
+ "one_line": "Collect 8-hour funding while hedged; the owner's live strategy; backtests show fees eat the carry.",
+ "source": {
+  "repo": "khsqowp/Coin_Trade",
+  "url": "https://github.com/khsqowp/Coin_Trade",
+  "commit": "37af45ac328c8cbb232adce113642fda8485b3a2",
+  "license": "no LICENSE file in repo; owner's own repository (owner-provided reference, do not redistribute)",
+  "retrieved": "2026-10-25",
+  "paths": [
+   "README.md",
+   "docs/research/strategy_catalog.md",
+   "docs/toss_live_migration_plan.md (not read for strategy)"
+  ]
+ },
+ "markets": [
+  "Binance spot + USD-M futures"
+ ],
+ "timeframe": "8h settlement",
+ "direction": "market_neutral",
+ "status_in_source": "live in source (real funds) - out of scope here",
+ "idea": "Hold spot long and equal perp short; funding paid every 8 hours (00/08/16 UTC) is the income. Fixed ETH/XRP/DOGE; rotation among coins rejected.",
+ "rules": [],
+ "parameters": {
+  "settlements_per_day": 3
+ },
+ "rationale": "Delta-neutral carry independent of price direction.",
+ "evidence": "Ideal +5-7%/yr; implemented -25% over last 180 days in the source's reconstruction; cycle win-rate 0.8% (fees dominate). Source reports a past 480x overstatement bug in funding accounting.",
+ "limitations": [
+  "requires order placement on two venues (forbidden in this pipeline)",
+  "not a single-asset OHLCV long/flat strategy"
+ ],
+ "pipeline_fit": {
+  "single_asset_daily_long_flat": "not_applicable",
+  "notes": "Reference only. Never implement: orders are prohibited here."
+ },
+ "schema_version": 1
+}
