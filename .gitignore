@@ -16,3 +16,9 @@ logs/
 
 # Claude Code worktrees/런타임
 .claude/
+
+# Local read-only copy of shared KIS daily OHLCV cache (regenerable, not project data)
+.kis-cache-local/
+
+# Raw per-trade backtest ledgers — large, regenerable from the paired script
+docs/kr-us-equity-trader/*.json
