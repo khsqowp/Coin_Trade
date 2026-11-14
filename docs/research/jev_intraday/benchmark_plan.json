@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "title": "Jev 초단위 paper trading 신뢰성 benchmark",
+  "created_date": "2026-10-16",
+  "mode": "paper_only_no_live_orders_no_credentials",
+  "scope": {
+    "decision": "Jev를 초단위 주문 경로에 포함할 실증 근거가 있는지 비교한다.",
+    "variants": [
+      "deterministic_baseline_jev_disabled",
+      "jev_advisory_pinned_model_with_fail_closed_timeout"
+    ],
+    "markets": ["crypto_spot", "crypto_perp", "KR_equity_paper", "US_equity_paper_only_if_feed_is_actually_available"],
+    "exclusions": ["live orders", "credentials", "historical L2 reconstruction from price-only archive", "claiming model latency equals fill latency"]
+  },
+  "evidence_inventory": {
+    "nas_archive_path": "/Volumes/HDD2TB/Trade/tick-archive",
+    "reported_size_gb_approx": 158,
+    "inspection_policy": "find/du and bounded samples only; no full archive scan",
+    "user_reported_inventory": {
+      "crypto_spot_daily_jsonl_files": 43,
+      "crypto_perp_daily_jsonl_files": 43,
+      "kr_jsonl_files": 36,
+      "us_jsonl_files": 0,
+      "date_coverage_approx": "2026-09-01 through mid-October 2026",
+      "sample_schema": ["symbol", "ts", "price"]
+    },
+    "code_findings": {
+      "crypto_tick_stream": ["Binance spot/perp @trade", "Binance futures @markPrice@1s", "handler discards exchange T/E, trade q and maker-side m", "persists now_iso receive time and price", "no L2 depth subscription"],
+      "equity_tick_stream": ["KIS public KR H0STCNT0 and US HDFSCNT0 subscription implemented", "implementation is not proof of live coverage", "US archive currently has zero files according to bounded inventory", "tick record is price-centric without depth or size"],
+      "signal_connection": "Repository documentation/comment says tick signal is not yet wired into live trading decisions; verify exact current call graph before any implementation."
+    },
+    "historical_replay_limits": [
+      "Cannot exactly reconstruct order-flow imbalance, bid/ask depth imbalance, aggressor volume delta or exchange-event-to-decision latency.",
+      "Cannot establish US equity historical tick coverage from the current archive.",
+      "Can perform price-change trigger replay, event-order replay using stored timestamps, injected-delay sensitivity and paper fills under explicit spread/fee/slippage assumptions.",
+      "Historical L2 tests require future collection of snapshots/deltas, sequence numbers, bid/ask price-size, trade T/E/q/m, monotonic receive time and reconnect gap markers."
+    ]
+  },
+  "test_stages": [
+    {
+      "id": "S0_static_and_schema",
+      "purpose": "Validate pinned model, typed response schema, event key, risk-gate invariants and no-live-order configuration.",
+      "actions": ["test malformed/truncated/unknown-version responses", "test timeout and 4xx/5xx/rate-limit handling", "assert Jev worker has no broker credentials", "assert paper adapter is the only reachable order sink"]
+    },
+    {
+      "id": "S1_price_only_historical_replay",
+      "purpose": "Exercise candidate-trigger and deterministic risk logic on available archive without claiming orderflow fidelity.",
+      "actions": ["replay files incrementally, never full-scan for inventory", "retain original stored ts and separately mark replay monotonic time", "inject controlled decision delays", "compare deterministic baseline to Jev advisory using identical event IDs"]
+    },
+    {
+      "id": "S2_live_market_data_shadow",
+      "purpose": "Measure real feed freshness and pipeline latency while sending no orders.",
+      "actions": ["subscribe only to approved public feeds", "record exchange event and local receive timestamps where available", "simulate order decisions/fills locally", "disable KR/US conclusions when the target symbols are not actually subscribed"]
+    },
+    {
+      "id": "S3_paper_order_fault_injection",
+      "purpose": "Test broker paper endpoint or deterministic local simulator state machine; never use a live endpoint.",
+      "actions": ["inject ack loss after accepted order", "inject reject, partial fill, cancel race, disconnect and delayed reconciliation", "repeat same event and client order ID", "reconcile positions/orders before retry"]
+    }
+  ],
+  "latency_definition": {
+    "clock": "Use monotonic_ns for durations; preserve UTC wall-clock and exchange event timestamp separately. Ensure host clock sync is monitored.",
+    "start": "local receive of triggering market event at feed adapter",
+    "milestones": [
+      "feed_receive",
+      "feature_complete",
+      "jev_request_start_if_enabled",
+      "jev_response_complete_if_enabled",
+      "risk_gate_complete",
+      "paper_order_submit",
+      "paper_order_ack_or_simulator_accept",
+      "first_fill",
+      "terminal_fill_or_cancel"
+    ],
+    "primary_metric": "decision_to_paper_fill_ms = first_fill_monotonic - feed_receive_monotonic",
+    "also_report": ["feed_receive_to_feature_ms", "jev_roundtrip_ms", "risk_gate_ms", "decision_to_submit_ms", "submit_to_ack_ms", "submit_to_first_fill_ms", "end_to_terminal_state_ms"],
+    "percentiles": [50, 95, 99],
+    "reporting": "Report per market, variant, session/day, load bucket and all-trigger aggregate; include sample count, timeout count and confidence interval. Do not pool away tail failures."
+  },
+  "metrics": [
+    {
+      "name": "decision_to_paper_fill_latency",
+      "unit": "ms",
+      "statistics": ["p50", "p95", "p99", "max", "n", "timeout_rate"],
+      "definition": "feed trigger receive to first paper fill; report Jev RTT separately"
+    },
+    {
+      "name": "stale_data",
+      "unit": "ms",
+      "statistics": ["age_p50", "age_p95", "age_p99", "max", "stale_trigger_count", "stale_order_block_count"],
+      "definition": "decision time minus source event time where available; price-only archives only support age relative to stored ts, which is receive time, not exchange event time",
+      "required_controls": ["configurable max age by feed/market", "sequence gap detection", "reconnect warm-up", "stale result after Jev response must be rejected"]
+    },
+    {
+      "name": "order_reject_and_partial_fill",
+      "statistics": ["reject_rate", "partial_fill_rate", "unfilled_remainder_rate", "cancel_race_count", "reconciliation_mismatch_count"],
+      "definition": "paper broker response and simulator state transitions, reason-coded"
+    },
+    {
+      "name": "duplicate_idempotency",
+      "statistics": ["duplicate_submit_count", "duplicate_exposure_count", "unknown_ack_reconciled_count", "unsafe_retry_count"],
+      "pass_condition": "zero duplicate exposure and zero unsafe retry under replayed duplicate events and lost acknowledgements"
+    },
+    {
+      "name": "execution_cost",
+      "statistics": ["slippage_bps_mean", "slippage_bps_p95", "fee_per_notional_bps", "net_pnl_after_costs", "fill_ratio"],
+      "definition": "compare fill price to decision-time executable reference; state whether reference is last trade, mid, or book; do not claim book-executable slippage without L2"
+    },
+    {
+      "name": "false_trigger_controls",
+      "statistics": ["false_trigger_rate", "signals_per_hour", "precision", "risk_block_rate", "abstain_rate", "baseline_vs_jev_disagreement"],
+      "definition": "Pre-register label/horizon and cost-adjusted utility; separate detector false positives from trade losses; report by volatility/regime and symbol"
+    }
+  ],
+  "fault_injection_matrix": [
+    "Jev connect timeout, read timeout, malformed JSON, schema mismatch, unknown model id, 401/403, 429, 5xx",
+    "market feed silence, stale tick, duplicate event, out-of-order event, sequence gap, reconnect burst, subscription rejection",
+    "risk state unavailable, position/balance disagreement, limit breach, kill switch, stale signal after slow model response",
+    "broker submit timeout before acceptance, accepted-but-ack-lost, reject, partial fill, delayed fill, cancel/fill race, duplicate client order ID"
+  ],
+  "fail_safe_policy": {
+    "new_entry": "fail closed on Jev timeout/error/invalid schema/version, stale market event, feed gap, risk state uncertainty, duplicate/unknown order state, or breached deterministic risk limit",
+    "existing_position": "manage only via separately specified deterministic protection policy; do not let Jev failure silently imply flat or retry a close without reconciliation",
+    "retry": "Jev retry may only reuse the same decision event key and bounded deadline; order retry is forbidden until broker order/execution/position state is reconciled",
+    "circuit_breakers": ["consecutive Jev failures", "feed stale/gap", "order reject burst", "reconciliation mismatch", "loss/drawdown limit"]
+  },
+  "preregistered_acceptance_gates": {
+    "latency_budget_ms": null,
+    "reason": "Strategy owner must set a market-specific deadline before execution; no numeric SLA is documented by TypeSafe and inventing one would invalidate the test.",
+    "required": [
+      "At least 3 separate market sessions per in-scope feed; report sample count and tail percentiles, and extend until p99 confidence is meaningful.",
+      "Jev-enabled p99 decision-to-paper-fill is within the pre-registered strategy deadline including injected provider/network degradation; Jev RTT is not substituted for total latency.",
+      "Zero duplicate exposure and zero unsafe order retries in all idempotency/ack-loss tests.",
+      "All stale/gap/invalid-response/limit-breach cases block new risk; no fail-open path.",
+      "Net paper result includes exchange/broker fees, spread, slippage and partial fills; sensitivity range is reported.",
+      "False-trigger/precision thresholds are pre-registered against a deterministic baseline and stratified by regime.",
+      "US equity results are withheld unless actual feed subscription and non-empty timestamped records are evidenced."
+    ]
+  },
+  "provenance_labels": {
+    "documented_fact": "TypeSafe official docs and source code text checked in this audit",
+    "user_reported_local_observation": "NAS inventory and sample schema supplied by user; not independently rescanned",
+    "measured_benchmark_result": "Must be generated by a future execution of this plan; none exists yet",
+    "hypothesis": "Expected effect such as latency reduction, better signal quality or improved fill quality; not accepted until measured"
+  },
+  "safety_assertions": [
+    "No live order endpoint, live account, API key, token, or credential is permitted.",
+    "Do not read credential files or environment values for this benchmark.",
+    "Archive inventory uses bounded find/du/sample operations only; do not recursively parse all historical JSONL for metadata.",
+    "No benchmark result exists at plan creation; all thresholds/results remain pending."
+  ]
+}
