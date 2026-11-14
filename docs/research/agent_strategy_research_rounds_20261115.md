@@ -114,6 +114,23 @@ The fixed HA rule above was rerun on the long-history cache for BTC, ETH, BNB, a
 
 No tested pooled cell is near 80%; every mean net return is negative before funding and slippage. These rates are descriptive and have no date-cluster confidence intervals in this probe, so overlapping trades make naive binomial uncertainty inappropriate. The result rejects this fixed HA setup as a current candidate; it does not establish that all HA variants fail. The full implementation is `scripts/research/long_history_ha_probe.py`.
 
+### Long-history 30m volume-climax failure follow-up
+
+The round-3 volume-climax rule was also replayed on BTC, ETH, BNB, and DOGE over the same pre-cutoff long-history cache. SOL/XRP remain excluded for continuity uncertainty. At bar *i*, the trigger is a strict new 20-bar high/low and volume at least 3× the median of the previous 20 bars; the next completed bar must close back inside the extreme. Entry is at the following 30m open. Stop is beyond the climax/failure range plus 0.25×ATR14, target 1.5R, horizon 10/20 bars, and ambiguous same-bar stop/target resolves stop-first. Round-trip costs are 0.10% base and 0.30% stress. A rough leverage eligibility screen uses 9.5%/4.5% max stop distance for 10×/20×; it is not an exchange liquidation model. No funding, spread, or separate slippage series is included.
+
+| Horizon | Leverage | Cost | Eligible events | Direction correct at expiry | Net-positive exits | Mean net/trade |
+|---|---:|---|---:|---:|---:|---:|
+| 10 bars (5h) | 10× | Base | 20,374 | 52.48% | 41.78% | -0.139% |
+| 10 bars (5h) | 10× | Stress | 20,374 | 52.48% | 36.52% | -0.339% |
+| 10 bars (5h) | 20× | Base | 19,839 | 52.48% | 41.57% | -0.141% |
+| 10 bars (5h) | 20× | Stress | 19,839 | 52.48% | 36.28% | -0.341% |
+| 20 bars (10h) | 10× | Base | 20,370 | 51.77% | 40.34% | -0.155% |
+| 20 bars (10h) | 10× | Stress | 20,370 | 51.77% | 37.41% | -0.355% |
+| 20 bars (10h) | 20× | Base | 19,835 | 51.73% | 40.11% | -0.157% |
+| 20 bars (10h) | 20× | Stress | 19,835 | 51.73% | 37.15% | -0.357% |
+
+The highest per-symbol base net-positive rate was 45.34% (DOGE, 10 bars, 10×); mean net still -0.077%. The fixed rule does not provide a useful directional edge or approach 80%. These are descriptive pooled counts without date-cluster intervals and are not promotion evidence. Reproducible code: `scripts/research/long_history_volume_climax_probe.py`.
+
 ## Additional data acquisition track — historical cache populated; long-history signal tests pending
 
 The local database's short history and missing funding/open-interest fields limit futures strategy conclusions. Binance's official [Public Data repository](https://github.com/binance/binance-public-data) documents monthly USD-M klines with quote volume, trade count, and taker-buy base/quote volume, plus SHA-256 checksum sidecars. One 2025-01 BTCUSDT 1m zip was measured at 1,917,878 bytes; a one-month aggTrades archive was 542,757,450 bytes, so the initial extension uses klines only and does not download aggTrades.
@@ -126,4 +143,4 @@ Continuity QC found no internal missing minutes for BNB, BTC, DOGE, or ETH. SOL 
 
 The collector's unit tests pass 6/6 after aligning its declared SQLite column names with the downloaded database's existing schema. Its `PRIMARY KEY` previously referenced an obsolete column after the field-name edit; this was caught and fixed before proceeding. A write attempt against the 2.4-GiB local DB returned SQLite `attempt to write a readonly database`; no DB contents were changed. The database is therefore kept as-is, and the collector schema now matches it. Available disk after backfill was about 47 GiB. No credentials, orders, remote server, or existing live candle database were used.
 
-Historical ingestion is complete, but no long-history candidate strategy has yet been tested on this database. Existing 84-day results above remain unchanged and cannot be retroactively described as long-history validation. The next local-only research cycle is to rerun fixed HA-continuation and volume-climax rules on the pre-cutoff history, explicitly censoring the SOL/XRP gaps, then compare base/stress costs and report sample size, coverage, clustered uncertainty, and exposure. No parameter search may use the sealed interval.
+Historical ingestion and two fixed-rule long-history probes are complete: 30m Heikin-Ashi continuation and 30m volume-climax failure on four gap-free symbols. Both are negative exploratory evidence, not validation. Existing 84-day results above remain unchanged and cannot be retroactively described as long-history validation. Next local-only loops should test distinct fixed signal families (including taker-buy imbalance, which is now present in the cache), multiple higher and lower timeframes, and event-level chronological verification; SOL/XRP features crossing known gaps must be censored. Repeatedly tuning rules on this already viewed development data cannot establish an edge; a candidate must be frozen before any future/paper forward test. Do not use the sealed interval to search parameters.
