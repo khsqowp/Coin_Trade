@@ -131,6 +131,23 @@ The round-3 volume-climax rule was also replayed on BTC, ETH, BNB, and DOGE over
 
 The highest per-symbol base net-positive rate was 45.34% (DOGE, 10 bars, 10×); mean net still -0.077%. The fixed rule does not provide a useful directional edge or approach 80%. These are descriptive pooled counts without date-cluster intervals and are not promotion evidence. Reproducible code: `scripts/research/long_history_volume_climax_probe.py`.
 
+### Long-history 30m taker-imbalance breakout follow-up
+
+The newly stored taker-buy quote field was tested with one fixed rule on BTC, ETH, BNB, and DOGE only: long after a close above the prior 20-bar high with taker-buy imbalance `2*taker_buy_quote/quote_volume - 1 >= 0.30` and volume at least 1.5× the prior 20-bar median; short is symmetric below the prior 20-bar low with imbalance <= -0.30. Entry is next 30m open, stop 1.5×ATR14, target 2R, expiry 10/20 bars, stop-first tie handling, and 0.10%/0.30% round-trip base/stress costs. The 10×/20× eligibility screen is the same rough 9.5%/4.5% maximum stop-distance check. SOL/XRP were omitted due gaps; funding, spread, and exchange liquidation rules were not modeled.
+
+| Direction | Horizon | Leverage | Cost | Events | Direction correct at expiry | Net-positive exits | Mean net/trade |
+|---|---:|---:|---|---:|---:|---:|---:|
+| Long | 10 bars (5h) | 10× | Base | 366 | 46.72% | 37.43% | -0.105% |
+| Short | 10 bars (5h) | 10× | Base | 480 | 41.46% | 35.21% | -0.136% |
+| Long | 20 bars (10h) | 10× | Base | 366 | 48.36% | 38.25% | -0.063% |
+| Short | 20 bars (10h) | 10× | Base | 480 | 44.79% | 36.04% | -0.099% |
+| Long | 10 bars (5h) | 10× | Stress | 366 | 46.72% | 31.42% | -0.305% |
+| Short | 10 bars (5h) | 10× | Stress | 480 | 41.46% | 30.63% | -0.336% |
+| Long | 20 bars (10h) | 10× | Stress | 366 | 48.36% | 36.61% | -0.263% |
+| Short | 20 bars (10h) | 10× | Stress | 480 | 44.79% | 35.00% | -0.299% |
+
+The 20× eligible event counts differ by only two short events from the 10× results; pooled rates and conclusions are materially unchanged. BTC and ETH long 20-bar cells had positive mean net under base costs individually, but only n=81 and n=74 respectively, and both turned negative under stress. The pooled rule is negative, the direction rate is near chance, and no result approaches 80%. This is not a promising standalone rule. No date-cluster confidence interval was computed. Reproducible code: `scripts/research/long_history_taker_imbalance_probe.py`.
+
 ## Additional data acquisition track — historical cache populated; long-history signal tests pending
 
 The local database's short history and missing funding/open-interest fields limit futures strategy conclusions. Binance's official [Public Data repository](https://github.com/binance/binance-public-data) documents monthly USD-M klines with quote volume, trade count, and taker-buy base/quote volume, plus SHA-256 checksum sidecars. One 2025-01 BTCUSDT 1m zip was measured at 1,917,878 bytes; a one-month aggTrades archive was 542,757,450 bytes, so the initial extension uses klines only and does not download aggTrades.
@@ -143,4 +160,4 @@ Continuity QC found no internal missing minutes for BNB, BTC, DOGE, or ETH. SOL 
 
 The collector's unit tests pass 6/6 after aligning its declared SQLite column names with the downloaded database's existing schema. Its `PRIMARY KEY` previously referenced an obsolete column after the field-name edit; this was caught and fixed before proceeding. A write attempt against the 2.4-GiB local DB returned SQLite `attempt to write a readonly database`; no DB contents were changed. The database is therefore kept as-is, and the collector schema now matches it. Available disk after backfill was about 47 GiB. No credentials, orders, remote server, or existing live candle database were used.
 
-Historical ingestion and two fixed-rule long-history probes are complete: 30m Heikin-Ashi continuation and 30m volume-climax failure on four gap-free symbols. Both are negative exploratory evidence, not validation. Existing 84-day results above remain unchanged and cannot be retroactively described as long-history validation. Next local-only loops should test distinct fixed signal families (including taker-buy imbalance, which is now present in the cache), multiple higher and lower timeframes, and event-level chronological verification; SOL/XRP features crossing known gaps must be censored. Repeatedly tuning rules on this already viewed development data cannot establish an edge; a candidate must be frozen before any future/paper forward test. Do not use the sealed interval to search parameters.
+Historical ingestion and three fixed-rule long-history probes are complete: 30m Heikin-Ashi continuation, 30m volume-climax failure, and 30m taker-imbalance breakout on four gap-free symbols. All three failed the current profitability/80% gates and remain exploratory, not validation. Existing 84-day results above remain unchanged and cannot be retroactively described as long-history validation. Next local-only loops should test distinct fixed signal families on multiple higher and lower timeframes and include event-level chronological verification; SOL/XRP features crossing known gaps must be censored. Repeatedly tuning rules on this already viewed development data cannot establish an edge; a candidate must be frozen before any future/paper forward test. Do not use the sealed interval to search parameters.
