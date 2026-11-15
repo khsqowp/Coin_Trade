@@ -319,3 +319,21 @@ P5~P8의 다른 13개 셋업은 전부 추세추종·SMC(오더블록·FVG·유�
 **테스트**: 전용 단위 테스트(트리거 4종·비트리거 3종·strict 임계값 교차 1종)를 `chart_predictor/tests/test_setups.py`에 추가했다. 기존 파라미터화 인과성 테스트가 두 신규 셋업을 자동으로 포함해 전체 스위트는 103개에서 111개로 늘었고 전부 통과한다.
 
 **부가 확인**: Stage A 신호 캐시는 `volume_climax_exhaustion` 22,325,216 bytes(약 21.3 MiB), `volume_climax_exhaustion_strict` 10,278,609 bytes(약 9.8 MiB)다. `chart_predictor/data/`는 로컬 전용·미추적이며 커밋 대상이 아니다.
+
+### P9-D — 모닝스타·이브닝스타 + 거래량 클라이맥스 확인
+
+**범위.** P5~P8과 같은 개발 구간(84일, 2026-07-17부터 2026-10-09 UTC 컷오프 직전까지), 거래량 상위 50종목, 1/5/30/60분봉을 사용했다. `star_pattern_volume_climax`(거래량 3배)와 사전 등록한 단 한 번의 refinement `star_pattern_volume_climax_strict`(5배)를 한 번의 Stage A에서 함께 신호화하고 같은 캐시를 Stage B 3R 및 Stage C 5개 시간 fold·Holm 보정·`base`/`vol_top_third`/`htf_trend_align` 평가에 재사용했다. A/B/C fingerprint는 각각 `b86a34111bbafcdd`, `25c04cd54ab17cf1`, `a784c2fb4732ec2f`다. 리포트: Stage A [`report_b86a34111bbafcdd.json`](../../chart_predictor/data/setups/report_b86a34111bbafcdd.json), Stage B [`report_25c04cd54ab17cf1.json`](../../chart_predictor/data/setups/report_25c04cd54ab17cf1.json), Stage C [`report_a784c2fb4732ec2f.json`](../../chart_predictor/data/setups/report_a784c2fb4732ec2f.json). Stage C는 변형별 48개, 총 96개 셀이다.
+
+**규칙 설계.** 모닝스타 첫 봉은 종가가 시가 아래이고 몸통이 해당 봉 ATR14의 0.5배 이상, 중간 봉 몸통은 첫 봉 몸통의 0.3배 이하이며 첫 봉 몸통 하단 이하에 놓인다. 세 번째 봉은 양봉이고 몸통이 그 봉 ATR14의 0.5배 이상이며 첫 봉 몸통 중간값 위로 마감한다. 이브닝스타는 이를 상하 반전한다. ATR14는 `candle_patterns()` 내부에서 같은 모듈의 인과적 `atr()`로 산출한다. 세 번째 봉 거래량이 자신을 제외한 직전 20개 완성 봉 거래량 평균의 3배를 초과해야 기본안 신호가 된다. 전체 패턴의 최저 저가(롱) 또는 최고 고가(숏)를 구조 무효화 손절로 삼는다. strict refinement는 패턴 구조를 유지하고 거래량 문턱만 5배로 높인다.
+
+**사전 등록 기준 결과.** 기본안은 48개 중 적중률 75% 이상과 거래 30건 이상을 동시에 만족한 셀이 **0개**다. strict도 48개 중 **0개**이며 전체 96개에서도 0개다. 두 변형의 Holm-adjusted 통과 플래그도 각각 0개다(96개 전체 0개). 기본안의 최고 적중률은 `long / 5m / 2R / htf_trend_align`: n=126, 적중률 19.05%, Wilson 95% CI 13.15–26.78%, 순수익 -2.60%, expert 53점 `REJECT / Abandon`, 레드플래그 `negative_expectancy`, `short_test_period`; Holm p=1.000이다. strict의 전체 최고 적중률은 `short / 30m / 2R / htf_trend_align`: n=4, 적중률 25.00%, Wilson 95% CI 4.56–69.94%, 순수익 +11.07%, expert 65점 `NOT_EVALUABLE / Refine`, 레드플래그 `small_sample`, `short_test_period`, `too_good`; Holm p=1.000이다. 4건 표본의 25%는 75% 기준에 못 미치고 거래 수 기준도 충족하지 못한다.
+
+전체 최고 순수익은 기본안 `long / 30m / 3R / htf_trend_align`: n=14, 적중률 7.14%, Wilson 95% CI 1.27–31.47%, 누적 순수익 +62.58%, 일별 block-bootstrap 평균 순수익 95% 구간 -2.92%~+16.85%, expert 65점 `NOT_EVALUABLE / Refine`, 레드플래그 `small_sample`, `short_test_period`; Holm p=1.000이다. 목표가 먼저 닿은 비율은 7.14%, 손절 우선은 42.86%, 시간 만료는 50.00%였다. 양수 누적수익은 14건·낮은 적중률·넓은 불확실성에 기반하므로 엣지 증거가 아니다. 최고 적중률과 순수익 모두 사전 등록 기준을 통과하지 않으며, 어느 셀도 Holm 보정을 통과하지 않았다.
+
+**실패 양상.** 가장 거래가 많은 기본안 셀 `short / 1m / 2R / base`는 n=3,436, 적중률 16.41%, 손절 우선 46.07%, timeout 37.51%, 누적 순수익 -361.63%다. strict의 최다 거래 셀도 `short / 1m / 2R / base`로 n=1,566, 적중률 15.45%, 손절 우선 43.55%, timeout 41.00%, 누적 순수익 -156.52%다. 두 경우 모두 주된 실패는 timeout보다 손절 우선이며, strict는 거래를 줄였지만 적중률을 개선하지 못했다.
+
+**비교와 결론.** strict의 관측 최고 적중률 25.00%는 기본안 최고 19.05%보다 높지만 n=4로 표본 바를 충족하지 못하며, strict의 최고 순수익도 +43.50%(short / 60m / 2R / base, n=6, 적중률 0%)에 그쳐 기본안 최고 +62.58%보다 낮다. 따라서 5배 refinement가 후보를 살렸다고 볼 수 없다. 두 변형 모두 통과 셀 0개이고 결과는 **REJECT**다. 양수 누적수익을 적중률·표본 크기·expert verdict와 분리해 성공으로 해석하지 않는다. 세 번째 변형이나 추가 튜닝은 수행하지 않는다.
+
+**테스트.** 사용자가 확인한 동일 환경 baseline은 변경 전 `138 passed, 0 failed`였고, 기존 P9-D 변경 포함 상태는 `148 passed, 0 failed`였다. 이번 회차에서 문서 수정 후 `.venv313/bin/python -m pytest chart_predictor/tests/ -q`를 다시 실행해 `148 passed, 0 failed`를 확인했다(경고 1건: joblib이 물리 코어 수를 읽지 못해 논리 코어 수를 사용함).
+
+**부가 확인.** 단일 Stage A 신호 캐시 `signals_b86a34111bbafcdd.json`은 1,657,908 bytes다. `chart_predictor/data/`는 로컬 전용·미추적이며 커밋 대상이 아니다. 이 실행에 사용한 `candles.sqlite`, `.claude/skills/backtest-expert/`, `chart_predictor/data/universe_collect.json`은 모두 메인 체크아웃에서 fresh worktree로 복사된 gitignored 입력이며 커밋하지 않는다.
