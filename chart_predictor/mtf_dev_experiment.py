@@ -33,6 +33,55 @@ def sha256_file(path):
     return digest.hexdigest()
 
 
+def wilson_interval(successes, trials, z=1.959963984540054):
+    if trials <= 0:
+        return None, None
+    p = successes / trials
+    denominator = 1 + z * z / trials
+    center = (p + z * z / (2 * trials)) / denominator
+    radius = z * (p * (1 - p) / trials + z * z / (4 * trials * trials)) ** 0.5 / denominator
+    return center - radius, center + radius
+
+
+def summarize_confidence_slices(exact, symbols_by_exact):
+    """Aggregate post-hoc vote-count thresholds; Wilson is intentionally naive."""
+    cells = defaultdict(lambda: {"events": 0})
+    for (timeframe, side, bars, votes), values in exact.items():
+        cells[(timeframe, side, bars)]["events"] += values["events"]
+    rows = []
+    for timeframe, side, bars in sorted(cells, key=lambda key: (WIDTH_MS[key[0]], key[1], key[2])):
+        denominator = cells[(timeframe, side, bars)]["events"]
+        for threshold in range(2, len(TIMEFRAMES) + 1):
+            totals = defaultdict(float)
+            symbol_counts = defaultdict(int)
+            for (tf, direction, horizon, votes), values in exact.items():
+                if (tf, direction, horizon) != (timeframe, side, bars) or votes < threshold:
+                    continue
+                for name in ("events", "target", "stop", "timeout", "unscorable", "sum_net_r"):
+                    totals[name] += values[name]
+                for symbol, count in symbols_by_exact[(tf, direction, horizon, votes)].items():
+                    symbol_counts[symbol] += count
+            if not totals["events"]:
+                continue
+            scored = totals["target"] + totals["stop"] + totals["timeout"]
+            lower, upper = wilson_interval(int(totals["target"]), int(scored))
+            total_by_symbol = sum(symbol_counts.values())
+            rows.append({
+                "timeframe": timeframe, "side": side, "horizon_bars": bars,
+                "min_votes": threshold, "events": int(totals["events"]),
+                "coverage": totals["events"] / denominator if denominator else 0.0,
+                "target": int(totals["target"]), "stop": int(totals["stop"]),
+                "timeout": int(totals["timeout"]), "unscorable": int(totals["unscorable"]),
+                "target_first_precision": totals["target"] / scored if scored else None,
+                "wilson_lower_naive": lower, "wilson_upper_naive": upper,
+                "symbols": len(symbol_counts),
+                "largest_symbol_share": max(symbol_counts.values(), default=0) / total_by_symbol
+                    if total_by_symbol else 0.0,
+                "mean_net_r": totals["sum_net_r"] / scored if scored else None,
+            })
+    return rows
+
+
 def render_markdown(report):
     lines = [
         "# Crypto MTF development exploration (not validation)", "",
@@ -57,6 +106,17 @@ def render_markdown(report):
         mean_r = "—" if row["mean_net_r"] is None else f"{row['mean_net_r']:.3f}"
         lines.append(f"|{row['timeframe']}|{row['side']}|{row['horizon_bars']}|{row['events']}|{row['target']}|{row['stop']}|{row['timeout']}|{row['unscorable']}|{precision}|{mean_r}|")
     lines.extend([
+        "", "## Exploratory confidence-threshold slices", "",
+        "Confidence is the number of distinct active timeframe votes (2–9), a raw ranking score rather than a calibrated probability. Coverage is retained forecasts divided by the q≥2 consensus cohort within the same timeframe/side cell. Wilson bounds are naive per-row intervals and ignore shared consensus events, symbols, and market days; they cannot satisfy the registered validation gate.", "",
+        "|TF|Side|Horizon|Min votes|N|Coverage|Target|Stop|Timeout|Unscorable|Precision|Naive Wilson lower|Symbols|Largest-symbol share|Mean net R|",
+        "|---:|:---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ])
+    for row in report.get("confidence_slices", []):
+        precision = "—" if row["target_first_precision"] is None else f"{row['target_first_precision']:.2%}"
+        lower = "—" if row["wilson_lower_naive"] is None else f"{row['wilson_lower_naive']:.2%}"
+        mean_r = "—" if row["mean_net_r"] is None else f"{row['mean_net_r']:.3f}"
+        lines.append(f"|{row['timeframe']}|{row['side']}|{row['horizon_bars']}|{row['min_votes']}|{row['events']}|{row['coverage']:.2%}|{row['target']}|{row['stop']}|{row['timeout']}|{row['unscorable']}|{precision}|{lower}|{row['symbols']}|{row['largest_symbol_share']:.2%}|{mean_r}|")
+    lines.extend([
         "", "## Approximate 4x/5x outcomes at the 20-bar deadline", "",
         "Liquidation is modeled with the scorer's fixed 0.5% maintenance buffer; it is not an exchange/account-specific liquidation quote. Precision treats liquidation as a non-target outcome. Mean net R is not comparable to unleveraged R because leverage scales P&L.", "",
         "|TF|Side|Lev|N|Target|Stop|Liquidation|Timeout|Unscorable|Target-first|Mean net R|",
@@ -70,10 +130,10 @@ def render_markdown(report):
         lines.append(f"|{row['timeframe']}|{row['side']}|{row['leverage']}x|{row['events']}|{row['target']}|{row['stop']}|{row['liquidation']}|{row['timeout']}|{row['unscorable']}|{precision}|{mean_r}|")
     lines.extend([
         "", "## Decision", "",
-        "No timeframe/direction cell approaches 80% target-first precision. The best unleveraged 20-bar descriptive cell is 240m long at 35.20% (201/571 targets; mean net R +0.134); it is post-hoc among 36 cells and is not an independently selected winner. Most cells have negative mean net R. This MTF rule therefore does not satisfy the user's high-confidence signal objective and is not suitable for live/manual deployment based on this evidence.", "",
+        "Unfiltered q≥2 forecasts did not approach the 80% target-first objective; the best unleveraged 20-bar cell was 240m long at 35.20% (201/571 targets; mean net R +0.134), selected post-hoc among 36 cells. The vote-count slices below are a separate post-hoc development diagnostic. Neither result is independent validation or suitable evidence for live/manual deployment.", "",
         "## Missing validation gates", "",
         *[f"- {lim}" for lim in report["limitations"]],
-        "- No coverage denominator was computed, so the registered 10% coverage threshold is untested.",
+        "- Confidence-slice coverage is conditional on the q≥2 consensus cohort within each cell; coverage over all eligible decision times was not computed, so the registered 10% coverage threshold is not tested.",
         "- The registered directional/momentum and fixed-seed random baselines were not replayed; no clustered Wilson bounds or multiplicity adjustment was computed.",
         "- The 80% criterion is plainly missed on descriptive precision, but this is not a complete statistical verdict because the development data were previously viewed and the cohort is not point-in-time.",
         "", "## Reproduction", "",
@@ -95,6 +155,10 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
     leverage_totals = defaultdict(lambda: {"events": 0, "target": 0, "stop": 0,
                                            "liquidation": 0, "timeout": 0,
                                            "unscorable": 0, "sum_net_r": 0.0})
+    confidence_totals = defaultdict(lambda: {"events": 0, "target": 0, "stop": 0,
+                                             "timeout": 0, "unscorable": 0,
+                                             "sum_net_r": 0.0})
+    confidence_symbols = defaultdict(lambda: defaultdict(int))
     db = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
     try:
         for symbol_index, symbol in enumerate(symbols, 1):
@@ -149,6 +213,7 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                                 if entry_ms >= blocked_until[tf]}
                 if len(active_votes) < 2 or len({v["side"] for v in active_votes.values()}) != 1:
                     continue
+                confidence_votes = len(active_votes)
                 for timeframe, vote in active_votes.items():
                     horizon_end = entry_ms + MAX_HORIZON_BARS * WIDTH_MS[timeframe]
                     if horizon_end > CUTOFF_MS:
@@ -173,6 +238,15 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                             total["sum_net_r"] += result["net_r"] or 0.0
                         else:
                             total["unscorable"] += 1
+                        confidence_key = (timeframe, candidate["side"], bars, confidence_votes)
+                        confidence = confidence_totals[confidence_key]
+                        confidence["events"] += 1
+                        confidence_symbols[confidence_key][symbol] += 1
+                        if outcome in ("TARGET", "STOP", "TIMEOUT"):
+                            confidence[outcome.lower()] += 1
+                            confidence["sum_net_r"] += result["net_r"] or 0.0
+                        else:
+                            confidence["unscorable"] += 1
                         for leverage in (4, 5):
                             lev = scored["leverage"][f"{leverage}x"][f"{bars}_bars"]
                             lev_total = leverage_totals[(timeframe, candidate["side"], bars, leverage)]
@@ -222,6 +296,8 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
         "forecast_rows": sum(row["events"] for row in outcome_rows if row["horizon_bars"] == 20),
         "outcomes": outcome_rows,
         "leveraged_outcomes": leverage_rows,
+        "confidence_definition": "number of distinct active same-direction timeframe votes; raw score, not calibrated probability",
+        "confidence_slices": summarize_confidence_slices(confidence_totals, confidence_symbols),
         "input": {"database": str(db_path), "database_size_bytes": db_path.stat().st_size,
                   "database_sha256": sha256_file(db_path),
                   "universe": str(universe_path),
@@ -229,9 +305,10 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
         "limitations": [
             "This development interval was previously explored and is not sealed or out-of-sample.",
             "Universe is the current collection list, not point-in-time membership; survivorship and listing bias remain.",
-            "Coverage denominator, registered baselines, event/symbol/day clustered confidence bounds, and slippage/depth are not computed.",
+            "Confidence-slice coverage is conditional on the q≥2 consensus cohort, not all eligible decision times; registered baselines, event/symbol/day clustered confidence bounds, and slippage/depth are not computed.",
             "Per-timeframe outcomes share consensus events and symbols and are not independent samples.",
             "Approximate 4x/5x liquidation uses a fixed maintenance buffer, not Binance account-specific liquidation mechanics.",
+            "Vote-count slices are post-hoc development exploration, not calibrated probabilities or a preregistered threshold.",
         ],
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
