@@ -19,7 +19,13 @@ Streaming the same JSONL through Zstandard 1.5.7 produced 44,188,758 bytes from 
 - Four parallel agents reviewed the KR/US data gates, a crypto candidate, and a crypto adversarial protocol. KR/US reviews found no eligible current price panel for a new performance test without user-controlled data/rights steps. The crypto designer proposed the replenishment mechanism; the adversarial reviewer highlighted threshold-selection, event dependence, sample size, and cost hazards.
 - The full `chart_predictor/tests` suite passed: 225 passed, one environment warning. These are software tests, not signal trials.
 - The raw one-hour capture's hash, size, line count, JSON parseability, and newline termination were independently recomputed and matched its manifest.
-- No backtest, outcome scoring, market order, credential access, data download, or source edit was performed for this candidate.
+- No backtest, outcome scoring, market order, credential access, or data download was performed for this candidate. A later offline-only reducer prototype was implemented and replayed against the existing file; it generated no signal or strategy metric.
+
+## Follow-on replay prototype (engineering only)
+
+An offline deterministic reducer now replays the raw segment using the existing sequence-checked `LocalBook`, waits for snapshots to bridge buffered updates, and joins each eligible aggregate trade to the latest book state received before it. The one-hour source replay produced 208,163 compact rows from 208,224 raw records, synchronized both books, recorded zero invalidations, and reproduced the same output hash on a second run. Focused reducer/book tests passed; the full chart-predictor suite passed 228 tests with one environment warning.
+
+This is not yet the required bounded feature/path recorder. The compact JSONL is still 104.5 MB/hour for the two-symbol sample; Zstandard produced 9.94 MB/hour, linearly projecting to about 0.87 decimal TB/year for 20 symbols. That projection is not a measured sustained rate. The aggregation design, delayed-event policy, production hard-cap tests, reconnect capture, and multi-day capacity test remain open. Do not begin continuous multi-symbol recording or signal scoring on this result.
 
 ## Required before performance testing
 

@@ -59,12 +59,31 @@
     }
   },
   "verification": {
-    "source_commit": "83e1efe61cbfac90fdc16bdd6b1b1efa1fdf3358",
+    "baseline_source_commit": "0f6fa2870b320da5e257cd643424728ff0a205eb",
     "performance_cells_run": 0,
     "performance_metrics_calculated": false,
-    "chart_predictor_tests": "225 passed, 1 environment warning",
+    "chart_predictor_tests": "228 passed, 1 environment warning",
     "no_api_credentials_or_orders": true,
-    "files_modified_before_this_record": false
+    "public_network_or_capture_started": false
+  },
+  "compact_replay_prototype": {
+    "script": "scripts/research/crypto_l2_compact.py",
+    "unit_tests": "chart_predictor/tests/test_crypto_l2_compact.py",
+    "pilot_source_sha256": "ee337e99a4f3060ec7f56889f35eb4ed213839356a7efc1533ff7a97904d057e",
+    "source_records_replayed": 208224,
+    "sequence_valid_snapshots": 2,
+    "replay_invalidations": 0,
+    "compact_rows": 208163,
+    "compact_bytes": 104508285,
+    "compact_sha256": "57f8bcf1694167f779f2c007f94e7eee6ecfed7b502a1880b45de52f343c6362",
+    "deterministic_second_replay_same_hash": true,
+    "zstd_version": "1.5.7",
+    "zstd_compact_bytes": 9942735,
+    "zstd_compact_ratio": 0.0951382467,
+    "projected_20_symbol_year_bytes": 870983586000,
+    "projection_note": "Linear projection from one two-symbol hour, not a measured 20-symbol production rate; derived files were temporary and not committed.",
+    "strategy_metrics": null,
+    "production_recorder_gate": "not_passed"
   },
   "decision": "candidate_spec_pending_data_pipeline",
   "next_action": "Implement and locally verify a compact, sequence-valid feature recorder and deterministic replay; then freeze full hashes, universe, calibration sample counts, costs and forward partitions before collecting any outcome-bearing study data."

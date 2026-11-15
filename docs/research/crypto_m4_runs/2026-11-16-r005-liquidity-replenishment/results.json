@@ -18,15 +18,15 @@
       "No multi-symbol point-in-time prospective L2/trade history under this candidate contract.",
       "Existing capture covers only BTCUSDT and ETHUSDT for one hour and was used as an integrity pilot.",
       "No natural reconnect was observed in the one-hour capture.",
-      "Uncompressed raw depth+aggTrade storage extrapolates to about 20.2 TB/year for 20 symbols; the measured one-hour zstd ratio projects to about 3.87 TB/year, so compact feature/path retention is still required and unverified.",
+      "The offline compact replay prototype was deterministic on the one-hour pilot but still emits 104.5 MB/hour for two symbols before compression; zstd reduced it to 9.94 MB/hour for those two symbols, which linearly projects to about 0.87 decimal TB/year for 20 symbols. This is not a measured production rate, and the compact feature/path recorder gate remains not passed.",
       "Final confidence implementation, minimum train/calibration/validation counts, exact timestamps, durable storage path, and user-specific fee schedule remain unfrozen."
     ]
   },
   "tests": {
     "performance_tests": 0,
-    "unit_and_integrity_tests": 225,
-    "unit_and_integrity_tests_passed": 225,
+    "unit_and_integrity_tests": 228,
+    "unit_and_integrity_tests_passed": 228,
     "warnings": 1
   },
-  "interpretation": "The 225 passing tests verify existing code paths and synthetic cases only. They are not evidence of predictive accuracy or profitability. No strategy-performance result was generated."
+  "interpretation": "The 228 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
 }
