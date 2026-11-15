@@ -192,6 +192,25 @@ def candle_patterns(open_, high, low, close):
             "doji": doji, "inside_bar": inside}
 
 
+def significant_doji(open_, high, low, close, atr_values, body_ratio=0.10, min_range_atr=0.5):
+    """Indecision-candle detector: a small body relative to the bar's own range,
+    on a range that is itself a meaningful fraction of recent volatility.
+
+    Standalone rather than folded into candle_patterns()'s existing "doji" key
+    (body/span<=0.1, no volatility floor) so that key's current behavior --
+    already relied on by features.py's LLM feature-snapshot pipeline -- stays
+    unchanged. body_ratio keeps candle_patterns()'s own 10% body/range
+    constant as the default; min_range_atr (default 0.5*ATR14) excludes
+    dead-flat non-moves from counting as meaningful indecision -- a tiny body
+    on a tiny range is just a quiet bar, not a contested one. Fully causal:
+    bar i's value reads only o[i], h[i], l[i], c[i], atr_values[i].
+    """
+    o, h, l, c, a = map(lambda x: np.asarray(x, dtype=float), (open_, high, low, close, atr_values))
+    span = np.maximum(h - l, 1e-12)
+    body = np.abs(c - o)
+    return (body <= body_ratio * span) & (span >= min_range_atr * a) & np.isfinite(a)
+
+
 def support_resistance(high, low, lag=3, tolerance=0.005):
     """Cluster already-confirmed swing prices into horizontal price zones."""
     sh, sl = confirmed_swings(high, low, lag)

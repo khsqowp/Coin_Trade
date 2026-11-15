@@ -40,6 +40,8 @@ HYPOTHESES={
  "vwap_band_fade_stretch":"The same VWAP-band rejection should perform better once a minimum 0.5-ATR clearance past the pierced band edge filters out marginal, likely-noise wicks.",
  "volume_climax_exhaustion":"A volume spike at least 3x the trailing 20-bar average, landing on a bar that makes a fresh 10-bar extreme but closes back away from that extreme (a rejection wick), should mark crowd-capitulation exhaustion and precede a reversal.",
  "volume_climax_exhaustion_strict":"The same climax-volume rejection-wick reversal should perform better once the volume spike threshold is raised from 3x to 5x the trailing average, filtering out more marginal, likely-noise spikes.",
+ "doji_macd_flip":"A doji (indecision candle, body <=10% of range, range >=0.5 ATR14) landing on a bar where the 12/26/9 MACD histogram flips sign should mark a higher-probability reversal than either signal alone.",
+ "doji_macd_flip_strict":"The same doji+MACD-flip reversal should perform better once the doji body threshold is tightened from 10% to 5% of range, filtering out marginal/less-indecisive candles.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -132,7 +134,8 @@ def _write(report,report_dir, data_hash, stage):
     hypotheses="\n".join(f"- **{k}**: {v}" for k,v in HYPOTHESES.items())
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
     present={r["setup"] for r in rows}
-    label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
+    label=("P9-C" if present and present<={"doji_macd_flip","doji_macd_flip_strict"}
+      else "P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
@@ -167,7 +170,8 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
             h,l,c,v=(frame[k].to_numpy(float) for k in ("h","l","c","v"))
             prepared={"atr":atr(h,l,c,14),"swings":indicators.confirmed_swings(h,l,3),
                       "rsi":indicators.rsi(c,14),"vwap":indicators.vwap(h,l,c,v,frame.t_open_ms),
-                      "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c)}
+                      "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c),
+                      "macd_hist":indicators.macd(c)[2]}
             cache[symbol]=(raw,frame,{setup:generate_signals(frame,setup,prepared) for setup in setups},tier)
         for symbol,(raw,frame,signals,tier) in cache.items():
             for setup,sigs in signals.items():
