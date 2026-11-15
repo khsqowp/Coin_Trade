@@ -4,6 +4,7 @@ import json
 import pytest
 
 from scripts.research.crypto_l2_compact import reduce_capture
+from scripts.research.crypto_l2_signal import build_candidates_for_completed_bar
 from scripts.research.crypto_l2_windows import (
     aggregate_windows,
     eligible_windows_for_completed_bar,
@@ -236,6 +237,140 @@ def test_completed_bar_gate_rejects_invalid_bar_bounds():
             [], bar_open_ms=120_000, bar_close_ms=120_000,
             decision_receive_monotonic_s=13.0,
         )
+
+
+def _candidate_window(start, *, available=601.5, sell=1000.0, buy=900.0,
+                      bid_refill=0.8, ask_refill=0.9, symbol="BTCUSDT"):
+    return {
+        "symbol": symbol,
+        "window_start_ms": start,
+        "window_end_ms": start + 10_000,
+        "window_final": True,
+        "data_quality_ready": True,
+        "feature_available_receive_monotonic_s": available,
+        "sell_aggressor_quote_volume": sell,
+        "buy_aggressor_quote_volume": buy,
+        "bid_replenishment_ratio": bid_refill,
+        "ask_replenishment_ratio": ask_refill,
+        "trade_low": 99.0,
+        "trade_high": 101.0,
+        "d_plus_2s": {"event_ms": start + 12_000},
+    }
+
+
+def _candidate_bars(*, decision_receive=602.0, t_receive=600.5,
+                    h_receive=600.4, macro=(101.0, 100.0, 99.0)):
+    return {
+        "t_bar": {
+            "symbol": "BTCUSDT",
+            "timeframe_minutes": 10,
+            "bar_open_ms": 0,
+            "bar_close_ms": 600_000,
+            "completed": True,
+            "feature_available_receive_monotonic_s": t_receive,
+        },
+        "btc_h_bar": {
+            "symbol": "BTCUSDT",
+            "timeframe_minutes": 240,
+            "bar_open_ms": 0,
+            "bar_close_ms": 14_400_000,
+            "completed": True,
+            "feature_available_receive_monotonic_s": h_receive,
+            "close": macro[0],
+            "ema50": macro[1],
+            "ema50_5_bars_ago": macro[2],
+        },
+        "decision_event_ms": 14_402_000,
+        "decision_receive_monotonic_s": decision_receive,
+    }
+
+
+def test_candidate_builder_uses_macro_to_micro_and_selects_earliest_window():
+    bars = _candidate_bars()
+    candidates, rejects = build_candidates_for_completed_bar(
+        [_candidate_window(100_000), _candidate_window(200_000)],
+        **bars,
+        aggression_quote_threshold=500.0,
+        minimum_replenishment_ratio=0.5,
+        tick_size=0.01,
+    )
+
+    assert len(candidates) == 1
+    candidate = candidates[0]
+    assert candidate["side"] == "long"
+    assert candidate["window_start_ms"] == 100_000
+    assert candidate["macro_regime"] == "long"
+    assert candidate["stop_price_pre_entry"] == pytest.approx(98.99)
+    assert candidate["entry_price"] is None
+    assert candidate["candidate_status"] == "awaiting_executable_post_signal_quote"
+    assert rejects["window_not_eligible"] == 0
+
+
+@pytest.mark.parametrize("bar_key", ["t_bar", "btc_h_bar"])
+def test_candidate_builder_abstains_when_any_bar_feature_arrives_after_decision(bar_key):
+    bars = _candidate_bars()
+    bars[bar_key]["feature_available_receive_monotonic_s"] = 602.0
+    candidates, rejects = build_candidates_for_completed_bar(
+        [_candidate_window(100_000)], **bars,
+        aggression_quote_threshold=500.0,
+        minimum_replenishment_ratio=0.5,
+        tick_size=0.01,
+    )
+
+    assert candidates == []
+    assert rejects["t_bar_unavailable"] + rejects["higher_timeframe_unavailable"] == 1
+
+
+def test_candidate_builder_abstains_on_non_directional_higher_timeframe_state():
+    bars = _candidate_bars(macro=(100.0, 100.0, 100.0))
+    candidates, rejects = build_candidates_for_completed_bar(
+        [_candidate_window(100_000)], **bars,
+        aggression_quote_threshold=500.0,
+        minimum_replenishment_ratio=0.5,
+        tick_size=0.01,
+    )
+
+    assert candidates == []
+    assert rejects["no_directional_macro_regime"] == 1
+
+
+def test_candidate_builder_applies_symmetric_short_rules():
+    bars = _candidate_bars(macro=(99.0, 100.0, 101.0))
+    candidates, _ = build_candidates_for_completed_bar(
+        [_candidate_window(100_000)], **bars,
+        aggression_quote_threshold=500.0,
+        minimum_replenishment_ratio=0.5,
+        tick_size=0.01,
+    )
+
+    assert candidates[0]["side"] == "short"
+    assert candidates[0]["stop_price_pre_entry"] == pytest.approx(101.01)
+
+
+def test_candidate_builder_rejects_wrong_macro_timeframe():
+    bars = _candidate_bars()
+    bars["btc_h_bar"]["timeframe_minutes"] = 60
+    with pytest.raises(ValueError, match=r"max\(240m, 4 x T\)"):
+        build_candidates_for_completed_bar(
+            [_candidate_window(100_000)], **bars,
+            aggression_quote_threshold=500.0,
+            minimum_replenishment_ratio=0.5,
+            tick_size=0.01,
+        )
+
+
+def test_candidate_builder_does_not_cross_symbols():
+    bars = _candidate_bars()
+    bars["t_bar"]["symbol"] = "ETHUSDT"
+    candidates, rejects = build_candidates_for_completed_bar(
+        [_candidate_window(100_000, symbol="BTCUSDT")], **bars,
+        aggression_quote_threshold=500.0,
+        minimum_replenishment_ratio=0.5,
+        tick_size=0.01,
+    )
+
+    assert candidates == []
+    assert rejects["wrong_symbol"] == 1
 
 
 def test_10s_aggregator_fails_closed_on_late_event_after_finalization(tmp_path):
