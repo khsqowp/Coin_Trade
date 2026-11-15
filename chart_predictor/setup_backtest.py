@@ -42,6 +42,8 @@ HYPOTHESES={
  "volume_climax_exhaustion_strict":"The same climax-volume rejection-wick reversal should perform better once the volume spike threshold is raised from 3x to 5x the trailing average, filtering out more marginal, likely-noise spikes.",
  "engulfing_rsi_extreme":"A bullish engulfing candle confirmed with RSI(14) below 30, or a bearish engulfing candle confirmed with RSI(14) above 70, should mark exhausted directional pressure and precede short-horizon reversal follow-through.",
  "engulfing_rsi_extreme_strict":"After the base rule's stop-dominated failures, the same engulfing reversal should improve when RSI exhaustion is restricted to below 20 for longs and above 80 for shorts; this single threshold change tests whether only deeper extremes distinguish exhaustion from continued pressure.",
+ "pinbar_stochastic_cross":"A hammer or shooting star pin bar at a stochastic extreme should produce stronger reversal follow-through when %K crosses %D within two bars.",
+ "pinbar_stochastic_cross_strict":"A pin bar at a more extreme stochastic reading (%K below 10 or above 90) should filter weaker reversals and improve follow-through.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -135,6 +137,7 @@ def _write(report,report_dir, data_hash, stage):
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
     present={r["setup"] for r in rows}
     label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
+      else "P9-B" if present and present<={"pinbar_stochastic_cross","pinbar_stochastic_cross_strict"}
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
       else "P9-A" if present and present<={"engulfing_rsi_extreme","engulfing_rsi_extreme_strict"}
@@ -170,7 +173,8 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
             h,l,c,v=(frame[k].to_numpy(float) for k in ("h","l","c","v"))
             prepared={"atr":atr(h,l,c,14),"swings":indicators.confirmed_swings(h,l,3),
                       "rsi":indicators.rsi(c,14),"vwap":indicators.vwap(h,l,c,v,frame.t_open_ms),
-                      "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c)}
+                      "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c),
+                      "stochastic":indicators.stochastic(h,l,c)}
             cache[symbol]=(raw,frame,{setup:generate_signals(frame,setup,prepared) for setup in setups},tier)
         for symbol,(raw,frame,signals,tier) in cache.items():
             for setup,sigs in signals.items():

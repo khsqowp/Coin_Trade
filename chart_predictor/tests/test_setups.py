@@ -5,6 +5,21 @@ from chart_predictor.setups import SETUPS, Signal, generate_signals
 from chart_predictor.setup_backtest import DEV_CUTOFF_MS, resolve_trade, wilson, htf_direction_at
 from chart_predictor import indicators
 
+def test_stochastic_values_and_future_causality():
+    h=np.array([3.,4.,5.,6.,7.]); l=np.array([1.,2.,3.,4.,5.]); c=np.array([2.,3.,4.,5.,6.])
+    k,d=indicators.stochastic(h,l,c,k_period=3,d_period=2)
+    assert np.isnan(k[:2]).all() and np.isnan(d[:2]).all()
+    assert k[2:]==pytest.approx([75.,75.,75.])
+    assert np.isnan(d[:3]).all() and d[3:]==pytest.approx([75.,75.])
+    h2=h.copy(); l2=l.copy(); c2=c.copy(); h2[4]=1000; l2[4]=-1000; c2[4]=999
+    k2,d2=indicators.stochastic(h2,l2,c2,k_period=3,d_period=2)
+    assert np.array_equal(np.isnan(k2[:4]),np.isnan(k[:4]))
+    assert np.array_equal(np.isnan(d2[:4]),np.isnan(d[:4]))
+    assert k2[2:4]==pytest.approx(k[2:4]) and d2[3:4]==pytest.approx(d[3:4])
+    flat=np.ones(4)
+    fk,fd=indicators.stochastic(flat,flat,flat,k_period=2,d_period=2)
+    assert np.isnan(fk[1:]).all() and np.isnan(fd[1:]).all()
+
 def candles(n=240):
     x=np.arange(n); c=100+np.sin(x/7)*2+x*.01
     return pd.DataFrame({"t_open_ms":1700000000000+x*60000,"o":c-.1,"h":c+.5,"l":c-.5,"c":c,"v":np.ones(n)})
@@ -48,6 +63,40 @@ def test_single_position_entry_offset():
 def _ohlc(o,h,l,c):
     n=len(c)
     return pd.DataFrame({"t_open_ms":1700000000000+np.arange(n)*60000,"o":o,"h":h,"l":l,"c":c,"v":np.ones(n)})
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_pinbar_stochastic_cross_confirms_pattern_at_cross_bar(side):
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    if side=="long": o[15],h[15],l[15],c[15]=100,101.5,97,101
+    else: o[15],h[15],l[15],c[15]=101,104,99.5,100
+    f=_ohlc(o,h,l,c); k=np.full(20,50.); d=np.full(20,50.)
+    if side=="long": k[15],d[15],k[16],d[16]=10,12,15,14
+    else: k[15],d[15],k[16],d[16]=90,88,85,86
+    sigs=generate_signals(f,"pinbar_stochastic_cross",{"stochastic":(k,d)})
+    sig=next(s for s in sigs if s.index==16)
+    assert sig.side==side and sig.stop==pytest.approx(l[15] if side=="long" else h[15])
+
+def test_pinbar_stochastic_cross_rejects_missing_pattern_or_extreme_or_late_cross():
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    o[15],h[15],l[15],c[15]=100,101.5,97,101
+    f=_ohlc(o,h,l,c); k=np.full(20,50.); d=np.full(20,50.)
+    k[15],d[15],k[16],d[16]=10,12,15,14
+    # Same oversold cross without a hammer does not qualify.
+    f.loc[15,"h"]=104
+    assert not any(s.index==16 for s in generate_signals(f,"pinbar_stochastic_cross",{"stochastic":(k,d)}))
+    f.loc[15,"h"]=101.5; k[15]=30
+    assert not any(s.index==16 for s in generate_signals(f,"pinbar_stochastic_cross",{"stochastic":(k,d)}))
+    k[15]=10; k[16],d[16]=10,12; k[17],d[17]=10,12; k[18],d[18]=15,14
+    assert not any(s.index==18 for s in generate_signals(f,"pinbar_stochastic_cross",{"stochastic":(k,d)}))
+
+def test_pinbar_stochastic_cross_strict_rejects_base_marginal_extreme():
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    o[15],h[15],l[15],c[15]=100,101.5,97,101
+    f=_ohlc(o,h,l,c); k=np.full(20,50.); d=np.full(20,50.)
+    k[15],d[15],k[16],d[16]=15,17,20,19
+    prepared={"stochastic":(k,d)}
+    assert any(s.index==16 for s in generate_signals(f,"pinbar_stochastic_cross",prepared))
+    assert not any(s.index==16 for s in generate_signals(f,"pinbar_stochastic_cross_strict",prepared))
 
 @pytest.mark.parametrize("side",["long","short"])
 def test_order_block_impulse_retest_and_invalidation(side):
