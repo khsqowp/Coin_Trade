@@ -1,0 +1,59 @@
+# R005 plan — Liquidity-replenishment absorption (M4 signal track)
+
+Status: `candidate_spec_pending_data_pipeline`; no performance calculation has been run.
+
+## Objective and separation
+
+Test whether displayed liquidity that replenishes after an aggressive opposite-side trade burst provides a selective long/short signal, subject to a confirmed higher-timeframe BTC regime. This is a chart-prediction M4 target-first study. It is separate from the portfolio-strategy objective of finding two strategies that beat matched Buy-and-Hold; it cannot satisfy that objective.
+
+The primary outcome remains the frozen chart-predictor gate: per-timeframe target-first precision at least 80%, coverage at least 10%, at least 200 selected non-overlapping outcomes across at least 20 eligible symbols, Wilson 95% lower bound above matched baselines, and positive cost-adjusted expectancy. The final forward set may be opened once only after all development, calibration, selection, code, data, universe, and cost decisions are frozen.
+
+## Prior evidence and novelty
+
+Previously exposed/rejected families include candle momentum/trend/mean reversion, MACD/RSI, Heikin-Ashi, volume/taker-imbalance breakouts, BTC lead/alt lag, MTF candle consensus, and BTC-4h / alt-5m sweep-MSS. The sweep-MSS run had 23,823 events, 13.38% target-first precision, 1.7688% coverage, and mean net R -0.294 at its assumed 0.10% round-trip fee; it is not to be tuned or reused as a candidate. R004 MACD-zero/RSI-50 was a separate long-only portfolio screen and selected no validation candidate.
+
+R005's proposed mechanism is displayed-book recovery after consumption, not the sign or magnitude of taker flow alone. It is only a hypothesis. The existing one-hour BTC/ETH depth+aggTrade capture was an integrity pilot, not a strategy result.
+
+## Candidate rules to freeze before any signal scoring
+
+These are the proposed v0 rules. They are not yet an authorized performance protocol because executable-cost calibration and the compact recorder have not passed review.
+
+1. **Universe.** At prospective start, select and permanently snapshot the top 20 by 24-hour quote volume from instruments that are `TRADING`, `PERPETUAL`, USDT-quoted, and COIN-underlying according to exchange metadata. Exclude stock/commodity tokens. Do not replace symbols after seeing results; retain a symbol in the cohort after suspension/delisting and report unavailable intervals.
+2. **Timeframes and horizons.** Evaluate separately at `1m, 3m, 5m, 10m, 15m, 30m, 60m, 120m, 240m, 360m, 720m, 1440m`. For timeframe `T`, record target-first outcomes at 10T and 20T; 20T is primary, and 10T is a secondary view of the same event, not an independent sample. Never pool timeframes to satisfy a minimum sample.
+3. **Macro regime.** For each T, use only the latest fully completed BTC bar at `H=max(4h,4T)`; do not pool T strata. Long regime requires its close above EMA50 and EMA50 greater than its value five completed H bars earlier. Short regime requires the symmetric inverse. Otherwise abstain. No incomplete H or T candle may be consumed.
+4. **Aggression event.** Partition time into UTC-aligned, non-overlapping, half-open 10-second buckets. In a completed T bar, identify an opposite-side aggressive quote-volume burst; quote volume is `sum(trade_price * base_quantity)`. Use exchange trade time for bucket assignment and monotonic local receive time for availability; deduplicate aggregate trades by exchange aggregate-trade ID. A sell-aggressor burst is eligible only under the long BTC regime; a buy-aggressor burst is eligible only under the short BTC regime. `isBuyerMaker=true` denotes seller-initiated aggregate trades; `false` denotes buyer-initiated trades.
+5. **Displayed-liquidity recovery.** At the start of each bucket, anchor the top-five bid/ask depth levels within ±5 bp of the midprice; depth is quote notional (`sum(price * quantity)`) within this fixed price band. For the consumed side, calculate `replenishment=(D_2s-D_min)/(D_pre-D_min)`. `D_pre` is the last sequence-valid book state before the bucket; `D_min` is the minimum sequence-valid anchored depth observed during it; `D_2s` is the latest valid state at or before bucket-end +2 seconds, no older than 250 ms. A non-positive denominator, sequence gap, stale state, or missing endpoint makes the event unscorable. Do not infer restoration from a candle or trade-volume proxy.
+6. **Frozen development grid.** Test aggression-volume trailing-30-day percentile thresholds `{80,90,95}` crossed with replenishment-ratio minima `{0.5,1.0,1.5}`. Quantiles are computed from strictly prior observations for the same symbol and direction; current event is excluded. This is 9 cells per timeframe, 108 cells total. No post-result refinement is allowed unless a separate bounded refinement is registered before it runs and the validation/final boundaries remain unopened.
+7. **Signal and entry.** At most the earliest qualifying burst per symbol/T bar is selected per cell. Signal time is after the 2-second replenishment observation is received and after the T and applicable H bars are complete. Simulated long entry is the first valid executable ask after that time; short entry is the first valid executable bid. No same-timestamp or pre-confirmation fill is allowed. If the stop or target barrier was already touched after the burst but before entry, record `INVALIDATED_BEFORE_ENTRY`; count it as a non-target selected outcome, not as an omitted signal or retroactive fill.
+8. **Risk geometry and labels.** Initial stop is one exchange tick beyond the most adverse trade price during the qualifying 10-second burst (below for long, above for short). Define `R=|entry-stop|`; reject an event if R is zero, exceeds 2× the ATR14 of the last completed T bar, or is less than twice the modeled round-trip cost. Target is 1R from entry. Primary timeout is 20T; the 10T checkpoint is a secondary label on the same event. Evaluate the executable opposite-side quote path after entry; stop/target gaps fill at the first observed executable quote beyond the barrier. If both barriers fall between valid observations, resolve stop-first. Timeout is a non-target outcome; missing/invalid path is unscorable, with the reason reported.
+9. **Overlap.** Permit only one open event per symbol across directions and timeframes. Suppress a new event until the prior event's full 20T label horizon has elapsed, even when a barrier is reached sooner. Suppressed eligible anchors remain in the coverage denominator. Report every T independently; do not count the same anchor at 10T and 20T as two independent observations.
+10. **Execution costs.** Taker entry and exit only. Use 0.05% per side as the frozen fee assumption from the current project contract until replaced by a pre-result user fee schedule; include observed spread and depth-walk slippage for a fixed 1,000 USDT notional. Report a 2× slippage/fee stress. Apply actual funding if the label crosses a funding timestamp. If quote/depth/funding records do not support the estimate, mark cost-adjusted expectancy unscorable rather than zero-cost.
+11. **Confidence and selection.** Confidence must be calibrated on a chronological calibration partition, not set by an LLM or inferred from indicator thresholds. Proposed model is a fixed, deterministic logistic model using only aggression percentile, replenishment ratio, macro-regime strength, and spread/ATR; feature standardization is fitted on training only and sigmoid calibration on calibration only. Exact implementation/version and minimum train/calibration/validation counts must be fixed before labels are inspected. On validation, select the threshold with greatest coverage among candidates meeting point precision ≥80%, coverage ≥10%, positive net expectancy under base and stress costs, and all per-T sample requirements; ties resolve by higher Wilson lower bound, then lower turnover, then ascending numeric threshold. If no threshold qualifies, that cell is ineligible for final. Threshold selection and final scoring are separate; validation cannot be repeatedly reused to refine rules.
+12. **Coverage, baselines, and uncertainty.** Coverage denominator is all scheduled symbol × completed-T-bar opportunities in the frozen cohort with valid feed data, including neutral macro regimes, suppressed events, and abstentions. Report feed availability separately; invalid/missing-path event rates are not silently removed from feed-quality reporting. At identical valid anchors and geometry, compare against (a) macro-only direction, (b) the same aggression burst without replenishment, and (c) deterministic SHA-256-random direction. For each T, require at least 200 selected outcomes, at least 20 symbols, at least 5 outcomes per symbol, no symbol contributing over 10%, and at least 60 distinct UTC outcome days; otherwise that T is `INCONCLUSIVE`. Report Wilson precision intervals plus symbol-and-UTC-day block bootstrap intervals for paired precision difference and net R. Apply Holm correction across the 12 separately selected timeframe hypotheses; do not treat the 108 development cells as independent confirmation. Report flat/abstention coverage separately.
+
+## Data and chronological partitions
+
+No qualifying historical book/trade dataset exists. The one-hour two-symbol capture is already observed development evidence and cannot be reused as validation or final. A pre-result compact-capture implementation must pass its own synchronization, disconnect, gap, clock, disk-cap, integrity-hash, and deterministic replay tests before a prospective run begins.
+
+Proposed chronological sequence after the recorder is accepted (timestamps and all cutoffs must be frozen before any strategy outcomes are aggregated):
+
+- 30 days of feature-history warm-up for the trailing distribution; no strategy selection.
+- 60 days for training and development grid.
+- 30 days for probability calibration.
+- 30 days for cell/threshold selection and validation.
+- One frozen 365-day forward evaluation per selected timeframe; no intermediate aggregate precision reports. Each timeframe is analyzed separately. If sample, coverage, or symbol-diversity gates are not met at the fixed cutoff, report `INCONCLUSIVE`, not success.
+
+The exact timestamps, eligible symbols, file schema, retention, costs, and hashes are not yet frozen. Therefore this document is a candidate plan, not a completed preregistration, and no result segment is open.
+
+## Pre-run verification checklist
+
+- [ ] Compact prospective recorder stores sufficient 1-minute feature/path data and execution quote snapshots, with raw-event sequence and rolling content hashes.
+- [ ] 20-symbol universe snapshot and exchange metadata are saved before outcomes.
+- [ ] All required T/H features use only fully completed bars; prefix invariance and injected-future tests pass.
+- [ ] Depth synchronization/reconnect recovery, event deduplication, clock skew, and missing-data rules pass bounded tests.
+- [ ] Train/calibration/validation/final timestamps and minimum counts are fixed per timeframe.
+- [ ] Exact logistic feature encoding, model version, calibration method, threshold selection, baselines, costs, and Holm family are recorded.
+- [ ] Final outcomes are kept inaccessible to feature/model selection until the fixed forward cutoff.
+- [ ] Data rights and local durable storage/retention are confirmed; no account or order API is used.
+
+Until every item passes, do not run a signal-performance grid or claim an 80% signal.

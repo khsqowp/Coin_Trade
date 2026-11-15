@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-11-16-r005-liquidity-replenishment",
+  "status": "not_started_data_gate",
+  "performance_grid": {
+    "planned_cells": 108,
+    "executed_cells": 0,
+    "failed_cells": 0,
+    "unexecuted_cells": 108
+  },
+  "performance_metrics": null,
+  "signal_count": null,
+  "target_first_precision": null,
+  "coverage": null,
+  "net_expectancy": null,
+  "data_gate": {
+    "passed": false,
+    "reasons": [
+      "No multi-symbol point-in-time prospective L2/trade history under this candidate contract.",
+      "Existing capture covers only BTCUSDT and ETHUSDT for one hour and was used as an integrity pilot.",
+      "No natural reconnect was observed in the one-hour capture.",
+      "Uncompressed raw depth+aggTrade storage extrapolates to about 20.2 TB/year for 20 symbols; the measured one-hour zstd ratio projects to about 3.87 TB/year, so compact feature/path retention is still required and unverified.",
+      "Final confidence implementation, minimum train/calibration/validation counts, exact timestamps, durable storage path, and user-specific fee schedule remain unfrozen."
+    ]
+  },
+  "tests": {
+    "performance_tests": 0,
+    "unit_and_integrity_tests": 225,
+    "unit_and_integrity_tests_passed": 225,
+    "warnings": 1
+  },
+  "interpretation": "The 225 passing tests verify existing code paths and synthetic cases only. They are not evidence of predictive accuracy or profitability. No strategy-performance result was generated."
+}

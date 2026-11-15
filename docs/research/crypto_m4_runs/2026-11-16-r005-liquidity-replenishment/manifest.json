@@ -1,0 +1,71 @@
+{
+  "run_id": "2026-11-16-r005-liquidity-replenishment",
+  "parent_run_id": "2026-11-16-r004-macd-zero-rsi50",
+  "date_local": "2026-11-16",
+  "status": "candidate_spec_pending_data_pipeline",
+  "study_type": "prospective_mtf_orderbook_replenishment_m4_candidate",
+  "objective": "Test one materially distinct public-market-data M4 signal candidate; no performance grid run in this record.",
+  "market": "Binance USDⓈ-M public market data; no orders or account endpoints",
+  "candidate": {
+    "mechanism": "After a higher-timeframe BTC regime filter, a lower-timeframe opposite-side aggressive trade burst followed by same-side top-five displayed-depth replenishment may identify liquidity absorption and predict target-first continuation with the macro regime.",
+    "timeframes_minutes": [1, 3, 5, 10, 15, 30, 60, 120, 240, 360, 720, 1440],
+    "horizon_bars": [10, 20],
+    "parameter_grid": {
+      "aggression_percentiles": [80, 90, 95],
+      "minimum_replenishment_ratio": [0.5, 1.0, 1.5],
+      "cells": 108
+    },
+    "trade_geometry": "1R target; stop one tick beyond adverse price in qualifying burst; max hold 20 timeframe bars; stop-first unresolved ties.",
+    "confidence": "Fixed logistic model plus separate chronological sigmoid calibration; exact implementation and sample-count gate remain to be frozen before labels are inspected."
+  },
+  "previous_evidence": {
+    "rejected_sweep_mss": {
+      "events": 23823,
+      "target_first_precision": 0.1338,
+      "coverage": 0.017688,
+      "mean_net_r": -0.294,
+      "use_as_candidate": false
+    },
+    "r004_validation_selected_candidates": 0,
+    "r004_final_holdout_opened": false,
+    "one_hour_l2_integrity_pilot_is_performance_evidence": false
+  },
+  "existing_l2_capture_integrity_check": {
+    "path": "chart_predictor/data/crypto_l2_pilots/20261115T144322Z-a527cf09/capture.jsonl",
+    "symbols": ["BTCUSDT", "ETHUSDT"],
+    "capture_seconds_target": 3600,
+    "capture_seconds_actual": 3605.399,
+    "records_verified": 208224,
+    "bytes_verified": 230845049,
+    "sha256_verified": "ee337e99a4f3060ec7f56889f35eb4ed213839356a7efc1533ff7a97904d057e",
+    "all_json_lines_valid": true,
+    "all_records_newline_terminated": true,
+    "natural_reconnect_observed": false,
+    "eligible_for_signal_performance": false,
+    "raw_20_symbol_linear_storage_estimate": {
+      "bytes_per_hour": 2305048617,
+      "bytes_per_day_approx": 55321166808,
+      "bytes_per_year_approx": 20192225884920,
+      "note": "Linear extrapolation from two symbols and one hour of uncompressed depth@500ms plus aggTrade JSONL; not a measured 20-symbol rate. Do not launch a long raw capture at this scale."
+    },
+    "compression_probe": {
+      "method": "stream zstd -q -c to byte counter; no compressed file was written",
+      "zstd_version": "1.5.7",
+      "compressed_bytes": 44188758,
+      "compressed_to_raw_ratio": 0.1914217272,
+      "space_saved_pct": 80.85782728,
+      "estimated_20_symbol_bytes_per_year_after_compression": 3865230755328,
+      "note": "Measured on this one-hour two-symbol JSONL file only. Linear projection remains an estimate; even this ratio projects to about 3.87 decimal TB/year, so compression alone is not a sufficient retention plan."
+    }
+  },
+  "verification": {
+    "source_commit": "83e1efe61cbfac90fdc16bdd6b1b1efa1fdf3358",
+    "performance_cells_run": 0,
+    "performance_metrics_calculated": false,
+    "chart_predictor_tests": "225 passed, 1 environment warning",
+    "no_api_credentials_or_orders": true,
+    "files_modified_before_this_record": false
+  },
+  "decision": "candidate_spec_pending_data_pipeline",
+  "next_action": "Implement and locally verify a compact, sequence-valid feature recorder and deterministic replay; then freeze full hashes, universe, calibration sample counts, costs and forward partitions before collecting any outcome-bearing study data."
+}
