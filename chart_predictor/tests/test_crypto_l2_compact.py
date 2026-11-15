@@ -4,6 +4,7 @@ import json
 import pytest
 
 from scripts.research.crypto_l2_compact import reduce_capture
+from scripts.research.crypto_l2_windows import aggregate_windows
 
 
 def _record(kind, symbol, event, t, **extra):
@@ -103,3 +104,101 @@ def test_reducer_enforces_output_cap_without_finalizing_partial(tmp_path):
         reduce_capture(source, output, max_output_bytes=128)
     assert not output.exists()
     assert (tmp_path / "compact.jsonl.partial").exists()
+
+
+def _compact_row(kind, event_ms, receive_ms, **values):
+    return {
+        "kind": kind,
+        "symbol": "BTCUSDT",
+        "exchange_event_ms": event_ms,
+        "received_at_ms": receive_ms,
+        "received_monotonic_s": receive_ms / 1000,
+        **values,
+    }
+
+
+def test_10s_aggregation_uses_utc_event_time_and_computes_refill(tmp_path):
+    source = tmp_path / "compact.jsonl"
+    output = tmp_path / "windows.jsonl"
+    rows = [
+        _compact_row("book_update", 99_500, 99_510,
+                     bid=99.99, ask=100.01, mid=100,
+                     bid_depth_quote_5bp_top5=100, ask_depth_quote_5bp_top5=200,
+                     last_update_id=1),
+        _compact_row("agg_trade", 101_000, 101_020, trade_id=10,
+                     quote_quantity=250, seller_initiated=True, price=100.2,
+                     trade_id_gap_before=False, book_receive_age_ms=10),
+        _compact_row("book_update", 105_000, 105_030,
+                     bid=100.09, ask=100.11, mid=100.1,
+                     bid_depth_quote_5bp_top5=30, ask_depth_quote_5bp_top5=80,
+                     last_update_id=2),
+        _compact_row("agg_trade", 108_000, 108_020, trade_id=11,
+                     quote_quantity=125, seller_initiated=False, price=100.3,
+                     trade_id_gap_before=False, book_receive_age_ms=20),
+        _compact_row("book_update", 111_500, 111_530,
+                     bid=100.19, ask=100.21, mid=100.2,
+                     bid_depth_quote_5bp_top5=80, ask_depth_quote_5bp_top5=150,
+                     last_update_id=3),
+        _compact_row("agg_trade", 114_500, 114_520, trade_id=12,
+                     quote_quantity=50, seller_initiated=False, price=100.4,
+                     trade_id_gap_before=False, book_receive_age_ms=10),
+    ]
+    _write_source(source, rows)
+
+    manifest = aggregate_windows(source, output, allowed_lateness_ms=2000)
+    windows = [json.loads(line) for line in output.read_text().splitlines()]
+    target = next(row for row in windows if row["window_start_ms"] == 100_000)
+
+    assert manifest["quality_pass"] is True
+    assert target["window_final"] is True
+    assert target["trade_count"] == 2
+    assert target["sell_aggressor_quote_volume"] == pytest.approx(250)
+    assert target["buy_aggressor_quote_volume"] == pytest.approx(125)
+    assert target["dpre"]["bid"] == pytest.approx(100)
+    assert target["dmin_bid"]["bid"] == pytest.approx(30)
+    assert target["d_plus_2s"]["bid"] == pytest.approx(80)
+    assert target["bid_replenishment_ratio"] == pytest.approx(50 / 70)
+
+
+def test_10s_aggregator_fails_closed_on_late_event_after_finalization(tmp_path):
+    source = tmp_path / "compact.jsonl"
+    output = tmp_path / "windows.jsonl"
+    rows = [
+        _compact_row("agg_trade", 101_000, 101_010, trade_id=1,
+                     quote_quantity=10, seller_initiated=True, price=100,
+                     trade_id_gap_before=False, book_receive_age_ms=0),
+        _compact_row("agg_trade", 120_000, 120_010, trade_id=2,
+                     quote_quantity=20, seller_initiated=False, price=101,
+                     trade_id_gap_before=False, book_receive_age_ms=0),
+        _compact_row("agg_trade", 105_000, 120_020, trade_id=3,
+                     quote_quantity=30, seller_initiated=True, price=99,
+                     trade_id_gap_before=False, book_receive_age_ms=0),
+    ]
+    _write_source(source, rows)
+
+    manifest = aggregate_windows(source, output, allowed_lateness_ms=2000)
+    windows = [json.loads(line) for line in output.read_text().splitlines()]
+
+    assert manifest["late_input_rows"] == 1
+    assert manifest["quality_pass"] is False
+    finalized = next(row for row in windows if row["window_start_ms"] == 100_000)
+    assert finalized["sell_aggressor_quote_volume"] == pytest.approx(10)
+
+
+def test_10s_aggregator_marks_global_feed_disconnect_as_quality_failure(tmp_path):
+    source = tmp_path / "compact.jsonl"
+    output = tmp_path / "windows.jsonl"
+    rows = [
+        {"kind": "feed_event", "symbol": None, "state": "disconnected",
+         "stream": "depth", "received_at_ms": 100_000},
+        _compact_row("agg_trade", 101_000, 101_010, trade_id=1,
+                     quote_quantity=10, seller_initiated=True, price=100,
+                     trade_id_gap_before=False, book_receive_age_ms=0),
+    ]
+    _write_source(source, rows)
+
+    manifest = aggregate_windows(source, output)
+
+    assert manifest["global_feed_events"] == 1
+    assert manifest["global_disconnect_events"] == 1
+    assert manifest["quality_pass"] is False

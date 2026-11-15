@@ -100,23 +100,32 @@ class JsonlSegment:
         manifest = {**run_manifest, "segment": segment}
         manifest_path = self.path.parent / ("manifest.json" if complete else "incomplete.json")
         metrics = manifest.setdefault("resource_metrics", {})
-        metrics["metadata_bytes"] = 0
-        metrics["total_output_bytes"] = self.bytes_written
-        for _ in range(8):
+        metadata_bytes = 0
+        for _ in range(32):
+            metrics["metadata_bytes"] = metadata_bytes
+            metrics["total_output_bytes"] = self.bytes_written + metadata_bytes
             data = _json_bytes(manifest, pretty=True)
-            total = self.bytes_written + len(data)
             elapsed = float(metrics.get("capture_elapsed_seconds") or 0.0)
-            previous = (metrics["metadata_bytes"], metrics["total_output_bytes"])
-            metrics["metadata_bytes"] = len(data)
-            metrics["total_output_bytes"] = total
-            metrics["metadata_bytes_per_hour"] = round(len(data) * 3600 / elapsed, 3) if elapsed > 0 else None
-            metrics["total_output_bytes_per_hour"] = round(total * 3600 / elapsed, 3) if elapsed > 0 else None
-            if previous == (len(data), total):
+            metrics["metadata_bytes_per_hour"] = round(metadata_bytes * 3600 / elapsed, 3) if elapsed > 0 else None
+            metrics["total_output_bytes_per_hour"] = round(
+                (self.bytes_written + metadata_bytes) * 3600 / elapsed, 3
+            ) if elapsed > 0 else None
+            serialized = _json_bytes(manifest, pretty=True)
+            # Reserve a small whitespace tail so metadata sizing cannot oscillate
+            # across a decimal digit boundary in its own byte-count fields.
+            required = ((len(serialized) + 31) // 32) * 32
+            if required == metadata_bytes:
                 break
+            metadata_bytes = required
+        else:
+            raise RuntimeError("manifest byte-size calculation did not converge")
         data = _json_bytes(manifest, pretty=True)
-        if self.bytes_written + len(data) > self.max_bytes:
+        if len(data) > metadata_bytes:
+            raise RuntimeError("manifest whitespace reserve is too small")
+        data += b" " * (metadata_bytes - len(data))
+        if self.bytes_written + metadata_bytes > self.max_bytes:
             raise CaptureLimit("capture plus manifest would exceed the total output cap")
-        if self.bytes_written + len(data) != metrics["total_output_bytes"]:
+        if self.bytes_written + metadata_bytes != metrics["total_output_bytes"]:
             raise RuntimeError("manifest size did not stabilize")
         if complete:
             os.replace(self.partial_path, self.path)

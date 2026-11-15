@@ -4,21 +4,22 @@
 
 - Added a single proposed macro-to-micro orderbook-replenishment candidate; it is not a performance-tested strategy.
 - Existing L2 pilot raw file passed an independent SHA-256/record/JSON/newline check. The capture is two symbols and approximately one hour; no reconnect occurred naturally.
-- Follow-on implementation added an offline-only deterministic reducer at `scripts/research/crypto_l2_compact.py` and three focused tests. Full `chart_predictor/tests`: 228 passed, one environment warning. No live feed was started.
-- Reducer replayed the immutable 208,224-record pilot twice; both outputs matched SHA-256 `57f8bcf1694167f779f2c007f94e7eee6ecfed7b502a1880b45de52f343c6362`, with two sequence-valid snapshots and zero replay invalidations. It emitted 208,163 rows (104,508,285 bytes) from 230,845,049 source bytes. Strategy metrics remain null.
-- Streaming Zstandard 1.5.7 reduced the compact sample to 9,942,735 bytes (9.51% of compact size). A linear 20-symbol/year projection is about 0.871 decimal TB/year. That is an extrapolation from one two-symbol hour, not a measured production rate; the output artifact was temporary and is not committed.
-- The reducer is an engineering prototype, not the required feature/path recorder: it stores a compact row per depth update and eligible trade, and its storage projection is still unverified. The R005 data gate remains closed.
+- Follow-on implementation added offline-only tools at `scripts/research/crypto_l2_compact.py` and `scripts/research/crypto_l2_windows.py`, plus focused synthetic tests. Full `chart_predictor/tests`: 231 passed, one environment warning. No live feed was started.
+- Two raw-to-compact replays matched SHA-256 `1d12080bc7e8a8f4814334541d7a6865716d2362e38862ddfca7a3c08e96687a`; they processed 208,224 source records, synchronized both books, preserved two connection events, and emitted 208,165 rows. No strategy metrics were calculated.
+- Two compact-to-window replays matched SHA-256 `262d90141cd089a800f691389faedc42d68da4d3cb19c2693390c291cd2758d4`. The hour produced 718 UTC 10-second windows; 716 passed data-quality checks, four incomplete tail windows were withheld, and two lacked pre-window depth. Late-event and disconnect counts were zero.
+- The aggregated file was 1,054,384 bytes uncompressed and 186,557 bytes with Zstandard 1.5.7. Linear scaling from a single two-symbol hour projects to about 16.34 decimal GB/year for 20 symbols; this is not a measured sustained rate. Temporary replay files were not committed.
+- The production recorder/data gate remains closed: feature availability versus each T-bar decision, full executable entry/exit paths and cost snapshots, multi-day reconnect recovery, and a measured 20-symbol capacity test remain unverified.
 - The five R005 documents were committed and pushed in `0f6fa2870b320da5e257cd643424728ff0a205eb`. The implementation and test changes from this follow-on are not yet committed.
 - The raw capture hash is in `manifest.json`. The 20-symbol raw-size projection is explicitly labeled as linear extrapolation and is not a measured rate.
 - Zstandard 1.5.7 streaming compression reduced this sample to 44,188,758 bytes (19.14% of the original); the estimated 20-symbol year remains about 3.87 decimal TB at that sample ratio. No compressed file was written.
 
 ## Next implementation increment
 
-1. Extend the offline reducer into a bounded feature/path ledger that aggregates aggressor quote volume into UTC-aligned, non-overlapping 10-second windows and preserves depth minima/replenishment plus executable quote paths without retaining each raw event. Make the watermark/late-event policy explicit; preserve update IDs, event and receive timestamps, counts, gap/reconnect flags, and rolling hashes.
-2. Preserve enough 1-minute bid/ask OHLC and event-order information to resolve target/stop paths conservatively. Save top-five executable depth at candidate entry/exit events for fixed-notional cost estimation; do not claim fills from midprice alone.
-3. Run synthetic unit tests for buy/sell aggressor classification, depth consumption/replenishment, two-second timing, missing sequence rejection, gap invalidation, UTC aggregation, no future-data use, and deterministic replay. Replay the existing pilot only to verify parser/feature output, not to estimate signal quality.
-4. Measure feature/path storage and deterministic replay on bounded local captures. This prototype's current ~0.871 TB/year 20-symbol extrapolation is only a sample projection and is not accepted as proof of sustained storage capacity. Do not start long-running collection until the aggregate recorder's hard cap, recovery, and capacity tests pass.
-5. Freeze remaining calibration/sample-count/cost/access decisions and complete the checklist in `plan.md`; only then register a performance study.
+1. Add explicit per-event receive-time eligibility checks against each completed T/H decision anchor. A window with post-anchor feature receipt must be unscorable at that anchor, even if its exchange event timestamp lies inside the window.
+2. Preserve minute-level executable bid/ask price paths and depth-walk snapshots at candidate entry/exit, funding timestamps, book-validity intervals, and reconnect boundaries. Do not infer fill or cost from midprice alone.
+3. Extend tests to check delayed-event no-lookahead, sequence gaps spanning a window, disconnect/reconnect invalidation, symbol UTC bucket boundaries, deterministic replay, and output hard caps. Existing pilot remains integrity-only.
+4. Test multi-day storage, replay speed, automatic cap behavior, and actual reconnect/resnapshot recovery on a bounded local capture before selecting a 20-symbol cohort. The current 16.34 GB/year projection is not production capacity proof.
+5. Freeze calibration/sample counts/cost/access decisions and complete every checklist item in `plan.md`; only then register a performance study.
 
 ## Separate equity track
 

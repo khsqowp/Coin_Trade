@@ -67,6 +67,9 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
     raw_records = 0
     synchronized = 0
     invalidations = 0
+    feed_events = 0
+    possible_trade_gaps = 0
+    last_trade_id: dict[str, int] = {}
     out_bytes = 0
     digest = hashlib.sha256()
 
@@ -79,6 +82,21 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
             kind = record.get("kind")
             symbol = record.get("symbol")
             event = record.get("event")
+            if kind == "connection":
+                row = {
+                    "kind": "feed_event",
+                    "symbol": symbol,
+                    "category": "connection",
+                    "stream": record.get("stream"),
+                    "state": record.get("state"),
+                    "received_at_ms": record.get("received_at_ms"),
+                    "received_monotonic_s": record.get("received_monotonic_s"),
+                    "error_type": record.get("error"),
+                }
+                out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
+                rows += 1
+                feed_events += 1
+                continue
             if not isinstance(symbol, str) or not symbol:
                 continue
             book = books.setdefault(symbol, LocalBook())
@@ -91,6 +109,15 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                 last_book_receive_mono.pop(symbol, None)
                 latest_book_rows.pop(symbol, None)
                 invalidations += 1
+                row = {
+                    "kind": "feed_event", "symbol": symbol,
+                    "category": "book_invalid", "reason": record.get("reason"),
+                    "received_at_ms": record.get("received_at_ms"),
+                    "received_monotonic_s": record.get("received_monotonic_s"),
+                }
+                out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
+                rows += 1
+                feed_events += 1
                 continue
             if kind == "depth_delta" and isinstance(event, dict):
                 if not book.valid:
@@ -111,6 +138,7 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                             last = float(record["received_monotonic_s"])
                             last_book_receive_mono[symbol] = last
                             row = _book_row(symbol, event, record, book)
+                            row["kind"] = "book_sync"
                             latest_book_rows[symbol] = row
                             out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
                             rows += 1
@@ -123,6 +151,15 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                         latest_book_rows.pop(symbol, None)
                         last_book_receive_mono.pop(symbol, None)
                         invalidations += 1
+                        row = {
+                            "kind": "feed_event", "symbol": symbol,
+                            "category": "depth_sequence_gap",
+                            "received_at_ms": record.get("received_at_ms"),
+                            "received_monotonic_s": record.get("received_monotonic_s"),
+                        }
+                        out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
+                        rows += 1
+                        feed_events += 1
                         continue
                     last_book_receive_mono[symbol] = float(record["received_monotonic_s"])
                     row = _book_row(symbol, event, record, book)
@@ -148,7 +185,16 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                   and symbol in latest_book_rows):
                 received_mono = float(record["received_monotonic_s"])
                 age_ms = max(0.0, (received_mono - last_book_receive_mono.get(symbol, received_mono)) * 1000)
-                row = _trade_row(symbol, event, record, latest_book_rows[symbol], age_ms)
+                trade_id = event.get("a")
+                previous_trade_id = last_trade_id.get(symbol)
+                possible_gap = (isinstance(trade_id, int) and isinstance(previous_trade_id, int)
+                                and trade_id > previous_trade_id + 1)
+                if possible_gap:
+                    possible_trade_gaps += 1
+                row = _trade_row(symbol, event, record, latest_book_rows[symbol], age_ms,
+                                 trade_id_gap_before=bool(possible_gap))
+                if isinstance(trade_id, int):
+                    last_trade_id[symbol] = trade_id
                 out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
                 rows += 1
 
@@ -174,6 +220,8 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
         "output_rows": rows,
         "synchronized_snapshots": synchronized,
         "invalidations": invalidations,
+        "feed_events_preserved": feed_events,
+        "possible_trade_id_gaps": possible_trade_gaps,
         "strategy_metrics": None,
         "limitations": [
             "Rows preserve receive order; exchange event time is retained separately.",
@@ -209,11 +257,12 @@ def _book_row(symbol: str, event: dict[str, Any], record: dict[str, Any], book: 
 
 
 def _trade_row(symbol: str, event: dict[str, Any], record: dict[str, Any], book_row: dict[str, Any],
-               book_age_ms: float) -> dict[str, Any]:
+               book_age_ms: float, *, trade_id_gap_before: bool) -> dict[str, Any]:
     return {
         "kind": "agg_trade",
         "symbol": symbol,
         "trade_id": event.get("a"),
+        "trade_id_gap_before": trade_id_gap_before,
         "first_trade_id": event.get("f"),
         "last_trade_id": event.get("l"),
         "exchange_event_ms": event.get("T", event.get("E")),

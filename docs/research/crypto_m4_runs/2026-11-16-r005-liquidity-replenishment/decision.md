@@ -23,9 +23,13 @@ Streaming the same JSONL through Zstandard 1.5.7 produced 44,188,758 bytes from 
 
 ## Follow-on replay prototype (engineering only)
 
-An offline deterministic reducer now replays the raw segment using the existing sequence-checked `LocalBook`, waits for snapshots to bridge buffered updates, and joins each eligible aggregate trade to the latest book state received before it. The one-hour source replay produced 208,163 compact rows from 208,224 raw records, synchronized both books, recorded zero invalidations, and reproduced the same output hash on a second run. Focused reducer/book tests passed; the full chart-predictor suite passed 228 tests with one environment warning.
+An offline deterministic reducer now replays the raw segment using the existing sequence-checked `LocalBook`, waits for snapshots to bridge buffered updates, preserves feed events and possible aggregate-trade ID gaps, and joins each eligible trade to the latest book state received before it. Two replays of the same one-hour source produced the same 208,165-row output hash, synchronized both books, preserved two connection events, and recorded zero invalidations or possible trade-ID gaps.
 
-This is not yet the required bounded feature/path recorder. The compact JSONL is still 104.5 MB/hour for the two-symbol sample; Zstandard produced 9.94 MB/hour, linearly projecting to about 0.87 decimal TB/year for 20 symbols. That projection is not a measured sustained rate. The aggregation design, delayed-event policy, production hard-cap tests, reconnect capture, and multi-day capacity test remain open. Do not begin continuous multi-symbol recording or signal scoring on this result.
+An event-time aggregator then produced 718 UTC-aligned 10-second windows (359 each for BTCUSDT and ETHUSDT). It withheld four incomplete tail windows, counted zero late input rows and zero disconnects, and marked 716 windows data-quality-ready; the two remaining windows lacked pre-window depth. A second replay produced the same output hash. The compressed one-hour aggregate is 186,557 bytes; linear scaling projects to about 16.34 decimal GB/year for 20 symbols. The estimate is from a single two-symbol hour and does not prove sustained collection capacity.
+
+The new full test run passed 231 tests with one environment warning. A pre-existing pilot manifest-size fixed-point calculation flaked during two full-suite runs; it was repaired by reserving bounded JSON whitespace and then passed the full suite. No strategy-performance cells were run. This remains infrastructure validation only, not signal evidence.
+
+The required bounded feature/path recorder is still incomplete: the ledger does not yet prove all features were received before each T-bar decision, and does not preserve sufficient executable entry/exit depth walks or funding/cost snapshots. Multi-day reconnect capture, 20-symbol capacity testing, and those causal path/cost checks remain open. Do not begin live continuous collection or signal scoring on this result.
 
 ## Required before performance testing
 
