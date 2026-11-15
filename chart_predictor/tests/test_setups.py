@@ -136,3 +136,63 @@ def test_htf_alignment_uses_only_fully_closed_bars():
     assert htf_direction_at(opens,dirs,width,60)!=1
     assert htf_direction_at(opens,dirs,width,59)==0
     assert htf_direction_at(opens,dirs,width,179)==1
+
+def _frvp_frame(side="long", thin_volume=1.0, breakout=True, flat=False):
+    """60-bar FRVP lookback window (indices 0..59) plus one breakout bar (index 60).
+    A 48-bar dominant cluster at 100 forms the POC; a 5-bar thin cluster (97 for
+    long, 103 for short) forms the low-volume node on the breakout's side; the last
+    window bar (index 59) sits between that node and the POC."""
+    n=62
+    o=np.full(n,100.); h=np.full(n,100.1); l=np.full(n,99.9); c=np.full(n,100.)
+    v=np.full(n,20.0) if flat else np.zeros(n)
+    if not flat:
+        for i in range(10,58):
+            c[i]=o[i]=100.0; h[i]=100.1; l[i]=99.9; v[i]=20.0
+        if side=="long":
+            for i in range(0,5):
+                c[i]=o[i]=97.0; h[i]=97.1; l[i]=96.9; v[i]=thin_volume
+            c[59]=o[59]=98.45; h[59]=98.55; l[59]=98.35; v[59]=thin_volume
+        else:
+            for i in range(0,5):
+                c[i]=o[i]=103.0; h[i]=103.1; l[i]=102.9; v[i]=thin_volume
+            c[59]=o[59]=101.55; h[59]=101.65; l[59]=101.45; v[59]=thin_volume
+    if side=="long":
+        if breakout: o[60],h[60],l[60],c[60]=100.0,103.1,99.9,103.0
+        else: o[60],h[60],l[60],c[60]=100.0,99.9,99.5,99.6
+    else:
+        if breakout: o[60],h[60],l[60],c[60]=100.0,100.1,96.9,97.0
+        else: o[60],h[60],l[60],c[60]=100.0,100.5,99.9,100.4
+    return pd.DataFrame({"t_open_ms":1700000000000+np.arange(n)*60000,"o":o,"h":h,"l":l,"c":c,"v":v})
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_frvp_breakout_from_between_lvn_and_poc(side):
+    sigs=generate_signals(_frvp_frame(side),"frvp_breakout")
+    assert any(s.index==60 and s.side==side for s in sigs)
+    # Stop sits on the far side of the LVN from the POC: below entry for long,
+    # above entry for short, matching the "LVN is a natural invalidation" choice.
+    hit=[s for s in sigs if s.index==60 and s.side==side][0]
+    assert (hit.stop<100.) if side=="long" else (hit.stop>100.)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_frvp_no_breakout_does_not_signal(side):
+    sigs=generate_signals(_frvp_frame(side,breakout=False),"frvp_breakout")
+    assert not any(s.index==60 for s in sigs)
+
+def test_frvp_flat_profile_has_no_lvn_and_does_not_signal():
+    # A single uniform price for the whole lookback window has no secondary price
+    # level at all, so no bin can qualify as a below-POC low-volume node; the rule
+    # must skip the bar rather than invent an LVN.
+    sigs=generate_signals(_frvp_frame("long",flat=True),"frvp_breakout")
+    assert not any(s.index==60 for s in sigs)
+
+def test_frvp_strong_rejects_a_marginal_breakout_the_base_rule_accepts():
+    # The P7-B refinement requires the breakout close to clear the POC by
+    # >=0.25*ATR; a close that clears POC by only a hair should still fire the
+    # base rule but must be rejected by the ATR-buffered variant.
+    f=_frvp_frame("long")
+    f.loc[60,["o","h","l","c"]]=[100.0,100.1,99.9,99.98]  # ~.04 above POC, <0.25*ATR
+    base=generate_signals(f,"frvp_breakout")
+    strong=generate_signals(f,"frvp_breakout_strong")
+    assert any(s.index==60 and s.side=="long" for s in base)
+    assert not any(s.index==60 for s in strong)
+
