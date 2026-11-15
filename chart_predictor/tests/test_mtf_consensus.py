@@ -41,7 +41,8 @@ def test_consensus_abstains_on_cross_timeframe_or_same_timeframe_conflict():
 
     same_tf = [signal("BTCUSDT", "1m", "long", 120_000, 99),
                signal("BTCUSDT", "1m", "short", 120_000, 101, "vwap_band_fade"),
-               signal("BTCUSDT", "5m", "long", 0, 99)]
+               signal("BTCUSDT", "5m", "long", 0, 99),
+               signal("BTCUSDT", "30m", "long", 0, 99)]
     assert build_consensus(same_tf, symbol="BTCUSDT", entry_ms=120_000,
                            entry_price=100) is None
 
@@ -50,8 +51,8 @@ def test_consensus_rejects_stale_future_wrong_symbol_and_invalidated_votes():
     rows = [signal("BTCUSDT", "1m", "long", 0, 99),
             signal("BTCUSDT", "5m", "long", 0, 99),
             signal("ETHUSDT", "30m", "long", 120_000, 99),
-            signal("BTCUSDT", "30m", "short", 180_000, 101)]
-    assert build_consensus(rows, symbol="BTCUSDT", entry_ms=360_001,
+            signal("BTCUSDT", "30m", "short", 1_800_000, 101)]
+    assert build_consensus(rows, symbol="BTCUSDT", entry_ms=360_000,
                            entry_price=100) is None
 
     crossed_stop = [signal("BTCUSDT", "1m", "long", 120_000, 100),
@@ -63,7 +64,7 @@ def test_consensus_rejects_stale_future_wrong_symbol_and_invalidated_votes():
 def test_consensus_is_invariant_to_signals_after_entry_time():
     prefix = [signal("BTCUSDT", "1m", "long", 120_000, 99),
               signal("BTCUSDT", "5m", "long", 0, 98)]
-    future_mutated = prefix + [signal("BTCUSDT", "30m", "short", 120_001, 1)]
+    future_mutated = prefix + [signal("BTCUSDT", "30m", "short", 120_001, float("nan"))]
     kwargs = {"symbol": "BTCUSDT", "entry_ms": 120_000, "entry_price": 100}
     assert build_consensus(prefix, **kwargs) == build_consensus(future_mutated, **kwargs)
 
@@ -75,6 +76,8 @@ def test_target_first_fees_and_same_minute_tie_are_conservative():
     assert result["10_bars"]["outcome"] == "TARGET"
     assert result["20_bars"]["target_first"] is True
     assert result["10_bars"]["net_r"] == pytest.approx(1.9)
+    assert result["leverage"]["4x"]["10_bars"]["net_return"] == pytest.approx(.076)
+    assert result["leverage"]["5x"]["10_bars"]["net_return"] == pytest.approx(.095)
 
     frame.loc[2, ["h", "l"]] = [102.1, 98.9]
     tied = score_forecast(forecast(), frame)
@@ -91,8 +94,37 @@ def test_checkpoints_are_independent_and_future_bars_do_not_change_scores():
     assert result["20_bars"]["outcome"] == "TARGET"
 
     longer = pd.concat([frame, minute_frame(1).assign(t_open_ms=1_320_000,
-                       o=1_000_000, h=2_000_000, l=1, c=1_000_000)], ignore_index=True)
+                       o=1_000_000, h=2_000_000, l=1, c=1_000_000),
+                       minute_frame(1).assign(t_open_ms=np.nan, o=np.nan, h=np.nan,
+                       l=np.nan, c=np.nan)], ignore_index=True)
     assert score_forecast(forecast(), longer) == result
+
+
+def test_short_side_uses_symmetric_target_and_five_minute_deadlines():
+    frame = minute_frame(100)
+    frame.loc[54, "l"] = 97.9
+    result = score_forecast(forecast("short", "5m", 101.0, 98.0), frame)
+    assert result["10_bars"]["outcome"] == "TIMEOUT"
+    assert result["10_bars"]["horizon_bars"] == 10
+    assert result["20_bars"]["outcome"] == "TARGET"
+    assert result["20_bars"]["net_r"] == pytest.approx(1.9)
+
+
+def test_leverage_specific_liquidation_precedes_a_wide_planned_stop():
+    frame = minute_frame()
+    frame.loc[2, "l"] = 79.0
+    result = score_forecast(forecast(stop=80.0, target=140.0), frame)
+    assert result["10_bars"]["outcome"] == "STOP"
+    assert result["leverage"]["4x"]["10_bars"]["outcome"] == "STOP"
+    assert result["leverage"]["5x"]["10_bars"]["outcome"] == "LIQUIDATION"
+    assert result["leverage"]["5x"]["10_bars"]["exit_price"] == pytest.approx(80.5)
+
+    short_frame = minute_frame()
+    short_frame.loc[2, "h"] = 121.0
+    short = score_forecast(forecast("short", "1m", 120.0, 60.0), short_frame)
+    assert short["leverage"]["4x"]["10_bars"]["outcome"] == "STOP"
+    assert short["leverage"]["5x"]["10_bars"]["outcome"] == "LIQUIDATION"
+    assert short["leverage"]["5x"]["10_bars"]["exit_price"] == pytest.approx(119.5)
 
 
 def test_gap_and_incomplete_horizon_are_not_scored_as_losses_or_timeouts():
@@ -108,8 +140,8 @@ def test_gap_and_incomplete_horizon_are_not_scored_as_losses_or_timeouts():
 
 
 @pytest.mark.parametrize("bad", [
-    {"symbol": "BTCUSDT", "timeframe": "2m", "side": "long", "signal_close_ms": 1, "stop": 99},
-    {"symbol": "BTCUSDT", "timeframe": "1m", "side": "up", "signal_close_ms": 1, "stop": 99},
+    {"symbol": "BTCUSDT", "timeframe": "2m", "side": "long", "signal_close_ms": 120_000, "stop": 99},
+    {"symbol": "BTCUSDT", "timeframe": "1m", "side": "up", "signal_close_ms": 120_000, "stop": 99},
 ])
 def test_consensus_rejects_unsupported_or_malformed_signals(bad):
     with pytest.raises(ValueError):

@@ -157,7 +157,7 @@ def test_resample_only_complete_closed_utc_buckets():
     assert len(out) == 1 and out.iloc[0].h == 5 and out.iloc[0].v == 5
 
 
-@pytest.mark.parametrize("minutes", [3, 10, 15, 120])
+@pytest.mark.parametrize("minutes", [1, 3, 5, 10, 15, 30, 60, 120, 240])
 def test_resample_supports_requested_mtf_widths_and_drops_incomplete_bucket(minutes):
     width_ms = minutes * 60_000
     base = 1_800_000_000_000 // width_ms * width_ms

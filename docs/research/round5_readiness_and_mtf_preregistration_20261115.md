@@ -26,7 +26,7 @@ This is a proposed new test of cross-timeframe agreement, not an asserted edge. 
 
 ### Objective and labels
 
-At each eligible closed-bar signal, create a directional forecast with a next-bar-open entry, structure-derived stop, and 2R target. Evaluate target-first outcome at separate checkpoints of 10 and 20 timeframe bars. The final deadline is 20 bars. If stop and target are both touched within the same underlying 1-minute candle, count the stop first. If neither barrier is touched by the deadline, record timeout as a non-hit for target-first precision and report it separately. Long and short are symmetric; costs are 0.05% per side plus a separately frozen slippage stress case.
+At each eligible closed-bar signal, create a directional forecast with a next-bar-open entry, structure-derived stop, and 2R target. Evaluate target-first outcome at separate checkpoints of 10 and 20 timeframe bars. The final deadline is 20 bars. If stop and target are both touched within the same underlying 1-minute candle, count the stop first. If neither barrier is touched by the deadline, record timeout as a non-hit for target-first precision and report it separately. Long and short are symmetric. Use the currently frozen SPEC §14.1 fee of 0.10% round trip; do not add slippage, depth, or fillability variables in this test. Report 4x/5x outcomes separately with the existing approximate liquidation formula and its fixed 0.5% maintenance buffer; flag stop levels beyond that estimate. It is not a symbol/position-tier exchange liquidation quote and does not replace account-specific risk checks.
 
 ### Candidate signal and agreement rule
 
