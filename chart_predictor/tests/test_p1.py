@@ -157,6 +157,21 @@ def test_resample_only_complete_closed_utc_buckets():
     assert len(out) == 1 and out.iloc[0].h == 5 and out.iloc[0].v == 5
 
 
+@pytest.mark.parametrize("minutes", [3, 10, 15, 120])
+def test_resample_supports_requested_mtf_widths_and_drops_incomplete_bucket(minutes):
+    width_ms = minutes * 60_000
+    base = 1_800_000_000_000 // width_ms * width_ms
+    times = [base + minute * 60_000 for minute in range(minutes * 2)]
+    frame = pd.DataFrame({"t_open_ms": times, "o": np.ones(len(times)),
+        "h": np.full(len(times), 2.), "l": np.zeros(len(times)),
+        "c": np.ones(len(times)), "v": np.ones(len(times)),
+        "quote_v": np.ones(len(times)), "trades": np.ones(len(times), dtype=int)})
+    frame = frame.drop(index=minutes + minutes // 2).reset_index(drop=True)
+    result = resample_frame(frame, f"{minutes}m", now_ms=base + 2 * width_ms)
+    assert len(result) == 1
+    assert int(result.iloc[0].t_open_ms) == base
+
+
 def test_all_indicator_outputs_are_prefix_invariant():
     df = candles(); o,h,l,c,v = (df[k].to_numpy() for k in ("o","h","l","c","v")); t=df.t_open_ms
     for k in (30,50,75,99):
