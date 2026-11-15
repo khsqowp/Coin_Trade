@@ -8,14 +8,16 @@ Do not run another strategy grid on the currently exposed crypto candles or the 
 
 The user requires four parallel research roles for future substantive work: two KR/US equity specialists and two crypto signal researchers. Each role must first analyze prior reports and raw evidence available in its assigned scope, distinguish direct inspection from supplied summaries, and return a falsifiable recommendation. Agent count or repeated agreement is not evidence of a trading edge.
 
+The user's latest instruction further rules out tests whose result cannot change a concrete decision. A backtest, indicator sweep, data-collection pilot, or agent-generated strategy list is not progress by itself. Before any such work, require (a) a specific unresolved decision, (b) why the result is not a repeat of a failed or exposed-data test, (c) the minimum evidence needed, (d) frozen pass/fail/inconclusive criteria, and (e) an explicit stop consequence. If any item is missing, do not execute the test or collection.
+
 ## Evidence reviewed
 
 ### Crypto
 
 - The fixed BTC 4-hour regime / coin 5-minute sweep→MSS probe is rejected as a candidate: target-first 13.38%, coverage 1.7688%, and mean net R -0.294 under the assumed 0.10% round-trip fee-only scenario on exposed history. Its momentum comparator was structurally forced to match its direction, so it was not an informative baseline. The rule and opened interval must not be tuned or relabeled as validation.
 - Earlier momentum, streak, volume, sweep, multi-timeframe, and lead/lag results are exposed development results, frequently low-coverage or negative after assumed costs. None establishes 80% calibrated M4 target-first precision.
-- L2 liquidity recovery after one-sided flow is a distinct hypothesis, not a discovered edge. The existing candle-only cache cannot answer it. A two-to-five-minute collection smoke test can establish only basic connection, snapshot/delta synchronization, timestamp capture, and write-path behavior. It cannot establish rare-gap resilience, process-restart behavior, the 24-hour connection rollover, event frequency, execution economics, or predictive value.
-- The current L2 gate does not yet specify one executable event/recovery rule or numeric acceptance criteria. Do not call a short smoke test “Gate 0 passed.” First make the hypothesis, measurement window, invalidation conditions, trade geometry, and data-quality acceptance criteria operational. Only then decide whether a bounded plumbing smoke test is worth running. No signals or outcome scoring belong in that smoke test.
+- L2 liquidity recovery after one-sided flow is a distinct research question, not a discovered edge. Existing candle-only data cannot answer it. A two-to-five-minute connection smoke test would establish only basic transport, snapshot/delta synchronization, timestamp capture, and write-path behavior; it cannot establish rare-gap resilience, restart recovery, the 24-hour rollover, event frequency, execution economics, or predictive value.
+- Agents found no outcome-independent basis for fixing the event/recovery thresholds or proving that a short smoke changes the next decision. Therefore **do not run the smoke test yet** and do not describe it as a research gate passed. Resume only if an executable event definition and numeric data-quality criteria can be specified from market mechanics before outcomes are observed, and if passing changes a named next action. Otherwise stop this L2 line before collector implementation.
 
 ### Korea and United States
 
@@ -45,8 +47,8 @@ No threshold, timeframe, symbol, or model may be chosen because it looked best i
 
 ## Immediate next actions
 
-1. **Crypto:** specify a single measurable L2-resilience hypothesis and decide whether its data requirements are observable with public streams. If that cannot be written without outcome-driven threshold selection, stop the L2 line before building a collector. If it can, run only a short no-signal plumbing smoke pilot with explicit acceptance criteria; keep 24-hour/restart resilience as a separate gate.
+1. **Crypto:** no more exposed-OHLCV strategy tests. Keep the L2-resilience idea as an unvalidated question only. Do not collect until an outcome-independent event definition, collection decision, and acceptance criteria exist; if these cannot be frozen without tuning to outcomes, abandon this research line rather than inventing thresholds.
 2. **KR/US:** reconcile the local files against provider provenance and the required historical universe/corporate-action fields. If local assets do not contain them, stop performance research until an authorized, suitable dataset is available.
-3. **All agents:** deliver evidence-linked analysis and a recommendation before any execution. Agents must say which files/data they actually inspected and must not claim access they lacked.
+3. **All agents:** deliver evidence-linked analysis and a recommendation before any execution. Agents must say which files/data they actually inspected and must not claim access they lacked. Recommendations must explicitly state the decision value and why the proposed work is not a renamed repetition; “try more combinations” is not an acceptable recommendation.
 
 These actions do not claim that 80% crypto accuracy or 20% equity CAGR is attainable. They prevent more compute and reports from being mistaken for progress.
