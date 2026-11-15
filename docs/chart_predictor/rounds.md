@@ -156,6 +156,14 @@ LLM이 읽는 것과 같은 결정적 특징으로 로지스틱(L2)·HistGradien
 
 **부가 확인**: Stage A 신호 캐시 [`signals_e959118d43f2c0e0.json`](../../chart_predictor/data/setups/signals_e959118d43f2c0e0.json)은 27,512,835 bytes(약 26.2 MiB)다. P5의 476MB보다는 작지만 수 MB 단위는 아니다.
 
+## P7 — 소거법 반복: 과거 CAGR/Sharpe 틀 생존 후보 4종 병렬 재검증 (2026-11-15)
+
+범위: P4~P6의 "엣지 없음" 결론 이후, 사용자 지시로 plan-test-analyze-improve-test 루프를 가장 가능성 높은 후보부터 소거법으로 반복했다. 후보 선정은 `docs/전략-백테스트-종합.md`의 옛 일봉 CAGR/Sharpe 틀에서 baseline을 통과했거나(13-4 하이킨아시, 13-8 FRVP) 48조합 스윕 중 1개가 통과했던(13-7 FVG) 3개 규칙, 그리고 P5·P6 전체에서 유일하게 즉시 `REJECT`가 아니었던 supertrend 60분봉 `VALIDATION_REQUIRED` 셀의 표본 확장 재검증까지 4개 트랙을 각각 격리된 git worktree에서 Codex 에이전트에 맡겨 병렬 실행했다. 각 트랙은 P5/P6과 동일한 Stage A→B→C 파이프라인(84일 개발 구간, 거래량 상위 50종목, 1/5/30/60분봉, 2R/3R, `base`/`vol_top_third`/`htf_trend_align` 세 필터, `backtest-expert` 채점, Holm 보정)을 따랐고, 사전 등록한 적중률 75%+거래 30건 바를 그대로 적용했으며, 통과 실패 시 1회로 제한한 개선을 거쳐 재검정했다.
+
+**4트랙 전부 REJECT.** 하이킨아시(P7-A), FRVP(P7-B), FVG(P7-C) 각각의 기본안·개선안 합산 48~96칸에서 적중률 75%+거래 30건을 동시에 만족한 칸은 0개였고, supertrend 60분봉(P7-D)은 표본을 P5 대비 3배 이상 늘렸음에도 `VALIDATION_REQUIRED`가 아니라 명확한 `REJECT`로 확정됐다. 옛 CAGR/Sharpe 틀에서 가장 유망해 보였던 3개 후보(하이킨아시·FRVP가 baseline 직통과, FVG가 스윕 통과)가 분봉 R-배수 적중률 틀에서는 전부 20~33% 수준에 머물렀다는 점이 핵심이다 — "오래 들고 있으면 쌓이는 수익"과 "목표가 손절보다 먼저 올 확률"은 다른 질문이며, 후자 기준에서는 과거 성과가 전혀 이어지지 않았다.
+
+**결론**: P4(통계적 예측)·P5(8개 규칙)·P6(SMC 2종)에 이어, 이번 라운드에서 가장 승산 있어 보였던 4개 후보까지 전부 소거됐다. `docs/전략-백테스트-종합.md`의 10종 ICT/지표 계열과 chart_predictor의 10개 고정 규칙을 통틀어, 이 프로젝트의 사전 등록 기준(적중률 75% + 거래 30건)을 넘는 칸은 지금까지 하나도 없다. 세부 결과는 아래 P7-A~D 각 절에 있다.
+
 ### P7-A — 하이킨 아시 리버설
 
 범위: 84일 개발 구간(2026-07-17~2026-10-09 컷오프), 거래량 상위 50종목, 1/5/30/60분봉, 2R(Stage A)·3R(Stage B), Stage C 5개 시간 fold와 `base`/`vol_top_third`/`htf_trend_align` 필터를 평가했다. 원형 셋업 `heikin_ashi_reversal` 리포트는 Stage A [`report_b5daa1c488b1b227.json`](../../chart_predictor/data/setups/report_b5daa1c488b1b227.json), Stage B [`report_2400dc9a2179eabe.json`](../../chart_predictor/data/setups/report_2400dc9a2179eabe.json), Stage C [`report_be3242c9a76e0db4.json`](../../chart_predictor/data/setups/report_be3242c9a76e0db4.json)이며 지문은 각각 `b5daa1c488b1b227`, `2400dc9a2179eabe`, `be3242c9a76e0db4`다. 1회 refinement `heikin_ashi_reversal_strict` 리포트는 Stage A [`report_6c760dc546f47fd1.json`](../../chart_predictor/data/setups/report_6c760dc546f47fd1.json), Stage B [`report_044d5d0805cc0774.json`](../../chart_predictor/data/setups/report_044d5d0805cc0774.json), Stage C [`report_903c3b79c523ba52.json`](../../chart_predictor/data/setups/report_903c3b79c523ba52.json)이며 각 파일명 지문과 일치한다. 두 Stage C 보고서는 각각 48개 셀이고 최종 판단은 Stage C 기준이다.
