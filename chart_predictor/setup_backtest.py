@@ -40,6 +40,8 @@ HYPOTHESES={
  "vwap_band_fade_stretch":"The same VWAP-band rejection should perform better once a minimum 0.5-ATR clearance past the pierced band edge filters out marginal, likely-noise wicks.",
  "volume_climax_exhaustion":"A volume spike at least 3x the trailing 20-bar average, landing on a bar that makes a fresh 10-bar extreme but closes back away from that extreme (a rejection wick), should mark crowd-capitulation exhaustion and precede a reversal.",
  "volume_climax_exhaustion_strict":"The same climax-volume rejection-wick reversal should perform better once the volume spike threshold is raised from 3x to 5x the trailing average, filtering out more marginal, likely-noise spikes.",
+ "engulfing_rsi_extreme":"A bullish engulfing candle confirmed with RSI(14) below 30, or a bearish engulfing candle confirmed with RSI(14) above 70, should mark exhausted directional pressure and precede short-horizon reversal follow-through.",
+ "engulfing_rsi_extreme_strict":"After the base rule's stop-dominated failures, the same engulfing reversal should improve when RSI exhaustion is restricted to below 20 for longs and above 80 for shorts; this single threshold change tests whether only deeper extremes distinguish exhaustion from continued pressure.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -135,6 +137,7 @@ def _write(report,report_dir, data_hash, stage):
     label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
+      else "P9-A" if present and present<={"engulfing_rsi_extreme","engulfing_rsi_extreme_strict"}
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}

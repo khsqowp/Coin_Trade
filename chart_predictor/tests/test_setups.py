@@ -458,3 +458,52 @@ def test_volume_climax_exhaustion_strict_requires_5x_not_4x():
     assert not any(s.index==i for s in generate_signals(f,"volume_climax_exhaustion_strict"))
     f.loc[i,"v"]=55.0  # 5.5x baseline clears the stricter threshold
     assert any(s.index==i and s.side=="short" for s in generate_signals(f,"volume_climax_exhaustion_strict"))
+
+def _engulfing_rsi_frame(side="long", extreme=True, engulfing=True):
+    """A monotone RSI setup with an optional engulfing pair and signal bar."""
+    n=34; x=np.arange(n)
+    c=100.0 + (-(x*0.25) if side=="long" and extreme else
+               (x*0.25 if side=="short" and extreme else np.zeros(n)))
+    o=c.copy(); h=c+0.2; l=c-0.2
+    pattern_i=30
+    if engulfing:
+        if side=="long":
+            o[pattern_i-1],c[pattern_i-1]=c[pattern_i-1]+0.2,c[pattern_i-1]
+            o[pattern_i],c[pattern_i]=c[pattern_i-1]-0.1,c[pattern_i-1]+0.4
+        else:
+            o[pattern_i-1],c[pattern_i-1]=c[pattern_i-1]-0.2,c[pattern_i-1]
+            o[pattern_i],c[pattern_i]=c[pattern_i-1]+0.1,c[pattern_i-1]-0.4
+        h[pattern_i-1:pattern_i+1]=np.maximum(o[pattern_i-1:pattern_i+1],c[pattern_i-1:pattern_i+1])+0.1
+        l[pattern_i-1:pattern_i+1]=np.minimum(o[pattern_i-1:pattern_i+1],c[pattern_i-1:pattern_i+1])-0.1
+        c[pattern_i+1]=c[pattern_i]+(0.1 if side=="long" else -0.1)
+        o[pattern_i+1]=c[pattern_i+1]
+    h[pattern_i+1:]=np.maximum(o[pattern_i+1:],c[pattern_i+1:])+0.2
+    l[pattern_i+1:]=np.minimum(o[pattern_i+1:],c[pattern_i+1:])-0.2
+    return _ohlc(o,h,l,c),pattern_i+1,pattern_i
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_engulfing_rsi_extreme_fires_with_pattern_bar_stop(side):
+    f,i,pattern_i=_engulfing_rsi_frame(side)
+    r=indicators.rsi(f.c,14)
+    assert r[pattern_i]<30 if side=="long" else r[pattern_i]>70
+    sigs=generate_signals(f,"engulfing_rsi_extreme")
+    expected=Signal(i,side,float(f.l.iloc[pattern_i] if side=="long" else f.h.iloc[pattern_i]))
+    assert expected in sigs
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_engulfing_rsi_extreme_rejects_pattern_without_extreme_rsi(side):
+    f,i,_=_engulfing_rsi_frame(side,extreme=False)
+    assert not any(s.index==i for s in generate_signals(f,"engulfing_rsi_extreme"))
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_engulfing_rsi_extreme_rejects_extreme_rsi_without_pattern(side):
+    f,i,_=_engulfing_rsi_frame(side,engulfing=False)
+    assert not any(s.index==i for s in generate_signals(f,"engulfing_rsi_extreme"))
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_engulfing_rsi_extreme_strict_rejects_marginal_rsi_base_accepts(side):
+    f,i,pattern_i=_engulfing_rsi_frame(side)
+    r=np.full(len(f),50.0); r[pattern_i]=25.0 if side=="long" else 75.0
+    prepared={"rsi":r}
+    assert any(s.index==i and s.side==side for s in generate_signals(f,"engulfing_rsi_extreme",prepared))
+    assert not any(s.index==i for s in generate_signals(f,"engulfing_rsi_extreme_strict",prepared))

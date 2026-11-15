@@ -12,7 +12,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "bb_squeeze_breakout", "bb_squeeze_breakout_strict",
           "orb_funding_session", "orb_funding_session_strong",
           "vwap_band_fade", "vwap_band_fade_stretch",
-          "volume_climax_exhaustion", "volume_climax_exhaustion_strict")
+          "volume_climax_exhaustion", "volume_climax_exhaustion_strict",
+          "engulfing_rsi_extreme", "engulfing_rsi_extreme_strict")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -109,6 +110,28 @@ def generate_signals(frame, setup, prepared=None):
             near=abs(c[i]-vw[i])<=.5*a[i] or (bool(zones) and np.min(np.abs(c[i]-np.asarray(zones[-60:])))<=.5*a[i])
             if near and (pat["bull_engulfing"][i-1] or pat["hammer_pin"][i-1]) and c[i]>h[i-1]: emit(i,"long",l[i-1])
             if near and (pat["bear_engulfing"][i-1] or pat["shooting_star_pin"][i-1]) and c[i]<l[i-1]: emit(i,"short",h[i-1])
+    elif setup in ("engulfing_rsi_extreme","engulfing_rsi_extreme_strict"):
+        # Engulfing + RSI exhaustion confirmation (P9-A): reuse the shared
+        # candle-pattern and Wilder RSI arrays so every setup reads identical
+        # indicator definitions. Causal alignment follows candle_reversal's
+        # one-bar lag: both the engulfing pattern and RSI threshold are read at
+        # i-1, the just-closed engulfing bar; signal i is emitted on the next
+        # closed bar. Using RSI[i] would let the follow-up bar, rather than the
+        # engulfing reversal bar, determine whether prior-move exhaustion existed.
+        # RSI <30 confirms bullish exhaustion; RSI >70 confirms bearish exhaustion.
+        # Stops are the engulfing bar's low/high, and emit() suppresses stops
+        # already invalidated by the signal bar's close.
+        pat=prepared["patterns"] if "patterns" in prepared else indicators.candle_patterns(o,h,l,c)
+        r=prepared["rsi"] if "rsi" in prepared else indicators.rsi(c,14)
+        # The sole P9-A refinement follows the base run's stop-dominated failures:
+        # test only deeper RSI exhaustion (<20/>80), leaving the candle geometry
+        # and alignment unchanged so the rerun changes one predeclared condition.
+        low_rsi,high_rsi=(20,80) if setup=="engulfing_rsi_extreme_strict" else (30,70)
+        for i in range(1,n):
+            if pat["bull_engulfing"][i-1] and np.isfinite(r[i-1]) and r[i-1]<low_rsi:
+                emit(i,"long",l[i-1])
+            if pat["bear_engulfing"][i-1] and np.isfinite(r[i-1]) and r[i-1]>high_rsi:
+                emit(i,"short",h[i-1])
     elif setup=="fibonacci_pocket":
         lastlo=lasthi=None
         for i in range(n):
