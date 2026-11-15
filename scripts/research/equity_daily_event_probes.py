@@ -68,7 +68,8 @@ def kr_events(symbol, rows, require_volume):
     volumes = np.asarray([row[5] for row in rows])
     month_ends = {}
     for i, stamp in enumerate(stamps):
-        month_ends[stamp.strftime("%Y-%m")] = i
+        if (stamp + pd.offsets.MonthEnd(0) - stamp).days <= 6:
+            month_ends[stamp.strftime("%Y-%m")] = i
     results = []
     previous_exit = -1
     for i in range(21, len(rows) - 1):
