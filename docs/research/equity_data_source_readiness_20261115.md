@@ -40,3 +40,22 @@ The cache's `.gitignore` entry describes it as a read-only copy of a shared KIS 
 ## Next decision boundary
 
 The next high-information step is to compare official product specifications, sample coverage, legal-use terms, and an actual quoted cost for one KR and one US candidate. This audit gathered public specifications only; it did not request quotes or initiate purchase. Until the user authorizes a provider/account action and the data pass the common gate above, further KR/US strategy backtests on the current cache are low-information.
+
+## Official-source refresh — 2026-11-15
+
+This refresh used only public official product pages and terms. No account, API key, provider contact, sample download, or purchase was initiated.
+
+### KRX
+
+- The current OPEN API catalog lists daily KOSPI/KOSDAQ stock records, security master information, and ETF daily-trading data with coverage beginning 2010-01-04. The catalog does **not** itself establish that a request returns complete as-of-date constituents, delisted histories, or total-return-adjusted prices; those require a product schema/sample and universe reconciliation. [KRX API service catalog](https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd)
+- The current Korean API terms require agreement and an issued authentication key, limit one key to 10,000 requests/day, restrict use to non-commercial purposes, prohibit onward provision of supplied data, and say the data may not be used after the API agreement ends. Whether the intended personal research and any future private dashboard fit the non-commercial clause is not decided here; do not infer legal permission from the fact that an API is called “open.” [KRX OPEN API terms](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO002.jsp)
+- Separately purchased KRX data products are delivered only after selection/payment and review; the public guide directs users to product-level details for scope and does not expose one universal price for the needed combined panel. This remains a possible route, not an approved dataset. [KRX purchase guide](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp)
+
+### United States
+
+- The current CRSP US Stock Database page advertises daily/monthly data and corporate actions for 32,000+ active and inactive US securities across NYSE, NYSE American, NYSE Arca, Nasdaq, and Cboe BZX, with permanent identifiers and a survivor-bias-free history claim. It provides a “request subscription information” path and describes products as licensed to academic institutions, government agencies, and investment practitioners; public pages did not provide an individual subscription price or confirm this user's eligibility. [CRSP US Stock Database](https://www.crsp.org/research/crsp-us-stock-databases-2025-layout/), [CRSP research data access](https://indexes.morningstar.com/research-data-products)
+- The current CIZ user-guide page reports an effective date of 2026-07-31, but its table-level content did not render in this read. Therefore exact daily ETF subtype coverage, distribution/total-return fields, missing delisting-return handling, historical membership semantics, and personal research rights remain **sample/package verification items**, not closed gates. Legacy CRSP documentation explains daily total returns with dividends reinvested and delisting-return handling, but legacy field semantics must not be silently assumed to match a purchased current CIZ package. [Current CIZ guide landing page](https://indexes.morningstar.com/docs/guide/crsp-us-stock-databases-guide-for-flat-file-format-2-0?isRdp=true), [legacy CRSP return and delisting definitions](https://www.crsp.org/crsp_pdf/crsp-us-stock-indexes-databases-data-descriptions-guide-crspaccess/)
+
+### Updated disposition
+
+No free, no-account route was verified that closes all required gates for either market. KRX OPEN API is a possible lower-cost research path only after permission/terms and history semantics are resolved; CRSP is the most credible advertised US research panel, but subscription eligibility, package contents, sample completeness, personal-use rights, and price remain unresolved. No strategy test is authorized by this source refresh. The next required external decision is explicit permission to pursue account/provider steps or paid sample/quote acquisition; until then, use no new equity backtests as evidence.
