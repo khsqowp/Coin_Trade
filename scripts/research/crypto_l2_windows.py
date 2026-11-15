@@ -37,8 +37,10 @@ def _new_window() -> dict[str, Any]:
     return {
         "buy_quote": 0.0, "sell_quote": 0.0, "trade_count": 0,
         "buy_count": 0, "sell_count": 0, "trade_high": None, "trade_low": None,
+        "trade_high_event_ms": None, "trade_low_event_ms": None,
         "first_trade_id": None, "last_trade_id": None, "trade_gap_count": 0,
-        "depth_samples": [], "feed_event_count": 0, "feed_event_categories": set(),
+        "trade_seconds": {}, "depth_samples": [],
+        "feed_event_count": 0, "feed_event_categories": set(),
         "late_event_count": 0, "first_receive_mono": None, "last_receive_mono": None,
     }
 
@@ -58,8 +60,24 @@ def _depth_sample(row: dict[str, Any]) -> dict[str, Any]:
         "ask": float(row["ask_depth_quote_5bp_top5"]),
         "best_bid": float(row["bid"]),
         "best_ask": float(row["ask"]),
+        "bid_levels": row.get("bid_levels_5bp_top5", []),
+        "ask_levels": row.get("ask_levels_5bp_top5", []),
         "last_update_id": row.get("last_update_id"),
         "kind": row["kind"],
+    }
+
+
+def _first_trade_quote(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "event_ms": int(row["exchange_event_ms"]),
+        "receive_mono": float(row["received_monotonic_s"]),
+        "trade_id": row.get("trade_id"),
+        "price": float(row["price"]),
+        "best_bid": float(row["bid"]),
+        "best_ask": float(row["ask"]),
+        "book_receive_age_ms": float(row.get("book_receive_age_ms", 0.0)),
+        "bid_levels": row.get("bid_levels_5bp_top5", []),
+        "ask_levels": row.get("ask_levels_5bp_top5", []),
     }
 
 
@@ -73,6 +91,14 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
     d2s = max(refill_candidates, key=lambda p: (p["event_ms"], p["receive_mono"])) if refill_candidates else None
     dpre = previous_depth
     last_in_window = samples[-1] if samples else previous_depth
+    availability_times = [item["first_receive_mono"], item["last_receive_mono"]]
+    availability_times.extend(p["receive_mono"] for p in samples)
+    if dpre is not None:
+        availability_times.append(dpre["receive_mono"])
+    if d2s is not None:
+        availability_times.append(d2s["receive_mono"])
+    availability_times = [value for value in availability_times if value is not None]
+    feature_available = max(availability_times) if availability_times else None
     reasons = []
     if dpre is None:
         reasons.append("missing_pre_depth")
@@ -106,7 +132,10 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         "buy_aggressor_quote_volume": item["buy_quote"],
         "sell_aggressor_quote_volume": item["sell_quote"],
         "trade_high": item["trade_high"],
+        "trade_high_event_ms": item["trade_high_event_ms"],
         "trade_low": item["trade_low"],
+        "trade_low_event_ms": item["trade_low_event_ms"],
+        "trade_path": [item["trade_seconds"][key] for key in sorted(item["trade_seconds"])],
         "first_trade_id": item["first_trade_id"],
         "last_trade_id": item["last_trade_id"],
         "possible_trade_id_gaps": item["trade_gap_count"],
@@ -114,6 +143,7 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         "dmin_bid": dmin_bid,
         "dmin_ask": dmin_ask,
         "d_plus_2s": d2s,
+        "quote_path": samples,
         "bid_replenishment_ratio": ratio(dpre, dmin_bid, d2s, "bid"),
         "ask_replenishment_ratio": ratio(dpre, dmin_ask, d2s, "ask"),
         "feed_event_count": item["feed_event_count"],
@@ -121,10 +151,18 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         "late_event_count": item["late_event_count"],
         "first_receive_monotonic_s": item["first_receive_mono"],
         "last_receive_monotonic_s": item["last_receive_mono"],
+        "feature_available_receive_monotonic_s": feature_available,
         "data_quality_ready": not reasons,
         "unscorable_reasons": reasons,
     }
     return values, last_in_window
+
+
+def is_available_by_decision(window: dict[str, Any], decision_receive_monotonic_s: float) -> bool:
+    """Return false unless all observations arrived strictly before the decision anchor."""
+    available = window.get("feature_available_receive_monotonic_s")
+    return (isinstance(available, (int, float)) and not isinstance(available, bool)
+            and available < decision_receive_monotonic_s)
 
 
 def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 2000,
@@ -219,11 +257,38 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
                 item["depth_samples"].append(_depth_sample(row))
             elif kind == "agg_trade":
                 quote = float(row["quote_quantity"])
+                price = float(row["price"])
+                second_start = stamp // 1000 * 1000
+                second = item["trade_seconds"].setdefault(second_start, {
+                    "second_start_ms": second_start, "trade_count": 0,
+                    "buy_quote": 0.0, "sell_quote": 0.0,
+                    "high": None, "high_event_ms": None,
+                    "low": None, "low_event_ms": None,
+                    "first": None, "last": None,
+                })
+                trade_quote = _first_trade_quote(row)
+                if second["first"] is None or trade_quote["receive_mono"] < second["first"]["receive_mono"]:
+                    second["first"] = trade_quote
+                if second["last"] is None or trade_quote["receive_mono"] > second["last"]["receive_mono"]:
+                    second["last"] = trade_quote
+                second["trade_count"] += 1
+                if second["high"] is None or price > second["high"]:
+                    second["high"] = price
+                    second["high_event_ms"] = stamp
+                if second["low"] is None or price < second["low"]:
+                    second["low"] = price
+                    second["low_event_ms"] = stamp
+                if row.get("seller_initiated"):
+                    second["sell_quote"] += quote
+                else:
+                    second["buy_quote"] += quote
                 item["trade_count"] += 1
-                item["trade_high"] = float(row["price"]) if item["trade_high"] is None else max(
-                    item["trade_high"], float(row["price"]))
-                item["trade_low"] = float(row["price"]) if item["trade_low"] is None else min(
-                    item["trade_low"], float(row["price"]))
+                if item["trade_high"] is None or price > item["trade_high"]:
+                    item["trade_high"] = price
+                    item["trade_high_event_ms"] = stamp
+                if item["trade_low"] is None or price < item["trade_low"]:
+                    item["trade_low"] = price
+                    item["trade_low_event_ms"] = stamp
                 trade_id = row.get("trade_id")
                 if item["first_trade_id"] is None:
                     item["first_trade_id"] = trade_id

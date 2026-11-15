@@ -35,15 +35,21 @@ def _depth_metrics(book: LocalBook, mid: float, band_bps: float = 5.0) -> dict[s
     lower = mid * (1 - band_bps / 10_000)
     upper = mid * (1 + band_bps / 10_000)
 
-    def quote_notional(levels: dict[float, float], low: float, high: float) -> float:
-        ranked = sorted(((p, q) for p, q in levels.items() if low <= p <= high),
-                         reverse=levels is book.bids)
-        return sum(p * q for p, q in ranked[:5])
+    bid_levels = _depth_levels(book.bids, lower, mid, reverse=True)
+    ask_levels = _depth_levels(book.asks, mid, upper, reverse=False)
 
     return {
-        "bid_depth_quote_5bp_top5": quote_notional(book.bids, lower, mid),
-        "ask_depth_quote_5bp_top5": quote_notional(book.asks, mid, upper),
+        "bid_depth_quote_5bp_top5": sum(p * q for p, q in bid_levels),
+        "ask_depth_quote_5bp_top5": sum(p * q for p, q in ask_levels),
+        "bid_levels_5bp_top5": [[p, q] for p, q in bid_levels],
+        "ask_levels_5bp_top5": [[p, q] for p, q in ask_levels],
     }
+
+
+def _depth_levels(levels: dict[float, float], low: float, high: float,
+                  *, reverse: bool) -> list[tuple[float, float]]:
+    return sorted(((p, q) for p, q in levels.items() if low <= p <= high),
+                  reverse=reverse)[:5]
 
 
 def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OUTPUT_BYTES) -> dict[str, Any]:
@@ -279,6 +285,8 @@ def _trade_row(symbol: str, event: dict[str, Any], record: dict[str, Any], book_
         "mid": book_row["mid"],
         "bid_depth_quote_5bp_top5": book_row["bid_depth_quote_5bp_top5"],
         "ask_depth_quote_5bp_top5": book_row["ask_depth_quote_5bp_top5"],
+        "bid_levels_5bp_top5": book_row["bid_levels_5bp_top5"],
+        "ask_levels_5bp_top5": book_row["ask_levels_5bp_top5"],
     }
 
 

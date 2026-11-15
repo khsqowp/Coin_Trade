@@ -18,7 +18,7 @@
       "No multi-symbol point-in-time prospective L2/trade history under this candidate contract.",
       "Existing capture covers only BTCUSDT and ETHUSDT for one hour and was used as an integrity pilot.",
       "No natural reconnect was observed in the one-hour capture.",
-      "A deterministic offline compact replay plus UTC 10-second feature-window prototype ran on the one-hour pilot. The 718 aggregate windows occupy 1.054 MB uncompressed and 186,557 bytes with Zstandard; linear scaling projects to 16.34 decimal GB/year for 20 symbols. This is only one two-symbol-hour projection, not sustained capacity evidence. The ledger still lacks a multi-day reconnect run and complete executable path/cost snapshots, so its production data gate remains not passed.",
+      "A deterministic offline compact replay plus UTC 10-second feature-window prototype ran on the one-hour pilot, retaining 500ms book paths, one-second trade paths, depth-at-trade quotes, and receive-time readiness. The 718 aggregate windows occupy 13.75 MB uncompressed and 2.09 MB with Zstandard; linear scaling projects to 183.20 decimal GB/year for 20 symbols. This is only one two-symbol-hour projection, not sustained capacity evidence. The ledger still lacks multi-day reconnect proof, per-T decision-anchor causal evaluation, complete execution-path/cost calibration, and a measured multi-symbol capacity test; production data gate remains not passed.",
       "Final confidence implementation, minimum train/calibration/validation counts, exact timestamps, durable storage path, and user-specific fee schedule remain unfrozen."
     ]
   },

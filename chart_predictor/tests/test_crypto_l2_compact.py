@@ -4,7 +4,7 @@ import json
 import pytest
 
 from scripts.research.crypto_l2_compact import reduce_capture
-from scripts.research.crypto_l2_windows import aggregate_windows
+from scripts.research.crypto_l2_windows import aggregate_windows, is_available_by_decision
 
 
 def _record(kind, symbol, event, t, **extra):
@@ -107,7 +107,7 @@ def test_reducer_enforces_output_cap_without_finalizing_partial(tmp_path):
 
 
 def _compact_row(kind, event_ms, receive_ms, **values):
-    return {
+    row = {
         "kind": kind,
         "symbol": "BTCUSDT",
         "exchange_event_ms": event_ms,
@@ -115,6 +115,12 @@ def _compact_row(kind, event_ms, receive_ms, **values):
         "received_monotonic_s": receive_ms / 1000,
         **values,
     }
+    if kind == "agg_trade":
+        row.setdefault("bid", 99.99)
+        row.setdefault("ask", 100.01)
+        row.setdefault("bid_levels_5bp_top5", [])
+        row.setdefault("ask_levels_5bp_top5", [])
+    return row
 
 
 def test_10s_aggregation_uses_utc_event_time_and_computes_refill(tmp_path):
@@ -158,6 +164,16 @@ def test_10s_aggregation_uses_utc_event_time_and_computes_refill(tmp_path):
     assert target["dmin_bid"]["bid"] == pytest.approx(30)
     assert target["d_plus_2s"]["bid"] == pytest.approx(80)
     assert target["bid_replenishment_ratio"] == pytest.approx(50 / 70)
+    assert len(target["quote_path"]) == 1
+    assert target["quote_path"][0]["bid_levels"] == []
+    ready = target["feature_available_receive_monotonic_s"]
+    assert ready == pytest.approx(target["d_plus_2s"]["receive_mono"])
+    assert is_available_by_decision(target, ready + 0.001) is True
+    assert is_available_by_decision(target, ready) is False
+    assert target["trade_high_event_ms"] == 108_000
+    assert target["trade_low_event_ms"] == 101_000
+    assert [x["second_start_ms"] for x in target["trade_path"]] == [101_000, 108_000]
+    assert target["trade_path"][0]["first"]["best_ask"] == pytest.approx(100.01)
 
 
 def test_10s_aggregator_fails_closed_on_late_event_after_finalization(tmp_path):
