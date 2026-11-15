@@ -320,6 +320,14 @@ P5~P8의 다른 13개 셋업은 전부 추세추종·SMC(오더블록·FVG·유�
 
 **부가 확인**: Stage A 신호 캐시는 `volume_climax_exhaustion` 22,325,216 bytes(약 21.3 MiB), `volume_climax_exhaustion_strict` 10,278,609 bytes(약 9.8 MiB)다. `chart_predictor/data/`는 로컬 전용·미추적이며 커밋 대상이 아니다.
 
+## P9 — 캔들패턴 + 지표 조합(합류/확인 가설) 4종 병렬 시험 (2026-11-15)
+
+범위: P8에서 추세추종/SMC 바깥으로 메커니즘을 넓혀도 전부 소거된 뒤, 사용자 지시로 다음 반복은 **단일 신호원이 아니라 캔들스틱 패턴 + 독립 지표의 합류(confluence)/확인(confirmation) 구조**를 시험한다 — 두 조건이 같은 봉에서 동시에 성립해야 신호가 나는, P5~P8 18개 셋업 전부와 구조적으로 다른 시험이다. 4개 트랙을 각각 격리된 git worktree에서 Codex 에이전트에 맡겨 병렬 실행했다: 엔걸핑+RSI(P9-A), 핀바+스토캐스틱(P9-B, 신규 지표), 도지+MACD(P9-C, 신규 지표), 모닝/이브닝스타+거래량 클라이맥스(P9-D, P8-D 로직 재사용). 각 트랙은 동일한 Stage A→B→C 파이프라인과 사전 등록한 적중률 75%+거래 30건 바를 그대로 따랐으며, 통과 실패 시 1회로 제한한 개선을 거쳐 재검정했다.
+
+**4트랙 전부 REJECT.** 엔걸핑+RSI(최고 적중률 31.58%)·핀바+스토캐스틱(33.2%, 표본부족 보류였다가 보정판도 표본 미달로 재기각)·도지+MACD(37.25%)·모닝스타+거래량(19.05%, strict는 표본 4건) 모두 기본안+개선안 합산 92~96칸에서 통과 0개. 특히 도지+MACD는 처음으로 "timeout 지배"가 아니라 "stop-first 72~75%"(방향 자체가 틀림)라는 다른 실패 양상을 보였다 — 두 독립 조건의 교집합을 요구해도 방향성 신뢰도는 올라가지 않았다.
+
+**결론**: P4~P8에 이어, 합류/확인이라는 더 엄격한 두-조건 시험 구조까지도 사전 등록 기준을 넘지 못했다. chart_predictor 누적 26개 셋업(원형+개선안 포함)과 옛 ICT 10종 계열 전부 포함해, 이 프로젝트에서 적중률 75%+거래 30건을 동시에 넘는 칸은 아직 하나도 없다. 세부 결과는 아래 P9-A~D 각 절에 있다.
+
 ### P9-A — 엔걸핑 캔들 + RSI 과매수·과매도 확인
 
 범위: P5~P8과 같은 개발 전용 구간(2026-07-17~2026-10-09 UTC 컷오프 직전, 84일), 거래량 상위 50종목, 1/5/30/60분봉을 사용했다. Stage A는 2R, Stage B는 같은 저장 신호를 3R로 재생했고 Stage C는 5개 시간 fold·Holm 보정·`base`/`vol_top_third`/`htf_trend_align` 세 필터를 적용했다. 원형은 `engulfing_rsi_extreme`만 신호 생성했다. Stage A/B/C 지문은 각각 `95ef2f595e4ab2ec`, `d0f750160bb80681`, `0f85bc9f939b7328`이며 Stage C 48칸을 판정했다. JSON 경로는 Stage A [`report_95ef2f595e4ab2ec.json`](../../chart_predictor/data/setups/report_95ef2f595e4ab2ec.json), Stage B [`report_d0f750160bb80681.json`](../../chart_predictor/data/setups/report_d0f750160bb80681.json), Stage C [`report_0f85bc9f939b7328.json`](../../chart_predictor/data/setups/report_0f85bc9f939b7328.json)다. 한 번의 refinement `engulfing_rsi_extreme_strict` 지문은 Stage A `ef3372e19f0631e5`, Stage B `a465873110ddeff9`, Stage C `da04fb7388fb2402`다. refinement Stage C는 결과 거래가 전혀 없는 일부 조합을 제외하고 44칸을 만들었다. JSON 경로는 Stage A [`report_ef3372e19f0631e5.json`](../../chart_predictor/data/setups/report_ef3372e19f0631e5.json), Stage B [`report_a465873110ddeff9.json`](../../chart_predictor/data/setups/report_a465873110ddeff9.json), Stage C [`report_da04fb7388fb2402.json`](../../chart_predictor/data/setups/report_da04fb7388fb2402.json)다.
