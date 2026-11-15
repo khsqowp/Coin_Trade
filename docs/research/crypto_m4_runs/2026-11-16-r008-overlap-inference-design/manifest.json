@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-11-16-r008-overlap-inference-design",
+  "parent_run_id": "2026-11-16-r007-r005-coverage-feasibility",
+  "date": "2026-11-16",
+  "status": "design_proposal_only",
+  "hypothesis": "Overlapping forecasts may repair the R005 coverage contradiction, but must be evaluated with dependence-aware inference and do not increase independent market histories.",
+  "strategy_family": "evaluation_design",
+  "data_read": false,
+  "performance_cells": 0,
+  "strategy_metrics": null,
+  "code_sha256": null,
+  "data_sha256": null,
+  "parameter_grid": null,
+  "cost_model": null,
+  "partition": null,
+  "result_files": ["plan.md", "decision.md", "handoff.md"],
+  "multiple_comparison_method": "not applicable; no outcomes evaluated",
+  "uncertainty_method": "proposal only: synchronized calendar-time block resampling across symbols; exact method not frozen",
+  "decision": "continue_design_before_any_labels",
+  "next_action": "Pre-register an exact overlap, dependence, inference, sample-size and forward-duration protocol; do not score outcomes until every R005 data, cost, model, timestamp and recorder gate is closed."
+}
