@@ -328,3 +328,74 @@ def test_orb_strong_uses_signal_bar_atr_and_accepts_exact_clearance():
     assert Signal(30,"long",90.) in generate_signals(f,"orb_funding_session_strong",{"atr":atr})
     f.loc[30,"c"]=110.99
     assert not any(s.index==30 for s in generate_signals(f,"orb_funding_session_strong",{"atr":atr}))
+
+def _vwap_sine_frame(n=50):
+    """50-bar baseline with mild oscillation around 100 (sine amplitude 0.5) and a
+    constant 0.2-wide high/low wick, uniform volume -- enough warm-up (>=40 bars)
+    for the 20-bar rolling VWAP and the 20-bar rolling stdev of (close-VWAP) that
+    feeds it to both be fully populated well before index 40."""
+    x=np.arange(n); c=100+np.sin(x/3)*0.5; h=c+0.2; l=c-0.2; v=np.ones(n)
+    return c,h,l,v
+
+def _vwap_frame(o,h,l,c,v):
+    return pd.DataFrame({"t_open_ms":1700000000000+np.arange(len(c))*60000,"o":o,"h":h,"l":l,"c":c,"v":v})
+
+def test_vwap_band_fade_no_pierce_does_not_signal():
+    c,h,l,v=_vwap_sine_frame()
+    f=_vwap_frame(c.copy(),h,l,c,v)
+    assert generate_signals(f,"vwap_band_fade")==[]
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_vwap_band_fade_same_bar_pierce_and_reject(side):
+    # A single bar's wick pierces 5 points past the band on a quiet baseline while
+    # its own close stays near the unperturbed band -- a same-bar rejection.
+    c,h,l,v=_vwap_sine_frame(); h=h.copy(); l=l.copy()
+    if side=="short": h[40]=c[40]+5.0
+    else: l[40]=c[40]-5.0
+    f=_vwap_frame(c.copy(),h,l,c,v)
+    sigs=generate_signals(f,"vwap_band_fade")
+    expected_stop=h[40] if side=="short" else l[40]
+    assert any(s.index==40 and s.side==side and s.stop==pytest.approx(expected_stop) for s in sigs)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_vwap_band_fade_multi_bar_extension_tracks_running_extreme(side):
+    # Bar 40 pierces and its close stays outside the band (extension continues,
+    # no signal yet); bar 41 pierces further but its close finally comes back
+    # inside -- the emitted stop is the running extreme across both bars (108 for
+    # short / 92 for long), not just the final bar's own high/low.
+    n=50; o=np.full(n,100.); h=np.full(n,100.2); l=np.full(n,99.8); c=np.full(n,100.); v=np.full(n,1.0)
+    if side=="short":
+        h[40],l[40],c[40]=108.,99.8,103.; h[41],l[41],c[41]=104.,99.8,101.
+    else:
+        l[40],h[40],c[40]=92.,100.2,97.; l[41],h[41],c[41]=96.,100.2,99.
+    f=_vwap_frame(o,h,l,c,v)
+    sigs=generate_signals(f,"vwap_band_fade")
+    assert not any(s.index==40 and s.side==side for s in sigs)
+    expected_stop=108. if side=="short" else 92.
+    assert any(s.index==41 and s.side==side and s.stop==pytest.approx(expected_stop) for s in sigs)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_vwap_band_fade_stretch_rejects_a_marginal_wick_the_base_rule_accepts(side):
+    # The P8-C refinement requires the tracked extreme to clear the band edge
+    # recorded at first piercing by >=0.5*ATR14; a wick that barely pokes past the
+    # band (and whose own close sits right at the edge) should still fire the base
+    # rule but must be rejected by the ATR-buffered "_stretch" variant.
+    c,h,l,v=_vwap_sine_frame(); h=h.copy(); l=l.copy()
+    if side=="short": h[40]=100.80
+    else: l[40]=99.30
+    f=_vwap_frame(c.copy(),h,l,c,v)
+    base=generate_signals(f,"vwap_band_fade")
+    stretch=generate_signals(f,"vwap_band_fade_stretch")
+    assert any(s.index==40 and s.side==side for s in base)
+    assert not any(s.index==40 for s in stretch)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_vwap_band_fade_stretch_accepts_a_large_stretch(side):
+    # The same 5-point wick used for the base-rule same-bar test also clears the
+    # 0.5-ATR stretch requirement, so the refinement must not reject every signal.
+    c,h,l,v=_vwap_sine_frame(); h=h.copy(); l=l.copy()
+    if side=="short": h[40]=c[40]+5.0
+    else: l[40]=c[40]-5.0
+    f=_vwap_frame(c.copy(),h,l,c,v)
+    stretch=generate_signals(f,"vwap_band_fade_stretch")
+    assert any(s.index==40 and s.side==side for s in stretch)

@@ -10,7 +10,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "frvp_breakout", "frvp_breakout_strong",
           "heikin_ashi_reversal", "heikin_ashi_reversal_strict",
           "bb_squeeze_breakout", "bb_squeeze_breakout_strict",
-          "orb_funding_session", "orb_funding_session_strong")
+          "orb_funding_session", "orb_funding_session_strong",
+          "vwap_band_fade", "vwap_band_fade_stretch")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -309,4 +310,65 @@ def generate_signals(frame, setup, prepared=None):
                 emit(i,"long",or_low); triggered=True
             elif c[i]<or_low and (not strong or c[i]<=or_low-buf):
                 emit(i,"short",or_high); triggered=True
+    elif setup in ("vwap_band_fade","vwap_band_fade_stretch"):
+        # P8-C: mean-reversion fade, the opposite directional bet from every
+        # continuation/breakout rule above. Rolling 20-bar VWAP of typical price
+        # (h+l+c)/3 weighted by volume -- the same fixed 20-bar rolling convention
+        # as app/technical_signal_common.py's `vwap` branch (20-day rolling window
+        # there; 20 bars here on whatever timeframe is being evaluated, consistent
+        # with this file's other fixed-bar-count windows: trendline_breakout's 20,
+        # order_block/fvg_fill's zone-expiry windows). Causal: the window ending at
+        # bar i includes bar i's own closed OHLCV, matching vwap()/avwap_hl/
+        # candle_reversal above, which all read the current closed bar's own price
+        # and volume into their reference level.
+        # Bands are VWAP +/- 2 * rolling stdev of (close - VWAP) over the same
+        # 20-bar window (population stdev, ddof=0, same convention as
+        # indicators.bollinger). This is a band-extreme fade, structurally distinct
+        # from avwap_hl (swing-retest continuation off an anchored VWAP) and
+        # rsi_divergence (price/RSI divergence at swing pivots) already in this
+        # file -- no band, no extreme-piercing/rejection logic, no stretch measure.
+        # Signal (fade, not breakout-confirmation): once a bar's high pierces above
+        # the upper band, track the running extreme high while price stays outside;
+        # the bar whose CLOSE first comes back inside the band is the rejection
+        # signal bar (short), stop = that tracked extreme high. Mirror for the lower
+        # band (long), tracking the running extreme low. A same-bar pierce-and-close
+        # -back-inside also qualifies. "_stretch" is the single bounded P8-C
+        # refinement: additionally require the tracked extreme to clear the band
+        # edge recorded at the moment of first piercing by >=0.5*ATR14 (same ATR
+        # already shared by every other setup here, same 0.5 threshold this file
+        # already uses for heikin_ashi_reversal_strict's conviction filter) before
+        # the rejection counts as a valid "stretch" rather than a marginal wick.
+        typical=(h+l+c)/3.0
+        vw=(pd.Series(typical*v).rolling(20,min_periods=20).sum()/pd.Series(v).rolling(20,min_periods=20).sum()).to_numpy()
+        dev=pd.Series(c-vw).rolling(20,min_periods=20).std(ddof=0).to_numpy()
+        upper=vw+2*dev; lower=vw-2*dev
+        stretch=setup=="vwap_band_fade_stretch"
+        # Both sides are tracked in a single chronological pass (rather than two
+        # separate full side-loops like sr_retest/avwap_hl above) so that emit()
+        # calls are appended to `out` in non-decreasing bar order regardless of
+        # which side fires first -- required for the shared causality test, which
+        # inspects insertion order.
+        state={"long":[False,None,None],"short":[False,None,None]}
+        for i in range(n):
+            for side in ("long","short"):
+                edge=lower[i] if side=="long" else upper[i]
+                if not np.isfinite(edge): continue
+                extended,extreme,pierce_edge=state[side]
+                pierced=(l[i]<edge) if side=="long" else (h[i]>edge)
+                back_inside=(c[i]>=edge) if side=="long" else (c[i]<=edge)
+                if not extended:
+                    if pierced:
+                        extreme=l[i] if side=="long" else h[i]; pierce_edge=edge
+                        if back_inside:
+                            ok=(not stretch) or (np.isfinite(a[i]) and abs(pierce_edge-extreme)>=0.5*a[i])
+                            if ok: emit(i,side,extreme)
+                            extended=False; extreme=pierce_edge=None
+                        else: extended=True
+                else:
+                    extreme=min(extreme,l[i]) if side=="long" else max(extreme,h[i])
+                    if back_inside:
+                        ok=(not stretch) or (np.isfinite(a[i]) and abs(pierce_edge-extreme)>=0.5*a[i])
+                        if ok: emit(i,side,extreme)
+                        extended=False; extreme=pierce_edge=None
+                state[side]=[extended,extreme,pierce_edge]
     return out

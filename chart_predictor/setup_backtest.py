@@ -36,6 +36,8 @@ HYPOTHESES={
  "bb_squeeze_breakout_strict":"The same Bollinger squeeze breakout should perform better once the breakout close must clear the band by at least 0.25 ATR14, filtering the marginal/no-follow-through breakouts diagnosed in the base rule's dominant timeout rate.",
  "orb_funding_session":"The first 30 minutes after each Binance 8-hour funding boundary should establish a range whose first closed-bar breakout carries follow-through.",
  "orb_funding_session_strong":"A funding-session opening-range breakout clearing the range by at least 0.25 ATR14 should filter marginal breaks and improve follow-through.",
+ "vwap_band_fade":"A close that rejects back inside a rolling-VWAP +/-2-stdev band after piercing it should snap back toward VWAP faster than it continues.",
+ "vwap_band_fade_stretch":"The same VWAP-band rejection should perform better once a minimum 0.5-ATR clearance past the pierced band edge filters out marginal, likely-noise wicks.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -129,6 +131,7 @@ def _write(report,report_dir, data_hash, stage):
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
     present={r["setup"] for r in rows}
     label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
+      else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}
