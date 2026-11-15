@@ -138,6 +138,59 @@ class JsonlSegment:
         return manifest
 
 
+def _close_segment_with_fallback(
+    segment: JsonlSegment, *, complete: bool, run_manifest: dict[str, Any]
+) -> dict[str, Any]:
+    """Close a segment while preserving a diagnostic if manifest finalization fails."""
+    try:
+        return segment.close(complete=complete, run_manifest=run_manifest)
+    except Exception as exc:
+        handle = getattr(segment, "_handle", None)
+        if handle is not None and not handle.closed:
+            try:
+                handle.flush()
+                os.fsync(handle.fileno())
+            finally:
+                handle.close()
+        segment.closed = True
+
+        partial_path = segment.partial_path
+        data_path = partial_path if partial_path.exists() else segment.path
+        try:
+            digest = _sha256(data_path) if data_path.exists() else None
+            data_bytes = data_path.stat().st_size if data_path.exists() else 0
+        except OSError:
+            digest, data_bytes = None, None
+        diagnostic = {
+            **run_manifest,
+            "status": "incomplete",
+            "reason": "manifest_finalization_failed",
+            "finalization_error_type": type(exc).__name__,
+            "finalization_error_message": str(exc)[:500],
+            "segment": {
+                "path": data_path.name,
+                "complete": False,
+                "sha256": digest,
+                "record_count": segment.record_count,
+                "bytes": data_bytes,
+                "first_receive_ms": segment.first_receive_ms,
+                "last_receive_ms": segment.last_receive_ms,
+            },
+        }
+        diagnostic_path = segment.path.parent / "finalization_error.json"
+        payload = json.dumps(diagnostic, sort_keys=True, indent=2,
+                             ensure_ascii=False, allow_nan=False).encode("utf-8")
+        # The normal pilot reserves 1 MiB for metadata. Never exceed the configured
+        # reserve while trying to record a finalization failure.
+        if (not diagnostic_path.exists()
+                and len(payload) <= segment.manifest_reserve_bytes):
+            with diagnostic_path.open("xb") as output:
+                output.write(payload)
+                output.flush()
+                os.fsync(output.fileno())
+        return diagnostic
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with Path(path).open("rb") as handle:
@@ -735,8 +788,11 @@ class Pilot:
                     "python": sys.version,
                 },
             }
-            closed = self.segment.close(complete=(status == "completed"), run_manifest=manifest)
-            manifest = closed
+            manifest = _close_segment_with_fallback(
+                self.segment,
+                complete=(status == "completed"),
+                run_manifest=manifest,
+            )
         return manifest
 
 
