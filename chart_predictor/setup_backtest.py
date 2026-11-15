@@ -32,6 +32,8 @@ HYPOTHESES={
  "frvp_breakout_strong":"The same fixed-range volume profile breakout should perform better once a minimum 0.25-ATR clearance past the point of control filters out marginal, likely-noise breakouts.",
  "heikin_ashi_reversal":"A recursive Heikin-Ashi bearish-to-bullish or bullish-to-bearish flip should identify a short-horizon directional reversal with follow-through.",
  "heikin_ashi_reversal_strict":"A Heikin-Ashi flip with body at least 0.5 ATR14 should filter weak reversals and improve short-horizon follow-through.",
+ "vwap_band_fade":"A close that rejects back inside a rolling-VWAP +/-2-stdev band after piercing it should snap back toward VWAP faster than it continues.",
+ "vwap_band_fade_stretch":"The same VWAP-band rejection should perform better once a minimum 0.5-ATR clearance past the pierced band edge filters out marginal, likely-noise wicks.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -124,7 +126,8 @@ def _write(report,report_dir, data_hash, stage):
     hypotheses="\n".join(f"- **{k}**: {v}" for k,v in HYPOTHESES.items())
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
     present={r["setup"] for r in rows}
-    label=("P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
+    label=("P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
+      else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}
       else "P6" if present and present<={"order_block","fabio_liquidity_mss"}
