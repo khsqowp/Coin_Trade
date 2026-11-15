@@ -62,6 +62,9 @@ def build_consensus(signals: Iterable[Mapping], *, symbol: str, entry_ms: int,
         stop = max(stops) if side == "long" else min(stops)
         risk = abs(entry_price - stop)
         sign = 1 if side == "long" else -1
+        target = float(entry_price + sign * TARGET_R_MULTIPLE * risk)
+        if target <= 0:
+            continue
         votes[timeframe] = {
             "timeframe": timeframe,
             "signal_close_ms": latest_close,
@@ -71,7 +74,7 @@ def build_consensus(signals: Iterable[Mapping], *, symbol: str, entry_ms: int,
             "entry_price": float(entry_price),
             "stop": stop,
             "risk": risk,
-            "target": float(entry_price + sign * TARGET_R_MULTIPLE * risk),
+            "target": target,
             "risk_fraction": risk / float(entry_price),
         }
 

@@ -61,6 +61,13 @@ def test_consensus_rejects_stale_future_wrong_symbol_and_invalidated_votes():
                            entry_price=100) is None
 
 
+def test_consensus_abstains_when_short_two_r_target_is_not_a_valid_price():
+    rows = [signal("BTCUSDT", "1m", "short", 120_000, 160.0),
+            signal("BTCUSDT", "5m", "short", 0, 101.0)]
+    assert build_consensus(rows, symbol="BTCUSDT", entry_ms=120_000,
+                           entry_price=100.0) is None
+
+
 def test_consensus_is_invariant_to_signals_after_entry_time():
     prefix = [signal("BTCUSDT", "1m", "long", 120_000, 99),
               signal("BTCUSDT", "5m", "long", 0, 98)]
