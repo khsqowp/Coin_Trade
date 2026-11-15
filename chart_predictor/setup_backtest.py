@@ -38,6 +38,8 @@ HYPOTHESES={
  "orb_funding_session_strong":"A funding-session opening-range breakout clearing the range by at least 0.25 ATR14 should filter marginal breaks and improve follow-through.",
  "vwap_band_fade":"A close that rejects back inside a rolling-VWAP +/-2-stdev band after piercing it should snap back toward VWAP faster than it continues.",
  "vwap_band_fade_stretch":"The same VWAP-band rejection should perform better once a minimum 0.5-ATR clearance past the pierced band edge filters out marginal, likely-noise wicks.",
+ "volume_climax_exhaustion":"A volume spike at least 3x the trailing 20-bar average, landing on a bar that makes a fresh 10-bar extreme but closes back away from that extreme (a rejection wick), should mark crowd-capitulation exhaustion and precede a reversal.",
+ "volume_climax_exhaustion_strict":"The same climax-volume rejection-wick reversal should perform better once the volume spike threshold is raised from 3x to 5x the trailing average, filtering out more marginal, likely-noise spikes.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -132,6 +134,7 @@ def _write(report,report_dir, data_hash, stage):
     present={r["setup"] for r in rows}
     label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
+      else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}

@@ -11,7 +11,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "heikin_ashi_reversal", "heikin_ashi_reversal_strict",
           "bb_squeeze_breakout", "bb_squeeze_breakout_strict",
           "orb_funding_session", "orb_funding_session_strong",
-          "vwap_band_fade", "vwap_band_fade_stretch")
+          "vwap_band_fade", "vwap_band_fade_stretch",
+          "volume_climax_exhaustion", "volume_climax_exhaustion_strict")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -232,6 +233,37 @@ def generate_signals(frame, setup, prepared=None):
             if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
             # Symmetric short-side flip is this research port's extension; the cited source defines long only.
             if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
+    elif setup in ("volume_climax_exhaustion","volume_climax_exhaustion_strict"):
+        # Volume climax exhaustion reversal (P8-D): a volume spike far above the
+        # recent trailing average, landing on a bar that pushes to a new local
+        # extreme but closes back away from that extreme (a rejection wick),
+        # marks one-sided crowd capitulation/blow-off that tends to reverse.
+        # This is a volume-primary trigger -- distinct from this file's other
+        # SMC/trend-following/pattern setups -- geometry only confirms exhaustion.
+        #
+        # Causal boundary: the rolling volume baseline at bar i is the trailing
+        # mean of bars i-20..i-1 (pandas rolling(20) ending at i-1, produced by
+        # rolling(20).mean().shift(1)) -- the signal bar's own volume is never
+        # part of its own baseline. The "new local high/low" check uses a 10-bar
+        # window i-9..i that DOES include the signal bar itself (the bar must be
+        # the extreme of its own recent window to count as a fresh push); both
+        # windows only read bars already closed by bar i.
+        #
+        # "_strict" is the single bounded P8-D refinement: raise the climax
+        # volume multiple from 3x to 5x the trailing mean. A rarer, more extreme
+        # spike is less likely to be ordinary noise than a 3x bar; the rejection
+        # wick geometry and 10-bar extreme window are left untouched so only one
+        # parameter changes.
+        k=5.0 if setup=="volume_climax_exhaustion_strict" else 3.0
+        vol_ma=pd.Series(v).rolling(20,min_periods=20).mean().shift(1).to_numpy()
+        climax=(vol_ma>0)&(v>k*vol_ma)
+        span=np.maximum(h-l,1e-12)
+        roll_max=pd.Series(h).rolling(10,min_periods=10).max().to_numpy()
+        roll_min=pd.Series(l).rolling(10,min_periods=10).min().to_numpy()
+        for i in range(20,n):
+            if not(np.isfinite(vol_ma[i]) and climax[i]): continue
+            if h[i]>=roll_max[i] and (c[i]-l[i])/span[i]<0.5: emit(i,"short",h[i])
+            if l[i]<=roll_min[i] and (h[i]-c[i])/span[i]<0.5: emit(i,"long",l[i])
     elif setup=="heikin_ashi_reversal_strict":
         hc=(o+h+l+c)/4; ho=np.empty(n,float)
         if n:
