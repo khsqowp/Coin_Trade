@@ -52,6 +52,11 @@ def month_ends(calendar):
     return list(by_month.values())
 
 
+def month_is_complete(day):
+    """Reject truncated calendar months; valid exchange month-ends fall within 6 days."""
+    return (day + pd.offsets.MonthEnd(0) - day).days <= 6
+
+
 def clustered_ci(values, dates, seed, block_months=1):
     if not values:
         return (float("nan"), float("nan"))
@@ -175,13 +180,15 @@ def us_momentum():
     for day in month_ends(calendar):
         if EVAL_START is not None and day < EVAL_START:
             continue
+        if not month_is_complete(day):
+            continue
         i = calendar.index(day)
         if i < 253 or i + 1 >= len(calendar):
             continue
         entry_day = calendar[i + 1]
         next_month = (day.year + (day.month == 12), 1 if day.month == 12 else day.month + 1)
         exit_days = [d for d in calendar if (d.year, d.month) == next_month]
-        if not exit_days:
+        if not exit_days or not month_is_complete(exit_days[-1]):
             continue
         exit_day = exit_days[-1]
         scores = []

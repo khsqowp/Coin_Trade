@@ -26,3 +26,9 @@ Evidence gate: at least 18 monthly cohorts, and paired top-quintile excess over 
 ## Interpretation limits
 
 This is an event/cohort comparison, not a capital-weighted portfolio. Position sizing, maximum drawdown tolerance, PIT historical membership, delisted securities, corporate-action adjustment, borrow, liquidity and actual fills remain unresolved. Passing this narrow gate would justify only further independent data and portfolio-policy research; it would not establish the 20% annual target, readiness for autonomous trading, or live-trading authorization.
+
+## Execution erratum — 2026-11-15
+
+The first evaluation-window run is **invalid**. The SPY cache ends on 2026-10-12, and the implementation treated that truncated date as October's final market session when exiting September's cohort. Preserve `docs/research/equity_forward_validation_first_run_INVALID_20261115.csv` only as an audit record; none of its forward-window conclusions or gate outcomes are valid.
+
+The corrected implementation rejects any signal or exit month whose last observed session lies more than six calendar days before month-end. This fixes the incomplete-month boundary without changing the strategy rule, but the correction was identified after the first output was visible. Any rerun on the same post-cutoff prices is a post-hoc corrective diagnostic, not a preregistered OOS result. Record the corrected output separately and do not use it to tune parameters.
