@@ -61,7 +61,7 @@ def evaluate_symbol(raw, symbol, signal_family):
         opens = frame.o.to_numpy(float)
         high = frame.h.to_numpy(float)
         low = frame.l.to_numpy(float)
-        if signal_family == "rsi2":
+        if signal_family in ("rsi2", "rsi2_ema200_trend"):
             delta = np.diff(np.r_[np.nan, close])
             gain = pd.Series(np.maximum(delta, 0)).ewm(alpha=0.5, adjust=False).mean().to_numpy()
             loss = pd.Series(np.maximum(-delta, 0)).ewm(alpha=0.5, adjust=False).mean().to_numpy()
@@ -70,8 +70,15 @@ def evaluate_symbol(raw, symbol, signal_family):
             rsi2[has_loss] = 100 - 100 / (1 + gain[has_loss] / loss[has_loss])
             rsi2[(loss == 0) & (gain > 0)] = 100.0
             rsi2[(loss == 0) & (gain == 0)] = 50.0
-            event_mask = (rsi2 < 10) | (rsi2 > 90)
-            side_for = lambda i: 1 if rsi2[i] < 10 else -1
+            if signal_family == "rsi2_ema200_trend":
+                ema200 = pd.Series(close).ewm(span=200, adjust=False, min_periods=200).mean().to_numpy()
+                long_mask = (rsi2 < 10) & (close > ema200)
+                short_mask = (rsi2 > 90) & (close < ema200)
+                event_mask = long_mask | short_mask
+                side_for = lambda i: 1 if long_mask[i] else -1
+            else:
+                event_mask = (rsi2 < 10) | (rsi2 > 90)
+                side_for = lambda i: 1 if rsi2[i] < 10 else -1
         else:
             mid = pd.Series(close).rolling(20, min_periods=20).mean().to_numpy()
             std = pd.Series(close).rolling(20, min_periods=20).std(ddof=0).to_numpy()
@@ -169,7 +176,7 @@ def evaluate_symbol(raw, symbol, signal_family):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv-out", type=Path, help="optional path for the cell-level CSV")
-    parser.add_argument("--signal-family", choices=("rsi2", "bb_reentry"), default="rsi2")
+    parser.add_argument("--signal-family", choices=("rsi2", "rsi2_ema200_trend", "bb_reentry"), default="rsi2")
     args = parser.parse_args()
     db = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
     rows = []

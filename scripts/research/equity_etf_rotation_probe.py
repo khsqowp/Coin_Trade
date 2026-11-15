@@ -60,12 +60,13 @@ def metrics(nav, net, exposure, turnover, name, costs):
     }
 
 
-def run_rotation(frames, name, one_way_cost):
+def run_rotation(frames, name, one_way_cost, weighting="equal"):
     close = pd.concat({symbol: frame.Close for symbol, frame in frames.items()}, axis=1).sort_index()
     close = close.dropna(how="all").ffill()
     opens = pd.concat({symbol: frame.Open for symbol, frame in frames.items()}, axis=1)
     opens = opens.reindex(close.index).ffill()
     momentum = close / close.shift(126) - 1
+    realized_vol = close.pct_change().rolling(60, min_periods=60).std()
     periods = close.index.tz_localize(None).to_period("M") if close.index.tz else close.index.to_period("M")
     month_ends = set(pd.Series(np.arange(len(close)), index=close.index).groupby(periods).last().to_numpy())
     start_idx = int(close.index.searchsorted(pd.Timestamp("2011-01-01", tz="UTC")))
@@ -87,7 +88,13 @@ def run_rotation(frames, name, one_way_cost):
         if i and i - 1 in month_ends:
             scores = momentum.loc[close.index[i - 1]].dropna()
             picks = scores[scores > 0].nlargest(3).index.tolist()
-            weights = {symbol: 1 / len(picks) for symbol in picks} if picks else {}
+            if weighting == "inverse_volatility" and picks:
+                vol = realized_vol.loc[close.index[i - 1], picks].replace(0.0, np.nan).dropna()
+                inverse = 1 / vol
+                inverse = inverse / inverse.sum()
+                weights = inverse.to_dict()
+            else:
+                weights = {symbol: 1 / len(picks) for symbol in picks} if picks else {}
             desired = {
                 symbol: nav_open * weights[symbol] / op[symbol]
                 if symbol in weights and pd.notna(op[symbol]) and op[symbol] > 0 else 0.0
@@ -139,7 +146,7 @@ def run_rotation(frames, name, one_way_cost):
     exposure = np.asarray(exposure_values)
     one_way_turnover = float(sum(turnover_values) / 2 + initial_entry_turnover / 2
                               + terminal_one_way_turnover)
-    return metrics(nav, net, exposure, one_way_turnover, name, one_way_cost)
+    return metrics(nav, net, exposure, one_way_turnover, f"{name} ({weighting})", one_way_cost)
 
 
 def run_buy_hold(frame, symbol, one_way_cost):
@@ -173,6 +180,10 @@ def main():
         run_rotation(kr, "KR ETF top-3 126-session positive momentum monthly stress", 0.00165),
         run_rotation(us, "US ETF top-3 126-session positive momentum monthly", 0.0018),
         run_rotation(us, "US ETF top-3 126-session positive momentum monthly stress", 0.0061),
+        run_rotation(kr, "KR ETF top-3 126-session positive momentum monthly", 0.00115, "inverse_volatility"),
+        run_rotation(kr, "KR ETF top-3 126-session positive momentum monthly stress", 0.00165, "inverse_volatility"),
+        run_rotation(us, "US ETF top-3 126-session positive momentum monthly", 0.0018, "inverse_volatility"),
+        run_rotation(us, "US ETF top-3 126-session positive momentum monthly stress", 0.0061, "inverse_volatility"),
         run_buy_hold(kr["069500"], "KR 069500 buy-and-hold base cost", 0.00115),
         run_buy_hold(kr["069500"], "KR 069500 buy-and-hold stress cost", 0.00165),
         run_buy_hold(us["SPY"], "US SPY buy-and-hold base cost", 0.0018),

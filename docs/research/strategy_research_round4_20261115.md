@@ -31,3 +31,27 @@ Status: exploratory development only. No strategy is validated, promoted, or aut
 ## Decision
 
 Do not promote any of these strategies. The KR/US candidates miss the return objective or trade worse risk-adjusted outcomes against their benchmarks. The tested crypto mean-reversion rules do not approach the requested 80% signal quality and do not show reliable positive net expectancy after even the base assumed costs. Preserve these as rejected development hypotheses; do not open the sealed period to search for a better parameter combination.
+
+## Round 5 — preregistered next tests
+
+Before running the next screen, freeze two non-optimized variations on the same development data:
+
+1. Keep the 126-session monthly top-three positive-momentum ETF signal and execution model unchanged; weight selected assets inversely to their trailing 60-session close-to-close volatility. No leverage, no rebalance-frequency change. Compare base/stress costs and same-cost benchmarks against the equal-weight result.
+2. Keep the existing RSI(2) thresholds, ATR(14) one-ATR stop/target, non-overlap, 10/20-bar horizons, and costs unchanged; permit long entries only when the signal bar closes above its own EMA200 and short entries only below its EMA200. Evaluate all twelve timeframes; do not retune thresholds or exits.
+
+The tests remain development-only, cut at 2024-11-12 exclusive for equities and 2026-10-09 exclusive for crypto. A candidate is not promoted based on its best cell among the grid; uncertainty, adequate sample, costs, and forward data are still required.
+
+### Round 5 outcomes
+
+| Variation | Base result | Stress result | Comparison / decision |
+|---|---|---|---|
+| KR ETF inverse-volatility top-3 | 6.82% CAGR / 54.02% MDD; 75.66× one-way turnover | 6.25% / 54.55%; 75.64× turnover | Versus equal-weight, CAGR rose about 1.61 percentage points and MDD fell about 1.41 points, but drawdown remains very high, turnover increased, and return remains well below 20%. Not promoted. |
+| US ETF inverse-volatility top-3 | 9.07% CAGR / 26.33% MDD; 32.53× turnover | 6.96% / 28.42%; 32.46× turnover | Lower return and higher drawdown than the equal-weight variant; also below cost-matched SPY CAGR. Reject this weighting variation. |
+| RSI(2) with same-timeframe EMA200 direction gate | 144 cells; 120 cells had n≥200. Best n≥200 cell was SOL 6h/20 bars, n=220: 54.55% net-positive and target-first; mean net +0.358% base and +0.158% stress; accepted signal incidence 2.61%. | Mean-net day-cluster 95% intervals: −0.244% to +0.939% base, −0.444% to +0.739% stress. | The best observed cell remains far below 80%, has low coverage, and its expectancy interval includes zero. No promotion. |
+
+The inverse-volatility weights and EMA200 gate were evaluated once using frozen rules; no parameter search followed these outputs. The best-cell statistics are selection-biased across the tested grids and are descriptive only.
+
+### Round 5 artifacts
+
+- `scripts/research/equity_etf_rotation_probe.py` now compares equal and inverse-volatility weights; `docs/research/equity_etf_rotation_20261115.csv` contains both variants, base/stress costs, and matched-cost benchmarks.
+- `scripts/research/long_history_rsi2_multitf_probe.py --signal-family rsi2_ema200_trend` reproduces the fixed EMA200 gate; cell results are in `docs/research/rsi2_ema200_trend_multitf_20261115.csv`.
