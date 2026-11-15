@@ -12,7 +12,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "bb_squeeze_breakout", "bb_squeeze_breakout_strict",
           "orb_funding_session", "orb_funding_session_strong",
           "vwap_band_fade", "vwap_band_fade_stretch",
-          "volume_climax_exhaustion", "volume_climax_exhaustion_strict")
+          "volume_climax_exhaustion", "volume_climax_exhaustion_strict",
+          "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -109,6 +110,30 @@ def generate_signals(frame, setup, prepared=None):
             near=abs(c[i]-vw[i])<=.5*a[i] or (bool(zones) and np.min(np.abs(c[i]-np.asarray(zones[-60:])))<=.5*a[i])
             if near and (pat["bull_engulfing"][i-1] or pat["hammer_pin"][i-1]) and c[i]>h[i-1]: emit(i,"long",l[i-1])
             if near and (pat["bear_engulfing"][i-1] or pat["shooting_star_pin"][i-1]) and c[i]<l[i-1]: emit(i,"short",h[i-1])
+    elif setup in ("pinbar_stochastic_cross", "pinbar_stochastic_cross_strict"):
+        # P9-B pin-bar plus stochastic confirmation: the pattern bar j itself must
+        # have %K < 20 for a hammer or %K > 80 for a shooting star; oversold/overbought
+        # is not carried from adjacent bars. A bullish cross is %K[j-1] <= %D[j-1]
+        # and %K[j] > %D[j], with bearish cross the exact inverse. Confirmation may
+        # occur at j, j+1, or j+2; the pattern remains pending only through j+2 and
+        # the signal is emitted at the actual cross bar i, never backdated to j.
+        # This uses only closed data through i. The stop remains the original pin
+        # bar's low/high, even for delayed confirmation; emit() suppresses it when
+        # that stop is no longer on the valid side of the confirming close.
+        # One bounded strict refinement requires %K < 10 / > 90 at pattern bar j.
+        pat=prepared["patterns"] if "patterns" in prepared else indicators.candle_patterns(o,h,l,c)
+        k,d=prepared["stochastic"] if "stochastic" in prepared else indicators.stochastic(h,l,c)
+        strict=setup=="pinbar_stochastic_cross_strict"
+        extreme=10.0 if strict else 20.0
+        for i in range(1,n):
+            bullish=k[i-1]<=d[i-1] and k[i]>d[i]
+            bearish=k[i-1]>=d[i-1] and k[i]<d[i]
+            if not (bullish or bearish): continue
+            for j in range(max(0,i-2),i+1):
+                if bullish and pat["hammer_pin"][j] and np.isfinite(k[j]) and k[j]<extreme:
+                    emit(i,"long",l[j]); break
+                if bearish and pat["shooting_star_pin"][j] and np.isfinite(k[j]) and k[j]>100-extreme:
+                    emit(i,"short",h[j]); break
     elif setup=="fibonacci_pocket":
         lastlo=lasthi=None
         for i in range(n):

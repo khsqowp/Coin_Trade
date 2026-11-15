@@ -75,6 +75,17 @@ def bollinger(values, period=20, deviations=2):
     return mid.to_numpy(), (mid + width).to_numpy(), (mid - width).to_numpy()
 
 
+def stochastic(high, low, close, k_period=14, d_period=3):
+    """Causal stochastic %K from trailing extrema and %D from trailing %K mean."""
+    h, l, c = map(lambda x: pd.Series(x, dtype=float), (high, low, close))
+    highest = h.rolling(k_period, min_periods=k_period).max()
+    lowest = l.rolling(k_period, min_periods=k_period).min()
+    span = (highest - lowest).replace(0, np.nan)
+    pct_k = 100 * (c - lowest) / span
+    pct_d = pct_k.rolling(d_period, min_periods=d_period).mean()
+    return pct_k.to_numpy(), pct_d.to_numpy()
+
+
 def rolling_percentile_rank(values, lookback):
     """Causal percentile rank of each value within its own trailing window (inclusive).
 
