@@ -67,6 +67,47 @@ def test_order_block_impulse_retest_and_invalidation(side):
     assert not any(s.index==16 and s.side==side for s in near)
 
 @pytest.mark.parametrize("side",["long","short"])
+def test_fvg_fill_first_overlap_without_reclaim(side):
+    o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)
+    if side=="long":
+        h[0],l[2],c[2]=100,102,101
+        o[3],h[3],l[3],c[3]=101,103,100.5,101
+        low,high=100,102
+    else:
+        l[0],h[2],c[2]=102,100,101
+        o[3],h[3],l[3],c[3]=101,101.5,99,101
+        low,high=100,102
+    sigs=generate_signals(_ohlc(o,h,l,c),"fvg_fill")
+    assert any(s.index==3 and s.side==side and s.stop==pytest.approx(low if side=="long" else high) for s in sigs)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_fvg_fill_invalidation_and_expiry(side):
+    def frame(fill_index=None, invalid_index=None):
+        n=66; o=np.full(n,100.); h=np.full(n,101.); l=np.full(n,99.); c=np.full(n,100.)
+        if side=="long":
+            h[0],l[2],c[2]=100,102,101
+            low,high=100,102
+            l[3:],h[3:],c[3:]=103,104,103.5
+            if invalid_index is not None: c[invalid_index]=99
+        else:
+            l[0],h[2],c[2]=102,100,101
+            low,high=100,102
+            l[3:],h[3:],c[3:]=97,98,97.5
+            if invalid_index is not None: c[invalid_index]=103
+        if fill_index is not None:
+            l[fill_index],h[fill_index],c[fill_index]=101,102.5,101.5
+        return _ohlc(o,h,l,c),low,high
+    f,_,_=frame(invalid_index=4)
+    assert not any(s.side==side and s.index==4 for s in generate_signals(f,"fvg_fill"))
+    f,_,_=frame(fill_index=63)
+    # The 12-bar freshness cap is stricter than the sourced 60-bar expiry.
+    assert not any(s.side==side and s.index==63 for s in generate_signals(f,"fvg_fill"))
+    f,_,_=frame(fill_index=15)
+    assert not any(s.side==side and s.index==15 for s in generate_signals(f,"fvg_fill"))
+    f,_,_=frame(fill_index=14)
+    assert any(s.side==side and s.index==14 for s in generate_signals(f,"fvg_fill"))
+
+@pytest.mark.parametrize("side",["long","short"])
 def test_fabio_grab_then_next_bar_mss(side):
     o=np.full(63,100.); h=np.full(63,101.); l=np.full(63,99.); c=np.full(63,100.)
     if side=="short":

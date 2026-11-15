@@ -6,7 +6,7 @@ from . import indicators
 
 SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
-          "order_block", "fabio_liquidity_mss")
+          "order_block", "fabio_liquidity_mss", "fvg_fill")
 
 @dataclass(frozen=True)
 class Signal:
@@ -155,4 +155,20 @@ def generate_signals(frame, setup, prepared=None):
                         emit(i,"long",grab_level); state="waiting"
                     # The Pine armed state has no timeout/opposite-grab reset; this port likewise waits
                     # indefinitely, then resets after one entry so a continuing inequality cannot re-fire.
+    elif setup=="fvg_fill":
+        zones=[]
+        for i in range(n):
+            remaining=[]
+            for low,high,born,side in zones:
+                # Single refinement: only accept fills within 12 bars of formation.
+                invalid=(i-born>12 or (c[i]<low if side=="long" else c[i]>high))
+                if invalid: continue
+                if l[i]<=high and h[i]>=low:
+                    emit(i,side,low if side=="long" else high)
+                else: remaining.append((low,high,born,side))
+            zones=remaining
+            if i>=2:
+                if l[i]>h[i-2]: zones.append((h[i-2],l[i],i,"long"))
+                # Symmetric short side is an extension; the cited source defines long only.
+                if h[i]<l[i-2]: zones.append((h[i],l[i-2],i,"short"))
     return out

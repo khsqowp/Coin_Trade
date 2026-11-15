@@ -27,6 +27,7 @@ HYPOTHESES={
  "fibonacci_pocket":"A directional retracement into the fixed 61.8–78.6% swing pocket should resume the preceding impulse toward a two-risk target.",
  "order_block":"A bullish/bearish impulse candle should leave behind an unfilled order block whose first retest and reclaim marks support/resistance for continuation.",
  "fabio_liquidity_mss":"A rolling-window liquidity grab beyond the recent extreme, followed by a tighter structure-shift break in the opposite direction, should mark a reversal with favorable follow-through.",
+ "fvg_fill":"A first overlap with a fresh fair value gap should act as support or resistance and produce directional follow-through.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -118,7 +119,8 @@ def _write(report,report_dir, data_hash, stage):
     rows=report["results"]
     hypotheses="\n".join(f"- **{k}**: {v}" for k,v in HYPOTHESES.items())
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
-    label="P6" if rows and {r["setup"] for r in rows}<={"order_block","fabio_liquidity_mss"} else "P5"
+    names={r["setup"] for r in rows}
+    label="P7-C" if names=={"fvg_fill"} else "P6" if rows and names<={"order_block","fabio_liquidity_mss"} else "P5"
     lines=[f"# {label} setup backtest (development only)","",f"Stage: {stage}; fingerprint `{fingerprint}`; runtime {report['runtime_seconds']:.1f}s.","","## Fixed hypotheses",hypotheses,"","## Ranked cells (net return)","","|Rank|Setup|Side|TF|R|Filter|Trades|Hit rate|Net return %|Expert|Verdict|Red flags|","|---:|---|---|---:|---:|---|---:|---:|---:|---:|---|---|"]
     for i,r in enumerate(top,1):
         flags=[f['id'] for f in r['backtest_expert']['red_flags']]+r.get('red_flags_detected',[])

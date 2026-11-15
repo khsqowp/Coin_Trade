@@ -155,3 +155,15 @@ LLM이 읽는 것과 같은 결정적 특징으로 로지스틱(L2)·HistGradien
 **결론**: P4의 예측 경로와 P5의 기존 8개 규칙에 이어, 이번 SMC 계열 2개 추가 규칙도 사전 등록한 개발 구간 기준에서 엣지를 확인하지 못했다. 특히 순수익 상위 숫자는 적중률과 expert 판정을 뒤집지 못한다. 뒤 30% 검증 구간은 P5의 사전 기준에 따라 열지 않는다. 다음 단계는 새로운 진입 규칙을 더 늘리기보다, 이 규칙 백테스트 경로에서 통과 후보가 없다는 결과를 기준선으로 보존하는 것이다.
 
 **부가 확인**: Stage A 신호 캐시 [`signals_e959118d43f2c0e0.json`](../../chart_predictor/data/setups/signals_e959118d43f2c0e0.json)은 27,512,835 bytes(약 26.2 MiB)다. P5의 476MB보다는 작지만 수 MB 단위는 아니다.
+
+### P7-C — FVG 채움
+
+범위: P5/P6와 같은 개발 구간(2026-07-17부터 2026-10-09 UTC 직전까지, 84일), 거래량 상위 50종목, 1/5/30/60분봉이다. Stage A는 2R, Stage B는 같은 신호를 3R로 재생했고, Stage C는 5개 시간 순서 fold, Holm 보정, `base`·`vol_top_third`·`htf_trend_align` 세 변형을 평가했다. 원본 FVG의 60봉 zone 수명과 종가 무효화, 첫 range-overlap 채움을 구현했으며 숏은 대칭 확장이다. 리포트는 worktree 내 `chart_predictor/data/setups/`에 보관했다. 기본안 Stage A/B/C fingerprint는 `95a6f75aa77c2c5d` / `ec9057f6597c31fc` / `401fee016efb1093`이고, 개선안은 `ced4108600eb1ae9` / `aef386d68109ab88` / `583c83cf8c794d5c`다. 파일명은 각 fingerprint를 포함한 `report_<fingerprint>.json`이며 Stage A 신호 캐시도 같은 디렉터리에 있다. 이 경로들은 현재 worktree의 로컬 산출물이다.
+
+**사전 등록 기준: Stage C에서 적중률 75% 이상이면서 거래가 30건 이상인 칸은 기본안 0개, 개선안 0개다.** 기본안 순수익 상위 셀은 `long / 60m / 3R / vol_top_third` n=2,066, hit rate 20.4%, 순수익 +373.02%, `REJECT / Abandon`이며 `excessive_drawdown`, `short_test_period` 플래그가 있다. 다음 `long / 60m / 2R / vol_top_third`는 n=2,066, 30.1%, +291.74%, 같은 verdict와 두 플래그다. 세 번째 `long / 60m / 3R / htf_trend_align`은 n=3,229, 22.1%, +203.36%, 역시 `REJECT / Abandon`이다. 상위 순수익은 사전 적중률 기준을 충족하지 않으며 expert 경고도 해소하지 못한다.
+
+통과 셀이 없어 한 번만 freshness 개선을 시험했다. 형성 뒤 12봉을 초과한 zone은 폐기하고, 그 안에서만 첫 overlap을 받도록 했다. 개선안 Stage C에서도 기준 통과는 0개다. 수익 순위 상위 `long / 60m / 3R / vol_top_third`는 n=1,745, hit rate 21.2%(Wilson 95% CI 19.3–23.2%), 순수익 +365.42%, `REJECT / Abandon` 및 `excessive_drawdown`, `short_test_period` 플래그다. 다음 `long / 60m / 2R / vol_top_third`는 n=1,745, 31.3%(29.2–33.5%), +338.48%, 같은 verdict와 플래그이며, 세 번째 `long / 60m / 3R / htf_trend_align`은 n=2,842, 22.5%, +165.25%, 역시 `REJECT / Abandon`이다. 개선은 통과 기준에 가까운 후보를 만들지 못했다.
+
+옛 일봉 CAGR 스윕의 FVG 1개 통과 조합은 다음날 시가 진입, 고정 10% 손절, 익절 없음, 10일 보유, 전체 신호 선택으로 +69.81% CAGR·75.35% MDD·Sharpe 1.051·2,409건이었다. 이 결과는 구조 기반 stop과 2R/3R 목표, 최대 12개 timeframe 봉 보유를 쓰는 이번 평가와 위험 모양이 크게 다르다. 따라서 이번 결과가 과거 조합과 다르게 나온 것은 직접 재현 실패 비교가 아니라 출구·보유·신호 집계 규칙의 차이를 포함한다. 개발 구간과 상위 50종목이라는 짧고 제한된 표본이라는 expert 경고도 남는다.
+
+**결론**: `fvg_fill`은 기본안과 단 한 번의 freshness 개선안 모두 사전 등록한 hit-rate/trade-count 기준을 통과하지 못했다. 높은 누적 순수익 셀은 적중률이 약 20–32%에 그치고 expert가 모두 `REJECT / Abandon`으로 판정했다. 이 평가 설정에서 FVG 채움 규칙의 통과 근거는 없다. 이 결과를 긍정 신호로 해석하지 않으며, 추가 파라미터 탐색은 하지 않았다.
