@@ -1,0 +1,64 @@
+{
+  "status": "completed",
+  "capture_started_at_utc": "2026-11-15T14:43:23.463553+00:00",
+  "target_capture_seconds": 3600,
+  "symbols": {
+    "BTCUSDT": {
+      "book_valid_seconds": 3600,
+      "book_invalid_seconds": 0,
+      "book_coverage": 1.0,
+      "depth_events": 7168,
+      "aggtrade_events": 108814,
+      "aggtrade_socket_coverage": 1.0,
+      "event_receive_latency_p50_ms": 38,
+      "event_receive_latency_p95_ms": 48,
+      "possible_aggtrade_id_jumps": 0
+    },
+    "ETHUSDT": {
+      "book_valid_seconds": 3600,
+      "book_invalid_seconds": 0,
+      "book_coverage": 1.0,
+      "depth_events": 7167,
+      "aggtrade_events": 85009,
+      "aggtrade_socket_coverage": 1.0,
+      "event_receive_latency_p50_ms": 37,
+      "event_receive_latency_p95_ms": 42,
+      "possible_aggtrade_id_jumps": 0
+    }
+  },
+  "connections": {
+    "depth_attempts": 0,
+    "trade_attempts": 0,
+    "depth_reconnects": 0,
+    "trade_reconnects": 0,
+    "natural_recovery_observed": false,
+    "live_recovery_30s_gate": null
+  },
+  "persistence": {
+    "capture_bytes": 230845049,
+    "metadata_bytes": 5506,
+    "total_bytes": 230850555,
+    "hard_cap_bytes": 536870912,
+    "record_count": 208224,
+    "capture_sha256": "ee337e99a4f3060ec7f56889f35eb4ed213839356a7efc1533ff7a97904d057e",
+    "independent_hash_count_size_and_jsonl_validation": "passed"
+  },
+  "resources": {
+    "capture_elapsed_seconds": 3605.399,
+    "total_output_bytes_per_hour": 230504861.737,
+    "process_peak_rss_bytes": 63864832,
+    "process_user_cpu_seconds": 90.781,
+    "process_system_cpu_seconds": 12.517,
+    "output_directory_free_bytes_before_capture": 90525413376
+  },
+  "deterministic_recovery_test": {
+    "test": "test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s",
+    "outcome": "passed",
+    "depth_disconnects_injected": 1,
+    "symbols_resynchronized": ["BTCUSDT", "ETHUSDT"],
+    "recovery_assertion": "both symbol books bridged within the <=30-second test deadline",
+    "actual_per_symbol_recovery_seconds_persisted": false,
+    "limitation": "mocked WebSocket/snapshot service; not a naturally occurring production disconnect"
+  },
+  "strategy_performance_test": "not performed"
+}

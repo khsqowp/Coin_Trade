@@ -90,15 +90,32 @@ def test_verifier_rejects_a_partially_written_final_jsonl_record(tmp_path):
 
 
 def test_restart_creates_new_segment_without_completing_old_partial(tmp_path):
-    first = Pilot(tmp_path)
-    first.segment.write({"kind": "before_restart"})
-    first.segment.close(complete=False, run_manifest={"run_id": first.run_dir.name})
+    import hashlib
+
+    old_capture = tmp_path / "crashed-run" / "capture.jsonl"
+    torn_tail = b'{"kind":"torn"'
+    child_code = (
+        "import os; from pathlib import Path; "
+        "from scripts.research.crypto_l2_pilot import JsonlSegment; "
+        f"segment=JsonlSegment(Path({str(old_capture)!r})); "
+        "segment.write({'kind':'before_crash'}); "
+        f"segment._handle.write({torn_tail!r}); "
+        "segment._handle.flush(); os.fsync(segment._handle.fileno()); os._exit(17)"
+    )
+    child = subprocess.run([sys.executable, "-c", child_code], cwd=BASE,
+                           capture_output=True, timeout=10, check=False)
+    assert child.returncode == 17, child.stderr.decode(errors="replace")
+    old_partial = old_capture.with_suffix(".jsonl.partial")
+    old_bytes = old_partial.read_bytes()
 
     second = Pilot(tmp_path)
 
-    assert second.run_dir != first.run_dir
-    assert (first.run_dir / "capture.jsonl.partial").exists()
-    assert not (first.run_dir / "capture.jsonl").exists()
+    assert second.run_dir != old_capture.parent
+    assert old_partial.read_bytes() == old_bytes
+    assert not old_capture.exists()
+    assert not (old_capture.parent / "manifest.json").exists()
+    with pytest.raises(IOError, match="incomplete JSONL"):
+        verify_segment(old_partial, hashlib.sha256(old_bytes).hexdigest(), 2)
     second.segment.close(complete=False, run_manifest={"run_id": second.run_dir.name})
 
 
@@ -122,6 +139,46 @@ def test_depth_disconnect_invalidates_books_and_reconnect_requires_resync(tmp_pa
     assert all(pilot.snapshots[symbol] is None for symbol in pilot.books)
     for book in pilot.books.values():
         book.invalidate("test_cleanup")
+    pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
+
+
+def test_injected_disconnect_resnapshot_recovery_is_timed_per_symbol(tmp_path, monkeypatch):
+    now = [100.0]
+    monkeypatch.setattr("scripts.research.crypto_l2_pilot.time.monotonic", lambda: now[0])
+    pilot = Pilot(tmp_path)
+    for symbol in SYMBOLS:
+        pilot.snapshots[symbol] = {"lastUpdateId": 100, "bids": [], "asks": []}
+        pilot.buffers[symbol] = [
+            {"U": 99, "u": 100, "pu": 98, "b": [], "a": []},
+        ]
+        pilot._try_bridge(symbol)
+    assert pilot.capture_start == 100.0
+    pilot.connection_attempts["depth"] = 1
+    pilot.depth_online = True
+
+    now[0] = 101.0
+    pilot._depth_disconnected()
+    now[0] = 102.0
+    pilot._depth_connected()
+
+    now[0] = 122.0
+    pilot.snapshots["BTCUSDT"] = {"lastUpdateId": 200, "bids": [], "asks": []}
+    pilot.buffers["BTCUSDT"] = [
+        {"U": 199, "u": 200, "pu": 198, "b": [], "a": []},
+    ]
+    pilot._try_bridge("BTCUSDT")
+    now[0] = 129.0
+    pilot.snapshots["ETHUSDT"] = {"lastUpdateId": 200, "bids": [], "asks": []}
+    pilot.buffers["ETHUSDT"] = [
+        {"U": 199, "u": 200, "pu": 198, "b": [], "a": []},
+    ]
+    pilot._try_bridge("ETHUSDT")
+
+    assert pilot.recovery_s["BTCUSDT"] == [21.0]
+    assert pilot.recovery_s["ETHUSDT"] == [28.0]
+    result = recovery_acceptance(pilot.recovery_s)
+    assert result["observed_both_symbols"] is True
+    assert result["within_30_seconds"] is True
     pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
 
 
@@ -292,6 +349,85 @@ def test_snapshot_error_schedules_retry_without_blocking_depth_event_loop(tmp_pa
         pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
 
     asyncio.run(scenario())
+
+
+def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
+    tmp_path, monkeypatch
+):
+    class FakeSocket:
+        def __init__(self, pilot, stream_kind, attempt):
+            self.pilot = pilot
+            self.stream_kind = stream_kind
+            self.attempt = attempt
+            self.last_update = {symbol: (100 if attempt == 1 else 200) for symbol in SYMBOLS}
+            self.bridge_sent = {symbol: False for symbol in SYMBOLS}
+            self.trade_id = 1
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, exc_type, exc, traceback):
+            return False
+
+        def __aiter__(self):
+            return self._messages()
+
+        async def _messages(self):
+            while not self.pilot.stop.is_set():
+                if (self.stream_kind == "depth" and self.attempt == 1
+                        and self.pilot.capture_start is not None
+                        and time.monotonic() - self.pilot.capture_start >= 0.05):
+                    raise ConnectionResetError("injected depth disconnect")
+                for symbol in SYMBOLS:
+                    now_ms = time.time_ns() // 1_000_000
+                    if self.stream_kind == "depth":
+                        previous = self.last_update[symbol]
+                        if not self.bridge_sent[symbol]:
+                            first, final, previous_id = previous - 1, previous, previous - 2
+                            self.bridge_sent[symbol] = True
+                        else:
+                            first, final, previous_id = previous + 1, previous + 1, previous
+                        event = {"e": "depthUpdate", "E": now_ms, "s": symbol,
+                                 "U": first, "u": final, "pu": previous_id,
+                                 "b": [], "a": []}
+                        self.last_update[symbol] = final
+                        stream = f"{symbol.lower()}@depth@500ms"
+                    else:
+                        event = {"e": "aggTrade", "E": now_ms, "s": symbol,
+                                 "a": self.trade_id, "p": "100", "q": "1", "m": False}
+                        self.trade_id += 1
+                        stream = f"{symbol.lower()}@aggTrade"
+                    yield json.dumps({"stream": stream, "data": event})
+                    await asyncio.sleep(0.005)
+
+    async def run_fixture():
+        pilot = Pilot(tmp_path, capture_seconds=2.2, max_wall_seconds=6)
+        connection_counts = {"depth": 0, "trades": 0}
+        snapshot_counts = {symbol: 0 for symbol in SYMBOLS}
+
+        def fake_connect(url, **kwargs):
+            kind = "depth" if "/public/" in url else "trades"
+            connection_counts[kind] += 1
+            return FakeSocket(pilot, kind, connection_counts[kind])
+
+        def fake_snapshot(symbol):
+            snapshot_counts[symbol] += 1
+            update_id = 100 if snapshot_counts[symbol] == 1 else 200
+            return {"lastUpdateId": update_id, "bids": [], "asks": []}
+
+        monkeypatch.setattr("scripts.research.crypto_l2_pilot.websockets.connect", fake_connect)
+        monkeypatch.setattr("scripts.research.crypto_l2_pilot._fetch_snapshot", fake_snapshot)
+        result = await pilot.run()
+        return result, pilot
+
+    result, pilot = asyncio.run(run_fixture())
+
+    assert result["status"] == "completed"
+    assert result["reconnects_during_capture"]["depth"] == 1
+    recovery = result["acceptance"]["recovery"]
+    assert recovery["observed_both_symbols"] is True
+    assert recovery["within_30_seconds"] is True
+    assert all(pilot.recovery_s[symbol][0] <= 30 for symbol in SYMBOLS)
 
 
 def test_manifest_keeps_per_symbol_validity_intervals(tmp_path):
