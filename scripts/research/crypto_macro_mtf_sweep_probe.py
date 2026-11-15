@@ -319,7 +319,7 @@ def summarize(events, eligible, eligible_by_symbol):
                            "mean_net_r_base": float(np.mean([e["candidate"]["net_r_base"] for e in sub])) if n else None}
     out["per_symbol"] = symbols
     out["symbol_count"] = len({e["symbol"] for e in scored})
-    out["largest_symbol_share"] = max((v["n"] for v in symbols.values()), default=0) / len(scored) if scored else None
+    out["largest_symbol_share"] = max((v["scored_n"] for v in symbols.values()), default=0) / len(scored) if scored else None
     return out
 
 

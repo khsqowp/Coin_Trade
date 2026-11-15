@@ -10,6 +10,7 @@ from scripts.research.crypto_macro_mtf_sweep_probe import (
     regimes_for_micro,
     scan_events,
     score_path,
+    summarize,
 )
 
 
@@ -88,3 +89,17 @@ def test_trade_resolution_is_stop_first_adverse_gap_and_timeout():
     opens[0], highs[0], lows[0] = 100.0, 100.2, 99.8
     timeout = score_path("long", 100.0, 99.0, times, opens, highs, lows, closes)
     assert timeout["outcome"] == "TIMEOUT"
+
+
+def test_summary_reports_per_symbol_share_and_baselines():
+    score = {"outcome": "TARGET", "net_r_base": 1.9, "net_r_stress": 1.7,
+             "net_positive_base": True, "net_positive_stress": True}
+    event = {"symbol": "TESTUSDT", "entry_ms": WIDTH_1M * 100,
+             "status": "SCORED", "candidate": score,
+             "baselines": {"momentum_5m": score, "fixed_random": score}}
+    result = summarize([event], 10, {"TESTUSDT": 10, "ZEROUSDT": 10})
+    assert result["candidate"]["n"] == 1
+    assert result["coverage"] == 0.1
+    assert result["per_symbol"]["TESTUSDT"]["scored_n"] == 1
+    assert result["per_symbol"]["ZEROUSDT"]["scored_n"] == 0
+    assert result["largest_symbol_share"] == 1.0
