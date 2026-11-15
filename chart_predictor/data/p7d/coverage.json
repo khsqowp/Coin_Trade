@@ -1,0 +1,713 @@
+{
+  "requested_start_ms": 1755835786219,
+  "requested_end_exclusive_ms": 1794715786219,
+  "requested_days": 450,
+  "fetch_time_utc": "2026-11-15T04:14:33.672794+00:00",
+  "resolution_note": "Native Binance 1h/4h bars; not bar-for-bar comparable to P5/P6 1m-resampled 60m bars.",
+  "coverage": {
+    "candles_60m": [
+      {
+        "symbol": "BTCUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ETHUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ZECUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "SOLUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "XRPUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "AKEUSDT",
+        "first_t_open_ms": 1758888000000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 9952,
+        "actual_days_covered": 414.625
+      },
+      {
+        "symbol": "HYPEUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "BARDUSDT",
+        "first_t_open_ms": 1758193200000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10145,
+        "actual_days_covered": 422.6667
+      },
+      {
+        "symbol": "BNBUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "1000PEPEUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "NEARUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ENAUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "UNIUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "AGTUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "SUIUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "JCTUSDT",
+        "first_t_open_ms": 1762768800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 8874,
+        "actual_days_covered": 369.7083
+      },
+      {
+        "symbol": "ADAUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ARIAUSDT",
+        "first_t_open_ms": 1756897200000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10505,
+        "actual_days_covered": 437.6667
+      },
+      {
+        "symbol": "LINKUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "INITUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "AVAXUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "INJUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "WLDUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "PUMPUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "AAVEUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "XMRUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "TAOUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "IDOLUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "MAGMAUSDT",
+        "first_t_open_ms": 1767186000000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 7647,
+        "actual_days_covered": 318.5833
+      },
+      {
+        "symbol": "BTWUSDT",
+        "first_t_open_ms": 1780581600000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 3926,
+        "actual_days_covered": 163.5417
+      },
+      {
+        "symbol": "PAXGUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "LTCUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ARBUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "PLAYUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "KGENUSDT",
+        "first_t_open_ms": 1759845600000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 9686,
+        "actual_days_covered": 403.5417
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "first_t_open_ms": 1782979200000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 3260,
+        "actual_days_covered": 135.7917
+      },
+      {
+        "symbol": "SOPHUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "LITUSDT",
+        "first_t_open_ms": 1766509200000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 7835,
+        "actual_days_covered": 326.4167
+      },
+      {
+        "symbol": "TRUMPUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "DODOXUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "FILUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "XLMUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "BCHUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ONDOUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "TIAUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "BULLAUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "ERAUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "QNTUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      },
+      {
+        "symbol": "HBARUSDT",
+        "first_t_open_ms": 1755838800000,
+        "last_t_open_ms": 1794711600000,
+        "row_count": 10799,
+        "actual_days_covered": 449.9167
+      }
+    ],
+    "candles_240m": [
+      {
+        "symbol": "BTCUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ETHUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ZECUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "SOLUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "XRPUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "AKEUSDT",
+        "first_t_open_ms": 1758888000000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2488,
+        "actual_days_covered": 414.5
+      },
+      {
+        "symbol": "HYPEUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "BARDUSDT",
+        "first_t_open_ms": 1758182400000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2537,
+        "actual_days_covered": 422.6667
+      },
+      {
+        "symbol": "BNBUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "1000PEPEUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "NEARUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ENAUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "UNIUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "AGTUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "SUIUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "JCTUSDT",
+        "first_t_open_ms": 1762761600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2219,
+        "actual_days_covered": 369.6667
+      },
+      {
+        "symbol": "ADAUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ARIAUSDT",
+        "first_t_open_ms": 1756886400000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2627,
+        "actual_days_covered": 437.6667
+      },
+      {
+        "symbol": "LINKUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "INITUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "AVAXUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "INJUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "WLDUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "PUMPUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "AAVEUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "XMRUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "TAOUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "IDOLUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "MAGMAUSDT",
+        "first_t_open_ms": 1767182400000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 1912,
+        "actual_days_covered": 318.5
+      },
+      {
+        "symbol": "BTWUSDT",
+        "first_t_open_ms": 1780574400000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 982,
+        "actual_days_covered": 163.5
+      },
+      {
+        "symbol": "PAXGUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "LTCUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ARBUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "PLAYUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "KGENUSDT",
+        "first_t_open_ms": 1759838400000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2422,
+        "actual_days_covered": 403.5
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "first_t_open_ms": 1782979200000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 815,
+        "actual_days_covered": 135.6667
+      },
+      {
+        "symbol": "SOPHUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "LITUSDT",
+        "first_t_open_ms": 1766505600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 1959,
+        "actual_days_covered": 326.3333
+      },
+      {
+        "symbol": "TRUMPUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "DODOXUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "FILUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "XLMUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "BCHUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ONDOUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "TIAUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "BULLAUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "ERAUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "QNTUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      },
+      {
+        "symbol": "HBARUSDT",
+        "first_t_open_ms": 1755849600000,
+        "last_t_open_ms": 1794700800000,
+        "row_count": 2699,
+        "actual_days_covered": 449.6667
+      }
+    ]
+  }
+}

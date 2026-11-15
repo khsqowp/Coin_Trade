@@ -1,0 +1,2267 @@
+{
+  "status": "complete",
+  "dataset": "/Users/user/CODE/Coin_Trade/.claude/worktrees/agent-aee7c0f80710a35a0/chart_predictor/data/candles_1h_extended.sqlite",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "ZECUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
+    "AKEUSDT",
+    "HYPEUSDT",
+    "BARDUSDT",
+    "BNBUSDT",
+    "1000PEPEUSDT",
+    "NEARUSDT",
+    "DOGEUSDT",
+    "ENAUSDT",
+    "UNIUSDT",
+    "AGTUSDT",
+    "SUIUSDT",
+    "JCTUSDT",
+    "ADAUSDT",
+    "ARIAUSDT",
+    "LINKUSDT",
+    "INITUSDT",
+    "AVAXUSDT",
+    "INJUSDT",
+    "WLDUSDT",
+    "PUMPUSDT",
+    "AAVEUSDT",
+    "XMRUSDT",
+    "TAOUSDT",
+    "IDOLUSDT",
+    "MAGMAUSDT",
+    "BTWUSDT",
+    "PAXGUSDT",
+    "LTCUSDT",
+    "ARBUSDT",
+    "PLAYUSDT",
+    "KGENUSDT",
+    "GRAMUSDT",
+    "SOPHUSDT",
+    "LITUSDT",
+    "TRUMPUSDT",
+    "DODOXUSDT",
+    "FILUSDT",
+    "XLMUSDT",
+    "BCHUSDT",
+    "ONDOUSDT",
+    "TIAUSDT",
+    "BULLAUSDT",
+    "ERAUSDT",
+    "QNTUSDT",
+    "HBARUSDT"
+  ],
+  "split": "fresh_global_calendar_70_30",
+  "start_ms": 1755838800000,
+  "cutoff_exclusive_ms": 1783049760000,
+  "cutoff_utc": "2026-07-03T03:36:00+00:00",
+  "start_utc": "2025-08-22T05:00:00+00:00",
+  "latest_open_ms": 1794711600000,
+  "latest_utc": "2026-11-15T03:00:00+00:00",
+  "coverage": {
+    "requested_start_ms": 1755835786219,
+    "requested_end_exclusive_ms": 1794715786219,
+    "requested_days": 450,
+    "fetch_time_utc": "2026-11-15T04:14:33.672794+00:00",
+    "resolution_note": "Native Binance 1h/4h bars; not bar-for-bar comparable to P5/P6 1m-resampled 60m bars.",
+    "coverage": {
+      "candles_60m": [
+        {
+          "symbol": "BTCUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ETHUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ZECUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "SOLUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "XRPUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "AKEUSDT",
+          "first_t_open_ms": 1758888000000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 9952,
+          "actual_days_covered": 414.625
+        },
+        {
+          "symbol": "HYPEUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "BARDUSDT",
+          "first_t_open_ms": 1758193200000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10145,
+          "actual_days_covered": 422.6667
+        },
+        {
+          "symbol": "BNBUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "1000PEPEUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "NEARUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ENAUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "UNIUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "AGTUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "SUIUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "JCTUSDT",
+          "first_t_open_ms": 1762768800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 8874,
+          "actual_days_covered": 369.7083
+        },
+        {
+          "symbol": "ADAUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ARIAUSDT",
+          "first_t_open_ms": 1756897200000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10505,
+          "actual_days_covered": 437.6667
+        },
+        {
+          "symbol": "LINKUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "INITUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "INJUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "WLDUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "PUMPUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "AAVEUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "XMRUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "TAOUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "IDOLUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "MAGMAUSDT",
+          "first_t_open_ms": 1767186000000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 7647,
+          "actual_days_covered": 318.5833
+        },
+        {
+          "symbol": "BTWUSDT",
+          "first_t_open_ms": 1780581600000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 3926,
+          "actual_days_covered": 163.5417
+        },
+        {
+          "symbol": "PAXGUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "LTCUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ARBUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "PLAYUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "KGENUSDT",
+          "first_t_open_ms": 1759845600000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 9686,
+          "actual_days_covered": 403.5417
+        },
+        {
+          "symbol": "GRAMUSDT",
+          "first_t_open_ms": 1782979200000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 3260,
+          "actual_days_covered": 135.7917
+        },
+        {
+          "symbol": "SOPHUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "LITUSDT",
+          "first_t_open_ms": 1766509200000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 7835,
+          "actual_days_covered": 326.4167
+        },
+        {
+          "symbol": "TRUMPUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "DODOXUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "FILUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "XLMUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "BCHUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ONDOUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "TIAUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "BULLAUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "ERAUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "QNTUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        },
+        {
+          "symbol": "HBARUSDT",
+          "first_t_open_ms": 1755838800000,
+          "last_t_open_ms": 1794711600000,
+          "row_count": 10799,
+          "actual_days_covered": 449.9167
+        }
+      ],
+      "candles_240m": [
+        {
+          "symbol": "BTCUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ETHUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ZECUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "SOLUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "XRPUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "AKEUSDT",
+          "first_t_open_ms": 1758888000000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2488,
+          "actual_days_covered": 414.5
+        },
+        {
+          "symbol": "HYPEUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "BARDUSDT",
+          "first_t_open_ms": 1758182400000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2537,
+          "actual_days_covered": 422.6667
+        },
+        {
+          "symbol": "BNBUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "1000PEPEUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "NEARUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ENAUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "UNIUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "AGTUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "SUIUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "JCTUSDT",
+          "first_t_open_ms": 1762761600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2219,
+          "actual_days_covered": 369.6667
+        },
+        {
+          "symbol": "ADAUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ARIAUSDT",
+          "first_t_open_ms": 1756886400000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2627,
+          "actual_days_covered": 437.6667
+        },
+        {
+          "symbol": "LINKUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "INITUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "INJUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "WLDUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "PUMPUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "AAVEUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "XMRUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "TAOUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "IDOLUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "MAGMAUSDT",
+          "first_t_open_ms": 1767182400000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 1912,
+          "actual_days_covered": 318.5
+        },
+        {
+          "symbol": "BTWUSDT",
+          "first_t_open_ms": 1780574400000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 982,
+          "actual_days_covered": 163.5
+        },
+        {
+          "symbol": "PAXGUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "LTCUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ARBUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "PLAYUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "KGENUSDT",
+          "first_t_open_ms": 1759838400000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2422,
+          "actual_days_covered": 403.5
+        },
+        {
+          "symbol": "GRAMUSDT",
+          "first_t_open_ms": 1782979200000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 815,
+          "actual_days_covered": 135.6667
+        },
+        {
+          "symbol": "SOPHUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "LITUSDT",
+          "first_t_open_ms": 1766505600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 1959,
+          "actual_days_covered": 326.3333
+        },
+        {
+          "symbol": "TRUMPUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "DODOXUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "FILUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "XLMUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "BCHUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ONDOUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "TIAUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "BULLAUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "ERAUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "QNTUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        },
+        {
+          "symbol": "HBARUSDT",
+          "first_t_open_ms": 1755849600000,
+          "last_t_open_ms": 1794700800000,
+          "row_count": 2699,
+          "actual_days_covered": 449.6667
+        }
+      ]
+    }
+  },
+  "fee_per_side": 0.0005,
+  "cells_tested": 12,
+  "heldout_computed": false,
+  "heldout_results": [],
+  "native_resolution_limitation": "Native 1h data cannot scan 1m chronology; a same-bar stop/target tie resolves to stop.",
+  "method": "Native 1h entries; native 4h HTF; ATR14 SuperTrend; 168-bar trailing 2/3 quantile shifted one bar; next-bar open entry; 2R/3R; max 12 entry bars; 0.05% fee per side; five chronological dev folds; centered day-block bootstrap and Holm family of 12.",
+  "runtime_seconds": 3.2509473329992034,
+  "results": [
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "base",
+      "leverage_cell": 1,
+      "n_signals": 493,
+      "target_first_rate": 0.05070993914807302,
+      "hit_rate": 0.05070993914807302,
+      "wilson_95": [
+        0.034581135751131364,
+        0.07378634821144402
+      ],
+      "stop_first_rate": 0.13793103448275862,
+      "timeout_rate": 0.8113590263691683,
+      "expectancy_R": -0.039216907706512816,
+      "mean_net_notional_pct": -0.23676801776083053,
+      "profit_factor": 0.8974489593633922,
+      "total_net_return_pct": -116.72663275608946,
+      "max_drawdown_pct": 93.7146420721179,
+      "bootstrap_mean_net_95_pct": [
+        -1.0593228576866622,
+        0.5602235303984068
+      ],
+      "day_bootstrap_p_one_sided": 0.7122877122877123,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.08169032804429593,
+      "positive_day_fraction": 0.4134078212290503,
+      "n_active_days": 179,
+      "win_rate_net_pct": 42.59634888438134,
+      "avg_win_pct": 4.864299973696197,
+      "avg_loss_pct": 4.022012817075232,
+      "mean_net_margin_4x_pct": -0.9470720710433221,
+      "total_net_margin_4x_pct": -466.90653102435783,
+      "mean_net_margin_5x_pct": -1.1838400888041527,
+      "total_net_margin_5x_pct": -583.6331637804473,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 45,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 93.7146420721179% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          },
+          {
+            "id": "negative_expectancy",
+            "severity": "high",
+            "message": "Negative expectancy (-0.237%) \u2014 strategy loses money on average."
+          }
+        ],
+        "blocking_reasons": [
+          "negative_expectancy",
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 110,
+          "hit_rate": 0.01818181818181818,
+          "mean_net_notional_pct": -0.765677477661235,
+          "total_net_return_pct": -84.22452254273584
+        },
+        {
+          "fold": 2,
+          "n": 118,
+          "hit_rate": 0.0423728813559322,
+          "mean_net_notional_pct": -0.3681202412001196,
+          "total_net_return_pct": -43.43818846161411
+        },
+        {
+          "fold": 3,
+          "n": 84,
+          "hit_rate": 0.10714285714285714,
+          "mean_net_notional_pct": 0.6721863932423621,
+          "total_net_return_pct": 56.46365703235842
+        },
+        {
+          "fold": 4,
+          "n": 93,
+          "hit_rate": 0.010752688172043012,
+          "mean_net_notional_pct": -0.33833068457313814,
+          "total_net_return_pct": -31.46475366530185
+        },
+        {
+          "fold": 5,
+          "n": 88,
+          "hit_rate": 0.09090909090909091,
+          "mean_net_notional_pct": -0.15980483089541006,
+          "total_net_return_pct": -14.062825118796084
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 1,
+      "top_fold_positive_return_share": 1.0,
+      "red_flags_detected": [
+        "positive_return_concentrated_in_one_dev_fold"
+      ],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "vol_top_third",
+      "leverage_cell": 1,
+      "n_signals": 276,
+      "target_first_rate": 0.04710144927536232,
+      "hit_rate": 0.04710144927536232,
+      "wilson_95": [
+        0.027730006199251242,
+        0.07890701229847881
+      ],
+      "stop_first_rate": 0.07971014492753623,
+      "timeout_rate": 0.8731884057971014,
+      "expectancy_R": 0.02047795156052586,
+      "mean_net_notional_pct": 0.097209189837024,
+      "profit_factor": 1.0448265708141946,
+      "total_net_return_pct": 26.82973639501862,
+      "max_drawdown_pct": 76.7169087043576,
+      "bootstrap_mean_net_95_pct": [
+        -0.8782120703975801,
+        0.888343672969754
+      ],
+      "day_bootstrap_p_one_sided": 0.42657342657342656,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.13343973995715136,
+      "positive_day_fraction": 0.4132231404958678,
+      "n_active_days": 121,
+      "win_rate_net_pct": 46.73913043478261,
+      "avg_win_pct": 4.847696106807254,
+      "avg_loss_pct": 4.07158545158583,
+      "mean_net_margin_4x_pct": 0.388836759348096,
+      "total_net_margin_4x_pct": 107.31894558007448,
+      "mean_net_margin_5x_pct": 0.48604594918511995,
+      "total_net_margin_5x_pct": 134.1486819750931,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 50,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 76.7169087043576% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 51,
+          "hit_rate": 0.0196078431372549,
+          "mean_net_notional_pct": 1.0452301074957742,
+          "total_net_return_pct": 53.30673548228448
+        },
+        {
+          "fold": 2,
+          "n": 58,
+          "hit_rate": 0.034482758620689655,
+          "mean_net_notional_pct": 0.23141174649746896,
+          "total_net_return_pct": 13.4218812968532
+        },
+        {
+          "fold": 3,
+          "n": 52,
+          "hit_rate": 0.07692307692307693,
+          "mean_net_notional_pct": 0.4948568204316755,
+          "total_net_return_pct": 25.73255466244713
+        },
+        {
+          "fold": 4,
+          "n": 68,
+          "hit_rate": 0.014705882352941176,
+          "mean_net_notional_pct": -0.09276895969073727,
+          "total_net_return_pct": -6.308289258970133
+        },
+        {
+          "fold": 5,
+          "n": 47,
+          "hit_rate": 0.10638297872340426,
+          "mean_net_notional_pct": -1.262194591225448,
+          "total_net_return_pct": -59.323145787596054
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 3,
+      "top_fold_positive_return_share": 0.5765310416379772,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "htf_trend_align",
+      "leverage_cell": 1,
+      "n_signals": 232,
+      "target_first_rate": 0.05172413793103448,
+      "hit_rate": 0.05172413793103448,
+      "wilson_95": [
+        0.02983272207879007,
+        0.08821886630568251
+      ],
+      "stop_first_rate": 0.1206896551724138,
+      "timeout_rate": 0.8275862068965517,
+      "expectancy_R": -0.04525976861398713,
+      "mean_net_notional_pct": -0.39117314346012305,
+      "profit_factor": 0.83019917787367,
+      "total_net_return_pct": -90.75216928274855,
+      "max_drawdown_pct": 83.02859994244216,
+      "bootstrap_mean_net_95_pct": [
+        -1.2547517208327192,
+        0.41135507470307947
+      ],
+      "day_bootstrap_p_one_sided": 0.8201798201798202,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.14518951896729326,
+      "positive_day_fraction": 0.3793103448275862,
+      "n_active_days": 116,
+      "win_rate_net_pct": 40.94827586206897,
+      "avg_win_pct": 4.670634898199555,
+      "avg_loss_pct": 3.9011860190635503,
+      "mean_net_margin_4x_pct": -1.5646925738404922,
+      "total_net_margin_4x_pct": -363.0086771309942,
+      "mean_net_margin_5x_pct": -1.9558657173006153,
+      "total_net_margin_5x_pct": -453.7608464137428,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 45,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 83.02859994244216% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          },
+          {
+            "id": "negative_expectancy",
+            "severity": "high",
+            "message": "Negative expectancy (-0.391%) \u2014 strategy loses money on average."
+          }
+        ],
+        "blocking_reasons": [
+          "negative_expectancy",
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 16,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.0365751279501365,
+          "total_net_return_pct": -16.585202047202184
+        },
+        {
+          "fold": 2,
+          "n": 61,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.5165430261822905,
+          "total_net_return_pct": -92.50912459711972
+        },
+        {
+          "fold": 3,
+          "n": 39,
+          "hit_rate": 0.10256410256410256,
+          "mean_net_notional_pct": -0.37527896732890864,
+          "total_net_return_pct": -14.635879725827438
+        },
+        {
+          "fold": 4,
+          "n": 57,
+          "hit_rate": 0.017543859649122806,
+          "mean_net_notional_pct": 0.2879278686189114,
+          "total_net_return_pct": 16.41188851127795
+        },
+        {
+          "fold": 5,
+          "n": 59,
+          "hit_rate": 0.11864406779661017,
+          "mean_net_notional_pct": 0.2807821792563193,
+          "total_net_return_pct": 16.566148576122842
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.5023388303014528,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "base",
+      "leverage_cell": 1,
+      "n_signals": 493,
+      "target_first_rate": 0.02231237322515213,
+      "hit_rate": 0.02231237322515213,
+      "wilson_95": [
+        0.012503677595017259,
+        0.039507800839233304
+      ],
+      "stop_first_rate": 0.13995943204868155,
+      "timeout_rate": 0.8377281947261663,
+      "expectancy_R": -0.03772727032198595,
+      "mean_net_notional_pct": -0.2934915213153733,
+      "profit_factor": 0.8750327723234516,
+      "total_net_return_pct": -144.69132000847904,
+      "max_drawdown_pct": 94.79603802243642,
+      "bootstrap_mean_net_95_pct": [
+        -1.1532565600522156,
+        0.5146892588505566
+      ],
+      "day_bootstrap_p_one_sided": 0.7432567432567433,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.0898959094222279,
+      "positive_day_fraction": 0.39664804469273746,
+      "n_active_days": 179,
+      "win_rate_net_pct": 42.190669371196755,
+      "avg_win_pct": 4.870878843141645,
+      "avg_loss_pct": 4.062575857480494,
+      "mean_net_margin_4x_pct": -1.1739660852614933,
+      "total_net_margin_4x_pct": -578.7652800339162,
+      "mean_net_margin_5x_pct": -1.4674576065768665,
+      "total_net_margin_5x_pct": -723.4566000423952,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 45,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 94.79603802243642% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          },
+          {
+            "id": "negative_expectancy",
+            "severity": "high",
+            "message": "Negative expectancy (-0.293%) \u2014 strategy loses money on average."
+          }
+        ],
+        "blocking_reasons": [
+          "negative_expectancy",
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 110,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -0.9797664873649267,
+          "total_net_return_pct": -107.77431361014192
+        },
+        {
+          "fold": 2,
+          "n": 118,
+          "hit_rate": 0.025423728813559324,
+          "mean_net_notional_pct": -0.5362383706692908,
+          "total_net_return_pct": -63.27612773897632
+        },
+        {
+          "fold": 3,
+          "n": 84,
+          "hit_rate": 0.047619047619047616,
+          "mean_net_notional_pct": 0.613381131869979,
+          "total_net_return_pct": 51.52401507707823
+        },
+        {
+          "fold": 4,
+          "n": 93,
+          "hit_rate": 0.010752688172043012,
+          "mean_net_notional_pct": -0.2768974259898006,
+          "total_net_return_pct": -25.751460617051457
+        },
+        {
+          "fold": 5,
+          "n": 88,
+          "hit_rate": 0.03409090909090909,
+          "mean_net_notional_pct": 0.006665532734232124,
+          "total_net_return_pct": 0.5865668806124279
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.9887438048362486,
+      "red_flags_detected": [
+        "positive_return_concentrated_in_one_dev_fold"
+      ],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "vol_top_third",
+      "leverage_cell": 1,
+      "n_signals": 276,
+      "target_first_rate": 0.021739130434782608,
+      "hit_rate": 0.021739130434782608,
+      "wilson_95": [
+        0.010000423669200825,
+        0.046608267864402114
+      ],
+      "stop_first_rate": 0.07971014492753623,
+      "timeout_rate": 0.8985507246376812,
+      "expectancy_R": 0.03145864696164786,
+      "mean_net_notional_pct": 0.2014929676734617,
+      "profit_factor": 1.0923715372608254,
+      "total_net_return_pct": 55.61205907787543,
+      "max_drawdown_pct": 76.24707714615198,
+      "bootstrap_mean_net_95_pct": [
+        -0.8270970745688664,
+        1.0941268880610806
+      ],
+      "day_bootstrap_p_one_sided": 0.3196803196803197,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.13848712920444858,
+      "positive_day_fraction": 0.4166666666666667,
+      "n_active_days": 120,
+      "win_rate_net_pct": 46.3768115942029,
+      "avg_win_pct": 5.137965812659203,
+      "avg_loss_pct": 4.067888952314206,
+      "mean_net_margin_4x_pct": 0.8059718706938468,
+      "total_net_margin_4x_pct": 222.44823631150172,
+      "mean_net_margin_5x_pct": 1.0074648383673086,
+      "total_net_margin_5x_pct": 278.06029538937713,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 52,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 76.24707714615198% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 51,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": 1.0925302610793264,
+          "total_net_return_pct": 55.719043315045646
+        },
+        {
+          "fold": 2,
+          "n": 58,
+          "hit_rate": 0.034482758620689655,
+          "mean_net_notional_pct": 0.5906700254375307,
+          "total_net_return_pct": 34.258861475376776
+        },
+        {
+          "fold": 3,
+          "n": 52,
+          "hit_rate": 0.019230769230769232,
+          "mean_net_notional_pct": 0.13656428279691335,
+          "total_net_return_pct": 7.101342705439495
+        },
+        {
+          "fold": 4,
+          "n": 68,
+          "hit_rate": 0.014705882352941176,
+          "mean_net_notional_pct": -0.008749944275290366,
+          "total_net_return_pct": -0.5949962107197438
+        },
+        {
+          "fold": 5,
+          "n": 47,
+          "hit_rate": 0.0425531914893617,
+          "mean_net_notional_pct": -0.8696211107929095,
+          "total_net_return_pct": -40.87219220726674
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 3,
+      "top_fold_positive_return_share": 0.5739542152654274,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "long",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "htf_trend_align",
+      "leverage_cell": 1,
+      "n_signals": 232,
+      "target_first_rate": 0.02586206896551724,
+      "hit_rate": 0.02586206896551724,
+      "wilson_95": [
+        0.011905530664315073,
+        0.05526441858849247
+      ],
+      "stop_first_rate": 0.1206896551724138,
+      "timeout_rate": 0.853448275862069,
+      "expectancy_R": -0.041995110912943126,
+      "mean_net_notional_pct": -0.3611351742947731,
+      "profit_factor": 0.8442650802369547,
+      "total_net_return_pct": -83.78336043638735,
+      "max_drawdown_pct": 84.93107448225621,
+      "bootstrap_mean_net_95_pct": [
+        -1.2521527535810482,
+        0.45278264406935254
+      ],
+      "day_bootstrap_p_one_sided": 0.7922077922077922,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.15863494135892325,
+      "positive_day_fraction": 0.38461538461538464,
+      "n_active_days": 117,
+      "win_rate_net_pct": 40.51724137931034,
+      "avg_win_pct": 4.83195348653941,
+      "avg_loss_pct": 3.8984564360224057,
+      "mean_net_margin_4x_pct": -1.4445406971790924,
+      "total_net_margin_4x_pct": -335.1334417455494,
+      "mean_net_margin_5x_pct": -1.8056758714738654,
+      "total_net_margin_5x_pct": -418.91680218193676,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 45,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 84.93107448225621% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          },
+          {
+            "id": "negative_expectancy",
+            "severity": "high",
+            "message": "Negative expectancy (-0.361%) \u2014 strategy loses money on average."
+          }
+        ],
+        "blocking_reasons": [
+          "negative_expectancy",
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 16,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.0365751279501365,
+          "total_net_return_pct": -16.585202047202184
+        },
+        {
+          "fold": 2,
+          "n": 61,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.5165430261822905,
+          "total_net_return_pct": -92.50912459711972
+        },
+        {
+          "fold": 3,
+          "n": 39,
+          "hit_rate": 0.05128205128205128,
+          "mean_net_notional_pct": -0.6775426721314888,
+          "total_net_return_pct": -26.424164213128066
+        },
+        {
+          "fold": 4,
+          "n": 57,
+          "hit_rate": 0.017543859649122806,
+          "mean_net_notional_pct": 0.3881610799917252,
+          "total_net_return_pct": 22.12518155952834
+        },
+        {
+          "fold": 5,
+          "n": 59,
+          "hit_rate": 0.05084745762711865,
+          "mean_net_notional_pct": 0.5018635400260046,
+          "total_net_return_pct": 29.609948861534274
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.5723373773400087,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "base",
+      "leverage_cell": 1,
+      "n_signals": 493,
+      "target_first_rate": 0.08924949290060852,
+      "hit_rate": 0.08924949290060852,
+      "wilson_95": [
+        0.06715568349862772,
+        0.11769495082381706
+      ],
+      "stop_first_rate": 0.12981744421906694,
+      "timeout_rate": 0.7809330628803245,
+      "expectancy_R": 0.06874246022172716,
+      "mean_net_notional_pct": 0.23634432307898548,
+      "profit_factor": 1.1176197891167319,
+      "total_net_return_pct": 116.51775127793984,
+      "max_drawdown_pct": 96.8223279174896,
+      "bootstrap_mean_net_95_pct": [
+        -1.1095696192983933,
+        1.9623764926865703
+      ],
+      "day_bootstrap_p_one_sided": 0.3646353646353646,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.06995145174022412,
+      "positive_day_fraction": 0.46206896551724136,
+      "n_active_days": 145,
+      "win_rate_net_pct": 45.233265720081135,
+      "avg_win_pct": 4.9647903940351235,
+      "avg_loss_pct": 3.6690018762662695,
+      "mean_net_margin_4x_pct": 0.9453772923159419,
+      "total_net_margin_4x_pct": 466.07100511175935,
+      "mean_net_margin_5x_pct": 1.1817216153949275,
+      "total_net_margin_5x_pct": 582.5887563896991,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 52,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 96.8223279174896% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 88,
+          "hit_rate": 0.36363636363636365,
+          "mean_net_notional_pct": 3.5011430152326155,
+          "total_net_return_pct": 308.10058534047016
+        },
+        {
+          "fold": 2,
+          "n": 131,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.0086752234685228,
+          "total_net_return_pct": -132.1364542743765
+        },
+        {
+          "fold": 3,
+          "n": 87,
+          "hit_rate": 0.09195402298850575,
+          "mean_net_notional_pct": 0.955182065370621,
+          "total_net_return_pct": 83.10083968724402
+        },
+        {
+          "fold": 4,
+          "n": 91,
+          "hit_rate": 0.02197802197802198,
+          "mean_net_notional_pct": -1.0292639128836691,
+          "total_net_return_pct": -93.66301607241388
+        },
+        {
+          "fold": 5,
+          "n": 96,
+          "hit_rate": 0.020833333333333332,
+          "mean_net_notional_pct": -0.509210452114416,
+          "total_net_return_pct": -48.88420340298395
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.7875753144780675,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "vol_top_third",
+      "leverage_cell": 1,
+      "n_signals": 311,
+      "target_first_rate": 0.09967845659163987,
+      "hit_rate": 0.09967845659163987,
+      "wilson_95": [
+        0.07111396158502425,
+        0.13801179671668534
+      ],
+      "stop_first_rate": 0.07395498392282958,
+      "timeout_rate": 0.8263665594855305,
+      "expectancy_R": 0.11576201759427616,
+      "mean_net_notional_pct": 0.6550348380406579,
+      "profit_factor": 1.310407305456657,
+      "total_net_return_pct": 203.7158346306446,
+      "max_drawdown_pct": 87.4489784940581,
+      "bootstrap_mean_net_95_pct": [
+        -1.2192072532265132,
+        3.117693515672284
+      ],
+      "day_bootstrap_p_one_sided": 0.2647352647352647,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.09005407169575057,
+      "positive_day_fraction": 0.47413793103448276,
+      "n_active_days": 116,
+      "win_rate_net_pct": 44.69453376205787,
+      "avg_win_pct": 6.187060447281495,
+      "avg_loss_pct": 3.8156137647760655,
+      "mean_net_margin_4x_pct": 2.6201393521626315,
+      "total_net_margin_4x_pct": 814.8633385225784,
+      "mean_net_margin_5x_pct": 3.2751741902032894,
+      "total_net_margin_5x_pct": 1018.579173153223,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 56,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 87.4489784940581% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 60,
+          "hit_rate": 0.4166666666666667,
+          "mean_net_notional_pct": 4.831289515803292,
+          "total_net_return_pct": 289.8773709481975
+        },
+        {
+          "fold": 2,
+          "n": 79,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -0.9637158638728226,
+          "total_net_return_pct": -76.133553245953
+        },
+        {
+          "fold": 3,
+          "n": 43,
+          "hit_rate": 0.09302325581395349,
+          "mean_net_notional_pct": 2.6100780325544184,
+          "total_net_return_pct": 112.23335539983998
+        },
+        {
+          "fold": 4,
+          "n": 55,
+          "hit_rate": 0.01818181818181818,
+          "mean_net_notional_pct": -1.5953685847187853,
+          "total_net_return_pct": -87.74527215953317
+        },
+        {
+          "fold": 5,
+          "n": 74,
+          "hit_rate": 0.013513513513513514,
+          "mean_net_notional_pct": -0.46643332853927993,
+          "total_net_return_pct": -34.51606631190671
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.7208894266036091,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 2,
+      "vol_filter": "htf_trend_align",
+      "leverage_cell": 1,
+      "n_signals": 147,
+      "target_first_rate": 0.08843537414965986,
+      "hit_rate": 0.08843537414965986,
+      "wilson_95": [
+        0.05241011033720358,
+        0.14542315814216586
+      ],
+      "stop_first_rate": 0.12244897959183673,
+      "timeout_rate": 0.7891156462585034,
+      "expectancy_R": 0.1422565863631592,
+      "mean_net_notional_pct": 1.0068469147352097,
+      "profit_factor": 1.6021574884617975,
+      "total_net_return_pct": 148.00649646607584,
+      "max_drawdown_pct": 56.93036768762262,
+      "bootstrap_mean_net_95_pct": [
+        -0.7527720302771296,
+        3.1815842744228218
+      ],
+      "day_bootstrap_p_one_sided": 0.16183816183816183,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.1836781902614484,
+      "positive_day_fraction": 0.5263157894736842,
+      "n_active_days": 57,
+      "win_rate_net_pct": 47.61904761904761,
+      "avg_win_pct": 5.6257166035194635,
+      "avg_loss_pct": 3.1921255296141116,
+      "mean_net_margin_4x_pct": 4.027387658940839,
+      "total_net_margin_4x_pct": 592.0259858643034,
+      "mean_net_margin_5x_pct": 5.0342345736760485,
+      "total_net_margin_5x_pct": 740.0324823303793,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 56,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 56.93036768762262% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 12,
+          "hit_rate": 0.75,
+          "mean_net_notional_pct": 7.518126008110307,
+          "total_net_return_pct": 90.21751209732368
+        },
+        {
+          "fold": 2,
+          "n": 61,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -0.3983051599122844,
+          "total_net_return_pct": -24.296614754649347
+        },
+        {
+          "fold": 3,
+          "n": 27,
+          "hit_rate": 0.037037037037037035,
+          "mean_net_notional_pct": 0.18003061748586713,
+          "total_net_return_pct": 4.860826672118412
+        },
+        {
+          "fold": 4,
+          "n": 25,
+          "hit_rate": 0.08,
+          "mean_net_notional_pct": 1.5978681731266025,
+          "total_net_return_pct": 39.94670432816506
+        },
+        {
+          "fold": 5,
+          "n": 22,
+          "hit_rate": 0.045454545454545456,
+          "mean_net_notional_pct": 1.6944576419599118,
+          "total_net_return_pct": 37.27806812311806
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 4,
+      "top_fold_positive_return_share": 0.523597696281598,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "base",
+      "leverage_cell": 1,
+      "n_signals": 493,
+      "target_first_rate": 0.06490872210953347,
+      "hit_rate": 0.06490872210953347,
+      "wilson_95": [
+        0.04635014579767335,
+        0.09019534092906445
+      ],
+      "stop_first_rate": 0.13184584178498987,
+      "timeout_rate": 0.8032454361054767,
+      "expectancy_R": 0.10849894500872935,
+      "mean_net_notional_pct": 0.5312717209197029,
+      "profit_factor": 1.2630685796154608,
+      "total_net_return_pct": 261.9169584134135,
+      "max_drawdown_pct": 96.85428646496341,
+      "bootstrap_mean_net_95_pct": [
+        -1.172976837079297,
+        2.790035624461203
+      ],
+      "day_bootstrap_p_one_sided": 0.25274725274725274,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.076109382070372,
+      "positive_day_fraction": 0.46206896551724136,
+      "n_active_days": 145,
+      "win_rate_net_pct": 45.030425963488845,
+      "avg_win_pct": 5.664591495871997,
+      "avg_loss_pct": 3.673883223875166,
+      "mean_net_margin_4x_pct": 2.1250868836788115,
+      "total_net_margin_4x_pct": 1047.667833653654,
+      "mean_net_margin_5x_pct": 2.6563586045985144,
+      "total_net_margin_5x_pct": 1309.5847920670676,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 55,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 96.85428646496341% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 88,
+          "hit_rate": 0.29545454545454547,
+          "mean_net_notional_pct": 5.0924126186776695,
+          "total_net_return_pct": 448.1323104436349
+        },
+        {
+          "fold": 2,
+          "n": 131,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.0086752234685228,
+          "total_net_return_pct": -132.1364542743765
+        },
+        {
+          "fold": 3,
+          "n": 87,
+          "hit_rate": 0.04597701149425287,
+          "mean_net_notional_pct": 1.021772159567279,
+          "total_net_return_pct": 88.8941778823533
+        },
+        {
+          "fold": 4,
+          "n": 91,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.0625495688683155,
+          "total_net_return_pct": -96.69201076701673
+        },
+        {
+          "fold": 5,
+          "n": 96,
+          "hit_rate": 0.020833333333333332,
+          "mean_net_notional_pct": -0.4820944257414739,
+          "total_net_return_pct": -46.2810648711815
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.8344696587323782,
+      "red_flags_detected": [
+        "positive_return_concentrated_in_one_dev_fold"
+      ],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "vol_top_third",
+      "leverage_cell": 1,
+      "n_signals": 311,
+      "target_first_rate": 0.08681672025723473,
+      "hit_rate": 0.08681672025723473,
+      "wilson_95": [
+        0.06035053267434418,
+        0.12336561143625568
+      ],
+      "stop_first_rate": 0.07717041800643087,
+      "timeout_rate": 0.8360128617363344,
+      "expectancy_R": 0.1883289509705862,
+      "mean_net_notional_pct": 1.1613986728536279,
+      "profit_factor": 1.5462079594313203,
+      "total_net_return_pct": 361.1949872574782,
+      "max_drawdown_pct": 87.71987247008369,
+      "bootstrap_mean_net_95_pct": [
+        -1.2671386685986163,
+        4.594913385805018
+      ],
+      "day_bootstrap_p_one_sided": 0.21078921078921078,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.09360696659993915,
+      "positive_day_fraction": 0.47413793103448276,
+      "n_active_days": 116,
+      "win_rate_net_pct": 44.37299035369775,
+      "avg_win_pct": 7.40922030345825,
+      "avg_loss_pct": 3.822412801270292,
+      "mean_net_margin_4x_pct": 4.645594691414511,
+      "total_net_margin_4x_pct": 1444.7799490299128,
+      "mean_net_margin_5x_pct": 5.8069933642681395,
+      "total_net_margin_5x_pct": 1805.974936287391,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 60,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 87.71987247008369% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 60,
+          "hit_rate": 0.4,
+          "mean_net_notional_pct": 7.397919440383373,
+          "total_net_return_pct": 443.8751664230024
+        },
+        {
+          "fold": 2,
+          "n": 79,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -0.9637158638728226,
+          "total_net_return_pct": -76.133553245953
+        },
+        {
+          "fold": 3,
+          "n": 43,
+          "hit_rate": 0.046511627906976744,
+          "mean_net_notional_pct": 2.6889572214989577,
+          "total_net_return_pct": 115.62516052445517
+        },
+        {
+          "fold": 4,
+          "n": 55,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -1.6303600739066184,
+          "total_net_return_pct": -89.669804064864
+        },
+        {
+          "fold": 5,
+          "n": 74,
+          "hit_rate": 0.013513513513513514,
+          "mean_net_notional_pct": -0.4392159780967877,
+          "total_net_return_pct": -32.501982379162285
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 2,
+      "top_fold_positive_return_share": 0.7933421037387285,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    },
+    {
+      "setup": "supertrend",
+      "side": "short",
+      "timeframe": "60m",
+      "R": 3,
+      "vol_filter": "htf_trend_align",
+      "leverage_cell": 1,
+      "n_signals": 147,
+      "target_first_rate": 0.07482993197278912,
+      "hit_rate": 0.07482993197278912,
+      "wilson_95": [
+        0.04229500478273306,
+        0.1290203552166155
+      ],
+      "stop_first_rate": 0.12244897959183673,
+      "timeout_rate": 0.8027210884353742,
+      "expectancy_R": 0.20850977248888133,
+      "mean_net_notional_pct": 1.3638312940015829,
+      "profit_factor": 1.8156564961989028,
+      "total_net_return_pct": 200.48320021823267,
+      "max_drawdown_pct": 53.858723996146786,
+      "bootstrap_mean_net_95_pct": [
+        -0.5610343572231326,
+        3.842843872329834
+      ],
+      "day_bootstrap_p_one_sided": 0.13186813186813187,
+      "day_bootstrap_replicates": 1000,
+      "positive_trade_concentration_top_2": 0.15776746361972394,
+      "positive_day_fraction": 0.5263157894736842,
+      "n_active_days": 57,
+      "win_rate_net_pct": 47.61904761904761,
+      "avg_win_pct": 6.375383799978845,
+      "avg_loss_pct": 3.1921255296141116,
+      "mean_net_margin_4x_pct": 5.4553251760063315,
+      "total_net_margin_4x_pct": 801.9328008729307,
+      "mean_net_margin_5x_pct": 6.819156470007915,
+      "total_net_margin_5x_pct": 1002.4160010911634,
+      "years_tested": 0,
+      "num_parameters": 0,
+      "slippage_tested": true,
+      "backtest_expert": {
+        "score": 58,
+        "decision": "REJECT",
+        "verdict": "Abandon",
+        "red_flags": [
+          {
+            "id": "excessive_drawdown",
+            "severity": "high",
+            "message": "Max drawdown 53.858723996146786% meets or exceeds the 50% hard ceiling \u2014 catastrophic risk."
+          },
+          {
+            "id": "short_test_period",
+            "severity": "medium",
+            "message": "Only 0 years tested \u2014 may miss regime changes (minimum 5 recommended)."
+          }
+        ],
+        "blocking_reasons": [
+          "excessive_drawdown",
+          "short_test_period"
+        ]
+      },
+      "hit_gate_75": false,
+      "minimum_trade_gate_met": true,
+      "holm_adjusted_flag": false,
+      "holm_adjusted_p": 1.0,
+      "folds": [
+        {
+          "fold": 1,
+          "n": 12,
+          "hit_rate": 0.75,
+          "mean_net_notional_pct": 11.402014623852123,
+          "total_net_return_pct": 136.82417548622553
+        },
+        {
+          "fold": 2,
+          "n": 61,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": -0.3983051599122844,
+          "total_net_return_pct": -24.296614754649347
+        },
+        {
+          "fold": 3,
+          "n": 27,
+          "hit_rate": 0.037037037037037035,
+          "mean_net_notional_pct": 0.4878076715154899,
+          "total_net_return_pct": 13.170807130918227
+        },
+        {
+          "fold": 4,
+          "n": 25,
+          "hit_rate": 0.0,
+          "mean_net_notional_pct": 1.476708385342489,
+          "total_net_return_pct": 36.917709633562225
+        },
+        {
+          "fold": 5,
+          "n": 22,
+          "hit_rate": 0.045454545454545456,
+          "mean_net_notional_pct": 1.7212328510080037,
+          "total_net_return_pct": 37.867122722176084
+        }
+      ],
+      "tiers": {
+        "top_1_20": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        },
+        "top_21_50": {
+          "n": 0,
+          "hit_rate": null,
+          "mean_net_notional_pct": null,
+          "total_net_return_pct": 0.0
+        }
+      },
+      "fold_positive_count": 4,
+      "top_fold_positive_return_share": 0.6087031235555217,
+      "red_flags_detected": [],
+      "pass_after_holm": false
+    }
+  ]
+}
