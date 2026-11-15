@@ -1,6 +1,9 @@
 import asyncio
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import time
 
 import pytest
@@ -356,6 +359,21 @@ def test_output_root_is_confined_to_pilot_data_directory(tmp_path):
     assert _validated_output_root(allowed) == allowed.resolve()
     with pytest.raises(ValueError):
         _validated_output_root(tmp_path)
+
+
+def test_cli_runs_by_file_path_without_package_path_setup():
+    env = dict(os.environ, PYTHONPYCACHEPREFIX="/private/tmp/cointrade-pycache")
+    result = subprocess.run(
+        [sys.executable, str(BASE / "scripts" / "research" / "crypto_l2_pilot.py"), "--help"],
+        cwd=BASE,
+        capture_output=True,
+        text=True,
+        env=env,
+        timeout=10,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "--run" in result.stdout
 
 
 def test_collector_task_failure_stops_run_and_writes_incomplete_manifest(tmp_path):

@@ -19,13 +19,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import websockets
-
-from chart_predictor.l2_book import LocalBook, SequenceGap
-
-
 SYMBOLS = ("BTCUSDT", "ETHUSDT")
 BASE = Path(__file__).resolve().parents[2]
+if str(BASE) not in sys.path:
+    sys.path.insert(0, str(BASE))
+
+import websockets  # noqa: E402
+from chart_predictor.l2_book import LocalBook, SequenceGap  # noqa: E402
+
+
 DATA_ROOT = BASE / "chart_predictor" / "data" / "crypto_l2_pilots"
 MAX_BYTES = 512 * 1024 * 1024
 MAX_MANIFEST_RESERVE_BYTES = 1024 * 1024
