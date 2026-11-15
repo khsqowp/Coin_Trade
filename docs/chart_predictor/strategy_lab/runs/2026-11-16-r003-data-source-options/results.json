@@ -1,0 +1,20 @@
+{
+  "run_id": "2026-11-16-r003-data-source-options",
+  "status": "source_gate_partial",
+  "agent_count": 4,
+  "strategy_cells_expected": 0,
+  "strategy_cells_completed": 0,
+  "performance_metrics": null,
+  "candidate_source_routes": {
+    "KR": 1,
+    "US": 2,
+    "crypto": 2
+  },
+  "source_gate_passed": {
+    "KR_PIT_delisted_adjustment_and_use_rights": false,
+    "US_free_PIT_OHLC_and_research_rights": false,
+    "crypto_manual_live_signal_use_rights": false,
+    "crypto_pit_universe_and_funding_completeness": false
+  },
+  "explanation": "Four agents and official-source review identified potential acquisition/observation routes, but no route was proven to satisfy every relevant source-use and point-in-time requirement. No price data were read or acquired, and no strategy performance was tested."
+}

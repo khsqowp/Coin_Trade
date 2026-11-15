@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-11-16-r003-data-source-options",
+  "parent_run_id": "2026-11-16-r002-source-gate",
+  "date": "2026-11-16",
+  "status": "source_gate_partial",
+  "study_type": "cross_market_data_source_rights_and_pit_feasibility",
+  "markets": ["KR stocks and ETFs", "US stocks and ETFs", "Binance USD-M crypto perpetuals"],
+  "agent_count": 4,
+  "agent_roles": ["KR source review", "US source review", "crypto source review", "independent adversarial review"],
+  "agent_evidence_limit": "Agent reports were source-linked but not independent reproductions of local files or raw data.",
+  "local_source_checkout": "/Users/user/CODE/Coin_Trade",
+  "source_checkout_state": "Read-only inspection; existing user modifications preserved and not staged.",
+  "data_access": {
+    "market_price_rows_read": false,
+    "database_opened": false,
+    "bulk_download": false,
+    "api_key_created": false,
+    "account_created": false,
+    "terms_accepted": false,
+    "provider_contacted": false,
+    "purchase": false,
+    "public_comment": false
+  },
+  "candidate_routes": {
+    "KR_KRX_OPEN_API": "Possible daily index/stock/ETF source from 2010; authenticated and service-approved; non-commercial terms; PIT/delist/adjustment completeness unproven.",
+    "US_CRSP": "Licensed candidate with active/inactive history and corporate-action/delisting fields; access and historical-vintage guarantees not established.",
+    "US_NYSE_Daily_TAQ": "Licensed consolidated trades/quotes candidate from 1993; corporate actions, PIT index membership, and costs remain separate.",
+    "CRYPTO_BINANCE_VISION": "Personal non-production historical backtesting explicitly permitted within terms; manual-live-derived-analysis use unresolved.",
+    "CRYPTO_BINANCE_PUBLIC_STREAM": "Technically documented prospective feed; applicable downstream-use rights, historical universe, and completeness are not established by connection docs."
+  },
+  "grid": null,
+  "cells_expected": 0,
+  "cells_completed": 0,
+  "metrics_computed": false,
+  "qualifying_strategies": 0,
+  "decision": "no_performance_test_until_source_and_evaluation_gates_pass",
+  "next_step": "Resolve per-market source-use authority and decide whether to authorize account/key setup or paid-data evaluation; then freeze data QC and performance evaluation contracts before any prices are read."
+}
