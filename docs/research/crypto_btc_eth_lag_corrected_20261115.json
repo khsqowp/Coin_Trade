@@ -1,0 +1,120 @@
+{
+  "data_sha256": "4ac2cf9f7af2e13298feb7eb1ea6d5da8c424a0998f97a192fb2d1c535ba66b3",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "source_rows_1m": {
+    "BTCUSDT": 172799,
+    "ETHUSDT": 173150
+  },
+  "complete_5m_rows": {
+    "BTCUSDT": 34559,
+    "ETHUSDT": 34630
+  },
+  "aligned_5m_rows": 34559,
+  "cutoff_exclusive_utc": "2026-11-14T00:00:00+00:00",
+  "signal": "BTC signed prior-20-return z-score >=2 and ETH same-direction 5m return in [0, BTC directional return)",
+  "entry": "next ETH 5m open",
+  "risk": "prior completed ETH 5m high-low / entry",
+  "barriers": "stop 1R, target 2R, 50 consecutive 1m bars; stop-first; adverse stop gap; expiry at final close",
+  "cost_scenarios_pct": [
+    0.1,
+    0.3,
+    0.15
+  ],
+  "block_bootstrap": "7 UTC calendar days, 10000 draws, seed 20261115",
+  "strategies": {
+    "btc_eth_lag_corrected": {
+      "n": 929,
+      "long_n": 504,
+      "short_n": 425,
+      "target_first_pct": 25.29601722282024,
+      "target_first_wilson95_lower_pct": 22.606293115928356,
+      "expiry_direction_pct": 46.178686759956946,
+      "avg_gross_pct": -9.516672084071317e-05,
+      "block95_avg_gross_pct": [
+        -0.01538581475336181,
+        0.014665654379136531
+      ],
+      "cost_scenarios": [
+        {
+          "round_trip_cost_pct": 0.1,
+          "net_positive_pct": 28.525296017222818,
+          "avg_net_pct": -0.10009516672084076
+        },
+        {
+          "round_trip_cost_pct": 0.3,
+          "net_positive_pct": 11.733046286329387,
+          "avg_net_pct": -0.30009516672084074
+        },
+        {
+          "round_trip_cost_pct": 0.15,
+          "net_positive_pct": 22.712594187298173,
+          "avg_net_pct": -0.15009516672084075
+        }
+      ]
+    },
+    "btc_impulse_only": {
+      "n": 2472,
+      "long_n": 1307,
+      "short_n": 1165,
+      "target_first_pct": 26.941747572815533,
+      "target_first_wilson95_lower_pct": 25.229589597912145,
+      "expiry_direction_pct": 45.99514563106796,
+      "avg_gross_pct": -0.0033377539798075686,
+      "block95_avg_gross_pct": [
+        -0.015125899070037046,
+        0.009010211715044899
+      ],
+      "cost_scenarios": [
+        {
+          "round_trip_cost_pct": 0.1,
+          "net_positive_pct": 29.166666666666668,
+          "avg_net_pct": -0.10333775397980756
+        },
+        {
+          "round_trip_cost_pct": 0.3,
+          "net_positive_pct": 11.974110032362459,
+          "avg_net_pct": -0.30333775397980756
+        },
+        {
+          "round_trip_cost_pct": 0.15,
+          "net_positive_pct": 24.190938511326863,
+          "avg_net_pct": -0.15333775397980753
+        }
+      ]
+    },
+    "eth_impulse_only": {
+      "n": 2391,
+      "long_n": 1241,
+      "short_n": 1150,
+      "target_first_pct": 28.983688833124216,
+      "target_first_wilson95_lower_pct": 27.200042854836866,
+      "expiry_direction_pct": 46.5495608531995,
+      "avg_gross_pct": 0.00458118545872963,
+      "block95_avg_gross_pct": [
+        -0.008555848170575916,
+        0.01757967270268622
+      ],
+      "cost_scenarios": [
+        {
+          "round_trip_cost_pct": 0.1,
+          "net_positive_pct": 30.322040987034715,
+          "avg_net_pct": -0.09541881454127038
+        },
+        {
+          "round_trip_cost_pct": 0.3,
+          "net_positive_pct": 12.46340443329151,
+          "avg_net_pct": -0.29541881454127034
+        },
+        {
+          "round_trip_cost_pct": 0.15,
+          "net_positive_pct": 25.052279381012127,
+          "avg_net_pct": -0.14541881454127034
+        }
+      ]
+    }
+  },
+  "oos": false
+}

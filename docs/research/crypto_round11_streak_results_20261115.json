@@ -1,0 +1,46 @@
+{
+  "symbol": "BTCUSDT",
+  "rows": 3417120,
+  "trades": 177025,
+  "first_signal_utc": "2020-01-01T00:14:00+00:00",
+  "last_signal_utc": "2026-06-30T23:26:00+00:00",
+  "utc_calendar_days": 2373,
+  "target_first_rate_pct": 47.672362660641156,
+  "target_first_wilson95_lower_pct": 47.43975142028106,
+  "target_first_7day_moving_block95_pct": [
+    47.39092219620867,
+    47.95328441434226
+  ],
+  "mean_net_7day_moving_block95_pct": [
+    -0.14546755421396979,
+    -0.1435047149418953
+  ],
+  "expiry_direction_accuracy_pct": 47.770088970484395,
+  "net_positive_rate_pct": 8.517441039401215,
+  "mean_net_return_pct": -0.14442506257805685,
+  "baseline_same_anchor_always_long": {
+    "trades": 177025,
+    "target_first_rate_pct": 48.94675893235419,
+    "net_positive_rate_pct": 8.856376218048299,
+    "mean_net_return_pct": -0.1411759356626756
+  },
+  "gate_min_200_and_wilson_lower_80pct": "FAIL",
+  "timeframe": "1m",
+  "horizon_bars": 15,
+  "cutoff_exclusive_utc": "2026-10-09T00:00:00+00:00",
+  "entry": "signal next 1m open",
+  "stop": "1x signal ATR14",
+  "target": "1x signal ATR14",
+  "same_minute_tie": "stop first",
+  "stop_gap_fill": "adverse open",
+  "round_trip_cost_pct": 0.1,
+  "round_trip_slippage_pct": 0.04,
+  "baseline": "always-long same selected anchors and ATR barriers",
+  "data_sha256": "0e612b0c58c2edf68b60a17e0a165402834c811c0cad87a12dec934ea7e2ecaf",
+  "data_fingerprint": {
+    "first_open_ms": 1577836800000,
+    "last_open_ms": 1782863940000,
+    "rows": 3417120
+  },
+  "oos": false
+}
