@@ -1,3 +1,5 @@
+import json
+
 import numpy as np
 import pandas as pd
 
@@ -6,12 +8,14 @@ from chart_predictor.macd_zero_backtest import (
     block_bootstrap,
     ema,
     holm,
+    load_funding,
     resample_minutes,
     resolve_long_bar,
     rsi_wilder,
     signal_arrays,
     simulate_symbol,
     trade_net_fraction,
+    _select_policy,
 )
 
 
@@ -85,6 +89,29 @@ def test_costs_are_applied_to_both_trade_sides_and_funding():
     no_friction = (110.0 - 100.0) / 100.0
     assert net < no_friction
     np.testing.assert_allclose(net, 0.09603, atol=1e-6)
+
+
+def test_missing_historical_funding_mark_uses_settlement_minute_open(tmp_path):
+    base = tmp_path / "funding" / "snapshot" / "BTCUSDT"
+    base.mkdir(parents=True)
+    (base / "page_0000.json").write_text(json.dumps([
+        {"fundingTime": 60_011, "fundingRate": "0.001", "markPrice": "", "rateType": "Regular"},
+        {"fundingTime": 120_009, "fundingRate": "0.002", "markPrice": "105", "rateType": "Regular"},
+    ]))
+    minute = pd.DataFrame({"open_ms": [60_000, 120_000], "open": [101.0, 104.0]})
+    events = load_funding(tmp_path, "snapshot", "BTCUSDT", 0, 180_000, minute)
+    assert events == [{"time": 60_011, "rate": 0.001, "mark": 101.0},
+                      {"time": 120_009, "rate": 0.002, "mark": 105.0}]
+
+
+def test_validation_selection_enforces_minimum_trade_count():
+    row = {"split": "validation", "timeframe_min": 60, "exit_policy": "tp_2r",
+           "base": {"strategy": {"cagr": 0.2, "mdd_pct": 10},
+                    "buy_hold": {"cagr": 0.1, "mdd_pct": 20},
+                    "mean_net_trade_pct": 0.01, "trade_count": 29, "turnover": 1}}
+    assert _select_policy([row]) == []
+    row["base"]["trade_count"] = 30
+    assert _select_policy([row])[0]["exit_policy"] == "tp_2r"
 
 
 def test_holm_and_bootstrap_are_deterministic_and_bounded():

@@ -2,7 +2,7 @@
   "run_id": "2026-11-16-r004-macd-zero-rsi50",
   "parent_run_id": "2026-11-16-r003-data-source-options",
   "date": "2026-11-16",
-  "status": "preregistered_before_price_analysis",
+  "status": "screen_complete_no_validation_candidate_final_holdout_not_opened",
   "study_type": "long_only_macd_zero_upcross_rsi14_above_50_exit_screen",
   "hypothesis": "On a completed bar, MACD(12,26) crosses from <=0 to >0 with RSI(14)>50; next-bar-open long entries can beat equal-capital buy-and-hold after fees, slippage, and funding.",
   "market": "Binance USDⓈ-M perpetual historical simulation; no live orders",
@@ -22,8 +22,8 @@
   },
   "code": {
     "runner": "chart_predictor/macd_zero_backtest.py",
-    "runner_sha256": "98970dffbdba93b18f3e7be6a28fc3642b687c2106b95ec452a654f1d6b0df60",
-    "synthetic_test_sha256": "f7c9ae8c908e6e34660ae7db2c31104447d949472e4f9f8ce10408fe168e7e85",
+    "runner_sha256": "81d039203428f796ea68c8fc73a630e2b5d4f0a3588c5df83d0192ca657f20d6",
+    "synthetic_test_sha256": "2e4096b374b599b9f83c7fea8468de121f8a5298d7df323489b9e811ac4b618a",
     "indicator_functions_used": ["ema", "macd", "rsi", "atr"],
     "current_source_checkout_indicator_sha256": "adfcfd70e16693b8523e8fa4af693ae3ec22d7afd3b5e11bb7ff6a2c227f59b3",
     "research_worktree_indicator_sha256": "e407f4a001f743e59d0d2cf91ac0be2ec34c620a6a06091b2a64a33ade0eb80d",
@@ -73,11 +73,44 @@
     "existing_trials_are_different_study_families": true,
     "source_trials_database_modified": false
   },
-  "side_effects_before_price_analysis": {
+  "execution_amendment": {
+    "first_screen_attempt": "failed_on_blank_historical_markPrice_before_any_metrics_or_screen_output",
+    "price_rows_read_before_failure": true,
+    "funding_mark_proxy": "for blank markPrice only, most recent prior 1m candle open; timestamp age must be under 60 seconds",
+    "proxy_caveat": "approximate exchange mark; report missing-mark count and qualify funding-adjusted metrics",
+    "second_screen_attempt": "failed_on_millisecond_timestamp_jitter_before_any_metrics_or_screen_output",
+    "third_screen_attempt": "completed before selection-gate review; selector corrected to enforce preregistered >=30 trade minimum; complete screen rerun",
+    "final_screen_sha256": "05fe3b3cd1536f02c29d8501101ba2c33e802e6df8627e2a97967aa4cdb7951f",
+    "final_screen_cells": 96,
+    "validation_selected": 0,
+    "final_holdout_opened": false,
+    "funding_blank_mark_rows": {
+      "BNBUSDT": {"rows": 4659, "blank_mark_rows": 3376},
+      "BTCUSDT": {"rows": 4659, "blank_mark_rows": 3376},
+      "DOGEUSDT": {"rows": 4659, "blank_mark_rows": 3376},
+      "ETHUSDT": {"rows": 4659, "blank_mark_rows": 3376},
+      "SOLUSDT": {"rows": 4734, "blank_mark_rows": 3451},
+      "XRPUSDT": {"rows": 4659, "blank_mark_rows": 3376}
+    },
+    "regression_tests_after_amendment": 10
+  },
+  "results_artifact": {
+    "path": "docs/chart_predictor/strategy_lab/runs/2026-11-16-r004-macd-zero-rsi50/results.json",
+    "sha256": "2c8ccf3f4b172ed4af548b0c8be19a753c4121574a5472e976dc6f3e2fd4760f",
+    "bytes": 111939,
+    "contents": "all 96 aggregate train/validation cells; verbose daily-return vectors omitted"
+  },
+  "per_symbol_results_artifact": {
+    "path": "docs/chart_predictor/strategy_lab/runs/2026-11-16-r004-macd-zero-rsi50/symbol_results.json.gz",
+    "sha256": "72787b6db035b052e03b9dec775e21b572d2c5efef8da6acbe59c02b5deb8156",
+    "bytes": 115545,
+    "contents": "compressed JSON array of all 576 per-symbol train/validation summaries"
+  },
+  "side_effects_before_metrics": {
     "source_checkout_modified": false,
     "source_trial_registry_modified": false,
-    "price_rows_or_metrics_read": false,
-    "funding_downloaded": false,
+    "price_rows_or_metrics_read": "price rows read during failed first attempt; no performance metrics produced",
+    "funding_downloaded": true,
     "orders_placed": false
   }
 }
