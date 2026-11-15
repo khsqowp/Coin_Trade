@@ -163,7 +163,7 @@ def test_all_indicator_outputs_are_prefix_invariant():
         cut=lambda values: values[:k]
         arrays=[(lambda x:I.sma(x,10),c),(lambda x:I.ema(x,12),c),(lambda x:I.macd(x),c),
             (lambda x:I.rsi(x),c),(lambda x:I.atr(h[:len(x)],l[:len(x)],x),c),
-            (lambda x:I.bollinger(x),c)]
+            (lambda x:I.bollinger(x),c),(lambda x:I.rolling_percentile_rank(x,10),c)]
         for function, values in arrays: _assert_array_prefix(function,values,k)
         # Multi-input arrays are checked against the full result at the same confirmation index.
         for function, inputs in ((lambda a,b:I.adx_di(a,b,c[:len(a)]),(h,l)),

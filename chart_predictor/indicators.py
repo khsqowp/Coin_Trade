@@ -75,6 +75,30 @@ def bollinger(values, period=20, deviations=2):
     return mid.to_numpy(), (mid + width).to_numpy(), (mid - width).to_numpy()
 
 
+def rolling_percentile_rank(values, lookback):
+    """Causal percentile rank of each value within its own trailing window (inclusive).
+
+    Bar i's rank uses only values[i-lookback+1 .. i] (itself included, same
+    convention as bollinger()'s own rolling window); it is NaN until a full
+    window of finite values exists (never partially filled, never using a
+    future bar). Implemented with a strided view plus a vectorized
+    less-equal count rather than a Python-level rolling .apply for speed on
+    long intraday series.
+    """
+    v = np.asarray(values, dtype=float)
+    n = len(v)
+    out = np.full(n, np.nan)
+    if n < lookback:
+        return out
+    windows = np.lib.stride_tricks.sliding_window_view(v, lookback)
+    last = windows[:, -1]
+    valid = np.all(np.isfinite(windows), axis=1)
+    counts = np.sum(windows <= last[:, None], axis=1)
+    frac = np.where(valid, counts / lookback, np.nan)
+    out[lookback - 1:] = frac
+    return out
+
+
 def vwap(high, low, close, volume, timestamps_ms):
     """UTC-day anchored VWAP using typical price times base volume."""
     frame = pd.DataFrame({"p": (np.asarray(high) + np.asarray(low) + np.asarray(close)) / 3,

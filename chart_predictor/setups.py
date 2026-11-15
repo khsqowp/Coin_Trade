@@ -8,7 +8,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
           "order_block", "fabio_liquidity_mss", "fvg_fill",
           "frvp_breakout", "frvp_breakout_strong",
-          "heikin_ashi_reversal", "heikin_ashi_reversal_strict")
+          "heikin_ashi_reversal", "heikin_ashi_reversal_strict",
+          "bb_squeeze_breakout", "bb_squeeze_breakout_strict")
 
 @dataclass(frozen=True)
 class Signal:
@@ -237,4 +238,47 @@ def generate_signals(frame, setup, prepared=None):
             if not np.isfinite(a[i]) or abs(hc[i]-ho[i])<0.5*a[i]: continue
             if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
             if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
+    elif setup in ("bb_squeeze_breakout","bb_squeeze_breakout_strict"):
+        # Bollinger Band squeeze breakout (P8-A): a volatility-regime setup, deliberately
+        # distinct from this file's momentum/SMC-structure rules. mid/upper/lower are a
+        # rolling 20-bar SMA +/- 2x population stdev (standard conventions, not tuned).
+        # width = (upper-lower)/mid is each bar's own normalized band width. "Squeeze" is
+        # width sitting in the bottom decile (<=10th percentile) of its own trailing
+        # 120-bar history (both window lengths are the suggested defaults). Percentile
+        # rank is fully causal (indicators.rolling_percentile_rank): bar i's rank uses
+        # only width[i-119..i], itself included (same convention bollinger() already uses
+        # for its own rolling window), and is NaN until 120 consecutive finite width
+        # values exist, i.e. never a future bar.
+        # A signal requires the squeeze to have been active at ANY point in the four
+        # bars strictly before the signal bar (i-4..i-1) -- "within a few bars of exiting
+        # a squeeze" -- so a breakout bar whose own width has already expanded past the
+        # threshold still counts; a real squeeze-breakout reads as contraction-then-
+        # expansion, and the expansion bar's width is expected to jump. The breakout
+        # test itself compares the signal bar's own close to its own band (band at bar i
+        # already incorporates c[i], the same causal convention as bollinger() and
+        # standard Bollinger-band breakout usage -- not a lookahead: everything is known
+        # as of bar i's close). Stop is the opposite band at the signal bar, already a
+        # volatility-scaled invalidation level.
+        # "_strict" is the single bounded P8-A refinement, chosen from the base rule's own
+        # Stage C diagnostics rather than a priori: base-rule trades are dominated by
+        # `timeout` (roughly three in four), not `stop`, meaning most breakouts drift
+        # sideways without enough thrust to reach the R target OR the stop within the
+        # 12-bar holding window -- a "fakeout/no-follow-through" failure mode, not a
+        # wrong-direction one. That points at breakout *strength*, not squeeze *purity*,
+        # so the refinement reuses this file's existing ATR-buffer convention (same as
+        # frvp_breakout_strong) instead of tightening the percentile: require the close to
+        # clear the band by >=0.25*ATR14 rather than by an arbitrarily thin margin. The
+        # squeeze detection and band geometry are otherwise untouched.
+        mid,upper,lower=indicators.bollinger(c,20,2)
+        width=(upper-lower)/mid
+        pct=indicators.rolling_percentile_rank(width,120)
+        squeeze=np.where(np.isfinite(pct),pct<=0.10,False)
+        strong=setup=="bb_squeeze_breakout_strict"
+        lag=4
+        for i in range(lag,n):
+            if not (np.isfinite(upper[i]) and np.isfinite(lower[i])): continue
+            if not np.any(squeeze[i-lag:i]): continue
+            buf=0.25*a[i] if strong and np.isfinite(a[i]) else 0.0
+            if c[i]>upper[i]+buf: emit(i,"long",lower[i])
+            elif c[i]<lower[i]-buf: emit(i,"short",upper[i])
     return out

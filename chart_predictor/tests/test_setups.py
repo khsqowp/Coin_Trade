@@ -225,3 +225,60 @@ def test_frvp_strong_rejects_a_marginal_breakout_the_base_rule_accepts():
     assert any(s.index==60 and s.side=="long" for s in base)
     assert not any(s.index==60 for s in strong)
 
+def test_rolling_percentile_rank_is_nan_until_a_full_window_then_causal():
+    values=np.array([3.,1.,2.,5.,4.,0.,9.,6.,8.,7.])
+    out=indicators.rolling_percentile_rank(values,4)
+    assert np.all(np.isnan(out[:3]))
+    # Window [3,1,2,5] -> count(<=5)=4/4=1.0; window [1,2,5,4] -> count(<=4)=3/4=0.75.
+    assert out[3]==pytest.approx(1.0)
+    assert out[4]==pytest.approx(0.75)
+    # A later value cannot change an earlier bar's already-computed rank.
+    changed=values.copy(); changed[6:]=-100.
+    assert np.array_equal(indicators.rolling_percentile_rank(changed,4)[:5],out[:5],equal_nan=True)
+
+def _bb_squeeze_frame(side="long", with_squeeze=True, jump_extra=1.0):
+    """160 bars of an oscillating close (varied Bollinger width history), then
+    either 15 bars of a near-flat squeeze (width collapses toward the bottom
+    decile of its own trailing 120-bar history) or 15 more oscillating bars (no
+    contraction), then a breakout bar closing jump_extra past the live band,
+    plus one trailing bar so emit()'s i+1<n guard does not drop the signal."""
+    x=np.arange(160); noisy=100+np.sin(x/3.0)*2.0
+    tail=(noisy[-1]+np.linspace(0,0.01,15)*(1 if side=="long" else -1) if with_squeeze
+          else 100+np.sin((160+np.arange(15))/3.0)*2.0)
+    c=np.concatenate([noisy,tail])
+    o=np.empty_like(c); o[0]=c[0]; o[1:]=c[:-1]
+    h=np.maximum(o,c)+.01; l=np.minimum(o,c)-.01
+    mid,upper,lower=indicators.bollinger(c,20,2)
+    band=upper[-1] if side=="long" else lower[-1]
+    breakout=band+jump_extra if side=="long" else band-jump_extra
+    c2=np.append(c,[breakout,breakout]); o2=np.append(o,[c[-1],breakout])
+    h2=np.append(h,[max(c[-1],breakout)+.01,breakout+.01]); l2=np.append(l,[min(c[-1],breakout)-.01,breakout-.01])
+    f=pd.DataFrame({"t_open_ms":1700000000000+np.arange(len(c2))*60000,"o":o2,"h":h2,"l":l2,"c":c2,"v":np.ones(len(c2))})
+    return f, len(c2)-2
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_bb_squeeze_breakout_fires_after_a_genuine_squeeze(side):
+    f,i=_bb_squeeze_frame(side,with_squeeze=True)
+    sigs=generate_signals(f,"bb_squeeze_breakout")
+    assert any(s.index==i and s.side==side for s in sigs)
+    # Stop is the opposite band at the signal bar: below entry for long, above for short.
+    hit=[s for s in sigs if s.index==i and s.side==side][0]
+    assert (hit.stop<f.c.iloc[i]) if side=="long" else (hit.stop>f.c.iloc[i])
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_bb_squeeze_breakout_requires_a_prior_squeeze(side):
+    # Same breakout magnitude, but the band never contracted into the bottom
+    # decile beforehand -- a band-piercing close alone must not be enough.
+    f,i=_bb_squeeze_frame(side,with_squeeze=False)
+    assert not any(s.index==i for s in generate_signals(f,"bb_squeeze_breakout"))
+
+def test_bb_squeeze_breakout_strict_rejects_a_marginal_breakout_the_base_rule_accepts():
+    # The P8-A refinement requires the close to clear the band by >=0.25*ATR14;
+    # a close that clears it by only a hair should still fire the base rule but
+    # must be rejected by the ATR-buffered variant.
+    f,i=_bb_squeeze_frame("long",with_squeeze=True,jump_extra=0.002)
+    base=generate_signals(f,"bb_squeeze_breakout")
+    strict=generate_signals(f,"bb_squeeze_breakout_strict")
+    assert any(s.index==i and s.side=="long" for s in base)
+    assert not any(s.index==i for s in strict)
+
