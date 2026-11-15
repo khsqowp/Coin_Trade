@@ -225,3 +225,49 @@ def test_frvp_strong_rejects_a_marginal_breakout_the_base_rule_accepts():
     assert any(s.index==60 and s.side=="long" for s in base)
     assert not any(s.index==60 for s in strong)
 
+def _orb_frame(times, highs=None, lows=None, closes=None):
+    n=len(times); h=np.full(n,105.); l=np.full(n,95.); c=np.full(n,100.)
+    if highs is not None:
+        for i,x in highs.items(): h[i]=x
+    if lows is not None:
+        for i,x in lows.items(): l[i]=x
+    if closes is not None:
+        for i,x in closes.items(): c[i]=x
+    o=np.minimum(c,100.)
+    return pd.DataFrame({"t_open_ms":times,"o":o,"h":h,"l":l,"c":c,"v":np.ones(n)})
+
+def test_orb_uses_only_window_bars_and_emits_long_at_first_closed_break():
+    times=np.arange(32,dtype=np.int64)*60000
+    f=_orb_frame(times,{5:110,30:120},{6:90,30:80},{30:111})
+    assert Signal(30,"long",90.) in generate_signals(f,"orb_funding_session")
+
+def test_orb_emits_short_with_opening_range_high_as_stop():
+    times=np.arange(32,dtype=np.int64)*60000
+    f=_orb_frame(times,{5:110,30:120},{6:90,30:80},{30:89})
+    assert Signal(30,"short",110.) in generate_signals(f,"orb_funding_session")
+
+def test_orb_inside_close_does_not_signal():
+    times=np.arange(32,dtype=np.int64)*60000
+    f=_orb_frame(times,{5:110},{6:90},{30:100})
+    assert generate_signals(f,"orb_funding_session")==[]
+
+def test_orb_only_first_breakout_per_session_counts():
+    times=np.arange(40,dtype=np.int64)*60000
+    f=_orb_frame(times,{5:110,30:120,35:80},{6:90,30:95,35:85},{30:111,35:89})
+    sigs=generate_signals(f,"orb_funding_session")
+    assert [s for s in sigs if s.index>=30]==[Signal(30,"long",90.)]
+
+def test_orb_new_session_resets_range_and_trigger():
+    times=np.r_[np.arange(32,dtype=np.int64)*60000,28_800_000+np.arange(32,dtype=np.int64)*60000]
+    f=_orb_frame(times,{5:110,30:111,37:120,62:121},{6:90,30:95,38:85,62:95},{30:111,62:121})
+    sigs=generate_signals(f,"orb_funding_session")
+    assert Signal(30,"long",90.) in sigs
+    assert Signal(62,"long",85.) in sigs
+
+def test_orb_strong_uses_signal_bar_atr_and_accepts_exact_clearance():
+    times=np.arange(32,dtype=np.int64)*60000
+    f=_orb_frame(times,{5:110,30:112},{6:90,30:109},{30:111})
+    atr=np.zeros(len(f)); atr[30]=4.0
+    assert Signal(30,"long",90.) in generate_signals(f,"orb_funding_session_strong",{"atr":atr})
+    f.loc[30,"c"]=110.99
+    assert not any(s.index==30 for s in generate_signals(f,"orb_funding_session_strong",{"atr":atr}))

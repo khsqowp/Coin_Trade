@@ -8,7 +8,11 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
           "order_block", "fabio_liquidity_mss", "fvg_fill",
           "frvp_breakout", "frvp_breakout_strong",
-          "heikin_ashi_reversal", "heikin_ashi_reversal_strict")
+          "heikin_ashi_reversal", "heikin_ashi_reversal_strict",
+          "orb_funding_session", "orb_funding_session_strong")
+
+SESSION_MS=28_800_000
+OR_WINDOW_MS=1_800_000
 
 @dataclass(frozen=True)
 class Signal:
@@ -237,4 +241,28 @@ def generate_signals(frame, setup, prepared=None):
             if not np.isfinite(a[i]) or abs(hc[i]-ho[i])<0.5*a[i]: continue
             if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
             if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
+    elif setup in ("orb_funding_session","orb_funding_session_strong"):
+        # The first 30 minutes after each 8-hour Binance funding boundary define
+        # the range; only closed bars at/after that window can break it. This is
+        # time-based, so 60m bars use the first full bar as the range (a known
+        # coarse-timeframe limitation). The first data session may be partial,
+        # affecting at most one session per symbol. The strong variant requires
+        # a 0.25*ATR14 clearance at the signal bar, filtering marginal breaks.
+        t=frame.t_open_ms.to_numpy(np.int64); session=None; or_high=-np.inf; or_low=np.inf; triggered=False
+        for i in range(n):
+            current=int(t[i]//SESSION_MS*SESSION_MS)
+            if current!=session:
+                session=current; or_high=-np.inf; or_low=np.inf; triggered=False
+            elapsed=int(t[i])-current
+            if elapsed<OR_WINDOW_MS:
+                or_high=max(or_high,h[i]); or_low=min(or_low,l[i])
+                continue
+            if triggered or not (np.isfinite(or_high) and np.isfinite(or_low)): continue
+            strong=setup=="orb_funding_session_strong"
+            if strong and not np.isfinite(a[i]): continue
+            buf=.25*a[i] if strong else 0.0
+            if c[i]>or_high and (not strong or c[i]>=or_high+buf):
+                emit(i,"long",or_low); triggered=True
+            elif c[i]<or_low and (not strong or c[i]<=or_low-buf):
+                emit(i,"short",or_high); triggered=True
     return out
