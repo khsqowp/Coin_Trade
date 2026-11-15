@@ -1,0 +1,40 @@
+{
+  "run_id": "2026-11-16-r006-agent-data-gate",
+  "parent_run_id": "2026-11-16-r004-macd-zero-rsi50",
+  "date_local": "2026-11-16",
+  "status": "blocked_data_and_rights_gate",
+  "study_type": "agent_hypothesis_and_decision_value_review",
+  "objective": "Determine whether another Coin_Trade portfolio-strategy test has decision value under current exposed data and usage-rights evidence.",
+  "performance_metrics_calculated": false,
+  "performance_grid": {
+    "planned_cells": 0,
+    "executed_cells": 0,
+    "failed_cells": 0,
+    "unexecuted_cells": 0
+  },
+  "agent_roles": {
+    "trend_momentum": "no eligible strategy-lab test; L2 candidate belongs to the separate M4 objective",
+    "mean_reversion": "rolling VWAP re-entry suggestion rejected as overlapping an exposed prior family",
+    "market_regime_cross_section": "breadth-filter suggestion blocked by missing point-in-time universe",
+    "independent_auditor": "no eligible test until data, use, execution, and inference gates pass"
+  },
+  "previous_macd_rsi_evidence": {
+    "run_id": "2026-11-16-r004-macd-zero-rsi50",
+    "validation_selected_policies": 0,
+    "validation_cells_that_beat_matched_buy_hold_net_cagr": 0,
+    "final_holdout_opened": false,
+    "decision": "reject_exact_family_on_this_run; do_not_repeat_or_retune_on_exposed_data"
+  },
+  "data_gate": {
+    "passed": false,
+    "reasons": [
+      "Current long-history futures universe is a six-current-symbol cohort, not a point-in-time universe.",
+      "Existing historical intervals have already been exposed to strategy research.",
+      "Binance Vision archive listing does not by itself prove complete point-in-time listed/delisted universe history.",
+      "Current Binance Vision terms and eventual intended signal use have not been reconciled; no download or assent occurred.",
+      "Portfolio-level funding and executable-cost provenance remain incomplete for a new fair B&H comparison."
+    ]
+  },
+  "decision": "do_not_run_another_exposed_price_strategy_grid",
+  "next_action": "Resolve a point-in-time, rights-compatible dataset and freeze costs/universe before registering a central strategy grid."
+}

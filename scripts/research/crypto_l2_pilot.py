@@ -292,6 +292,7 @@ class Pilot:
     def _write(self, kind: str, symbol: str | None, event: dict[str, Any] | None,
                received_ms: int, received_mono: float, **extra: Any) -> None:
         record = {"kind": kind, "symbol": symbol, "received_at_ms": received_ms,
+                  "receive_clock_domain": self.run_dir.name,
                   "received_monotonic_s": round(received_mono, 6), **extra}
         if event is not None:
             record["event"] = event

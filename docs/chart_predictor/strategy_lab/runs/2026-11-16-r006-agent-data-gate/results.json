@@ -1,0 +1,39 @@
+{
+  "run_id": "2026-11-16-r006-agent-data-gate",
+  "status": "blocked_data_and_rights_gate",
+  "metrics": null,
+  "trials": {
+    "performance_cells_planned": 0,
+    "performance_cells_executed": 0,
+    "signals": null,
+    "trades": null
+  },
+  "agents": {
+    "trend_momentum": {
+      "output": "L2 liquidity-recovery follow-through was identified as a distinct M4 hypothesis but does not answer the B&H-relative portfolio question.",
+      "performance_evidence": false
+    },
+    "mean_reversion": {
+      "output": "15-minute rolling VWAP deviation/re-entry proposal with six settings.",
+      "decision": "not executed; overlaps exposed VWAP/mean-reversion work and lacks an unopened evaluation interval",
+      "performance_evidence": false
+    },
+    "market_regime_cross_section": {
+      "output": "14-day positive-return market-breadth filter proposal.",
+      "decision": "not executed; requires point-in-time contract universe and duplicates a previously weak regime-overlay line",
+      "performance_evidence": false
+    },
+    "independent_auditor": {
+      "output": "Requires frozen data, split, cost, dependence, and adversarial verification contracts before any metrics.",
+      "performance_evidence": false
+    }
+  },
+  "macd_zero_cross_rsi50_prior_result": {
+    "validation_policy_count": 0,
+    "validation_cells_above_matched_buy_hold_net_cagr": 0,
+    "sealed_final_evaluated": false,
+    "interpretation": "No qualifying policy; the requested setup does not meet the selection gate on R004."
+  },
+  "data_gate": "failed",
+  "decision": "No new strategy trial has decision value on these inputs."
+}

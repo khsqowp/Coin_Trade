@@ -18,15 +18,31 @@
       "No multi-symbol point-in-time prospective L2/trade history under this candidate contract.",
       "Existing capture covers only BTCUSDT and ETHUSDT for one hour and was used as an integrity pilot.",
       "No natural reconnect was observed in the one-hour capture.",
-      "A deterministic offline compact replay plus UTC 10-second feature-window prototype ran on the one-hour pilot, retaining 500ms book paths, one-second trade paths, depth-at-trade quotes, and receive-time readiness. The 718 aggregate windows occupy 13.75 MB uncompressed and 2.09 MB with Zstandard; linear scaling projects to 183.20 decimal GB/year for 20 symbols. This is only one two-symbol-hour projection, not sustained capacity evidence. The ledger still lacks multi-day reconnect proof, per-T decision-anchor causal evaluation, complete execution-path/cost calibration, and a measured multi-symbol capacity test; production data gate remains not passed.",
+      "A deterministic offline compact replay plus UTC 10-second feature-window prototype ran on the one-hour pilot. A causal-integrity follow-up now drops duplicate/non-increasing aggregate-trade IDs and filters prior aggression observations by receive-wall availability as well as exchange event time. The replay still contains only 718 windows from two symbols; 716 are quality-ready and two are blocked. The ledger still lacks integrated T/H candle construction and candidate/execution replay, multi-day reconnect proof, complete execution-path/cost calibration, and measured multi-symbol capacity; production data gate remains not passed.",
       "Final confidence implementation, minimum train/calibration/validation counts, exact timestamps, durable storage path, and user-specific fee schedule remain unfrozen."
     ]
   },
   "tests": {
     "performance_tests": 0,
-    "unit_and_integrity_tests": 257,
-    "unit_and_integrity_tests_passed": 257,
+    "unit_and_integrity_tests": 273,
+    "unit_and_integrity_tests_passed": 273,
     "warnings": 1
   },
-  "interpretation": "The 257 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. Candidate construction and depth-walk target-first execution are tested synthetically but neither is integrated into capture replay; no outcome labels were generated. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
+  "causal_integrity_followup": {
+    "duplicate_aggtrade_handling": "duplicates and non-increasing IDs are dropped and flagged",
+    "prior_aggression_availability": "strict event-time and persisted receive-wall-time checks",
+    "pilot_window_hash": "c91aa7db208cc293b05792ad2f5efda38fa9eba9f5fefeb7bc16f62b25f1a9bd",
+    "quality_ready_windows": 716,
+    "blocked_windows": 2,
+    "strategy_metrics": null
+  },
+  "post_patch_verification": {
+    "focused_r005_tests_passed": 35,
+    "chart_predictor_tests_passed": 273,
+    "warning": "One environment-only joblib CPU-count warning.",
+    "pilot_replayed_after_latest_patch": false,
+    "pilot_replay_blocker": "The original raw capture is absent from the accessible checkout; older compact artifacts lack receive_clock_domain and cannot validate the latest availability gates.",
+    "performance_cells_run": 0
+  },
+  "interpretation": "The 273 passing chart_predictor tests verify software paths and synthetic cases only; the 35 focused tests cover the R005 compact/window/signal integrity cases. Earlier deterministic replay of the one-hour pilot is an integrity check under an earlier implementation and was not repeated under the latest availability/provenance patches because the raw capture is unavailable. Candidate construction and depth-walk target-first execution are tested synthetically but neither is integrated into capture replay; no outcome labels were generated. The pilot has only two symbols and one hour, and is not strategy-performance evidence. No accuracy or profitability result was generated."
 }

@@ -24,6 +24,7 @@ REFILL_MS = 2_000
 MAX_DEPTH_ENDPOINT_AGE_MS = 750
 MAX_OPEN_WINDOWS_PER_SYMBOL = 256
 MAX_EMPTY_WINDOWS_PER_ADVANCE = 3600
+MAX_LATE_INVALIDATED_WINDOWS = 100_000
 MAX_OUTPUT_BYTES = 512 * 1024 * 1024
 
 
@@ -35,6 +36,37 @@ def _sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def aggregation_code_sha256() -> str:
+    return _sha256(Path(__file__))
+
+
+def aggregation_run_id_for(
+    *, source_sha256: str, aggregator_code_sha256: str,
+    allowed_lateness_ms: int, window_ms: int = WINDOW_MS,
+    refill_observation_ms: int = REFILL_MS,
+    max_depth_endpoint_age_ms: int = MAX_DEPTH_ENDPOINT_AGE_MS,
+) -> str:
+    descriptor = {
+        "source_sha256": source_sha256,
+        "aggregator_code_sha256": aggregator_code_sha256,
+        "allowed_lateness_ms": allowed_lateness_ms,
+        "window_ms": window_ms,
+        "refill_observation_ms": refill_observation_ms,
+        "max_depth_endpoint_age_ms": max_depth_endpoint_age_ms,
+    }
+    return hashlib.sha256(
+        json.dumps(descriptor, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def manifest_integrity_sha256(manifest: dict[str, Any]) -> str:
+    payload = {key: value for key, value in manifest.items()
+               if key != "manifest_integrity_sha256"}
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":"),
+                         allow_nan=False).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def _new_window() -> dict[str, Any]:
     return {
         "buy_quote": 0.0, "sell_quote": 0.0, "trade_count": 0,
@@ -44,6 +76,9 @@ def _new_window() -> dict[str, Any]:
         "trade_seconds": {}, "depth_samples": [],
         "feed_event_count": 0, "feed_event_categories": set(),
         "late_event_count": 0, "first_receive_mono": None, "last_receive_mono": None,
+        "first_receive_at_ms": None, "last_receive_at_ms": None,
+        "missing_receive_at_ms_count": 0,
+        "receive_clock_domains": set(), "missing_receive_clock_domain_count": 0,
     }
 
 
@@ -54,9 +89,28 @@ def _touch_receive(window: dict[str, Any], mono: float) -> None:
     window["last_receive_mono"] = mono if last is None else max(last, mono)
 
 
+def _touch_receive_wall(window: dict[str, Any], received_at_ms: Any) -> None:
+    if isinstance(received_at_ms, bool) or not isinstance(received_at_ms, int) or received_at_ms < 0:
+        window["missing_receive_at_ms_count"] += 1
+        return
+    first = window["first_receive_at_ms"]
+    last = window["last_receive_at_ms"]
+    window["first_receive_at_ms"] = received_at_ms if first is None else min(first, received_at_ms)
+    window["last_receive_at_ms"] = received_at_ms if last is None else max(last, received_at_ms)
+
+
+def _touch_receive_clock_domain(window: dict[str, Any], domain: Any) -> None:
+    if not isinstance(domain, str) or not domain:
+        window["missing_receive_clock_domain_count"] += 1
+        return
+    window["receive_clock_domains"].add(domain)
+
+
 def _depth_sample(row: dict[str, Any]) -> dict[str, Any]:
     return {
         "event_ms": int(row["exchange_event_ms"]),
+        "received_at_ms": row.get("received_at_ms"),
+        "receive_clock_domain": row.get("receive_clock_domain"),
         "receive_mono": float(row["received_monotonic_s"]),
         "bid": float(row["bid_depth_quote_5bp_top5"]),
         "ask": float(row["ask_depth_quote_5bp_top5"]),
@@ -72,6 +126,8 @@ def _depth_sample(row: dict[str, Any]) -> dict[str, Any]:
 def _first_trade_quote(row: dict[str, Any]) -> dict[str, Any]:
     return {
         "event_ms": int(row["exchange_event_ms"]),
+        "received_at_ms": row.get("received_at_ms"),
+        "receive_clock_domain": row.get("receive_clock_domain"),
         "receive_mono": float(row["received_monotonic_s"]),
         "trade_id": row.get("trade_id"),
         "price": float(row["price"]),
@@ -101,6 +157,26 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         availability_times.append(d2s["receive_mono"])
     availability_times = [value for value in availability_times if value is not None]
     feature_available = max(availability_times) if availability_times else None
+    wall_availability_times = [item["first_receive_at_ms"], item["last_receive_at_ms"]]
+    wall_availability_times.extend(p.get("received_at_ms") for p in samples)
+    if dpre is not None:
+        wall_availability_times.append(dpre.get("received_at_ms"))
+    if d2s is not None:
+        wall_availability_times.append(d2s.get("received_at_ms"))
+    wall_availability_times = [value for value in wall_availability_times
+                               if isinstance(value, int) and not isinstance(value, bool)]
+    feature_available_at_ms = max(wall_availability_times) if wall_availability_times else None
+    required_receive_rows = [*samples, dpre, dmin_bid, dmin_ask, d2s]
+    missing_required_wall_time = any(
+        row is not None and (isinstance(row.get("received_at_ms"), bool)
+                             or not isinstance(row.get("received_at_ms"), int)
+                             or row["received_at_ms"] < 0)
+        for row in required_receive_rows
+    )
+    required_domains = {row.get("receive_clock_domain") for row in required_receive_rows
+                        if row is not None}
+    feature_receive_clock_domain = (next(iter(required_domains))
+                                    if len(required_domains) == 1 else None)
     reasons = []
     if dpre is None:
         reasons.append("missing_pre_depth")
@@ -118,6 +194,14 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         reasons.append("feed_event_within_window")
     if item["trade_gap_count"]:
         reasons.append("possible_aggregate_trade_id_gap")
+    if (item["missing_receive_at_ms_count"] or feature_available_at_ms is None
+            or missing_required_wall_time):
+        reasons.append("missing_receive_wall_time")
+    if (item["missing_receive_clock_domain_count"] or len(item["receive_clock_domains"]) != 1
+            or len(required_domains) != 1 or feature_receive_clock_domain is None):
+        reasons.append("receive_clock_domain_mismatch")
+    elif item["receive_clock_domains"] != required_domains:
+        reasons.append("receive_clock_domain_mismatch")
 
     def ratio(pre: dict[str, Any] | None, low: dict[str, Any] | None,
               after: dict[str, Any] | None, side: str) -> float | None:
@@ -158,6 +242,10 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         "first_receive_monotonic_s": item["first_receive_mono"],
         "last_receive_monotonic_s": item["last_receive_mono"],
         "feature_available_receive_monotonic_s": feature_available,
+        "first_receive_at_ms": item["first_receive_at_ms"],
+        "last_receive_at_ms": item["last_receive_at_ms"],
+        "feature_available_received_at_ms": feature_available_at_ms,
+        "feature_receive_clock_domain": feature_receive_clock_domain,
         "data_quality_ready": not reasons,
         "unscorable_reasons": reasons,
     }
@@ -173,7 +261,9 @@ def is_available_by_decision(window: dict[str, Any], decision_receive_monotonic_
 
 def eligible_windows_for_completed_bar(
     windows: list[dict[str, Any]], *, bar_open_ms: int, bar_close_ms: int,
-    decision_receive_monotonic_s: float,
+    decision_receive_monotonic_s: float, decision_received_at_ms: int,
+    decision_receive_clock_domain: str,
+    invalidated_window_keys: set[tuple[str, int]],
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
     """Select usable 10s features wholly inside a completed bar and observed by decision.
 
@@ -190,10 +280,18 @@ def eligible_windows_for_completed_bar(
             or not isinstance(decision_receive_monotonic_s, (int, float))
             or not math.isfinite(decision_receive_monotonic_s)):
         raise ValueError("decision receive anchor must be finite and numeric")
+    if (isinstance(decision_received_at_ms, bool)
+            or not isinstance(decision_received_at_ms, int) or decision_received_at_ms < 0):
+        raise ValueError("decision wall-clock receive anchor must be non-negative integer milliseconds")
+    if not isinstance(decision_receive_clock_domain, str) or not decision_receive_clock_domain:
+        raise ValueError("decision receive clock domain must be a non-empty string")
+    if not isinstance(invalidated_window_keys, set):
+        raise ValueError("invalidated window keys must be a set")
 
     selected: list[dict[str, Any]] = []
     rejected = {"not_final": 0, "quality_failure": 0, "outside_completed_bar": 0,
-                "missing_availability": 0, "received_at_or_after_decision": 0}
+                "missing_availability": 0, "received_at_or_after_decision": 0,
+                "invalidated_by_late_input": 0}
     for window in windows:
         if window.get("window_final") is not True:
             rejected["not_final"] += 1
@@ -207,13 +305,22 @@ def eligible_windows_for_completed_bar(
                 or start < bar_open_ms or end > bar_close_ms or end <= start):
             rejected["outside_completed_bar"] += 1
             continue
+        if (window.get("symbol"), start) in invalidated_window_keys:
+            rejected["invalidated_by_late_input"] += 1
+            continue
         available = window.get("feature_available_receive_monotonic_s")
+        available_wall = window.get("feature_available_received_at_ms")
         if (isinstance(available, bool) or not isinstance(available, (int, float))
-                or not math.isfinite(available)):
+                or not math.isfinite(available)
+                or isinstance(available_wall, bool) or not isinstance(available_wall, int)
+                or available_wall < 0):
             rejected["missing_availability"] += 1
             continue
-        if available >= decision_receive_monotonic_s:
+        if available >= decision_receive_monotonic_s or available_wall >= decision_received_at_ms:
             rejected["received_at_or_after_decision"] += 1
+            continue
+        if window.get("feature_receive_clock_domain") != decision_receive_clock_domain:
+            rejected["missing_availability"] += 1
             continue
         selected.append(window)
     return selected, rejected
@@ -232,12 +339,21 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
     if output.exists() or partial.exists() or manifest_path.exists():
         raise FileExistsError("refusing to overwrite an existing window output or manifest")
     input_hash = _sha256(source)
+    aggregator_code_hash = aggregation_code_sha256()
+    aggregation_run_id = aggregation_run_id_for(
+        source_sha256=input_hash,
+        aggregator_code_sha256=aggregator_code_hash,
+        allowed_lateness_ms=allowed_lateness_ms,
+    )
     states: dict[str, dict[str, Any]] = {}
     rows_written = 0
     input_rows = 0
     late_rows = 0
     global_feed_events = 0
     global_disconnect_events = 0
+    unknown_time_feed_events = 0
+    unknown_time_feed_symbols: set[str] = set()
+    late_invalidated_windows: set[tuple[str, int]] = set()
     incomplete_windows = 0
     output_bytes = 0
     output_hash = hashlib.sha256()
@@ -261,6 +377,10 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
         values, next_previous = _window_row(symbol, start, item, future_samples,
                                              state["previous_depth"])
         values["window_final"] = final
+        values["aggregation_run_id"] = aggregation_run_id
+        row_bytes = json.dumps(values, sort_keys=True, separators=(",", ":"),
+                               allow_nan=False).encode()
+        values["aggregation_row_sha256"] = hashlib.sha256(row_bytes).hexdigest()
         data = (json.dumps(values, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode()
         if output_bytes + len(data) > max_output_bytes:
             raise OSError(f"10-second window output cap exceeded ({max_output_bytes} bytes)")
@@ -287,9 +407,16 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
                 continue
             kind = row.get("kind")
             stamp = row.get("exchange_event_ms")
-            if kind == "feed_event":
-                stamp = row.get("received_at_ms")
+            if kind == "feed_event" and (isinstance(stamp, bool) or not isinstance(stamp, int)):
+                # A receive timestamp cannot identify which exchange-time
+                # window a malformed event invalidates. Never misattribute it.
+                unknown_time_feed_events += 1
+                unknown_time_feed_symbols.add(symbol)
+                continue
             if isinstance(stamp, bool) or not isinstance(stamp, int):
+                if kind == "feed_event":
+                    global_feed_events += 1
+                    unknown_time_feed_events += 1
                 continue
             state = state_for(symbol)
             start = stamp // WINDOW_MS * WINDOW_MS
@@ -301,10 +428,15 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
             if is_late:
                 late_rows += 1
                 if start < state["next_start"]:
+                    late_invalidated_windows.add((symbol, start))
+                    if len(late_invalidated_windows) > MAX_LATE_INVALIDATED_WINDOWS:
+                        raise ValueError("late invalidation set exceeds configured bound")
                     continue
             item = state["windows"].setdefault(start, _new_window())
             mono = float(row.get("received_monotonic_s", 0.0))
             _touch_receive(item, mono)
+            _touch_receive_wall(item, row.get("received_at_ms"))
+            _touch_receive_clock_domain(item, row.get("receive_clock_domain"))
             if is_late:
                 item["late_event_count"] += 1
             if kind in {"book_update", "book_snapshot", "book_sync"}:
@@ -384,17 +516,26 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
     manifest = {
         "format": "cointrade-l2-10s-windows-v1",
         "source_path": str(source), "source_sha256": input_hash,
+        "aggregation_run_id": aggregation_run_id,
+        "aggregator_code_sha256": aggregator_code_hash,
         "input_rows": input_rows,
         "output_path": str(output), "output_sha256": output_hash.hexdigest(),
         "output_bytes": output.stat().st_size, "windows_written": rows_written,
         "late_input_rows": late_rows, "unfinalized_windows_withheld": incomplete_windows,
+        "late_invalidated_windows": [
+            {"symbol": symbol, "window_start_ms": start}
+            for symbol, start in sorted(late_invalidated_windows)
+        ],
+        "unknown_time_feed_events": unknown_time_feed_events,
+        "unknown_time_feed_symbols": sorted(unknown_time_feed_symbols),
         "global_feed_events": global_feed_events,
         "global_disconnect_events": global_disconnect_events,
         "allowed_lateness_ms": allowed_lateness_ms,
         "window_ms": WINDOW_MS, "refill_observation_ms": REFILL_MS,
         "max_depth_endpoint_age_ms": MAX_DEPTH_ENDPOINT_AGE_MS,
         "strategy_metrics": None,
-        "quality_pass": late_rows == 0 and global_disconnect_events == 0,
+        "quality_pass": late_rows == 0 and global_disconnect_events == 0
+        and unknown_time_feed_events == 0,
         "limitations": [
             "Window boundaries use exchange event timestamps; receive monotonic times are retained as availability evidence.",
             "Late events for already-finalized windows are counted in the manifest and never backfilled.",
@@ -402,6 +543,7 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
             "A successful one-hour replay does not prove multi-day or multi-symbol capture reliability.",
         ],
     }
+    manifest["manifest_integrity_sha256"] = manifest_integrity_sha256(manifest)
     with manifest_path.open("x", encoding="utf-8") as handle:
         handle.write(json.dumps(manifest, sort_keys=True, indent=2) + "\n")
         handle.flush()

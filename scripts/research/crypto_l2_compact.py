@@ -75,6 +75,8 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
     invalidations = 0
     feed_events = 0
     possible_trade_gaps = 0
+    duplicate_trade_ids = 0
+    out_of_order_trade_ids = 0
     last_trade_id: dict[str, int] = {}
     out_bytes = 0
     digest = hashlib.sha256()
@@ -84,6 +86,8 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
             if not raw.endswith(b"\n"):
                 raise IOError(f"source has unterminated JSONL at line {line_no}")
             record = json.loads(raw)
+            if not isinstance(record.get("receive_clock_domain"), str) or not record["receive_clock_domain"]:
+                record["receive_clock_domain"] = source.parent.name
             raw_records += 1
             kind = record.get("kind")
             symbol = record.get("symbol")
@@ -97,6 +101,7 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                     "state": record.get("state"),
                     "received_at_ms": record.get("received_at_ms"),
                     "received_monotonic_s": record.get("received_monotonic_s"),
+                    "receive_clock_domain": record.get("receive_clock_domain"),
                     "error_type": record.get("error"),
                 }
                 out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
@@ -120,6 +125,7 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                     "category": "book_invalid", "reason": record.get("reason"),
                     "received_at_ms": record.get("received_at_ms"),
                     "received_monotonic_s": record.get("received_monotonic_s"),
+                    "receive_clock_domain": record.get("receive_clock_domain"),
                 }
                 out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
                 rows += 1
@@ -162,6 +168,7 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                             "category": "depth_sequence_gap",
                             "received_at_ms": record.get("received_at_ms"),
                             "received_monotonic_s": record.get("received_monotonic_s"),
+                            "receive_clock_domain": record.get("receive_clock_domain"),
                         }
                         out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
                         rows += 1
@@ -193,6 +200,39 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
                 age_ms = max(0.0, (received_mono - last_book_receive_mono.get(symbol, received_mono)) * 1000)
                 trade_id = event.get("a")
                 previous_trade_id = last_trade_id.get(symbol)
+                if (isinstance(trade_id, bool) or not isinstance(trade_id, int)
+                        or trade_id <= 0):
+                    row = {
+                        "kind": "feed_event", "symbol": symbol,
+                        "category": "invalid_agg_trade_id",
+                        "exchange_event_ms": event.get("T", event.get("E")),
+                        "received_at_ms": record.get("received_at_ms"),
+                        "received_monotonic_s": record.get("received_monotonic_s"),
+                        "receive_clock_domain": record.get("receive_clock_domain"),
+                    }
+                    out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
+                    rows += 1
+                    feed_events += 1
+                    continue
+                if isinstance(previous_trade_id, int) and trade_id <= previous_trade_id:
+                    duplicate = trade_id == previous_trade_id
+                    if duplicate:
+                        duplicate_trade_ids += 1
+                    else:
+                        out_of_order_trade_ids += 1
+                    row = {
+                        "kind": "feed_event", "symbol": symbol,
+                        "category": "duplicate_agg_trade_id" if duplicate else "out_of_order_agg_trade_id",
+                        "exchange_event_ms": event.get("T", event.get("E")),
+                        "received_at_ms": record.get("received_at_ms"),
+                        "received_monotonic_s": record.get("received_monotonic_s"),
+                        "receive_clock_domain": record.get("receive_clock_domain"),
+                        "trade_id": trade_id,
+                    }
+                    out_bytes += _write_row(dst, digest, row, max_output_bytes - out_bytes)
+                    rows += 1
+                    feed_events += 1
+                    continue
                 possible_gap = (isinstance(trade_id, int) and isinstance(previous_trade_id, int)
                                 and trade_id > previous_trade_id + 1)
                 if possible_gap:
@@ -228,6 +268,8 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
         "invalidations": invalidations,
         "feed_events_preserved": feed_events,
         "possible_trade_id_gaps": possible_trade_gaps,
+        "duplicate_trade_ids_dropped": duplicate_trade_ids,
+        "out_of_order_trade_ids_dropped": out_of_order_trade_ids,
         "strategy_metrics": None,
         "limitations": [
             "Rows preserve receive order; exchange event time is retained separately.",
@@ -254,6 +296,7 @@ def _book_row(symbol: str, event: dict[str, Any], record: dict[str, Any], book: 
         "exchange_event_ms": event.get("T", event.get("E")),
         "received_at_ms": record.get("received_at_ms"),
         "received_monotonic_s": record.get("received_monotonic_s"),
+        "receive_clock_domain": record.get("receive_clock_domain"),
         "last_update_id": book.last_update_id,
         "bid": bid,
         "ask": ask,
@@ -274,6 +317,7 @@ def _trade_row(symbol: str, event: dict[str, Any], record: dict[str, Any], book_
         "exchange_event_ms": event.get("T", event.get("E")),
         "received_at_ms": record.get("received_at_ms"),
         "received_monotonic_s": record.get("received_monotonic_s"),
+        "receive_clock_domain": record.get("receive_clock_domain"),
         "price": float(event["p"]),
         "base_quantity": float(event["q"]),
         "quote_quantity": float(event["p"]) * float(event["q"]),

@@ -120,6 +120,59 @@
     "strategy_metrics": null,
     "production_recorder_gate": "not_passed"
   },
+  "causal_integrity_followup_2026_11_16": {
+    "scope": "offline engineering and causal-data validation only; no performance labels",
+    "changes": [
+      "Drop duplicate and non-increasing aggTrade IDs; preserve explicit timestamped feed-error rows and counters.",
+      "Persist receive-wall availability timestamps in aggregated windows, alongside monotonic timestamps.",
+      "Exclude prior aggression observations that arrived at or after the decision, even if exchange event time is earlier.",
+      "Require strict wall-clock receive availability for completed T/H bars and windows; missing receive-wall time fails closed."
+    ],
+    "pilot_replay": {
+      "source_sha256": "ee337e99a4f3060ec7f56889f35eb4ed213839356a7efc1533ff7a97904d057e",
+      "compact_rows": 208165,
+      "compact_sha256": "280f5b008cf1668059b7c2ffe600ed598a31699f739f4a53df24b5e7c83a7701",
+      "duplicate_trade_ids_dropped": 0,
+      "out_of_order_trade_ids_dropped": 0,
+      "windows": 718,
+      "quality_ready_windows": 716,
+      "quality_blocked_windows": 2,
+      "window_sha256": "c91aa7db208cc293b05792ad2f5efda38fa9eba9f5fefeb7bc16f62b25f1a9bd",
+      "late_input_rows": 0,
+      "disconnects": 0,
+      "strategy_metrics": null,
+      "temporary_outputs_committed": false
+    },
+    "verification": {
+      "focused_r005_tests": "passed",
+      "chart_predictor_tests": "259 passed, 1 environment warning",
+      "git_diff_check": "passed",
+      "performance_cells_run": 0,
+      "production_recorder_gate": "not_passed"
+    },
+    "remaining_gates": [
+      "Integrate actual T/H candle construction, candidate generation and execution replay with provenance-preserving capture replay.",
+      "Freeze the minimum prior-history count and calibration/training/validation sample gates before labels.",
+      "Prove wall-clock synchronization/skew and cross-restart availability semantics.",
+      "Measure multi-day reconnect recovery, 20-symbol sustained storage, funding coverage and executable depth sufficiency."
+    ]
+  },
+  "post_patch_verification_2026_11_16": {
+    "scope": "unit/integrity tests only; no strategy metrics",
+    "focused_r005_tests": "35 passed",
+    "chart_predictor_tests": "273 passed, 1 environment-only joblib warning",
+    "root_repository_pytest": "not valid: collection stopped with 54 unrelated archived-tree/import errors",
+    "git_diff_check": "passed",
+    "latest_pilot_replay": "not run; original raw capture is absent from the accessible checkout and old compact artifacts lack receive_clock_domain",
+    "malformed_symbol_event_time": "fails the aggregation quality gate; receive-wall time is not used to guess event-window attribution",
+    "candidate_manifest_gate": "candidate builder requires and checks aggregation manifest quality_pass and derives late invalidations from manifest",
+    "window_provenance": "candidate builder recomputes quality from failure counters, verifies unkeyed manifest integrity hash and current aggregator code SHA-256, recomputes run ID from source/code/configuration, verifies each row SHA-256, and recomputes complete ordered JSONL output SHA-256 against manifest",
+    "manifest_authentication_limit": "unkeyed hashes detect inconsistent edits but do not authenticate a coordinated rewrite; signed or immutable provenance is not implemented",
+    "candidate_replay_memory_contract": "complete output list required; chunked/sharded replay not implemented",
+    "performance_cells_run": 0,
+    "strategy_metrics": null,
+    "production_recorder_gate": "not_passed"
+  },
   "decision": "candidate_spec_pending_data_pipeline",
-  "next_action": "Verify event-time/receive-time availability at every T-bar decision, retain executable quote paths and invalid-feed intervals in the aggregated ledger, then test multi-day capacity and reconnect recovery before freezing the outcome protocol."
+  "next_action": "Implement a deterministic offline replay orchestrator that links completed T/H candles, receive-time-qualified 10-second features, R005 candidate generation, execution quote paths and funding coverage; continue to withhold strategy labels until all preregistration and recorder gates pass."
 }
