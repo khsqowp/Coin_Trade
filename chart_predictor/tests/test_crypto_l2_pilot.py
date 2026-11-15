@@ -14,6 +14,7 @@ from scripts.research.crypto_l2_pilot import (
     JsonlSegment,
     Pilot,
     SYMBOLS,
+    _close_segment_with_fallback,
     _validated_output_root,
     coverage_summary,
     interval_overlap,
@@ -78,6 +79,28 @@ def test_manifest_reports_exact_metadata_and_total_output_bytes(tmp_path):
     assert metrics["total_output_bytes_per_hour"] == pytest.approx(
         metrics["total_output_bytes"] * 60
     )
+
+
+def test_manifest_finalization_failure_preserves_partial_and_writes_diagnostic(tmp_path, monkeypatch):
+    path = tmp_path / "capture.jsonl"
+    segment = JsonlSegment(path, max_bytes=16_384, manifest_reserve_bytes=4096)
+    segment.write({"kind": "trade", "received_at_ms": 100})
+
+    def fail_close(**kwargs):
+        raise RuntimeError("manifest byte-size calculation did not converge")
+
+    monkeypatch.setattr(segment, "close", fail_close)
+    result = _close_segment_with_fallback(
+        segment, complete=True, run_manifest={"run_id": "test"}
+    )
+
+    partial = path.with_suffix(".jsonl.partial")
+    diagnostic = json.loads((tmp_path / "finalization_error.json").read_text())
+    assert result["status"] == "incomplete"
+    assert partial.read_bytes().endswith(b"\n")
+    assert diagnostic["finalization_error_type"] == "RuntimeError"
+    assert "did not converge" in diagnostic["finalization_error_message"]
+    assert diagnostic["segment"]["sha256"]
 
 
 def test_verifier_rejects_a_partially_written_final_jsonl_record(tmp_path):
