@@ -27,6 +27,8 @@ HYPOTHESES={
  "fibonacci_pocket":"A directional retracement into the fixed 61.8–78.6% swing pocket should resume the preceding impulse toward a two-risk target.",
  "order_block":"A bullish/bearish impulse candle should leave behind an unfilled order block whose first retest and reclaim marks support/resistance for continuation.",
  "fabio_liquidity_mss":"A rolling-window liquidity grab beyond the recent extreme, followed by a tighter structure-shift break in the opposite direction, should mark a reversal with favorable follow-through.",
+ "heikin_ashi_reversal":"A recursive Heikin-Ashi bearish-to-bullish or bullish-to-bearish flip should identify a short-horizon directional reversal with follow-through.",
+ "heikin_ashi_reversal_strict":"A Heikin-Ashi flip with body at least 0.5 ATR14 should filter weak reversals and improve short-horizon follow-through.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 

@@ -81,6 +81,35 @@ def test_fabio_grab_without_mss_does_not_signal():
     h[60],c[60]=103,102
     assert not generate_signals(_ohlc(o,h,l,c),"fabio_liquidity_mss")
 
+def test_heikin_ashi_reversal_long_flip_uses_recursive_open_stop():
+    f=_ohlc([10,12,12],[10,12,12],[0,12,12],[10,12,12])
+    sigs=generate_signals(f,"heikin_ashi_reversal")
+    assert Signal(1,"long",8.75) in sigs
+
+def test_heikin_ashi_reversal_no_flip_when_bullish_throughout():
+    f=_ohlc([10]*8,[20]*8,[10]*8,[10]*8)
+    assert generate_signals(f,"heikin_ashi_reversal")==[]
+
+def test_heikin_ashi_reversal_short_flip_is_symmetric_extension():
+    f=_ohlc([10,5,5],[20,5,5],[10,5,5],[10,5,5])
+    assert Signal(1,"short",11.25) in generate_signals(f,"heikin_ashi_reversal")
+
+def test_heikin_ashi_reversal_wrong_side_stop_is_suppressed():
+    f=_ohlc([10,12,12],[10,12,12],[0,12,12],[10,12,12])
+    f.loc[1,"c"]=8
+    assert not any(s.index==1 for s in generate_signals(f,"heikin_ashi_reversal"))
+
+def test_heikin_ashi_reversal_strict_requires_half_atr_body():
+    o=np.full(21,100.); h=np.full(21,101.); l=np.full(21,99.); c=np.full(21,100.)
+    # A tiny HA body inside a wide-range flip is below the fixed 0.5 ATR14 conviction threshold.
+    h[-2],l[-2],c[-2]=110.,90.,100.5
+    f=_ohlc(o,h,l,c)
+    assert not any(s.index==19 for s in generate_signals(f,"heikin_ashi_reversal_strict"))
+    # A clear close-driven flip with a 5-point HA body clears the same threshold.
+    h[-2],l[-2],c[-2]=110.,100.,110.
+    f=_ohlc(o,h,l,c)
+    assert Signal(19,"long",100.) in generate_signals(f,"heikin_ashi_reversal_strict")
+
 def test_supertrend_direction_matches_inline_rule():
     f=candles(100); h,l,c=(f[k].to_numpy() for k in ("h","l","c")); a=indicators.atr(h,l,c,14)
     expected=np.zeros(len(c),int); upper=(h+l)/2+3*a; lower=(h+l)/2-3*a

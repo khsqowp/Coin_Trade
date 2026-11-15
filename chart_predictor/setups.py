@@ -6,7 +6,8 @@ from . import indicators
 
 SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
-          "order_block", "fabio_liquidity_mss")
+          "order_block", "fabio_liquidity_mss", "heikin_ashi_reversal",
+          "heikin_ashi_reversal_strict")
 
 @dataclass(frozen=True)
 class Signal:
@@ -155,4 +156,25 @@ def generate_signals(frame, setup, prepared=None):
                         emit(i,"long",grab_level); state="waiting"
                     # The Pine armed state has no timeout/opposite-grab reset; this port likewise waits
                     # indefinitely, then resets after one entry so a continuing inequality cannot re-fire.
+    elif setup=="heikin_ashi_reversal":
+        hc=(o+h+l+c)/4; ho=np.empty(n,float)
+        if n:
+            ho[0]=(o[0]+c[0])/2
+            for i in range(1,n): ho[i]=(ho[i-1]+hc[i-1])/2
+        # HA_Open is the recursive midpoint broken by the flip; emit() suppresses anchors on the wrong side of price.
+        for i in range(1,n):
+            if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
+            # Symmetric short-side flip is this research port's extension; the cited source defines long only.
+            if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
+    elif setup=="heikin_ashi_reversal_strict":
+        hc=(o+h+l+c)/4; ho=np.empty(n,float)
+        if n:
+            ho[0]=(o[0]+c[0])/2
+            for i in range(1,n): ho[i]=(ho[i-1]+hc[i-1])/2
+        # One conviction filter, fixed before the rerun: require a flip-bar HA body >= 0.5 ATR14.
+        # Half an ATR removes marginal flips while retaining a scale-normalized, causal threshold.
+        for i in range(1,n):
+            if not np.isfinite(a[i]) or abs(hc[i]-ho[i])<0.5*a[i]: continue
+            if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
+            if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
     return out

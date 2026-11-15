@@ -155,3 +155,21 @@ LLM이 읽는 것과 같은 결정적 특징으로 로지스틱(L2)·HistGradien
 **결론**: P4의 예측 경로와 P5의 기존 8개 규칙에 이어, 이번 SMC 계열 2개 추가 규칙도 사전 등록한 개발 구간 기준에서 엣지를 확인하지 못했다. 특히 순수익 상위 숫자는 적중률과 expert 판정을 뒤집지 못한다. 뒤 30% 검증 구간은 P5의 사전 기준에 따라 열지 않는다. 다음 단계는 새로운 진입 규칙을 더 늘리기보다, 이 규칙 백테스트 경로에서 통과 후보가 없다는 결과를 기준선으로 보존하는 것이다.
 
 **부가 확인**: Stage A 신호 캐시 [`signals_e959118d43f2c0e0.json`](../../chart_predictor/data/setups/signals_e959118d43f2c0e0.json)은 27,512,835 bytes(약 26.2 MiB)다. P5의 476MB보다는 작지만 수 MB 단위는 아니다.
+
+### P7-A — 하이킨 아시 리버설
+
+범위: 84일 개발 구간(2026-07-17~2026-10-09 컷오프), 거래량 상위 50종목, 1/5/30/60분봉, 2R(Stage A)·3R(Stage B), Stage C 5개 시간 fold와 `base`/`vol_top_third`/`htf_trend_align` 필터를 평가했다. 원형 셋업 `heikin_ashi_reversal` 리포트는 Stage A [`report_b5daa1c488b1b227.json`](../../chart_predictor/data/setups/report_b5daa1c488b1b227.json), Stage B [`report_2400dc9a2179eabe.json`](../../chart_predictor/data/setups/report_2400dc9a2179eabe.json), Stage C [`report_be3242c9a76e0db4.json`](../../chart_predictor/data/setups/report_be3242c9a76e0db4.json)이며 지문은 각각 `b5daa1c488b1b227`, `2400dc9a2179eabe`, `be3242c9a76e0db4`다. 1회 refinement `heikin_ashi_reversal_strict` 리포트는 Stage A [`report_6c760dc546f47fd1.json`](../../chart_predictor/data/setups/report_6c760dc546f47fd1.json), Stage B [`report_044d5d0805cc0774.json`](../../chart_predictor/data/setups/report_044d5d0805cc0774.json), Stage C [`report_903c3b79c523ba52.json`](../../chart_predictor/data/setups/report_903c3b79c523ba52.json)이며 각 파일명 지문과 일치한다. 두 Stage C 보고서는 각각 48개 셀이고 최종 판단은 Stage C 기준이다.
+
+**엄격 기준 결과: 두 변형 모두 실패.** 원형 Stage C 48개 셀 중 적중률 75% 이상·거래 30건 이상을 동시에 만족한 셀은 0개다. refinement Stage C도 48개 중 0개다. 원형 최고 적중률은 long/60m/2R/`vol_top_third`: n=3,067, 32.44%, Wilson 95% CI 30.81–34.12%, 순수익 -41.16%다. `backtest_expert`는 45점 `REJECT / Abandon`으로 `excessive_drawdown`, `short_test_period`, `negative_expectancy`를 표시했다. Stage C 추가 플래그는 `positive_return_concentrated_in_one_17_day_fold` 및 `target_R_parameter_instability`다.
+
+원형에서 유일하게 순수익이 양수인 셀은 long/60m/3R/`vol_top_third`로 +1.04%에 그쳤다(n=3,067, 적중률 23.41%, CI 21.95–24.94%). Expert 50점 `REJECT / Abandon`, 레드플래그 `excessive_drawdown`·`short_test_period`, Stage C 플래그 `positive_return_concentrated_in_one_17_day_fold`·`target_R_parameter_instability`다. 양수라는 사실은 기준 통과나 엣지의 증거가 아니다.
+
+비교 기준인 [`전략-백테스트-종합.md` §13-4](../전략-백테스트-종합.md)는 하이킨 아시 일봉 전략에서 20일 보유, CAGR +71.30%, MDD 72.24%, Sharpe 1.110, 898 매매를 기록했고 기대치 충족으로 스윕을 생략했다. 이번 평가는 그 결과를 반복하지 않는다. 같은 기하 규칙의 음봉→양봉 전환을 사용하지만, 일봉 랭킹·20일 보유의 CAGR/Sharpe 포트폴리오 평가와 달리, 여기서는 84일 개발 구간의 다중 종목·분봉에서 고정 손절·R 목표 도달 적중률을 평가한다. 진입 시점, 출구, 표본 단위, 평가 지표가 달라 서로 대체할 수 없는 별도 검사다.
+
+손절은 신호가 난 전환 봉의 재귀적 `HA_open`으로 고정했다. HA 방향을 바꾸게 한 경계값을 무효화 가격으로 쓰는 규칙이며, 신호 봉 종가에서 산출 가능하고 이후 데이터를 참조하지 않는다. 공유 `emit()` 검사가 가격의 잘못된 쪽에 놓인 손절을 제거한다. 숏 규칙은 원 일봉 기준의 롱 신호를 반전한 이식의 대칭 확장이다.
+
+원형에서 통과 셀이 없어 refinement는 한 번만 실행했다. 고정 필터는 전환 봉의 `abs(HA_close - HA_open) >= 0.5 × ATR(14)`다. ATR로 변동성 규모를 정규화하면서 작은 몸통의 약한 전환을 거르는 단일 사전 문턱이며 파라미터 탐색은 하지 않았다. strict 변형의 최고 적중률은 long/60m/2R/`vol_top_third`: n=538, 27.32%, CI 23.73–31.24%, 순수익 +4.30%, expert 50점 `REJECT / Abandon`이다. 최고 순수익은 long/30m/3R/`vol_top_third`: n=1,104, 적중률 15.85%, CI 13.82–18.12%, +91.09%다. 이 셀은 expert 50점 `REJECT / Abandon`, `excessive_drawdown`(MDD 71.41%)·`short_test_period` 레드플래그, Stage C `target_R_parameter_instability` 플래그다. 수익은 3번째 fold의 +114.32%에 크게 의존하고 1·2번째 fold는 -47.42%, -26.25%였다. 높은 합산 수익이 낮은 적중률과 fold 편중 및 expert 기각을 뒤집지 않는다. refinement는 엄격 기준의 실패 판정을 바꾸지 못했다.
+
+**결론:** 원형과 0.5 ATR 몸통 필터 변형 모두 Stage C 사전 기준에서 통과하지 못했다. 일봉 기준선의 양호한 CAGR은 이 분봉 R-배수 적중률 결과를 정당화하지 않으며, 이 검사에서 후보 승격 근거는 없다.
+
+**부가 확인:** 원형 Stage A 신호 캐시 [`signals_b5daa1c488b1b227.json`](../../chart_predictor/data/setups/signals_b5daa1c488b1b227.json)은 279,194,660 bytes(약 266.2 MiB), refinement 캐시 [`signals_6c760dc546f47fd1.json`](../../chart_predictor/data/setups/signals_6c760dc546f47fd1.json)은 64,828,460 bytes(약 61.8 MiB)다. `chart_predictor/data/`는 로컬 전용·미추적이며 커밋 대상이 아니다.
