@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-11-16-r009-l2-pilot-body-and-replay-audit",
+  "parent_run_id": "2026-11-16-r005-liquidity-replenishment",
+  "date": "2026-11-16",
+  "status": "body_complete_finalize_failed",
+  "source_run_directory": "chart_predictor/data/crypto_l2_pilots/20261115T222507Z-d6ad3567",
+  "source_file": "capture.jsonl.partial",
+  "source_sha256": "d7171431565a7ab2ae82b749e09f04bd99eb00e29cc65fde9d02fe337583f1ec",
+  "source_bytes": 172649813,
+  "source_records": 143774,
+  "source_parse_errors": 0,
+  "source_unterminated_lines": 0,
+  "first_receive_ms": 1794781507625,
+  "last_receive_ms": 1794785108314,
+  "observed_receive_span_ms": 3600689,
+  "event_counts": {
+    "BTCUSDT_aggTrade": 65665,
+    "ETHUSDT_aggTrade": 63768,
+    "BTCUSDT_depth_delta": 7168,
+    "ETHUSDT_depth_delta": 7167,
+    "BTCUSDT_depth_snapshot": 1,
+    "ETHUSDT_depth_snapshot": 1,
+    "BTCUSDT_book_state": 1,
+    "ETHUSDT_book_state": 1,
+    "connection_events": 2
+  },
+  "recorded_connection_events": [
+    {"stream": "aggTrade", "state": "connected", "received_at_ms": 1794781507625},
+    {"stream": "depth", "state": "connected", "received_at_ms": 1794781507634}
+  ],
+  "compact_replay": {
+    "output_sha256_run_a": "744ae55db75cafdb4b76467cd9db71b12d63103765d98a688e27d359376f1e34",
+    "output_sha256_run_b": "744ae55db75cafdb4b76467cd9db71b12d63103765d98a688e27d359376f1e34",
+    "rows": 143767,
+    "synchronized_snapshots": 2,
+    "invalidations": 0,
+    "feed_events_preserved": 2,
+    "trade_id_gaps": 0,
+    "duplicate_trade_ids_dropped": 0,
+    "out_of_order_trade_ids_dropped": 0
+  },
+  "window_replay": {
+    "output_sha256_run_a": "12861858308af481ed543fa64b5eb58151686f8a2b78f1d105056d8a850ecb92",
+    "output_sha256_run_b": "12861858308af481ed543fa64b5eb58151686f8a2b78f1d105056d8a850ecb92",
+    "windows_written": 720,
+    "data_quality_ready": 718,
+    "data_quality_not_ready": 2,
+    "late_input_rows": 0,
+    "late_invalidated_windows": 0,
+    "global_disconnect_events": 0,
+    "quality_pass": true
+  },
+  "process_exit": {"exit_code": 10, "reported_error_type": "RuntimeError", "run_manifest_written": false},
+  "performance_cells": 0,
+  "strategy_metrics": null,
+  "decision": "preserve_as_integrity_only; do_not_claim_pilot_acceptance_or_signal_performance",
+  "next_action": "Instrument the finalization exception with a sanitized local diagnostic, add a regression test, then conduct a fresh bounded capture under a new run ID; retain this source unchanged."
+}
