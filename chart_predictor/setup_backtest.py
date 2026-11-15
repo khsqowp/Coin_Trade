@@ -44,6 +44,8 @@ HYPOTHESES={
  "engulfing_rsi_extreme_strict":"After the base rule's stop-dominated failures, the same engulfing reversal should improve when RSI exhaustion is restricted to below 20 for longs and above 80 for shorts; this single threshold change tests whether only deeper extremes distinguish exhaustion from continued pressure.",
  "pinbar_stochastic_cross":"A hammer or shooting star pin bar at a stochastic extreme should produce stronger reversal follow-through when %K crosses %D within two bars.",
  "pinbar_stochastic_cross_strict":"A pin bar at a more extreme stochastic reading (%K below 10 or above 90) should filter weaker reversals and improve follow-through.",
+ "doji_macd_flip":"A doji (indecision candle, body <=10% of range, range >=0.5 ATR14) landing on a bar where the 12/26/9 MACD histogram flips sign should mark a higher-probability reversal than either signal alone.",
+ "doji_macd_flip_strict":"The same doji+MACD-flip reversal should perform better once the doji body threshold is tightened from 10% to 5% of range, filtering out marginal/less-indecisive candles.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -138,6 +140,7 @@ def _write(report,report_dir, data_hash, stage):
     present={r["setup"] for r in rows}
     label=("P8-A" if present and present<={"bb_squeeze_breakout","bb_squeeze_breakout_strict"}
       else "P9-B" if present and present<={"pinbar_stochastic_cross","pinbar_stochastic_cross_strict"}
+      else "P9-C" if present and present<={"doji_macd_flip","doji_macd_flip_strict"}
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
       else "P9-A" if present and present<={"engulfing_rsi_extreme","engulfing_rsi_extreme_strict"}
@@ -174,7 +177,8 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
             prepared={"atr":atr(h,l,c,14),"swings":indicators.confirmed_swings(h,l,3),
                       "rsi":indicators.rsi(c,14),"vwap":indicators.vwap(h,l,c,v,frame.t_open_ms),
                       "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c),
-                      "stochastic":indicators.stochastic(h,l,c)}
+                      "stochastic":indicators.stochastic(h,l,c),
+                      "macd_hist":indicators.macd(c)[2]}
             cache[symbol]=(raw,frame,{setup:generate_signals(frame,setup,prepared) for setup in setups},tier)
         for symbol,(raw,frame,signals,tier) in cache.items():
             for setup,sigs in signals.items():

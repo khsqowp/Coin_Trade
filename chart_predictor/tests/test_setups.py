@@ -556,3 +556,126 @@ def test_engulfing_rsi_extreme_strict_rejects_marginal_rsi_base_accepts(side):
     prepared={"rsi":r}
     assert any(s.index==i and s.side==side for s in generate_signals(f,"engulfing_rsi_extreme",prepared))
     assert not any(s.index==i for s in generate_signals(f,"engulfing_rsi_extreme_strict",prepared))
+
+def test_macd_matches_manual_ema_recursion():
+    # Correctness, independent of indicators.ema(): a hand-rolled adjust=False
+    # EMA recursion (alpha=2/(period+1), seeded by the first observation) must
+    # match indicators.macd()'s fast/slow EMA difference and its signal EMA.
+    c=np.array([10.,12.,11.,13.,15.,14.,16.,18.,17.,19.,20.,18.,21.,22.,20.])
+    def manual_ema(values,period):
+        alpha=2/(period+1); out=np.empty(len(values)); out[0]=values[0]
+        for k in range(1,len(values)): out[k]=alpha*values[k]+(1-alpha)*out[k-1]
+        return out
+    fast,slow=manual_ema(c,3),manual_ema(c,6)
+    expected_line=fast-slow; expected_signal=manual_ema(expected_line,4)
+    line,signal,hist=indicators.macd(c,fast=3,slow=6,signal=4)
+    np.testing.assert_allclose(line,expected_line)
+    np.testing.assert_allclose(signal,expected_signal)
+    np.testing.assert_allclose(hist,expected_line-expected_signal)
+
+def test_macd_is_causal():
+    c=np.array([10.,12.,11.,13.,15.,14.,16.,18.,17.,19.,20.,18.,21.,22.,20.])
+    line,signal,hist=indicators.macd(c)
+    k=9
+    changed=c.copy(); changed[k:]*=5
+    line2,signal2,hist2=indicators.macd(changed[:k])
+    # A truncated-but-otherwise-identical prefix must reproduce the same
+    # trailing value as the full series at the same confirmation index.
+    np.testing.assert_allclose(line[k-1],line2[-1])
+    np.testing.assert_allclose(signal[k-1],signal2[-1])
+    np.testing.assert_allclose(hist[k-1],hist2[-1])
+
+def test_significant_doji_flags_small_body_on_wide_range_only():
+    # Fixed small array, hand-checked: bar 0 is a flat non-move (tiny body AND
+    # tiny range -- excluded by the ATR floor); bar 1 is a true doji (tiny
+    # body, wide range); bar 2 has a wide range but a large body (not a doji).
+    o=np.array([100.0,100.0,100.0])
+    c=np.array([100.05,100.05,104.0])
+    h=np.array([100.1,110.0,110.0])
+    l=np.array([99.9,90.0,90.0])
+    a=np.array([1.0,1.0,1.0])  # ATR14 fixed at 1.0 so 0.5*ATR14==0.5
+    out=indicators.significant_doji(o,h,l,c,a)
+    assert list(out)==[False,True,False]
+
+def test_significant_doji_respects_custom_thresholds():
+    o,h,l,c=np.array([100.]),np.array([110.]),np.array([90.]),np.array([101.6])
+    a=np.array([1.0])
+    # body=1.6, range=20 -> body/range=0.08: passes the default 10% body_ratio...
+    assert indicators.significant_doji(o,h,l,c,a,body_ratio=0.10)[0]
+    # ...but fails a stricter 5% threshold.
+    assert not indicators.significant_doji(o,h,l,c,a,body_ratio=0.05)[0]
+
+def test_significant_doji_is_nan_atr_safe_and_causal():
+    o=np.array([100.,100.,100.])
+    c=np.array([100.,100.,100.])
+    h=np.array([100.6,100.6,100.6])
+    l=np.array([99.4,99.4,99.4])
+    a=np.array([np.nan,1.0,1.0])
+    out=indicators.significant_doji(o,h,l,c,a)
+    assert out[0]==False  # NaN ATR can never confirm a signal
+    assert out[1]==out[2]==True
+    # Only the current bar's own OHLC+ATR decide its flag; mutating a later bar
+    # cannot change an earlier bar's already-computed value.
+    o2,h2,l2,c2,a2=o.copy(),h.copy(),l.copy(),c.copy(),a.copy()
+    o2[2],h2[2],l2[2],c2[2],a2[2]=5.,50.,1.,5.,100.
+    out2=indicators.significant_doji(o2,h2,l2,c2,a2)
+    assert out2[1]==out[1]
+
+def _doji_macd_base(n=120):
+    """Oscillating close (period ~37.7 bars) gives a MACD histogram several
+    natural zero-crossings; wicks are small and fixed so the un-doctored
+    series itself is almost never a doji."""
+    x=np.arange(n); c=100+np.sin(x/6.0)*3.0
+    o=np.empty_like(c); o[0]=c[0]; o[1:]=c[:-1]
+    h=np.maximum(o,c)+.3; l=np.minimum(o,c)-.3
+    return o,h,l,c
+
+def _doji_macd_indices(o,h,l,c):
+    """Pick (a) the first bar >=20 where the MACD histogram flips sign and the
+    un-doctored bar is not already a doji, and (b) the first bar >=20 with no
+    flip, both computed from the real indicators rather than hardcoded."""
+    hist=indicators.macd(c)[2]; a=indicators.atr(h,l,c,14); base_doji=indicators.significant_doji(o,h,l,c,a)
+    flip=next(i for i in range(20,len(c)-1) if np.isfinite(hist[i-1]) and np.isfinite(hist[i])
+              and (hist[i-1]<=0<hist[i] or hist[i-1]>=0>hist[i]) and not base_doji[i])
+    nonflip=next(i for i in range(20,len(c)-1) if np.isfinite(hist[i-1]) and np.isfinite(hist[i])
+                 and not (hist[i-1]<=0<hist[i] or hist[i-1]>=0>hist[i]))
+    return flip,nonflip,hist
+
+def _doji_macd_frame(o,h,l,c):
+    n=len(c)
+    return pd.DataFrame({"t_open_ms":1700000000000+np.arange(n)*60000,"o":o,"h":h,"l":l,"c":c,"v":np.ones(n)})
+
+def test_doji_macd_flip_fires_on_a_doji_bar_with_a_histogram_sign_change():
+    o,h,l,c=_doji_macd_base()
+    i,_,hist=_doji_macd_indices(o,h,l,c)
+    o2,h2,l2,c2=o.copy(),h.copy(),l.copy(),c.copy()
+    o2[i]=c2[i]; h2[i]=c2[i]+10; l2[i]=c2[i]-10  # force a wide-range, zero-body doji
+    sigs=generate_signals(_doji_macd_frame(o2,h2,l2,c2),"doji_macd_flip")
+    side="long" if hist[i]>0 else "short"
+    expect_stop=l2[i] if side=="long" else h2[i]
+    assert Signal(i,side,expect_stop) in sigs
+
+def test_doji_macd_flip_requires_the_histogram_flip_not_just_the_doji():
+    o,h,l,c=_doji_macd_base()
+    _,j,_=_doji_macd_indices(o,h,l,c)
+    o3,h3,l3,c3=o.copy(),h.copy(),l.copy(),c.copy()
+    o3[j]=c3[j]; h3[j]=c3[j]+10; l3[j]=c3[j]-10  # same forced doji, but no flip at j
+    sigs=generate_signals(_doji_macd_frame(o3,h3,l3,c3),"doji_macd_flip")
+    assert not any(s.index==j for s in sigs)
+
+def test_doji_macd_flip_requires_the_doji_not_just_the_flip():
+    o,h,l,c=_doji_macd_base()
+    i,_,_=_doji_macd_indices(o,h,l,c)
+    # Un-doctored bar i has a histogram flip but (by construction) is not a doji.
+    sigs=generate_signals(_doji_macd_frame(o,h,l,c),"doji_macd_flip")
+    assert not any(s.index==i for s in sigs)
+
+def test_doji_macd_flip_strict_rejects_a_marginal_doji_the_base_rule_accepts():
+    o,h,l,c=_doji_macd_base()
+    i,_,_=_doji_macd_indices(o,h,l,c)
+    o5,h5,l5,c5=o.copy(),h.copy(),l.copy(),c.copy()
+    h5[i]=c5[i]+10; l5[i]=c5[i]-10; rng=h5[i]-l5[i]
+    o5[i]=c5[i]-0.08*rng  # body/range=0.08: passes base 10% but fails strict 5%
+    f=_doji_macd_frame(o5,h5,l5,c5)
+    assert any(s.index==i for s in generate_signals(f,"doji_macd_flip"))
+    assert not any(s.index==i for s in generate_signals(f,"doji_macd_flip_strict"))

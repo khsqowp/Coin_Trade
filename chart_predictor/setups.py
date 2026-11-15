@@ -14,7 +14,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "vwap_band_fade", "vwap_band_fade_stretch",
           "volume_climax_exhaustion", "volume_climax_exhaustion_strict",
           "engulfing_rsi_extreme", "engulfing_rsi_extreme_strict",
-          "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict")
+          "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict",
+          "doji_macd_flip", "doji_macd_flip_strict")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -451,4 +452,39 @@ def generate_signals(frame, setup, prepared=None):
                         if ok: emit(i,side,extreme)
                         extended=False; extreme=pierce_edge=None
                 state[side]=[extended,extreme,pierce_edge]
+    elif setup in ("doji_macd_flip","doji_macd_flip_strict"):
+        # P9-C: candlestick pattern (doji = indecision) gated by an independent
+        # momentum indicator (standard 12/26/9 MACD histogram) flipping sign --
+        # a confluence/confirmation hypothesis, structurally distinct from this
+        # file's standalone pattern rules (candle_reversal) and standalone
+        # indicator rules (rsi_divergence, supertrend): both conditions must
+        # fire on/around the same bar.
+        #
+        # Doji: indicators.significant_doji(), a small body relative to the
+        # bar's own high-low range (same 10% body/range constant as
+        # indicators.candle_patterns()'s existing "doji" key, kept as a
+        # standalone helper rather than edited into that key so features.py's
+        # LLM feature snapshot pipeline, which already reads that key, is
+        # untouched) AND a range >= 0.5*ATR14 so dead-flat non-moves don't
+        # count as meaningful indecision.
+        #
+        # MACD histogram flip: histogram[i-1] and histogram[i] straddle zero on
+        # the doji bar itself -- the most literal reading of "the histogram is
+        # flipping direction" (a same-bar sign change), not a longer lookback
+        # window. Direction follows the histogram's new sign: turning positive
+        # -> long, turning negative -> short. Stop is the doji bar's own low
+        # (long) / high (short), the natural invalidation level for an
+        # indecision-bar reversal.
+        #
+        # "_strict" is the single bounded P9-C refinement (see HYPOTHESES /
+        # docs/chart_predictor/rounds.md): tighten the doji body threshold from
+        # 10% to 5% of range. The 0.5-ATR range floor and the flip/stop logic
+        # are left untouched so only one parameter changes.
+        strict=setup=="doji_macd_flip_strict"
+        doji=indicators.significant_doji(o,h,l,c,a,body_ratio=0.05 if strict else 0.10)
+        hist=prepared["macd_hist"] if "macd_hist" in prepared else indicators.macd(c)[2]
+        for i in range(1,n):
+            if not doji[i] or not (np.isfinite(hist[i-1]) and np.isfinite(hist[i])): continue
+            if hist[i-1]<=0<hist[i]: emit(i,"long",l[i])
+            elif hist[i-1]>=0>hist[i]: emit(i,"short",h[i])
     return out
