@@ -1,0 +1,3605 @@
+{
+  "run_id": "2026-11-16-r004-macd-zero-rsi50",
+  "phase": "screen",
+  "created_at": "2026-11-15T17:02:09.760594+00:00",
+  "code_sha256": "81d039203428f796ea68c8fc73a630e2b5d4f0a3588c5df83d0192ca657f20d6",
+  "indicator_code_sha256": "e407f4a001f743e59d0d2cf91ac0be2ec34c620a6a06091b2a64a33ade0eb80d",
+  "price_db_sha256": "7780d5d4e174db4a55ccf7ecc81240e4138ce915a10f164dd22b35778d629914",
+  "funding_snapshot_id": "screen-through-2025-01-01",
+  "funding_manifest_sha256": "fd9c8bc80ecc90729be2b636dc1d79c409aa40a22cdd7efab80824e792a8c4d8",
+  "splits": {
+    "train": [
+      1601510400000,
+      1704067200000
+    ],
+    "validation": [
+      1704067200000,
+      1735689600000
+    ]
+  },
+  "symbols": [
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "timeframes_min": [
+    1,
+    3,
+    5,
+    10,
+    15,
+    30,
+    60,
+    120,
+    240,
+    360,
+    720,
+    1440
+  ],
+  "exit_policies": [
+    "tp_2r",
+    "tp_3r",
+    "tp_4r",
+    "macd_zero_down"
+  ],
+  "selected_validation": [],
+  "trial_cells": 96,
+  "aggregate_results": [
+    {
+      "split": "train",
+      "timeframe_min": 1,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999977110137386,
+          "final_equity": 4.675257203589633E-19,
+          "mdd_pct": 100.0,
+          "sharpe": -4.118494083870079
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13744330063171079,
+        "median_net_trade_pct": -0.22181314773916713,
+        "trade_count": 185737,
+        "signal_count": 193023,
+        "turnover": 156.4759898904802,
+        "net_win_rate": 0.2815647932291358,
+        "target_first_rate": 0.25208224532537943
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999953593,
+          "final_equity": 1.473458832107363E-37,
+          "mdd_pct": 100.0,
+          "sharpe": -2.9105236376184824
+        },
+        "mean_net_trade_pct": -0.2774452051950968,
+        "trade_count": 185737,
+        "turnover": 156.4759898904802
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999975358104816,
+          "final_equity": 5.941560405552583E-19,
+          "mdd_pct": 100.0,
+          "sharpe": -4.109511891892401
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13687092415326377,
+        "median_net_trade_pct": -0.22850252839525328,
+        "trade_count": 185667,
+        "signal_count": 193023,
+        "turnover": 156.41701769165965,
+        "net_win_rate": 0.2531359907791907,
+        "target_first_rate": 0.13112184717801226
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999948921,
+          "final_equity": 2.012469555338008E-37,
+          "mdd_pct": 100.0,
+          "sharpe": -2.9115191655476154
+        },
+        "mean_net_trade_pct": -0.27687325349048564,
+        "trade_count": 185667,
+        "turnover": 156.41701769165965
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999973648495634,
+          "final_equity": 7.388772270801067E-19,
+          "mdd_pct": 100.0,
+          "sharpe": -4.129847480335287
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13605480680963447,
+        "median_net_trade_pct": -0.22992324708815873,
+        "trade_count": 185660,
+        "signal_count": 193023,
+        "turnover": 156.4111204717776,
+        "net_win_rate": 0.2439189917052677,
+        "target_first_rate": 0.07310136809221157
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999945476,
+          "final_equity": 2.4879555182774074E-37,
+          "mdd_pct": 100.0,
+          "sharpe": -2.9176605513431895
+        },
+        "mean_net_trade_pct": -0.2760577186857374,
+        "trade_count": 185660,
+        "turnover": 156.4111204717776
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999978586668948,
+          "final_equity": 3.764383493851644E-19,
+          "mdd_pct": 100.0,
+          "sharpe": -3.997881495280847
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13423216776040325,
+        "median_net_trade_pct": -0.2275533828882769,
+        "trade_count": 193022,
+        "signal_count": 193023,
+        "turnover": 162.6133108677338,
+        "net_win_rate": 0.2265078592077587,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.999999999997339,
+          "final_equity": 2.417587648778717E-38,
+          "mdd_pct": 100.0,
+          "sharpe": -2.830345274546596
+        },
+        "mean_net_trade_pct": -0.274236354564825,
+        "trade_count": 193022,
+        "turnover": 162.6133108677338
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 3,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9858797234026083,
+          "final_equity": 9.711962660064143E-7,
+          "mdd_pct": 99.99990322648654,
+          "sharpe": -5.168847420099385
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13674865865706562,
+        "median_net_trade_pct": -0.28792271217105175,
+        "trade_count": 61805,
+        "signal_count": 64779,
+        "turnover": 52.06823925863522,
+        "net_win_rate": 0.3297144243993204,
+        "target_first_rate": 0.2398673246501092
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.999825564435138,
+          "final_equity": 6.108815123607E-13,
+          "mdd_pct": 99.99999999993852,
+          "sharpe": -4.86797290649532
+        },
+        "mean_net_trade_pct": -0.27675131219457455,
+        "trade_count": 61805,
+        "turnover": 52.06823925863522
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 3,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9826747292852436,
+          "final_equity": 0.0000018880412776925624,
+          "mdd_pct": 99.99981192504936,
+          "sharpe": -4.483877691779382
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.1338050504852929,
+        "median_net_trade_pct": -0.29954224219034536,
+        "trade_count": 61781,
+        "signal_count": 64779,
+        "turnover": 52.04802021903959,
+        "net_win_rate": 0.2979556821676567,
+        "target_first_rate": 0.1261067318431233
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9997815402126357,
+          "final_equity": 1.269357014754651E-12,
+          "mdd_pct": 99.99999999987172,
+          "sharpe": -4.732386182890017
+        },
+        "mean_net_trade_pct": -0.27380980568273017,
+        "trade_count": 61781,
+        "turnover": 52.04802021903959
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 3,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9795348720807309,
+          "final_equity": 0.000003244038640591809,
+          "mdd_pct": 99.99967661206736,
+          "sharpe": -3.9533448125415367
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13153906077762242,
+        "median_net_trade_pct": -0.3027548081629131,
+        "trade_count": 61776,
+        "signal_count": 64779,
+        "turnover": 52.04380791912384,
+        "net_win_rate": 0.2887205387205387,
+        "target_first_rate": 0.07104700854700854
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9997394914208775,
+          "final_equity": 2.2492353839126756E-12,
+          "mdd_pct": 99.9999999997727,
+          "sharpe": -4.6631735267711365
+        },
+        "mean_net_trade_pct": -0.2715454144137294,
+        "trade_count": 61776,
+        "turnover": 52.04380791912384
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 3,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.9807413386592024,
+          "final_equity": 0.000002662737411769801,
+          "mdd_pct": 99.99973568108703,
+          "sharpe": -3.526093122871971
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.1282757650780393,
+        "median_net_trade_pct": -0.2966436813416165,
+        "trade_count": 64779,
+        "signal_count": 64779,
+        "turnover": 54.573715248525694,
+        "net_win_rate": 0.26604300776486206,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.999799724464111,
+          "final_equity": 9.570255501403368E-13,
+          "mdd_pct": 99.99999999990331,
+          "sharpe": -4.5051331486516215
+        },
+        "mean_net_trade_pct": -0.26828442344961184,
+        "trade_count": 64779,
+        "turnover": 54.573715248525694
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 5,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8825447241318747,
+          "final_equity": 0.0009489533852233682,
+          "mdd_pct": 99.9043935762369,
+          "sharpe": -2.767789830769315
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.12218023867575181,
+        "median_net_trade_pct": -0.32997377589458865,
+        "trade_count": 36863,
+        "signal_count": 38781,
+        "turnover": 31.055602358887953,
+        "net_win_rate": 0.3468518568754578,
+        "target_first_rate": 0.23877600846377126
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9911571246262536,
+          "final_equity": 2.1221704318966936E-7,
+          "mdd_pct": 99.9999784815281,
+          "sharpe": -5.2725661763371265
+        },
+        "mean_net_trade_pct": -0.2621932720289304,
+        "trade_count": 36863,
+        "turnover": 31.055602358887953
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 5,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8719500616950142,
+          "final_equity": 0.0012564225009025999,
+          "mdd_pct": 99.87323450370303,
+          "sharpe": -1.8785429437466694
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.11942376514929398,
+        "median_net_trade_pct": -0.3465272322687092,
+        "trade_count": 36853,
+        "signal_count": 38781,
+        "turnover": 31.047177759056446,
+        "net_win_rate": 0.31595799527853907,
+        "target_first_rate": 0.12444034406968225
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9903029050156332,
+          "final_equity": 2.8637155542513994E-7,
+          "mdd_pct": 99.99997092086795,
+          "sharpe": -4.666201834798245
+        },
+        "mean_net_trade_pct": -0.2594388434544589,
+        "trade_count": 36853,
+        "turnover": 31.047177759056446
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 5,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8602634217699999,
+          "final_equity": 0.0016687992272842592,
+          "mdd_pct": 99.84615038296266,
+          "sharpe": -1.5203463841014604
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.11676945060991265,
+        "median_net_trade_pct": -0.35079880753398496,
+        "trade_count": 36853,
+        "signal_count": 38781,
+        "turnover": 31.047177759056446,
+        "net_win_rate": 0.3071663093913657,
+        "target_first_rate": 0.07136461075082083
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.989361101409095,
+          "final_equity": 3.8703639332068593E-7,
+          "mdd_pct": 99.99996073783,
+          "sharpe": -4.3407788551575575
+        },
+        "mean_net_trade_pct": -0.25678644197861505,
+        "trade_count": 36853,
+        "turnover": 31.047177759056446
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 5,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.8881248627409694,
+          "final_equity": 0.0008101154509745435,
+          "mdd_pct": 99.92658137434167,
+          "sharpe": -1.4366067893788714
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.11388269834438254,
+        "median_net_trade_pct": -0.3412957353879508,
+        "trade_count": 38780,
+        "signal_count": 38781,
+        "turnover": 32.670598146588034,
+        "net_win_rate": 0.28238782877772045,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9926665251320675,
+          "final_equity": 1.1551068382365351E-7,
+          "mdd_pct": 99.99998825394641,
+          "sharpe": -4.077214532916143
+        },
+        "mean_net_trade_pct": -0.2539017004290436,
+        "trade_count": 38780,
+        "turnover": 32.670598146588034
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 10,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.6627478251583215,
+          "final_equity": 0.029237062831974303,
+          "mdd_pct": 97.41098580351054,
+          "sharpe": -2.2790439801981246
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.14219315077641784,
+        "median_net_trade_pct": -0.43225874690663646,
+        "trade_count": 18269,
+        "signal_count": 19345,
+        "turnover": 15.390901432181971,
+        "net_win_rate": 0.35240024084514754,
+        "target_first_rate": 0.23690404510372762
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9054659138289837,
+          "final_equity": 0.0004686382057845253,
+          "mdd_pct": 99.95383440819602,
+          "sharpe": -4.0878246282041815
+        },
+        "mean_net_trade_pct": -0.2821928771807282,
+        "trade_count": 18269,
+        "turnover": 15.390901432181971
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 10,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5850451629094267,
+          "final_equity": 0.057354575316838345,
+          "mdd_pct": 95.59199360228074,
+          "sharpe": -1.2899230410684146
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.13490672900530834,
+        "median_net_trade_pct": -0.45711994171008685,
+        "trade_count": 18261,
+        "signal_count": 19345,
+        "turnover": 15.384161752316764,
+        "net_win_rate": 0.32336673785663433,
+        "target_first_rate": 0.12890860303378784
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8828692793706241,
+          "final_equity": 0.0009404582368714819,
+          "mdd_pct": 99.91327705408477,
+          "sharpe": -2.738984921913124
+        },
+        "mean_net_trade_pct": -0.2749117202663141,
+        "trade_count": 18261,
+        "turnover": 15.384161752316764
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 10,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.6057710124555054,
+          "final_equity": 0.04855701448676061,
+          "mdd_pct": 96.42363261587418,
+          "sharpe": -1.0633537787011136
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.1348229351904451,
+        "median_net_trade_pct": -0.4635339485378573,
+        "trade_count": 18258,
+        "signal_count": 19345,
+        "turnover": 15.381634372367312,
+        "net_win_rate": 0.3152590645196626,
+        "target_first_rate": 0.07355679702048418
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8889737497525685,
+          "final_equity": 0.0007903087274016882,
+          "mdd_pct": 99.92239777862451,
+          "sharpe": -2.2620494855650604
+        },
+        "mean_net_trade_pct": -0.2748280886498905,
+        "trade_count": 18258,
+        "turnover": 15.381634372367312
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 10,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.5582126186812758,
+          "final_equity": 0.07030787266050155,
+          "mdd_pct": 96.05292467308354,
+          "sharpe": -0.8278506183655647
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.12536591459023788,
+        "median_net_trade_pct": -0.44084260803215447,
+        "trade_count": 19345,
+        "signal_count": 19345,
+        "turnover": 16.297388374052233,
+        "net_win_rate": 0.2879296975962781,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8822621496158936,
+          "final_equity": 0.0009563928341462623,
+          "mdd_pct": 99.91314120048231,
+          "sharpe": -1.9075470214035724
+        },
+        "mean_net_trade_pct": -0.26537751837082946,
+        "trade_count": 19345,
+        "turnover": 16.297388374052233
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 15,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5711484848138815,
+          "final_equity": 0.06383524091467864,
+          "mdd_pct": 93.64281885500752,
+          "sharpe": -2.2971781586619433
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.14486171469847503,
+        "median_net_trade_pct": -0.5169608781365633,
+        "trade_count": 12013,
+        "signal_count": 12753,
+        "turnover": 10.120471777590565,
+        "net_win_rate": 0.3557812369932573,
+        "target_first_rate": 0.2444018979438941
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8157925166021227,
+          "final_equity": 0.004096135766063287,
+          "mdd_pct": 99.59073572334549,
+          "sharpe": -3.5303528805974964
+        },
+        "mean_net_trade_pct": -0.28485987052951944,
+        "trade_count": 12013,
+        "turnover": 10.120471777590565
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 15,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5167051184250115,
+          "final_equity": 0.0941333841748556,
+          "mdd_pct": 92.42788556039227,
+          "sharpe": -1.316014942163821
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.14093241961297195,
+        "median_net_trade_pct": -0.5467970488316096,
+        "trade_count": 12008,
+        "signal_count": 12753,
+        "turnover": 10.116259477674811,
+        "net_win_rate": 0.3274483677548301,
+        "target_first_rate": 0.13132911392405064
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.790621697128936,
+          "final_equity": 0.006210751370959462,
+          "mdd_pct": 99.37884036170192,
+          "sharpe": -2.204545607320112
+        },
+        "mean_net_trade_pct": -0.2809334791233465,
+        "trade_count": 12008,
+        "turnover": 10.116259477674811
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 15,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.49110412163575756,
+          "final_equity": 0.11132539227932471,
+          "mdd_pct": 89.14775231402287,
+          "sharpe": -1.459358479802093
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.132196004018285,
+        "median_net_trade_pct": -0.5556466193631757,
+        "trade_count": 12008,
+        "signal_count": 12753,
+        "turnover": 10.116259477674811,
+        "net_win_rate": 0.32045303131245834,
+        "target_first_rate": 0.07861425716189208
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.7800634428001939,
+          "final_equity": 0.007287510044019831,
+          "mdd_pct": 99.26937725166862,
+          "sharpe": -2.5899745784321873
+        },
+        "mean_net_trade_pct": -0.27220323048260536,
+        "trade_count": 12008,
+        "turnover": 10.116259477674811
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 15,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.4185374650049809,
+          "final_equity": 0.17168641824874564,
+          "mdd_pct": 88.20304571374574,
+          "sharpe": -0.8937692604150622
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.11033882603157237,
+        "median_net_trade_pct": -0.5185879490270414,
+        "trade_count": 12753,
+        "signal_count": 12753,
+        "turnover": 10.743892165122157,
+        "net_win_rate": 0.2929506782717792,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.7585969929937861,
+          "final_equity": 0.009863233573541045,
+          "mdd_pct": 99.0117666556532,
+          "sharpe": -1.7569942027689396
+        },
+        "mean_net_trade_pct": -0.25036140315690153,
+        "trade_count": 12753,
+        "turnover": 10.743892165122157
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 30,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.28019756306718213,
+          "final_equity": 0.34353239656945883,
+          "mdd_pct": 70.95792545003718,
+          "sharpe": -1.1263415835892314
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.10613681627222035,
+        "median_net_trade_pct": -0.6503249426150387,
+        "trade_count": 5757,
+        "signal_count": 6084,
+        "turnover": 4.850042122999158,
+        "net_win_rate": 0.3809275664408546,
+        "target_first_rate": 0.2532569046378322
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.5236153833160315,
+          "final_equity": 0.08982924000300468,
+          "mdd_pct": 91.14138099125995,
+          "sharpe": -2.151668737972281
+        },
+        "mean_net_trade_pct": -0.24616435959286864,
+        "trade_count": 5757,
+        "turnover": 4.850042122999158
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 30,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.22585020984080306,
+          "final_equity": 0.4352114123089725,
+          "mdd_pct": 70.66121283113506,
+          "sharpe": -0.7283466458389924
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.0888543878133208,
+        "median_net_trade_pct": -0.7057224808638942,
+        "trade_count": 5752,
+        "signal_count": 6084,
+        "turnover": 4.845829823083403,
+        "net_win_rate": 0.3525730180806676,
+        "target_first_rate": 0.1392559109874826
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.4863148027928278,
+          "final_equity": 0.11476644249986577,
+          "mdd_pct": 88.89837929327513,
+          "sharpe": -1.6573063141380657
+        },
+        "mean_net_trade_pct": -0.2288942909573879,
+        "trade_count": 5752,
+        "turnover": 4.845829823083403
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 30,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.1670009361476258,
+          "final_equity": 0.5522150609777566,
+          "mdd_pct": 69.01350815566074,
+          "sharpe": -0.46668190705651624
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.06135468661509275,
+        "median_net_trade_pct": -0.7147024264433938,
+        "trade_count": 5751,
+        "signal_count": 6084,
+        "turnover": 4.844987363100253,
+        "net_win_rate": 0.3460267779516606,
+        "target_first_rate": 0.08311597982959486
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.44729365241861074,
+          "final_equity": 0.1455965328819339,
+          "mdd_pct": 87.71344393345626,
+          "sharpe": -1.3254048517147925
+        },
+        "mean_net_trade_pct": -0.20141430526435838,
+        "trade_count": 5751,
+        "turnover": 4.844987363100253
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 30,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.04592139656833305,
+          "final_equity": 0.8583254727840646,
+          "mdd_pct": 62.35453486577982,
+          "sharpe": -0.10616526826600861
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.04278028707714823,
+        "median_net_trade_pct": -0.6535261362962121,
+        "trade_count": 6083,
+        "signal_count": 6084,
+        "turnover": 5.124684077506318,
+        "net_win_rate": 0.3166200887719875,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.37630067321362903,
+          "final_equity": 0.21562778792814885,
+          "mdd_pct": 85.51009279277739,
+          "sharpe": -0.9364422734243804
+        },
+        "mean_net_trade_pct": -0.18285321813525196,
+        "trade_count": 6083,
+        "turnover": 5.124684077506318
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 60,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.10410363880147211,
+          "final_equity": 0.6995937654851202,
+          "mdd_pct": 47.29058206118647,
+          "sharpe": -0.3980423235849244
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.08632746706572393,
+        "median_net_trade_pct": -0.9305913508591602,
+        "trade_count": 2884,
+        "signal_count": 3047,
+        "turnover": 2.429654591406908,
+        "net_win_rate": 0.3710124826629681,
+        "target_first_rate": 0.24410540915395285
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.2688798049948018,
+          "final_equity": 0.3613988856869213,
+          "mdd_pct": 67.20898117820904,
+          "sharpe": -1.046275674948799
+        },
+        "mean_net_trade_pct": -0.22637431692166093,
+        "trade_count": 2884,
+        "turnover": 2.429654591406908
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 60,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.007276563479586828,
+          "final_equity": 0.9765453948798554,
+          "mdd_pct": 37.23234522052298,
+          "sharpe": -0.02374149287485743
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.012420678173281872,
+        "median_net_trade_pct": -0.9629494054431584,
+        "trade_count": 2884,
+        "signal_count": 3047,
+        "turnover": 2.429654591406908,
+        "net_win_rate": 0.35159500693481277,
+        "target_first_rate": 0.13869625520110956
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.18983635837499424,
+          "final_equity": 0.5045184806625437,
+          "mdd_pct": 60.82035804381736,
+          "sharpe": -0.6332234552723736
+        },
+        "mean_net_trade_pct": -0.15252110264866975,
+        "trade_count": 2884,
+        "turnover": 2.429654591406908
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 60,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.026627068139848054,
+          "final_equity": 0.9160298305150407,
+          "mdd_pct": 43.43392474684856,
+          "sharpe": -0.0801945171154085
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.019674911057170903,
+        "median_net_trade_pct": -0.9721927584132416,
+        "trade_count": 2883,
+        "signal_count": 3047,
+        "turnover": 2.4288121314237574,
+        "net_win_rate": 0.3433922996878252,
+        "target_first_rate": 0.08047173083593478
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.20572906276481007,
+          "final_equity": 0.47305899003416646,
+          "mdd_pct": 64.78160337705867,
+          "sharpe": -0.6279327354775611
+        },
+        "mean_net_trade_pct": -0.15977142025858507,
+        "trade_count": 2883,
+        "turnover": 2.4288121314237574
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 60,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.06245770251378491,
+          "final_equity": 1.2176104259221903,
+          "mdd_pct": 36.34190174383757,
+          "sharpe": 0.17479265049514758
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.03276270278801172,
+        "median_net_trade_pct": -0.9174224672796043,
+        "trade_count": 3043,
+        "signal_count": 3047,
+        "turnover": 2.5636057287278855,
+        "net_win_rate": 0.31613539270456786,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.14218586181803283,
+          "final_equity": 0.6074902288953421,
+          "mdd_pct": 59.950925766035,
+          "sharpe": -0.41074546701865555
+        },
+        "mean_net_trade_pct": -0.1073710114844029,
+        "trade_count": 3043,
+        "turnover": 2.5636057287278855
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 120,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": 0.1442969316556848,
+          "final_equity": 1.5496758557574142,
+          "mdd_pct": 21.390535663633838,
+          "sharpe": 0.5383478221259487
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.10431779715693656,
+        "median_net_trade_pct": -1.238245149964142,
+        "trade_count": 1342,
+        "signal_count": 1414,
+        "turnover": 1.130581297388374,
+        "net_win_rate": 0.4038748137108793,
+        "target_first_rate": 0.2816691505216095
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.041464956895286065,
+          "final_equity": 1.141148412377394,
+          "mdd_pct": 27.357121662011153,
+          "sharpe": 0.15902815951776772
+        },
+        "mean_net_trade_pct": -0.035873502946554586,
+        "trade_count": 1342,
+        "turnover": 1.130581297388374
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 120,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.19865193726753572,
+          "final_equity": 1.8019348393118182,
+          "mdd_pct": 23.3045107227245,
+          "sharpe": 0.5902871509530966
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.15175037418597517,
+        "median_net_trade_pct": -1.3723160671528831,
+        "trade_count": 1341,
+        "signal_count": 1414,
+        "turnover": 1.1297388374052233,
+        "net_win_rate": 0.3706189410887398,
+        "target_first_rate": 0.15958240119313946
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.09116297083233915,
+          "final_equity": 1.3278064686498714,
+          "mdd_pct": 26.52725168083039,
+          "sharpe": 0.2807959613375918
+        },
+        "mean_net_trade_pct": 0.011521607860336945,
+        "trade_count": 1341,
+        "turnover": 1.1297388374052233
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 120,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.1597463753800621,
+          "final_equity": 1.618709121710305,
+          "mdd_pct": 25.084738928823946,
+          "sharpe": 0.4598565135654607
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.14303287175961027,
+        "median_net_trade_pct": -1.385768306657345,
+        "trade_count": 1341,
+        "signal_count": 1414,
+        "turnover": 1.1297388374052233,
+        "net_win_rate": 0.3616703952274422,
+        "target_first_rate": 0.08575689783743475
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.05552441854281631,
+          "final_equity": 1.191977093730667,
+          "mdd_pct": 31.28136816237722,
+          "sharpe": 0.1632277906112526
+        },
+        "mean_net_trade_pct": 0.0028078650146110273,
+        "trade_count": 1341,
+        "turnover": 1.1297388374052233
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 120,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.22527135577637303,
+          "final_equity": 1.935262202544374,
+          "mdd_pct": 25.06645082942034,
+          "sharpe": 0.5636884939177524
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.1841210651157926,
+        "median_net_trade_pct": -1.2829428302801178,
+        "trade_count": 1413,
+        "signal_count": 1414,
+        "turnover": 1.190395956192081,
+        "net_win_rate": 0.3340410474168436,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.11099912622587516,
+          "final_equity": 1.4078674208894044,
+          "mdd_pct": 32.7984840048337,
+          "sharpe": 0.28391747618435065
+        },
+        "mean_net_trade_pct": 0.04386507635088744,
+        "trade_count": 1413,
+        "turnover": 1.190395956192081
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 240,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.016450674746935845,
+          "final_equity": 0.9475206927594,
+          "mdd_pct": 34.57203375460204,
+          "sharpe": -0.08107480325526757
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.051398231895081026,
+        "median_net_trade_pct": -1.9397284242690926,
+        "trade_count": 685,
+        "signal_count": 714,
+        "turnover": 0.5770850884582982,
+        "net_win_rate": 0.3970802919708029,
+        "target_first_rate": 0.28613138686131384
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.06385802897799686,
+          "final_equity": 0.8069850397569539,
+          "mdd_pct": 39.040117730225475,
+          "sharpe": -0.31414021529608843
+        },
+        "mean_net_trade_pct": -0.08877524646128976,
+        "trade_count": 685,
+        "turnover": 0.5770850884582982
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 240,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.04309383090228258,
+          "final_equity": 0.8666199361279864,
+          "mdd_pct": 35.33151690989498,
+          "sharpe": -0.18635347543249914
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.013354322415651987,
+        "median_net_trade_pct": -2.2085241755254974,
+        "trade_count": 684,
+        "signal_count": 714,
+        "turnover": 0.5762426284751474,
+        "net_win_rate": 0.358187134502924,
+        "target_first_rate": 0.1476608187134503
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.0891891878198412,
+          "final_equity": 0.7381566203847817,
+          "mdd_pct": 39.93009534274421,
+          "sharpe": -0.3842585884131335
+        },
+        "mean_net_trade_pct": -0.12679960007011876,
+        "trade_count": 684,
+        "turnover": 0.5762426284751474
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 240,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.012597146177020013,
+          "final_equity": 1.0415217451303143,
+          "mdd_pct": 28.336563242027026,
+          "sharpe": 0.04983356813968894
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.20403862070957401,
+        "median_net_trade_pct": -2.2085241755254974,
+        "trade_count": 684,
+        "signal_count": 714,
+        "turnover": 0.5762426284751474,
+        "net_win_rate": 0.3538011695906433,
+        "target_first_rate": 0.09064327485380116
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.035935787984567535,
+          "final_equity": 0.8878653222585843,
+          "mdd_pct": 32.18077133325758,
+          "sharpe": -0.1418723601567542
+        },
+        "mean_net_trade_pct": 0.06374882696267524,
+        "trade_count": 684,
+        "turnover": 0.5762426284751474
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 240,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.008485751957032939,
+          "final_equity": 0.9726850733579466,
+          "mdd_pct": 32.894814388486694,
+          "sharpe": -0.030920263328431286
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.16673458949850858,
+        "median_net_trade_pct": -2.0408037980241143,
+        "trade_count": 714,
+        "signal_count": 714,
+        "turnover": 0.6015164279696714,
+        "net_win_rate": 0.32212885154061627,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.05786953338370471,
+          "final_equity": 0.8238826112091254,
+          "mdd_pct": 39.454152199874756,
+          "sharpe": -0.209219924104886
+        },
+        "mean_net_trade_pct": 0.02646571113473975,
+        "trade_count": 714,
+        "turnover": 0.6015164279696714
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 360,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.04189081882432277,
+          "final_equity": 0.8701656516025055,
+          "mdd_pct": 26.962225970349994,
+          "sharpe": -0.23456092264415532
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.010114979885020824,
+        "median_net_trade_pct": -2.3820322837358785,
+        "trade_count": 448,
+        "signal_count": 470,
+        "turnover": 0.37742207245155857,
+        "net_win_rate": 0.37723214285714285,
+        "target_first_rate": 0.27232142857142855
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.07223679379070114,
+          "final_equity": 0.7837477251820238,
+          "mdd_pct": 29.386207716022174,
+          "sharpe": -0.40427280587638675
+        },
+        "mean_net_trade_pct": -0.13004632186456766,
+        "trade_count": 448,
+        "turnover": 0.37742207245155857
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 360,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.0380017909628384,
+          "final_equity": 0.8816967410545963,
+          "mdd_pct": 30.551536033010073,
+          "sharpe": -0.19068979558998858
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.024507444976559756,
+        "median_net_trade_pct": -2.6455752926921843,
+        "trade_count": 448,
+        "signal_count": 470,
+        "turnover": 0.37742207245155857,
+        "net_win_rate": 0.3482142857142857,
+        "target_first_rate": 0.16964285714285715
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.06856618085164012,
+          "final_equity": 0.7938698106361523,
+          "mdd_pct": 31.855934249718764,
+          "sharpe": -0.34380315610404316
+        },
+        "mean_net_trade_pct": -0.11567763948516589,
+        "trade_count": 448,
+        "turnover": 0.37742207245155857
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 360,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.007019830575824781,
+          "final_equity": 0.9773663747876662,
+          "mdd_pct": 30.725696592936703,
+          "sharpe": -0.032664782562559065
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.1850332664273667,
+        "median_net_trade_pct": -2.7062283641981204,
+        "trade_count": 448,
+        "signal_count": 470,
+        "turnover": 0.37742207245155857,
+        "net_win_rate": 0.34375,
+        "target_first_rate": 0.10491071428571429
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.03858077186003772,
+          "final_equity": 0.8799733825009429,
+          "mdd_pct": 32.00122526077255,
+          "sharpe": -0.1795130795773718
+        },
+        "mean_net_trade_pct": 0.044734594105765496,
+        "trade_count": 448,
+        "turnover": 0.37742207245155857
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 360,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.0074496818009185395,
+          "final_equity": 0.9759920670803827,
+          "mdd_pct": 30.551623433466535,
+          "sharpe": -0.03224373341549289
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.25107746372257356,
+        "median_net_trade_pct": -2.4008922218640074,
+        "trade_count": 468,
+        "signal_count": 470,
+        "turnover": 0.3942712721145746,
+        "net_win_rate": 0.3141025641025641,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.040154086921205256,
+          "final_equity": 0.8753021309237026,
+          "mdd_pct": 32.8887206721749,
+          "sharpe": -0.17364966519973354
+        },
+        "mean_net_trade_pct": 0.11072210620566146,
+        "trade_count": 468,
+        "turnover": 0.3942712721145746
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 720,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.04455791198796788,
+          "final_equity": 0.8623182640675121,
+          "mdd_pct": 38.96693616790883,
+          "sharpe": -0.24914105754996232
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": -0.294913545598126,
+        "median_net_trade_pct": -3.7909774308343023,
+        "trade_count": 212,
+        "signal_count": 224,
+        "turnover": 0.17860151642796968,
+        "net_win_rate": 0.36792452830188677,
+        "target_first_rate": 0.30660377358490565
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.058766001792693756,
+          "final_equity": 0.8213376284632535,
+          "mdd_pct": 41.199228288620404,
+          "sharpe": -0.3282431466954076
+        },
+        "mean_net_trade_pct": -0.43488717628028833,
+        "trade_count": 212,
+        "turnover": 0.17860151642796968
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 720,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.020512461113251446,
+          "final_equity": 1.068213360103042,
+          "mdd_pct": 34.91250672256131,
+          "sharpe": 0.09408489485626412
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 0.5562230846623136,
+        "median_net_trade_pct": -3.9389147601343337,
+        "trade_count": 212,
+        "signal_count": 224,
+        "turnover": 0.17860151642796968,
+        "net_win_rate": 0.3443396226415094,
+        "target_first_rate": 0.22169811320754718
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.005228335924670313,
+          "final_equity": 1.0170913473929748,
+          "mdd_pct": 36.56664091721113,
+          "sharpe": 0.02395686999735753
+        },
+        "mean_net_trade_pct": 0.4156390024209534,
+        "trade_count": 212,
+        "turnover": 0.17860151642796968
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 720,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.06779900480405998,
+          "final_equity": 1.2376163501881903,
+          "mdd_pct": 34.78965866125,
+          "sharpe": 0.2885377098554354
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 1.0948703495935839,
+        "median_net_trade_pct": -3.9389147601343337,
+        "trade_count": 212,
+        "signal_count": 224,
+        "turnover": 0.17860151642796968,
+        "net_win_rate": 0.33490566037735847,
+        "target_first_rate": 0.15566037735849056
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.0518221153559999,
+          "final_equity": 1.1784433598779425,
+          "mdd_pct": 36.20092288564835,
+          "sharpe": 0.22034285299472903
+        },
+        "mean_net_trade_pct": 0.9538841761965976,
+        "trade_count": 212,
+        "turnover": 0.17860151642796968
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 720,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.19924508260774987,
+          "final_equity": 1.8048342473816799,
+          "mdd_pct": 42.388501022707395,
+          "sharpe": 0.4731647630555975
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 3.387243100426937,
+        "median_net_trade_pct": -3.7661314947286044,
+        "trade_count": 220,
+        "signal_count": 224,
+        "turnover": 0.18534119629317608,
+        "net_win_rate": 0.3181818181818182,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.18013276365296216,
+          "final_equity": 1.7130222800710817,
+          "mdd_pct": 43.74303509404229,
+          "sharpe": 0.42582392521032186
+        },
+        "mean_net_trade_pct": 3.2446320381519773,
+        "trade_count": 220,
+        "turnover": 0.18534119629317608
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": 0.06203458569200415,
+          "final_equity": 1.2160352722712786,
+          "mdd_pct": 22.00182087880833,
+          "sharpe": 0.4143241893199479
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 1.8801227263185991,
+        "median_net_trade_pct": -4.1353602469552335,
+        "trade_count": 99,
+        "signal_count": 107,
+        "turnover": 0.08340353833192923,
+        "net_win_rate": 0.48484848484848486,
+        "target_first_rate": 0.3939393939393939
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.05465587919841197,
+          "final_equity": 1.1887925474229573,
+          "mdd_pct": 22.69023503131279,
+          "sharpe": 0.3648872693628355
+        },
+        "mean_net_trade_pct": 1.7384924593307753,
+        "trade_count": 99,
+        "turnover": 0.08340353833192923
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.07034521331175192,
+          "final_equity": 1.2472328169099143,
+          "mdd_pct": 28.293480061693433,
+          "sharpe": 0.42453591962256754
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 2.174077820860472,
+        "median_net_trade_pct": -4.918651299828763,
+        "trade_count": 99,
+        "signal_count": 107,
+        "turnover": 0.08340353833192923,
+        "net_win_rate": 0.43434343434343436,
+        "target_first_rate": 0.2727272727272727
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.06303906928365843,
+          "final_equity": 1.2197770058381638,
+          "mdd_pct": 28.92587235462133,
+          "sharpe": 0.38050219858664247
+        },
+        "mean_net_trade_pct": 2.032186633923793,
+        "trade_count": 99,
+        "turnover": 0.08340353833192923
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.08705624063062523,
+          "final_equity": 1.3116345286855535,
+          "mdd_pct": 31.110791657089145,
+          "sharpe": 0.4596711856824478
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 2.5207727276368455,
+        "median_net_trade_pct": -4.97589063798583,
+        "trade_count": 99,
+        "signal_count": 107,
+        "turnover": 0.08340353833192923,
+        "net_win_rate": 0.42424242424242425,
+        "target_first_rate": 0.1919191919191919
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.07968504775024687,
+          "final_equity": 1.2829503072037687,
+          "mdd_pct": 31.723177919699317,
+          "sharpe": 0.42066450157060403
+        },
+        "mean_net_trade_pct": 2.3785966509919887,
+        "trade_count": 99,
+        "turnover": 0.08340353833192923
+      }
+    },
+    {
+      "split": "train",
+      "timeframe_min": 1440,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.18078647502855616,
+          "final_equity": 1.7161079486503379,
+          "mdd_pct": 35.716564358292544,
+          "sharpe": 0.33302009120141707
+        },
+        "buy_hold": {
+          "cagr": 0.9576884220218052,
+          "final_equity": 8.873944093410085,
+          "mdd_pct": 96.60640733468541,
+          "sharpe": 0.11011615860447674
+        },
+        "mean_net_trade_pct": 6.666270014913223,
+        "median_net_trade_pct": -5.236353836108682,
+        "trade_count": 106,
+        "signal_count": 107,
+        "turnover": 0.08930075821398484,
+        "net_win_rate": 0.36792452830188677,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.17222513868742095,
+          "final_equity": 1.6760001028101492,
+          "mdd_pct": 36.443707385113335,
+          "sharpe": 0.3159974056080912
+        },
+        "mean_net_trade_pct": 6.521105618864696,
+        "trade_count": 106,
+        "turnover": 0.08930075821398484
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999968970513663,
+          "final_equity": 0.0000030231803900557957,
+          "mdd_pct": 99.99968964921952,
+          "sharpe": -7.649644602203446
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13480398214724282,
+        "median_net_trade_pct": -0.21692799275239064,
+        "trade_count": 56484,
+        "signal_count": 58445,
+        "turnover": 154.327868852459,
+        "net_win_rate": 0.27871609659372565,
+        "target_first_rate": 0.2564620069400184
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999940019,
+          "final_equity": 5.688147153192816E-12,
+          "mdd_pct": 99.99999999939595,
+          "sharpe": -5.31666005273315
+        },
+        "mean_net_trade_pct": -0.2748077345440468,
+        "trade_count": 56484,
+        "turnover": 154.327868852459
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999966596178715,
+          "final_equity": 0.000003255002899161459,
+          "mdd_pct": 99.99966630815656,
+          "sharpe": -7.461382041067546
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13388757215314845,
+        "median_net_trade_pct": -0.22169714924833472,
+        "trade_count": 56468,
+        "signal_count": 58445,
+        "turnover": 154.28415300546447,
+        "net_win_rate": 0.24985832683998016,
+        "target_first_rate": 0.12920592193808883
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999935253,
+          "final_equity": 6.141127251590143E-12,
+          "mdd_pct": 99.99999999934874,
+          "sharpe": -5.250520016464123
+        },
+        "mean_net_trade_pct": -0.27389197786487784,
+        "trade_count": 56468,
+        "turnover": 154.28415300546447
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999966105235902,
+          "final_equity": 0.0000033029412971884305,
+          "mdd_pct": 99.99966109075744,
+          "sharpe": -7.391901670174351
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13379054079100203,
+        "median_net_trade_pct": -0.22255966423911497,
+        "trade_count": 56464,
+        "signal_count": 58445,
+        "turnover": 154.27322404371586,
+        "net_win_rate": 0.2385590818928875,
+        "target_first_rate": 0.06749433267214508
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.999999999993411,
+          "final_equity": 6.249626490143414E-12,
+          "mdd_pct": 99.99999999933664,
+          "sharpe": -5.223883011414184
+        },
+        "mean_net_trade_pct": -0.2737950215349024,
+        "trade_count": 56464,
+        "turnover": 154.27322404371586
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.9999976075389951,
+          "final_equity": 0.000002329713170430523,
+          "mdd_pct": 99.99976127369224,
+          "sharpe": -7.205768705762262
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13281465316374388,
+        "median_net_trade_pct": -0.2194855764348233,
+        "trade_count": 58440,
+        "signal_count": 58445,
+        "turnover": 159.672131147541,
+        "net_win_rate": 0.22327173169062287,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9999999999970539,
+          "final_equity": 2.78975912678612E-12,
+          "mdd_pct": 99.99999999970413,
+          "sharpe": -5.120259971197547
+        },
+        "mean_net_trade_pct": -0.27281981216267126,
+        "trade_count": 58440,
+        "turnover": 159.672131147541
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 3,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9860094156910221,
+          "final_equity": 0.01386846945598536,
+          "mdd_pct": 98.60114187893694,
+          "sharpe": -11.62943446422175
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1350578211407807,
+        "median_net_trade_pct": -0.2836371151618042,
+        "trade_count": 18880,
+        "signal_count": 19709,
+        "turnover": 51.58469945355191,
+        "net_win_rate": 0.33416313559322036,
+        "target_first_rate": 0.24025423728813558
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9998280050489038,
+          "final_equity": 0.00016896071985706253,
+          "mdd_pct": 99.98275728445216,
+          "sharpe": -9.001806439357074
+        },
+        "mean_net_trade_pct": -0.27506164386634757,
+        "trade_count": 18880,
+        "turnover": 51.58469945355191
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 3,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9857703572114879,
+          "final_equity": 0.014105932084675877,
+          "mdd_pct": 98.5833339738366,
+          "sharpe": -11.368595602147698
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13461565527608743,
+        "median_net_trade_pct": -0.29186864226045,
+        "trade_count": 18876,
+        "signal_count": 19709,
+        "turnover": 51.57377049180328,
+        "net_win_rate": 0.29879211697393515,
+        "target_first_rate": 0.12025852934943844
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9998242213988616,
+          "final_equity": 0.0001726853367795736,
+          "mdd_pct": 99.98245331263725,
+          "sharpe": -9.079862947125278
+        },
+        "mean_net_trade_pct": -0.2746198352762145,
+        "trade_count": 18876,
+        "turnover": 51.57377049180328
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 3,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.9842520815402327,
+          "final_equity": 0.015614258209457858,
+          "mdd_pct": 98.43128642222963,
+          "sharpe": -11.019414940117445
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.13163042673725003,
+        "median_net_trade_pct": -0.29348985495660135,
+        "trade_count": 18874,
+        "signal_count": 19709,
+        "turnover": 51.568306010928964,
+        "net_win_rate": 0.289975627847833,
+        "target_first_rate": 0.06569884497191904
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9998050511467157,
+          "final_equity": 0.00019155895194590195,
+          "mdd_pct": 99.98053082238599,
+          "sharpe": -9.097561725736604
+        },
+        "mean_net_trade_pct": -0.27163671616490037,
+        "trade_count": 18874,
+        "turnover": 51.568306010928964
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 3,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.9853511633538261,
+          "final_equity": 0.014522347281255595,
+          "mdd_pct": 98.54013967309761,
+          "sharpe": -10.257223171630775
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1280527640314442,
+        "median_net_trade_pct": -0.2857134313206368,
+        "trade_count": 19708,
+        "signal_count": 19709,
+        "turnover": 53.84699453551912,
+        "net_win_rate": 0.27192003247412216,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9998504866616474,
+          "final_equity": 0.00014683347326894448,
+          "mdd_pct": 99.98506614754925,
+          "sharpe": -8.697916864468915
+        },
+        "mean_net_trade_pct": -0.26806154946339,
+        "trade_count": 19708,
+        "turnover": 53.84699453551912
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 5,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8895330866648696,
+          "final_equity": 0.10996832334963165,
+          "mdd_pct": 89.00302999864759,
+          "sharpe": -10.979074733195423
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.11868603352130208,
+        "median_net_trade_pct": -0.32591573638195975,
+        "trade_count": 11139,
+        "signal_count": 11630,
+        "turnover": 30.434426229508198,
+        "net_win_rate": 0.3561360983930335,
+        "target_first_rate": 0.23906993446449412
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9917777224407851,
+          "final_equity": 0.00814161952151835,
+          "mdd_pct": 99.18019103744305,
+          "sharpe": -12.353609645163303
+        },
+        "mean_net_trade_pct": -0.2587015801159071,
+        "trade_count": 11139,
+        "turnover": 30.434426229508198
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 5,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8733082621745417,
+          "final_equity": 0.12615541233744204,
+          "mdd_pct": 87.42322593689428,
+          "sharpe": -9.081562851345288
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.11038075548556836,
+        "median_net_trade_pct": -0.33678462535272885,
+        "trade_count": 11137,
+        "signal_count": 11630,
+        "turnover": 30.42896174863388,
+        "net_win_rate": 0.32656909401095446,
+        "target_first_rate": 0.12669480111340575
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9905675790258187,
+          "final_equity": 0.009342525473380991,
+          "mdd_pct": 99.06199783620784,
+          "sharpe": -11.319211196372258
+        },
+        "mean_net_trade_pct": -0.2504022173999825,
+        "trade_count": 11137,
+        "turnover": 30.42896174863388
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 5,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.8647929125299316,
+          "final_equity": 0.13465269880724554,
+          "mdd_pct": 86.56532966166898,
+          "sharpe": -8.199577191190526
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1064825729621862,
+        "median_net_trade_pct": -0.33924576375091253,
+        "trade_count": 11136,
+        "signal_count": 11630,
+        "turnover": 30.42622950819672,
+        "net_win_rate": 0.3193247126436782,
+        "target_first_rate": 0.07076149425287356
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9899280251112176,
+          "final_equity": 0.009977328092332758,
+          "mdd_pct": 98.99786716765469,
+          "sharpe": -10.812316088500562
+        },
+        "mean_net_trade_pct": -0.24650682901081206,
+        "trade_count": 11136,
+        "turnover": 30.42622950819672
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 5,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.8658931035950137,
+          "final_equity": 0.13355477818896985,
+          "mdd_pct": 86.64267283323505,
+          "sharpe": -7.135280453772408
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.10196903864524536,
+        "median_net_trade_pct": -0.3287157896922117,
+        "trade_count": 11630,
+        "signal_count": 11630,
+        "turnover": 31.775956284153004,
+        "net_win_rate": 0.29888220120378334,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.9911102226650906,
+          "final_equity": 0.008803982288004846,
+          "mdd_pct": 99.11320144862391,
+          "sharpe": -10.16717301776167
+        },
+        "mean_net_trade_pct": -0.2419964900218492,
+        "trade_count": 11630,
+        "turnover": 31.775956284153004
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 10,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.609424123972875,
+          "final_equity": 0.3898226130256764,
+          "mdd_pct": 61.02086108924922,
+          "sharpe": -6.041685092965058
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.09893327981992882,
+        "median_net_trade_pct": -0.3998549076491836,
+        "trade_count": 5511,
+        "signal_count": 5762,
+        "turnover": 15.057377049180328,
+        "net_win_rate": 0.37851569588096534,
+        "target_first_rate": 0.24859372164761387
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8920223052346506,
+          "final_equity": 0.10748530943296965,
+          "mdd_pct": 89.19421716249431,
+          "sharpe": -11.6766672452499
+        },
+        "mean_net_trade_pct": -0.23896327500809422,
+        "trade_count": 5511,
+        "turnover": 15.057377049180328
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 10,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5822993086329425,
+          "final_equity": 0.4169525970074861,
+          "mdd_pct": 58.457214993581545,
+          "sharpe": -5.0309114396364105
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.09103684890830742,
+        "median_net_trade_pct": -0.42095858528467345,
+        "trade_count": 5509,
+        "signal_count": 5762,
+        "turnover": 15.051912568306012,
+        "net_win_rate": 0.34779451806135414,
+        "target_first_rate": 0.13069522599382827
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8845941483434575,
+          "final_equity": 0.11489528852754076,
+          "mdd_pct": 88.4899117999543,
+          "sharpe": -10.331448706961096
+        },
+        "mean_net_trade_pct": -0.23107264034440336,
+        "trade_count": 5509,
+        "turnover": 15.051912568306012
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 10,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5692804450648041,
+          "final_equity": 0.42997524138465976,
+          "mdd_pct": 57.30218022230875,
+          "sharpe": -4.459029355859351
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.08690622047520545,
+        "median_net_trade_pct": -0.42721036473527263,
+        "trade_count": 5508,
+        "signal_count": 5762,
+        "turnover": 15.049180327868852,
+        "net_win_rate": 0.3378721859114016,
+        "target_first_rate": 0.07262164124909223
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.880922051111846,
+          "final_equity": 0.11855876546902909,
+          "mdd_pct": 88.16228956923202,
+          "sharpe": -9.38694487231519
+        },
+        "mean_net_trade_pct": -0.22694501524415894,
+        "trade_count": 5508,
+        "turnover": 15.049180327868852
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 10,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.5653820647916822,
+          "final_equity": 0.4338749121669021,
+          "mdd_pct": 58.783116144391,
+          "sharpe": -3.8929567752739316
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.08183062622136668,
+        "median_net_trade_pct": -0.4040130454959389,
+        "trade_count": 5762,
+        "signal_count": 5762,
+        "turnover": 15.743169398907105,
+        "net_win_rate": 0.31551544602568554,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.886642696873613,
+          "final_equity": 0.1128516525234012,
+          "mdd_pct": 88.74460573035434,
+          "sharpe": -8.451395271166254
+        },
+        "mean_net_trade_pct": -0.22187300467702223,
+        "trade_count": 5762,
+        "turnover": 15.743169398907105
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 15,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5607236065621428,
+          "final_equity": 0.43853500666335393,
+          "mdd_pct": 56.21033622959326,
+          "sharpe": -5.187281050811024
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1346340510519528,
+        "median_net_trade_pct": -0.5004926514747065,
+        "trade_count": 3662,
+        "signal_count": 3838,
+        "turnover": 10.005464480874316,
+        "net_win_rate": 0.3615510649918078,
+        "target_first_rate": 0.2304751501911524
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8127779987436032,
+          "final_equity": 0.18657899502239395,
+          "mdd_pct": 81.29904899919993,
+          "sharpe": -9.341839338547356
+        },
+        "mean_net_trade_pct": -0.2746396736982685,
+        "trade_count": 3662,
+        "turnover": 10.005464480874316
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 15,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.5407761008780352,
+          "final_equity": 0.45849065346273404,
+          "mdd_pct": 54.4404750814476,
+          "sharpe": -4.232226710551452
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.12220685225065475,
+        "median_net_trade_pct": -0.5186821431578925,
+        "trade_count": 3659,
+        "signal_count": 3838,
+        "turnover": 9.997267759562842,
+        "net_win_rate": 0.3367040174911178,
+        "target_first_rate": 0.12079803224924843
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8042901462817782,
+          "final_equity": 0.1950554540100067,
+          "mdd_pct": 80.47455460654758,
+          "sharpe": -7.944627793934509
+        },
+        "mean_net_trade_pct": -0.2622214657308571,
+        "trade_count": 3659,
+        "turnover": 9.997267759562842
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 15,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.521878270042643,
+          "final_equity": 0.47739784071846136,
+          "mdd_pct": 52.44688692045001,
+          "sharpe": -3.7875491707701703
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.11469041353917328,
+        "median_net_trade_pct": -0.5234406550297742,
+        "trade_count": 3659,
+        "signal_count": 3838,
+        "turnover": 9.997267759562842,
+        "net_win_rate": 0.3293249521727248,
+        "target_first_rate": 0.06805138015851325
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.7961557471751838,
+          "final_equity": 0.20317964313342485,
+          "mdd_pct": 79.65016582566408,
+          "sharpe": -7.383605663369128
+        },
+        "mean_net_trade_pct": -0.2547104513091985,
+        "trade_count": 3659,
+        "turnover": 9.997267759562842
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 15,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.5528829417170233,
+          "final_equity": 0.4463786541068906,
+          "mdd_pct": 55.53317475188759,
+          "sharpe": -3.8582644358053995
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1218351917397155,
+        "median_net_trade_pct": -0.49656454994707316,
+        "trade_count": 3838,
+        "signal_count": 3838,
+        "turnover": 10.486338797814208,
+        "net_win_rate": 0.30328295987493487,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.8169295513926638,
+          "final_equity": 0.18243330032745642,
+          "mdd_pct": 81.75495327554447,
+          "sharpe": -7.319991641531823
+        },
+        "mean_net_trade_pct": -0.2618502671392998,
+        "trade_count": 3838,
+        "turnover": 10.486338797814208
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 30,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.39076921303384027,
+          "final_equity": 0.6086111653857051,
+          "mdd_pct": 41.05454622972209,
+          "sharpe": -3.452237251285782
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.16588162997757824,
+        "median_net_trade_pct": -0.7014137921833894,
+        "trade_count": 1777,
+        "signal_count": 1879,
+        "turnover": 4.855191256830601,
+        "net_win_rate": 0.3685987619583568,
+        "target_first_rate": 0.22960045019696118
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.5968961589636927,
+          "final_equity": 0.4023525001009192,
+          "mdd_pct": 60.799821226711295,
+          "sharpe": -6.16126023133821
+        },
+        "mean_net_trade_pct": -0.3058675499140921,
+        "trade_count": 1777,
+        "turnover": 4.855191256830601
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 30,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.39708217185881334,
+          "final_equity": 0.6022917448850501,
+          "mdd_pct": 41.36019411736081,
+          "sharpe": -3.110831661331186
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.18198757880903307,
+        "median_net_trade_pct": -0.7375341845543443,
+        "trade_count": 1777,
+        "signal_count": 1879,
+        "turnover": 4.855191256830601,
+        "net_win_rate": 0.3421496904895892,
+        "target_first_rate": 0.12380416432189083
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.600544627161527,
+          "final_equity": 0.39870338849891634,
+          "mdd_pct": 60.95923307741848,
+          "sharpe": -5.472386892196293
+        },
+        "mean_net_trade_pct": -0.32196295854223145,
+        "trade_count": 1777,
+        "turnover": 4.855191256830601
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 30,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": -0.3965433602558388,
+          "final_equity": 0.602831102709254,
+          "mdd_pct": 41.23199262502239,
+          "sharpe": -2.900674352119899
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.17826427656442684,
+        "median_net_trade_pct": -0.7432096350146268,
+        "trade_count": 1777,
+        "signal_count": 1879,
+        "turnover": 4.855191256830601,
+        "net_win_rate": 0.3353967360720315,
+        "target_first_rate": 0.07371975239167136
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.6004393009370594,
+          "final_equity": 0.39880873234122133,
+          "mdd_pct": 60.953409452552165,
+          "sharpe": -5.113696814501637
+        },
+        "mean_net_trade_pct": -0.31824246475998386,
+        "trade_count": 1777,
+        "turnover": 4.855191256830601
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 30,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": -0.39559574022785315,
+          "final_equity": 0.603779685787117,
+          "mdd_pct": 40.73623343460262,
+          "sharpe": -2.6377325439677906
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.16620200303792662,
+        "median_net_trade_pct": -0.6878780438536601,
+        "trade_count": 1879,
+        "signal_count": 1879,
+        "turnover": 5.133879781420765,
+        "net_win_rate": 0.30867482703565724,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.6088733849935958,
+          "final_equity": 0.3903734193489444,
+          "mdd_pct": 61.605051315527206,
+          "sharpe": -4.7419693351362175
+        },
+        "mean_net_trade_pct": -0.3061888117013631,
+        "trade_count": 1879,
+        "turnover": 5.133879781420765
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 60,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.06892905559126705,
+          "final_equity": 0.9309344104724193,
+          "mdd_pct": 18.031055538563624,
+          "sharpe": -0.4677551031723801
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.04856690948536087,
+        "median_net_trade_pct": -0.8728732325470955,
+        "trade_count": 845,
+        "signal_count": 897,
+        "turnover": 2.308743169398907,
+        "net_win_rate": 0.3988165680473373,
+        "target_first_rate": 0.2579881656804734
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.2341137282335708,
+          "final_equity": 0.7654669237687014,
+          "mdd_pct": 26.030228954120915,
+          "sharpe": -1.7549734479135235
+        },
+        "mean_net_trade_pct": -0.1886393808131985,
+        "trade_count": 845,
+        "turnover": 2.308743169398907
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 60,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.018257919545628498,
+          "final_equity": 1.0182957510289534,
+          "mdd_pct": 18.753202585648943,
+          "sharpe": 0.10233500553494577
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.015430162524538783,
+        "median_net_trade_pct": -0.9044087096032789,
+        "trade_count": 845,
+        "signal_count": 897,
+        "turnover": 2.308743169398907,
+        "net_win_rate": 0.37514792899408284,
+        "target_first_rate": 0.1502958579881657
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.1621321146635133,
+          "final_equity": 0.8375635986932419,
+          "mdd_pct": 24.304604553942532,
+          "sharpe": -1.0066173329815753
+        },
+        "mean_net_trade_pct": -0.1246884500943038,
+        "trade_count": 845,
+        "turnover": 2.308743169398907
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 60,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.057239995153969936,
+          "final_equity": 1.0573608394553602,
+          "mdd_pct": 18.068981047710754,
+          "sharpe": 0.3000672761827979
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.04324060259768051,
+        "median_net_trade_pct": -0.9149942037902967,
+        "trade_count": 845,
+        "signal_count": 897,
+        "turnover": 2.308743169398907,
+        "net_win_rate": 0.3656804733727811,
+        "target_first_rate": 0.08284023668639054
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.1299255259521136,
+          "final_equity": 0.8698258568177087,
+          "mdd_pct": 24.94244986762808,
+          "sharpe": -0.7537157652636243
+        },
+        "mean_net_trade_pct": -0.09689855466976142,
+        "trade_count": 845,
+        "turnover": 2.308743169398907
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 60,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.07251068974005204,
+          "final_equity": 1.0726648656188555,
+          "mdd_pct": 18.155251329843658,
+          "sharpe": 0.3472890302451745
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.05904844374271691,
+        "median_net_trade_pct": -0.8672432570748148,
+        "trade_count": 892,
+        "signal_count": 897,
+        "turnover": 2.4371584699453552,
+        "net_win_rate": 0.3430493273542601,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.1264832003072136,
+          "final_equity": 0.8732742792436331,
+          "mdd_pct": 25.88144161859851,
+          "sharpe": -0.6712513959513037
+        },
+        "mean_net_trade_pct": -0.08110211118997891,
+        "trade_count": 892,
+        "turnover": 2.4371584699453552
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 120,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.026438014164658408,
+          "final_equity": 0.9735084238414267,
+          "mdd_pct": 13.815703842105464,
+          "sharpe": -0.18331144608507818
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.017366701038532287,
+        "median_net_trade_pct": -1.301814911618806,
+        "trade_count": 428,
+        "signal_count": 455,
+        "turnover": 1.169398907103825,
+        "net_win_rate": 0.40654205607476634,
+        "target_first_rate": 0.2523364485981308
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.117798751813733,
+          "final_equity": 0.8819742327164927,
+          "mdd_pct": 17.17865132991413,
+          "sharpe": -0.8550210104534289
+        },
+        "mean_net_trade_pct": -0.15747120117024163,
+        "trade_count": 428,
+        "turnover": 1.169398907103825
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 120,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.013945253427801285,
+          "final_equity": 0.9860263125607863,
+          "mdd_pct": 13.194223940736293,
+          "sharpe": -0.08481561181385368
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.01232864102399443,
+        "median_net_trade_pct": -1.3531371890637875,
+        "trade_count": 428,
+        "signal_count": 455,
+        "turnover": 1.169398907103825,
+        "net_win_rate": 0.38317757009345793,
+        "target_first_rate": 0.14953271028037382
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.10633093796489956,
+          "final_equity": 0.8934627900500773,
+          "mdd_pct": 16.100917731664143,
+          "sharpe": -0.6764305993020006
+        },
+        "mean_net_trade_pct": -0.12780093518230878,
+        "trade_count": 428,
+        "turnover": 1.169398907103825
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 120,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.02580885730782767,
+          "final_equity": 1.0258625323816029,
+          "mdd_pct": 12.664439896687952,
+          "sharpe": 0.14903538341860725
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.07840887291184691,
+        "median_net_trade_pct": -1.3531371890637875,
+        "trade_count": 428,
+        "signal_count": 455,
+        "turnover": 1.169398907103825,
+        "net_win_rate": 0.37850467289719625,
+        "target_first_rate": 0.08644859813084112
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.07038460273124236,
+          "final_equity": 0.929476090753521,
+          "mdd_pct": 15.467657559433912,
+          "sharpe": -0.42539222938915433
+        },
+        "mean_net_trade_pct": -0.061768764417706325,
+        "trade_count": 428,
+        "turnover": 1.169398907103825
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 120,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.04257263191654381,
+          "final_equity": 1.0426618888240746,
+          "mdd_pct": 12.154678274105468,
+          "sharpe": 0.22462946344577286
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.11118241007711704,
+        "median_net_trade_pct": -1.2308298967201925,
+        "trade_count": 448,
+        "signal_count": 455,
+        "turnover": 1.2240437158469946,
+        "net_win_rate": 0.35044642857142855,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.05984888698827617,
+          "final_equity": 0.94003198071535,
+          "mdd_pct": 15.105491989029218,
+          "sharpe": -0.33149759028793485
+        },
+        "mean_net_trade_pct": -0.029018428566538954,
+        "trade_count": 448,
+        "turnover": 1.2240437158469946
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 240,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": 0.014011847980866854,
+          "final_equity": 1.014040820794387,
+          "mdd_pct": 8.963168690095758,
+          "sharpe": 0.100383361857255
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.11002313777149855,
+        "median_net_trade_pct": -1.8064738854084537,
+        "trade_count": 203,
+        "signal_count": 214,
+        "turnover": 0.5546448087431693,
+        "net_win_rate": 0.43842364532019706,
+        "target_first_rate": 0.30049261083743845
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.032766805426379664,
+          "final_equity": 0.967167028433895,
+          "mdd_pct": 9.710290939655575,
+          "sharpe": -0.2404009432620137
+        },
+        "mean_net_trade_pct": -0.03018435519823518,
+        "trade_count": 203,
+        "turnover": 0.5546448087431693
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 240,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.03161827705501041,
+          "final_equity": 1.0316842195080762,
+          "mdd_pct": 11.032528560537525,
+          "sharpe": 0.20205590761975023
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.17563527543510563,
+        "median_net_trade_pct": -1.8780091183771215,
+        "trade_count": 203,
+        "signal_count": 214,
+        "turnover": 0.5546448087431693,
+        "net_win_rate": 0.4088669950738916,
+        "target_first_rate": 0.15763546798029557
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.01594136708195082,
+          "final_equity": 0.9840261619489229,
+          "mdd_pct": 12.19753083500411,
+          "sharpe": -0.10432792238417436
+        },
+        "mean_net_trade_pct": 0.03537742379395639,
+        "trade_count": 203,
+        "turnover": 0.5546448087431693
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 240,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.007031038868029471,
+          "final_equity": 1.0070455270603278,
+          "mdd_pct": 12.120257521330135,
+          "sharpe": 0.04240148234635778
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.12398449646519713,
+        "median_net_trade_pct": -2.0375779665739535,
+        "trade_count": 203,
+        "signal_count": 214,
+        "turnover": 0.5546448087431693,
+        "net_win_rate": 0.39408866995073893,
+        "target_first_rate": 0.08866995073891626
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.0394513712265353,
+          "final_equity": 0.960469242474386,
+          "mdd_pct": 12.703523216696988,
+          "sharpe": -0.2434175177226387
+        },
+        "mean_net_trade_pct": -0.016240527787696347,
+        "trade_count": 203,
+        "turnover": 0.5546448087431693
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 240,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.03602338887949896,
+          "final_equity": 1.0360986782215422,
+          "mdd_pct": 11.995062722331928,
+          "sharpe": 0.2054504392522084
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.1916164827228704,
+        "median_net_trade_pct": -1.8885478626006726,
+        "trade_count": 210,
+        "signal_count": 214,
+        "turnover": 0.5737704918032787,
+        "net_win_rate": 0.37142857142857144,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.013058328921188966,
+          "final_equity": 0.9869150334600914,
+          "mdd_pct": 12.584170981313003,
+          "sharpe": -0.07615999136230668
+        },
+        "mean_net_trade_pct": 0.05134457847845798,
+        "trade_count": 210,
+        "turnover": 0.5737704918032787
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 360,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": 0.05628158797039684,
+          "final_equity": 1.0564003554116106,
+          "mdd_pct": 12.264313050366981,
+          "sharpe": 0.4071713863983275
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.32243661650805044,
+        "median_net_trade_pct": -1.6205690761190488,
+        "trade_count": 142,
+        "signal_count": 151,
+        "turnover": 0.3879781420765027,
+        "net_win_rate": 0.4295774647887324,
+        "target_first_rate": 0.30985915492957744
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.021750908177988082,
+          "final_equity": 1.021796054478289,
+          "mdd_pct": 14.223394675852797,
+          "sharpe": 0.15970749408098955
+        },
+        "mean_net_trade_pct": 0.18206394856219243,
+        "trade_count": 142,
+        "turnover": 0.3879781420765027
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 360,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.09836592261030419,
+          "final_equity": 1.0985775499573551,
+          "mdd_pct": 12.3232128706783,
+          "sharpe": 0.6097695547317717
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.5382768290168232,
+        "median_net_trade_pct": -2.0414446198223706,
+        "trade_count": 142,
+        "signal_count": 151,
+        "turnover": 0.3879781420765027,
+        "net_win_rate": 0.4014084507042254,
+        "target_first_rate": 0.19014084507042253
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.06225864552651994,
+          "final_equity": 1.06239039435642,
+          "mdd_pct": 13.488689100450735,
+          "sharpe": 0.3921777411645043
+        },
+        "mean_net_trade_pct": 0.39774260837737613,
+        "trade_count": 142,
+        "turnover": 0.3879781420765027
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 360,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.11249902472729101,
+          "final_equity": 1.1127425878351456,
+          "mdd_pct": 12.717209932829087,
+          "sharpe": 0.6606114528905821
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.6136175229372093,
+        "median_net_trade_pct": -2.185043855560641,
+        "trade_count": 142,
+        "signal_count": 151,
+        "turnover": 0.3879781420765027,
+        "net_win_rate": 0.3873239436619718,
+        "target_first_rate": 0.09859154929577464
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.0759790912729974,
+          "final_equity": 1.0761409002695175,
+          "mdd_pct": 13.874873427730062,
+          "sharpe": 0.4534927102725269
+        },
+        "mean_net_trade_pct": 0.4730296757702551,
+        "trade_count": 142,
+        "turnover": 0.3879781420765027
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 360,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.236665587370533,
+          "final_equity": 1.2372051114229856,
+          "mdd_pct": 12.558763297063692,
+          "sharpe": 1.1676749256753869
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 1.0683103779422582,
+        "median_net_trade_pct": -2.108198891198582,
+        "trade_count": 151,
+        "signal_count": 151,
+        "turnover": 0.412568306010929,
+        "net_win_rate": 0.36423841059602646,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.19353449025252845,
+          "final_equity": 1.1939681604080639,
+          "mdd_pct": 13.095563870143078,
+          "sharpe": 0.971987120929398
+        },
+        "mean_net_trade_pct": 0.9273985053708402,
+        "trade_count": 151,
+        "turnover": 0.412568306010929
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 720,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": -0.0454839488362736,
+          "final_equity": 0.9544248162951638,
+          "mdd_pct": 16.804855289888465,
+          "sharpe": -0.35167420420621703
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": -0.1400793483809212,
+        "median_net_trade_pct": -3.943353025855995,
+        "trade_count": 73,
+        "signal_count": 79,
+        "turnover": 0.1994535519125683,
+        "net_win_rate": 0.3835616438356164,
+        "target_first_rate": 0.2876712328767123
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.061569521525975945,
+          "final_equity": 0.9383080347683244,
+          "mdd_pct": 17.525526571247763,
+          "sharpe": -0.47897193066320365
+        },
+        "mean_net_trade_pct": -0.2801222047041386,
+        "trade_count": 73,
+        "turnover": 0.1994535519125683
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 720,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": -0.0051410643721377935,
+          "final_equity": 0.994848406265933,
+          "mdd_pct": 20.10960529941984,
+          "sharpe": -0.033667960734317624
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.22993498625643766,
+        "median_net_trade_pct": -3.943353025855995,
+        "trade_count": 73,
+        "signal_count": 79,
+        "turnover": 0.1994535519125683,
+        "net_win_rate": 0.3698630136986301,
+        "target_first_rate": 0.1917808219178082
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.022028277112428607,
+          "final_equity": 0.9779269932057592,
+          "mdd_pct": 20.814251178995224,
+          "sharpe": -0.14500753179467527
+        },
+        "mean_net_trade_pct": 0.08961199701604558,
+        "trade_count": 73,
+        "turnover": 0.1994535519125683
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 720,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.01309167224807739,
+          "final_equity": 1.0131187300973925,
+          "mdd_pct": 18.97669703013516,
+          "sharpe": 0.08079183555002042
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.42524801672147416,
+        "median_net_trade_pct": -3.943353025855995,
+        "trade_count": 73,
+        "signal_count": 79,
+        "turnover": 0.1994535519125683,
+        "net_win_rate": 0.3698630136986301,
+        "target_first_rate": 0.1095890410958904
+      },
+      "stress": {
+        "strategy": {
+          "cagr": -0.00413423937731594,
+          "final_equity": 0.9958572890332381,
+          "mdd_pct": 19.691088892405073,
+          "sharpe": -0.02565124045915149
+        },
+        "mean_net_trade_pct": 0.28476342517162545,
+        "trade_count": 73,
+        "turnover": 0.1994535519125683
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 720,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.03563340231618284,
+          "final_equity": 1.0357078626164293,
+          "mdd_pct": 20.745859550262868,
+          "sharpe": 0.20601933328920607
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 0.8541360556322448,
+        "median_net_trade_pct": -3.8176421474756026,
+        "trade_count": 78,
+        "signal_count": 79,
+        "turnover": 0.21311475409836064,
+        "net_win_rate": 0.32051282051282054,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.016737287687641045,
+          "final_equity": 1.0167719424488697,
+          "mdd_pct": 21.589410233851147,
+          "sharpe": 0.09741897214304847
+        },
+        "mean_net_trade_pct": 0.713343737391661,
+        "trade_count": 78,
+        "turnover": 0.21311475409836064
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_2r",
+      "base": {
+        "strategy": {
+          "cagr": 0.10131417024332667,
+          "final_equity": 1.1015324288421395,
+          "mdd_pct": 9.218742446601835,
+          "sharpe": 0.7715439859116109
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 1.9422330336654137,
+        "median_net_trade_pct": 0.2718254383050958,
+        "trade_count": 33,
+        "signal_count": 33,
+        "turnover": 0.09016393442622951,
+        "net_win_rate": 0.5454545454545454,
+        "target_first_rate": 0.36363636363636365
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.09300007210186267,
+          "final_equity": 1.0931996723066766,
+          "mdd_pct": 9.374525168010251,
+          "sharpe": 0.7107394675814187
+        },
+        "mean_net_trade_pct": 1.800629347147819,
+        "trade_count": 33,
+        "turnover": 0.09016393442622951
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_3r",
+      "base": {
+        "strategy": {
+          "cagr": 0.11683453933225119,
+          "final_equity": 1.117087973435695,
+          "mdd_pct": 13.282193717761992,
+          "sharpe": 0.7848805154027318
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 2.5947038849356407,
+        "median_net_trade_pct": 0.21079092417700596,
+        "trade_count": 33,
+        "signal_count": 33,
+        "turnover": 0.09016393442622951,
+        "net_win_rate": 0.5151515151515151,
+        "target_first_rate": 0.30303030303030304
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.10836592446595139,
+          "final_equity": 1.108600109803893,
+          "mdd_pct": 13.522332280079741,
+          "sharpe": 0.730290716625091
+        },
+        "mean_net_trade_pct": 2.452589490835581,
+        "trade_count": 33,
+        "turnover": 0.09016393442622951
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1440,
+      "exit_policy": "tp_4r",
+      "base": {
+        "strategy": {
+          "cagr": 0.053140133188476435,
+          "final_equity": 1.0532521056785418,
+          "mdd_pct": 18.955033553075793,
+          "sharpe": 0.32094712121638524
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 1.4420048222933446,
+        "median_net_trade_pct": -3.2364961190894803,
+        "trade_count": 33,
+        "signal_count": 33,
+        "turnover": 0.09016393442622951,
+        "net_win_rate": 0.45454545454545453,
+        "target_first_rate": 0.15151515151515152
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.0450540094891112,
+          "final_equity": 1.045148580571759,
+          "mdd_pct": 19.172788242367446,
+          "sharpe": 0.2729757275922404
+        },
+        "mean_net_trade_pct": 1.3006646594875166,
+        "trade_count": 33,
+        "turnover": 0.09016393442622951
+      }
+    },
+    {
+      "split": "validation",
+      "timeframe_min": 1440,
+      "exit_policy": "macd_zero_down",
+      "base": {
+        "strategy": {
+          "cagr": 0.40018358034646084,
+          "final_equity": 1.4011516900159775,
+          "mdd_pct": 18.350749162494438,
+          "sharpe": 1.6816271417867
+        },
+        "buy_hold": {
+          "cagr": 1.2707173068462745,
+          "final_equity": 2.2745443592192682,
+          "mdd_pct": 38.55990453668664,
+          "sharpe": 1.2446223265741212
+        },
+        "mean_net_trade_pct": 9.566415294227117,
+        "median_net_trade_pct": -3.2364961190894803,
+        "trade_count": 33,
+        "signal_count": 33,
+        "turnover": 0.09016393442622951,
+        "net_win_rate": 0.45454545454545453,
+        "target_first_rate": null
+      },
+      "stress": {
+        "strategy": {
+          "cagr": 0.3895174352739923,
+          "final_equity": 1.390456337181119,
+          "mdd_pct": 18.670524446717717,
+          "sharpe": 1.6426875757563033
+        },
+        "mean_net_trade_pct": 9.419277783204546,
+        "trade_count": 33,
+        "turnover": 0.09016393442622951
+      }
+    }
+  ],
+  "symbol_results_archive": "symbol_results.json.gz"
+}

@@ -96,7 +96,7 @@ def read_symbol(db_path: str | Path, symbol: str, through_ms: int) -> pd.DataFra
         con.close()
 
 
-def load_funding(run_dir: str | Path, snapshot_id: str, symbol: str, start_ms: int, end_ms: int) -> list[dict]:
+def load_funding(run_dir: str | Path, snapshot_id: str, symbol: str, start_ms: int, end_ms: int, minute: pd.DataFrame) -> list[dict]:
     records: list[dict] = []
     for path in sorted((Path(run_dir) / "funding" / snapshot_id / symbol).glob("page_*.json")):
         page = json.loads(path.read_text(encoding="utf-8"))
@@ -109,7 +109,19 @@ def load_funding(run_dir: str | Path, snapshot_id: str, symbol: str, start_ms: i
         t = int(r["fundingTime"])
         if t not in seen:
             seen.add(t)
-            out.append({"time": t, "rate": float(r["fundingRate"]), "mark": float(r["markPrice"])})
+            mark_text = r.get("markPrice")
+            if mark_text not in (None, ""):
+                mark = float(mark_text)
+            else:
+                # Historical endpoint rows often omit markPrice. Use the 1m
+                # open at or immediately before settlement (timestamps can
+                # carry millisecond jitter) as a causal proxy.
+                times = minute["open_ms"].to_numpy(dtype=np.int64)
+                i = int(np.searchsorted(times, t, side="right")) - 1
+                if i < 0 or t - int(times[i]) >= 60_000:
+                    raise ValueError(f"No prior minute open within one minute of funding timestamp {t}")
+                mark = float(minute["open"].iloc[i])
+            out.append({"time": t, "rate": float(r["fundingRate"]), "mark": mark})
     return out
 
 
@@ -479,6 +491,7 @@ def _select_policy(results: list[dict]) -> list[dict]:
         eligible = [r for r in candidates if r["base"]["strategy"]["cagr"] is not None
                     and r["base"]["strategy"]["cagr"] > r["base"]["buy_hold"]["cagr"]
                     and r["base"]["mean_net_trade_pct"] > 0
+                    and r["base"]["trade_count"] >= 30
                     and r["base"]["strategy"]["mdd_pct"] <= r["base"]["buy_hold"]["mdd_pct"]]
         if eligible:
             order = {name: i for i, name in enumerate(EXIT_POLICIES)}
@@ -496,7 +509,7 @@ def run_screen(db_path: str | Path, run_dir: str | Path) -> dict:
         minute = read_symbol(db_path, symbol, screen_end)
         if minute.empty or int(minute.open_ms.iloc[0]) > START_MS or int(minute.open_ms.iloc[-1]) < TRAIN_END_MS - 60_000:
             raise ValueError(f"Insufficient common-window price data for {symbol}")
-        funding_cache = {name: load_funding(run_dir, SCREEN_FUNDING_ID, symbol, *bounds) for name, bounds in splits.items() if name != "final"}
+        funding_cache = {name: load_funding(run_dir, SCREEN_FUNDING_ID, symbol, *bounds, minute) for name, bounds in splits.items() if name != "final"}
         daily_cache = {name: daily_closes(minute, *bounds) for name, bounds in splits.items() if name != "final"}
         bh_cache = {}
         for name, (start_ms, end_ms) in splits.items():
@@ -606,7 +619,7 @@ def run_final(db_path: str | Path, run_dir: str | Path, selection_path: str | Pa
     results = []
     for symbol in SYMBOLS:
         minute = read_symbol(db_path, symbol, bounds[1])
-        events = load_funding(run_dir, FINAL_FUNDING_ID, symbol, bounds[0], bounds[1])
+        events = load_funding(run_dir, FINAL_FUNDING_ID, symbol, bounds[0], bounds[1], minute)
         for choice in selected:
             tf, policy = int(choice["timeframe_min"]), choice["exit_policy"]
             bars = resample_minutes(minute, tf)

@@ -1,6 +1,6 @@
 # R004 — MACD zero-line cross with RSI(14) > 50
 
-Status: preregistration; **no price rows or performance metrics have been read/calculated for this run**.
+Status: preregistration amended before any performance metric was produced; first execution stopped on incomplete historical `markPrice` fields.
 
 ## Objective and lineage
 
@@ -30,6 +30,7 @@ Status: preregistration; **no price rows or performance metrics have been read/c
 - All variants expire after 20 timeframe bars. A stop or target can trigger on the first touch. If both are touched within the same 1m bar, stop is assumed first. Gaps through the stop fill at the adverse open; target fills no better than its limit. Market exits use adverse slippage.
 - Trade risk is set from ATR(14) known at the signal close; stop/target levels are fixed at entry. One symbol is one independent 1x sleeve; six sleeves start equal and cash is idle when flat. Report per-symbol and six-sleeve aggregate equity, not pooled trade-return sums.
 - Costs: base 0.05% taker fee plus 0.02% adverse slippage per side; stress case doubles both. These are assumptions, not measured fills. Apply actual funding at timestamped settlements while a position is open; charge positive rates to longs and credit negative rates.
+- Funding mark amendment (2026-11-16, before any performance metric was produced): raw public history contains blank `markPrice` for most early settlements. Preserve those rows and, only when `markPrice` is blank, use the symbol's most recent 1m candle open at or before settlement as a causal proxy; require it to be less than 60 seconds old. Never drop a funding settlement for this reason. The proxy is approximate rather than the exchange's actual mark; record the missing-mark fraction and label funding-adjusted metrics accordingly. If a qualifying prior 1m open is absent, stop the run rather than omit funding.
 - Baseline: each symbol's 1x long buy-and-hold over the same split and dates, with equivalent entry/exit costs and observed funding. Report cash exposure and strategy/B&H drawdown separately.
 
 ## Splits and selection firewall
@@ -53,3 +54,9 @@ Status: preregistration; **no price rows or performance metrics have been read/c
 - `plan.md`, `manifest.json`, `results.json`, `decision.md`, `handoff.md`; reproducible experiment code and synthetic unit tests.
 - Record exact command, environment, code SHA-256, price DB SHA-256, funding raw-page hashes/coverage, counts of all entry signals/trades/exits, split boundaries, all 48 screening cells, excluded/error cells, metrics, confidence intervals, and decision.
 - Before price analysis: run only synthetic unit tests and confirm read-only SQLite access. Do not modify the source checkout or its existing trial registry. Store this run's outputs and any downloaded raw funding data in the isolated temporary worktree's ignored `chart_predictor/data/strategy_lab/2026-11-16-r004-macd-zero-rsi50/` directory; commit reports/code, never market-data databases.
+
+## Execution amendment log
+
+- First screen attempt (2026-11-16) failed while parsing the first blank historical `markPrice`; it produced no screen JSON or performance metrics. The price reader had opened the read-only database and loaded the first symbol's candle rows before failure, so the original blanket statement that no price rows were read is superseded. No source DB or trial registry was changed.
+- Second attempt failed because funding timestamps can have millisecond jitter relative to minute boundaries; it produced no screen JSON or performance metrics. The loader now uses the most recent prior minute open, with a strict one-minute staleness guard, only for blank mark prices. Added synthetic coverage for jittered timestamps, blank and present mark fields.
+- After the first successful screen, source review found the selector omitted the preregistered 30-trade minimum. The selector is corrected to enforce that already-frozen rule and now has a boundary regression test; final screening must be rerun with the corrected selector and new hashes. This is an implementation correction, not a threshold change.
