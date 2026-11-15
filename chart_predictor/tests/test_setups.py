@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 import pytest
 from chart_predictor.setups import SETUPS, Signal, generate_signals
-from chart_predictor.setup_backtest import DEV_CUTOFF_MS, resolve_trade, wilson
+from chart_predictor.setup_backtest import DEV_CUTOFF_MS, resolve_trade, wilson, htf_direction_at
+from chart_predictor import indicators
 
 def candles(n=240):
     x=np.arange(n); c=100+np.sin(x/7)*2+x*.01
@@ -43,3 +44,54 @@ def test_single_position_entry_offset():
     out=resolve_trade(sig,f,raw,"1m",2)
     assert out is not None
     assert out["entry"]==pytest.approx(f.o.iloc[3])
+
+def _ohlc(o,h,l,c):
+    n=len(c)
+    return pd.DataFrame({"t_open_ms":1700000000000+np.arange(n)*60000,"o":o,"h":h,"l":l,"c":c,"v":np.ones(n)})
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_order_block_impulse_retest_and_invalidation(side):
+    o=np.full(18,100.); h=np.full(18,101.); l=np.full(18,99.); c=np.full(18,100.)
+    if side=="long":
+        o[14],h[14],l[14],c[14]=100,101,98,99
+        o[15],h[15],l[15],c[15]=100,105,99,104
+        o[16],h[16],l[16],c[16]=100,102,99,101.2
+    else:
+        o[14],h[14],l[14],c[14]=101,102,100,101.5
+        o[15],h[15],l[15],c[15]=101,101.5,95,97
+        o[16],h[16],l[16],c[16]=100,101,99,99.5
+    sigs=generate_signals(_ohlc(o,h,l,c),"order_block")
+    assert any(s.index==16 and s.side==side for s in sigs)
+    c[16]=97 if side=="long" else 103
+    near=generate_signals(_ohlc(o,h,l,c),"order_block")
+    assert not any(s.index==16 and s.side==side for s in near)
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_fabio_grab_then_next_bar_mss(side):
+    o=np.full(63,100.); h=np.full(63,101.); l=np.full(63,99.); c=np.full(63,100.)
+    if side=="short":
+        h[60],c[60]=103,102; l[61],c[61]=98,98.5
+    else:
+        l[60],c[60]=97,98; h[61],c[61]=102,101.5
+    sigs=generate_signals(_ohlc(o,h,l,c),"fabio_liquidity_mss")
+    assert any(s.index==61 and s.side==side for s in sigs)
+
+def test_fabio_grab_without_mss_does_not_signal():
+    o=np.full(63,100.); h=np.full(63,101.); l=np.full(63,99.); c=np.full(63,100.)
+    h[60],c[60]=103,102
+    assert not generate_signals(_ohlc(o,h,l,c),"fabio_liquidity_mss")
+
+def test_supertrend_direction_matches_inline_rule():
+    f=candles(100); h,l,c=(f[k].to_numpy() for k in ("h","l","c")); a=indicators.atr(h,l,c,14)
+    expected=np.zeros(len(c),int); upper=(h+l)/2+3*a; lower=(h+l)/2-3*a
+    for i in range(1,len(c)):
+        if np.isfinite(a[i]):
+            expected[i]=1 if c[i]>upper[i-1] else -1 if c[i]<lower[i-1] else expected[i-1]
+    assert np.array_equal(indicators.supertrend_direction(h,l,c,a),expected)
+
+def test_htf_alignment_uses_only_fully_closed_bars():
+    opens=np.array([0,60,120]); dirs=np.array([-1,1,-1]); width=60
+    assert htf_direction_at(opens,dirs,width,60)==-1
+    assert htf_direction_at(opens,dirs,width,60)!=1
+    assert htf_direction_at(opens,dirs,width,59)==0
+    assert htf_direction_at(opens,dirs,width,179)==1

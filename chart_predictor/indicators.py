@@ -43,6 +43,17 @@ def atr(high, low, close, period=14):
     return tr.ewm(alpha=1 / period, adjust=False, min_periods=period).mean().to_numpy()
 
 
+def supertrend_direction(high, low, close, atr_values, multiplier=3):
+    h, l, c, a = map(lambda x: np.asarray(x, dtype=float), (high, low, close, atr_values))
+    mid=(h+l)/2; upper=mid+multiplier*a; lower=mid-multiplier*a; direction=np.zeros(len(c),int)
+    for i in range(1,len(c)):
+        if np.isfinite(a[i]):
+            if c[i]>upper[i-1]: direction[i]=1
+            elif c[i]<lower[i-1]: direction[i]=-1
+            else: direction[i]=direction[i-1]
+    return direction
+
+
 def adx_di(high, low, close, period=14):
     """Return +DI, -DI, ADX using Wilder-smoothed directional movement."""
     h, l = np.asarray(high, float), np.asarray(low, float)

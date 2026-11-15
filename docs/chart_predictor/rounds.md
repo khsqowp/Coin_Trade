@@ -137,3 +137,21 @@ LLM이 읽는 것과 같은 결정적 특징으로 로지스틱(L2)·HistGradien
 **결론**: 규칙 기반 셋업(트레이딩뷰식 진입·손절·목표) 경로도 통계 예측 경로(P4)와 같은 결론이다 — **개발 구간에서 사전 등록한 기준(75%)을 넘는 칸이 없다.** 둘 다 "엣지 없음"으로 수렴했다. 검증 구간(뒤 30%)은 개발 구간에 통과 후보가 없으므로 아직 열지 않는다(사전 규칙대로).
 
 **부가 확인**: 신호 캐시 파일(`signals_47cd83f6511e6d59.json`)이 476MB다 — 디스크 정리 대상으로 기록.
+
+## P6 — SMC 계열 규칙 2종 추가, A/B/C 재검증 (2026-11-15)
+
+범위: P5와 같은 개발 구간(84일, 거래량 상위 50종목, 1/5/30/60분봉), 신규 2종만 Stage A 신호 생성, Stage A 2R / Stage B 3R / Stage C 5개 시간 구간·Holm 보정. 리포트: Stage A [`report_e959118d43f2c0e0.json`](../../chart_predictor/data/setups/report_e959118d43f2c0e0.json), Stage B [`report_756101f1ae938593.json`](../../chart_predictor/data/setups/report_756101f1ae938593.json), Stage C [`report_709cb94ee1dcb8c2.json`](../../chart_predictor/data/setups/report_709cb94ee1dcb8c2.json). 최종 판정은 가장 엄격한 Stage C 기준이다.
+
+**기준 결과: Stage C에서 적중률 75% 이상이면서 거래 30건 이상인 칸은 0개다.**
+
+- `order_block`은 `app/technical_signal_common.py`의 bullish impulse 뒤 최근 bearish 봉 구간을 zone으로 두고, 구간을 되찾는 첫 재시험에서 신호를 내는 규칙을 옮겼다. 원본은 롱만 정의하므로 P6 숏 규칙은 반대편 대칭 확장이다. 기존 `sweep_choch_retest`는 확정 pivot sweep 뒤 반대편 구조 돌파(CHoCH)와 midpoint 재시험을 기다린다. `order_block`은 impulse가 만든 마지막 반대색 봉의 범위를 재시험하므로 구조적으로 다른 규칙이다. `technical_signal_common.py`에서는 CAGR/Sharpe 틀에 쓰였고, 이번 R 배수 적중률 검정은 별도 평가다.
+- `fabio_liquidity_mss`는 사용자가 제공한 Fabio Style Indicator Pine v6 정의를 고정 lookback sweep 및 MSS 확인으로 이식했다. `sweep_choch_retest`가 확정 pivot sweep 후 반대 swing 돌파와 midpoint retest까지 요구하는 데 비해, 이 규칙은 rolling extreme을 넘은 뒤 4봉 구조 extreme을 반대 방향으로 깨면 바로 진입하며 retest가 없다. 따라서 실패한 P5 규칙의 이름만 바꾼 재시험이 아니다.
+- Fabio 규칙의 내부 HTF 참조는 진입봉이 60분 미만이면 60분, 진입 60분봉이면 더 긴 참조가 필요해 240분으로 대체했다. 새 `htf_trend_align`도 60분 미만 진입에 60분, 60분 진입에 240분 SuperTrend를 사용한다. 이는 원 Pine이 지정한 60분 참조의 완전 복제가 아니며 60분 진입에서의 대체 설정이다. 필터는 신호 봉 종가까지 완전히 닫힌 HTF 봉만 사용한다.
+- `htf_trend_align`은 `base`, `vol_top_third`와 독립된 세 번째 Stage C 변형이다. 통과 후보를 만들지 못했다. 거래 30건 이상인 셀 수는 base 28/32, vol_top_third 28/32, HTF 정렬 26/32였다. 방향 정렬은 일부 표본을 더 줄였으며 기준 통과 셀은 어느 변형에도 없었다.
+- Pine의 기본 TP 0.3% / SL 0.4%는 손익비 0.75:1로, 수수료 전 손익분기 적중률도 57%를 넘어야 한다. 이 출구 규칙과 Dynamic-ATR 출구는 구현·평가하지 않았다. 이번 측정은 모든 셋업과 같은 다음 봉 시가 진입, stop/2R·3R 목표 체계다.
+
+**수익 상위권은 승리가 아니다.** Stage C 전체 최고 순수익 셀은 `order_block / long / 60m / 3R / vol_top_third`: n=499, 적중률 13.2%, Wilson 95% CI 10.5–16.5%, 누적 순수익 +217.40%지만 `REJECT / Abandon`이며 `excessive_drawdown`, `short_test_period` 플래그가 있다. 다음 `order_block / long / 60m / 3R / base`도 n=1,024, 적중률 12.0%, CI 10.2–14.1%, +209.83%, `REJECT / Abandon`이고 같은 두 플래그가 있다. 그 다음 `order_block / long / 60m / 2R / vol_top_third`는 n=499, 적중률 23.2%, CI 19.8–27.1%, +177.35%, 역시 `REJECT / Abandon`이다. `fabio_liquidity_mss / long / 60m / 2R / htf_trend_align`은 n=62, 적중률 22.6%, CI 14.0–34.4%, +88.87%지만 `VALIDATION_REQUIRED / Refine`, `short_test_period`다. 이들 어느 것도 75% 적중률 기준에 근접하지 않는다. Stage C 전체를 훑어도 hit-rate/trade-count 동시 통과는 없다.
+
+**결론**: P4의 예측 경로와 P5의 기존 8개 규칙에 이어, 이번 SMC 계열 2개 추가 규칙도 사전 등록한 개발 구간 기준에서 엣지를 확인하지 못했다. 특히 순수익 상위 숫자는 적중률과 expert 판정을 뒤집지 못한다. 뒤 30% 검증 구간은 P5의 사전 기준에 따라 열지 않는다. 다음 단계는 새로운 진입 규칙을 더 늘리기보다, 이 규칙 백테스트 경로에서 통과 후보가 없다는 결과를 기준선으로 보존하는 것이다.
+
+**부가 확인**: Stage A 신호 캐시 [`signals_e959118d43f2c0e0.json`](../../chart_predictor/data/setups/signals_e959118d43f2c0e0.json)은 27,512,835 bytes(약 26.2 MiB)다. P5의 476MB보다는 작지만 수 MB 단위는 아니다.

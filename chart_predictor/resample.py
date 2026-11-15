@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime, timezone
 import pandas as pd
 
-TIMEFRAME_MINUTES = {"5m": 5, "30m": 30, "60m": 60}
+TIMEFRAME_MINUTES = {"5m": 5, "30m": 30, "60m": 60, "240m": 240}
 
 
 def resample_frame(frame: pd.DataFrame, timeframe: str, now_ms=None) -> pd.DataFrame:

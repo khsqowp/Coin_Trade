@@ -15,6 +15,7 @@ DEV_CUTOFF_MS=1791504000000 # 2026-10-09T00:00:00Z, exclusive; first 70% of 120d
 START_MS=1784246400000 # 2026-07-17T00:00:00Z
 FEE=.0005
 WIDTH={"1m":60000,"5m":300000,"30m":1800000,"60m":3600000}
+TIMEFRAME_WIDTH={**WIDTH,"240m":14_400_000}
 HYPOTHESES={
  "supertrend":"A SuperTrend direction flip should capture persistent directional moves before an ATR trailing stop reverses.",
  "trendline_breakout":"A close breaking the recent fitted price trend should precede continuation far enough to overcome a three-ATR stop and modeled fees.",
@@ -24,6 +25,8 @@ HYPOTHESES={
  "rsi_divergence":"Confirmed price and RSI divergence at successive swings should precede a mean-reverting move away from the latest extreme.",
  "candle_reversal":"A reversal candle near VWAP or a confirmed swing zone should produce short-horizon directional follow-through.",
  "fibonacci_pocket":"A directional retracement into the fixed 61.8–78.6% swing pocket should resume the preceding impulse toward a two-risk target.",
+ "order_block":"A bullish/bearish impulse candle should leave behind an unfilled order block whose first retest and reclaim marks support/resistance for continuation.",
+ "fabio_liquidity_mss":"A rolling-window liquidity grab beyond the recent extreme, followed by a tighter structure-shift break in the opposite direction, should mark a reversal with favorable follow-through.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -31,6 +34,11 @@ def wilson(w,n):
     if not n:return [None,None]
     z=1.959963984540054; p=w/n; d=1+z*z/n; m=(p+z*z/(2*n))/d; r=z*math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d
     return [m-r,m+r]
+
+def htf_direction_at(htf_open_ms, directions, htf_width_ms, close_ms):
+    """Direction of the latest HTF bar fully closed by close_ms; 0 if unavailable."""
+    k=np.searchsorted(np.asarray(htf_open_ms,dtype=np.int64)+htf_width_ms,close_ms,side="right")-1
+    return int(directions[k]) if k>=0 else 0
 
 def resolve_trade(signal, frame, raw1m, timeframe, multiple, fee=FEE, leverage=1):
     """Use next timeframe open; scan chronological 1m rows, stop wins same-minute ties."""
@@ -110,7 +118,8 @@ def _write(report,report_dir, data_hash, stage):
     rows=report["results"]
     hypotheses="\n".join(f"- **{k}**: {v}" for k,v in HYPOTHESES.items())
     top=rows[:50]; hits=[r for r in rows if r["minimum_trade_gate_met"] and r["hit_gate_75"]]
-    lines=["# P5 setup backtest (development only)","",f"Stage: {stage}; fingerprint `{fingerprint}`; runtime {report['runtime_seconds']:.1f}s.","","## Fixed hypotheses",hypotheses,"","## Ranked cells (net return)","","|Rank|Setup|Side|TF|R|Filter|Trades|Hit rate|Net return %|Expert|Verdict|Red flags|","|---:|---|---|---:|---:|---|---:|---:|---:|---:|---|---|"]
+    label="P6" if rows and {r["setup"] for r in rows}<={"order_block","fabio_liquidity_mss"} else "P5"
+    lines=[f"# {label} setup backtest (development only)","",f"Stage: {stage}; fingerprint `{fingerprint}`; runtime {report['runtime_seconds']:.1f}s.","","## Fixed hypotheses",hypotheses,"","## Ranked cells (net return)","","|Rank|Setup|Side|TF|R|Filter|Trades|Hit rate|Net return %|Expert|Verdict|Red flags|","|---:|---|---|---:|---:|---|---:|---:|---:|---:|---|---|"]
     for i,r in enumerate(top,1):
         flags=[f['id'] for f in r['backtest_expert']['red_flags']]+r.get('red_flags_detected',[])
         lines.append(f"|{i}|{r['setup']}|{r['side']}|{r['timeframe']}|{r['R']}|{r['vol_filter']}|{r['n_signals']}|{r['hit_rate']:.3f}|{r['total_net_return_pct']:.4f}|{r['backtest_expert']['score']}|{r['backtest_expert']['decision']} / {r['backtest_expert']['verdict']}|{','.join(flags) or 'none'}|")
@@ -120,9 +129,9 @@ def _write(report,report_dir, data_hash, stage):
     mp.write_text("\n".join(lines),encoding="utf-8")
     return jp,mp
 
-def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage="A"):
+def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage="A",setups=None):
     t0=time.monotonic(); root=Path(__file__).parent; universe_path=universe_path or root/"data/universe_collect.json"; report_dir=Path(report_dir or root/"data/setups")
-    symbols=load_universe(universe_path); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); data_hash=hashlib.sha256(); grouped={}; stage_times={}; signal_cache=[]
+    symbols=load_universe(universe_path); setups=tuple(setups or SETUPS); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); data_hash=hashlib.sha256(); grouped={}; stage_times={}; signal_cache=[]
     for tf,w in WIDTH.items():
         tf0=time.monotonic(); cache={}
         for tier,symbol in enumerate(symbols,1):
@@ -137,7 +146,7 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
             prepared={"atr":atr(h,l,c,14),"swings":indicators.confirmed_swings(h,l,3),
                       "rsi":indicators.rsi(c,14),"vwap":indicators.vwap(h,l,c,v,frame.t_open_ms),
                       "patterns":indicators.candle_patterns(frame.o,frame.h,frame.l,frame.c)}
-            cache[symbol]=(raw,frame,{setup:generate_signals(frame,setup,prepared) for setup in SETUPS},tier)
+            cache[symbol]=(raw,frame,{setup:generate_signals(frame,setup,prepared) for setup in setups},tier)
         for symbol,(raw,frame,signals,tier) in cache.items():
             for setup,sigs in signals.items():
                 for sig in sigs:
@@ -197,7 +206,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
     """Add 5 chronological folds and a lagged top-third ATR-volatility filter."""
     t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups")
     base=json.loads(Path(stage_a_json).read_text()); signals=json.loads(Path(base["signal_cache_file"]).read_text())
-    by_symbol_tf={}
+    by_symbol_tf={}; htf_cache={}
     for item in signals:by_symbol_tf.setdefault((item["symbol"],item["timeframe"]),[]).append(item)
     db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); grouped={}; stage_times={}
     for tf,w in WIDTH.items():
@@ -207,6 +216,11 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
             raw=pd.read_sql_query("SELECT t_open_ms,o,h,l,c,v,quote_v,trades FROM candles WHERE symbol=? AND t_open_ms>=? AND t_open_ms<? ORDER BY t_open_ms",db,params=(symbol,START_MS,DEV_CUTOFF_MS))
             frame=raw.copy() if tf=="1m" else resample_frame(raw,tf,now_ms=DEV_CUTOFF_MS)
             frame=frame[(frame.t_open_ms>=START_MS)&(frame.t_open_ms+w<=DEV_CUTOFF_MS)].reset_index(drop=True)
+            htf_tf="60m" if tf in ("1m","5m","30m") else "240m"
+            htf=resample_frame(raw,htf_tf,now_ms=DEV_CUTOFF_MS)
+            hw=TIMEFRAME_WIDTH[htf_tf]
+            hdir=indicators.supertrend_direction(htf.h,htf.l,htf.c,atr(htf.h,htf.l,htf.c,14)) if len(htf) else np.asarray([],int)
+            htf_cache[(symbol,tf)]=(htf.t_open_ms.to_numpy(np.int64),hdir,hw)
             aa=atr(frame.h,frame.l,frame.c,14)/frame.c.to_numpy(float)
             period=max(1,7*1440//(w//60000)); roll=pd.Series(aa).rolling(period,min_periods=max(1,period//2)).quantile(2/3).shift(1).to_numpy()
             raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy())
@@ -216,6 +230,10 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
                 if nxt>=len(frame):continue
                 stamp=int(frame.t_open_ms.iloc[nxt]); fold=min(4,max(0,int((stamp-START_MS)/(DEV_CUTOFF_MS-START_MS)*5)))
                 vf=bool(np.isfinite(roll[sig.index]) and aa[sig.index]>=roll[sig.index])
+                opens,dirs,hw=htf_cache[(symbol,tf)]
+                close_ms=int(frame.t_open_ms.iloc[sig.index])+w
+                macro_dir=htf_direction_at(opens,dirs,hw,close_ms)
+                align=(sig.side=="long" and macro_dir==1) or (sig.side=="short" and macro_dir==-1)
                 for rm in (2,3):
                     result=resolve_trade(sig,frame,raw,tf,rm)
                     if result is None:continue
@@ -223,6 +241,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
                     key=(item["setup"],item["side"],tf,rm,"base")
                     grouped.setdefault(key,[]).append(result)
                     if vf:grouped.setdefault((item["setup"],item["side"],tf,rm,"vol_top_third"),[]).append(result)
+                    if align:grouped.setdefault((item["setup"],item["side"],tf,rm,"htf_trend_align"),[]).append(result)
         stage_times[tf]=time.monotonic()-tf0
         print(f"[Stage C] timeframe={tf} elapsed={stage_times[tf]:.1f}s cumulative={time.monotonic()-t0:.1f}s",flush=True)
     db.close(); years=0; rows=[]
@@ -252,7 +271,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
             pair[2]["red_flags_detected"].append("target_R_parameter_instability")
             pair[3]["red_flags_detected"].append("target_R_parameter_instability")
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
-    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; entry at next timeframe open; 1m stop-first; 12-bar maximum; pooled base and filter variants; both fixed R targets."}
+    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; htf_trend_align uses the latest fully closed HTF SuperTrend bar (60m for entries below 60m, 240m for 60m); entry at next timeframe open; 1m stop-first; 12-bar maximum; pooled independent base/filter variants; both fixed R targets."}
     jp,mp=_write(report,report_dir,base["fingerprint"],"C"); report["json_path"]=str(jp); report["markdown_path"]=str(mp)
     trials=connect_trials(trial_path or report_dir.parent/"trials.sqlite"); record_trial(trials,datetime.now(timezone.utc).isoformat(),"setups","P5","","dev","P5 setup backtest dev (staged)",sum(r["n_signals"] for r in rows),report["fingerprint"]); trials.close()
     return report,jp,mp

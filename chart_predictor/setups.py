@@ -1,10 +1,12 @@
 """Causal deterministic price-action setup signals for P5."""
 from dataclasses import dataclass
 import numpy as np
+import pandas as pd
 from . import indicators
 
 SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
-          "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket")
+          "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
+          "order_block", "fabio_liquidity_mss")
 
 @dataclass(frozen=True)
 class Signal:
@@ -27,13 +29,10 @@ def generate_signals(frame, setup, prepared=None):
         if i+1<n and np.isfinite(stop) and stop>0 and ((side=="long" and stop<c[i]) or (side=="short" and stop>c[i])):
             out.append(Signal(i,side,float(stop)))
     if setup=="supertrend":
-        mid=(h+l)/2; upper=mid+3*a; lower=mid-3*a; direction=np.zeros(n,int)
+        direction=indicators.supertrend_direction(h,l,c,a)
         for i in range(1,n):
-            if np.isfinite(a[i]):
-                if c[i]>upper[i-1]: direction[i]=1
-                elif c[i]<lower[i-1]: direction[i]=-1
-                else: direction[i]=direction[i-1]
-                if direction[i]!=direction[i-1] and direction[i]: emit(i,"long" if direction[i]>0 else "short", lower[i] if direction[i]>0 else upper[i])
+            mid=(h[i]+l[i])/2
+            if direction[i]!=direction[i-1] and direction[i]: emit(i,"long" if direction[i]>0 else "short", mid-3*a[i] if direction[i]>0 else mid+3*a[i])
     elif setup=="trendline_breakout":
         # Fixed-window O(n) regression: equivalent to polyfit over x=0..19,
         # while avoiding millions of tiny LAPACK calls on 1m data.
@@ -112,4 +111,48 @@ def generate_signals(frame, setup, prepared=None):
             if lastlo and lasthi and lasthi[0]<lastlo[0] and i>lastlo[0]:
                 hi,lo=lasthi[1],lastlo[1]; z1=lo+.618*(hi-lo); z2=lo+.786*(hi-lo)
                 if z1<=h[i]<=z2 and c[i]<o[i]: emit(i,"short",hi+.886*(hi-lo))
+    elif setup=="order_block":
+        zones=[]
+        for i in range(n):
+            remaining=[]
+            for low,high,born,side in zones:
+                invalid=(i-born>60 or (c[i]<low if side=="long" else c[i]>high))
+                if invalid: continue
+                if l[i]<=high and h[i]>=low and (c[i]>high if side=="long" else c[i]<low):
+                    emit(i,side,low if side=="long" else high)
+                    # Port semantics: signal-fired zones are dropped because the original
+                    # remaining-list branch appends only in its `else` arm.
+                else: remaining.append((low,high,born,side))
+            zones=remaining
+            if i>=14 and np.isfinite(a[i-1]):
+                if c[i]-o[i]>1.5*a[i-1] and c[i]>h[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]<o[j]: zones.append((l[j],h[j],i,"long")); break
+                # Symmetric short side is an extension; the cited source defines long only.
+                if o[i]-c[i]>1.5*a[i-1] and c[i]<l[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]>o[j]: zones.append((l[j],h[j],i,"short")); break
+    elif setup=="fabio_liquidity_mss":
+        if n>=2:
+            bar_minutes=round((int(frame.t_open_ms.iloc[1])-int(frame.t_open_ms.iloc[0]))/60000)
+            if bar_minutes>0:
+                htf_minutes=60 if bar_minutes<60 else 4*bar_minutes
+                bar_length=max(1,round(htf_minutes/bar_minutes))
+                last_hi=pd.Series(h).rolling(bar_length,min_periods=bar_length).max().shift(1).to_numpy()
+                last_lo=pd.Series(l).rolling(bar_length,min_periods=bar_length).min().shift(1).to_numpy()
+                mss_hi=pd.Series(h).rolling(4,min_periods=4).max().shift(1).to_numpy()
+                mss_lo=pd.Series(l).rolling(4,min_periods=4).min().shift(1).to_numpy()
+                state="waiting"; locked_high=locked_low=grab_level=None; entry_type=None
+                for i in range(n):
+                    if state=="waiting":
+                        if np.isfinite(last_hi[i]) and h[i]>last_hi[i]:
+                            locked_high,locked_low,grab_level,entry_type=mss_hi[i],mss_lo[i],last_hi[i],"short"; state="waiting_for_mss"
+                        elif np.isfinite(last_lo[i]) and l[i]<last_lo[i]:
+                            locked_high,locked_low,grab_level,entry_type=mss_hi[i],mss_lo[i],last_lo[i],"long"; state="waiting_for_mss"
+                    elif entry_type=="short" and np.isfinite(locked_low) and l[i]<locked_low:
+                        emit(i,"short",grab_level); state="waiting"
+                    elif entry_type=="long" and np.isfinite(locked_high) and h[i]>locked_high:
+                        emit(i,"long",grab_level); state="waiting"
+                    # The Pine armed state has no timeout/opposite-grab reset; this port likewise waits
+                    # indefinitely, then resets after one entry so a continuing inequality cannot re-fire.
     return out
