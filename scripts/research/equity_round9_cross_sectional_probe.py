@@ -10,6 +10,7 @@ import pandas as pd
 
 CACHE = Path(__file__).resolve().parents[2] / ".kis-cache-local"
 CUTOFF = pd.Timestamp("2024-11-12T00:00:00Z")
+EVAL_START = None
 KR_ETFS = {
     "069500", "091160", "091170", "091180", "102110", "102970", "114260", "114800",
     "117460", "117680", "117700", "132030", "133690", "139230", "139260", "140700",
@@ -92,6 +93,8 @@ def kr_stress_reversal():
     cohort_rows = []
     for i in range(6, len(calendar) - 6):
         day, signal_window = calendar[i], calendar[i - 5:i + 1]
+        if EVAL_START is not None and day < EVAL_START:
+            continue
         market_ret = market[day][3] / market[calendar[i - 1]][3] - 1
         ranked = []
         for symbol, prices in stocks.items():
@@ -123,10 +126,11 @@ def kr_stress_reversal():
                 samples[(name, cost)].append((daily, day, len(group)))
         if stress:
             etf_entry, etf_exit = market[calendar[i + 1]][0], market[calendar[i + 5]][3]
+            etf_stress = net_kr(etf_entry, etf_exit, KR_STRESS_SLIP)
             cohort_rows.append((day, market_ret, len(low_decile),
                                 float(np.mean([net_kr(x[2], x[3], KR_BASE_SLIP) for x in low_decile])),
                                 float(np.mean([net_kr(x[2], x[3], KR_STRESS_SLIP) for x in low_decile])),
-                                net_kr(etf_entry, etf_exit, KR_BASE_SLIP)))
+                                net_kr(etf_entry, etf_exit, KR_BASE_SLIP), etf_stress))
     out = []
     for (strategy, cost), data in sorted(samples.items()):
         values, dates = [x[0] * 100 for x in data], [x[1] for x in data]
@@ -136,28 +140,28 @@ def kr_stress_reversal():
                     "median_cohort_net_pct": float(np.median(values)),
                     "six_month_block95_pct": clustered_ci(values, dates, 119 + (cost == "stress") + (strategy != "stress_bottom_decile"), 6),
                     "benchmark": "069500 stress proxy; event-study cohorts, no account sizing"})
-    for cost in ("base",):
-        values = [x[3] * 100 for x in cohort_rows]
-        dates = [x[0] for x in cohort_rows]
+    dates = [x[0] for x in cohort_rows]
+    for j, (cost, stock_col, etf_col) in enumerate((("base", 3, 5), ("stress", 4, 6))):
+        values = [x[etf_col] * 100 for x in cohort_rows]
         out.append({"market": "KR", "strategy": "069500_same_5session_stress_cohorts", "cost_case": cost,
                     "signal_days": len(values), "event_count": len(values),
-                    "mean_cohort_net_pct": float(np.mean([x[5] for x in cohort_rows]) * 100) if values else float("nan"),
-                    "median_cohort_net_pct": float(np.median([x[5] for x in cohort_rows]) * 100) if values else float("nan"),
-                    "six_month_block95_pct": clustered_ci([x[5] * 100 for x in cohort_rows], dates, 129, 6),
+                    "mean_cohort_net_pct": float(np.mean(values)) if values else float("nan"),
+                    "median_cohort_net_pct": float(np.median(values)) if values else float("nan"),
+                    "six_month_block95_pct": clustered_ci(values, dates, 129 + j, 6),
                     "benchmark": "069500 ETF held next open through close after 5 sessions"})
-        differences = [(x[3] - x[5]) * 100 for x in cohort_rows]
+        differences = [(x[stock_col] - x[etf_col]) * 100 for x in cohort_rows]
         out.append({"market": "KR", "strategy": "stress_bottom_decile_minus_069500_matched", "cost_case": cost,
                     "signal_days": len(differences), "event_count": len(differences),
                     "mean_cohort_net_pct": float(np.mean(differences)) if differences else float("nan"),
                     "median_cohort_net_pct": float(np.median(differences)) if differences else float("nan"),
-                    "six_month_block95_pct": clustered_ci(differences, dates, 139, 6),
+                    "six_month_block95_pct": clustered_ci(differences, dates, 139 + j, 6),
                     "benchmark": "paired stress-date cohort return spread"})
         for year in sorted({x[0].year for x in cohort_rows}):
             group = [x for x in cohort_rows if x[0].year == year]
-            out.append({"market": "KR", "strategy": "stress_bottom_decile_annual", "cost_case": "base",
+            out.append({"market": "KR", "strategy": "stress_bottom_decile_annual", "cost_case": cost,
                         "year": year, "signal_days": len(group), "event_count": sum(x[2] for x in group),
-                        "mean_cohort_net_pct": float(np.mean([x[3] for x in group]) * 100),
-                        "matched_069500_mean_pct": float(np.mean([x[5] for x in group]) * 100),
+                        "mean_cohort_net_pct": float(np.mean([x[stock_col] for x in group]) * 100),
+                        "matched_069500_mean_pct": float(np.mean([x[etf_col] for x in group]) * 100),
                         "benchmark": "annual descriptive breakdown; not an independent test"})
     return out, {"kr_stock_files": len(stocks), "stress_days": len(cohort_rows), "first_stress": str(cohort_rows[0][0].date()) if cohort_rows else "", "last_stress": str(cohort_rows[-1][0].date()) if cohort_rows else ""}
 
@@ -169,6 +173,8 @@ def us_momentum():
     data = {p.stem[3:]: load_daily(p) for p in stock_files}
     cohort_values, broad_values, benchmark_values, signal_dates = [], [], [], []
     for day in month_ends(calendar):
+        if EVAL_START is not None and day < EVAL_START:
+            continue
         i = calendar.index(day)
         if i < 253 or i + 1 >= len(calendar):
             continue
@@ -236,10 +242,20 @@ def us_momentum():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv-out", type=Path, required=True)
+    parser.add_argument("--start", help="optional evaluation start; earlier rows are lookback-only")
+    parser.add_argument("--end-exclusive", help="exclusive data/evaluation end")
     args = parser.parse_args()
+    global CUTOFF, EVAL_START
+    if args.start:
+        EVAL_START = pd.to_datetime(args.start, utc=True)
+    if args.end_exclusive:
+        CUTOFF = pd.to_datetime(args.end_exclusive, utc=True)
     kr_rows, kr_meta = kr_stress_reversal()
     us_rows, us_meta = us_momentum()
     rows = kr_rows + us_rows
+    for row in rows:
+        row["evaluation_start_utc"] = EVAL_START.isoformat() if EVAL_START is not None else "full_pre_cutoff_dev"
+        row["end_exclusive_utc"] = CUTOFF.isoformat()
     args.csv_out.parent.mkdir(parents=True, exist_ok=True)
     with args.csv_out.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(dict.fromkeys(k for row in rows for k in row)), lineterminator="\n")

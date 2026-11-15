@@ -1,58 +1,73 @@
-market,strategy,cost_case,signal_days,event_count,mean_cohort_net_pct,median_cohort_net_pct,six_month_block95_pct,benchmark,year,matched_069500_mean_pct,month_cohorts,mean_net_pct_per_month,median_net_pct_per_month,mean_top_quintile_pct,mean_universe_pct,mean_SPY_pct,mean_excess_universe_pct
-KR,all_day_bottom_decile,base,3501,21451,-0.06226199361041841,-0.1518726989082379,"(-0.25258645134426166, 0.10627770147631566)","069500 stress proxy; event-study cohorts, no account sizing",,,,,,,,,
-KR,all_day_bottom_decile,stress,3501,21451,-0.2621187346790325,-0.35155023536523333,"(-0.44386540404521635, -0.10321324560300105)","069500 stress proxy; event-study cohorts, no account sizing",,,,,,,,,
-KR,stress_bottom_decile,base,111,669,0.8162996491330937,0.8495017894843017,"(-0.5450057208675244, 1.8659305777691446)","069500 stress proxy; event-study cohorts, no account sizing",,,,,,,,,
-KR,stress_bottom_decile,stress,111,669,0.6146859494795722,0.6478216917743551,"(-0.7869786323183192, 1.6525283726181785)","069500 stress proxy; event-study cohorts, no account sizing",,,,,,,,,
-KR,069500_same_5session_stress_cohorts,base,111,111,-0.25052545745612936,0.5030489969023888,"(-1.1578672873568834, 0.7138135315269664)",069500 ETF held next open through close after 5 sessions,,,,,,,,,
-KR,stress_bottom_decile_minus_069500_matched,base,111,111,1.0668251065892231,0.5037868711389812,"(0.2028679499568152, 1.9611874473690816)",paired stress-date cohort return spread,,,,,,,,,
-KR,stress_bottom_decile_annual,base,26,130,1.5972347211928541,,,annual descriptive breakdown; not an independent test,2011,-0.6315104129146631,,,,,,,
-KR,stress_bottom_decile_annual,base,4,20,2.6771313954752465,,,annual descriptive breakdown; not an independent test,2012,0.5395118388069053,,,,,,,
-KR,stress_bottom_decile_annual,base,3,18,1.3864550788669758,,,annual descriptive breakdown; not an independent test,2013,-0.06494673041655222,,,,,,,
-KR,stress_bottom_decile_annual,base,1,6,-2.254198446744606,,,annual descriptive breakdown; not an independent test,2014,-1.2741314233775225,,,,,,,
-KR,stress_bottom_decile_annual,base,3,18,2.8225078534842147,,,annual descriptive breakdown; not an independent test,2015,0.13152866591287599,,,,,,,
-KR,stress_bottom_decile_annual,base,8,48,1.5738111627126128,,,annual descriptive breakdown; not an independent test,2016,1.0761936080079817,,,,,,,
-KR,stress_bottom_decile_annual,base,7,42,0.40225478463131,,,annual descriptive breakdown; not an independent test,2018,0.12620826511669275,,,,,,,
-KR,stress_bottom_decile_annual,base,4,24,1.9396647743677817,,,annual descriptive breakdown; not an independent test,2019,0.014002140442229138,,,,,,,
-KR,stress_bottom_decile_annual,base,23,139,-1.4199974355421365,,,annual descriptive breakdown; not an independent test,2020,-1.4438172420012754,,,,,,,
-KR,stress_bottom_decile_annual,base,7,49,2.401236419738929,,,annual descriptive breakdown; not an independent test,2021,1.721539021257184,,,,,,,
-KR,stress_bottom_decile_annual,base,13,91,-0.24160753298923263,,,annual descriptive breakdown; not an independent test,2022,-0.0016269468386603386,,,,,,,
-KR,stress_bottom_decile_annual,base,5,35,1.891279808477734,,,annual descriptive breakdown; not an independent test,2023,0.5991051804900982,,,,,,,
-KR,stress_bottom_decile_annual,base,7,49,2.0529707778180084,,,annual descriptive breakdown; not an independent test,2024,-0.5484406054509521,,,,,,,
-US,top_quintile_12_1,base,,,,,"(1.34050398555002, 3.2051598675844772)",cross-sectional monthly cohort event study; no account sizing,,,155,2.36541493500001,1.6038442495364555,,,,
-US,top_quintile_12_1,stress,,,,,"(0.4842883581570652, 2.2924405371789995)",cross-sectional monthly cohort event study; no account sizing,,,155,1.5054149350000103,0.7438442495364553,,,,
-US,eligible_universe_equal_cohort,base,,,,,"(0.8400110406171833, 2.109665113812104)",cross-sectional monthly cohort event study; no account sizing,,,155,1.5713310348875633,1.9984464229630763,,,,
-US,eligible_universe_equal_cohort,stress,,,,,"(0.0036354311888136094, 1.1986756602486008)",cross-sectional monthly cohort event study; no account sizing,,,155,0.7113310348875634,1.1384464229630762,,,,
-US,SPY_same_month,base,,,,,"(0.2996024718048752, 1.2352956009070832)",cross-sectional monthly cohort event study; no account sizing,,,155,0.8138784206854939,1.1470182462351368,,,,
-US,SPY_same_month,stress,,,,,"(-0.5704003829490621, 0.3368353240636881)",cross-sectional monthly cohort event study; no account sizing,,,155,-0.04612157931450612,0.2870182462351366,,,,
-US,top_quintile_minus_universe,base,,,,,"(0.29528815803661385, 1.2364393824289401)",paired monthly return spread; equal costs cancel,,,155,0.794083900112447,0.8176501143363331,,,,
-US,top_quintile_minus_universe,stress,,,,,"(0.2852821129604395, 1.2452858440862553)",paired monthly return spread; equal costs cancel,,,155,0.7940839001124472,0.817650114336333,,,,
-US,top_quintile_minus_SPY,base,,,,,"(0.8778423753238423, 2.0620621289845458)",paired monthly return spread; equal costs cancel,,,155,1.5515365143145163,1.4497792446827238,,,,
-US,top_quintile_minus_SPY,stress,,,,,"(0.9142766810216039, 2.0606447736533293)",paired monthly return spread; equal costs cancel,,,155,1.5515365143145166,1.4497792446827238,,,,
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2011,,1,,,-0.20873791288173044,6.1830588743319,2.9744485560561134,-6.39179678721363
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2011,,1,,,-1.0687379128817305,5.3230588743319,2.114448556056113,-6.39179678721363
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2012,,12,,,1.816274486203967,1.279814979530707,0.6865836999553243,0.5364595066732605
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2012,,12,,,0.9562744862039668,0.41981497953070673,-0.173416300044676,0.5364595066732601
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2013,,12,,,3.276858867630559,2.3632659363790847,1.1608466825902326,0.9135929312514729
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2013,,12,,,2.4168588676305585,1.5032659363790848,0.300846682590232,0.9135929312514732
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2014,,12,,,1.4220241330108985,1.3913477088333006,1.0061571657567154,0.030676424177598367
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2014,,12,,,0.5620241330108986,0.5313477088333001,0.1461571657567149,0.03067642417759831
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2015,,12,,,1.5027913592406252,0.3293061777322692,-0.0747573983935415,1.173485181508356
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2015,,12,,,0.6427913592406252,-0.5306938222677308,-0.9347573983935418,1.173485181508356
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2016,,12,,,3.6612590171004413,2.8138082266339484,1.2038515586575738,0.8474507904664925
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2016,,12,,,2.801259017100441,1.953808226633948,0.34385155865757305,0.8474507904664927
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2017,,12,,,2.9801867805340105,1.9459851260060428,1.4618836329405938,1.0342016545279675
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2017,,12,,,2.12018678053401,1.0859851260060427,0.6018836329405933,1.0342016545279675
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2018,,12,,,0.5514575988423089,-0.020545076369102418,-0.41211250282450657,0.5720026752114112
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2018,,12,,,-0.30854240115769116,-0.8805450763691022,-1.2721125028245068,0.5720026752114115
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2019,,12,,,2.9044646489114294,2.0409818545028666,1.265489775782111,0.8634827944085632
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2019,,12,,,2.044464648911429,1.1809818545028663,0.4054897757821109,0.863482794408563
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2020,,12,,,4.5378961593069524,2.1889134928679614,1.154207948873488,2.348982666438991
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2020,,12,,,3.677896159306953,1.3289134928679618,0.2942079488734881,2.348982666438992
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2021,,12,,,-0.3886225377989489,1.2578227323459932,0.9691530560482797,-1.6464452701449421
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2021,,12,,,-1.2486225377989488,0.3978227323459931,0.10915305604827924,-1.6464452701449421
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2022,,12,,,-0.2963760472401549,-0.9087233302053339,-1.1092228397375914,0.6123472829651789
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2022,,12,,,-1.156376047240155,-1.7687233302053338,-1.9692228397375906,0.6123472829651789
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2023,,12,,,3.2450422306552396,2.4012067297644073,1.3544831847789136,0.8438355008908314
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2023,,12,,,2.3850422306552392,1.5412067297644079,0.4944831847789132,0.8438355008908311
-US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,2024,,10,,,6.428897248111543,3.2375036836974695,1.917793907706437,3.191393564414073
-US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,2024,,10,,,5.568897248111544,2.3775036836974692,1.0577939077064367,3.191393564414073
+market,strategy,cost_case,signal_days,event_count,mean_cohort_net_pct,median_cohort_net_pct,six_month_block95_pct,benchmark,evaluation_start_utc,end_exclusive_utc,year,matched_069500_mean_pct,month_cohorts,mean_net_pct_per_month,median_net_pct_per_month,mean_top_quintile_pct,mean_universe_pct,mean_SPY_pct,mean_excess_universe_pct
+KR,all_day_bottom_decile,base,3501,21451,-0.06226199361041841,-0.1518726989082379,"(-0.25258645134426166, 0.10627770147631566)","069500 stress proxy; event-study cohorts, no account sizing",full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,all_day_bottom_decile,stress,3501,21451,-0.2621187346790325,-0.35155023536523333,"(-0.44386540404521635, -0.10321324560300105)","069500 stress proxy; event-study cohorts, no account sizing",full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile,base,111,669,0.8162996491330937,0.8495017894843017,"(-0.5450057208675244, 1.8659305777691446)","069500 stress proxy; event-study cohorts, no account sizing",full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile,stress,111,669,0.6146859494795722,0.6478216917743551,"(-0.7869786323183192, 1.6525283726181785)","069500 stress proxy; event-study cohorts, no account sizing",full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,069500_same_5session_stress_cohorts,base,111,111,-0.25052545745612936,0.5030489969023888,"(-1.1578672873568834, 0.7138135315269664)",069500 ETF held next open through close after 5 sessions,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile_minus_069500_matched,base,111,111,1.0668251065892231,0.5037868711389812,"(0.2028679499568152, 1.9611874473690816)",paired stress-date cohort return spread,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile_annual,base,26,130,1.5972347211928541,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2011,-0.6315104129146631,,,,,,,
+KR,stress_bottom_decile_annual,base,4,20,2.6771313954752465,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2012,0.5395118388069053,,,,,,,
+KR,stress_bottom_decile_annual,base,3,18,1.3864550788669758,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2013,-0.06494673041655222,,,,,,,
+KR,stress_bottom_decile_annual,base,1,6,-2.254198446744606,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2014,-1.2741314233775225,,,,,,,
+KR,stress_bottom_decile_annual,base,3,18,2.8225078534842147,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2015,0.13152866591287599,,,,,,,
+KR,stress_bottom_decile_annual,base,8,48,1.5738111627126128,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2016,1.0761936080079817,,,,,,,
+KR,stress_bottom_decile_annual,base,7,42,0.40225478463131,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2018,0.12620826511669275,,,,,,,
+KR,stress_bottom_decile_annual,base,4,24,1.9396647743677817,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2019,0.014002140442229138,,,,,,,
+KR,stress_bottom_decile_annual,base,23,139,-1.4199974355421365,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2020,-1.4438172420012754,,,,,,,
+KR,stress_bottom_decile_annual,base,7,49,2.401236419738929,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2021,1.721539021257184,,,,,,,
+KR,stress_bottom_decile_annual,base,13,91,-0.24160753298923263,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2022,-0.0016269468386603386,,,,,,,
+KR,stress_bottom_decile_annual,base,5,35,1.891279808477734,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2023,0.5991051804900982,,,,,,,
+KR,stress_bottom_decile_annual,base,7,49,2.0529707778180084,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2024,-0.5484406054509521,,,,,,,
+KR,069500_same_5session_stress_cohorts,stress,111,111,-0.45000570689008157,0.30206173982940676,"(-1.385582074393083, 0.5373993041594342)",069500 ETF held next open through close after 5 sessions,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile_minus_069500_matched,stress,111,111,1.0646916563696536,0.5027793918396852,"(0.1916475024125613, 1.9789875082541986)",paired stress-date cohort return spread,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,,,,,,,
+KR,stress_bottom_decile_annual,stress,26,130,1.3940592977941144,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2011,-0.830228763859486,,,,,,,
+KR,stress_bottom_decile_annual,stress,4,20,2.471796381172027,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2012,0.33845166288568873,,,,,,,
+KR,stress_bottom_decile_annual,stress,3,18,1.183701175238835,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2013,-0.2647981025148479,,,,,,,
+KR,stress_bottom_decile_annual,stress,1,6,-2.449671725820866,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2014,-1.471564652771129,,,,,,,
+KR,stress_bottom_decile_annual,stress,3,18,2.6168821135181375,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2015,-0.0687156201455911,,,,,,,
+KR,stress_bottom_decile_annual,stress,8,48,1.3706825820397073,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2016,0.8740601691580321,,,,,,,
+KR,stress_bottom_decile_annual,stress,7,42,0.20146909708738553,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2018,-0.07402538113758636,,,,,,,
+KR,stress_bottom_decile_annual,stress,4,24,1.7358045550567387,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2019,-0.1860071145975556,,,,,,,
+KR,stress_bottom_decile_annual,stress,23,139,-1.6171389602563393,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2020,-1.6409111315679654,,,,,,,
+KR,stress_bottom_decile_annual,stress,7,49,2.1964531436662083,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2021,1.5181150125611689,,,,,,,
+KR,stress_bottom_decile_annual,stress,13,91,-0.4411056166003087,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2022,-0.2016049466338001,,,,,,,
+KR,stress_bottom_decile_annual,stress,5,35,1.68751635002793,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2023,0.3979258290572418,,,,,,,
+KR,stress_bottom_decile_annual,stress,7,49,1.8488839677411095,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2024,-0.7473250804379217,,,,,,,
+US,top_quintile_12_1,base,,,,,"(1.34050398555002, 3.2051598675844772)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,2.36541493500001,1.6038442495364555,,,,
+US,top_quintile_12_1,stress,,,,,"(0.4842883581570652, 2.2924405371789995)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,1.5054149350000103,0.7438442495364553,,,,
+US,eligible_universe_equal_cohort,base,,,,,"(0.8400110406171833, 2.109665113812104)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,1.5713310348875633,1.9984464229630763,,,,
+US,eligible_universe_equal_cohort,stress,,,,,"(0.0036354311888136094, 1.1986756602486008)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,0.7113310348875634,1.1384464229630762,,,,
+US,SPY_same_month,base,,,,,"(0.2996024718048752, 1.2352956009070832)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,0.8138784206854939,1.1470182462351368,,,,
+US,SPY_same_month,stress,,,,,"(-0.5704003829490621, 0.3368353240636881)",cross-sectional monthly cohort event study; no account sizing,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,-0.04612157931450612,0.2870182462351366,,,,
+US,top_quintile_minus_universe,base,,,,,"(0.29528815803661385, 1.2364393824289401)",paired monthly return spread; equal costs cancel,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,0.794083900112447,0.8176501143363331,,,,
+US,top_quintile_minus_universe,stress,,,,,"(0.2852821129604395, 1.2452858440862553)",paired monthly return spread; equal costs cancel,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,0.7940839001124472,0.817650114336333,,,,
+US,top_quintile_minus_SPY,base,,,,,"(0.8778423753238423, 2.0620621289845458)",paired monthly return spread; equal costs cancel,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,1.5515365143145163,1.4497792446827238,,,,
+US,top_quintile_minus_SPY,stress,,,,,"(0.9142766810216039, 2.0606447736533293)",paired monthly return spread; equal costs cancel,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,,,155,1.5515365143145166,1.4497792446827238,,,,
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2011,,1,,,-0.20873791288173044,6.1830588743319,2.9744485560561134,-6.39179678721363
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2011,,1,,,-1.0687379128817305,5.3230588743319,2.114448556056113,-6.39179678721363
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2012,,12,,,1.816274486203967,1.279814979530707,0.6865836999553243,0.5364595066732605
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2012,,12,,,0.9562744862039668,0.41981497953070673,-0.173416300044676,0.5364595066732601
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2013,,12,,,3.276858867630559,2.3632659363790847,1.1608466825902326,0.9135929312514729
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2013,,12,,,2.4168588676305585,1.5032659363790848,0.300846682590232,0.9135929312514732
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2014,,12,,,1.4220241330108985,1.3913477088333006,1.0061571657567154,0.030676424177598367
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2014,,12,,,0.5620241330108986,0.5313477088333001,0.1461571657567149,0.03067642417759831
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2015,,12,,,1.5027913592406252,0.3293061777322692,-0.0747573983935415,1.173485181508356
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2015,,12,,,0.6427913592406252,-0.5306938222677308,-0.9347573983935418,1.173485181508356
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2016,,12,,,3.6612590171004413,2.8138082266339484,1.2038515586575738,0.8474507904664925
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2016,,12,,,2.801259017100441,1.953808226633948,0.34385155865757305,0.8474507904664927
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2017,,12,,,2.9801867805340105,1.9459851260060428,1.4618836329405938,1.0342016545279675
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2017,,12,,,2.12018678053401,1.0859851260060427,0.6018836329405933,1.0342016545279675
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2018,,12,,,0.5514575988423089,-0.020545076369102418,-0.41211250282450657,0.5720026752114112
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2018,,12,,,-0.30854240115769116,-0.8805450763691022,-1.2721125028245068,0.5720026752114115
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2019,,12,,,2.9044646489114294,2.0409818545028666,1.265489775782111,0.8634827944085632
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2019,,12,,,2.044464648911429,1.1809818545028663,0.4054897757821109,0.863482794408563
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2020,,12,,,4.5378961593069524,2.1889134928679614,1.154207948873488,2.348982666438991
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2020,,12,,,3.677896159306953,1.3289134928679618,0.2942079488734881,2.348982666438992
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2021,,12,,,-0.3886225377989489,1.2578227323459932,0.9691530560482797,-1.6464452701449421
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2021,,12,,,-1.2486225377989488,0.3978227323459931,0.10915305604827924,-1.6464452701449421
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2022,,12,,,-0.2963760472401549,-0.9087233302053339,-1.1092228397375914,0.6123472829651789
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2022,,12,,,-1.156376047240155,-1.7687233302053338,-1.9692228397375906,0.6123472829651789
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2023,,12,,,3.2450422306552396,2.4012067297644073,1.3544831847789136,0.8438355008908314
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2023,,12,,,2.3850422306552392,1.5412067297644079,0.4944831847789132,0.8438355008908311
+US,12_1_momentum_annual,base,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2024,,10,,,6.428897248111543,3.2375036836974695,1.917793907706437,3.191393564414073
+US,12_1_momentum_annual,stress,,,,,,annual descriptive breakdown; not an independent test,full_pre_cutoff_dev,2024-11-12T00:00:00+00:00,2024,,10,,,5.568897248111544,2.3775036836974692,1.0577939077064367,3.191393564414073
