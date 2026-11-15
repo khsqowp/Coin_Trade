@@ -93,6 +93,16 @@ def test_target_first_fees_and_same_minute_tie_are_conservative():
     assert tied["10_bars"]["net_r"] == pytest.approx(-1.1)
 
 
+def test_unleveraged_scoring_can_skip_leverage_paths_without_changing_outcomes():
+    frame = minute_frame()
+    frame.loc[2, "h"] = 102.1
+    full = score_forecast(forecast(), frame)
+    fast = score_forecast(forecast(), frame, include_leverage=False)
+    assert fast["10_bars"] == full["10_bars"]
+    assert fast["20_bars"] == full["20_bars"]
+    assert fast["leverage"] == {}
+
+
 def test_checkpoints_are_independent_and_future_bars_do_not_change_scores():
     frame = minute_frame(20)
     frame.loc[12, "h"] = 102.1

@@ -121,12 +121,14 @@ def _eligible_signals(signals, symbol, entry_ms):
     return grouped
 
 
-def score_forecast(forecast: Mapping, minute_candles: pd.DataFrame) -> dict:
+def score_forecast(forecast: Mapping, minute_candles: pd.DataFrame, *,
+                   include_leverage: bool = True) -> dict:
     """Score 10/20-bar target-first outcomes using complete 1m candles.
 
     The stop wins same-candle barrier ties. A missing/incomplete path is
-    unscorable, not a timeout. Also report approximate 4x/5x liquidation paths.
-    Fees follow SPEC §14.1; slippage and depth are not modeled in this phase.
+    unscorable, not a timeout. Leverage paths are optional for matched
+    unleveraged baselines. Fees follow SPEC §14.1; slippage and depth are not
+    modeled in this phase.
     """
     _validate_forecast(forecast)
     _validate_candle_frame(minute_candles)
@@ -151,7 +153,7 @@ def score_forecast(forecast: Mapping, minute_candles: pd.DataFrame) -> dict:
             ) for bars in CHECKPOINT_BARS},
         }
         for leverage in LEVERAGES
-    }
+    } if include_leverage else {}
     scored = {"TARGET", "STOP", "TIMEOUT"}
     any_scored = any(value["outcome"] in scored for value in results.values())
     any_scored |= any(lev_result[f"{bars}_bars"]["outcome"] in scored

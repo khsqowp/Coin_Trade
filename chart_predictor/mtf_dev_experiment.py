@@ -23,6 +23,7 @@ SETUPS = ("bb_squeeze_breakout", "orb_funding_session", "vwap_band_fade",
 TIMEFRAMES = tuple(TIMEFRAME_MINUTES)
 WIDTH_MS = {tf: minutes * 60_000 for tf, minutes in TIMEFRAME_MINUTES.items()}
 MAX_HORIZON_BARS = 20
+RANDOM_BASELINE_SEED = "round5-mtf-random-v1"
 
 
 def sha256_file(path):
@@ -82,6 +83,81 @@ def summarize_confidence_slices(exact, symbols_by_exact):
     return rows
 
 
+def summarize_baseline_confidence_slices(exact):
+    """Compare baselines at each MTF vote threshold on the identical anchors."""
+    cohorts = defaultdict(lambda: {"events": 0})
+    for (timeframe, side, baseline, bars, votes), values in exact.items():
+        cohorts[(timeframe, side, baseline, bars)]["events"] += values["events"]
+    rows = []
+    for timeframe, side, baseline, bars in sorted(
+            cohorts, key=lambda key: (WIDTH_MS[key[0]], key[1], key[2], key[3])):
+        denominator = cohorts[(timeframe, side, baseline, bars)]["events"]
+        for threshold in range(2, len(TIMEFRAMES) + 1):
+            totals = defaultdict(float)
+            for (tf, direction, name, horizon, votes), values in exact.items():
+                if (tf, direction, name, horizon) != (timeframe, side, baseline, bars):
+                    continue
+                if votes < threshold:
+                    continue
+                for field, amount in values.items():
+                    totals[field] += amount
+            if not totals["events"]:
+                continue
+            scored = totals["target"] + totals["stop"] + totals["timeout"]
+            rows.append({
+                "timeframe": timeframe, "candidate_side": side,
+                "baseline": baseline, "horizon_bars": bars,
+                "min_votes": threshold, "events": int(totals["events"]),
+                "cohort_coverage": totals["events"] / denominator if denominator else 0.0,
+                "directional": int(totals["directional"]),
+                "flat": int(totals["flat"]),
+                "directional_coverage": totals["directional"] / totals["events"]
+                    if totals["events"] else 0.0,
+                "target": int(totals["target"]), "stop": int(totals["stop"]),
+                "timeout": int(totals["timeout"]),
+                "unscorable": int(totals["unscorable"]),
+                "target_first_precision": totals["target"] / scored if scored else None,
+                "mean_net_r": totals["sum_net_r"] / scored if scored else None,
+            })
+    return rows
+
+
+def momentum_1m_side(raw, entry_index):
+    """Return the direction of the last completed 1m close-to-close return."""
+    if entry_index < 2:
+        return None
+    last = raw.iloc[entry_index - 1]
+    previous = raw.iloc[entry_index - 2]
+    if int(last.t_open_ms) + 60_000 != int(raw.iloc[entry_index].t_open_ms):
+        return None
+    if int(previous.t_open_ms) + 60_000 != int(last.t_open_ms):
+        return None
+    if float(last.c) > float(previous.c):
+        return "long"
+    if float(last.c) < float(previous.c):
+        return "short"
+    return None
+
+
+def fixed_seed_random_side(symbol, entry_ms, timeframe):
+    key = f"{RANDOM_BASELINE_SEED}|{symbol}|{entry_ms}|{timeframe}".encode()
+    return "long" if hashlib.sha256(key).digest()[0] & 1 == 0 else "short"
+
+
+def matched_risk_forecast(forecast, side, baseline):
+    """Mirror the forecast's risk distance for a baseline direction."""
+    if side not in {"long", "short"}:
+        raise ValueError("baseline side must be long or short")
+    entry = float(forecast["entry_price"])
+    risk = abs(entry - float(forecast["stop"]))
+    stop = entry - risk if side == "long" else entry + risk
+    target = entry + (2 * risk if side == "long" else -2 * risk)
+    if target <= 0:
+        return None
+    return {**forecast, "event_id": f"{forecast['event_id']}:{baseline}",
+            "side": side, "stop": stop, "target": target, "risk": risk}
+
+
 def render_markdown(report):
     lines = [
         "# Crypto MTF development exploration (not validation)", "",
@@ -105,6 +181,16 @@ def render_markdown(report):
         precision = "—" if row["target_first_precision"] is None else f"{row['target_first_precision']:.2%}"
         mean_r = "—" if row["mean_net_r"] is None else f"{row['mean_net_r']:.3f}"
         lines.append(f"|{row['timeframe']}|{row['side']}|{row['horizon_bars']}|{row['events']}|{row['target']}|{row['stop']}|{row['timeout']}|{row['unscorable']}|{precision}|{mean_r}|")
+    lines.extend([
+        "", "## Matched directional baselines", "",
+        f"Each vote-threshold row compares against baselines on precisely the MTF-selected timestamps at that same minimum vote count; `Same-cohort coverage` is that selected subset relative to q≥2 anchors. Both baselines use the same entry and minute path, each forecast's absolute stop distance mirrored to the baseline side, fixed 2R target, fee, stop-first tie rule, and horizon. The 1m momentum baseline uses the last completed 1m close-to-close return; flat/zero or missing returns abstain and lower `Baseline coverage`. Random direction is deterministic SHA-256 keyed by `{report['baseline_seed']}`, symbol, entry timestamp, and timeframe. Precision is target-first among scored directional baseline forecasts. These are development diagnostics, not a sealed test.", "",
+        "|TF|MTF side|Baseline|Horizon|Min votes|Anchors|Same-cohort coverage|Directional|Baseline coverage|Target|Stop|Timeout|Unscorable|Target-first|Mean net R|",
+        "|---:|:---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ])
+    for row in report.get("baseline_outcomes", []):
+        precision = "—" if row["target_first_precision"] is None else f"{row['target_first_precision']:.2%}"
+        mean_r = "—" if row["mean_net_r"] is None else f"{row['mean_net_r']:.3f}"
+        lines.append(f"|{row['timeframe']}|{row['candidate_side']}|{row['baseline']}|{row['horizon_bars']}|{row['min_votes']}|{row['events']}|{row['cohort_coverage']:.2%}|{row['directional']}|{row['directional_coverage']:.2%}|{row['target']}|{row['stop']}|{row['timeout']}|{row['unscorable']}|{precision}|{mean_r}|")
     lines.extend([
         "", "## Exploratory confidence-threshold slices", "",
         "Confidence is the number of distinct active timeframe votes (2–9), a raw ranking score rather than a calibrated probability. Coverage is retained forecasts divided by the q≥2 consensus cohort within the same timeframe/side cell. Wilson bounds are naive per-row intervals and ignore shared consensus events, symbols, and market days; they cannot satisfy the registered validation gate.", "",
@@ -134,7 +220,7 @@ def render_markdown(report):
         "## Missing validation gates", "",
         *[f"- {lim}" for lim in report["limitations"]],
         "- Confidence-slice coverage is conditional on the q≥2 consensus cohort within each cell; coverage over all eligible decision times was not computed, so the registered 10% coverage threshold is not tested.",
-        "- The registered directional/momentum and fixed-seed random baselines were not replayed; no clustered Wilson bounds or multiplicity adjustment was computed.",
+        "- The directional baselines above are matched development diagnostics, not preregistered or held-out baselines; an always-flat baseline, event/symbol/day clustered bounds, and multiplicity adjustment were not computed.",
         "- The 80% criterion is plainly missed on descriptive precision, but this is not a complete statistical verdict because the development data were previously viewed and the cohort is not point-in-time.",
         "", "## Reproduction", "",
         "Run `python -m chart_predictor.mtf_dev_experiment --db <read-only-db> --universe <symbol-json> --output <report.json> --symbol-limit 50` from the repository root. The command opens SQLite in read-only mode and writes only to the caller-selected output path.",
@@ -159,6 +245,9 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                                              "timeout": 0, "unscorable": 0,
                                              "sum_net_r": 0.0})
     confidence_symbols = defaultdict(lambda: defaultdict(int))
+    baseline_totals = defaultdict(lambda: {"events": 0, "directional": 0, "flat": 0,
+                                           "target": 0, "stop": 0, "timeout": 0,
+                                           "unscorable": 0, "sum_net_r": 0.0})
     db = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
     try:
         for symbol_index, symbol in enumerate(symbols, 1):
@@ -223,8 +312,25 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                                      "symbol": symbol, "side": candidate["side"]})
                     lo = raw_times.searchsorted(entry_ms, side="left")
                     hi = raw_times.searchsorted(horizon_end, side="left")
-                    scored = score_forecast(
-                        forecast, raw.iloc[lo:hi].reset_index(drop=True))
+                    minute_path = raw.iloc[lo:hi].reset_index(drop=True)
+                    scored = score_forecast(forecast, minute_path)
+                    momentum_side = momentum_1m_side(raw, lo)
+                    baseline_sides = {
+                        "momentum_1m": momentum_side,
+                        "fixed_seed_random": fixed_seed_random_side(
+                            symbol, entry_ms, timeframe),
+                    }
+                    baseline_forecasts = {
+                        name: matched_risk_forecast(forecast, side, name)
+                        if side is not None else None
+                        for name, side in baseline_sides.items()
+                    }
+                    baseline_scores = {
+                        name: score_forecast(
+                            baseline_forecasts[name], minute_path, include_leverage=False)
+                        if baseline_forecasts[name] is not None else None
+                        for name in baseline_sides
+                    }
                     emitted_for_symbol += 1
                     blocked_until[timeframe] = horizon_end
                     for bars in (10, 20):
@@ -247,6 +353,26 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                             confidence["sum_net_r"] += result["net_r"] or 0.0
                         else:
                             confidence["unscorable"] += 1
+                        for name, baseline_scored in baseline_scores.items():
+                            baseline_key = (timeframe, candidate["side"], name, bars,
+                                            confidence_votes)
+                            baseline_total = baseline_totals[baseline_key]
+                            baseline_total["events"] += 1
+                            baseline_side = baseline_sides[name]
+                            if baseline_side is None:
+                                baseline_total["flat"] += 1
+                                continue
+                            baseline_total["directional"] += 1
+                            if baseline_scored is None:
+                                baseline_total["unscorable"] += 1
+                                continue
+                            baseline_result = baseline_scored[f"{bars}_bars"]
+                            baseline_outcome = baseline_result["outcome"]
+                            if baseline_outcome in ("TARGET", "STOP", "TIMEOUT"):
+                                baseline_total[baseline_outcome.lower()] += 1
+                                baseline_total["sum_net_r"] += baseline_result["net_r"] or 0.0
+                            else:
+                                baseline_total["unscorable"] += 1
                         for leverage in (4, 5):
                             lev = scored["leverage"][f"{leverage}x"][f"{bars}_bars"]
                             lev_total = leverage_totals[(timeframe, candidate["side"], bars, leverage)]
@@ -280,6 +406,7 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
                               "horizon_bars": bars, "leverage": leverage, **values,
                               "target_first_precision": values["target"] / scored_n if scored_n else None,
                               "mean_net_r": values["sum_net_r"] / scored_n if scored_n else None})
+    baseline_rows = summarize_baseline_confidence_slices(baseline_totals)
     report = {
         "stage": "EXPLORATORY_DEV_ONLY",
         "start_ms": START_MS,
@@ -296,6 +423,9 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
         "forecast_rows": sum(row["events"] for row in outcome_rows if row["horizon_bars"] == 20),
         "outcomes": outcome_rows,
         "leveraged_outcomes": leverage_rows,
+        "baseline_seed": RANDOM_BASELINE_SEED,
+        "baseline_definition": "1m close-to-close momentum and SHA-256 fixed-seed random direction at each MTF forecast timestamp; same entry, 2R target, matched absolute stop distance, fee, and horizon",
+        "baseline_outcomes": baseline_rows,
         "confidence_definition": "number of distinct active same-direction timeframe votes; raw score, not calibrated probability",
         "confidence_slices": summarize_confidence_slices(confidence_totals, confidence_symbols),
         "input": {"database": str(db_path), "database_size_bytes": db_path.stat().st_size,
@@ -305,7 +435,7 @@ def run_experiment(db_path, universe_path, output_path, symbol_limit=50):
         "limitations": [
             "This development interval was previously explored and is not sealed or out-of-sample.",
             "Universe is the current collection list, not point-in-time membership; survivorship and listing bias remain.",
-            "Confidence-slice coverage is conditional on the q≥2 consensus cohort, not all eligible decision times; registered baselines, event/symbol/day clustered confidence bounds, and slippage/depth are not computed.",
+            "Confidence-slice coverage is conditional on the q≥2 consensus cohort, not all eligible decision times; an always-flat baseline, event/symbol/day clustered confidence bounds, and slippage/depth are not computed.",
             "Per-timeframe outcomes share consensus events and symbols and are not independent samples.",
             "Approximate 4x/5x liquidation uses a fixed maintenance buffer, not Binance account-specific liquidation mechanics.",
             "Vote-count slices are post-hoc development exploration, not calibrated probabilities or a preregistered threshold.",
