@@ -19,6 +19,10 @@ def connect_store(path=None):
       BEGIN SELECT RAISE(ABORT,'predictions are append-only'); END;
     CREATE TRIGGER IF NOT EXISTS predictions_no_delete BEFORE DELETE ON predictions
       BEGIN SELECT RAISE(ABORT,'predictions are append-only'); END;
+    CREATE TRIGGER IF NOT EXISTS scores_no_update BEFORE UPDATE ON scores
+      BEGIN SELECT RAISE(ABORT,'scores are append-only'); END;
+    CREATE TRIGGER IF NOT EXISTS scores_no_delete BEFORE DELETE ON scores
+      BEGIN SELECT RAISE(ABORT,'scores are append-only'); END;
     """)
     return db
 
@@ -48,6 +52,12 @@ def connect_trials(path=None):
     columns = {row[1] for row in db.execute("PRAGMA table_info(trials)")}
     if "data_fingerprint" not in columns:
         db.execute("ALTER TABLE trials ADD COLUMN data_fingerprint TEXT")
+    db.executescript("""
+    CREATE TRIGGER IF NOT EXISTS trials_no_update BEFORE UPDATE ON trials
+      BEGIN SELECT RAISE(ABORT,'trials are append-only'); END;
+    CREATE TRIGGER IF NOT EXISTS trials_no_delete BEFORE DELETE ON trials
+      BEGIN SELECT RAISE(ABORT,'trials are append-only'); END;
+    """)
     db.commit()
     return db
 

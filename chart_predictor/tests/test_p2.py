@@ -80,13 +80,43 @@ def test_append_only_store_trials_and_stats(tmp_path):
     ident = append_prediction(db, {"immutable": 1})
     with pytest.raises(sqlite3.IntegrityError): db.execute("UPDATE predictions SET payload='{}' WHERE id=?", (ident,))
     with pytest.raises(sqlite3.IntegrityError): db.execute("DELETE FROM predictions WHERE id=?", (ident,))
+    db.execute("INSERT INTO scores VALUES(?,?)", (ident, "{}"))
+    with pytest.raises(sqlite3.IntegrityError): db.execute("UPDATE scores SET payload='{}' WHERE prediction_id=?", (ident,))
+    with pytest.raises(sqlite3.IntegrityError): db.execute("DELETE FROM scores WHERE prediction_id=?", (ident,))
     db.close()
     trials = connect_trials(tmp_path / "trials.sqlite")
     assert cumulative_trial_count(trials) == 0
     trials.execute("INSERT INTO trials(ts) VALUES('now')")
     assert cumulative_trial_count(trials) == 1
+    with pytest.raises(sqlite3.IntegrityError):
+        trials.execute("UPDATE trials SET hypothesis='rewritten' WHERE trial_id=1")
+    with pytest.raises(sqlite3.IntegrityError):
+        trials.execute("DELETE FROM trials WHERE trial_id=1")
+    trials.execute("INSERT INTO trials(ts) VALUES('later')")
+    assert cumulative_trial_count(trials) == 2
     trials.close()
     assert wilson(50, 100) == pytest.approx({"low": .4038, "high": .5962}, abs=.0001)
+
+
+def test_connect_trials_upgrades_legacy_schema_and_locks_existing_rows(tmp_path):
+    path = tmp_path / "legacy_trials.sqlite"
+    legacy = sqlite3.connect(path)
+    legacy.execute("CREATE TABLE trials(trial_id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT, model TEXT, "
+                   "prompt_version TEXT, code_sha TEXT, split TEXT, hypothesis TEXT, n_predictions INTEGER)")
+    legacy.execute("INSERT INTO trials(ts,split) VALUES('old','dev')")
+    legacy.commit()
+    legacy.close()
+
+    db = connect_trials(path)
+    columns = {row[1] for row in db.execute("PRAGMA table_info(trials)")}
+    assert "data_fingerprint" in columns
+    with pytest.raises(sqlite3.IntegrityError):
+        db.execute("UPDATE trials SET hypothesis='rewritten' WHERE trial_id=1")
+    with pytest.raises(sqlite3.IntegrityError):
+        db.execute("DELETE FROM trials WHERE trial_id=1")
+    db.execute("INSERT INTO trials(ts,split) VALUES('new','dev')")
+    assert cumulative_trial_count(db) == 2
+    db.close()
 
 
 def test_baselines_and_splits_deterministic():
