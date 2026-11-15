@@ -218,3 +218,34 @@ def test_10s_aggregator_marks_global_feed_disconnect_as_quality_failure(tmp_path
     assert manifest["global_feed_events"] == 1
     assert manifest["global_disconnect_events"] == 1
     assert manifest["quality_pass"] is False
+
+
+def test_10s_aggregator_rejects_stale_depth_endpoints_after_gap(tmp_path):
+    source = tmp_path / "compact.jsonl"
+    output = tmp_path / "windows.jsonl"
+    rows = [
+        _compact_row("book_update", 90_000, 90_010,
+                     bid=99.99, ask=100.01, mid=100,
+                     bid_depth_quote_5bp_top5=100, ask_depth_quote_5bp_top5=200,
+                     last_update_id=1),
+        _compact_row("book_update", 101_000, 101_010,
+                     bid=100.09, ask=100.11, mid=100.1,
+                     bid_depth_quote_5bp_top5=40, ask_depth_quote_5bp_top5=60,
+                     last_update_id=3),
+        _compact_row("book_update", 111_000, 111_010,
+                     bid=100.19, ask=100.21, mid=100.2,
+                     bid_depth_quote_5bp_top5=80, ask_depth_quote_5bp_top5=120,
+                     last_update_id=4),
+        _compact_row("agg_trade", 114_000, 114_010, trade_id=1,
+                     quote_quantity=10, seller_initiated=True, price=100.3,
+                     trade_id_gap_before=False, book_receive_age_ms=0),
+    ]
+    _write_source(source, rows)
+
+    aggregate_windows(source, output)
+    windows = [json.loads(line) for line in output.read_text().splitlines()]
+    target = next(row for row in windows if row["window_start_ms"] == 100_000)
+
+    assert target["data_quality_ready"] is False
+    assert "stale_pre_depth" in target["unscorable_reasons"]
+    assert "stale_depth_at_plus_2s" in target["unscorable_reasons"]

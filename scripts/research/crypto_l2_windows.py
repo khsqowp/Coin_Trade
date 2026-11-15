@@ -20,6 +20,7 @@ if str(BASE) not in sys.path:
 
 WINDOW_MS = 10_000
 REFILL_MS = 2_000
+MAX_DEPTH_ENDPOINT_AGE_MS = 750
 MAX_OPEN_WINDOWS_PER_SYMBOL = 256
 MAX_EMPTY_WINDOWS_PER_ADVANCE = 3600
 MAX_OUTPUT_BYTES = 512 * 1024 * 1024
@@ -106,6 +107,10 @@ def _window_row(symbol: str, start: int, item: dict[str, Any], future_samples: l
         reasons.append("missing_depth_during_window")
     if d2s is None:
         reasons.append("missing_depth_at_plus_2s")
+    if dpre is not None and start - dpre["event_ms"] > MAX_DEPTH_ENDPOINT_AGE_MS:
+        reasons.append("stale_pre_depth")
+    if d2s is not None and end + REFILL_MS - d2s["event_ms"] > MAX_DEPTH_ENDPOINT_AGE_MS:
+        reasons.append("stale_depth_at_plus_2s")
     if item["late_event_count"]:
         reasons.append("late_event_within_window")
     if item["feed_event_count"]:
@@ -338,6 +343,7 @@ def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 
         "global_disconnect_events": global_disconnect_events,
         "allowed_lateness_ms": allowed_lateness_ms,
         "window_ms": WINDOW_MS, "refill_observation_ms": REFILL_MS,
+        "max_depth_endpoint_age_ms": MAX_DEPTH_ENDPOINT_AGE_MS,
         "strategy_metrics": None,
         "quality_pass": late_rows == 0 and global_disconnect_events == 0,
         "limitations": [

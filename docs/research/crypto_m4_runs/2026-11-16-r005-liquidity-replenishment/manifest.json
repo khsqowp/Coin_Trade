@@ -62,7 +62,7 @@
     "baseline_source_commit": "0f6fa2870b320da5e257cd643424728ff0a205eb",
     "performance_cells_run": 0,
     "performance_metrics_calculated": false,
-    "chart_predictor_tests": "231 passed, 1 environment warning",
+    "chart_predictor_tests": "232 passed, 1 environment warning",
     "no_api_credentials_or_orders": true,
     "public_network_or_capture_started": false
   },
@@ -89,6 +89,7 @@
     "window_ms": 10000,
     "refill_observation_ms": 2000,
     "allowed_lateness_ms": 2000,
+    "max_depth_endpoint_age_ms": 750,
     "windows": 718,
     "symbols": {"BTCUSDT": 359, "ETHUSDT": 359},
     "data_quality_ready_windows": 716,

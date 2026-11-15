@@ -29,6 +29,8 @@ An event-time aggregator then produced 718 UTC-aligned 10-second windows (359 ea
 
 The new 10-second aggregate is 13,745,958 bytes uncompressed and 2,091,272 bytes with Zstandard. Linear scaling projects to about 183.20 decimal GB/year for 20 symbols. This estimate is from a single two-symbol hour and does not prove sustained collection capacity. It is higher than the earlier feature-only projection because executable quote paths are retained.
 
+Before looking at any outcomes, the candidate contract's book-endpoint freshness rule was made explicit at 750 ms for both `D_pre` and `D_2s`: the stream is configured at a nominal 500 ms, with 250 ms allowance for update phase/receipt jitter. The replay still has 716 data-quality-ready windows and no stale endpoints; one stale pre-depth/stale refill synthetic case now fails closed. This change affects data eligibility only, not any strategy rule or outcome statistic.
+
 The new full test run passed 231 tests with one environment warning. A pre-existing pilot manifest-size fixed-point calculation flaked during two full-suite runs; it was repaired by reserving bounded JSON whitespace and then passed the full suite. No strategy-performance cells were run. This remains infrastructure validation only, not signal evidence.
 
 The required bounded feature/path recorder is still incomplete: the comparator is unit-tested but not yet applied to every T/H decision anchor, and the retained top-five depth may be insufficient for the fixed 1,000 USDT notional under all spread/depth conditions. Funding/cost snapshots, multi-day reconnect capture, and 20-symbol capacity testing remain open. Do not begin live continuous collection or signal scoring on this result.
