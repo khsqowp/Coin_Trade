@@ -194,10 +194,26 @@ def candle_patterns(open_, high, low, close):
     inside = np.r_[False, (h[1:] < h[:-1]) & (l[1:] > l[:-1])]
     morning = np.zeros(len(c), bool)
     evening = np.zeros(len(c), bool)
+    # Star patterns use this module's causal ATR14 internally so the public
+    # four-argument API and prefix invariance remain unchanged. Strong bodies
+    # require >=0.5*ATR14 (the existing heikin_ashi_reversal_strict conviction
+    # convention); candle 2 body is <=0.3*candle 1 body and gaps to/touches its
+    # body range; candle 3 must close beyond candle 1's midpoint.
+    star_atr = atr(h, l, c, 14)
     for i in range(2, len(c)):
-        small = abs(c[i-1] - o[i-1]) < .35 * max(h[i-1] - l[i-1], 1e-12)
-        morning[i] = c[i-2] < o[i-2] and small and c[i] > o[i] and c[i] > (o[i-2] + c[i-2]) / 2
-        evening[i] = c[i-2] > o[i-2] and small and c[i] < o[i] and c[i] < (o[i-2] + c[i-2]) / 2
+        if not (np.isfinite(star_atr[i-2]) and np.isfinite(star_atr[i])):
+            continue
+        first_body, middle_body, third_body = body[i-2], body[i-1], body[i]
+        morning[i] = (c[i-2] < o[i-2] and first_body >= .5 * star_atr[i-2]
+                      and middle_body <= .3 * first_body
+                      and max(o[i-1], c[i-1]) <= min(o[i-2], c[i-2])
+                      and c[i] > o[i] and third_body >= .5 * star_atr[i]
+                      and c[i] > (o[i-2] + c[i-2]) / 2)
+        evening[i] = (c[i-2] > o[i-2] and first_body >= .5 * star_atr[i-2]
+                      and middle_body <= .3 * first_body
+                      and min(o[i-1], c[i-1]) >= max(o[i-2], c[i-2])
+                      and c[i] < o[i] and third_body >= .5 * star_atr[i]
+                      and c[i] < (o[i-2] + c[i-2]) / 2)
     return {"bull_engulfing": bull_engulf, "bear_engulfing": bear_engulf, "hammer_pin": hammer,
             "shooting_star_pin": shooting, "morning_star": morning, "evening_star": evening,
             "doji": doji, "inside_bar": inside}

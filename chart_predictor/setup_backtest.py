@@ -46,6 +46,8 @@ HYPOTHESES={
  "pinbar_stochastic_cross_strict":"A pin bar at a more extreme stochastic reading (%K below 10 or above 90) should filter weaker reversals and improve follow-through.",
  "doji_macd_flip":"A doji (indecision candle, body <=10% of range, range >=0.5 ATR14) landing on a bar where the 12/26/9 MACD histogram flips sign should mark a higher-probability reversal than either signal alone.",
  "doji_macd_flip_strict":"The same doji+MACD-flip reversal should perform better once the doji body threshold is tightened from 10% to 5% of range, filtering out marginal/less-indecisive candles.",
+ "star_pattern_volume_climax":"A strict ATR-scaled morning/evening star reversal pattern confirmed by climax volume on its third candle should precede directional follow-through.",
+ "star_pattern_volume_climax_strict":"The same ATR-scaled morning/evening star reversal with a rarer 5x trailing-volume climax on its third candle should filter ordinary volume noise.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -144,6 +146,7 @@ def _write(report,report_dir, data_hash, stage):
       else "P8-C" if present and present<={"vwap_band_fade","vwap_band_fade_stretch"}
       else "P8-D" if present and present<={"volume_climax_exhaustion","volume_climax_exhaustion_strict"}
       else "P9-A" if present and present<={"engulfing_rsi_extreme","engulfing_rsi_extreme_strict"}
+      else "P9-D" if present and present<={"star_pattern_volume_climax","star_pattern_volume_climax_strict"}
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}

@@ -15,7 +15,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "volume_climax_exhaustion", "volume_climax_exhaustion_strict",
           "engulfing_rsi_extreme", "engulfing_rsi_extreme_strict",
           "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict",
-          "doji_macd_flip", "doji_macd_flip_strict")
+          "doji_macd_flip", "doji_macd_flip_strict",
+          "star_pattern_volume_climax", "star_pattern_volume_climax_strict")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -282,6 +283,22 @@ def generate_signals(frame, setup, prepared=None):
             if hc[i-1]<=ho[i-1] and hc[i]>ho[i]: emit(i,"long",ho[i])
             # Symmetric short-side flip is this research port's extension; the cited source defines long only.
             if hc[i-1]>=ho[i-1] and hc[i]<ho[i]: emit(i,"short",ho[i])
+    elif setup in ("star_pattern_volume_climax", "star_pattern_volume_climax_strict"):
+        # Candlestick-pattern + indicator confluence hypothesis (P9-D): a strict
+        # ATR-gated morning/evening star must coincide with P8-D's exact trailing
+        # volume-climax definition for direct comparability. Stops use the full
+        # three-candle pattern extreme as the conservative structural invalidation.
+        k=5.0 if setup=="star_pattern_volume_climax_strict" else 3.0
+        patterns=prepared["patterns"] if "patterns" in prepared else indicators.candle_patterns(o,h,l,c)
+        vol_ma=pd.Series(v).rolling(20,min_periods=20).mean().shift(1).to_numpy()
+        climax=(vol_ma>0)&(v>k*vol_ma)
+        for i in range(20,n):
+            if not climax[i]: continue
+            if patterns["morning_star"][i]:
+                # Three-candle low covers the whole pattern, not only its middle candle.
+                emit(i,"long",min(l[i-2],l[i-1],l[i]))
+            if patterns["evening_star"][i]:
+                emit(i,"short",max(h[i-2],h[i-1],h[i]))
     elif setup in ("volume_climax_exhaustion","volume_climax_exhaustion_strict"):
         # Volume climax exhaustion reversal (P8-D): a volume spike far above the
         # recent trailing average, landing on a bar that pushes to a new local

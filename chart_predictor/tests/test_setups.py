@@ -679,3 +679,49 @@ def test_doji_macd_flip_strict_rejects_a_marginal_doji_the_base_rule_accepts():
     f=_doji_macd_frame(o5,h5,l5,c5)
     assert any(s.index==i for s in generate_signals(f,"doji_macd_flip"))
     assert not any(s.index==i for s in generate_signals(f,"doji_macd_flip_strict"))
+
+def _star_frame(side="long", volume=40.0, third_body=1.5, middle_body=.1):
+    n=26; o=np.full(n,100.0); h=np.full(n,100.5); l=np.full(n,99.5); c=np.full(n,100.0)
+    v=np.full(n,10.0); i=23
+    if side=="long":
+        o[i-2],c[i-2],h[i-2],l[i-2]=100.0,98.0,100.2,97.8
+        o[i-1],c[i-1],h[i-1],l[i-1]=97.8,97.8-middle_body,98.0,97.5
+        o[i],c[i],h[i],l[i]=97.8-middle_body,97.8-middle_body+third_body,98.2,97.4
+    else:
+        o[i-2],c[i-2],h[i-2],l[i-2]=98.0,100.0,100.2,97.8
+        o[i-1],c[i-1],h[i-1],l[i-1]=100.2,100.2+middle_body,100.5,100.0
+        o[i],c[i],h[i],l[i]=100.2+middle_body,100.2+middle_body-third_body,100.6,98.6
+    v[i]=volume
+    return _vcx_ohlcv(o,h,l,c,v),i
+
+@pytest.mark.parametrize("side,pattern_key",[("long","morning_star"),("short","evening_star")])
+def test_strict_star_detector_fires_once_and_is_prefix_invariant(side,pattern_key):
+    f,i=_star_frame(side,volume=10.0)
+    p=indicators.candle_patterns(f.o,f.h,f.l,f.c)
+    fired=np.flatnonzero(p[pattern_key])
+    assert fired.tolist()==[i]
+    prefix=indicators.candle_patterns(f.o.to_numpy()[:i+1],f.h.to_numpy()[:i+1],f.l.to_numpy()[:i+1],f.c.to_numpy()[:i+1])
+    assert prefix[pattern_key][i]
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_star_pattern_volume_climax_fires_with_matching_star(side):
+    f,i=_star_frame(side)
+    sigs=generate_signals(f,"star_pattern_volume_climax")
+    stop=min(f.l[i-2:i+1]) if side=="long" else max(f.h[i-2:i+1])
+    assert Signal(i,side,float(stop)) in sigs
+
+def test_star_pattern_volume_climax_requires_climax_volume():
+    f,i=_star_frame("long",volume=10.0)
+    assert not any(s.index==i for s in generate_signals(f,"star_pattern_volume_climax"))
+
+@pytest.mark.parametrize("kwargs",[{"third_body":.2},{"middle_body":.8}])
+def test_star_pattern_volume_climax_rejects_bad_pattern_geometry(kwargs):
+    f,i=_star_frame("long",**kwargs)
+    assert not any(s.index==i for s in generate_signals(f,"star_pattern_volume_climax"))
+
+def test_star_pattern_volume_climax_strict_requires_5x_not_4x():
+    f,i=_star_frame("short",volume=40.0)
+    assert any(s.index==i and s.side=="short" for s in generate_signals(f,"star_pattern_volume_climax"))
+    assert not any(s.index==i for s in generate_signals(f,"star_pattern_volume_climax_strict"))
+    f.loc[i,"v"]=55.0
+    assert any(s.index==i and s.side=="short" for s in generate_signals(f,"star_pattern_volume_climax_strict"))
