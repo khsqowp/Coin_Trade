@@ -1,7 +1,12 @@
 import numpy as np
 import pandas as pd
 
-from scripts.research.long_history_taker_multitf_probe import aggregate, derive_signals
+from scripts.research.long_history_taker_multitf_probe import (
+    aggregate,
+    derive_signals,
+    resolve_touched_minute,
+    select_nonoverlap_keys,
+)
 
 
 def sample_frame(n=120):
@@ -25,6 +30,30 @@ def test_aggregation_uses_only_complete_time_buckets():
     assert frame.iloc[0].o==raw.iloc[0].o
     assert frame.iloc[0].c==raw.iloc[2].c
     assert frame.iloc[0].v==raw.iloc[:3].v.sum()
+
+
+def test_aggregation_rejects_misaligned_buckets():
+    raw=sample_frame(9)
+    raw.loc[4,'open_ms'] += 1_000
+    frame=aggregate(raw,3)
+    assert frame.open_ms.tolist()==[0,360_000]
+
+
+def test_nonoverlap_selection_is_mutually_exclusive_across_sides():
+    events=[
+        {'symbol':'BTC','signal_ms':0,'expiry_ms':10,'side':'long'},
+        {'symbol':'BTC','signal_ms':5,'expiry_ms':15,'side':'short'},
+        {'symbol':'BTC','signal_ms':10,'expiry_ms':20,'side':'short'},
+        {'symbol':'ETH','signal_ms':5,'expiry_ms':15,'side':'short'},
+    ]
+    selected=select_nonoverlap_keys(events,('BTC','ETH'))
+    assert selected=={('BTC',0,'long'),('BTC',10,'short'),('ETH',5,'short')}
+
+
+def test_stop_gap_uses_adverse_open_and_stop_wins_ambiguous_bar():
+    assert resolve_touched_minute(1, 95., 110., 92., 96., 90.)==(92.,False)
+    assert resolve_touched_minute(-1, 105., 90., 109., 110., 104.)==(109.,False)
+    assert resolve_touched_minute(1, 95., 110., 100., 111., 94.)==(95.,False)
 
 
 def test_signal_masks_are_prefix_invariant_and_future_mutation_invariant():

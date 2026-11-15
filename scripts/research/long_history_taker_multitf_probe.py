@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Predeclared long-history multi-timeframe taker-imbalance signal probe."""
+import argparse
 import sqlite3
 import numpy as np
 import pandas as pd
@@ -33,15 +34,19 @@ def derive_signals(f):
 
 def aggregate(raw, minutes):
     if minutes==1:
-        return raw.copy().reset_index(drop=True)
+        x=raw.copy().reset_index(drop=True)
+        return x[x.open_ms.mod(60_000)==0]
     width=minutes*60_000
     x=raw.copy()
     x['bucket']=(x.open_ms//width)*width
+    misaligned_buckets=set(x.loc[x.open_ms.mod(60_000)!=0,'bucket'].unique())
     g=x.groupby('bucket',sort=True)
     out=g.agg(o=('o','first'),h=('h','max'),l=('l','min'),c=('c','last'),v=('v','sum'),
               quote_volume=('quote_volume','sum'),taker_buy_quote=('taker_buy_quote','sum'),
-              count=('open_ms','nunique')).reset_index()
-    return out[out['count']==minutes].drop(columns='count').rename(columns={'bucket':'open_ms'})
+              count=('open_ms','nunique'),first=('open_ms','min'),last=('open_ms','max')).reset_index()
+    complete=(out['count']==minutes)&(out['first']==out['bucket'])&(
+        out['last']==out['bucket']+(minutes-1)*60_000)&~out['bucket'].isin(misaligned_buckets)
+    return out[complete].drop(columns=['count','first','last']).rename(columns={'bucket':'open_ms'})
 
 
 def wilson(successes,n):
@@ -52,16 +57,32 @@ def wilson(successes,n):
     return [float(mid-rad),float(mid+rad)]
 
 
-def summarize(trades, symbols, timeframe, horizon, leverage, cost_name):
-    # Non-overlap sampling is greedy by signal time per symbol, independent of outcomes.
-    independent=[]
+def select_nonoverlap_keys(trades, symbols):
+    """Greedily select mutually exclusive long/short events per symbol, without outcomes."""
+    independent_keys=set()
     for symbol in symbols:
-        seq=sorted((r for r in trades if r['symbol']==symbol),key=lambda r:r['signal_ms'])
+        events={ (r['signal_ms'],r['expiry_ms'],r['side']) for r in trades if r['symbol']==symbol }
+        seq=sorted(events)
         last=-1
-        for row in seq:
-            if row['signal_ms']>=last:
-                independent.append(row)
-                last=row['expiry_ms']
+        for signal_ms,expiry_ms,side in seq:
+            if signal_ms>=last:
+                independent_keys.add((symbol,signal_ms,side))
+                last=expiry_ms
+    return independent_keys
+
+
+def resolve_touched_minute(side, stop, target, open_, high, low):
+    """Resolve 1m OHLC touches conservatively, including adverse stop gaps."""
+    hit_stop=(low<=stop) if side>0 else (high>=stop)
+    hit_target=(high>=target) if side>0 else (low<=target)
+    if hit_stop:
+        return (min(open_,stop) if side>0 else max(open_,stop)),False
+    if hit_target:
+        return target,True
+    return None
+
+
+def summarize(independent, timeframe, horizon, leverage, cost_name):
     n=len(independent)
     if not n:
         return {'independent_n':0}
@@ -96,6 +117,9 @@ def summarize(trades, symbols, timeframe, horizon, leverage, cost_name):
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--outdir',default='docs/research',help='output directory (default: docs/research)')
+    args=parser.parse_args()
     db=sqlite3.connect(f'file:{DB}?mode=ro',uri=True)
     records=[]; manifests=[]
     for symbol in SYMBOLS:
@@ -104,7 +128,7 @@ def main():
             'quote_volume,taker_buy_quote FROM candles WHERE symbol=? AND open_ms<? ORDER BY open_ms',
             db,params=(symbol,CUTOFF_MS))
         raw=raw[raw.open_ms+60_000<=CUTOFF_MS].reset_index(drop=True)
-        rt=raw.open_ms.to_numpy(np.int64); rh=raw.h.to_numpy(float); rl=raw.l.to_numpy(float)
+        rt=raw.open_ms.to_numpy(np.int64); ro=raw.o.to_numpy(float); rh=raw.h.to_numpy(float); rl=raw.l.to_numpy(float)
         for tf in TF_MINUTES:
             width=tf*60_000
             f=aggregate(raw,tf)
@@ -125,7 +149,8 @@ def main():
                         expiry_i=entry_i+horizon-1
                         start=int(f.open_ms.iloc[entry_i]); end=int(f.open_ms.iloc[expiry_i])+width
                         lo_ix=np.searchsorted(rt,start); hi_ix=np.searchsorted(rt,end)
-                        if hi_ix<=lo_ix:continue
+                        expected_minutes=(end-start)//60_000
+                        if hi_ix-lo_ix!=expected_minutes:continue
                         base={'symbol':symbol,'tf':tf,'horizon':horizon,'side':side_name,
                               'signal_ms':int(f.open_ms.iloc[i])+width,'expiry_ms':end}
                         for leverage in LEVERAGES:
@@ -139,8 +164,8 @@ def main():
                             touched=np.flatnonzero(hit_stop|hit_target)
                             if len(touched):
                                 first=int(touched[0])
-                                if hit_stop[first]:exitp=stop
-                                else:exitp=target; target_first=True
+                                exitp,target_first=resolve_touched_minute(
+                                    side,stop,target,ro[lo_ix+first],rh[lo_ix+first],rl[lo_ix+first])
                             raw_move=float(c[expiry_i])/entry-1
                             move=side*raw_move
                             for cost_name,cost in COSTS.items():
@@ -153,13 +178,22 @@ def main():
                                                 'net':side*(exitp/entry-1)-cost,
                                                 'stop_pct':risk/entry})
     rows=[]
+    grouped_records={}
+    for record in records:
+        grouped_records.setdefault((record['tf'],record['horizon'],record['leverage'],record['cost_name'],record['side']),[]).append(record)
+    grouped_events={}
+    for record in records:
+        grouped_events.setdefault((record['tf'],record['horizon'],record['leverage']),[]).append(record)
     for tf in TF_MINUTES:
         for horizon in HORIZONS:
             for leverage in LEVERAGES:
+                candidate_events=grouped_events.get((tf,horizon,leverage),[])
+                independent_keys=select_nonoverlap_keys(candidate_events,SYMBOLS)
                 for cost_name in COSTS:
                     for side in ('long','short'):
-                        cell=[r for r in records if r['tf']==tf and r['horizon']==horizon and r['leverage']==leverage and r['cost_name']==cost_name and r['side']==side]
-                        s=summarize(cell,SYMBOLS,tf,horizon,leverage,cost_name)
+                        cell=grouped_records.get((tf,horizon,leverage,cost_name,side),[])
+                        independent=[r for r in cell if (r['symbol'],r['signal_ms'],r['side']) in independent_keys]
+                        s=summarize(independent,tf,horizon,leverage,cost_name)
                         anchors=sum(n for sym,t,n in manifests if t==tf)
                         raw_signal_count=len(set((r['symbol'],r['signal_ms']) for r in cell))
                         rows.append({'timeframe_min':tf,'horizon_bars':horizon,'horizon_minutes':tf*horizon,
@@ -189,27 +223,29 @@ def main():
                   'rule':'20-bar close breakout + taker-buy imbalance +/-0.30 + volume >=1.5x prior-20 median; entry next bar open; stop 1.5 ATR14; target 2R; timeout 10/20 bars; resolve against original 1m OHLC, stop-first ties',
                   'baselines':'prior completed bar direction uses close[i-1] vs close[i-2] before signal bar i; always-up and always-down are reported separately',
                   'costs_round_trip':COSTS,'bootstrap':'1000 UTC-day cluster draws',
-                  'overlap':'per symbol, chronological greedy non-overlap by forecast interval; outcomes not used for selection',
-                  'liquidation_screen':'stop distance < 1/leverage - 0.5%; approximation only',
+                  'overlap':'per symbol, one mutually exclusive long-or-short event at a time, chronological greedy non-overlap by forecast interval; outcomes not used for selection',
+                  'leverage':'not applied to PnL; labels only denote stop-distance eligibility (risk/entry < 1/leverage - 0.5%). No margin, liquidation, funding, spread, or slippage model.',
+                  'minute_data':'higher-timeframe bars require aligned complete minute buckets; trade paths with missing 1m rows are excluded',
                   'causal_checks':causal}
     out={'metadata':meta,'cells':rows}
     from pathlib import Path
-    outdir=Path(__file__).resolve().parents[2]/'docs'/'research'
+    outdir=Path(args.outdir).expanduser().resolve()
     outdir.mkdir(parents=True,exist_ok=True)
-    json_path=outdir/'long_history_taker_multitf_20261115.json'
-    md_path=outdir/'long_history_taker_multitf_20261115.md'
+    json_path=outdir/'long_history_taker_multitf_corrected_20261115.json'
+    md_path=outdir/'long_history_taker_multitf_corrected_20261115.md'
     import json
     json_path.write_text(json.dumps(out,indent=2,allow_nan=False),encoding='utf-8')
     table=['# Long-history taker-imbalance multi-timeframe probe','','Development-only exploratory results. No candidate is promoted.','',
            f"- UTC cutoff exclusive: {pd.to_datetime(CUTOFF_MS,unit='ms',utc=True).isoformat()}",
            f"- Symbols: {', '.join(SYMBOLS)}; SOL/XRP excluded due internal archive gaps.",
            '- Fees: 0.10% base / 0.30% stress round trip; funding, spread and exchange liquidation omitted.',
-           '- Each cell includes raw trades and greedy non-overlapping trades. The non-overlap interval is selected without outcomes.',
+           '- 10x/20x labels are stop-distance eligibility filters only; PnL is unlevered and is not a liquidation simulation.',
+           '- Independent events are mutually exclusive across long and short within each symbol; outcome values do not determine selection.',
            '- Uncertainty: 1,000 UTC-day cluster bootstrap replicates; cells below 30 independent trades are NOT EVALUABLE.',
-           '', '| TF | Horizon | Leverage | Cost | Side | Raw n | Indep n | Coverage | Target-first | Direction | Prior momentum | Always up | Always down | Net-positive | Mean net | Decision |',
+           '', '| TF | Horizon | Eligibility filter | Cost | Side | Raw n | Indep n | Coverage | Target-first | Expiry direction | Prior-bar baseline | Always up | Always down | Net-positive | Mean net | Decision |',
            '|---:|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|']
     for r in rows:
-        table.append(f"| {r['timeframe_min']}m | {r['horizon_minutes']}m | {r['leverage']}x | {r['cost']} | {r['direction']} | {r['raw_n']} | {r['independent_n']} | {r['raw_signal_coverage']:.2%} | {r.get('target_first_rate',float('nan')):.2%} | {r.get('direction_accuracy_at_expiry',float('nan')):.2%} | {r.get('momentum_baseline_accuracy',float('nan')):.2%} | {r.get('always_up_baseline_accuracy',float('nan')):.2%} | {r.get('always_down_baseline_accuracy',float('nan')):.2%} | {r.get('independent_positive_rate',float('nan')):.2%} | {r.get('mean_net_pct',float('nan')):.3f}% | {r['status']} |")
+        table.append(f"| {r['timeframe_min']}m | {r['horizon_minutes']}m | {r['leverage']}x eligibility | {r['cost']} | {r['direction']} | {r['raw_n']} | {r['independent_n']} | {r['raw_signal_coverage']:.2%} | {r.get('target_first_rate',float('nan')):.2%} | {r.get('direction_accuracy_at_expiry',float('nan')):.2%} | {r.get('momentum_baseline_accuracy',float('nan')):.2%} | {r.get('always_up_baseline_accuracy',float('nan')):.2%} | {r.get('always_down_baseline_accuracy',float('nan')):.2%} | {r.get('independent_positive_rate',float('nan')):.2%} | {r.get('mean_net_pct',float('nan')):.3f}% | {r['status']} |")
     md_path.write_text('\n'.join(table)+'\n',encoding='utf-8')
     print('OUTPUT',json_path,md_path,'cells',len(rows),'records',len(records))
 

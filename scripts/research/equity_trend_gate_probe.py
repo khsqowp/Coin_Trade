@@ -43,7 +43,9 @@ def kr_run(frames, gated, fee, slip, stock_tax):
     dates = opens.index
     mom = closes / closes.shift(60) - 1
     bench_sma = closes['069500'].rolling(200, min_periods=200).mean()
-    month_end = pd.Series(np.arange(len(dates)), index=dates).groupby(dates.to_period('M')).last().to_numpy()
+    month_end = pd.Series(np.arange(len(dates)), index=dates).groupby(
+        dates.tz_localize(None).to_period('M') if dates.tz is not None else dates.to_period('M')
+    ).last().to_numpy()
     targets = pd.DataFrame(0., index=dates, columns=opens.columns)
     current = pd.Series(0., index=opens.columns)
     for i in range(len(dates) - 1):
@@ -71,7 +73,7 @@ def kr_run(frames, gated, fee, slip, stock_tax):
     return metrics(nav, exposure, turnover, 'KR_mom60_monthly_top10' + ('_SMA200_gate' if gated else '_base'))
 
 
-def us_run(frames, gated, fee, slip):
+def us_run(frames, gated, fee, slip, rebalance='daily'):
     common_close = pd.concat({s:f.Close for s,f in frames.items()}, axis=1).dropna(how='any').sort_index()
     symbols = sorted(frames)
     common_open = pd.concat({s:frames[s].Open.reindex(common_close.index) for s in symbols}, axis=1)[symbols]
@@ -79,39 +81,45 @@ def us_run(frames, gated, fee, slip):
     sma = frames['SPY'].Close.rolling(200, min_periods=200).mean().reindex(common_close.index)
     momentum = pd.concat({s:(frames[s].Close / frames[s].Close.shift(126) - 1).reindex(common_close.index)
                           for s in symbols}, axis=1)[symbols]
-    nav = 1.; cash = 1.; shares = {s:0. for s in symbols}; navs=[]; exposure=[]; total_turnover=0.
     dates = common_close.index
+    nav = 1.; cash = 1.; shares = {s:0. for s in symbols}; navs=[]; exposure=[]; total_turnover=0.
+    month_periods = dates.tz_localize(None).to_period('M') if dates.tz is not None else dates.to_period('M')
+    month_end_indices=set(pd.Series(np.arange(len(dates)),index=dates).groupby(month_periods).last().to_numpy())
+    current_weights={}
     for j, day in enumerate(dates):
         op = common_open.loc[day]
         close = common_close.loc[day]
         nav_open = cash + sum(q * op[s] for s,q in shares.items() if q and pd.notna(op[s]))
         if j:
             signal_day = dates[j - 1]
-            risk_off = gated and (pd.isna(sma.loc[signal_day]) or frames['SPY'].Close.get(signal_day, np.nan) <= sma.loc[signal_day])
-            if risk_off:
-                weights = {}
-            else:
-                scores = momentum.loc[signal_day].dropna().nlargest(K)
-                weights = {s:1/len(scores) for s in scores.index} if len(scores) else {}
-            target = {s:(nav_open * weights[s] / op[s] if s in weights and pd.notna(op[s]) and op[s] > 0 else 0.) for s in symbols}
-            turnover = sum(abs((target[s] - shares[s]) * op[s]) for s in symbols if pd.notna(op[s]))
-            total_turnover += turnover / max(nav_open, 1e-12)
-            charges = turnover * (fee + slip)
-            gross_buy = sum(target[s] * op[s] for s in symbols if pd.notna(op[s]))
-            if gross_buy + charges > nav_open and charges > 0:
-                scale = nav_open / (gross_buy + charges)
-                target = {s:q*scale for s,q in target.items()}
+            should_rebalance=(rebalance=='daily' or j-1 in month_end_indices)
+            if should_rebalance:
+                risk_off = gated and (pd.isna(sma.loc[signal_day]) or frames['SPY'].Close.get(signal_day, np.nan) <= sma.loc[signal_day])
+                if risk_off:
+                    current_weights={}
+                else:
+                    scores = momentum.loc[signal_day].dropna().nlargest(K)
+                    current_weights = {s:1/len(scores) for s in scores.index} if len(scores) else {}
+                weights=current_weights
+                target = {s:(nav_open * weights[s] / op[s] if s in weights and pd.notna(op[s]) and op[s] > 0 else 0.) for s in symbols}
                 turnover = sum(abs((target[s] - shares[s]) * op[s]) for s in symbols if pd.notna(op[s]))
                 charges = turnover * (fee + slip)
                 gross_buy = sum(target[s] * op[s] for s in symbols if pd.notna(op[s]))
-            cash = nav_open - gross_buy - charges
-            shares = target
+                if gross_buy + charges > nav_open and charges > 0:
+                    scale = nav_open / (gross_buy + charges)
+                    target = {s:q*scale for s,q in target.items()}
+                    turnover = sum(abs((target[s] - shares[s]) * op[s]) for s in symbols if pd.notna(op[s]))
+                    charges = turnover * (fee + slip)
+                    gross_buy = sum(target[s] * op[s] for s in symbols if pd.notna(op[s]))
+                total_turnover += turnover / max(nav_open, 1e-12)
+                cash = nav_open - gross_buy - charges
+                shares = target
         nav_close = cash + sum(q * close[s] for s,q in shares.items() if q and pd.notna(close[s]))
         navs.append(nav_close)
         exposure.append(sum(q * close[s] for s,q in shares.items() if q and pd.notna(close[s])) / nav_close if nav_close else 0.)
     series = pd.Series(navs, index=dates)
     return metrics(series, exposure, total_turnover / 2,
-                   'US_mom126_daily_top10' + ('_SMA200_gate' if gated else '_base'))
+                   f'US_mom126_{rebalance}_top10' + ('_SMA200_gate' if gated else '_base'))
 
 
 def main():
@@ -124,6 +132,8 @@ def main():
             r=kr_run(kr, gated, fee, slip, .0020); r['scenario']=scenario; out.append(r)
         for scenario, fee, slip in (('base', .0008, .0010), ('stress', .0036, .0025)):
             r=us_run(us, gated, fee, slip); r['scenario']=scenario; out.append(r)
+        for scenario, fee, slip in (('base', .0008, .0010), ('stress', .0036, .0025)):
+            r=us_run(us, gated, fee, slip, rebalance='monthly'); r['scenario']=scenario; out.append(r)
     for row in out: print(row)
 
 

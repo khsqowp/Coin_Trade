@@ -1,5 +1,7 @@
 # Long-history taker-imbalance multi-timeframe probe
 
+> **Superseded:** This first-run table predates the corrected mutually exclusive long/short sampling and complete-minute-path checks. Use `long_history_taker_multitf_corrected_20261115.md` and its JSON companion for the audited rerun. The old table is retained as historical evidence and must not be used for current conclusions.
+
 Development-only exploratory results. No candidate is promoted.
 
 - UTC cutoff exclusive: 2026-10-09T00:00:00+00:00
