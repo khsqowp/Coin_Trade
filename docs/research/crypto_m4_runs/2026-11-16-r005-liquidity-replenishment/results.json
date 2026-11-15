@@ -24,9 +24,9 @@
   },
   "tests": {
     "performance_tests": 0,
-    "unit_and_integrity_tests": 244,
-    "unit_and_integrity_tests_passed": 244,
+    "unit_and_integrity_tests": 257,
+    "unit_and_integrity_tests_passed": 257,
     "warnings": 1
   },
-  "interpretation": "The 244 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. A prior-only rolling aggression quantile is tested synthetically but the candidate builder is not integrated into capture replay; no outcome labels were used. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
+  "interpretation": "The 257 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. Candidate construction and depth-walk target-first execution are tested synthetically but neither is integrated into capture replay; no outcome labels were generated. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
 }
