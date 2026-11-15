@@ -62,7 +62,7 @@
     "baseline_source_commit": "0f6fa2870b320da5e257cd643424728ff0a205eb",
     "performance_cells_run": 0,
     "performance_metrics_calculated": false,
-    "chart_predictor_tests": "242 passed, 1 environment warning",
+    "chart_predictor_tests": "244 passed, 1 environment warning",
     "no_api_credentials_or_orders": true,
     "public_network_or_capture_started": false
   },
@@ -107,6 +107,7 @@
     "strict_decision_anchor_comparator_tested": true,
     "completed_t_bar_window_eligibility_gate_tested": true,
     "pure_r005_candidate_builder_tested": true,
+    "prior_only_aggression_quantile_tested": true,
     "candidate_builder_capture_replay_integration": false,
     "production_signal_pipeline_wired": false,
     "zstd_bytes": 2091272,

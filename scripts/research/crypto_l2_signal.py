@@ -10,10 +10,66 @@ from typing import Any
 
 from scripts.research.crypto_l2_windows import eligible_windows_for_completed_bar
 
+AGGRESSION_LOOKBACK_MS = 30 * 24 * 60 * 60 * 1000
+AGGRESSION_PERCENTILES = {0.80, 0.90, 0.95}
+REPLENISHMENT_THRESHOLDS = {0.5, 1.0, 1.5}
+
 
 def _finite_number(value: Any) -> bool:
     return (isinstance(value, (int, float)) and not isinstance(value, bool)
             and math.isfinite(value))
+
+
+def prior_aggression_threshold(
+    observations: list[dict[str, Any]], *, symbol: str, direction: str,
+    anchor_event_ms: int, percentile: float, lookback_ms: int,
+    minimum_history_n: int,
+) -> tuple[float | None, int]:
+    """Return a linear-interpolated quantile using only same-symbol prior rows.
+
+    The window includes observations at `anchor_event_ms-lookback_ms` and
+    excludes observations at or after the anchor. The minimum history count is
+    explicit so the caller cannot silently treat a tiny sample as a threshold.
+    """
+    if not isinstance(symbol, str) or not symbol:
+        raise ValueError("symbol must be a non-empty string")
+    if not isinstance(direction, str) or direction not in {"long", "short"}:
+        raise ValueError("direction must be long or short")
+    if isinstance(anchor_event_ms, bool) or not isinstance(anchor_event_ms, int):
+        raise ValueError("anchor must be integer event-time milliseconds")
+    if not _finite_number(percentile) or not 0 < percentile < 1:
+        raise ValueError("percentile must be between zero and one")
+    if isinstance(lookback_ms, bool) or not isinstance(lookback_ms, int) or lookback_ms <= 0:
+        raise ValueError("lookback must be a positive integer number of milliseconds")
+    if (isinstance(minimum_history_n, bool) or not isinstance(minimum_history_n, int)
+            or minimum_history_n < 1):
+        raise ValueError("minimum history count must be a positive integer")
+
+    cutoff_ms = anchor_event_ms - lookback_ms
+    values: list[float] = []
+    for row in observations:
+        if row.get("symbol") != symbol or row.get("direction") != direction:
+            continue
+        event_ms = row.get("event_ms")
+        if isinstance(event_ms, bool) or not isinstance(event_ms, int):
+            raise ValueError("matching prior observations require integer event_ms")
+        if not cutoff_ms <= event_ms < anchor_event_ms:
+            continue
+        quote_volume = row.get("aggression_quote_volume")
+        if not _finite_number(quote_volume) or quote_volume < 0:
+            raise ValueError("matching prior aggression quote volume must be finite and non-negative")
+        values.append(float(quote_volume))
+
+    count = len(values)
+    if count < minimum_history_n:
+        return None, count
+    values.sort()
+    position = (count - 1) * percentile
+    lower = int(math.floor(position))
+    upper = int(math.ceil(position))
+    fraction = position - lower
+    threshold = values[lower] + (values[upper] - values[lower]) * fraction
+    return threshold, count
 
 
 def _completed_feature_available(bar: dict[str, Any], *, decision_event_ms: int,
@@ -35,18 +91,21 @@ def build_candidates_for_completed_bar(
     btc_h_bar: dict[str, Any],
     decision_event_ms: int,
     decision_receive_monotonic_s: float,
-    aggression_quote_threshold: float,
+    prior_aggression_observations: list[dict[str, Any]],
+    aggression_percentile: float,
+    minimum_aggression_history_n: int,
     minimum_replenishment_ratio: float,
     tick_size: float,
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
     """Build at most one earliest qualifying R005 candidate for a T bar.
 
-    `aggression_quote_threshold` must be computed using strictly prior data by
-    the caller. T/H bars must carry their actual close and receive-time. The
-    decision event-time anchor represents when both bars and the replenishment
-    observation are complete; the monotonic anchor represents local knowledge.
-    Candidate stop levels are indicative only; entry/target/R remain unresolved
-    until an executable post-signal quote is replayed.
+    The aggression quantile is computed separately at each event's start using
+    only same-symbol, same-direction observations in the preceding 30 days.
+    T/H bars must carry their actual close and receive-time. The decision event-
+    time anchor represents when both bars and the replenishment observation
+    are complete; the monotonic anchor represents local knowledge. Candidate
+    stop levels are indicative only; entry/target/R remain unresolved until an
+    executable post-signal quote is replayed.
     """
     required_ints = (decision_event_ms, t_bar.get("bar_open_ms"),
                      t_bar.get("bar_close_ms"))
@@ -83,10 +142,18 @@ def build_candidates_for_completed_bar(
         raise ValueError("macro bar must be BTCUSDT")
     if not _finite_number(decision_receive_monotonic_s):
         raise ValueError("decision receive-time anchor must be finite")
-    if not _finite_number(aggression_quote_threshold) or aggression_quote_threshold < 0:
-        raise ValueError("aggression threshold must be finite and non-negative")
-    if not _finite_number(minimum_replenishment_ratio):
-        raise ValueError("replenishment threshold must be finite")
+    if (not _finite_number(aggression_percentile)
+            or aggression_percentile not in AGGRESSION_PERCENTILES):
+        raise ValueError("aggression percentile must be one of the frozen 80/90/95 thresholds")
+    if (isinstance(minimum_aggression_history_n, bool)
+            or not isinstance(minimum_aggression_history_n, int)
+            or minimum_aggression_history_n < 1):
+        raise ValueError("minimum aggression history count must be a positive integer")
+    if (not _finite_number(minimum_replenishment_ratio)
+            or minimum_replenishment_ratio not in REPLENISHMENT_THRESHOLDS):
+        raise ValueError("replenishment threshold must be one of the frozen 0.5/1.0/1.5 values")
+    if not isinstance(prior_aggression_observations, list):
+        raise ValueError("prior aggression observations must be a list")
     if not _finite_number(tick_size) or tick_size <= 0:
         raise ValueError("tick size must be finite and positive")
 
@@ -96,6 +163,7 @@ def build_candidates_for_completed_bar(
         "no_directional_macro_regime": 0,
         "window_not_eligible": 0,
         "wrong_symbol": 0,
+        "insufficient_prior_aggression_history": 0,
         "no_qualifying_event": 0,
     }
     if not _completed_feature_available(
@@ -156,6 +224,18 @@ def build_candidates_for_completed_bar(
             replenishment = window.get("ask_replenishment_ratio")
             adverse_price = window.get("trade_high")
             stop_price = (adverse_price + tick_size) if _finite_number(adverse_price) else None
+        aggression_quote_threshold, history_n = prior_aggression_threshold(
+            prior_aggression_observations,
+            symbol=symbol,
+            direction=side,
+            anchor_event_ms=window["window_start_ms"],
+            percentile=aggression_percentile,
+            lookback_ms=AGGRESSION_LOOKBACK_MS,
+            minimum_history_n=minimum_aggression_history_n,
+        )
+        if aggression_quote_threshold is None:
+            rejects["insufficient_prior_aggression_history"] += 1
+            continue
         if (not _finite_number(aggression) or aggression < aggression_quote_threshold
                 or not _finite_number(replenishment)
                 or replenishment < minimum_replenishment_ratio
@@ -175,6 +255,9 @@ def build_candidates_for_completed_bar(
             "macro_regime": "long" if long_regime else "short",
             "aggression_quote_volume": aggression,
             "aggression_quote_threshold": aggression_quote_threshold,
+            "aggression_percentile": aggression_percentile,
+            "aggression_lookback_ms": AGGRESSION_LOOKBACK_MS,
+            "aggression_history_n": history_n,
             "replenishment_ratio": replenishment,
             "minimum_replenishment_ratio": minimum_replenishment_ratio,
             "stop_price_pre_entry": stop_price,

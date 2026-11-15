@@ -4,7 +4,10 @@ import json
 import pytest
 
 from scripts.research.crypto_l2_compact import reduce_capture
-from scripts.research.crypto_l2_signal import build_candidates_for_completed_bar
+from scripts.research.crypto_l2_signal import (
+    build_candidates_for_completed_bar,
+    prior_aggression_threshold,
+)
 from scripts.research.crypto_l2_windows import (
     aggregate_windows,
     eligible_windows_for_completed_bar,
@@ -285,12 +288,28 @@ def _candidate_bars(*, decision_receive=602.0, t_receive=600.5,
     }
 
 
+def _prior_aggression(direction):
+    return [
+        {"symbol": "BTCUSDT", "direction": direction, "event_ms": 10_000,
+         "aggression_quote_volume": 500.0},
+        {"symbol": "BTCUSDT", "direction": direction, "event_ms": 20_000,
+         "aggression_quote_volume": 600.0},
+    ]
+
+
 def test_candidate_builder_uses_macro_to_micro_and_selects_earliest_window():
     bars = _candidate_bars()
+    prior_rows = _prior_aggression("long") + [
+        # A later T-bar event cannot alter the threshold for the first event.
+        {"symbol": "BTCUSDT", "direction": "long", "event_ms": 150_000,
+         "aggression_quote_volume": 10_000.0},
+    ]
     candidates, rejects = build_candidates_for_completed_bar(
         [_candidate_window(100_000), _candidate_window(200_000)],
         **bars,
-        aggression_quote_threshold=500.0,
+        prior_aggression_observations=prior_rows,
+        aggression_percentile=0.8,
+        minimum_aggression_history_n=2,
         minimum_replenishment_ratio=0.5,
         tick_size=0.01,
     )
@@ -301,6 +320,8 @@ def test_candidate_builder_uses_macro_to_micro_and_selects_earliest_window():
     assert candidate["window_start_ms"] == 100_000
     assert candidate["macro_regime"] == "long"
     assert candidate["stop_price_pre_entry"] == pytest.approx(98.99)
+    assert candidate["aggression_quote_threshold"] == pytest.approx(580.0)
+    assert candidate["aggression_history_n"] == 2
     assert candidate["entry_price"] is None
     assert candidate["candidate_status"] == "awaiting_executable_post_signal_quote"
     assert rejects["window_not_eligible"] == 0
@@ -312,7 +333,9 @@ def test_candidate_builder_abstains_when_any_bar_feature_arrives_after_decision(
     bars[bar_key]["feature_available_receive_monotonic_s"] = 602.0
     candidates, rejects = build_candidates_for_completed_bar(
         [_candidate_window(100_000)], **bars,
-        aggression_quote_threshold=500.0,
+        prior_aggression_observations=_prior_aggression("long"),
+        aggression_percentile=0.8,
+        minimum_aggression_history_n=2,
         minimum_replenishment_ratio=0.5,
         tick_size=0.01,
     )
@@ -325,7 +348,9 @@ def test_candidate_builder_abstains_on_non_directional_higher_timeframe_state():
     bars = _candidate_bars(macro=(100.0, 100.0, 100.0))
     candidates, rejects = build_candidates_for_completed_bar(
         [_candidate_window(100_000)], **bars,
-        aggression_quote_threshold=500.0,
+        prior_aggression_observations=_prior_aggression("long"),
+        aggression_percentile=0.8,
+        minimum_aggression_history_n=2,
         minimum_replenishment_ratio=0.5,
         tick_size=0.01,
     )
@@ -338,7 +363,9 @@ def test_candidate_builder_applies_symmetric_short_rules():
     bars = _candidate_bars(macro=(99.0, 100.0, 101.0))
     candidates, _ = build_candidates_for_completed_bar(
         [_candidate_window(100_000)], **bars,
-        aggression_quote_threshold=500.0,
+        prior_aggression_observations=_prior_aggression("short"),
+        aggression_percentile=0.8,
+        minimum_aggression_history_n=2,
         minimum_replenishment_ratio=0.5,
         tick_size=0.01,
     )
@@ -353,7 +380,9 @@ def test_candidate_builder_rejects_wrong_macro_timeframe():
     with pytest.raises(ValueError, match=r"max\(240m, 4 x T\)"):
         build_candidates_for_completed_bar(
             [_candidate_window(100_000)], **bars,
-            aggression_quote_threshold=500.0,
+            prior_aggression_observations=_prior_aggression("long"),
+            aggression_percentile=0.8,
+            minimum_aggression_history_n=2,
             minimum_replenishment_ratio=0.5,
             tick_size=0.01,
         )
@@ -364,13 +393,58 @@ def test_candidate_builder_does_not_cross_symbols():
     bars["t_bar"]["symbol"] = "ETHUSDT"
     candidates, rejects = build_candidates_for_completed_bar(
         [_candidate_window(100_000, symbol="BTCUSDT")], **bars,
-        aggression_quote_threshold=500.0,
+        prior_aggression_observations=_prior_aggression("long"),
+        aggression_percentile=0.8,
+        minimum_aggression_history_n=2,
         minimum_replenishment_ratio=0.5,
         tick_size=0.01,
     )
 
     assert candidates == []
     assert rejects["wrong_symbol"] == 1
+
+
+def test_prior_aggression_threshold_excludes_current_future_and_other_groups():
+    observations = [
+        {"symbol": "ETHUSDT", "direction": "long", "event_ms": 1_000,
+         "aggression_quote_volume": 10.0},
+        {"symbol": "BTCUSDT", "direction": "short", "event_ms": 1_500,
+         "aggression_quote_volume": 1000.0},
+        {"symbol": "BTCUSDT", "direction": "long", "event_ms": 1_000,
+         "aggression_quote_volume": 10.0},
+        {"symbol": "BTCUSDT", "direction": "long", "event_ms": 2_000,
+         "aggression_quote_volume": 20.0},
+        # Current and future rows are excluded before their values are inspected.
+        {"symbol": "BTCUSDT", "direction": "long", "event_ms": 3_000,
+         "aggression_quote_volume": 30.0},
+        {"symbol": "BTCUSDT", "direction": "long", "event_ms": 4_000,
+         "aggression_quote_volume": float("nan")},
+    ]
+    args = {
+        "symbol": "BTCUSDT", "direction": "long", "anchor_event_ms": 3_000,
+        "percentile": 0.5, "lookback_ms": 2_000, "minimum_history_n": 2,
+    }
+
+    threshold, count = prior_aggression_threshold(observations, **args)
+    threshold_without_future, count_without_future = prior_aggression_threshold(
+        observations[:4], **args,
+    )
+
+    assert threshold == pytest.approx(15.0)
+    assert (threshold, count) == (threshold_without_future, count_without_future)
+    assert count == 2
+
+
+def test_prior_aggression_threshold_returns_no_threshold_below_minimum_history():
+    threshold, count = prior_aggression_threshold(
+        [{"symbol": "BTCUSDT", "direction": "long", "event_ms": 2_000,
+          "aggression_quote_volume": 20.0}],
+        symbol="BTCUSDT", direction="long", anchor_event_ms=3_000,
+        percentile=0.8, lookback_ms=30_000, minimum_history_n=2,
+    )
+
+    assert threshold is None
+    assert count == 1
 
 
 def test_10s_aggregator_fails_closed_on_late_event_after_finalization(tmp_path):
