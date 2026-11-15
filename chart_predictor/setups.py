@@ -6,7 +6,7 @@ from . import indicators
 
 SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "avwap_hl", "rsi_divergence", "candle_reversal", "fibonacci_pocket",
-          "order_block", "fabio_liquidity_mss")
+          "order_block", "fabio_liquidity_mss", "frvp_breakout", "frvp_breakout_strong")
 
 @dataclass(frozen=True)
 class Signal:
@@ -155,4 +155,47 @@ def generate_signals(frame, setup, prepared=None):
                         emit(i,"long",grab_level); state="waiting"
                     # The Pine armed state has no timeout/opposite-grab reset; this port likewise waits
                     # indefinitely, then resets after one entry so a continuing inequality cannot re-fire.
+    elif setup in ("frvp_breakout","frvp_breakout_strong"):
+        # Fixed-range volume profile, ported from the daily-candle rule in
+        # app/technical_signal_common.py's `frvp` branch (and
+        # docs/전략-백테스트-종합.md 13-8): a rolling volume-weighted histogram of
+        # typical price proxies true volume-at-price (daily/intraday OHLCV has no
+        # tick-level volume-at-price; this is the same documented proxy, not a new
+        # limitation). Lookback is a FIXED 60-bar window on every timeframe -- same
+        # convention as this file's other fixed-bar-count windows (order_block's
+        # 60-bar zone expiry, trendline_breakout's 20-bar fit) -- so it spans 60
+        # minutes on 1m vs 60 hours on 60m; bar-count is kept constant rather than
+        # time-scaled for consistency with the rest of this module, at the cost of
+        # a much narrower real-time profile on faster timeframes.
+        # Causal boundary: the histogram at bar i uses only typical[i-60:i], i.e.
+        # bars i-60..i-1 (current bar i is never in its own profile). The "yesterday"
+        # test reads c[i-1] (the last bar inside that window) and the breakout test
+        # reads c[i] (today, the signal bar itself, closed) -- matching every other
+        # setup here that emits at the closed signal bar and enters next bar's open.
+        # "_strong" is the single bounded P7-B refinement: require the breakout
+        # close to clear the POC by >=0.25*ATR[i-1] (same ATR already shared by
+        # every other setup here) instead of by an arbitrarily thin margin, on the
+        # judgment that a breakout that barely pokes through the POC bin is harder
+        # to distinguish from noise than one with real thrust behind it. It does
+        # not touch the POC/LVN geometry itself, which stays exactly as specified.
+        window=60; bins=24; typical=(h+l+c)/3.0; idx=np.arange(bins)
+        buffer=lambda i:0.25*a[i-1] if setup=="frvp_breakout_strong" and np.isfinite(a[i-1]) else 0.0
+        for i in range(window,n):
+            seg_p=typical[i-window:i]; seg_v=v[i-window:i]
+            if not np.any(seg_v>0): continue
+            hist,edges=np.histogram(seg_p,bins=bins,weights=np.maximum(seg_v,0.0))
+            poc=int(np.argmax(hist))
+            if hist[poc]<=0: continue
+            centers=(edges[:-1]+edges[1:])/2; poc_price=float(centers[poc]); buf=buffer(i)
+            below=np.flatnonzero((idx<poc)&(hist>0)&(hist<.5*hist[poc]))
+            if len(below):
+                lvn=float(centers[below[-1]])
+                if lvn<=c[i-1]<poc_price and c[i]>poc_price+buf: emit(i,"long",lvn)
+            # Symmetric short side (nearest low-volume node ABOVE the POC, mirrored
+            # thresholds) is an extension: the cited daily-candle source and the
+            # app/technical_signal_common.py port both define the long case only.
+            above=np.flatnonzero((idx>poc)&(hist>0)&(hist<.5*hist[poc]))
+            if len(above):
+                lvn_up=float(centers[above[0]])
+                if poc_price<c[i-1]<=lvn_up and c[i]<poc_price-buf: emit(i,"short",lvn_up)
     return out
