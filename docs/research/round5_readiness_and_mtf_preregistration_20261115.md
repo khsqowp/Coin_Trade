@@ -45,6 +45,13 @@ For every timeframe and direction reported as a pass, require at least 80% point
 3. Establish an append-only sealed-data boundary and access log independent of the scoring process. Do not designate the existing post-2026-10-09 rows as sealed retroactively without evidence.
 4. Collect genuinely future data after the protocol freeze. If there is not enough eligible sample, continue collection without examining aggregate performance.
 
+### Implementation status update — 2026-11-15
+
+- Requirement 1 is implemented in `chart_predictor/mtf_consensus.py` and covered by its unit tests: vote freshness/conflicts, next-minute entry, 10/20-bar horizons, stop-first ties, missing-path states, long/short symmetry, and the 4x/5x liquidation proxy are deterministic.
+- The prediction, score, and trial SQLite tables now reject application-level `UPDATE` and `DELETE` operations through triggers; tests verify the triggers. This protects normal application writes, but is not tamper-proof storage: a process with filesystem/database-owner access can drop triggers or replace the database.
+- A read-only metadata check of the existing checkout found no `chart_predictor/data/sealed_registry.json`, no predictions database, and a 17-row `trials.sqlite` containing only `dev` entries and zero `sealed_access` entries. `sqlite_master` showed no triggers in that pre-existing trial database. The candle DB's file metadata says it was last modified 2026-11-14; no post-cutoff OHLC rows were read for this check. These facts do not prove that no one inspected those rows outside the registry; they establish that the existing local log cannot certify them as sealed.
+- Requirements 2–4 are still incomplete. There is no final code/data manifest, no fixed live symbol snapshot or accepted market-data feed/schema, no independently controlled sealed-data/access-log boundary, and no forward observations collected under this protocol. The existing post-2026-10-09 candle rows remain ineligible as validation. No prospective result or strategy pass is claimed.
+
 ## Equity next gates
 
 - **KR:** For a price-based strategy gate, first obtain a permitted, versioned price/corporate-action dataset with point-in-time security universe and delisting outcomes. Separately, disclosure families (ownership changes, short balance, buyback progress, as-filed earnings drift) remain feasibility leads; each needs publication timestamps, revisions, historical issuer/security mapping, rights, and an independent price panel before preregistration.
