@@ -1,0 +1,28 @@
+{
+  "run_id": "2026-11-16-r007-r005-coverage-feasibility",
+  "parent_run_id": "2026-11-16-r005-liquidity-replenishment",
+  "date": "2026-11-16",
+  "status": "infeasible_as_written",
+  "question": "Can R005 reach 10% per-timeframe coverage with a full-20T refractory interval?",
+  "data_read": false,
+  "performance_cells": 0,
+  "strategy_metrics": null,
+  "spacing_bars": 20,
+  "max_selected_formula": "floor((N-1)/20)+1",
+  "timeframe_rows": [
+    {"timeframe_minutes": 1, "opportunities_per_365d": 525600, "max_selected": 26280, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 3, "opportunities_per_365d": 175200, "max_selected": 8760, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 5, "opportunities_per_365d": 105120, "max_selected": 5256, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 10, "opportunities_per_365d": 52560, "max_selected": 2628, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 15, "opportunities_per_365d": 35040, "max_selected": 1752, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 30, "opportunities_per_365d": 17520, "max_selected": 876, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 60, "opportunities_per_365d": 8760, "max_selected": 438, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 120, "opportunities_per_365d": 4380, "max_selected": 219, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 240, "opportunities_per_365d": 2190, "max_selected": 110, "max_coverage_percent": 5.023},
+    {"timeframe_minutes": 360, "opportunities_per_365d": 1460, "max_selected": 73, "max_coverage_percent": 5.0},
+    {"timeframe_minutes": 720, "opportunities_per_365d": 730, "max_selected": 37, "max_coverage_percent": 5.068},
+    {"timeframe_minutes": 1440, "opportunities_per_365d": 365, "max_selected": 19, "max_coverage_percent": 5.205}
+  ],
+  "conclusion": "The frozen refractory and coverage rules cannot jointly satisfy the 10% gate. Cross-timeframe mutual exclusion can only lower per-timeframe coverage. No performance conclusion is implied.",
+  "next_action": "Design a new pre-label protocol explicitly permitting overlapping forecasts with dependence-aware inference, or a formally different refractory rule; do not alter R005 post hoc."
+}
