@@ -61,7 +61,8 @@ def evaluate_symbol(raw, symbol, signal_family):
         opens = frame.o.to_numpy(float)
         high = frame.h.to_numpy(float)
         low = frame.l.to_numpy(float)
-        if signal_family in ("rsi2", "rsi2_ema200_trend"):
+        times = frame.open_ms.to_numpy(np.int64)
+        if signal_family in ("rsi2", "rsi2_ema200_trend", "rsi2_htf_ema50"):
             delta = np.diff(np.r_[np.nan, close])
             gain = pd.Series(np.maximum(delta, 0)).ewm(alpha=0.5, adjust=False).mean().to_numpy()
             loss = pd.Series(np.maximum(-delta, 0)).ewm(alpha=0.5, adjust=False).mean().to_numpy()
@@ -74,6 +75,29 @@ def evaluate_symbol(raw, symbol, signal_family):
                 ema200 = pd.Series(close).ewm(span=200, adjust=False, min_periods=200).mean().to_numpy()
                 long_mask = (rsi2 < 10) & (close > ema200)
                 short_mask = (rsi2 > 90) & (close < ema200)
+                event_mask = long_mask | short_mask
+                side_for = lambda i: 1 if long_mask[i] else -1
+            elif signal_family == "rsi2_htf_ema50":
+                htf = aggregate(raw, tf * 4)
+                htf_width = tf * 4 * 60_000
+                htf = htf[htf.open_ms + htf_width <= CUTOFF_MS].reset_index(drop=True)
+                htf_times = htf.open_ms.to_numpy(np.int64)
+                htf_adjacent = np.r_[False, np.diff(htf_times) == htf_width]
+                htf_contiguous = (pd.Series(htf_adjacent.astype(np.int8))
+                                  .rolling(49, min_periods=49).sum().eq(49).to_numpy())
+                htf_close = htf.c.to_numpy(float)
+                htf_ema = pd.Series(htf_close).ewm(span=50, adjust=False, min_periods=50).mean().to_numpy()
+                htf_ema[~htf_contiguous] = np.nan
+                htf_end = htf_times + htf_width
+                signal_end = times + tf * 60_000
+                htf_ix = np.searchsorted(htf_end, signal_end, side="right") - 1
+                regime = np.full(len(frame), np.nan)
+                valid_htf = (htf_ix >= 0) & (htf_ix < len(htf_ema))
+                if np.any(htf_end[htf_ix[valid_htf]] > signal_end[valid_htf]):
+                    raise AssertionError("higher-timeframe filter used an uncompleted bar")
+                regime[valid_htf] = htf_close[htf_ix[valid_htf]] - htf_ema[htf_ix[valid_htf]]
+                long_mask = (rsi2 < 10) & (regime > 0)
+                short_mask = (rsi2 > 90) & (regime < 0)
                 event_mask = long_mask | short_mask
                 side_for = lambda i: 1 if long_mask[i] else -1
             else:
@@ -96,7 +120,6 @@ def evaluate_symbol(raw, symbol, signal_family):
         previous_close = np.r_[np.nan, close[:-1]]
         tr = np.maximum(high - low, np.maximum(abs(high - previous_close), abs(low - previous_close)))
         atr = pd.Series(tr).rolling(14, min_periods=14).mean().to_numpy()
-        times = frame.open_ms.to_numpy(np.int64)
         adjacent = np.r_[False, np.diff(times) == tf * 60_000]
         contiguous_window = (pd.Series(adjacent.astype(np.int8))
                              .rolling(19, min_periods=19).sum().eq(19).to_numpy())
@@ -176,7 +199,7 @@ def evaluate_symbol(raw, symbol, signal_family):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv-out", type=Path, help="optional path for the cell-level CSV")
-    parser.add_argument("--signal-family", choices=("rsi2", "rsi2_ema200_trend", "bb_reentry"), default="rsi2")
+    parser.add_argument("--signal-family", choices=("rsi2", "rsi2_ema200_trend", "rsi2_htf_ema50", "bb_reentry"), default="rsi2")
     args = parser.parse_args()
     db = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
     rows = []
