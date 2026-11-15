@@ -1,7 +1,7 @@
 # Round 5 readiness audit and prospective crypto MTF protocol
 
 Date: 2026-11-15 (Asia/Seoul)
-Status: readiness audit complete; no performance backtest run in this round.
+Status: readiness audit and a descriptive, non-validation MTF development replay complete; no validation backtest run.
 
 ## Executive disposition
 
@@ -12,7 +12,7 @@ Four independent read-only audits were completed: KR equities, US equities, cryp
 | KR stocks/ETFs | Local cache has 92 named CSVs. Existing records cover momentum, reversal/panic reversal, calendar, low-risk/low-skew, and volatility-breakout families; the cache's price rights, adjustment/vintage, PIT membership, actions, and delisting outcomes remain unresolved. | No valid fresh price-only performance test is currently eligible. Do not substitute tickers or reuse the already-viewed cohort as independent evidence. |
 | US stocks/ETFs | Local cache has 92 named CSVs; `US_AGG.csv` is absent. Several files have unequal history. Existing candidates are already recorded; current-cohort/PIT and corporate-action provenance remain unresolved. | The AGG-dependent candidate is blocked. No proxy substitution or new performance sweep. |
 | Crypto single-TF signals | P5–P8 cover trend/SMC, volatility squeeze, session breakout, mean reversion, and volume exhaustion. Their registered Stage C gate was 75% target-first hit rate and at least 30 events per cell, not the user's 80% target. No passing cell is documented. | Existing results are development evidence only; they do not prove 80% precision. |
-| Crypto MTF | P5–P8 include a closed-HTF SuperTrend direction filter, but no documented cross-timeframe signal consensus or per-timeframe asynchronous target deadlines. | A distinct hypothesis is eligible for preregistration, not for a claimed performance result on the currently unsealed rows. |
+| Crypto MTF | P5–P8 include a closed-HTF SuperTrend direction filter, but no documented cross-timeframe signal consensus or per-timeframe asynchronous target deadlines. A descriptive replay later tested strict 2+ timeframe agreement across nine widths and both sides on the already-explored development interval. | Best 20-bar target-first precision was 35.20% (240m long); most cells had negative mean net R. This is post-hoc development evidence, not validation. Full results are in `round5_mtf_dev_results_20261115.md`. |
 
 ## Evidence boundary
 
@@ -22,7 +22,7 @@ The KR and US reports describe metadata-level cache inventories only. The KR aud
 
 ## Proposed hypothesis for the next eligible crypto trial (preregister before data access)
 
-This is a proposed new test of cross-timeframe agreement, not an asserted edge. It must not be run against any validation/sealed prices until the input freeze and access log are established.
+This is a proposed protocol for future prospective validation, not an asserted edge. A descriptive replay was run only on the already-explored development slice; no validation/sealed prices were read. Do not treat the previous replay as an independent test.
 
 ### Objective and labels
 
@@ -53,4 +53,4 @@ For every timeframe and direction reported as a pass, require at least 80% point
 
 ## Audit provenance and limitations
 
-The four individual read-only reports were produced under `/private/tmp/round5_kr/REPORT.md`, `/private/tmp/round5_us_agent/REPORT.md`, `/private/tmp/round5_crypto_audit/REPORT.md`, and `/private/tmp/round5_crypto_mtf/REPORT.md`. They are task-local temporary evidence, not repository inputs. This consolidated note independently checked the local repo HEAD, clean status, database table schemas/metadata, equity CSV counts, and required `US_AGG.csv` absence. It did not reproduce prior performance calculations, validate every candle gap, or establish the external data licenses. No new performance trial was run; the trial count is unchanged.
+The four individual read-only reports were produced under `/private/tmp/round5_kr/REPORT.md`, `/private/tmp/round5_us_agent/REPORT.md`, `/private/tmp/round5_crypto_audit/REPORT.md`, and `/private/tmp/round5_crypto_mtf/REPORT.md`. They are task-local temporary evidence, not repository inputs. This consolidated note independently checked the local repo HEAD, clean status, database table schemas/metadata, equity CSV counts, and required `US_AGG.csv` absence. It did not reproduce prior performance calculations, validate every candle gap, or establish the external data licenses. The subsequent MTF development replay is separately recorded in `round5_mtf_dev_results_20261115.md`; it did not use sealed data or change the trial's validation eligibility.
