@@ -225,3 +225,62 @@ def test_frvp_strong_rejects_a_marginal_breakout_the_base_rule_accepts():
     assert any(s.index==60 and s.side=="long" for s in base)
     assert not any(s.index==60 for s in strong)
 
+def _vcx_frame(n=22, climax_volume=50.0, baseline_volume=10.0):
+    """n-1 quiet bars (baseline trailing volume = baseline_volume) plus one
+    climax bar at index n-2 and a trailing bar at n-1 so emit()'s i+1<n holds."""
+    o=np.full(n,100.); h=np.full(n,101.); l=np.full(n,99.); c=np.full(n,100.)
+    v=np.full(n,baseline_volume)
+    v[-2]=climax_volume
+    return o,h,l,c,v
+
+def _vcx_ohlcv(o,h,l,c,v):
+    n=len(c)
+    return pd.DataFrame({"t_open_ms":1700000000000+np.arange(n)*60000,"o":o,"h":h,"l":l,"c":c,"v":v})
+
+def test_volume_climax_exhaustion_short_on_new_high_climax_rejection_wick():
+    o,h,l,c,v=_vcx_frame()
+    i=len(c)-2
+    o[i],h[i],l[i],c[i]=100,110,95,98  # new 10-bar high, closes in lower half (frac .2)
+    sigs=generate_signals(_vcx_ohlcv(o,h,l,c,v),"volume_climax_exhaustion")
+    assert Signal(i,"short",110.0) in sigs
+
+def test_volume_climax_exhaustion_long_on_new_low_climax_rejection_wick():
+    o,h,l,c,v=_vcx_frame()
+    i=len(c)-2
+    o[i],h[i],l[i],c[i]=100,105,90,103  # new 10-bar low, closes in upper half
+    sigs=generate_signals(_vcx_ohlcv(o,h,l,c,v),"volume_climax_exhaustion")
+    assert Signal(i,"long",90.0) in sigs
+
+def test_volume_climax_exhaustion_no_signal_without_volume_spike():
+    o,h,l,c,v=_vcx_frame(climax_volume=10.0)  # same as baseline: no spike at all
+    i=len(c)-2
+    o[i],h[i],l[i],c[i]=100,110,95,98  # same wick geometry as the passing short case
+    sigs=generate_signals(_vcx_ohlcv(o,h,l,c,v),"volume_climax_exhaustion")
+    assert not any(s.index==i for s in sigs)
+
+def test_volume_climax_exhaustion_no_signal_without_new_extreme():
+    o,h,l,c,v=_vcx_frame()
+    i=len(c)-2
+    o[i],h[i],l[i],c[i]=100,101,95,98  # climax volume but not a fresh 10-bar high
+    sigs=generate_signals(_vcx_ohlcv(o,h,l,c,v),"volume_climax_exhaustion")
+    assert not any(s.index==i for s in sigs)
+
+def test_volume_climax_exhaustion_no_signal_without_rejection_wick():
+    o,h,l,c,v=_vcx_frame()
+    i=len(c)-2
+    # New high (not a new low: l stays above the trailing 10-bar low of 99),
+    # climax volume, but closes near the high instead of back toward the open.
+    o[i],h[i],l[i],c[i]=100,110,99.5,109
+    sigs=generate_signals(_vcx_ohlcv(o,h,l,c,v),"volume_climax_exhaustion")
+    assert not any(s.index==i for s in sigs)
+
+def test_volume_climax_exhaustion_strict_requires_5x_not_4x():
+    o,h,l,c,v=_vcx_frame(climax_volume=40.0)  # 4x baseline: fires base rule, not strict
+    i=len(c)-2
+    o[i],h[i],l[i],c[i]=100,110,95,98
+    f=_vcx_ohlcv(o,h,l,c,v)
+    assert any(s.index==i and s.side=="short" for s in generate_signals(f,"volume_climax_exhaustion"))
+    assert not any(s.index==i for s in generate_signals(f,"volume_climax_exhaustion_strict"))
+    f.loc[i,"v"]=55.0  # 5.5x baseline clears the stricter threshold
+    assert any(s.index==i and s.side=="short" for s in generate_signals(f,"volume_climax_exhaustion_strict"))
+
