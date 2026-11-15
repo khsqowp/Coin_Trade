@@ -35,11 +35,18 @@ def task_payload(root):
     return json.loads(path.read_text())
 
 
+def registry_file(root, timestamp="2030-01-01T00:00:00Z"):
+    path = root / "sealed_registry.json"
+    path.write_text(json.dumps({"freeze_timestamp": timestamp}))
+    return path
+
+
 def test_baseline_report_numbers_and_seed_are_deterministic(tmp_path):
     db_path = tmp_path / "candles.sqlite"
     candle_db(db_path)
     kwargs = {"split": "dev", "per_cell": 2, "seed": 41, "symbols": 1,
-              "data_db": db_path, "trials_db": tmp_path / "trials.sqlite"}
+              "data_db": db_path, "trials_db": tmp_path / "trials.sqlite",
+              "registry_path": registry_file(tmp_path)}
     first = run_baselines(**kwargs)
     first_report = json.loads(pd.io.common.file_exists(first["report"]) and open(first["report"]).read())
     second = run_baselines(**kwargs)
@@ -104,7 +111,7 @@ def test_fingerprint_changes_with_rows_or_symbol_range_and_force_is_fresh(tmp_pa
     small_db = tmp_path / "small.sqlite"
     small_symbol = candle_db(small_db, count=2400)
     kwargs = {"split": "dev", "per_cell": 1, "symbols": 1, "data_db": small_db,
-              "trials_db": tmp_path / "trials.sqlite"}
+              "trials_db": tmp_path / "trials.sqlite", "registry_path": registry_file(tmp_path)}
     normal = run_baselines(**kwargs)
     reused = run_baselines(**kwargs)
     assert reused["reused"] is True and reused["run_id"] == normal["run_id"]
@@ -156,8 +163,9 @@ def test_agent_tasks_do_not_change_when_future_candles_mutate(tmp_path, monkeypa
     changed = tmp_path / "changed.sqlite"
     candle_db(source, count=2600)
     candle_db(changed, count=2600, future_scale=4)
-    one = make_agent_tasks("dev", 1, 7, 100, 1, source, tmp_path / "tasks_a")
-    two = make_agent_tasks("dev", 1, 7, 100, 1, changed, tmp_path / "tasks_b")
+    registry = registry_file(tmp_path)
+    one = make_agent_tasks("dev", 1, 7, 100, 1, source, tmp_path / "tasks_a", registry)
+    two = make_agent_tasks("dev", 1, 7, 100, 1, changed, tmp_path / "tasks_b", registry)
     items_a, items_b = task_payload(tmp_path / "tasks_a"), task_payload(tmp_path / "tasks_b")
     assert [(x["symbol"], x["timeframe"], x["anchor_time"], x["input_sha256"], x["features"])
             for x in items_a] == [(x["symbol"], x["timeframe"], x["anchor_time"], x["input_sha256"], x["features"])
@@ -166,9 +174,35 @@ def test_agent_tasks_do_not_change_when_future_candles_mutate(tmp_path, monkeypa
     assert one["tasks"] == two["tasks"]
     monkeypatch.setattr("sys.argv", ["cli", "make-agent-tasks", "--split", "dev", "--per-cell", "1", "--seed", "7",
                                      "--batch-size", "100", "--symbols", "1", "--data-db", str(source),
-                                     "--tasks-dir", str(tmp_path / "cli_tasks")])
+                                     "--tasks-dir", str(tmp_path / "cli_tasks"), "--registry", str(registry)])
     cli.main()
     assert json.loads(capsys.readouterr().out)["tasks"] > 0
+
+
+def test_frozen_research_ignores_every_row_after_cutoff(tmp_path):
+    source = tmp_path / "source.sqlite"
+    changed = tmp_path / "changed.sqlite"
+    symbol = candle_db(source, count=2600)
+    candle_db(changed, count=2600, future_scale=4)
+    start = 1_700_000_000_000
+    cutoff_ms = start + 2500 * 60_000
+    registry = registry_file(tmp_path, pd.Timestamp(cutoff_ms, unit="ms", tz="UTC").isoformat())
+    fingerprints, features = [], []
+    for db_path in (source, changed):
+        db = _readonly(db_path)
+        try:
+            fingerprints.append(_data_fingerprint(db, db_path, cutoff_ms)["sha256"])
+            frame = __import__("chart_predictor.p3a", fromlist=["_frame"])._frame(db, symbol, "1m", cutoff_ms)
+            features.append(frame)
+        finally:
+            db.close()
+    assert fingerprints[0] == fingerprints[1]
+    pd.testing.assert_frame_equal(features[0], features[1])
+    assert int(features[0].t_open_ms.max()) + 60_000 <= cutoff_ms
+    first = make_agent_tasks("dev", 1, 19, 100, 1, source, tmp_path / "tasks_source", registry)
+    second = make_agent_tasks("dev", 1, 19, 100, 1, changed, tmp_path / "tasks_changed", registry)
+    assert task_payload(tmp_path / "tasks_source") == task_payload(tmp_path / "tasks_changed")
+    assert first["tasks"] == second["tasks"]
 
 
 def test_ingest_dir_reports_each_invalid_file(tmp_path, monkeypatch, capsys):
@@ -179,12 +213,14 @@ def test_ingest_dir_reports_each_invalid_file(tmp_path, monkeypatch, capsys):
     (run_dir / "task_0001.json").write_text("[]")
     (run_dir / "out_claude_task_0001.json").write_text("not-json")
     (run_dir / "out_claude_task_0002.json").write_text("{}")
-    result = ingest_dir(run_dir, "claude", db_path, tmp_path / "pred.sqlite")
+    registry = registry_file(tmp_path)
+    result = ingest_dir(run_dir, "claude", db_path, tmp_path / "pred.sqlite", registry)
     assert result["ingested"] == 0 and result["rejected_files"] == 2
     assert "JSONDecodeError" in result["files"][0]["reason"]
     assert "JSON array" in result["files"][1]["reason"]
     monkeypatch.setattr("sys.argv", ["cli", "ingest-dir", "--dir", str(run_dir), "--model", "claude",
-                                     "--data-db", str(db_path), "--db", str(tmp_path / "cli_pred.sqlite")])
+                                     "--data-db", str(db_path), "--db", str(tmp_path / "cli_pred.sqlite"),
+                                     "--registry", str(registry)])
     cli.main()
     assert json.loads(capsys.readouterr().out)["rejected_files"] == 2
 
@@ -194,7 +230,8 @@ def test_cli_baselines_command_emits_json(tmp_path, monkeypatch, capsys):
     candle_db(db_path)
     monkeypatch.setattr("sys.argv", ["cli", "baselines", "--split", "dev", "--per-cell", "1",
                                      "--symbols", "1", "--seed", "4", "--data-db", str(db_path),
-                                     "--trials-db", str(tmp_path / "trials.sqlite"), "--force"])
+                                     "--trials-db", str(tmp_path / "trials.sqlite"), "--force",
+                                     "--registry", str(registry_file(tmp_path))])
     cli.main()
     result = json.loads(capsys.readouterr().out)
     assert result["n_predictions"] > 0 and "_force_001" in result["run_id"]

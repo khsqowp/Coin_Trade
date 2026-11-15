@@ -15,26 +15,25 @@ from .features import FeatureStream, build_features
 from .indicators import atr as wilder_atr
 from .p3a import TIMEFRAMES, WIDTH, _PrefixDigester, _frame, _prefix
 from .schema import HORIZON
-from .splits import symbol_split
+from .splits import REGISTRY, freeze_registry, symbol_split
 from .stats import wilson
 from .store import connect_trials, record_trial
 
-VERSION = "p4b-market-context-double-holdout-v4"
+VERSION = "p4b-market-context-double-holdout-v5-freeze"
 THRESHOLDS = (0.05, 0.10, 0.15, 0.20)
 LABELS = {"down": 0, "up": 1}
 
 
-def _fingerprint(db):
-    dev = _dev_aggregates(db)
-    db_path = db.execute("PRAGMA database_list").fetchone()[2]
-    stat = Path(db_path).stat()
-    source = json.dumps({"dev": dev, "size": stat.st_size, "mtime_ns": stat.st_mtime_ns}, separators=(",", ":"))
+def _fingerprint(db, freeze_ms):
+    dev = _dev_aggregates(db, freeze_ms)
+    source = json.dumps({"dev": dev, "freeze_ms": int(freeze_ms)}, separators=(",", ":"))
     return hashlib.sha256(f"{VERSION}:{source}".encode()).hexdigest(), dev
 
 
-def _dev_aggregates(db):
+def _dev_aggregates(db, freeze_ms):
     """Return only stable coverage metadata for dev symbols."""
-    rows=[list(r) for r in db.execute("SELECT symbol,COUNT(*),MIN(t_open_ms),MAX(t_open_ms) FROM candles GROUP BY symbol ORDER BY symbol")]
+    rows=[list(r) for r in db.execute("SELECT symbol,COUNT(*),MIN(t_open_ms),MAX(t_open_ms) "
+        "FROM candles WHERE t_open_ms + 60000 <= ? GROUP BY symbol ORDER BY symbol", (int(freeze_ms),))]
     return [r for r in rows if symbol_split(r[0])=="dev"]
 
 
@@ -193,7 +192,7 @@ def _feature_for_anchor(frame, pos, tf, digester, stream=None):
     return build_features(prefix, tf, _digest_override=digester.digest(prefix), _stream=stream, _index=pos)
 
 
-def _make_dataset(db_path, cache_path, fingerprint):
+def _make_dataset(db_path, cache_path, fingerprint, freeze_ms):
     """Build all horizon-spaced dev anchors, targets, and causal feature rows."""
     cache = sqlite3.connect(cache_path)
     cache.execute("CREATE TABLE IF NOT EXISTS rows(fingerprint TEXT,tf TEXT,symbol TEXT,anchor INTEGER,label TEXT,ret_atr REAL,exp_label INTEGER,cont_label INTEGER,cont_eligible INTEGER,features TEXT,PRIMARY KEY(fingerprint,tf,symbol,anchor))")
@@ -201,10 +200,10 @@ def _make_dataset(db_path, cache_path, fingerprint):
     source = sqlite3.connect(Path(db_path).resolve().as_uri() + "?mode=ro", uri=True)
     count = 0
     try:
-        symbols = [r[0] for r in source.execute("SELECT DISTINCT symbol FROM candles ORDER BY symbol") if symbol_split(r[0]) == "dev"]
-        legacy_fp=_legacy_fingerprint(source)
-        legacy_path=_find_legacy_cache(Path(cache_path).parent,symbols,legacy_fp)
-        legacy=sqlite3.connect(Path(legacy_path).resolve().as_uri()+"?mode=ro",uri=True) if legacy_path else None
+        symbols = [r[0] for r in source.execute(
+            "SELECT DISTINCT symbol FROM candles WHERE t_open_ms + 60000 <= ? ORDER BY symbol", (int(freeze_ms),))
+            if symbol_split(r[0]) == "dev"]
+        legacy = None
         context_names = sorted(set(symbols + ["BTCUSDT", "ETHUSDT"]))
         for tf in TIMEFRAMES:
             complete=cache.execute("SELECT COUNT(*) FROM cells WHERE fingerprint=? AND tf=?",(fingerprint,tf)).fetchone()[0]
@@ -212,13 +211,13 @@ def _make_dataset(db_path, cache_path, fingerprint):
             stride = HORIZON[tf] // (WIDTH[tf] // 60_000)
             series = {}
             for name in context_names:
-                context_frame = _frame(source, name, tf)
+                context_frame = _frame(source, name, tf, freeze_ms)
                 if len(context_frame): series[name] = _context_series(context_frame, stride)
             market_stats=_market_stats(series,symbols,WIDTH[tf])
             for symbol in symbols:
                 done = cache.execute("SELECT 1 FROM cells WHERE fingerprint=? AND tf=? AND symbol=?", (fingerprint, tf, symbol)).fetchone()
                 if done: continue
-                frame = _frame(source, symbol, tf)
+                frame = _frame(source, symbol, tf, freeze_ms)
                 if legacy: count += _augment_cell(cache,legacy,legacy_fp,fingerprint,symbol,tf,frame,series,market_stats,symbols,stride)
                 else: count += _build_cell(cache,fingerprint,symbol,tf,frame,series,market_stats,symbols)
         return cache.execute("SELECT COUNT(*) FROM rows WHERE fingerprint=?", (fingerprint,)).fetchone()[0]
@@ -439,16 +438,19 @@ def _detail_tables(folds, calibration=False):
     return lines+[""]
 
 
-def run_probe(data_db=DB_PATH, output_dir=None, trials_db=None, seed=1):
+def run_probe(data_db=DB_PATH, output_dir=None, trials_db=None, seed=1, registry_path=REGISTRY):
     """Build cached dev data, evaluate v2 labels and write reports."""
     import sklearn  # fail before a costly full-span feature build if dependencies are absent
+    registry = freeze_registry(registry_path)
+    freeze_ms = int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
     started = time.monotonic(); root = Path(output_dir or Path(__file__).parent / "data" / "probe"); root.mkdir(parents=True, exist_ok=True)
     db = sqlite3.connect(Path(data_db).resolve().as_uri() + "?mode=ro", uri=True)
-    try: fingerprint, _ = _fingerprint(db)
+    try: fingerprint, _ = _fingerprint(db, freeze_ms)
     finally: db.close()
     cache = root / f"features_{fingerprint}.sqlite"
-    n_rows = _make_dataset(data_db, cache, fingerprint)
-    report = {"fingerprint": fingerprint, "dataset_rows": n_rows, "seed": seed, "timeframes": {}, "runtime_seconds": None}
+    n_rows = _make_dataset(data_db, cache, fingerprint, freeze_ms)
+    report = {"fingerprint": fingerprint, "freeze_timestamp": registry["freeze_timestamp"],
+              "dataset_rows": n_rows, "seed": seed, "timeframes": {}, "runtime_seconds": None}
     for tf in TIMEFRAMES:
         report["timeframes"][tf] = {}
         for target in ("up_down", "expansion", "continuation"):

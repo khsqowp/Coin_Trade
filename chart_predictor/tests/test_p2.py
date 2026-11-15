@@ -141,6 +141,18 @@ def test_sealed_access_logs_before_raising(tmp_path):
     db.close()
 
 
+def test_sealed_registry_requires_explicit_initialization_and_cannot_move(tmp_path):
+    from chart_predictor.splits import freeze_registry
+    path = tmp_path / "registry.json"
+    with pytest.raises(FileNotFoundError):
+        freeze_registry(path)
+    first = freeze_registry(path, "2026-01-01T00:00:00Z")
+    assert first["freeze_timestamp"] == "2026-01-01T00:00:00+00:00"
+    assert freeze_registry(path, "2026-01-01T00:00:00Z") == first
+    with pytest.raises(ValueError, match="different freeze timestamp"):
+        freeze_registry(path, "2026-02-01T00:00:00Z")
+
+
 def test_batch_feature_prefix_is_future_mutation_invariant():
     frame = frames(5)
     prefix = frame.iloc[:30]
@@ -199,11 +211,14 @@ def test_cli_ingest_score_report_roundtrip(tmp_path, monkeypatch, capsys):
     pred_path = tmp_path / "prediction.json"
     pred_path.write_text(json.dumps(pred))
     args = ["ingest", "--file", str(pred_path), "--db", str(tmp_path / "pred.sqlite"),
-            "--trials-db", str(tmp_path / "trials.sqlite"), "--data-db", str(data_path)]
+            "--trials-db", str(tmp_path / "trials.sqlite"), "--data-db", str(data_path),
+            "--registry", str(tmp_path / "registry.json")]
+    (tmp_path / "registry.json").write_text(json.dumps({"freeze_timestamp": "2030-01-01T00:00:00Z"}))
     monkeypatch.setattr(sys, "argv", ["chart_predictor.cli", *args])
     cli.main()
     assert json.loads(capsys.readouterr().out)["ingested"] == 1
-    args = ["score", "--db", str(tmp_path / "pred.sqlite"), "--data-db", str(data_path)]
+    args = ["score", "--db", str(tmp_path / "pred.sqlite"), "--data-db", str(data_path),
+            "--registry", str(tmp_path / "registry.json")]
     monkeypatch.setattr(sys, "argv", ["chart_predictor.cli", *args])
     cli.main()
     assert json.loads(capsys.readouterr().out)["scored"] == 1

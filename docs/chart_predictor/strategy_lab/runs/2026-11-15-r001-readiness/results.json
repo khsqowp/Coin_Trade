@@ -1,0 +1,8 @@
+{
+  "run_id": "2026-11-15-r001-readiness",
+  "status": "blocked_data_gate",
+  "cells_expected": 0,
+  "cells_completed": 0,
+  "metrics": null,
+  "explanation": "This was a data/evaluation readiness audit. No strategy-performance calculations were performed."
+}

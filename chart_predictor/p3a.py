@@ -16,7 +16,7 @@ from .collector import DB_PATH
 from .features import build_features, _digest
 from .schema import HORIZON, validate_prediction
 from .scorer import score_prediction
-from .splits import split_anchors, symbol_split
+from .splits import REGISTRY, freeze_registry, split_anchors, symbol_split
 from .stats import wilson
 from .store import append_prediction, connect_store, connect_trials, record_score, record_trial
 
@@ -34,30 +34,44 @@ def _readonly(path):
     return sqlite3.connect(uri, uri=True)
 
 
-def _data_fingerprint(db, path):
+def _data_fingerprint(db, path, freeze_ms=None):
     """Hash per-symbol aggregate coverage while recording file metadata separately."""
+    where = "WHERE t_open_ms + 60000 <= ?" if freeze_ms is not None else ""
+    params = (int(freeze_ms),) if freeze_ms is not None else ()
     aggregates = [list(row) for row in db.execute(
-        "SELECT symbol,COUNT(*),MIN(t_open_ms),MAX(t_open_ms) FROM candles GROUP BY symbol ORDER BY symbol")]
+        f"SELECT symbol,COUNT(*),MIN(t_open_ms),MAX(t_open_ms) FROM candles {where} "
+        "GROUP BY symbol ORDER BY symbol", params)]
     canonical = json.dumps(aggregates, separators=(",", ":"), ensure_ascii=False)
-    stat = Path(path).stat()
-    return {"sha256": hashlib.sha256(canonical.encode()).hexdigest(),
-            "symbols": aggregates, "file_size_bytes": stat.st_size, "file_mtime_ns": stat.st_mtime_ns}
+    result = {"sha256": hashlib.sha256(canonical.encode()).hexdigest(), "symbols": aggregates}
+    if freeze_ms is None:
+        stat = Path(path).stat()
+        result.update({"file_size_bytes": stat.st_size, "file_mtime_ns": stat.st_mtime_ns})
+    return result
 
 
-def _symbols(db, split, limit):
+def _symbols(db, split, limit, freeze_ms=None):
     """Return deterministically ordered symbols belonging to a split."""
-    names = [r[0] for r in db.execute("SELECT DISTINCT symbol FROM candles ORDER BY symbol")]
+    if freeze_ms is None:
+        query, params = "SELECT DISTINCT symbol FROM candles ORDER BY symbol", ()
+    else:
+        query = ("SELECT DISTINCT symbol FROM candles WHERE t_open_ms + 60000 <= ? "
+                 "ORDER BY symbol")
+        params = (int(freeze_ms),)
+    names = [r[0] for r in db.execute(query, params)]
     selected = [name for name in names if symbol_split(name) == ("heldout" if split == "validation" else "dev")]
     return selected[:limit] if limit else selected
 
 
-def _frame(db, symbol, tf):
+def _frame(db, symbol, tf, freeze_ms=None):
     """Load one symbol and aggregate complete time buckets where needed."""
     from .resample import resample_frame
-    raw = pd.read_sql_query(f"SELECT {COLS} FROM candles WHERE symbol=? ORDER BY t_open_ms", db, params=(symbol,))
+    where = " AND t_open_ms + 60000 <= ?" if freeze_ms is not None else ""
+    params = (symbol, int(freeze_ms)) if freeze_ms is not None else (symbol,)
+    raw = pd.read_sql_query(f"SELECT {COLS} FROM candles WHERE symbol=?{where} ORDER BY t_open_ms", db, params=params)
     if tf == "1m":
         return raw
-    return resample_frame(raw, tf, now_ms=int(raw.t_open_ms.iloc[-1]) + 60_000 if len(raw) else 0)
+    now_ms = int(freeze_ms) if freeze_ms is not None else int(raw.t_open_ms.iloc[-1]) + 60_000 if len(raw) else 0
+    return resample_frame(raw, tf, now_ms=now_ms)
 
 
 def _cell_anchors(frame, tf, split):
@@ -102,11 +116,11 @@ class _PrefixDigester:
         return self.state.copy().hexdigest()
 
 
-def _selected(db, split, per_cell, seed, limit, counts=None):
+def _selected(db, split, per_cell, seed, limit, counts=None, freeze_ms=None):
     """Yield selected prefixes only from cells able to fill the requested sample."""
-    for symbol in _symbols(db, split, limit):
+    for symbol in _symbols(db, split, limit, freeze_ms):
         for tf in TIMEFRAMES:
-            frame = _frame(db, symbol, tf)
+            frame = _frame(db, symbol, tf, freeze_ms)
             anchors = _cell_anchors(frame, tf, split)
             if len(anchors) < per_cell:
                 if counts is not None:
@@ -167,7 +181,8 @@ def _markdown(report):
     """Render concise per-timeframe baseline metrics and day cluster counts."""
     fingerprint = report["data_fingerprint"]
     lines = ["# Baseline floor", "", f"Data fingerprint: `{fingerprint['sha256']}`",
-             f"Database metadata: size `{fingerprint['file_size_bytes']}` bytes, mtime_ns `{fingerprint['file_mtime_ns']}`", "",
+             (f"Database metadata: size `{fingerprint['file_size_bytes']}` bytes, mtime_ns `{fingerprint['file_mtime_ns']}`"
+              if "file_size_bytes" in fingerprint else "Database metadata: freeze-scoped; post-freeze file metadata omitted"), "",
              "| TF | Baseline | n | M1 3-class (95% CI) | Binary up/down | Labels up/down/flat | Coverage | Trade coverage | Long net mean | Short net mean | Liquidations |",
              "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for tf, baselines in report["timeframes"].items():
@@ -202,11 +217,11 @@ def _persist_baselines(pending, predictions_db, trials_db, split, total, fingerp
         trials.close()
 
 
-def _run_identity(split, seed, per_cell, symbols, flat_mult, fingerprint):
+def _run_identity(split, seed, per_cell, symbols, flat_mult, fingerprint, freeze_timestamp=None):
     """Build deterministic run ID and immutable settings payload."""
     config = {"split": split, "seed": int(seed), "per_cell": int(per_cell), "symbols": symbols,
               "flat_mult": float(flat_mult), "code_version": BASELINE_VERSION,
-              "data_fingerprint": fingerprint["sha256"]}
+              "data_fingerprint": fingerprint["sha256"], "freeze_timestamp": freeze_timestamp}
     token = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
     return f"baseline_{split}_{token}", config
 
@@ -225,13 +240,13 @@ def _existing_run(run_dir, config):
             "n_predictions": json.loads(report.read_text())["n_predictions"], "reused": True}
 
 
-def _score_cells(db, split, per_cell, seed, symbols, flat_mult, counts):
+def _score_cells(db, split, per_cell, seed, symbols, flat_mult, counts, freeze_ms):
     """Generate and score every requested baseline on full-size eligible cells."""
     grouped = {tf: {f"baseline_{name}": [] for name in BASELINES} for tf in TIMEFRAMES}
     emitted = {tf: {name: 0 for name in grouped[tf]} for tf in TIMEFRAMES}
     pending = []
     active_cell, digester = None, None
-    for symbol, tf, anchor, prefix, frame in _selected(db, split, per_cell, seed, symbols, counts):
+    for symbol, tf, anchor, prefix, frame in _selected(db, split, per_cell, seed, symbols, counts, freeze_ms):
         cell = (symbol, tf)
         if cell != active_cell:
             active_cell, digester = cell, _PrefixDigester(frame)
@@ -261,19 +276,22 @@ def _write_run(run_dir, report, config, pending, trials_db):
 
 
 def run_baselines(split="dev", per_cell=30, seed=1, symbols=None, data_db=DB_PATH,
-                  trials_db=None, flat_mult=FLAT_MULT, force=False):
+                  trials_db=None, flat_mult=FLAT_MULT, force=False, registry_path=REGISTRY):
     """Sample, score and persist deterministic baseline runs in isolated folders."""
     started = time.monotonic()
     if (split not in {"dev", "validation"} or per_cell < 1 or isinstance(flat_mult, bool)
             or not isinstance(flat_mult, (int, float)) or not math.isfinite(flat_mult) or flat_mult <= 0):
         raise ValueError("invalid split, per_cell or flat_mult")
+    registry = freeze_registry(registry_path)
+    freeze_ms = int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
     root = Path(data_db).parent
     db = _readonly(data_db)
     try:
-        fingerprint = _data_fingerprint(db, data_db)
+        fingerprint = _data_fingerprint(db, data_db, freeze_ms)
     finally:
         db.close()
-    run_id, config = _run_identity(split, seed, per_cell, symbols, flat_mult, fingerprint)
+    run_id, config = _run_identity(split, seed, per_cell, symbols, flat_mult, fingerprint,
+                                   registry["freeze_timestamp"])
     if force:
         run_id = _force_run_id(root / "runs", run_id)
         config["forced"] = True
@@ -285,7 +303,7 @@ def run_baselines(split="dev", per_cell=30, seed=1, symbols=None, data_db=DB_PAT
     counts = {key: {tf: 0 for tf in TIMEFRAMES} for key in ("eligible", "excluded")}
     db = _readonly(data_db)
     try:
-        grouped, emitted, pending = _score_cells(db, split, per_cell, seed, symbols, flat_mult, counts)
+        grouped, emitted, pending = _score_cells(db, split, per_cell, seed, symbols, flat_mult, counts, freeze_ms)
     finally:
         db.close()
     return _finish_run(run_dir, config, fingerprint, grouped, emitted, pending, counts, trials_db, started)
@@ -333,16 +351,18 @@ def _task_prompt(run_dir):
 
 
 def make_agent_tasks(split="dev", per_cell=30, seed=1, batch_size=20, symbols=None,
-                     data_db=DB_PATH, tasks_root=None):
+                     data_db=DB_PATH, tasks_root=None, registry_path=REGISTRY):
     """Write shuffled-size feature-only batches for an external agent."""
     if batch_size < 1:
         raise ValueError("batch_size must be positive")
+    registry = freeze_registry(registry_path)
+    freeze_ms = int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
     root = Path(tasks_root or Path(data_db).parent / "agent_tasks")
     run_dir = root / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_" + uuid.uuid4().hex[:8])
     run_dir.mkdir(parents=True, exist_ok=False)
     db, items = _readonly(data_db), []
     try:
-        for symbol, tf, anchor, prefix, _ in _selected(db, split, per_cell, seed, symbols):
+        for symbol, tf, anchor, prefix, _ in _selected(db, split, per_cell, seed, symbols, freeze_ms=freeze_ms):
             features = build_features(prefix, tf)
             items.append({"symbol": symbol, "timeframe": tf, "anchor_time": anchor,
                           "input_sha256": features["input_sha256"], "features": features})
@@ -364,7 +384,7 @@ def _task_index(run_dir):
     return lookup
 
 
-def _validate_output_file(path, model, task_index, db, store):
+def _validate_output_file(path, model, task_index, db, store, freeze_ms):
     """Ingest predictions from one agent response file or return its failure reason."""
     try:
         payload = json.loads(path.read_text())
@@ -378,7 +398,7 @@ def _validate_output_file(path, model, task_index, db, store):
             task = task_index.get(key)
             if task is None or item.get("input_sha256") != task["input_sha256"]:
                 raise ValueError("prediction does not match a task item")
-            frame = _frame(db, item["symbol"], item["timeframe"])
+            frame = _frame(db, item["symbol"], item["timeframe"], freeze_ms)
             validate_prediction(item, frame)
             append_prediction(store, item)
             accepted += 1
@@ -387,17 +407,19 @@ def _validate_output_file(path, model, task_index, db, store):
         return {"file": path.name, "ingested": 0, "rejected": True, "reason": f"{type(exc).__name__}: {exc}"}
 
 
-def ingest_dir(run_dir, model, data_db=DB_PATH, predictions_db=None):
+def ingest_dir(run_dir, model, data_db=DB_PATH, predictions_db=None, registry_path=REGISTRY):
     """Ingest every model response independently and preserve per-file errors."""
     if model not in {"claude", "codex"}:
         raise ValueError("model must be claude or codex")
+    registry = freeze_registry(registry_path)
+    freeze_ms = int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
     root = Path(data_db).parent
     db = _readonly(data_db)
     store = connect_store(predictions_db or root / "pred_llm.sqlite")
     index = _task_index(run_dir)
     paths = sorted(Path(run_dir).glob(f"out_{model}_task_*.json"))
     try:
-        results = [_validate_output_file(path, model, index, db, store) for path in paths]
+        results = [_validate_output_file(path, model, index, db, store, freeze_ms) for path in paths]
     finally:
         db.close()
         store.close()

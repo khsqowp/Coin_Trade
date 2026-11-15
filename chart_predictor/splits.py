@@ -12,13 +12,34 @@ REGISTRY = Path(__file__).parent / "data" / "sealed_registry.json"
 
 
 def freeze_registry(path=REGISTRY, freeze_timestamp=None):
-    """Create a fixed sealed-period boundary once; never silently move it."""
+    """Read a fixed boundary, or create it only when explicitly supplied."""
     path = Path(path)
     if not path.exists():
+        if freeze_timestamp is None:
+            raise FileNotFoundError(
+                f"sealed registry is missing: {path}; initialize it explicitly before research"
+            )
         path.parent.mkdir(parents=True, exist_ok=True)
-        stamp = freeze_timestamp or datetime.now(timezone.utc).isoformat()
-        path.write_text(json.dumps({"freeze_timestamp": stamp}, indent=2))
-    return json.loads(path.read_text())
+        stamp = pd.Timestamp(freeze_timestamp)
+        if stamp.tzinfo is None:
+            raise ValueError("freeze_timestamp must include a timezone")
+        payload = {"freeze_timestamp": stamp.tz_convert("UTC").isoformat()}
+        try:
+            with path.open("x") as registry_file:
+                json.dump(payload, registry_file, indent=2)
+                registry_file.write("\n")
+        except FileExistsError:
+            pass
+    registry = json.loads(path.read_text())
+    stamp = pd.Timestamp(registry["freeze_timestamp"])
+    if stamp.tzinfo is None:
+        raise ValueError("registry freeze_timestamp must include a timezone")
+    normalized = stamp.tz_convert("UTC").isoformat()
+    if freeze_timestamp is not None:
+        requested = pd.Timestamp(freeze_timestamp)
+        if requested.tzinfo is None or requested.tz_convert("UTC").isoformat() != normalized:
+            raise ValueError("sealed registry already exists with a different freeze timestamp")
+    return {**registry, "freeze_timestamp": normalized}
 
 
 def symbol_split(symbol):

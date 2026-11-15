@@ -6,19 +6,20 @@ from pathlib import Path
 import pandas as pd
 from .collector import collect_symbols, connect, verify_symbol
 from .features import build_features
-from .resample import load_resampled
+from .resample import resample_frame
 from .store import append_prediction, connect_store, connect_trials, record_trial
 from .schema import validate_prediction
 from .scorer import score_prediction
 from .stats import report as make_report
 from .replay import replay
+from .splits import REGISTRY, freeze_registry
 from .universe import fetch_universe
 
 
 def _args():
     """Parse all P1/P2 command options."""
     parser = argparse.ArgumentParser(prog="python -m chart_predictor.cli")
-    parser.add_argument("command", choices=("universe", "collect", "update", "features", "replay", "ingest", "score", "report", "verify", "baselines", "make-agent-tasks", "ingest-dir", "probe", "probe-p4c"))
+    parser.add_argument("command", choices=("freeze", "universe", "collect", "update", "features", "replay", "ingest", "score", "report", "verify", "baselines", "make-agent-tasks", "ingest-dir", "probe", "probe-p4c"))
     parser.add_argument("--symbol", default="BTCUSDT")
     parser.add_argument("--symbols", type=int)
     parser.add_argument("--tf", default="1m", choices=("1m", "5m", "30m", "60m"))
@@ -42,17 +43,25 @@ def _args():
     parser.add_argument("--dir")
     parser.add_argument("--tasks-dir")
     parser.add_argument("--model", choices=("claude", "codex"))
+    parser.add_argument("--registry", help="sealed-period registry path")
+    parser.add_argument("--freeze-at", help="explicit timezone-aware timestamp; only used by freeze")
     return parser.parse_args()
 
 
-def _load_candles(symbol, tf, data_db):
-    """Load raw 1m candles or completed resampled timeframe candles."""
+def _freeze_ms(args):
+    registry = freeze_registry(args.registry or REGISTRY)
+    return int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
+
+
+def _load_candles(symbol, tf, data_db, freeze_ms=None):
+    """Load candles no later than the fixed research boundary."""
     db = sqlite3.connect(data_db) if data_db else connect()
     try:
-        if tf == "1m":
-            return pd.read_sql_query("SELECT t_open_ms,o,h,l,c,v,quote_v,trades FROM candles WHERE symbol=? ORDER BY t_open_ms",
-                                     db, params=(symbol,))
-        return load_resampled(db, symbol, tf)
+        where = " AND t_open_ms + 60000 <= ?" if freeze_ms is not None else ""
+        params = (symbol, int(freeze_ms)) if freeze_ms is not None else (symbol,)
+        frame = pd.read_sql_query("SELECT t_open_ms,o,h,l,c,v,quote_v,trades FROM candles "
+                                  f"WHERE symbol=?{where} ORDER BY t_open_ms", db, params=params)
+        return frame if tf == "1m" else resample_frame(frame, tf, now_ms=freeze_ms)
     finally:
         db.close()
 
@@ -62,12 +71,13 @@ def _ingest(args):
     source = Path(args.file)
     items = json.loads(source.read_text())
     items = items if isinstance(items, list) else [items]
+    freeze_ms = _freeze_ms(args)
     store = connect_store(args.db)
     trial = connect_trials(args.trials_db)
     ids = []
     try:
         for item in items:
-            candles = _load_candles(item["symbol"], item["timeframe"], args.data_db)
+            candles = _load_candles(item["symbol"], item["timeframe"], args.data_db, freeze_ms)
             validate_prediction(item, candles)
             ids.append(append_prediction(store, item))
             record_trial(trial, item["created_at"], item["model"], item["prompt_version"],
@@ -80,6 +90,7 @@ def _ingest(args):
 
 def _score(args):
     """Score every not-yet-scored prediction using completed local candles."""
+    freeze_ms = _freeze_ms(args)
     store = connect_store(args.db)
     done = {row[0] for row in store.execute("SELECT prediction_id,payload FROM scores")
             if json.loads(row[1]).get("status") == "SCORED"}
@@ -89,7 +100,7 @@ def _score(args):
         if pred_id in done:
             continue
         pred = json.loads(payload)
-        candles = _load_candles(pred["symbol"], pred["timeframe"], args.data_db)
+        candles = _load_candles(pred["symbol"], pred["timeframe"], args.data_db, freeze_ms)
         result = score_prediction(pred, candles)
         result.update({"prediction_id": pred_id, "symbol": pred["symbol"], "timeframe": pred["timeframe"],
                        "model": pred["model"], "confidence": pred["confidence"], "anchor_time": pred["anchor_time"]})
@@ -113,7 +124,7 @@ def _report(args):
 
 def _features(args):
     """Preserve P1 feature command for one symbol and optional anchor."""
-    frame = _load_candles(args.symbol, args.tf, args.data_db)
+    frame = _load_candles(args.symbol, args.tf, args.data_db, _freeze_ms(args))
     if args.anchor:
         anchor = pd.Timestamp(args.anchor)
         anchor = anchor.tz_localize("UTC") if anchor.tzinfo is None else anchor.tz_convert("UTC")
@@ -139,7 +150,11 @@ def _verify(args):
 def main():
     """Dispatch P1 and P2 commands without model or network calls."""
     args = _args()
-    if args.command == "universe":
+    if args.command == "freeze":
+        if not args.freeze_at:
+            raise SystemExit("freeze requires --freeze-at with an explicit timezone")
+        print(json.dumps(freeze_registry(args.registry or REGISTRY, args.freeze_at), indent=2))
+    elif args.command == "universe":
         print(json.dumps(fetch_universe(args.top), indent=2))
     elif args.command in {"collect", "update"}:
         days = args.days if args.command == "collect" else min(args.days, 1)
@@ -148,9 +163,14 @@ def main():
         _features(args)
     elif args.command == "replay":
         db = sqlite3.connect(args.data_db) if args.data_db else connect()
-        syms = [row[0] for row in db.execute("SELECT DISTINCT symbol FROM candles ORDER BY symbol LIMIT ?", (args.symbols or 10,))]
+        freeze_ms = _freeze_ms(args)
+        syms = [row[0] for row in db.execute(
+            "SELECT DISTINCT symbol FROM candles WHERE t_open_ms + 60000 <= ? ORDER BY symbol LIMIT ?",
+            (freeze_ms, args.symbols or 10))]
         db.close()
-        print(json.dumps(replay(args.split, syms, args.tf, args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH)))
+        print(json.dumps(replay(args.split, syms, args.tf,
+            args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
+            registry_path=args.registry or REGISTRY)))
     elif args.command == "ingest":
         _ingest(args)
     elif args.command == "score":
@@ -163,29 +183,30 @@ def main():
         from .p3a import run_baselines
         result = run_baselines(args.split, args.per_cell, args.seed, args.symbols,
                                args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
-                               args.trials_db, force=args.force)
+                               args.trials_db, force=args.force, registry_path=args.registry or REGISTRY)
         print(json.dumps(result, allow_nan=False))
     elif args.command == "make-agent-tasks":
         from .p3a import make_agent_tasks
         result = make_agent_tasks(args.split, args.per_cell, args.seed, args.batch_size, args.symbols,
                                   args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
-                                  args.tasks_dir)
+                                  args.tasks_dir, registry_path=args.registry or REGISTRY)
         print(json.dumps(result, allow_nan=False))
     elif args.command == "ingest-dir":
         from .p3a import ingest_dir
         if not args.dir:
             raise SystemExit("ingest-dir requires --dir")
-        result = ingest_dir(args.dir, args.model, args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH, args.db)
+        result = ingest_dir(args.dir, args.model, args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
+                            args.db, registry_path=args.registry or REGISTRY)
         print(json.dumps(result, allow_nan=False))
     elif args.command == "probe":
         from .probe import run_probe
         result = run_probe(args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
-                           trials_db=args.trials_db, seed=args.seed)
+                           trials_db=args.trials_db, seed=args.seed, registry_path=args.registry or REGISTRY)
         print(json.dumps(result, allow_nan=False))
     elif args.command == "probe-p4c":
         from .p4c import run_p4c
         result = run_p4c(args.data_db or __import__("chart_predictor.collector", fromlist=["DB_PATH"]).DB_PATH,
-                         trials_db=args.trials_db, seed=args.seed)
+                         trials_db=args.trials_db, seed=args.seed, registry_path=args.registry or REGISTRY)
         print(json.dumps(result, allow_nan=False))
 
 

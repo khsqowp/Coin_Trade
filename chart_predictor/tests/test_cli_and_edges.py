@@ -64,11 +64,13 @@ def test_cli_features_1m_and_resampled_paths(monkeypatch, tmp_path, capsys):
     frame.insert(0,"symbol","BTCUSDT")
     frame.to_sql("candles",db,if_exists="append",index=False); db.close()
     monkeypatch.setattr(cli,"connect",lambda:connect(path))
+    registry=tmp_path/"sealed_registry.json"
+    registry.write_text(json.dumps({"freeze_timestamp":"2030-01-01T00:00:00Z"}))
     anchor=pd.to_datetime(int(frame.t_open_ms.iloc[30])+59_999,unit="ms",utc=True).isoformat()
-    _cli(monkeypatch,["features","--symbol","BTCUSDT","--tf","1m","--anchor",anchor])
+    _cli(monkeypatch,["features","--symbol","BTCUSDT","--tf","1m","--anchor",anchor,"--registry",str(registry)])
     result=json.loads(capsys.readouterr().out)
     assert result["anchor_time"]==anchor
-    _cli(monkeypatch,["features","--symbol","BTCUSDT","--tf","5m"])
+    _cli(monkeypatch,["features","--symbol","BTCUSDT","--tf","5m","--registry",str(registry)])
     assert json.loads(capsys.readouterr().out)["timeframe"]=="5m"
 
 

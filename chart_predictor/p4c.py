@@ -7,13 +7,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 from . import probe
 from .collector import DB_PATH
 from .p3a import TIMEFRAMES, WIDTH
 from .schema import HORIZON
-from .splits import symbol_split
+from .splits import REGISTRY, freeze_registry, symbol_split
 from .store import connect_trials, record_trial
 
 BOOTSTRAPS = 1000
@@ -198,7 +199,7 @@ def _strategy_summary(trades):
             "max_adverse_excursion": float(max(r["mae"] for r in trades))}
 
 
-def _strategy_fold(meta, x, target, fold, mode, seed, candles_db, threshold):
+def _strategy_fold(meta, x, target, fold, mode, seed, candles_db, threshold, freeze_ms):
     symbols, times = meta["symbols"], meta["times"]
     y = target.copy(); held = set(sorted(set(symbols))[int(len(set(symbols))*.7):])
     masks = _fold_masks(times, fold, mode, symbols, held, meta["horizon"] * meta["width"])
@@ -206,15 +207,15 @@ def _strategy_fold(meta, x, target, fold, mode, seed, candles_db, threshold):
     if train.sum() < 10 or test.sum() < 2 or len(np.unique(y[train])) < 2: return {}
     models = probe._fit_models(x[train], y[train], x[test], seed + fold)
     probs = {name: pair[1] for name, pair in models.items()}
-    return _strategy_account(meta, test, probs, fold, threshold, candles_db, seed, symbols, times)
+    return _strategy_account(meta, test, probs, fold, threshold, candles_db, seed, symbols, times, freeze_ms)
 
 
-def _strategy_account(meta, test, probs, fold, thresholds, candles_db, seed, symbols, times):
+def _strategy_account(meta, test, probs, fold, thresholds, candles_db, seed, symbols, times, freeze_ms):
     from .p3a import _frame
     db = sqlite3.connect(Path(candles_db).resolve().as_uri() + "?mode=ro", uri=True)
     by_symbol = {}
     try:
-        for symbol in sorted(set(symbols[test])): by_symbol[symbol] = _frame(db, symbol, meta["tf"])
+        for symbol in sorted(set(symbols[test])): by_symbol[symbol] = _frame(db, symbol, meta["tf"], freeze_ms)
     finally: db.close()
     strategies = {f"{model}_t{threshold:.2f}": [] for model in probs for threshold in thresholds}
     strategies.update({"prior_move": [], "random_direction": []})
@@ -261,7 +262,7 @@ def _evaluate_target(meta, x, y, target, mode, seed):
     return {"folds": folds, "pooled": pooled}
 
 
-def _evaluate_strategy(meta, x, y, mode, seed, data_db):
+def _evaluate_strategy(meta, x, y, mode, seed, data_db, freeze_ms):
     output = {}
     held = set(sorted(set(meta["symbols"]))[int(len(set(meta["symbols"]))*.7):])
     for fold in range(5):
@@ -269,7 +270,8 @@ def _evaluate_strategy(meta, x, y, mode, seed, data_db):
         if train.sum() < 10 or test.sum() < 2 or len(np.unique(y[train])) < 2: continue
         fitted = _fit_models(x[train], y[train], x[test], seed+fold)
         probs = {name: pair[1] for name, pair in fitted.items()}
-        output[f"fold_{fold+1}"] = _strategy_account(meta, test, probs, fold, (.10, .20), data_db, seed, meta["symbols"], meta["times"])
+        output[f"fold_{fold+1}"] = _strategy_account(meta, test, probs, fold, (.10, .20), data_db, seed,
+                                                       meta["symbols"], meta["times"], freeze_ms)
     keys = sorted({key for fold_data in output.values() for key in fold_data})
     output["pooled"] = {key: _strategy_summary([trade for fold_data in output.values()
                           if isinstance(fold_data, dict) and key in fold_data
@@ -329,15 +331,23 @@ def _strategy_line(split, fold, rule, item):
     return f"| {split} | {fold} | {rule} | {item.get('n_trades', 0)} | {item.get('win_rate')} | {item.get('mean_net_return')} | {item.get('median_net_return')} | {item.get('profit_factor')} | {item.get('sharpe_like')} | {item.get('max_adverse_excursion')} |"
 
 
-def run_p4c(data_db=DB_PATH, output_dir=None, trials_db=None, seed=1):
+def run_p4c(data_db=DB_PATH, output_dir=None, trials_db=None, seed=1, registry_path=REGISTRY):
     """Run five-fold walk-forward over the existing P4 feature cache."""
+    registry = freeze_registry(registry_path)
+    freeze_ms = int(pd.Timestamp(registry["freeze_timestamp"]).timestamp() * 1000)
     started = time.monotonic(); root = Path(output_dir or Path(__file__).parent / "data" / "probe")
     root.mkdir(parents=True, exist_ok=True)
-    cache, fingerprint = _existing_cache(root)
+    source = sqlite3.connect(Path(data_db).resolve().as_uri() + "?mode=ro", uri=True)
+    try: fingerprint, _ = probe._fingerprint(source, freeze_ms)
+    finally: source.close()
+    cache = root / f"features_{fingerprint}.sqlite"
+    if not cache.exists():
+        raise FileNotFoundError(f"matching frozen-boundary P4b cache is missing: {cache}; run probe first")
     cache_db = sqlite3.connect(f"file:{cache.resolve()}?mode=ro", uri=True)
     try: dataset_rows = cache_db.execute("SELECT COUNT(*) FROM rows WHERE fingerprint=?", (fingerprint,)).fetchone()[0]
     finally: cache_db.close()
-    report = {"fingerprint": fingerprint, "seed": seed, "folds": 5, "bootstrap_resamples": BOOTSTRAPS,
+    report = {"fingerprint": fingerprint, "freeze_timestamp": registry["freeze_timestamp"],
+              "seed": seed, "folds": 5, "bootstrap_resamples": BOOTSTRAPS,
               "feature_cache": str(cache), "dataset_rows": dataset_rows,
               "base_label_timeframe_cells": 12, "inference_cells": 24,
               "model_inference_cells": 48, "training_sample_cap_per_fold": 8000,
@@ -357,7 +367,8 @@ def run_p4c(data_db=DB_PATH, output_dir=None, trials_db=None, seed=1):
             for mode in ("temporal", "double_holdout"):
                 report["timeframes"][tf][target][mode] = _evaluate_target(meta, x, y, target, mode, seed)
                 if target == "continuation":
-                    report["timeframes"][tf][target][mode]["strategy"] = _evaluate_strategy(meta, x, y, mode, seed, data_db)
+                    report["timeframes"][tf][target][mode]["strategy"] = _evaluate_strategy(
+                        meta, x, y, mode, seed, data_db, freeze_ms)
     _adjust_holm(report)
     report["runtime_seconds"] = time.monotonic() - started
     report["created_at"] = datetime.now(timezone.utc).isoformat()

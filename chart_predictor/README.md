@@ -13,6 +13,12 @@ python -m chart_predictor.cli replay --split dev --symbols 10 --tf 5m
 
 Replay는 `chart_predictor/data/batches/` 아래에 특징 배치 JSON과 manifest를 쓴다. 각 배치에는 심볼, 분봉, 앵커, 과거 캔들에서 계산한 특징과 `input_sha256`만 있다. 미래 캔들이나 실현 결과는 포함하지 않는다. 에이전트는 배치마다 고정 스키마 prediction JSON을 별도 파일로 작성한다. `anchor_time`은 앵커 완료 시각(ms)이며 `created_at`은 앵커보다 앞서거나 뒤여도 허용된다.
 
+연구 명령을 실행하기 전에 경계를 한 번 명시적으로 고정한다. 경계가 없으면 replay/features/ingest/score/baseline/probe 명령은 실패하며, 첫 실행 시각을 자동 경계로 만들지 않는다. 아래 시각은 형식 예시일 뿐 실제 연구 시작 전에 계획서에 고정할 시각으로 바꿔야 한다.
+
+```bash
+python -m chart_predictor.cli freeze --freeze-at 2026-11-15T00:00:00Z
+```
+
 ```bash
 python -m chart_predictor.cli ingest --file prediction.json --split dev
 python -m chart_predictor.cli score
@@ -26,7 +32,9 @@ python -m chart_predictor.cli report
 
 ## 저장과 분할
 
-`candles.sqlite`는 수집 캔들, `predictions.sqlite`는 append-only 예측과 별도 점수, `trials.sqlite`는 모델/프롬프트/코드/분할/가설별 누적 시험과 봉인 데이터 접근 시도를 보관한다. 실험 횟수는 `cumulative_trial_count()`로 확인한다. `sealed_registry.json`은 최초 생성 때 freeze timestamp를 고정한다. 해당 시각 이후 앵커를 개발/검증용으로 읽으려 하면 접근 시도를 trials에 기록하고 예외를 낸다. 이 파일을 이동하거나 시각을 바꾸면 경계 보장이 달라지므로 보존해야 한다.
+`candles.sqlite`는 수집 캔들, `predictions.sqlite`는 append-only 예측과 별도 점수, `trials.sqlite`는 모델/프롬프트/코드/분할/가설별 누적 시험과 봉인 데이터 접근 시도를 보관한다. 실험 횟수는 `cumulative_trial_count()`로 확인한다. `sealed_registry.json`이 없으면 명시적 `freeze --freeze-at` 외에는 생성되지 않으며, 기존 경계를 다른 값으로 바꾸려는 호출은 실패한다. 개발·검증 기준선, 에이전트 태스크, 입력, 채점, P4b/P4c는 registry 시각 이후의 완결 1분봉을 읽지 않는다. 경계 시각과 입력 선택을 연구 계획서에도 기록한다.
+
+이 registry와 SQLite 트리거는 일반적인 애플리케이션 실수를 막는 방어다. 같은 로컬 사용자 권한을 가진 프로세스가 파일을 직접 편집할 수 있으므로, 독립 봉인 평가의 보안 경계나 변조 방지 저장소를 대신하지 않는다. 최종 봉인 자료는 개발 환경과 분리된 읽기 권한으로 관리해야 한다.
 
 시간 분할은 시간순 앞 60% 개발, 뒤 40% 검증이며 앵커는 horizon 이상 간격을 둔다. 심볼은 SHA-256 기반으로 70% 개발 / 30% held-out으로 결정적으로 나눈다. 표본은 같은 앵커 날짜에 상관될 수 있어 날짜 군집 결과도 함께 본다. 봉인 구간 수치만으로 성공을 주장할 수 있으며, 이 패키지는 자동 성공 판정을 하지 않는다.
 

@@ -1,0 +1,40 @@
+{
+  "run_id": "2026-11-15-r001-readiness",
+  "parent_run_id": null,
+  "date": "2026-11-15",
+  "status": "blocked_data_gate",
+  "hypothesis": "The audited repository data can support a fair, cost-adjusted portfolio comparison against matched Buy-and-Hold.",
+  "strategy_family": "readiness_audit_only",
+  "agent_roles": [
+    "orchestrator: prior-work and input-scope audit",
+    "independent_review: prior-trial distinction and data limitations"
+  ],
+  "data": {
+    "path": "chart_predictor/data/vision_dev_repaired.sqlite",
+    "source_checkout": "/Users/user/CODE/Coin_Trade",
+    "metadata_fingerprint": "2b421901d3777f6127c90772b090341b3947046c71d4e15e45ccf00e557c438a",
+    "fingerprint_scope": "schema and per-symbol coverage metadata; not full candle-content hash",
+    "rows": 19790858,
+    "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+    "instrument": "Binance USDⓈ-M perpetual OHLCV",
+    "quality_report_date": "2026-11-15",
+    "quality_report_claims": "zero missing minutes within observed spans, duplicate keys, off-grid timestamps, invalid OHLCV, and null rows",
+    "freshly_opened_in_current_worktree": false,
+    "read_only": true
+  },
+  "code_revision": "3d273be",
+  "grid": null,
+  "cells_total": 0,
+  "cells_success": 0,
+  "cells_failed": 0,
+  "performance_metrics_computed": false,
+  "baseline": "None computed",
+  "decision": "blocked_data_gate",
+  "decision_reason": "Survivor-only universe, absent funding cashflows, incomplete content hash, and short 100-symbol dataset prevent a qualifying portfolio-vs-Buy-and-Hold study.",
+  "next_step": "Acquire or construct a separately fingerprinted point-in-time universe and the matching instrument-level cost series; preregister full grid before performance metrics.",
+  "notes": [
+    "P5-P9 intraday setup tests were not repeated or relabeled.",
+    "MACD zero-cross + RSI 50 prior experiment remains recorded separately and had no qualifying training exit.",
+    "No external data were downloaded and no secrets or credentials were accessed."
+  ]
+}
