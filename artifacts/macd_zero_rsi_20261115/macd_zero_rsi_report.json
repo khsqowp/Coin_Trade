@@ -1,0 +1,309 @@
+{
+  "status": "exploratory",
+  "preregistration": "docs/research/macd_zero_rsi_backtest_prereg_20261115.md",
+  "window_utc": [
+    "2026-07-17T00:00:00Z",
+    "2026-10-09T00:00:00Z"
+  ],
+  "split_utc": "2026-09-13T19:12:00+00:00",
+  "symbols": {
+    "BTCUSDT": {
+      "one_minute_rows": 120960,
+      "five_minute_bars": 24192,
+      "selected_window_sha256": "37a03c6ee5ee0a6e6fe3e3c0e921125174014c25a5656a6b03dbf77071d328c3"
+    },
+    "ETHUSDT": {
+      "one_minute_rows": 120960,
+      "five_minute_bars": 24192,
+      "selected_window_sha256": "1aa12b924d7a95043eaeb14cb5898b1d4c5976e423ad589d123b983fab1683e4"
+    }
+  },
+  "fees_per_side": {
+    "base": 0.0005,
+    "stress": 0.001
+  },
+  "entry": "5m MACD(12,26) line crosses <=0 to >0; same close RSI(14)>50; next 5m open",
+  "train": {
+    "macd_zero_down": {
+      "pooled": {
+        "trades": 537,
+        "win_rate": 0.2756052141527002,
+        "wilson95": [
+          0.23950842685757445,
+          0.3148896392124694
+        ],
+        "mean_net_R": -0.5618740015198925,
+        "median_net_R": -0.9130088742256821,
+        "profit_factor": 0.37157537837835036,
+        "avg_minutes": 66.75046554934823,
+        "exit_reasons": {
+          "time": 234,
+          "stop": 188,
+          "signal": 115
+        }
+      },
+      "by_symbol": {
+        "BTCUSDT": {
+          "trades": 262,
+          "win_rate": 0.2633587786259542,
+          "wilson95": [
+            0.21372131144784234,
+            0.3198352656561223
+          ],
+          "mean_net_R": -0.6937235184292196,
+          "median_net_R": -1.0270841998985005,
+          "profit_factor": 0.2984257192245629,
+          "avg_minutes": 66.73664122137404,
+          "exit_reasons": {
+            "time": 114,
+            "stop": 94,
+            "signal": 54
+          }
+        },
+        "ETHUSDT": {
+          "trades": 275,
+          "win_rate": 0.2872727272727273,
+          "wilson95": [
+            0.23701232387615764,
+            0.3433944043957829
+          ],
+          "mean_net_R": -0.436257370864461,
+          "median_net_R": -0.8413771811514885,
+          "profit_factor": 0.4573008744198832,
+          "avg_minutes": 66.76363636363637,
+          "exit_reasons": {
+            "time": 120,
+            "stop": 94,
+            "signal": 61
+          }
+        }
+      }
+    },
+    "rsi_below_50": {
+      "pooled": {
+        "trades": 537,
+        "win_rate": 0.20297951582867785,
+        "wilson95": [
+          0.17112560169133273,
+          0.23905275132254283
+        ],
+        "mean_net_R": -0.5384029575790684,
+        "median_net_R": -0.7612608513379159,
+        "profit_factor": 0.3426304563783758,
+        "avg_minutes": 52.188081936685286,
+        "exit_reasons": {
+          "signal": 340,
+          "time": 116,
+          "stop": 81
+        }
+      },
+      "by_symbol": {
+        "BTCUSDT": {
+          "trades": 262,
+          "win_rate": 0.1984732824427481,
+          "wilson95": [
+            0.15468744700974954,
+            0.25097335284852795
+          ],
+          "mean_net_R": -0.6719819580791419,
+          "median_net_R": -0.8352024557501176,
+          "profit_factor": 0.27204263571993836,
+          "avg_minutes": 52.82442748091603,
+          "exit_reasons": {
+            "signal": 160,
+            "time": 59,
+            "stop": 43
+          }
+        },
+        "ETHUSDT": {
+          "trades": 275,
+          "win_rate": 0.20727272727272728,
+          "wilson95": [
+            0.16355729268247832,
+            0.25905367528147405
+          ],
+          "mean_net_R": -0.4111386007389984,
+          "median_net_R": -0.6926065398105643,
+          "profit_factor": 0.4288683283056879,
+          "avg_minutes": 51.58181818181818,
+          "exit_reasons": {
+            "signal": 180,
+            "time": 57,
+            "stop": 38
+          }
+        }
+      }
+    },
+    "fixed_2R": {
+      "pooled": {
+        "trades": 537,
+        "win_rate": 0.3370577281191806,
+        "wilson95": [
+          0.2983597467309741,
+          0.37807038423275063
+        ],
+        "mean_net_R": -0.5191545090379421,
+        "median_net_R": -0.862689072079862,
+        "profit_factor": 0.3939903297366225,
+        "avg_minutes": 63.98510242085661,
+        "exit_reasons": {
+          "stop": 244,
+          "time": 192,
+          "target": 101
+        }
+      },
+      "by_symbol": {
+        "BTCUSDT": {
+          "trades": 262,
+          "win_rate": 0.3282442748091603,
+          "wilson95": [
+            0.27422462254686947,
+            0.3872277318027823
+          ],
+          "mean_net_R": -0.6174195404830749,
+          "median_net_R": -0.9936618722279414,
+          "profit_factor": 0.3360816606257053,
+          "avg_minutes": 64.38931297709924,
+          "exit_reasons": {
+            "stop": 117,
+            "time": 98,
+            "target": 47
+          }
+        },
+        "ETHUSDT": {
+          "trades": 275,
+          "win_rate": 0.34545454545454546,
+          "wilson95": [
+            0.2917301215985766,
+            0.403437159624628
+          ],
+          "mean_net_R": -0.4255347336247611,
+          "median_net_R": -0.808737648297205,
+          "profit_factor": 0.4591956520934885,
+          "avg_minutes": 63.6,
+          "exit_reasons": {
+            "stop": 127,
+            "time": 94,
+            "target": 54
+          }
+        }
+      }
+    },
+    "chandelier_3ATR": {
+      "pooled": {
+        "trades": 537,
+        "win_rate": 0.2569832402234637,
+        "wilson95": [
+          0.22184202736304054,
+          0.2955766251028576
+        ],
+        "mean_net_R": -0.55307764515031,
+        "median_net_R": -0.8032173557756328,
+        "profit_factor": 0.3398610645260951,
+        "avg_minutes": 62.42085661080075,
+        "exit_reasons": {
+          "stop": 402,
+          "time": 132,
+          "stop_gap": 3
+        }
+      },
+      "by_symbol": {
+        "BTCUSDT": {
+          "trades": 262,
+          "win_rate": 0.2480916030534351,
+          "wilson95": [
+            0.19968540477369826,
+            0.3037780482724575
+          ],
+          "mean_net_R": -0.6805091185951201,
+          "median_net_R": -0.8300042282088815,
+          "profit_factor": 0.2519453200435229,
+          "avg_minutes": 62.80534351145038,
+          "exit_reasons": {
+            "stop": 192,
+            "time": 67,
+            "stop_gap": 3
+          }
+        },
+        "ETHUSDT": {
+          "trades": 275,
+          "win_rate": 0.26545454545454544,
+          "wilson95": [
+            0.21675601486284277,
+            0.3206155060523737
+          ],
+          "mean_net_R": -0.4316702049956183,
+          "median_net_R": -0.7801227275673789,
+          "profit_factor": 0.4389035068251402,
+          "avg_minutes": 62.054545454545455,
+          "exit_reasons": {
+            "stop": 210,
+            "time": 65
+          }
+        }
+      }
+    },
+    "time": {
+      "pooled": {
+        "trades": 537,
+        "win_rate": 0.2905027932960894,
+        "wilson95": [
+          0.25370023289330834,
+          0.33028136406005215
+        ],
+        "mean_net_R": -0.570999897411809,
+        "median_net_R": -1.1170112977057982,
+        "profit_factor": 0.3720494408852851,
+        "avg_minutes": 73.27746741154563,
+        "exit_reasons": {
+          "time": 283,
+          "stop": 254
+        }
+      },
+      "by_symbol": {
+        "BTCUSDT": {
+          "trades": 262,
+          "win_rate": 0.2862595419847328,
+          "wilson95": [
+            0.23492451903165826,
+            0.3437717441590194
+          ],
+          "mean_net_R": -0.6798704164344658,
+          "median_net_R": -1.1063700607278528,
+          "profit_factor": 0.3106178988028138,
+          "avg_minutes": 73.26335877862596,
+          "exit_reasons": {
+            "time": 141,
+            "stop": 121
+          }
+        },
+        "ETHUSDT": {
+          "trades": 275,
+          "win_rate": 0.29454545454545455,
+          "wilson95": [
+            0.2437978405317684,
+            0.3509539568590801
+          ],
+          "mean_net_R": -0.4672759847429505,
+          "median_net_R": -1.122404741309603,
+          "profit_factor": 0.44108862387280945,
+          "avg_minutes": 73.2909090909091,
+          "exit_reasons": {
+            "time": 142,
+            "stop": 133
+          }
+        }
+      }
+    }
+  },
+  "eligible_exits": [],
+  "selected_exit": null,
+  "holdout": null,
+  "holdout_trade_files_written": false,
+  "strategy_code_sha256": "aa04c3be49c04587a97d86bb5cd0087ba9a327c33340ac67b9dc55d37dd60b97",
+  "caveats": [
+    "Only two major coins and 84 days; not generalizable or the 80% accuracy gate.",
+    "Existing research window is not an untouched sealed evaluation.",
+    "No spread, slippage, impact, funding or liquidation model; returns may be overstated."
+  ]
+}
