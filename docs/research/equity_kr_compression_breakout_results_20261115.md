@@ -10,7 +10,7 @@ On a signal close, require (a) the sample standard deviation of the latest 10 da
 
 Base costs are 0.015% commission and 0.10% slippage per side; stress uses 0.015% commission and 0.15% slippage per side. ETF sell tax is set to 0. Costs apply multiplicatively to fills. No distributions, leverage, or liquidity constraints are modeled.
 
-The 3,513 pre-cutoff rows span 2010-08-09 through 2024-11-11. All indicators first become eligible on 2011-08-26. There are 78 eligible signals; 50 complete, non-overlapping trades were executed in each cost case across 11 calendar years. Base exits: 23 below-SMA20, 27 ten-session expiry. No signal could complete only if it fell in the final 11 bars; none did.
+The 3,513 pre-cutoff rows span 2010-08-09 through 2024-11-11. All indicators first become eligible on 2011-08-26. There are 78 eligible signals; 50 complete, non-overlapping trades were executed in each cost case across 11 calendar years. Base exits: 23 below-SMA20, 27 ten-session expiry. No tail signal was excluded.
 
 ## Results
 
@@ -35,7 +35,7 @@ Run from the repository root:
 
 The reproducible output is retained in [the result JSON](equity_kr_compression_breakout_20261115.json) and [the trade-level JSON](equity_kr_compression_breakout_trades_20261115.json). Source is [equity_kr_compression_breakout.py](../../scripts/research/equity_kr_compression_breakout.py); the four focused causal/execution/cutoff tests are in tests/test_equity_kr_compression_breakout.py.
 
-An agent's initial in-memory summary reported 51 trades and evaluation start 2012-08-16 but provided no code or saved event list. That start date is the first eligibility date for a 252-day volatility feature, while this preregistration explicitly uses 10-day volatility compared with the trailing distribution of 10-day volatility. The two are different strategies. The agent run is therefore not incorporated as a reproduction or combined with this result. Until an exact independent implementation and its signal/trade list are supplied, its metrics remain unverified.
+An agent's initial in-memory run is explicitly invalid and excluded. Its 51 trades used 252-day return volatility instead of the preregistered 10-day volatility, omitted the previous-session breakout-cross condition, started evaluation at the first signal rather than the first eligible feature date, and used different baseline timing, turnover, and bootstrap calculations. The agent confirmed these implementation errors and discarded its metrics. The reproducible result in this report is from the frozen 10-day rule; no values from the invalid run are combined with it.
 
 ## Limitations
 

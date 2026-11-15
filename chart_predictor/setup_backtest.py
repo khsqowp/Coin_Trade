@@ -34,6 +34,8 @@ HYPOTHESES={
  "heikin_ashi_reversal_strict":"A Heikin-Ashi flip with body at least 0.5 ATR14 should filter weak reversals and improve short-horizon follow-through.",
  "bb_squeeze_breakout":"A Bollinger Band width in the bottom decile of its own trailing 120-bar history marks a volatility squeeze; the directional close breaking the band within a few bars of that squeeze should carry above-average follow-through.",
  "bb_squeeze_breakout_strict":"The same Bollinger squeeze breakout should perform better once the breakout close must clear the band by at least 0.25 ATR14, filtering the marginal/no-follow-through breakouts diagnosed in the base rule's dominant timeout rate.",
+ "orb_funding_session":"The first 30 minutes after each Binance 8-hour funding boundary should establish a range whose first closed-bar breakout carries follow-through.",
+ "orb_funding_session_strong":"A funding-session opening-range breakout clearing the range by at least 0.25 ATR14 should filter marginal breaks and improve follow-through.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -130,6 +132,7 @@ def _write(report,report_dir, data_hash, stage):
       else "P7-A" if present and present<={"heikin_ashi_reversal","heikin_ashi_reversal_strict"}
       else "P7-C" if present and present<={"fvg_fill"}
       else "P7-B" if present and present<={"frvp_breakout","frvp_breakout_strong"}
+      else "P8-B" if present and present<={"orb_funding_session","orb_funding_session_strong"}
       else "P6" if present and present<={"order_block","fabio_liquidity_mss"}
       else "P5")
     lines=[f"# {label} setup backtest (development only)","",f"Stage: {stage}; fingerprint `{fingerprint}`; runtime {report['runtime_seconds']:.1f}s.","","## Fixed hypotheses",hypotheses,"","## Ranked cells (net return)","","|Rank|Setup|Side|TF|R|Filter|Trades|Hit rate|Net return %|Expert|Verdict|Red flags|","|---:|---|---|---:|---:|---|---:|---:|---:|---:|---|---|"]
