@@ -4,7 +4,11 @@ import json
 import pytest
 
 from scripts.research.crypto_l2_compact import reduce_capture
-from scripts.research.crypto_l2_windows import aggregate_windows, is_available_by_decision
+from scripts.research.crypto_l2_windows import (
+    aggregate_windows,
+    eligible_windows_for_completed_bar,
+    is_available_by_decision,
+)
 
 
 def _record(kind, symbol, event, t, **extra):
@@ -174,6 +178,64 @@ def test_10s_aggregation_uses_utc_event_time_and_computes_refill(tmp_path):
     assert target["trade_low_event_ms"] == 101_000
     assert [x["second_start_ms"] for x in target["trade_path"]] == [101_000, 108_000]
     assert target["trade_path"][0]["first"]["best_ask"] == pytest.approx(100.01)
+
+
+def test_completed_bar_gate_rejects_delayed_future_and_bad_quality_features():
+    base = {
+        "window_final": True,
+        "data_quality_ready": True,
+        "window_start_ms": 100_000,
+        "window_end_ms": 110_000,
+        "feature_available_receive_monotonic_s": 12.0,
+    }
+    rows = [
+        {**base, "symbol": "BTCUSDT"},
+        # Old exchange event-time interval, but received after the decision.
+        {**base, "symbol": "ETHUSDT", "feature_available_receive_monotonic_s": 13.0},
+        {**base, "symbol": "SOLUSDT", "window_start_ms": 90_000},
+        {**base, "symbol": "XRPUSDT", "data_quality_ready": False},
+        {**base, "symbol": "ADAUSDT", "window_final": False},
+    ]
+
+    eligible, rejected = eligible_windows_for_completed_bar(
+        rows, bar_open_ms=100_000, bar_close_ms=120_000,
+        decision_receive_monotonic_s=13.0,
+    )
+
+    assert [row["symbol"] for row in eligible] == ["BTCUSDT"]
+    assert rejected == {
+        "not_final": 1,
+        "quality_failure": 1,
+        "outside_completed_bar": 1,
+        "missing_availability": 0,
+        "received_at_or_after_decision": 1,
+    }
+
+
+def test_completed_bar_gate_requires_all_feature_windows_to_pass():
+    valid = {
+        "window_final": True,
+        "data_quality_ready": True,
+        "window_start_ms": 100_000,
+        "window_end_ms": 110_000,
+        "feature_available_receive_monotonic_s": 12.0,
+    }
+    incomplete = {**valid, "feature_available_receive_monotonic_s": None}
+    selected, rejected = eligible_windows_for_completed_bar(
+        [valid, incomplete], bar_open_ms=100_000, bar_close_ms=120_000,
+        decision_receive_monotonic_s=13.0,
+    )
+
+    assert selected == [valid]
+    assert rejected["missing_availability"] == 1
+
+
+def test_completed_bar_gate_rejects_invalid_bar_bounds():
+    with pytest.raises(ValueError, match="bar bounds"):
+        eligible_windows_for_completed_bar(
+            [], bar_open_ms=120_000, bar_close_ms=120_000,
+            decision_receive_monotonic_s=13.0,
+        )
 
 
 def test_10s_aggregator_fails_closed_on_late_event_after_finalization(tmp_path):

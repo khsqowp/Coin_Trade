@@ -33,7 +33,11 @@ Before looking at any outcomes, the candidate contract's book-endpoint freshness
 
 The new full test run passed 231 tests with one environment warning. A pre-existing pilot manifest-size fixed-point calculation flaked during two full-suite runs; it was repaired by reserving bounded JSON whitespace and then passed the full suite. No strategy-performance cells were run. This remains infrastructure validation only, not signal evidence.
 
-The required bounded feature/path recorder is still incomplete: the comparator is unit-tested but not yet applied to every T/H decision anchor, and the retained top-five depth may be insufficient for the fixed 1,000 USDT notional under all spread/depth conditions. Funding/cost snapshots, multi-day reconnect capture, and 20-symbol capacity testing remain open. Do not begin live continuous collection or signal scoring on this result.
+The required bounded feature/path recorder is still incomplete: the completed-T-window selector is unit-tested but not yet wired into a signal builder, and higher-timeframe candle features still lack a shared receive-time gate. The retained top-five depth may be insufficient for the fixed 1,000 USDT notional under all spread/depth conditions. Funding/cost snapshots, multi-day reconnect capture, and 20-symbol capacity testing remain open. Do not begin live continuous collection or signal scoring on this result.
+
+### Latest continuation verification (2026-11-16)
+
+The completed-T-bar eligibility gate was added to the offline window module. It rejects non-final and quality-failed windows, windows outside the completed T bar, missing/non-finite availability times, and features received at or after the decision anchor. Tests include delayed data whose exchange event time is old. The full `chart_predictor/tests` suite now passes 235 tests with one environment warning. This closes only a reusable causal-filter primitive; it does not establish T/H signal-builder wiring, performance, or a passed data gate.
 
 ## Required before performance testing
 

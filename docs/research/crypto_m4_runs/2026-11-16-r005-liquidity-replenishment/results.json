@@ -24,9 +24,9 @@
   },
   "tests": {
     "performance_tests": 0,
-    "unit_and_integrity_tests": 232,
-    "unit_and_integrity_tests_passed": 232,
+    "unit_and_integrity_tests": 235,
+    "unit_and_integrity_tests_passed": 235,
     "warnings": 1
   },
-  "interpretation": "The 232 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
+  "interpretation": "The 235 passing tests verify software paths and synthetic cases only; deterministic replay of the one-hour pilot is an integrity check. None is evidence of predictive accuracy or profitability. No strategy-performance result was generated."
 }

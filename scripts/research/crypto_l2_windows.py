@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import sys
@@ -168,6 +169,54 @@ def is_available_by_decision(window: dict[str, Any], decision_receive_monotonic_
     available = window.get("feature_available_receive_monotonic_s")
     return (isinstance(available, (int, float)) and not isinstance(available, bool)
             and available < decision_receive_monotonic_s)
+
+
+def eligible_windows_for_completed_bar(
+    windows: list[dict[str, Any]], *, bar_open_ms: int, bar_close_ms: int,
+    decision_receive_monotonic_s: float,
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Select usable 10s features wholly inside a completed bar and observed by decision.
+
+    The 10s window's event-time interval must lie inside the completed T bar.
+    Its features (including the +2s replenishment endpoint) must have arrived
+    strictly before the decision's monotonic receive-time anchor. A delayed
+    event cannot become causal merely because its exchange timestamp is old.
+    """
+    if (isinstance(bar_open_ms, bool) or not isinstance(bar_open_ms, int)
+            or isinstance(bar_close_ms, bool) or not isinstance(bar_close_ms, int)
+            or bar_open_ms < 0 or bar_close_ms <= bar_open_ms):
+        raise ValueError("bar bounds must be increasing non-negative integer milliseconds")
+    if (isinstance(decision_receive_monotonic_s, bool)
+            or not isinstance(decision_receive_monotonic_s, (int, float))
+            or not math.isfinite(decision_receive_monotonic_s)):
+        raise ValueError("decision receive anchor must be finite and numeric")
+
+    selected: list[dict[str, Any]] = []
+    rejected = {"not_final": 0, "quality_failure": 0, "outside_completed_bar": 0,
+                "missing_availability": 0, "received_at_or_after_decision": 0}
+    for window in windows:
+        if window.get("window_final") is not True:
+            rejected["not_final"] += 1
+            continue
+        if window.get("data_quality_ready") is not True:
+            rejected["quality_failure"] += 1
+            continue
+        start, end = window.get("window_start_ms"), window.get("window_end_ms")
+        if (isinstance(start, bool) or not isinstance(start, int)
+                or isinstance(end, bool) or not isinstance(end, int)
+                or start < bar_open_ms or end > bar_close_ms or end <= start):
+            rejected["outside_completed_bar"] += 1
+            continue
+        available = window.get("feature_available_receive_monotonic_s")
+        if (isinstance(available, bool) or not isinstance(available, (int, float))
+                or not math.isfinite(available)):
+            rejected["missing_availability"] += 1
+            continue
+        if available >= decision_receive_monotonic_s:
+            rejected["received_at_or_after_decision"] += 1
+            continue
+        selected.append(window)
+    return selected, rejected
 
 
 def aggregate_windows(source: Path, output: Path, *, allowed_lateness_ms: int = 2000,
