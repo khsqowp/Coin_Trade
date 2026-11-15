@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-11-16-r002-source-gate",
+  "parent_run_id": "2026-11-15-r001-readiness",
+  "date": "2026-11-16",
+  "status": "blocked_data_gate",
+  "study_type": "source_license_pit_feasibility_audit",
+  "objective_track": "portfolio_net_performance_vs_matched_buy_and_hold",
+  "separate_from": [
+    "chart-prediction M4 >=80% selective target-first accuracy",
+    "manual crypto directional-signal research"
+  ],
+  "hypothesis": "A public historical source can provide permitted use, point-in-time universe membership, complete prices, and applicable instrument cashflows sufficient for a qualifying matched portfolio comparison.",
+  "agent_roles": [
+    "trend_momentum_prior_art_review",
+    "mean_reversion_prior_art_review",
+    "cross_sectional_regime_data_gate_review",
+    "independent_adversarial_review"
+  ],
+  "agent_access_limitation": "Agents received an evidence dossier and did not independently reproduce repository, database, or raw-source inspection.",
+  "data": {
+    "price_rows_read": false,
+    "database_opened": false,
+    "downloaded": false,
+    "source": "Official Binance public-data repository, terms, and USD-M funding API documentation reviewed; no data acquired.",
+    "source_content_hash": null,
+    "point_in_time_universe_verified": false,
+    "perpetual_funding_completeness_verified": false,
+    "license_use_scope_resolved": false
+  },
+  "grid": null,
+  "cells_expected": 0,
+  "cells_completed": 0,
+  "performance_metrics_computed": false,
+  "candidate_count_qualified": 0,
+  "decision": "blocked_data_gate",
+  "decision_reason": "Point-in-time instrument coverage, applicable use scope, complete instrument cashflows, and full content-level data identity have not been established.",
+  "overlapping_proposal_rejected": "Failed-range-expansion close-back-inside reversion overlaps prior volume-climax failure-close and liquidity-sweep close-back-inside studies; not rerun.",
+  "external_actions": {
+    "bulk_download": false,
+    "provider_contact": false,
+    "public_comment": false,
+    "account_or_payment": false,
+    "order_or_deployment": false
+  },
+  "next_step": "Resolve source-use scope and prove a point-in-time universe plus complete price and applicable funding/cost records; then freeze an immutable data manifest before preregistering a performance study."
+}

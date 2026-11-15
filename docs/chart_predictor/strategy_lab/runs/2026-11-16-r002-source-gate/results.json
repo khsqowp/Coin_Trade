@@ -1,0 +1,18 @@
+{
+  "run_id": "2026-11-16-r002-source-gate",
+  "status": "blocked_data_gate",
+  "cells_expected": 0,
+  "cells_completed": 0,
+  "metrics": null,
+  "qualifying_strategies": 0,
+  "source_gate": {
+    "point_in_time_universe_verified": false,
+    "complete_price_content_identity_verified": false,
+    "perpetual_funding_completeness_verified": false,
+    "license_use_scope_resolved": false
+  },
+  "proposal_disposition": {
+    "failed_range_expansion_close_back_inside_reversion": "rejected_as_non_distinct_overlap_with_prior_tested_rules"
+  },
+  "explanation": "This was a source/license/point-in-time feasibility audit. No price database was opened, no prices or returns were read or computed, and no strategy performance test was run. Four agent opinions were based on a dossier and were not independent raw-data reproductions."
+}
