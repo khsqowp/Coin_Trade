@@ -8,6 +8,7 @@ import time
 
 import pytest
 
+import scripts.research.crypto_l2_pilot as pilot_module
 from scripts.research.crypto_l2_pilot import (
     BASE,
     CaptureLimit,
@@ -18,10 +19,103 @@ from scripts.research.crypto_l2_pilot import (
     _validated_output_root,
     coverage_summary,
     interval_overlap,
+    main,
+    preflight,
     recovery_acceptance,
     stream_event_latency_ms,
     verify_segment,
 )
+
+
+def test_preflight_checks_both_hosts_streams_and_symbol_snapshots(monkeypatch):
+    resolved = []
+    opened = []
+    snapshots = []
+
+    def fake_getaddrinfo(host, port, **kwargs):
+        resolved.append((host, port))
+        return [(None,)]
+
+    class FakeSocket:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *_):
+            return False
+
+    def fake_connect(url, **kwargs):
+        opened.append(url)
+        return FakeSocket()
+
+    def fake_snapshot(symbol, *, timeout_s):
+        snapshots.append((symbol, timeout_s))
+        return {"lastUpdateId": 1, "bids": [], "asks": []}
+
+    monkeypatch.setattr(pilot_module.socket, "getaddrinfo", fake_getaddrinfo)
+    monkeypatch.setattr(pilot_module.websockets, "connect", fake_connect)
+    monkeypatch.setattr(pilot_module, "_fetch_snapshot", fake_snapshot)
+
+    result = asyncio.run(preflight(timeout_s=2))
+
+    assert result["status"] == "ready"
+    assert {host for host, _ in resolved} == {"fstream.binance.com", "fapi.binance.com"}
+    assert opened == [pilot_module.DEPTH_URL, pilot_module.TRADES_URL]
+    assert {symbol for symbol, _ in snapshots} == set(SYMBOLS)
+    assert all(timeout == 2 for _, timeout in snapshots)
+
+
+def test_preflight_stops_before_websocket_if_dns_fails(monkeypatch):
+    opened = []
+
+    def fail_dns(host, port, **kwargs):
+        raise OSError("DNS blocked")
+
+    monkeypatch.setattr(pilot_module.socket, "getaddrinfo", fail_dns)
+    monkeypatch.setattr(pilot_module.websockets, "connect", lambda *a, **k: opened.append(a[0]))
+
+    with pytest.raises(OSError, match="DNS blocked"):
+        asyncio.run(preflight(timeout_s=1))
+
+    assert opened == []
+
+
+def test_cli_preflight_failure_does_not_create_capture_output(tmp_path, monkeypatch, capsys):
+    output_root = tmp_path / "must-not-exist"
+
+    async def fail_preflight(*, timeout_s):
+        raise OSError("DNS unavailable")
+
+    monkeypatch.setattr(pilot_module, "preflight", fail_preflight)
+    monkeypatch.setattr(sys, "argv", [
+        "crypto_l2_pilot.py", "--preflight", "--output-root", str(output_root),
+    ])
+
+    assert main() == 10
+    assert not output_root.exists()
+    assert json.loads(capsys.readouterr().out)["reason"] == "OSError"
+
+
+def test_pilot_stops_and_records_reason_when_synchronization_startup_expires(tmp_path):
+    class IdlePilot(Pilot):
+        async def _depth_loop(self):
+            await self.stop.wait()
+
+        async def _trades_loop(self):
+            await self.stop.wait()
+
+    pilot = IdlePilot(
+        tmp_path,
+        capture_seconds=1,
+        max_wall_seconds=2,
+        startup_timeout_s=0.05,
+    )
+
+    result = asyncio.run(pilot.run())
+
+    assert result["status"] == "incomplete"
+    assert result["reason"] == "synchronized startup timeout"
+    assert result["startup_timeout_seconds"] == 0.05
+    assert result["capture_started_at"] is None
 
 
 def test_jsonl_segment_close_verifies_hash_count_and_time_range(tmp_path):
@@ -574,7 +668,9 @@ def test_cli_runs_by_file_path_without_package_path_setup():
     )
     assert result.returncode == 0, result.stderr
     assert "--run" in result.stdout
+    assert "--preflight" in result.stdout
     assert "--inject-depth-disconnect-after-s" in result.stdout
+    assert "--startup-timeout-s" in result.stdout
 
 
 def test_collector_task_failure_stops_run_and_writes_incomplete_manifest(tmp_path):
