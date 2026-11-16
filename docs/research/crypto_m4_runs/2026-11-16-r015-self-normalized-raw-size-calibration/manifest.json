@@ -1,0 +1,80 @@
+{
+  "run_id": "2026-11-16-r015-self-normalized-raw-size-calibration",
+  "parent_run_ids": [
+    "2026-11-16-r013-inference-calibration",
+    "2026-11-16-r014-self-normalized-calibration"
+  ],
+  "date": "2026-11-16",
+  "status": "executed_synthetic_method_test",
+  "hypothesis": "The self-normalized procedure's raw per-timeframe type-I size and Holm familywise error will satisfy the frozen Monte Carlo screening limits when the two rejection outcomes are separately recorded.",
+  "data": {
+    "source": "R013 synthetic null generator only",
+    "market_data_used": false,
+    "market_database_read": false,
+    "forecast_outcomes_read": false,
+    "network_used": false,
+    "dgp_source": "scripts/research/crypto_r013_inference_calibration.py",
+    "dgp_sha256": "863d094fc3bb2745105aa8a618c94dc8505430ef5fa71333762ff39d0ea97295"
+  },
+  "method_source": {
+    "path": "scripts/research/crypto_r014_self_normalized_calibration.py",
+    "sha256": "5c3dfe634128ae91eb3ad99c88f7c0ab561f810bec576e4f667b2cc103f6f091",
+    "used_functions": ["brownian_pivot_reference", "self_normalized_pvalues", "wilson_upper", "wilson_upper_by_column"]
+  },
+  "plan": {
+    "path": "docs/research/crypto_m4_runs/2026-11-16-r015-self-normalized-raw-size-calibration/plan.md",
+    "sha256": "ddcfa84b009977727f3c638c9da42819bf11f971a6b241922c23fa7971796600"
+  },
+  "code": {
+    "path": "scripts/research/crypto_r015_self_normalized_raw_size.py",
+    "sha256": "ad4d8e54f894f6a770da802734ba177856b6a308e916ed4e1065b3469aa396a7"
+  },
+  "tests": {
+    "path": "chart_predictor/tests/test_r015_self_normalized_raw_size.py",
+    "sha256": "c6ab22313c176d030ca21bfa20adff9b9c346474bce4168cf1aadf7f8978bb0d",
+    "red_observed": "collection failed because implementation was absent",
+    "green_observed": "3 passed"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.2.6",
+    "platform": "local isolated Mac worktree"
+  },
+  "grid": {
+    "days": [365, 900],
+    "timeframes": ["1m", "3m", "5m", "10m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d"],
+    "mean_opportunities_per_day": [8, 40],
+    "negative_binomial_size": 2,
+    "ar1_rho": [0.0, 0.5, 0.9],
+    "outcome_heterogeneity": 0.75,
+    "common_shock_fraction": [0.0, 0.75],
+    "scenarios": 24,
+    "replications_per_scenario": 1000,
+    "brownian_reference_paths": 250000,
+    "brownian_reference_steps": 2048,
+    "evaluation_seed": 20261119,
+    "reference_seed": 20261120,
+    "alpha": 0.05,
+    "holm_family_size": 12,
+    "simultaneous_one_sided_wilson_bounds": 312,
+    "raw_per_timeframe_upper_threshold": 0.075,
+    "holm_fwer_upper_threshold": 0.085
+  },
+  "execution": {
+    "command": "/opt/anaconda3/bin/python3 scripts/research/crypto_r015_self_normalized_raw_size.py --simulations 1000 --reference-paths 250000 --reference-steps 2048 --seed 20261119 --reference-seed 20261120 --output docs/research/crypto_m4_runs/2026-11-16-r015-self-normalized-raw-size-calibration/results.json",
+    "synthetic_dataset_repetitions": 24000,
+    "raw_test_instances": 288000,
+    "family_error_indicators": 24000,
+    "failed_replications": 0,
+    "output_path": "docs/research/crypto_m4_runs/2026-11-16-r015-self-normalized-raw-size-calibration/results.json"
+  },
+  "decision_rule": "Qualify only when every raw per-timeframe size upper bound across all 24 scenarios is <=0.075, every scenario Holm-FWER upper bound is <=0.085, and no replication fails. Wilson upper bounds use z=Phi^-1(1-0.05/312) for simultaneous 95% coverage across 288 timeframe rates and 24 FWER rates.",
+  "decision": "reject_self_normalized_procedure_under_registered_screen; inference_blocker_retained",
+  "results_sha256": "b30f7e4e97a97773d57106652ef6e4f18764016bb3b37b9b0fef576fbd01f345",
+  "runtime_seconds": 68.348,
+  "qualified_scenarios": 0,
+  "raw_test_interval_pass_count": 7,
+  "raw_test_interval_total": 288,
+  "fwer_interval_pass_count": 1,
+  "fwer_interval_total": 24
+}
