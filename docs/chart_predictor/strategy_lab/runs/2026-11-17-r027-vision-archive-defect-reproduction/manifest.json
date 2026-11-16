@@ -1,0 +1,21 @@
+{
+  "run_id": "R027",
+  "status": "completed_data_quality_reproduction",
+  "purpose": "independently reproduce selected reported Binance Vision USD-M archive continuity defects",
+  "strategy_performance_trial": false,
+  "files_downloaded": 10,
+  "source_terms_scope": "personal non-production historical research only",
+  "inputs": "/private/tmp/r027_binance_archive_repro/ (temporary; not committed)",
+  "validator": "scripts/research/audit_vision_daily_archive.py",
+  "checks": [
+    "publisher checksum match",
+    "UTC daily 5-minute expected grid",
+    "missing timestamps",
+    "duplicate timestamp rows",
+    "off-grid timestamps",
+    "blank fields",
+    "non-finite or non-numeric metric fields"
+  ],
+  "results_file": "results.json",
+  "decision": "reject unmasked incomplete fields from any feature panel; no strategy promotion"
+}

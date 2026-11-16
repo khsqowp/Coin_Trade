@@ -1,0 +1,56 @@
+{
+  "run_id": "R027",
+  "classification": "archive_quality_only_not_strategy_backtest",
+  "date_utc": "2026-11-17",
+  "source_issue": "https://github.com/binance/binance-public-data/issues/484",
+  "sample_archive_count": 10,
+  "all_publisher_checksums_match": true,
+  "metrics_gap_2024_02_16": {
+    "symbols": {
+      "BTCUSDT": {"rows": 163, "unique_timestamps": 163, "missing_grid_slots": 125, "missing_start_utc": "2024-02-16T13:35:00+00:00", "missing_end_utc": "2024-02-16T23:55:00+00:00", "duplicate_rows": 0},
+      "ETHUSDT": {"rows": 163, "unique_timestamps": 163, "missing_grid_slots": 125, "missing_start_utc": "2024-02-16T13:35:00+00:00", "missing_end_utc": "2024-02-16T23:55:00+00:00", "duplicate_rows": 0}
+    }
+  },
+  "mark_price_gap_2023_11_10": {
+    "interval": "5m",
+    "symbols": {
+      "BTCUSDT": {"rows": 283, "unique_timestamps": 283, "missing_grid_slots": 5, "missing_utc": ["2023-11-10T03:40:00+00:00", "2023-11-10T03:45:00+00:00", "2023-11-10T03:50:00+00:00", "2023-11-10T03:55:00+00:00", "2023-11-10T04:00:00+00:00"], "duplicate_rows": 0},
+      "ETHUSDT": {"rows": 283, "unique_timestamps": 283, "missing_grid_slots": 5, "missing_utc": ["2023-11-10T03:40:00+00:00", "2023-11-10T03:45:00+00:00", "2023-11-10T03:50:00+00:00", "2023-11-10T03:55:00+00:00", "2023-11-10T04:00:00+00:00"], "duplicate_rows": 0}
+    }
+  },
+  "metrics_2025_07_22": {
+    "symbols": {
+      "BTCUSDT": {"rows": 288, "missing_grid_slots": 0, "duplicate_rows": 0, "blank_count_toptrader_long_short_ratio": 30, "blank_interval_utc": ["2025-07-22T13:40:00+00:00", "2025-07-22T16:05:00+00:00"], "other_sampled_fields_blank": 0},
+      "ETHUSDT": {"rows": 288, "missing_grid_slots": 0, "duplicate_rows": 0, "blank_count_toptrader_long_short_ratio": 30, "blank_interval_utc": ["2025-07-22T13:40:00+00:00", "2025-07-22T16:05:00+00:00"], "other_sampled_fields_blank": 0}
+    },
+    "issue_reported_timestamp_gap_reproduced": false
+  },
+  "duplicate_claim_samples": {
+    "dates": ["2024-04-08", "2024-05-01"],
+    "symbols": ["BTCUSDT", "ETHUSDT"],
+    "current_archives_each_rows": 288,
+    "current_archives_each_unique_timestamps": 288,
+    "duplicates_found": 0,
+    "claim_reproduced_in_current_objects": false
+  },
+  "archive_sha256": {
+    "BTCUSDT-markPriceKlines-2023-11-10.zip": "c16d3d0f7f3110e16d7974f3f00f8cdeb0d13b9252ef70225aff3db88b846a79",
+    "ETHUSDT-markPriceKlines-2023-11-10.zip": "4099127b68ff2874f424d05c4bdc11f44598b4f021b9b5baa3aa24b92c0ea743",
+    "BTCUSDT-metrics-2024-02-16.zip": "8c006b4bb793b541e72de7db06dff42b56a48cf864c043b80896365c5c8ab952",
+    "ETHUSDT-metrics-2024-02-16.zip": "2ecdb5a53423f0a9e1bd92331f75cf88a7b7bd58ebdeee7fd467d684a85546f6",
+    "BTCUSDT-metrics-2024-04-08.zip": "e5a4a51716e1810f20433c62919be9b5d7ff3e5e71790fc1a44115cbbaa12a1f",
+    "ETHUSDT-metrics-2024-04-08.zip": "cae1833b24e329bc47b3c2f648945bb12fc5af4daeaaa38c66c3286e6be790a6",
+    "BTCUSDT-metrics-2024-05-01.zip": "7fadfd63d0cb0b2e60129d19fd218549bb744edb31c1955908be7c8f234f00c3",
+    "ETHUSDT-metrics-2024-05-01.zip": "9d5ab493b149701d196aac37ccd3b71c13f6e8393ba3ac7dac3ac44edf0febb2",
+    "BTCUSDT-metrics-2025-07-22.zip": "a4d71e1f572ed75a678c5e6b7b2fd636c642cc6bd9b310818cc149f5b881a944",
+    "ETHUSDT-metrics-2025-07-22.zip": "6fb138028c197b31b596fb46f40236afc2524194d01962a6bc5d47d195445c45"
+  },
+  "strategy_metrics": null,
+  "qualified_crypto_signals": 0,
+  "limitations": [
+    "Only four dates and two symbols were checked.",
+    "Current objects may differ from those present when issue #484 was filed.",
+    "The test does not establish archive-wide defect frequency or repair history.",
+    "No strategy, execution outcome, or OOS result was calculated."
+  ]
+}
