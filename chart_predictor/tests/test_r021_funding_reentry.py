@@ -21,9 +21,9 @@ def test_macro_side_is_defined_by_completed_close(close, ema, expected):
 
 
 def test_breakout_requires_pullback_then_three_bar_close_break():
-    high = np.array([101, 102, 101, 100, 101, 102, 103, 104], dtype=float)
+    high = np.array([101, 102, 101, 100, 101, 102, 103, 106], dtype=float)
     low = np.array([99, 100, 99, 97, 98, 99, 100, 101], dtype=float)
-    close = np.array([100, 101, 100, 98, 100, 101, 102, 103], dtype=float)
+    close = np.array([100, 101, 100, 98, 100, 101, 102, 105], dtype=float)
     atr = np.ones_like(close)
     assert first_reentry_breakout(high, low, close, atr, event_index=2, side=1) == 7
 
@@ -39,8 +39,8 @@ def test_breakout_is_absent_without_pullback_or_with_expired_window():
 
 def test_short_breakout_mirrors_long_logic():
     high = np.array([101, 102, 101, 103, 102, 101, 100, 99], dtype=float)
-    low = np.array([99, 100, 99, 100, 99, 98, 97, 96], dtype=float)
-    close = np.array([100, 101, 100, 102, 100, 99, 98, 97], dtype=float)
+    low = np.array([99, 100, 99, 100, 99, 98, 97, 94], dtype=float)
+    close = np.array([100, 101, 100, 102, 100, 99, 98, 95], dtype=float)
     atr = np.ones_like(close)
     assert first_reentry_breakout(high, low, close, atr, event_index=2, side=-1) == 7
 
