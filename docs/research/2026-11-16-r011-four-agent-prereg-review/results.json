@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-11-16-r011-four-agent-prereg-review",
+  "status": "design_review_complete",
+  "performance_cells": 0,
+  "market_data_opened": false,
+  "roles": {
+    "us_equity": {
+      "status": "proposal_only",
+      "hypothesis": "Short-horizon reversal after unusually large idiosyncratic daily moves, separated from market-explained moves.",
+      "preregistered_axes_proposed": ["residual-return trailing estimation window", "1/2/5-session holding horizon", "90/95/99th-percentile absolute residual move", "long loser-only vs dollar-neutral loser/winner"],
+      "blocking_gates": ["verified point-in-time universe and delisted returns", "security identifiers and corporate-action semantics", "dated realistic costs and shortability", "data rights"],
+      "falsification": "Within-security date permutation placebo and conservative-cost robustness."
+    },
+    "kr_equity": {
+      "status": "proposal_only",
+      "hypothesis": "After a market drawdown, enter on subsequent volatility normalization; test whether this differs from buying immediately during the drawdown.",
+      "preregistered_axes_proposed": ["drawdown window/threshold", "volatility window/normalization threshold", "holding period", "point-in-time liquidity cutoff"],
+      "blocking_gates": ["KRX terms/rights", "file-level lineage and hashes", "point-in-time listed/tradable stock and ETF universe", "delisting/suspension and adjustment treatment", "execution frequency and costs"],
+      "falsification": "Reject if data gates fail, net holdout does not meet preregistered matched B&H criteria, or result fails under realistic costs and leakage/survivorship audit."
+    },
+    "crypto_mtf": {
+      "status": "protocol_proposal_only",
+      "core_estimand": "For a frozen signal, proportion reaching the predeclared target before stop within 10T or 20T; report timeouts separately and direction-at-horizon/net PnL over all signals as secondary endpoints.",
+      "coverage_contract": "Eligible data-quality-valid symbol-time opportunities are the denominator; abstains remain in denominator. Report long, short, symbol and timeframe coverage separately.",
+      "dependence": "Synchronized calendar-time block bootstrap across symbols; block rule and minimum effective information fixed before outcomes.",
+      "decision_rule": "Do not claim >=80% unless coverage >=10%, minimum effective sample is met, and dependence-adjusted lower confidence bound is >=80%.",
+      "blocking_gate": "Resolve R005 spacing/coverage contradiction in a new version before labels or tuning."
+    },
+    "independent_audit": {
+      "status": "priority_review_complete",
+      "highest_value_action": "No backtest: assemble and independently verify data exposure, use-rights, provenance, and duplicate-experiment evidence first.",
+      "cannot_claim": ["unexposed independent data", "verified source rights", "non-duplication", "strategy performance or future validity"]
+    }
+  },
+  "consensus": [
+    "No performance backtest is justified on currently exposed or rights-unverified inputs.",
+    "Do not rerun the R004 MACD/RSI family under a renamed experiment.",
+    "Do not generate R005 outcome labels until its frozen coverage contradiction is resolved.",
+    "The next work is evidence closure and a new preregistration, not parameter search."
+  ],
+  "limitations": [
+    "Agent proposals are research designs, not validated trading strategies.",
+    "The equity proposal grids remain incomplete until data schemas and units are verified; values must be frozen before opening outcomes.",
+    "Crypto timeout estimand and minimum effective sample still require a fully specified, justified protocol before any performance scoring.",
+    "No provider was contacted, account or key created, data purchased/downloaded, or exchange action taken."
+  ]
+}
