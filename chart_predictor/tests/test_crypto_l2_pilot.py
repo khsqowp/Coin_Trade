@@ -205,6 +205,38 @@ def test_injected_disconnect_resnapshot_recovery_is_timed_per_symbol(tmp_path, m
     pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
 
 
+@pytest.mark.parametrize("delay", [0, 60])
+def test_disconnect_injection_delay_must_be_inside_capture_window(tmp_path, delay):
+    with pytest.raises(ValueError, match="disconnect injection"):
+        Pilot(tmp_path, capture_seconds=60, inject_depth_disconnect_after_s=delay)
+
+
+def test_monitor_closes_live_depth_socket_once_at_preregistered_delay(tmp_path):
+    async def scenario():
+        pilot = Pilot(tmp_path, capture_seconds=2, max_wall_seconds=5,
+                      inject_depth_disconnect_after_s=0.1)
+        pilot.capture_start = time.monotonic()
+        closed = asyncio.Event()
+
+        class Socket:
+            async def close(self, code, reason):
+                assert code == 1012
+                assert reason == "preregistered recovery test"
+                closed.set()
+
+        pilot.active_depth_socket = Socket()
+        task = asyncio.create_task(pilot._monitor())
+        await asyncio.wait_for(closed.wait(), timeout=1)
+        pilot.stop.set()
+        await task
+        assert pilot.disconnect_injection["requested"] is True
+        assert pilot.disconnect_injection["triggered"] is True
+        assert pilot.disconnect_injection["triggered_at_monotonic_s"] is not None
+        pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
+
+    asyncio.run(scenario())
+
+
 def test_first_successful_connection_is_not_counted_as_a_reconnect(tmp_path):
     pilot = Pilot(tmp_path)
     assert pilot._depth_connected() == 1
