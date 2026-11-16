@@ -1,0 +1,27 @@
+{
+  "run_id": "2026-11-16-r019-vision-archive-coverage-smoke",
+  "parent_run_id": "2026-11-16-r018-vision-terms-data-gate",
+  "date": "2026-11-16",
+  "status": "blocked_source_probe_local_dns_unresolved",
+  "study_type": "metadata_only_archive_object_availability_smoke_check",
+  "hypothesis": "Official USD-M monthly Vision archives for premium-index, mark-price, and index-price 1h candles are present for the six repaired-cohort symbols at the preregistered 2020-01, 2023-01, and 2025-01 checkpoints.",
+  "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+  "families": ["premiumIndexKlines", "markPriceKlines", "indexPriceKlines"],
+  "interval": "1h",
+  "months": ["2020-01", "2023-01", "2025-01"],
+  "planned_requests": 54,
+  "method": "HTTP HEAD only; record status and Content-Length; no archive response body",
+  "execution": {
+    "unique_objects_attempted": 54,
+    "http_200": 0,
+    "http_404": 0,
+    "unknown_transport_failures": 54,
+    "diagnostic": "curl (6) could not resolve host data.binance.vision; dscacheutil returned no record; nslookup could not bind its DNS socket in this environment",
+    "archive_body_bytes_downloaded": 0,
+    "extra_unrecorded_parser_attempts": 1,
+    "extra_attempt_result": "unknown; an earlier zsh variable-name collision aborted before status capture"
+  },
+  "metrics_calculated": false,
+  "sealed_data_access": false,
+  "next_gate": "If objects exist, separately audit complete per-symbol month coverage, funding history coverage, point-in-time contract eligibility, and raw-file hashes before preregistering any performance trial."
+}

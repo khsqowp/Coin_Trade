@@ -1,0 +1,28 @@
+{
+  "run_id": "2026-11-16-r019-vision-archive-coverage-smoke",
+  "status": "not_assessed_transport_failure",
+  "planned_unique_objects": 54,
+  "attempted_unique_objects": 54,
+  "http_status_counts": {
+    "200": 0,
+    "404": 0,
+    "other_http": 0,
+    "unknown": 54
+  },
+  "transport_evidence": [
+    "A direct one-object HEAD test in the parent R018 succeeded for BTCUSDT 1h premium-index 2025-01 (HTTP 200; Content-Length 16691).",
+    "The R019 batch returned no HTTP response headers for all 54 planned object URLs; curl diagnostic on a repeated single URL was: Could not resolve host: data.binance.vision.",
+    "dscacheutil returned no address record. nslookup could not bind a DNS socket because the environment denied the operation."
+  ],
+  "additional_attempts": [
+    {
+      "count": 1,
+      "url": "https://data.binance.vision/data/futures/um/monthly/premiumIndexKlines/BNBUSDT/1h/BNBUSDT-1h-2020-01.zip",
+      "result": "unknown; shell variable collision stopped the first batch before a status was captured"
+    }
+  ],
+  "archive_body_bytes_downloaded": 0,
+  "strategy_metrics_calculated": false,
+  "sealed_data_accessed": false,
+  "interpretation": "Transport failure only. No planned archive object is classified as present or missing from this batch. The one successful parent-run HEAD proves one BTC premium archive object exists, not coverage for the other 53 objects."
+}

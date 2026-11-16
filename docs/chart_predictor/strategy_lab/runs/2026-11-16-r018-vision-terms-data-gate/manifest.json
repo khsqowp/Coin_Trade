@@ -1,0 +1,65 @@
+{
+  "run_id": "2026-11-16-r018-vision-terms-data-gate",
+  "parent_run_id": "2026-11-16-r017-source-access-audit",
+  "date": "2026-11-16",
+  "status": "completed_audit_performance_gate_not_met",
+  "study_type": "public_terms_and_read_only_data_schema_audit",
+  "hypothesis": "Current Binance Vision terms permit purely personal non-production historical backtesting, but existing local candle databases do not establish an eligible cost-complete futures strategy dataset.",
+  "strategy_family": null,
+  "agents": {
+    "review_count": 4,
+    "review_scope": "Independent role-based review of the same supplied evidence snapshot; agents did not inspect the worktree or raw databases.",
+    "decisions": {
+      "trend_momentum": "no-go; carry-gated cross-sectional momentum may be distinct but requires overlap review and complete data",
+      "premium_mean_reversion": "mechanically distinct from price-only VWAP/RSI reversals but no-go until aligned historical basis/funding/universe coverage is verified",
+      "cross_sectional_regime": "no-go; survivor-cohort and equity point-in-time gaps remain",
+      "red_team": "veto performance testing until point-in-time membership, costs, funding, and sealed/multiplicity gates are evidenced"
+    }
+  },
+  "inputs": [
+    {
+      "path": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+      "access": "SQLite read-only",
+      "tables": ["candles", "archive_manifest", "repair_pages"],
+      "candle_rows": 19790858,
+      "symbols": 6,
+      "archive_manifest_rows": 453,
+      "archive_manifest_row_sum": 19776458,
+      "funding_or_premium_table": false,
+      "point_in_time_contract_universe": false
+    },
+    {
+      "path": "/Users/user/CODE/Coin_Trade/chart_predictor/data/candles.sqlite",
+      "access": "SQLite read-only",
+      "tables": ["candles"],
+      "funding_or_premium_table": false,
+      "point_in_time_contract_universe": false
+    }
+  ],
+  "source_terms": {
+    "url": "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+    "version": "1.0",
+    "last_updated": "2026-08-26",
+    "checked": "2026-11-16",
+    "personal_nonproduction_historical_backtesting_permitted": true,
+    "live_proprietary_trading_execution_permitted": false,
+    "commercial_signal_distribution_permitted": false,
+    "user_scope_decision_2026_11_16": "historical backtesting only; no Vision-derived live or manual trading signals"
+  },
+  "additional_official_source_capabilities": {
+    "vision_futures_index_mark_premium_klines": "official downloader documents USD-M archives from 2020-01-01; actual per-symbol coverage must be verified before use",
+    "usd_m_funding_history": "public REST market-data endpoint supports inclusive start/end timestamps, ascending output, max 1000 rows per request; actual historical coverage and pagination must be verified",
+    "historical_point_in_time_contract_universe": "not established by these source pages"
+  },
+  "archive_smoke_check": {
+    "method": "HTTP HEAD; no archive body downloaded",
+    "url": "https://data.binance.vision/data/futures/um/monthly/premiumIndexKlines/BTCUSDT/1h/BTCUSDT-1h-2025-01.zip",
+    "status": 200,
+    "content_length_bytes": 16691
+  },
+  "metrics_calculated": false,
+  "performance_trial_count": 0,
+  "decision": "continue_after_source_and_dataset_gates",
+  "equity_source_authorization": "official sample and price-quote research only; no account creation or purchase",
+  "next_step": "Freeze one genuinely distinct strategy hypothesis and a new development/validation protocol only after an eligible point-in-time universe and complete funding/execution-cost data source are specified. Do not treat Vision historical-backtest permission as authorization for live signals based on Vision-derived data."
+}

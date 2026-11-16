@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-11-16-r020-equity-source-sample-quote-audit",
+  "status": "public_source_audit_complete_pricing_and_sample_gates_unresolved",
+  "observations": {
+    "krx": {
+      "historical_api_claim": "Official catalogue describes KOSPI daily stock trading data from 2010-01-04; an official OPEN API page offers a sample-test interface.",
+      "api_access": "Membership/login, authentication-key application and administrator approval are required; API-service application also requires approval.",
+      "marketplace_sample_and_price": "The official purchase guide says each product detail contains specification, period, fields, delivery method, sample file, and price. These details are reached after sign-up/login; no product-specific stock/ETF sample or price was publicly confirmed in this audit.",
+      "purchase_conditions": "Payment and purpose review precede delivery; eligible academic purchasers are offered a stated 50% discount subject to proof.",
+      "unresolved": ["ETF-specific sample/pricing", "inactive/delisted coverage and point-in-time constituents", "historical corporate-action fields", "research license/use rights", "actual price for the needed product"]
+    },
+    "crsp": {
+      "historical_coverage_claim": "Official US Stock Database page describes daily/monthly data and corporate actions for 32,000+ active and inactive US securities across NYSE, NYSE American, NYSE Arca, NASDAQ and Cboe BZX; permanent identifiers and delisting information are listed.",
+      "sample_access": "Official sample guide describes promotional/internal-evaluation sample files for multiple products and directs interested users to contact CRSP subscriptions for samples or a web demo. The guide is dated/older and its sample-size details were not treated as current guarantees.",
+      "public_price": "No current public list price was found on the official pages reviewed; subscription information is requested through CRSP. No inquiry was sent.",
+      "unresolved": ["current sample file and schema", "ETF coverage and historical ETF universe", "sample eligibility and permitted backtest use", "current subscription quote and minimum term", "delisting/corporate-action field semantics for the proposed strategy"]
+    }
+  },
+  "decision": "Neither provider is yet a backtest-ready data source under the no-account/no-purchase scope. CRSP's public description is stronger on inactive securities and delisting fields, but current price, sample access, ETF coverage, and license remain unverified. KRX's detailed product sample and price are gated behind login, and its API is approval-gated.",
+  "strategy_metrics_calculated": false,
+  "market_data_rows_accessed": false,
+  "references": [
+    "https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp",
+    "https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp",
+    "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd",
+    "https://www.crsp.org/research__trashed/crsp-us-stock-databases/",
+    "https://www.crsp.org/wp-content/uploads/2023/09/CRSP_Sample_Data_and_Software_Guide.pdf"
+  ]
+}
