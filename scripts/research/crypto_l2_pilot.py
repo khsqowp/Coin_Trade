@@ -275,12 +275,25 @@ def _fetch_snapshot(symbol: str) -> dict[str, Any]:
 
 class Pilot:
     def __init__(self, output_dir: Path, *, capture_seconds: float = CAPTURE_SECONDS,
-                 max_wall_seconds: float = MAX_WALL_SECONDS, max_bytes: int = MAX_BYTES):
+                 max_wall_seconds: float = MAX_WALL_SECONDS, max_bytes: int = MAX_BYTES,
+                 inject_depth_disconnect_after_s: float | None = None):
         self.output_dir = Path(output_dir)
         self.capture_seconds = float(capture_seconds)
         self.max_wall_seconds = float(max_wall_seconds)
         if self.capture_seconds <= 0 or self.max_wall_seconds <= 0:
             raise ValueError("capture and wall-clock limits must be positive")
+        if (inject_depth_disconnect_after_s is not None
+                and not 0 < inject_depth_disconnect_after_s < self.capture_seconds):
+            raise ValueError("disconnect injection must be inside the capture window")
+        self.inject_depth_disconnect_after_s = inject_depth_disconnect_after_s
+        self.active_depth_socket: Any | None = None
+        self.disconnect_injection = {
+            "requested": inject_depth_disconnect_after_s is not None,
+            "after_capture_seconds": inject_depth_disconnect_after_s,
+            "triggered": False,
+            "triggered_at_monotonic_s": None,
+            "result": "pending" if inject_depth_disconnect_after_s is not None else "not_requested",
+        }
         self.started_wall = time.monotonic()
         self.started_at = datetime.now(timezone.utc).isoformat()
         self.cpu_started = resource.getrusage(resource.RUSAGE_SELF)
@@ -518,6 +531,7 @@ class Pilot:
             try:
                 async with websockets.connect(DEPTH_URL, ping_interval=20, ping_timeout=60,
                                               close_timeout=5, max_size=4 * 1024 * 1024) as ws:
+                    self.active_depth_socket = ws
                     attempt = self._depth_connected()
                     now_ms, mono = time.time_ns() // 1_000_000, time.monotonic()
                     self._write("connection", None, None, now_ms, mono,
@@ -556,6 +570,14 @@ class Pilot:
                             if len(self.buffers[symbol]) > MAX_BUFFERED_DEPTH_EVENTS:
                                 raise CaptureLimit("depth resync buffer exceeded hard event cap")
                             self._try_bridge(symbol)
+                    if not self.stop.is_set():
+                        self._depth_disconnected()
+                        now_ms, mono = time.time_ns() // 1_000_000, time.monotonic()
+                        self._write("connection", None, None, now_ms, mono,
+                                    stream="depth", state="disconnected",
+                                    error="ConnectionClosed")
+                        await self._retry_delay(delay)
+                        delay = min(delay * 2, 30.0)
             except CaptureLimit:
                 raise
             except asyncio.CancelledError:
@@ -568,6 +590,7 @@ class Pilot:
                 await self._retry_delay(delay)
                 delay = min(delay * 2, 30.0)
             finally:
+                self.active_depth_socket = None
                 self.depth_online = False
 
     async def _trades_loop(self) -> None:
@@ -631,6 +654,18 @@ class Pilot:
             current_offset = (time.time_ns() / 1_000_000_000) - now
             self.last_wall_mono_offset_ms = abs(current_offset - wall_offset) * 1000
             if self.capture_start is not None:
+                injection_delay = self.inject_depth_disconnect_after_s
+                if (injection_delay is not None and not self.disconnect_injection["triggered"]
+                        and now - self.capture_start >= injection_delay
+                        and self.depth_online and self.active_depth_socket is not None):
+                    await self.active_depth_socket.close(
+                        code=1012, reason="preregistered recovery test"
+                    )
+                    self.disconnect_injection.update(
+                        triggered=True,
+                        triggered_at_monotonic_s=round(now, 6),
+                        result="triggered",
+                    )
                 capture_end = self.capture_start + self.capture_seconds
                 observed = interval_overlap(interval_start, now, self.capture_start, capture_end)
                 for symbol in SYMBOLS:
@@ -678,6 +713,9 @@ class Pilot:
             failure = f"unexpected {type(exc).__name__}"
         finally:
             self.stop.set()
+            if (self.disconnect_injection["requested"]
+                    and not self.disconnect_injection["triggered"]):
+                self.disconnect_injection["result"] = "not_triggered"
             stop_task.cancel()
             for task in tasks:
                 task.cancel()
@@ -755,6 +793,7 @@ class Pilot:
                     for symbol in SYMBOLS
                 },
                 "book_validity_intervals": self.book_validity_intervals,
+                "disconnect_injection": self.disconnect_injection,
                 "resource_metrics": {
                     "capture_elapsed_seconds": round(capture_elapsed, 3),
                     "capture_bytes": self.segment.bytes_written,
@@ -769,7 +808,10 @@ class Pilot:
                 },
                 "acceptance": {
                     "coverage_ge_99pct_both": all(coverage[s]["coverage"] >= .99 for s in SYMBOLS),
-                    "injected_faults": "not measured by live run; local deterministic tests required",
+                    "fault_scope": (
+                        "one controlled client-side depth websocket close; router, ISP, and server faults are not injected"
+                    ),
+                    "disconnect_injection_triggered": self.disconnect_injection["triggered"],
                     "recovery": recovery_acceptance(self.recovery_s),
                     "complete_60m": status == "completed",
                 },
@@ -812,13 +854,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true", help="connect to public Binance streams for the bounded pilot")
     parser.add_argument("--output-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--inject-depth-disconnect-after-s", type=float,
+                        help="close the live depth socket once after N seconds of synchronized capture")
     args = parser.parse_args()
     if not args.run:
         parser.error("network access requires explicit --run")
     pilot: Pilot | None = None
     try:
         output_root = _validated_output_root(args.output_root)
-        pilot = Pilot(output_root)
+        pilot = Pilot(output_root,
+                      inject_depth_disconnect_after_s=args.inject_depth_disconnect_after_s)
         result = asyncio.run(pilot.run())
     except CaptureLimit as exc:
         print(json.dumps({

@@ -1,0 +1,24 @@
+{
+  "run_id": "2026-11-16-r016-l2-live-recovery-audit",
+  "parent_run_id": "2026-11-15-crypto-l2-pilot-captures",
+  "date": "2026-11-16",
+  "status": "preregistered_pending_live_run",
+  "study_type": "controlled_public_l2_websocket_recovery_gate",
+  "hypothesis": "A client-initiated depth websocket close at 300 seconds can be recovered via reconnect and REST snapshot bridging within 30 seconds for both symbols.",
+  "symbols": ["BTCUSDT", "ETHUSDT"],
+  "streams": ["depth@500ms", "aggTrade"],
+  "capture_seconds": 3600,
+  "max_wall_seconds": 4500,
+  "max_total_output_bytes": 536870912,
+  "disconnect_injection_after_s": 300,
+  "acceptance": {
+    "injection_triggered_once": true,
+    "both_symbols_recover_within_seconds": 30,
+    "coverage_each_symbol_minimum": 0.99,
+    "complete_manifest_and_segment_verification": true
+  },
+  "credentials_used": false,
+  "account_or_order_api_used": false,
+  "orders_or_signals": false,
+  "result": null
+}
