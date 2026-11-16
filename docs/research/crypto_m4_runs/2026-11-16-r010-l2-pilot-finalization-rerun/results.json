@@ -1,0 +1,55 @@
+{
+  "run_id": "2026-11-16-r010-l2-pilot-finalization-rerun",
+  "parent_run_id": "2026-11-16-r009-l2-pilot-body-and-replay-audit",
+  "date": "2026-11-16",
+  "status": "integrity_pilot_completed",
+  "capture_run_id": "20261115T233227Z-ffc4b48f",
+  "capture_segment_path": "chart_predictor/data/crypto_l2_pilots/20261115T233227Z-ffc4b48f/capture.jsonl",
+  "capture_status": "completed",
+  "capture_seconds": 3600,
+  "symbols": ["BTCUSDT", "ETHUSDT"],
+  "streams": ["depth@500ms", "aggTrade"],
+  "credentials_used": false,
+  "signals_or_orders": false,
+  "segment_bytes": 184807770,
+  "segment_records": 144164,
+  "segment_sha256": "0243f1ded29e61e199abb31e075a97e0a008162d2b3c288a554072989c50a62e",
+  "coverage": {
+    "BTCUSDT_depth_book_valid_fraction": 1.0,
+    "ETHUSDT_depth_book_valid_fraction": 1.0,
+    "BTCUSDT_aggtrade_socket_connected_fraction": 1.0,
+    "ETHUSDT_aggtrade_socket_connected_fraction": 1.0,
+    "depth_reconnects": 0,
+    "aggtrade_reconnects": 0,
+    "aggregate_trade_id_jumps": 0
+  },
+  "compact_replay": {
+    "output_rows": 144157,
+    "output_sha256_run_a": "0f3f781b34a63cae9a79ca009686056cc3592fea60e7a11876f5994dd4874e20",
+    "output_sha256_run_b": "0f3f781b34a63cae9a79ca009686056cc3592fea60e7a11876f5994dd4874e20",
+    "invalidations": 0,
+    "trade_id_gaps": 0,
+    "duplicate_trade_ids_dropped": 0,
+    "out_of_order_trade_ids_dropped": 0
+  },
+  "window_replay": {
+    "windows_written": 720,
+    "data_quality_ready": 718,
+    "data_quality_not_ready": 2,
+    "late_rows": 0,
+    "disconnect_rows": 0,
+    "quality_pass": true,
+    "output_sha256_run_a": "4156d2f7d6415385e34cfc2755d036a9ab08c83605e2c838bfeb138f82005230",
+    "output_sha256_run_b": "4156d2f7d6415385e34cfc2755d036a9ab08c83605e2c838bfeb138f82005230"
+  },
+  "performance_cells": 0,
+  "strategy_metrics": null,
+  "limitations": [
+    "Reconnect/recovery was not observed; the manifest explicitly does not count that gate as passed.",
+    "Aggregate-trade ID continuity is only a possible missing-event diagnostic, not proof of exchange completeness.",
+    "This one-hour two-symbol run does not establish multi-day stability, 20-symbol capacity, or signal accuracy.",
+    "R005 remains infeasible as written because the 20T refractory rule caps coverage near 5%, below its 10% gate."
+  ],
+  "decision": "accept_for_bounded_pipeline_integrity_only; do_not_open_signal_performance_labels",
+  "next_action": "Before any R005 labels, replace the incompatible coverage/refractory protocol in a new pre-label preregistration, resolve data/cost/model/rights gates, and separately validate multi-day reconnect/recovery."
+}
