@@ -2,7 +2,7 @@
   "run_id": "2026-11-16-r016-l2-live-recovery-audit",
   "parent_run_id": "2026-11-15-crypto-l2-pilot-captures",
   "date": "2026-11-16",
-  "status": "preregistered_pending_live_run",
+  "status": "live_run_incomplete_dns_gaierror_no_capture",
   "study_type": "controlled_public_l2_websocket_recovery_gate",
   "hypothesis": "A client-initiated depth websocket close at 300 seconds can be recovered via reconnect and REST snapshot bridging within 30 seconds for both symbols.",
   "symbols": ["BTCUSDT", "ETHUSDT"],
@@ -20,5 +20,12 @@
   "credentials_used": false,
   "account_or_order_api_used": false,
   "orders_or_signals": false,
-  "result": null
+  "result": {
+    "pilot_run_id": "20261116T022419Z-e6b6faed",
+    "decision": "HOLD_NOT_TESTED_DNS_FAILURE",
+    "live_capture_started": false,
+    "disconnect_injection_triggered": false,
+    "strategy_performance_evaluated": false,
+    "report": "results.json"
+  }
 }
