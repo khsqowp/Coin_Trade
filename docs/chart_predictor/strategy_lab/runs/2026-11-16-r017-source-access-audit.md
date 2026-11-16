@@ -1,6 +1,6 @@
 # R017: KR/US/crypto market-data access audit
 
-Date: 2026-11-16  
+Date: 2026-11-16
 Type: source, access, and rights gate only; no strategy performance test.
 
 ## Decision
