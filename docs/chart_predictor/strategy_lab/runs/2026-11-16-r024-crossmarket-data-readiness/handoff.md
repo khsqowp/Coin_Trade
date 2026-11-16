@@ -7,3 +7,7 @@
 - A US agent reported an unresolved search-output boundary incident. Keep possibly implicated files out of one-time sealed evaluation unless an independent path-level audit clears scope; otherwise acquire a fresh forward boundary.
 - Binance Vision is for the already-approved personal non-production history-backtest scope only, not live/manual trading signals.
 - Resume by satisfying the relevant data gate. Preserve the equity max-drawdown decision as an explicit open requirement.
+
+### Supersession note — 2026-11-16
+
+The preceding MDD sentence is stale. The user fixed the KR and US stock/ETF maximum-drawdown limit at **30%** on 2026-11-16. Benchmark, trading costs, sizing, point-in-time universe, and data-rights requirements remain open. See [`round0_master_charter_20261116.md`](../../../../research/round0_master_charter_20261116.md).

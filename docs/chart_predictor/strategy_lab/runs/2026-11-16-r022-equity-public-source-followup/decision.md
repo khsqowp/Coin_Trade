@@ -18,3 +18,7 @@ CRSP's sample guide describes a promotional 25-security stock sample, with secur
 - KRX Open API is the first low-friction research candidate for daily Korean stock/ETF data if account/key setup is authorized separately; confirm delisted security support and adjusted-price fields before any strategy trial.
 - CRSP is the stronger candidate for US survivorship-aware stock research; obtain exact quote, ETF product scope, sample, license terms, and access mode before choosing it. These require a future user-authorized transaction/contact or institutional entitlement.
 - Equity agents produced hypotheses and a red-team checklist only. No stock/ETF performance result exists. The 20% CAGR objective remains an objective, not a proven result; maximum drawdown limit remains undefined.
+
+### Supersession note — 2026-11-16
+
+The preceding MDD sentence records the state before the user's Round 0 decision. It is superseded: the user fixed the KR and US stock/ETF portfolio maximum drawdown at **30%** on 2026-11-16. This does not resolve benchmark, costs, sizing, point-in-time universe, or data-rights gates. See [`round0_master_charter_20261116.md`](../../../../research/round0_master_charter_20261116.md).
