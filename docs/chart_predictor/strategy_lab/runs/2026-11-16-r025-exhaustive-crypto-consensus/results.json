@@ -1,0 +1,2232 @@
+{
+  "status": "EXPLORATORY_DEVELOPMENT_ONLY",
+  "data_path": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+  "data_sha256": "c959e8eee35d88a01234e08f0f14736e7ff069387bebe0b270b176d6b2efc6a3",
+  "symbols": [
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "timeframes": [
+    "1m",
+    "3m",
+    "5m",
+    "10m",
+    "15m",
+    "30m",
+    "60m",
+    "120m",
+    "240m"
+  ],
+  "rules": [
+    "bb_squeeze_breakout",
+    "orb_funding_session",
+    "vwap_band_fade",
+    "volume_climax_exhaustion"
+  ],
+  "subsets_enumerated": 15,
+  "result_cells": 135,
+  "subset_sizes": {
+    "1": 4,
+    "2": 6,
+    "3": 4,
+    "4": 1
+  },
+  "combination": "strict majority of all rules in subset at the same closed bar; ties/abstentions are flat",
+  "stop": "median structural stop among agreeing votes",
+  "entry": "next timeframe open",
+  "target": "2.0R",
+  "max_hold_bars": 12,
+  "same_minute_barrier_tie": "stop first",
+  "fee_per_side": 0.0005,
+  "signal_counts_by_rule": {
+    "bb_squeeze_breakout": 1337675,
+    "orb_funding_session": 331252,
+    "vwap_band_fade": 4980381,
+    "volume_climax_exhaustion": 439317
+  },
+  "elapsed_seconds": 892.4844466669892,
+  "results": [
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 19,
+      "target_first_pct": 10.526315789473685,
+      "mean_net_pct": 0.9330413221007428,
+      "sum_trade_net_pct": 17.727785119914113,
+      "mean_net_r": -0.04686684928134223,
+      "profit_factor": 1.3102662682678954,
+      "timeout_pct": 52.63157894736842,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "240m",
+      "n": 59,
+      "target_first_pct": 5.084745762711864,
+      "mean_net_pct": 0.3807366444891836,
+      "sum_trade_net_pct": 22.463462024861833,
+      "mean_net_r": -0.06962062704454193,
+      "profit_factor": 1.2130025789096683,
+      "timeout_pct": 62.71186440677966,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 898,
+      "target_first_pct": 14.699331848552339,
+      "mean_net_pct": 0.37919623391090673,
+      "sum_trade_net_pct": 340.51821805199427,
+      "mean_net_r": 0.06911406604122526,
+      "profit_factor": 1.2126925690103094,
+      "timeout_pct": 54.67706013363029,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "240m",
+      "n": 954,
+      "target_first_pct": 14.360587002096436,
+      "mean_net_pct": 0.32596946668485044,
+      "sum_trade_net_pct": 310.9748712173473,
+      "mean_net_r": 0.05399069141767875,
+      "profit_factor": 1.1823507616727404,
+      "timeout_pct": 54.297693920335426,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "240m",
+      "n": 1288,
+      "target_first_pct": 11.25776397515528,
+      "mean_net_pct": 0.25244044256905634,
+      "sum_trade_net_pct": 325.1432900289446,
+      "mean_net_r": 0.03710919800197009,
+      "profit_factor": 1.1329921967899423,
+      "timeout_pct": 62.11180124223603,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "240m",
+      "n": 1873,
+      "target_first_pct": 16.33742658836092,
+      "mean_net_pct": 0.23467509656765068,
+      "sum_trade_net_pct": 439.54645587120973,
+      "mean_net_r": 0.028025873316802223,
+      "profit_factor": 1.1323140065067494,
+      "timeout_pct": 46.396155899626265,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 1619,
+      "target_first_pct": 14.453366275478691,
+      "mean_net_pct": 0.1560532423820607,
+      "sum_trade_net_pct": 252.6501994165563,
+      "mean_net_r": 0.03692464606892959,
+      "profit_factor": 1.1105708824062908,
+      "timeout_pct": 54.478072884496605,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 1261,
+      "target_first_pct": 18.160190325138778,
+      "mean_net_pct": 0.13051110272659122,
+      "sum_trade_net_pct": 164.57450053823155,
+      "mean_net_r": 0.00019883328783601147,
+      "profit_factor": 1.0753843626978772,
+      "timeout_pct": 38.144329896907216,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "120m",
+      "n": 1713,
+      "target_first_pct": 13.952130764740222,
+      "mean_net_pct": 0.12988032764193075,
+      "sum_trade_net_pct": 222.48500125062736,
+      "mean_net_r": 0.029270436287436766,
+      "profit_factor": 1.091301631462325,
+      "timeout_pct": 54.5826036193812,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "240m",
+      "n": 308,
+      "target_first_pct": 12.662337662337663,
+      "mean_net_pct": 0.12945201685861435,
+      "sum_trade_net_pct": 39.87122119245322,
+      "mean_net_r": 0.042662691804474524,
+      "profit_factor": 1.0654318133874463,
+      "timeout_pct": 52.922077922077925,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "240m",
+      "n": 1454,
+      "target_first_pct": 17.05639614855571,
+      "mean_net_pct": 0.12439107410298608,
+      "sum_trade_net_pct": 180.86462174574177,
+      "mean_net_r": 0.00014576696350024088,
+      "profit_factor": 1.0701362704131627,
+      "timeout_pct": 40.02751031636864,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "240m",
+      "n": 5664,
+      "target_first_pct": 24.62923728813559,
+      "mean_net_pct": 0.09823584191897476,
+      "sum_trade_net_pct": 556.4078086290731,
+      "mean_net_r": 0.005181499694807494,
+      "profit_factor": 1.0595796673805933,
+      "timeout_pct": 25.070621468926554,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "240m",
+      "n": 616,
+      "target_first_pct": 12.175324675324676,
+      "mean_net_pct": 0.061530062842520584,
+      "sum_trade_net_pct": 37.90251871099268,
+      "mean_net_r": -0.01939165827875259,
+      "profit_factor": 1.0296565635174626,
+      "timeout_pct": 50.324675324675326,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "120m",
+      "n": 2414,
+      "target_first_pct": 12.096106048053024,
+      "mean_net_pct": 0.0589505145193185,
+      "sum_trade_net_pct": 142.30654204963486,
+      "mean_net_r": 0.016333397939632323,
+      "profit_factor": 1.041928197630235,
+      "timeout_pct": 59.817729908864955,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "60m",
+      "n": 4986,
+      "target_first_pct": 10.248696349779383,
+      "mean_net_pct": 0.038245410058864976,
+      "sum_trade_net_pct": 190.69161455350078,
+      "mean_net_r": -0.016183581513005377,
+      "profit_factor": 1.04054138791279,
+      "timeout_pct": 64.5808263136783,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "120m",
+      "n": 3169,
+      "target_first_pct": 15.27295676869675,
+      "mean_net_pct": 0.03027753253619213,
+      "sum_trade_net_pct": 95.94950060719286,
+      "mean_net_r": -0.023120710264112058,
+      "profit_factor": 1.0222272548123743,
+      "timeout_pct": 46.039760176711894,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "120m",
+      "n": 1490,
+      "target_first_pct": 15.234899328859061,
+      "mean_net_pct": 0.025754928759257615,
+      "sum_trade_net_pct": 38.374843851293846,
+      "mean_net_r": -0.015875769904723645,
+      "profit_factor": 1.017134239437381,
+      "timeout_pct": 43.758389261744966,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 2238,
+      "target_first_pct": 11.528150134048257,
+      "mean_net_pct": 0.021382229808736327,
+      "sum_trade_net_pct": 47.8534303119519,
+      "mean_net_r": -0.03461205398635327,
+      "profit_factor": 1.0223392610469346,
+      "timeout_pct": 59.919571045576404,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "60m",
+      "n": 2363,
+      "target_first_pct": 11.341515023275496,
+      "mean_net_pct": 0.0013615809329799362,
+      "sum_trade_net_pct": 3.217415744631589,
+      "mean_net_r": -0.043867730004611465,
+      "profit_factor": 1.001401010566304,
+      "timeout_pct": 59.585272958104106,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "60m",
+      "n": 4238,
+      "target_first_pct": 14.181217555450685,
+      "mean_net_pct": -0.012259324497023634,
+      "sum_trade_net_pct": -51.95501721838616,
+      "mean_net_r": -0.06160998404375443,
+      "profit_factor": 0.9869766030941935,
+      "timeout_pct": 48.72581406323738,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 294,
+      "target_first_pct": 12.244897959183673,
+      "mean_net_pct": -0.023628185665120843,
+      "sum_trade_net_pct": -6.946686585545528,
+      "mean_net_r": 0.024698471528588672,
+      "profit_factor": 0.9878692380179156,
+      "timeout_pct": 52.38095238095238,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 412,
+      "target_first_pct": 12.864077669902912,
+      "mean_net_pct": -0.02531387645440242,
+      "sum_trade_net_pct": -10.429317099213797,
+      "mean_net_r": -0.16830414797665097,
+      "profit_factor": 0.899795452561658,
+      "timeout_pct": 62.13592233009709,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 50,
+      "target_first_pct": 14.0,
+      "mean_net_pct": -0.04476281905144236,
+      "sum_trade_net_pct": -2.238140952572118,
+      "mean_net_r": -0.07129860953032513,
+      "profit_factor": 0.8878088012756861,
+      "timeout_pct": 58.0,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 1908,
+      "target_first_pct": 15.932914046121594,
+      "mean_net_pct": -0.04933570662139765,
+      "sum_trade_net_pct": -94.13252823362672,
+      "mean_net_r": -0.07762115214252592,
+      "profit_factor": 0.9614620756317406,
+      "timeout_pct": 38.102725366876314,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 891,
+      "target_first_pct": 7.631874298540965,
+      "mean_net_pct": -0.05096005657698198,
+      "sum_trade_net_pct": -45.405410410090944,
+      "mean_net_r": -0.14651958262964307,
+      "profit_factor": 0.8460277689341443,
+      "timeout_pct": 74.29854096520764,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "3m",
+      "n": 249,
+      "target_first_pct": 6.42570281124498,
+      "mean_net_pct": -0.05292470145693601,
+      "sum_trade_net_pct": -13.178250662777065,
+      "mean_net_r": -0.18037549969705471,
+      "profit_factor": 0.8153761965068097,
+      "timeout_pct": 75.1004016064257,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "240m",
+      "n": 4179,
+      "target_first_pct": 24.14453218473319,
+      "mean_net_pct": -0.0630604831274249,
+      "sum_trade_net_pct": -263.52975898950865,
+      "mean_net_r": -0.07495847205137102,
+      "profit_factor": 0.9554087974293599,
+      "timeout_pct": 20.8183776022972,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "15m",
+      "n": 13544,
+      "target_first_pct": 16.154754873006496,
+      "mean_net_pct": -0.06926169662330392,
+      "sum_trade_net_pct": -938.0804190660283,
+      "mean_net_r": -0.16402079442462258,
+      "profit_factor": 0.8653399834738691,
+      "timeout_pct": 37.47784997046663,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "3m",
+      "n": 8395,
+      "target_first_pct": 4.729005360333532,
+      "mean_net_pct": -0.07979553317247964,
+      "sum_trade_net_pct": -669.8835009829666,
+      "mean_net_r": -0.16394226653982807,
+      "profit_factor": 0.7169162976287013,
+      "timeout_pct": 81.63192376414533,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "3m",
+      "n": 7901,
+      "target_first_pct": 4.834831034046323,
+      "mean_net_pct": -0.08145119740193014,
+      "sum_trade_net_pct": -643.54591067265,
+      "mean_net_r": -0.16760917911743933,
+      "profit_factor": 0.7033253536187667,
+      "timeout_pct": 81.34413365396786,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 2203,
+      "target_first_pct": 16.74988651838402,
+      "mean_net_pct": -0.08336456144161927,
+      "sum_trade_net_pct": -183.65212885588727,
+      "mean_net_r": -0.10164519341724038,
+      "profit_factor": 0.9100926215422214,
+      "timeout_pct": 36.495687698592825,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 7496,
+      "target_first_pct": 4.362326574172892,
+      "mean_net_pct": -0.08348845130743149,
+      "sum_trade_net_pct": -625.8294310005065,
+      "mean_net_r": -0.16666047770565173,
+      "profit_factor": 0.6959653990618022,
+      "timeout_pct": 82.57737459978655,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 7547,
+      "target_first_pct": 14.548827348615344,
+      "mean_net_pct": -0.0852737432101337,
+      "sum_trade_net_pct": -643.560940006879,
+      "mean_net_r": -0.17027610621171912,
+      "profit_factor": 0.8291796949754509,
+      "timeout_pct": 40.771167351265404,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "15m",
+      "n": 7757,
+      "target_first_pct": 14.37411370375145,
+      "mean_net_pct": -0.086445532286679,
+      "sum_trade_net_pct": -670.5579939477691,
+      "mean_net_r": -0.1702979108576867,
+      "profit_factor": 0.8288037024270716,
+      "timeout_pct": 41.549568132009796,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "120m",
+      "n": 11164,
+      "target_first_pct": 22.536725188104622,
+      "mean_net_pct": -0.08668258653707671,
+      "sum_trade_net_pct": -967.7243960999243,
+      "mean_net_r": -0.06275174168714497,
+      "profit_factor": 0.9328396215088312,
+      "timeout_pct": 26.406305983518454,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "1m",
+      "n": 41039,
+      "target_first_pct": 0.9235117814761569,
+      "mean_net_pct": -0.09276393134885273,
+      "sum_trade_net_pct": -3806.9389786255674,
+      "mean_net_r": -0.1472775022230262,
+      "profit_factor": 0.551676663641506,
+      "timeout_pct": 97.15880016569605,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 7549,
+      "target_first_pct": 1.5366273678632931,
+      "mean_net_pct": -0.09447192955118644,
+      "sum_trade_net_pct": -713.1685961819064,
+      "mean_net_r": -0.1971437975303068,
+      "profit_factor": 0.5170651514028225,
+      "timeout_pct": 94.15816664458869,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "60m",
+      "n": 3734,
+      "target_first_pct": 15.372254954472416,
+      "mean_net_pct": -0.09561363698497023,
+      "sum_trade_net_pct": -357.02132050187885,
+      "mean_net_r": -0.08230782898368652,
+      "profit_factor": 0.8989056282245679,
+      "timeout_pct": 40.09105516871987,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "1m",
+      "n": 10036,
+      "target_first_pct": 3.118772419290554,
+      "mean_net_pct": -0.09604858711616397,
+      "sum_trade_net_pct": -963.9436202978217,
+      "mean_net_r": -0.2311891346778348,
+      "profit_factor": 0.5323947555431666,
+      "timeout_pct": 88.81028298126743,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 2427,
+      "target_first_pct": 7.8697981046559535,
+      "mean_net_pct": -0.09698690211743605,
+      "sum_trade_net_pct": -235.38721143901728,
+      "mean_net_r": -0.34218462768155294,
+      "profit_factor": 0.5679466284156833,
+      "timeout_pct": 72.3114956736712,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "1m",
+      "n": 9309,
+      "target_first_pct": 2.9648727038349985,
+      "mean_net_pct": -0.09719707632372084,
+      "sum_trade_net_pct": -904.8075834975173,
+      "mean_net_r": -0.3066085039733225,
+      "profit_factor": 0.48957541765673995,
+      "timeout_pct": 87.92566333655603,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "5m",
+      "n": 199617,
+      "target_first_pct": 25.097561830906184,
+      "mean_net_pct": -0.09728162532189379,
+      "sum_trade_net_pct": -19419.066201880472,
+      "mean_net_r": -0.8342722043676195,
+      "profit_factor": 0.6005780988796768,
+      "timeout_pct": 18.19584504325784,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 263,
+      "target_first_pct": 5.32319391634981,
+      "mean_net_pct": -0.09765780875067424,
+      "sum_trade_net_pct": -25.684003701427326,
+      "mean_net_r": -0.11717816833196107,
+      "profit_factor": 0.6846460226290756,
+      "timeout_pct": 87.07224334600761,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "10m",
+      "n": 101404,
+      "target_first_pct": 24.67949982249221,
+      "mean_net_pct": -0.09773828573144182,
+      "sum_trade_net_pct": -9911.053126311126,
+      "mean_net_r": -0.5410322017577047,
+      "profit_factor": 0.6959449447266621,
+      "timeout_pct": 19.097865961894993,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "5m",
+      "n": 59901,
+      "target_first_pct": 7.292031852556718,
+      "mean_net_pct": -0.09832544238716488,
+      "sum_trade_net_pct": -5889.792324433563,
+      "mean_net_r": -0.18558294885452564,
+      "profit_factor": 0.6982234316799562,
+      "timeout_pct": 70.56142635348324,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "120m",
+      "n": 2476,
+      "target_first_pct": 15.145395799676898,
+      "mean_net_pct": -0.09849784423553098,
+      "sum_trade_net_pct": -243.88066232717472,
+      "mean_net_r": -0.08029236794531258,
+      "profit_factor": 0.9264072783798326,
+      "timeout_pct": 40.22617124394184,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 21961,
+      "target_first_pct": 15.404580847866672,
+      "mean_net_pct": -0.09851041164224453,
+      "sum_trade_net_pct": -2163.387150075332,
+      "mean_net_r": -0.3337327669467822,
+      "profit_factor": 0.6771929371448053,
+      "timeout_pct": 38.3270342880561,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "5m",
+      "n": 22411,
+      "target_first_pct": 15.264825309000045,
+      "mean_net_pct": -0.09858893762817891,
+      "sum_trade_net_pct": -2209.4766811851177,
+      "mean_net_r": -0.3294164798105377,
+      "profit_factor": 0.6796635811280969,
+      "timeout_pct": 39.003168087100086,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 6965,
+      "target_first_pct": 5.900933237616655,
+      "mean_net_pct": -0.0986042170333147,
+      "sum_trade_net_pct": -686.7783716370369,
+      "mean_net_r": -0.15856961322299387,
+      "profit_factor": 0.7074508998522661,
+      "timeout_pct": 76.2670495333812,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "5m",
+      "n": 38785,
+      "target_first_pct": 17.519659662240556,
+      "mean_net_pct": -0.0987520907629585,
+      "sum_trade_net_pct": -3830.0998402413456,
+      "mean_net_r": -0.3477114114453496,
+      "profit_factor": 0.6858548354467392,
+      "timeout_pct": 33.34020884362511,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "3m",
+      "n": 38787,
+      "target_first_pct": 16.8329594967386,
+      "mean_net_pct": -0.0988372230041493,
+      "sum_trade_net_pct": -3833.5993686619386,
+      "mean_net_r": -0.45904188647909616,
+      "profit_factor": 0.6005317715977478,
+      "timeout_pct": 35.38814551267177,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 38078,
+      "target_first_pct": 17.004569567729398,
+      "mean_net_pct": -0.09889108467844643,
+      "sum_trade_net_pct": -3765.574722385883,
+      "mean_net_r": -0.46431514157816584,
+      "profit_factor": 0.59726818324266,
+      "timeout_pct": 34.64205052786386,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "1m",
+      "n": 302736,
+      "target_first_pct": 5.809021721896306,
+      "mean_net_pct": -0.09893255319906595,
+      "sum_trade_net_pct": -29950.445425272428,
+      "mean_net_r": -0.41086939969163316,
+      "profit_factor": 0.45816102075784926,
+      "timeout_pct": 72.94210136884942,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "3m",
+      "n": 38196,
+      "target_first_pct": 16.96774531364541,
+      "mean_net_pct": -0.09903180383243848,
+      "sum_trade_net_pct": -3782.61877918382,
+      "mean_net_r": -0.4635170479326126,
+      "profit_factor": 0.5974191002925356,
+      "timeout_pct": 34.78636506440465,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "3m",
+      "n": 67308,
+      "target_first_pct": 19.29339751589707,
+      "mean_net_pct": -0.09921755996172817,
+      "sum_trade_net_pct": -6678.135525903999,
+      "mean_net_r": -0.4817745214897144,
+      "profit_factor": 0.6062361321848999,
+      "timeout_pct": 29.717121293159803,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "15m",
+      "n": 8554,
+      "target_first_pct": 14.063595978489596,
+      "mean_net_pct": -0.09935639968104117,
+      "sum_trade_net_pct": -849.8946428716262,
+      "mean_net_r": -0.17828301349554107,
+      "profit_factor": 0.8030667860357261,
+      "timeout_pct": 41.79331306990881,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "5m",
+      "n": 22124,
+      "target_first_pct": 15.336286385825348,
+      "mean_net_pct": -0.09938934248655218,
+      "sum_trade_net_pct": -2198.8898131724804,
+      "mean_net_r": -0.3325754692462715,
+      "profit_factor": 0.6751434463353706,
+      "timeout_pct": 38.59157476044115,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "3m",
+      "n": 40979,
+      "target_first_pct": 3.1137899899948756,
+      "mean_net_pct": -0.09948206508968034,
+      "sum_trade_net_pct": -4076.675545310011,
+      "mean_net_r": -0.14991641210560572,
+      "profit_factor": 0.6701318531934549,
+      "timeout_pct": 86.97869640547597,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "3m",
+      "n": 100437,
+      "target_first_pct": 6.636996326055139,
+      "mean_net_pct": -0.09952343839561613,
+      "sum_trade_net_pct": -9995.835582140497,
+      "mean_net_r": -0.2417632199295997,
+      "profit_factor": 0.6239388659284983,
+      "timeout_pct": 71.6528769278254,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "3m",
+      "n": 328925,
+      "target_first_pct": 25.11180360264498,
+      "mean_net_pct": -0.09986541653607695,
+      "sum_trade_net_pct": -32848.23213412911,
+      "mean_net_r": -1.1465722318619134,
+      "profit_factor": 0.5137036038010699,
+      "timeout_pct": 17.47237212130425,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 302,
+      "target_first_pct": 8.609271523178808,
+      "mean_net_pct": -0.10016114312794025,
+      "sum_trade_net_pct": -30.248665224637953,
+      "mean_net_r": -0.11938752948766779,
+      "profit_factor": 0.8482862739701624,
+      "timeout_pct": 67.21854304635761,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "1m",
+      "n": 950881,
+      "target_first_pct": 25.123227827667183,
+      "mean_net_pct": -0.10018292642867177,
+      "sum_trade_net_pct": -95262.04126542184,
+      "mean_net_r": -2.1950659665247603,
+      "profit_factor": 0.3313080865069328,
+      "timeout_pct": 16.429921304558615,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "30m",
+      "n": 3893,
+      "target_first_pct": 16.028769586437196,
+      "mean_net_pct": -0.10041590091255688,
+      "sum_trade_net_pct": -390.9191022525839,
+      "mean_net_r": -0.10823991719550816,
+      "profit_factor": 0.8584389095637652,
+      "timeout_pct": 40.662727973285385,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "1m",
+      "n": 217169,
+      "target_first_pct": 20.96754140784366,
+      "mean_net_pct": -0.10090838518209332,
+      "sum_trade_net_pct": -21914.173101610024,
+      "mean_net_r": -1.0488226222832926,
+      "profit_factor": 0.38774158941193715,
+      "timeout_pct": 25.566264061629422,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "15m",
+      "n": 67957,
+      "target_first_pct": 24.207955030386863,
+      "mean_net_pct": -0.10114684978385903,
+      "sum_trade_net_pct": -6873.636470761709,
+      "mean_net_r": -0.44043470943708424,
+      "profit_factor": 0.7325173642680188,
+      "timeout_pct": 19.668319672734228,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "1m",
+      "n": 122888,
+      "target_first_pct": 18.54696959833344,
+      "mean_net_pct": -0.10172666096385054,
+      "sum_trade_net_pct": -12500.985912525664,
+      "mean_net_r": -0.9285245307887342,
+      "profit_factor": 0.3881635895499824,
+      "timeout_pct": 30.857366056897337,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 120603,
+      "target_first_pct": 18.760727345090917,
+      "mean_net_pct": -0.10176504778888826,
+      "sum_trade_net_pct": -12273.17005848329,
+      "mean_net_r": -0.9375644252985175,
+      "profit_factor": 0.3848539139478679,
+      "timeout_pct": 30.02661625332703,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "1m",
+      "n": 120821,
+      "target_first_pct": 18.73432598637654,
+      "mean_net_pct": -0.10178982544323077,
+      "sum_trade_net_pct": -12298.348499876585,
+      "mean_net_r": -0.9359255906299638,
+      "profit_factor": 0.3857058364232539,
+      "timeout_pct": 30.13880037410715,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "5m",
+      "n": 7215,
+      "target_first_pct": 6.042966042966043,
+      "mean_net_pct": -0.10208971746430447,
+      "sum_trade_net_pct": -736.5773115049567,
+      "mean_net_r": -0.16111277194675724,
+      "profit_factor": 0.6995932405791733,
+      "timeout_pct": 75.7033957033957,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "5m",
+      "n": 7621,
+      "target_first_pct": 6.075318199711324,
+      "mean_net_pct": -0.10266908256844862,
+      "sum_trade_net_pct": -782.4410782541469,
+      "mean_net_r": -0.15966811899322705,
+      "profit_factor": 0.7041914625028558,
+      "timeout_pct": 75.64624065083322,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "30m",
+      "n": 6913,
+      "target_first_pct": 16.707652249385216,
+      "mean_net_pct": -0.10268507391045119,
+      "sum_trade_net_pct": -709.861915942949,
+      "mean_net_r": -0.10913990303108306,
+      "profit_factor": 0.8577570039111875,
+      "timeout_pct": 37.87067843193982,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 3781,
+      "target_first_pct": 16.23909018778101,
+      "mean_net_pct": -0.1031732676293466,
+      "sum_trade_net_pct": -390.0981249065595,
+      "mean_net_r": -0.10914245022051827,
+      "profit_factor": 0.8533651303835864,
+      "timeout_pct": 39.830732610420526,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 388,
+      "target_first_pct": 6.958762886597938,
+      "mean_net_pct": -0.10336952549637074,
+      "sum_trade_net_pct": -40.10737589259185,
+      "mean_net_r": -0.136069255590304,
+      "profit_factor": 0.8244491025930588,
+      "timeout_pct": 70.10309278350516,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "10m",
+      "n": 20424,
+      "target_first_pct": 16.69114766940854,
+      "mean_net_pct": -0.10473421583698715,
+      "sum_trade_net_pct": -2139.0916242546255,
+      "mean_net_r": -0.22851878467539266,
+      "profit_factor": 0.7623481355122764,
+      "timeout_pct": 34.90011750881316,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 582,
+      "target_first_pct": 8.24742268041237,
+      "mean_net_pct": -0.10514143370620997,
+      "sum_trade_net_pct": -61.1923144170142,
+      "mean_net_r": -0.14439854234776403,
+      "profit_factor": 0.7624385812413963,
+      "timeout_pct": 70.79037800687286,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 11345,
+      "target_first_pct": 15.107977082415161,
+      "mean_net_pct": -0.10595278652113337,
+      "sum_trade_net_pct": -1202.034363082258,
+      "mean_net_r": -0.23015169851457634,
+      "profit_factor": 0.7533640390911477,
+      "timeout_pct": 38.334067871308946,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 71,
+      "target_first_pct": 2.816901408450704,
+      "mean_net_pct": -0.10686040937705471,
+      "sum_trade_net_pct": -7.5870890657708845,
+      "mean_net_r": -0.26966826698351337,
+      "profit_factor": 0.4693757396375012,
+      "timeout_pct": 84.50704225352112,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "10m",
+      "n": 11621,
+      "target_first_pct": 14.904053007486446,
+      "mean_net_pct": -0.10689187968587947,
+      "sum_trade_net_pct": -1242.1905338296053,
+      "mean_net_r": -0.22810082226415673,
+      "profit_factor": 0.7538236311433266,
+      "timeout_pct": 39.118836588933824,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "1m",
+      "n": 690,
+      "target_first_pct": 5.942028985507246,
+      "mean_net_pct": -0.1069839676463913,
+      "sum_trade_net_pct": -73.81893767601,
+      "mean_net_r": -0.45357488657903944,
+      "profit_factor": 0.44606118444390214,
+      "timeout_pct": 69.71014492753623,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "60m",
+      "n": 1837,
+      "target_first_pct": 13.71801850843767,
+      "mean_net_pct": -0.10866637188227656,
+      "sum_trade_net_pct": -199.62012514774204,
+      "mean_net_r": -0.05874581772451759,
+      "profit_factor": 0.8893456388890757,
+      "timeout_pct": 45.2367991290147,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "10m",
+      "n": 11869,
+      "target_first_pct": 14.870671497177522,
+      "mean_net_pct": -0.10909438577289653,
+      "sum_trade_net_pct": -1294.841264738509,
+      "mean_net_r": -0.22873459465469084,
+      "profit_factor": 0.7465908709582322,
+      "timeout_pct": 39.143988541578906,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "15m",
+      "n": 40473,
+      "target_first_pct": 11.80293034862748,
+      "mean_net_pct": -0.10939472541469444,
+      "sum_trade_net_pct": -4427.532721708928,
+      "mean_net_r": -0.1447200490470501,
+      "profit_factor": 0.7967834491007099,
+      "timeout_pct": 54.47335260544067,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "30m",
+      "n": 37525,
+      "target_first_pct": 18.459693537641574,
+      "mean_net_pct": -0.11005968335788122,
+      "sum_trade_net_pct": -4129.9896180044925,
+      "mean_net_r": -0.1350655438773379,
+      "profit_factor": 0.8411827238794931,
+      "timeout_pct": 35.94403730846103,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "1m",
+      "n": 1749,
+      "target_first_pct": 9.262435677530018,
+      "mean_net_pct": -0.11029874891475697,
+      "sum_trade_net_pct": -192.91251185190993,
+      "mean_net_r": -0.7795039926384695,
+      "profit_factor": 0.3443008970519645,
+      "timeout_pct": 60.891938250428815,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 157,
+      "target_first_pct": 7.006369426751593,
+      "mean_net_pct": -0.11123127837552238,
+      "sum_trade_net_pct": -17.463310704957014,
+      "mean_net_r": -0.09850339459443816,
+      "profit_factor": 0.8724590578229383,
+      "timeout_pct": 71.3375796178344,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "30m",
+      "n": 34312,
+      "target_first_pct": 23.991606435066448,
+      "mean_net_pct": -0.1116903811456266,
+      "sum_trade_net_pct": -3832.32035786874,
+      "mean_net_r": -0.28793255987846356,
+      "profit_factor": 0.7878639538235158,
+      "timeout_pct": 20.080438330613198,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "5m",
+      "n": 40929,
+      "target_first_pct": 5.189474455764861,
+      "mean_net_pct": -0.11182805241952079,
+      "sum_trade_net_pct": -4577.010357478566,
+      "mean_net_r": -0.15040477690783263,
+      "profit_factor": 0.6950032045832168,
+      "timeout_pct": 78.19883212392192,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "120m",
+      "n": 8391,
+      "target_first_pct": 23.406030270527946,
+      "mean_net_pct": -0.11367195346093849,
+      "sum_trade_net_pct": -953.8213614907348,
+      "mean_net_r": -0.1525030943400861,
+      "profit_factor": 0.8876852426936661,
+      "timeout_pct": 20.438565129305207,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "10m",
+      "n": 40747,
+      "target_first_pct": 9.073060593417921,
+      "mean_net_pct": -0.11370003799146502,
+      "sum_trade_net_pct": -4632.935448038225,
+      "mean_net_r": -0.14782852381634937,
+      "profit_factor": 0.7575860534180849,
+      "timeout_pct": 63.734753478783716,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 1778,
+      "target_first_pct": 13.835770528683915,
+      "mean_net_pct": -0.11623020470891636,
+      "sum_trade_net_pct": -206.6573039724533,
+      "mean_net_r": -0.05844831231552081,
+      "profit_factor": 0.8805902426730831,
+      "timeout_pct": 44.76940382452194,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "10m",
+      "n": 29771,
+      "target_first_pct": 8.525074737160324,
+      "mean_net_pct": -0.1165119521287388,
+      "sum_trade_net_pct": -3468.677326824683,
+      "mean_net_r": -0.14174527624523492,
+      "profit_factor": 0.7422552563400797,
+      "timeout_pct": 66.58829061838702,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "30m",
+      "n": 10204,
+      "target_first_pct": 9.653077224617798,
+      "mean_net_pct": -0.12284326699763415,
+      "sum_trade_net_pct": -1253.492696443859,
+      "mean_net_r": -0.0720980084377038,
+      "profit_factor": 0.8350897074844928,
+      "timeout_pct": 63.98471187769502,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session"
+      ],
+      "k": 1,
+      "timeframe": "60m",
+      "n": 19891,
+      "target_first_pct": 19.858227338997537,
+      "mean_net_pct": -0.12356954171631479,
+      "sum_trade_net_pct": -2457.9217542792176,
+      "mean_net_r": -0.09907411090641363,
+      "profit_factor": 0.8704752967887116,
+      "timeout_pct": 32.180383087828666,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "30m",
+      "n": 5812,
+      "target_first_pct": 15.43358568479009,
+      "mean_net_pct": -0.12460575827040737,
+      "sum_trade_net_pct": -724.2086670676076,
+      "mean_net_r": -0.1253865411976429,
+      "profit_factor": 0.8218042850141958,
+      "timeout_pct": 40.51961459050241,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "5m",
+      "n": 184,
+      "target_first_pct": 5.434782608695652,
+      "mean_net_pct": -0.12486340748145137,
+      "sum_trade_net_pct": -22.97486697658705,
+      "mean_net_r": -0.17129064703266808,
+      "profit_factor": 0.6829242713297313,
+      "timeout_pct": 76.6304347826087,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout"
+      ],
+      "k": 1,
+      "timeframe": "15m",
+      "n": 20340,
+      "target_first_pct": 8.933136676499508,
+      "mean_net_pct": -0.12822936709094004,
+      "sum_trade_net_pct": -2608.1853266297203,
+      "mean_net_r": -0.11892238483381293,
+      "profit_factor": 0.7672594171102046,
+      "timeout_pct": 65.18190757128811,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade"
+      ],
+      "k": 1,
+      "timeframe": "60m",
+      "n": 17195,
+      "target_first_pct": 23.7452747891829,
+      "mean_net_pct": -0.12975497322002918,
+      "sum_trade_net_pct": -2231.136764518402,
+      "mean_net_r": -0.19604975148499149,
+      "profit_factor": 0.826001577240774,
+      "timeout_pct": 20.27333527188136,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 154,
+      "target_first_pct": 5.8441558441558445,
+      "mean_net_pct": -0.1377306729984699,
+      "sum_trade_net_pct": -21.21052364176436,
+      "mean_net_r": -0.13420616518023712,
+      "profit_factor": 0.6460422401916948,
+      "timeout_pct": 83.76623376623377,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 82,
+      "target_first_pct": 6.097560975609756,
+      "mean_net_pct": -0.1387110243132141,
+      "sum_trade_net_pct": -11.374303993683556,
+      "mean_net_r": -0.1272421964746906,
+      "profit_factor": 0.8757786725207987,
+      "timeout_pct": 65.85365853658537,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 742,
+      "target_first_pct": 14.150943396226415,
+      "mean_net_pct": -0.14325117429855047,
+      "sum_trade_net_pct": -106.29237132952446,
+      "mean_net_r": -0.0346013331700542,
+      "profit_factor": 0.9003681397426659,
+      "timeout_pct": 46.091644204851754,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "volume_climax_exhaustion"
+      ],
+      "k": 1,
+      "timeframe": "60m",
+      "n": 3385,
+      "target_first_pct": 14.564254062038405,
+      "mean_net_pct": -0.15420509897930196,
+      "sum_trade_net_pct": -521.9842600449372,
+      "mean_net_r": -0.06875706188266825,
+      "profit_factor": 0.8516150655556111,
+      "timeout_pct": 42.215657311669126,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 97,
+      "target_first_pct": 7.216494845360825,
+      "mean_net_pct": -0.15527183189528276,
+      "sum_trade_net_pct": -15.061367693842428,
+      "mean_net_r": -0.12044155618435042,
+      "profit_factor": 0.7965504966076472,
+      "timeout_pct": 65.97938144329896,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 253,
+      "target_first_pct": 9.486166007905139,
+      "mean_net_pct": -0.1587209724334223,
+      "sum_trade_net_pct": -40.15640602565585,
+      "mean_net_r": -0.21718872370204054,
+      "profit_factor": 0.5927067451246247,
+      "timeout_pct": 61.26482213438735,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "10m",
+      "n": 6011,
+      "target_first_pct": 7.319913491931459,
+      "mean_net_pct": -0.16060411660422258,
+      "sum_trade_net_pct": -965.3913449079819,
+      "mean_net_r": -0.1754174480575642,
+      "profit_factor": 0.6656123806244548,
+      "timeout_pct": 67.72583596739311,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 5153,
+      "target_first_pct": 6.986221618474675,
+      "mean_net_pct": -0.16642647014271986,
+      "sum_trade_net_pct": -857.5956006454354,
+      "mean_net_r": -0.1767581155615857,
+      "profit_factor": 0.6508461999292757,
+      "timeout_pct": 69.00834465359985,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 572,
+      "target_first_pct": 9.79020979020979,
+      "mean_net_pct": -0.16705685124792655,
+      "sum_trade_net_pct": -95.55651891381399,
+      "mean_net_r": -0.1985738115174954,
+      "profit_factor": 0.6342873668693723,
+      "timeout_pct": 56.46853146853147,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "10m",
+      "n": 5351,
+      "target_first_pct": 7.082788263875911,
+      "mean_net_pct": -0.16837209760133456,
+      "sum_trade_net_pct": -900.9590942647412,
+      "mean_net_r": -0.1811658967186199,
+      "profit_factor": 0.6489711747824372,
+      "timeout_pct": 68.30498972154737,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 1131,
+      "target_first_pct": 10.698496905393457,
+      "mean_net_pct": -0.17252823996923444,
+      "sum_trade_net_pct": -195.12943940520415,
+      "mean_net_r": -0.21339101957569936,
+      "profit_factor": 0.6708584269415476,
+      "timeout_pct": 50.57471264367816,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "15m",
+      "n": 5635,
+      "target_first_pct": 8.305235137533273,
+      "mean_net_pct": -0.17503703434780657,
+      "sum_trade_net_pct": -986.33368854989,
+      "mean_net_r": -0.1675438060284297,
+      "profit_factor": 0.6962809904766191,
+      "timeout_pct": 62.732919254658384,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 2324,
+      "target_first_pct": 13.812392426850257,
+      "mean_net_pct": -0.17903370345801528,
+      "sum_trade_net_pct": -416.07432683642753,
+      "mean_net_r": -0.16390499520804858,
+      "profit_factor": 0.7434963378852453,
+      "timeout_pct": 41.30808950086058,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 3,
+      "timeframe": "30m",
+      "n": 5159,
+      "target_first_pct": 12.095367319247917,
+      "mean_net_pct": -0.18076825823937442,
+      "sum_trade_net_pct": -932.5834442569327,
+      "mean_net_r": -0.14138515552256378,
+      "profit_factor": 0.7553342006769627,
+      "timeout_pct": 51.172707889125796,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "120m",
+      "n": 764,
+      "target_first_pct": 14.00523560209424,
+      "mean_net_pct": -0.1818134717958003,
+      "sum_trade_net_pct": -138.90549245199142,
+      "mean_net_r": -0.04596967084595718,
+      "profit_factor": 0.8746543712655621,
+      "timeout_pct": 45.81151832460733,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 4312,
+      "target_first_pct": 7.676252319109462,
+      "mean_net_pct": -0.18526118177650278,
+      "sum_trade_net_pct": -798.84621582028,
+      "mean_net_r": -0.1579478193911339,
+      "profit_factor": 0.6841240087883008,
+      "timeout_pct": 65.95547309833024,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "15m",
+      "n": 4494,
+      "target_first_pct": 7.788161993769471,
+      "mean_net_pct": -0.18701183524635367,
+      "sum_trade_net_pct": -840.4311875971134,
+      "mean_net_r": -0.15770945297301453,
+      "profit_factor": 0.6812784790979336,
+      "timeout_pct": 65.55407209612817,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 2783,
+      "target_first_pct": 10.851598993891484,
+      "mean_net_pct": -0.1905989866883761,
+      "sum_trade_net_pct": -530.4369799537507,
+      "mean_net_r": -0.12350810418620982,
+      "profit_factor": 0.7510727688206175,
+      "timeout_pct": 58.64175350341358,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 3,
+      "timeframe": "30m",
+      "n": 2924,
+      "target_first_pct": 10.875512995896033,
+      "mean_net_pct": -0.1923211707319428,
+      "sum_trade_net_pct": -562.3471032202008,
+      "mean_net_r": -0.12499313405212266,
+      "profit_factor": 0.7501112879914067,
+      "timeout_pct": 58.378932968536255,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 190,
+      "target_first_pct": 6.315789473684211,
+      "mean_net_pct": -0.2008463833639406,
+      "sum_trade_net_pct": -38.16081283914871,
+      "mean_net_r": -0.22708875490496236,
+      "profit_factor": 0.5105316263601144,
+      "timeout_pct": 70.0,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "120m",
+      "n": 83,
+      "target_first_pct": 6.024096385542169,
+      "mean_net_pct": -0.21865599246893094,
+      "sum_trade_net_pct": -18.14844737492127,
+      "mean_net_r": -0.07823973274627194,
+      "profit_factor": 0.8445711331623315,
+      "timeout_pct": 65.06024096385542,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "5m",
+      "n": 42,
+      "target_first_pct": 2.380952380952381,
+      "mean_net_pct": -0.22477832927025151,
+      "sum_trade_net_pct": -9.440689829350564,
+      "mean_net_r": -0.19804438850234285,
+      "profit_factor": 0.32787965085070353,
+      "timeout_pct": 80.95238095238095,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 80,
+      "target_first_pct": 13.75,
+      "mean_net_pct": -0.22817060562142202,
+      "sum_trade_net_pct": -18.25364844971376,
+      "mean_net_r": -0.1247291020559087,
+      "profit_factor": 0.629648739884865,
+      "timeout_pct": 55.0,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 73,
+      "target_first_pct": 9.58904109589041,
+      "mean_net_pct": -0.23819419936041306,
+      "sum_trade_net_pct": -17.388176553310153,
+      "mean_net_r": -0.08190761785201234,
+      "profit_factor": 0.8653624986745463,
+      "timeout_pct": 53.42465753424658,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "15m",
+      "n": 162,
+      "target_first_pct": 8.024691358024691,
+      "mean_net_pct": -0.2449398089036083,
+      "sum_trade_net_pct": -39.680249042384546,
+      "mean_net_r": -0.20068186466925297,
+      "profit_factor": 0.5892329066264741,
+      "timeout_pct": 59.876543209876544,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 58,
+      "target_first_pct": 8.620689655172415,
+      "mean_net_pct": -0.27384819414804196,
+      "sum_trade_net_pct": -15.883195260586433,
+      "mean_net_r": -0.19253490268414356,
+      "profit_factor": 0.7721651468812238,
+      "timeout_pct": 56.89655172413793,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "10m",
+      "n": 191,
+      "target_first_pct": 6.806282722513089,
+      "mean_net_pct": -0.2761707728923745,
+      "sum_trade_net_pct": -52.74861762244353,
+      "mean_net_r": -0.33778210878789644,
+      "profit_factor": 0.5162342632178767,
+      "timeout_pct": 53.92670157068063,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "60m",
+      "n": 117,
+      "target_first_pct": 9.401709401709402,
+      "mean_net_pct": -0.2946271063002359,
+      "sum_trade_net_pct": -34.4713714371276,
+      "mean_net_r": -0.13208150355263065,
+      "profit_factor": 0.7447936299229981,
+      "timeout_pct": 57.26495726495727,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "15m",
+      "n": 162,
+      "target_first_pct": 6.790123456790123,
+      "mean_net_pct": -0.29774102782706974,
+      "sum_trade_net_pct": -48.2340465079853,
+      "mean_net_r": -0.1993496136661485,
+      "profit_factor": 0.5160498459078817,
+      "timeout_pct": 66.66666666666667,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "10m",
+      "n": 157,
+      "target_first_pct": 4.45859872611465,
+      "mean_net_pct": -0.3086970517177455,
+      "sum_trade_net_pct": -48.46543711968604,
+      "mean_net_r": -0.279780434136726,
+      "profit_factor": 0.49908201208162883,
+      "timeout_pct": 66.24203821656052,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "3m",
+      "n": 43,
+      "target_first_pct": 4.651162790697675,
+      "mean_net_pct": -0.35007773024589006,
+      "sum_trade_net_pct": -15.053342400573273,
+      "mean_net_r": -0.46682135317017626,
+      "profit_factor": 0.23596196593570407,
+      "timeout_pct": 60.46511627906977,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "60m",
+      "n": 109,
+      "target_first_pct": 5.504587155963303,
+      "mean_net_pct": -0.4359065186319784,
+      "sum_trade_net_pct": -47.51381053088564,
+      "mean_net_r": -0.13555300860134487,
+      "profit_factor": 0.6590840913250018,
+      "timeout_pct": 67.88990825688073,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 113,
+      "target_first_pct": 9.734513274336283,
+      "mean_net_pct": -0.4398390080653684,
+      "sum_trade_net_pct": -49.70180791138663,
+      "mean_net_r": -0.1130925597463254,
+      "profit_factor": 0.7327554267149193,
+      "timeout_pct": 49.557522123893804,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "vwap_band_fade"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 41,
+      "target_first_pct": 9.75609756097561,
+      "mean_net_pct": -0.4646375660195185,
+      "sum_trade_net_pct": -19.050140206800258,
+      "mean_net_r": -0.20523146893683133,
+      "profit_factor": 0.6000697801604613,
+      "timeout_pct": 56.09756097560975,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "orb_funding_session",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "30m",
+      "n": 87,
+      "target_first_pct": 10.344827586206897,
+      "mean_net_pct": -0.4764996474908283,
+      "sum_trade_net_pct": -41.45546933170206,
+      "mean_net_r": -0.30054373417640484,
+      "profit_factor": 0.48190319861267605,
+      "timeout_pct": 43.67816091954023,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "orb_funding_session",
+        "vwap_band_fade",
+        "volume_climax_exhaustion"
+      ],
+      "k": 4,
+      "timeframe": "30m",
+      "n": 122,
+      "target_first_pct": 6.557377049180328,
+      "mean_net_pct": -0.5777535920303225,
+      "sum_trade_net_pct": -70.48593822769935,
+      "mean_net_r": -0.2213463066178591,
+      "profit_factor": 0.4247601190449941,
+      "timeout_pct": 63.114754098360656,
+      "symbols": 6
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "240m",
+      "n": 11,
+      "target_first_pct": 9.090909090909092,
+      "mean_net_pct": -0.7303629411738558,
+      "sum_trade_net_pct": -8.033992352912414,
+      "mean_net_r": -0.24579861348666332,
+      "profit_factor": 0.6750810677318752,
+      "timeout_pct": 45.45454545454545,
+      "symbols": 4
+    },
+    {
+      "subset": [
+        "bb_squeeze_breakout",
+        "volume_climax_exhaustion"
+      ],
+      "k": 2,
+      "timeframe": "120m",
+      "n": 37,
+      "target_first_pct": 5.405405405405405,
+      "mean_net_pct": -0.7478326145611457,
+      "sum_trade_net_pct": -27.66980673876239,
+      "mean_net_r": -0.2530408453799491,
+      "profit_factor": 0.49911561970410623,
+      "timeout_pct": 56.75675675675676,
+      "symbols": 6
+    }
+  ]
+}

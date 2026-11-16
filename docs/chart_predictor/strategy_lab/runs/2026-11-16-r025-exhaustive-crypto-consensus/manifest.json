@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-11-16-r025-exhaustive-crypto-consensus",
+  "status": "EXPLORATORY_DEVELOPMENT_ONLY",
+  "run_type": "retrospective_exhaustive_subset_replay",
+  "candidate_atoms": [
+    "bb_squeeze_breakout",
+    "orb_funding_session",
+    "vwap_band_fade",
+    "volume_climax_exhaustion"
+  ],
+  "candidate_atom_count": 4,
+  "nonempty_subsets": 15,
+  "size_counts": {"1": 4, "2": 6, "3": 4, "4": 1},
+  "timeframes": ["1m", "3m", "5m", "10m", "15m", "30m", "60m", "120m", "240m"],
+  "result_cells": 135,
+  "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+  "data_source": "local Binance Vision-derived vision_dev_repaired.sqlite; read-only",
+  "data_eligibility": "six-current-symbol survivor panel; prior research exposure; no PIT contract universe or funding cashflows; not validation",
+  "entry": "next timeframe open",
+  "combination": "same-closed-bar strict majority of every member in a subset; tie/abstention is flat",
+  "combined_stop": "median stop from agreeing votes",
+  "target": "2R",
+  "max_holding_bars": 12,
+  "same_minute_stop_target_tie": "stop first",
+  "fee_per_side": 0.0005,
+  "cost_omissions": ["funding", "spread", "slippage", "market impact", "liquidation"],
+  "promotion_eligible": false,
+  "metrics": "see results.json",
+  "script": "scripts/research/crypto_exhaustive_consensus.py",
+  "tests": "chart_predictor/tests/test_crypto_exhaustive_consensus.py"
+}
