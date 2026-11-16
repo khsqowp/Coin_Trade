@@ -54,6 +54,15 @@ CREATE TABLE IF NOT EXISTS archive_manifest (
   retrieved_utc TEXT NOT NULL,
   PRIMARY KEY (symbol, month)
 );
+CREATE TABLE IF NOT EXISTS rejected_archives (
+  symbol TEXT NOT NULL,
+  month TEXT NOT NULL,
+  sha256 TEXT NOT NULL,
+  archive_bytes INTEGER NOT NULL,
+  reason TEXT NOT NULL,
+  rejected_utc TEXT NOT NULL,
+  PRIMARY KEY (symbol, month)
+);
 """
 
 
@@ -65,6 +74,17 @@ class ArchiveMonth:
     rows: tuple[tuple[object, ...], ...]
     archive_bytes: int
     missing_minutes: int
+
+
+class ArchiveValidationError(ValueError):
+    def __init__(self, symbol: str, month: str, digest: str,
+                 archive_bytes: int, reason: str):
+        super().__init__(reason)
+        self.symbol = symbol
+        self.month = month
+        self.sha256 = digest
+        self.archive_bytes = archive_bytes
+        self.reason = reason
 
 
 def parse_month(value: str) -> date:
@@ -200,7 +220,13 @@ def fetch_month(symbol: str, month: date, sleep=time.sleep) -> ArchiveMonth | No
     actual_digest = sha256_hex(archive)
     if actual_digest != expected_digest:
         raise RuntimeError(f"SHA-256 mismatch for {name}")
-    return parse_archive(symbol, month, archive)
+    try:
+        return parse_archive(symbol, month, archive)
+    except (ValueError, zipfile.BadZipFile, UnicodeDecodeError, csv.Error) as exc:
+        raise ArchiveValidationError(
+            symbol, month.strftime("%Y-%m"), actual_digest, len(archive),
+            f"{type(exc).__name__}: {exc}",
+        ) from exc
 
 
 def open_database(path: Path) -> sqlite3.Connection:
@@ -256,7 +282,7 @@ def backfill(
     sleep=time.sleep,
     progress=print,
 ) -> dict[str, object]:
-    completed = missing = skipped = 0
+    completed = missing = skipped = rejected = skipped_rejected = 0
     for symbol in symbols:
         if not symbol.isalnum() or symbol.upper() != symbol:
             raise ValueError(f"invalid symbol syntax: {symbol!r}")
@@ -269,7 +295,27 @@ def backfill(
             if prior:
                 skipped += 1
                 continue
-            archive_month = fetch_month(symbol, month, sleep=sleep)
+            prior_rejection = db.execute(
+                "SELECT 1 FROM rejected_archives WHERE symbol=? AND month=?",
+                (symbol, month_text),
+            ).fetchone()
+            if prior_rejection:
+                skipped_rejected += 1
+                continue
+            try:
+                archive_month = fetch_month(symbol, month, sleep=sleep)
+            except ArchiveValidationError as exc:
+                with db:
+                    db.execute(
+                        "INSERT INTO rejected_archives VALUES(?,?,?,?,?,?)",
+                        (exc.symbol, exc.month, exc.sha256, exc.archive_bytes,
+                         exc.reason, datetime.now(timezone.utc).isoformat()),
+                    )
+                rejected += 1
+                progress(
+                    f"rejected {exc.symbol} {exc.month} sha256={exc.sha256} reason={exc.reason}"
+                )
+                continue
             if archive_month is None:
                 missing += 1
                 progress(f"missing {symbol} {month_text}")
@@ -290,7 +336,10 @@ def backfill(
         ).fetchone()[0]
         totals.append((symbol, count, first_ms, last_ms, gaps))
     return {"completed_months": completed, "missing_months": missing,
-            "skipped_existing_months": skipped, "database_rows_by_symbol": totals,
+            "skipped_existing_months": skipped,
+            "rejected_months": rejected,
+            "skipped_previously_rejected_months": skipped_rejected,
+            "database_rows_by_symbol": totals,
             "note": "missing minutes are reported, never interpolated; no-trade intervals and archive gaps require external classification"}
 
 

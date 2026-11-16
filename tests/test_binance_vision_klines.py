@@ -139,6 +139,60 @@ def test_fetch_checks_archive_hash_and_paces_each_request():
     assert sleeps == [vision.MIN_REQUEST_INTERVAL_SECONDS] * 2
 
 
+def test_fetch_wraps_checksum_verified_row_validation_failure():
+    bad_source = io.StringIO(newline="")
+    csv.writer(bad_source).writerow([
+        int(datetime(2025, 1, 1, tzinfo=timezone.utc).timestamp() * 1000),
+        "100", "102", "99", "101", "3", 1735689659999,
+        "301", "5", "4", "150", "0",
+    ])
+    bad_zip = io.BytesIO()
+    with zipfile.ZipFile(bad_zip, "w") as zipped:
+        zipped.writestr("BTCUSDT-1m-2025-01.csv", bad_source.getvalue())
+    bad_payload = bad_zip.getvalue()
+    bad_digest = hashlib.sha256(bad_payload).hexdigest()
+    bad_sidecar = f"{bad_digest}  BTCUSDT-1m-2025-01.zip\n".encode()
+
+    with patch.object(vision, "request_bytes", side_effect=[bad_sidecar, bad_payload]):
+        with pytest.raises(vision.ArchiveValidationError) as caught:
+            vision.fetch_month("BTCUSDT", date(2025, 1, 1), sleep=lambda _: None)
+    assert caught.value.symbol == "BTCUSDT"
+    assert caught.value.month == "2025-01"
+    assert caught.value.sha256 == bad_digest
+    assert "exceeds total" in caught.value.reason
+
+
+def test_backfill_quarantines_invalid_archive_once_and_never_inserts_it():
+    db = sqlite3.connect(":memory:")
+    db.executescript(vision.SCHEMA)
+    rejected = vision.ArchiveValidationError(
+        "BTCUSDT", "2025-01", "a" * 64, 123, "ValueError: bad taker volume"
+    )
+    output = []
+    with patch.object(vision, "fetch_month", side_effect=rejected) as fetch:
+        first = vision.backfill(
+            db, ("BTCUSDT",), [date(2025, 1, 1)], sleep=lambda _: None,
+            progress=output.append,
+        )
+        assert fetch.call_count == 1
+        second = vision.backfill(
+            db, ("BTCUSDT",), [date(2025, 1, 1)], sleep=lambda _: None,
+            progress=output.append,
+        )
+        assert fetch.call_count == 1
+
+    assert first["rejected_months"] == 1
+    assert first["skipped_previously_rejected_months"] == 0
+    assert second["rejected_months"] == 0
+    assert second["skipped_previously_rejected_months"] == 1
+    assert db.execute("SELECT COUNT(*) FROM candles").fetchone()[0] == 0
+    assert db.execute(
+        "SELECT symbol,month,sha256,reason FROM rejected_archives"
+    ).fetchone() == ("BTCUSDT", "2025-01", "a" * 64, "ValueError: bad taker volume")
+    assert any(line.startswith("rejected BTCUSDT 2025-01") for line in output)
+    db.close()
+
+
 def test_insert_is_idempotent_and_writes_manifest():
     db = sqlite3.connect(":memory:")
     db.executescript(vision.SCHEMA)
