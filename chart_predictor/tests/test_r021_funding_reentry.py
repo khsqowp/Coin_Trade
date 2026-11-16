@@ -45,6 +45,27 @@ def test_short_breakout_mirrors_long_logic():
     assert first_reentry_breakout(high, low, close, atr, event_index=2, side=-1) == 7
 
 
+def test_earliest_candidate_skips_partial_post_event_bar_but_keeps_prior_breakout_context():
+    high = np.array([101, 102, 101, 100, 101, 102, 103, 106], dtype=float)
+    low = np.array([99, 100, 99, 97, 98, 99, 100, 101], dtype=float)
+    close = np.array([100, 101, 100, 98, 100, 101, 102, 105], dtype=float)
+    atr = np.ones_like(close)
+    assert first_reentry_breakout(high, low, close, atr, 2, 1, earliest_index=3) == 7
+
+
+def test_future_bars_after_known_trigger_cannot_change_signal():
+    high = np.array([101, 102, 101, 100, 101, 102, 103, 106, 107, 108], dtype=float)
+    low = np.array([99, 100, 99, 97, 98, 99, 100, 101, 102, 103], dtype=float)
+    close = np.array([100, 101, 100, 98, 100, 101, 102, 105, 104, 103], dtype=float)
+    atr = np.ones_like(close)
+    before = first_reentry_breakout(high, low, close, atr, 2, 1)
+    high[8:] = 10_000
+    low[8:] = 1
+    close[8:] = 9_000
+    after = first_reentry_breakout(high, low, close, atr, 2, 1)
+    assert before == after == 7
+
+
 def test_invalid_arguments_fail_closed():
     with pytest.raises(ValueError):
         first_reentry_breakout(np.array([1.]), np.array([1.]), np.array([1.]), np.array([1.]), 0, 0)

@@ -42,6 +42,7 @@ def first_reentry_breakout(
     max_wait: int = 20,
     pullback_atr: float = 0.5,
     breakout_bars: int = 3,
+    earliest_index: int | None = None,
 ) -> int | None:
     """Find first close-break after a distinct ATR-sized post-event pullback.
 
@@ -62,9 +63,12 @@ def first_reentry_breakout(
     if not np.isfinite(reference_atr) or reference_atr <= 0 or not np.isfinite(reference_price):
         return None
 
+    first_candidate = event_index + 1 if earliest_index is None else earliest_index
+    if first_candidate <= event_index or first_candidate >= close.size:
+        return None
     pulled_back = False
     stop = min(close.size, event_index + max_wait + 1)
-    for i in range(event_index + 1, stop):
+    for i in range(first_candidate, stop):
         if not pulled_back:
             pulled_back = (low[i] <= reference_price - pullback_atr * reference_atr
                            if side == 1 else high[i] >= reference_price + pullback_atr * reference_atr)

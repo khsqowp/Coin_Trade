@@ -1,0 +1,63 @@
+{
+  "run_id": "2026-11-16-r021b-funding-macro-reentry-boundary-corrected",
+  "parent_run_id": "2026-11-16-r021-funding-macro-reentry",
+  "date": "2026-11-16",
+  "status": "complete_exploratory_reject",
+  "hypothesis": "Contrarian funding extreme plus completed BTC 4h EMA50 regime and ATR pullback/re-entry breakout",
+  "agent_inputs": {
+    "crypto_researcher": "Zeno proposed funding crowding plus BTC macro alignment and price-confirmed pullback/re-entry; exploratory only",
+    "crypto_red_team": "McClintock rejected any M4 qualification with six current survivors and no point-in-time universe",
+    "equity_researcher": "Carver proposed daily market/relative-strength context plus intraday breakout; no admissible equity panel was available",
+    "equity_red_team": "Maxwell found no valid equity performance test without a licensed PIT panel and a user-defined risk limit"
+  },
+  "input_data": {
+    "price_db": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+    "price_db_sha256": "7780d5d4e174db4a55ccf7ecc81240e4138ce915a10f164dd22b35778d629914",
+    "price_rows_in_window_per_symbol": 1709280,
+    "funding_source": "Binance USDⓈ-M public REST fundingRate history; not Binance Vision archive data",
+    "funding_manifest": "chart_predictor/data/strategy_lab/2026-11-16-r004-macd-zero-rsi50/funding/screen-through-2025-01-01/manifest.json",
+    "funding_manifest_sha256": "fd9c8bc80ecc90729be2b636dc1d79c409aa40a22cdd7efab80824e792a8c4d8",
+    "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+    "interval_utc": ["2020-10-01T00:00:00Z", "2024-01-01T00:00:00Z"],
+    "interval_end_exclusive": true,
+    "candle_quality": "All six symbols: 1,709,280 rows each; no non-1m timestamp gaps and no duplicate keys in the evaluation window",
+    "funding_quality": "BNB/BTC/DOGE/ETH/XRP: 4,659 rows each; SOL: 4,734; duplicate timestamps 0; maximum gap 28,800,047 ms; blank markPrice 72.46% to 72.90%"
+  },
+  "protocol": {
+    "timeframes_minutes": [1, 3, 5, 10, 15, 30, 60],
+    "horizons_bars": [10, 20],
+    "variants": ["candidate", "no_macro", "no_funding_tail", "micro_only"],
+    "costs_per_side": {"fee": 0.0005, "slippage": 0.0002},
+    "stress_multiplier": 2,
+    "stop_atr": 1.0,
+    "target_atr": 1.5,
+    "maximum_horizon_boundary": "entry_ms + horizon_bars * timeframe_ms <= exclusive_end_ms",
+    "split_status": "Exposed development data already used by R004; not validation or a holdout",
+    "comparisons": "Event-conditioned ablations; no portfolio CAGR or B&H claim"
+  },
+  "execution": {
+    "command": "/opt/anaconda3/bin/python3 -m chart_predictor.run_r021_funding_reentry --db /Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite --funding-root chart_predictor/data/strategy_lab/2026-11-16-r004-macd-zero-rsi50/funding/screen-through-2025-01-01 --output chart_predictor/data/strategy_lab/2026-11-16-r021b-funding-macro-reentry-boundary-corrected",
+    "python": "3.13.5",
+    "elapsed_seconds": 299.83,
+    "code_sha256": {
+      "chart_predictor/r021_funding_reentry.py": "243be728c1d0ff5daa0ab396424df2799a1ab0cfe02df153dd1fb1b8b9beee5d",
+      "chart_predictor/run_r021_funding_reentry.py": "b043a3f437da30ca3dda4b2626da5c887a3cccd3a79bbfa0770d15f0dd89d556"
+    },
+    "synthetic_tests": "15 passed; includes future-mutation and exclusive-horizon boundary tests",
+    "package_tests": "325 passed, 1 environment warning",
+    "coverage": "Not measured; pytest-cov and coverage modules are unavailable in this environment",
+    "result_cells": 112,
+    "trade_log_rows": 761988,
+    "boundary_audit": {"entries_at_or_after_end": 0, "exits_after_end": 0, "latest_exit_ms": 1704061140000}
+  },
+  "artifacts": {
+    "full_results": "chart_predictor/data/strategy_lab/2026-11-16-r021b-funding-macro-reentry-boundary-corrected/results.json",
+    "full_results_sha256": "19e5dcf344cae962375afc0182df7e95f12c2d72da24d16e700074781b94adcb",
+    "trade_log": "chart_predictor/data/strategy_lab/2026-11-16-r021b-funding-macro-reentry-boundary-corrected/trades.jsonl",
+    "trade_log_bytes": 283056174,
+    "trade_log_sha256": "c6366faaf73e8ecc877ab05e4ecedd3c119b271fb98da0a9a4125e3f6057b8f9",
+    "superseded_invalid_run": "chart_predictor/data/strategy_lab/2026-11-16-r021-funding-macro-reentry/"
+  },
+  "decision": "reject_as_strategy; continue_research",
+  "qualification": "Cannot qualify: accuracy < 80%, negative net expectancy, only 6 current survivor symbols, no point-in-time universe, exposed development interval"
+}

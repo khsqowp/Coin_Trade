@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-11-16-r022-equity-public-source-followup",
+  "source_audit_only": true,
+  "strategy_trials": 0,
+  "performance_metrics": null,
+  "krx": {
+    "official_daily_equity_api": "KOSPI/KOSDAQ listed share trade records since 2010-01-04",
+    "official_daily_etf_api": "ETF trade records since 2010-01-04",
+    "account_or_key": "required to call the API; none requested",
+    "public_sample_and_numeric_price": "not verified; product details/sample/price are indicated after sign-in"
+  },
+  "us": {
+    "official_product": "CRSP US Stock databases: daily/monthly and corporate actions for 36,000+ active and inactive securities with permanent identifiers",
+    "historical_sample": "guide describes 25 securities through 2019; sample request is routed to subscriptions email",
+    "wrds_sample_catalog_record": {"size_mib": 351.4, "updated": "2025-10-22", "direct_public_file_verified": false},
+    "etf_coverage_in_exact_stock_product": "unverified",
+    "public_numeric_price_quote": "not found in official pages inspected"
+  },
+  "no_account_contact_or_purchase": true,
+  "decision": "No equity strategy backtest until the user authorizes data access and an eligible stock+ETF panel is actually received, inspected, licensed, and fingerprinted."
+}

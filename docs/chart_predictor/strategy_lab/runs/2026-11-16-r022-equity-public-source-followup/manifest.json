@@ -1,0 +1,24 @@
+{
+  "run_id": "2026-11-16-r022-equity-public-source-followup",
+  "date": "2026-11-16",
+  "status": "complete_source_audit_only",
+  "markets": ["Korean stocks and ETFs", "US stocks and ETFs"],
+  "actions": ["read public official product, sample, coverage, and price pages"],
+  "not_done": ["no login", "no account creation", "no API key request", "no sample download", "no vendor contact", "no purchase", "no strategy backtest"],
+  "sources": {
+    "krx_openapi_service_list": "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd",
+    "krx_data_purchase_guide": "https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp",
+    "crsp_us_stock_product": "https://indexes.morningstar.com/research-data-products/crsp-us-stock-databases",
+    "crsp_sample_guide": "https://www.crsp.org/wp-content/uploads/2023/09/CRSP_Sample_Data_and_Software_Guide.pdf",
+    "wrds_crsp_sample_catalog": "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/center-for-research-in-security-prices-crsp/",
+    "wrds_crsp_demo": "https://wrds-www.wharton.upenn.edu/demo/crsp/form/"
+  },
+  "findings": {
+    "krx": "Official Open API catalog lists KOSPI/KOSDAQ stock daily records and ETF daily records from 2010-01-04. API key request is listed in the signed-in service menu. Paid market-data product details, sample files, and itemized price are presented after sign-in; no public numeric quote observed.",
+    "crsp": "Official CRSP/Morningstar page states daily/monthly data and corporate actions for 36,000+ active and inactive US securities with permanent PERMNO/PERMCO identifiers. ETF coverage inside the exact stock product remains unverified.",
+    "crsp_sample": "Official guide documents a 25-security promotional stock sample with histories through December 2019 and says sample/web-demo access is requested through subscriptions email. No email or call was made.",
+    "wrds_catalog": "WRDS public vendor catalog lists a CRSP Sample item (351.4 MiB, last updated 2025-10-22), but the page is a catalogue record, not proof of an unauthenticated downloadable dataset or a price quote.",
+    "price": "No public numeric KRX data-product or CRSP subscription quote was found in the official pages inspected. Do not treat unknown price as free or zero."
+  },
+  "decision": "KRX daily API is the most directly documented daily-bars access candidate if user separately authorizes account/API-key setup; CRSP is the stronger US delisting-aware candidate subject to quote, ETF scope, sample access and license review. No source is yet approved as an acquired research dataset."
+}
