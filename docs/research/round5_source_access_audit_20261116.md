@@ -73,3 +73,11 @@ Pontiff와 Woodgate(2008)는 1970년 이후 주식발행이 미국 주식의 횡
 | 미장 ETF | CRSP의 시장지수 구성에서 ETF/ETN 제외 확인 | 별도 DB에서 실제 ETF 일별 가격·분배금·총수익을 받을 수 있는지와 권리·비용 | 적격 소스 미확인; 본시험 NO-GO |
 
 **공식 출처:** [KRX 서비스 목록](https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd), [KRX 이용방법](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp), [KRX 약관](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO002.jsp), [CRSP US Stock Databases](https://www.crsp.org/research__trashed/crsp-us-stock-databases/), [WRDS 공개 데모](https://wrds-www.wharton.upenn.edu/demo/), [CRSP Market Index Methodology](https://www.crsp.org/wp-content/uploads/guides/CRSP_Market_Indexes_Methodology_Guide_2024.pdf).
+
+## 2026-11-17 공개 기록 경로 추가 확인
+
+이번 추가 조사는 KRX, KIND, SEC의 공개 페이지와 공식 데이터 설명만 확인했다. 계정·API 키, 다운로드, 유료 자료, 업체 연락은 사용하지 않았다.
+
+- **KRX 폐지·분배 정보:** KRX의 [상장폐지종목 현황](https://data.krx.co.kr/contents/MDC/STAT/issue/MDCSTAT238.jsp)은 종목코드, 상장일, 폐지일, 폐지사유 등을 표시하며 기준이 폐지 직전 마지막 매매일이라고 안내한다. KRX 통합검색에는 별도 “상장폐지종목 시세 추이” 화면도 노출된다. KIND의 [ETF 이익금분배 공시 사례](https://kind.krx.co.kr/external/2026/09/11/000441/20260911001119/68659.htm)는 종목, 분배기준일, 지급예정일, 원화 분배금이 포함된 실제 공시다. 이는 특정 이력·공시를 확인할 공식 경로가 존재한다는 근거일 뿐, 과거 전체 유니버스의 무계정 대량수집 권리, 전체 폐지종목의 가격/청산 수익, 정규화된 조정계수, 완전한 ETF 총수익 패널을 입증하지 않는다.
+- **미국 펀드·ETF 보유내역:** SEC [Form N-PORT 데이터셋](https://www.sec.gov/data-research/sec-markets-data/form-n-port-data-sets)은 2019년 10월 이후 공개 배포된 보고자료를 분기 단위로 공개하며, 펀드의 월말 포트폴리오 보유내역을 포함한다고 설명한다. SEC는 이 데이터셋이 공개된 제출자료에서 추출된 것이며 원 제출을 대체하지 않고 오류가 있을 수 있다고 경고한다. 따라서 공개 이후 시각을 엄격히 적용한 보유내역 추종 가설의 원자료 후보가 될 수는 있지만, 상장주식/ETF 가격, 전체 시점별 유니버스, 비활성 자산, 일별 기업행위·분배 조정, 체결비용을 제공하는 가격 데이터셋은 아니다.
+- **판정:** 위 페이지들은 일부 폐지·분배·펀드 보유 공시를 보강하지만, 한국·미국 주식 및 ETF의 목표 성과시험에 필요한 포괄적 PIT 가격·유니버스·기업행위 패널을 제공한다는 증거는 아니다. KR·US 성과 데이터 게이트는 기존 NO-GO로 유지한다. 미국 ETF 보유내역은 별도 전략 가설의 입력 후보로 기록할 수 있으나, disclosure timestamp 및 과거 가격이 확보되기 전 전략등록·성과시험은 하지 않는다.

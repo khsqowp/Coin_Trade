@@ -1,0 +1,45 @@
+{
+  "run_id": "R026",
+  "name": "vision_metrics_timing",
+  "status": "completed_data_semantics_diagnostic",
+  "date": "2026-11-17",
+  "domain": "crypto_usdt_perpetual_data_quality",
+  "strategy_performance_trial": false,
+  "strategy_cells": 0,
+  "qualified_signals": 0,
+  "inputs": {
+    "vision_metrics": {
+      "symbols": ["BTCUSDT", "ETHUSDT"],
+      "dates": ["2026-06-24", "2026-06-25", "2026-10-31", "2026-11-01", "2026-11-02"]
+    },
+    "oi_rest": {
+      "symbols": ["BTCUSDT", "ETHUSDT"],
+      "dates": ["2026-10-31", "2026-11-01", "2026-11-02"],
+      "endpoint": "/futures/data/openInterestHist",
+      "period": "5m"
+    },
+    "aggtrades": {
+      "symbols": ["BTCUSDT", "ETHUSDT"],
+      "dates": ["2026-06-24", "2026-06-25"]
+    }
+  },
+  "outputs": [
+    "plan.md",
+    "report.md",
+    "decision.md",
+    "results.json"
+  ],
+  "validator": "scripts/research/verify_vision_metrics_timing.py",
+  "validation": [
+    "publisher SHA-256 verification for Vision metrics and aggTrades ZIP archives",
+    "metrics grid uniqueness, missing-slot, and off-grid checks",
+    "OI REST alignment at -5m, 0m, and +5m",
+    "taker buy/sell base-volume ratio alignment at -5m, 0m, and +5m",
+    "real-input assertions for six OI symbol-days and four taker-flow symbol-days"
+  ],
+  "limitations": [
+    "same-exchange cross-endpoint agreement is not independent-vendor validation",
+    "no strategy outcomes, OOS events, profitability, or direction accuracy were evaluated",
+    "no conclusions for other metrics fields, coins, or broad historical periods"
+  ]
+}

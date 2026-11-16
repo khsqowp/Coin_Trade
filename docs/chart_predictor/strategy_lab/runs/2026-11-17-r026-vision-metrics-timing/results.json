@@ -1,0 +1,105 @@
+{
+  "classification": "data_semantics_diagnostic_not_strategy_backtest",
+  "data_origin_caveat": "Vision archive and USD-M REST are separate publication paths from the same exchange; not independent vendors.",
+  "oi": {
+    "date_range_utc": [
+      "2026-10-31",
+      "2026-11-02"
+    ],
+    "symbol_days": 6,
+    "metrics_rows_per_symbol_day": 288,
+    "rest_rows_per_symbol_day": 289,
+    "metrics_grid": {
+      "duplicates": 0,
+      "off_grid": 0,
+      "missing_slots": 0
+    },
+    "create_time_plus_5m": {
+      "matched_values": 1728,
+      "max_relative_error": 0.0
+    },
+    "same_create_time_max_relative_error_by_symbol_day": {
+      "BTCUSDT-2026-10-31": 0.00560641658036326,
+      "BTCUSDT-2026-11-01": 0.008448263196147106,
+      "BTCUSDT-2026-11-02": 0.006357468542357412,
+      "ETHUSDT-2026-10-31": 0.0032565937171096463,
+      "ETHUSDT-2026-11-01": 0.006344519848885965,
+      "ETHUSDT-2026-11-02": 0.004629414562341715
+    },
+    "metric_archive_sha256": {
+      "BTCUSDT-2026-10-31": "1ee822e87a07ad3c98a8b6f617e7e2da8f1d612d2198496867a617ef4534bc1b",
+      "BTCUSDT-2026-11-01": "d093c27c80bc44881e248a57b36328b5190f052bbed85021727013059c9397dc",
+      "BTCUSDT-2026-11-02": "7cda16620689377816eb6f774049c6f156e9528ffdbb423ad25e4535ca8796d0",
+      "ETHUSDT-2026-10-31": "64a8e6d0b0c69527f540fd6da06f0e3bb00ec29283e115ec3133cd8314f597df",
+      "ETHUSDT-2026-11-01": "c15bb7078c024097d9b54eafce3e28fab2e1fc673209c4446019eb570074e629",
+      "ETHUSDT-2026-11-02": "e3c20cd19b60e3ca25d1405e42ffafe99a8197fe3bb92f29064df033ea364b5b"
+    },
+    "rest_response_sha256": {
+      "BTCUSDT-2026-10-31": "459030121b3072c44bb937d18a5c61c9ba7e8e82cd44e527a797fc19e97d93c4",
+      "BTCUSDT-2026-11-01": "fd56bdfc846005e8f2adebbf19f7ab7b47ce428b49450f0b792c8a6c3bdc8c1e",
+      "BTCUSDT-2026-11-02": "6084c343e326f8d70cce36c5d014e6c1282f0e832faf8e40ceac1e338b78281f",
+      "ETHUSDT-2026-10-31": "e3a0b34a35d817d06386d6ae261c5af31ce5eedcfb3ecb61c8cf415608319b58",
+      "ETHUSDT-2026-11-01": "119ec841f7e18b3b9c2c4ac09d508993789eeb3a88e2f161faf02a007c5241ca",
+      "ETHUSDT-2026-11-02": "22e07b6b8ef3f1faa85e2ae8330453cb556c13338d4f3a025a0316acd5fe7100"
+    }
+  },
+  "taker_flow": {
+    "date_range_utc": [
+      "2026-06-24",
+      "2026-06-25"
+    ],
+    "symbol_days": 4,
+    "metrics_rows_per_symbol_day": 288,
+    "metrics_grid": {
+      "duplicates": 0,
+      "off_grid": 0,
+      "missing_slots": 0
+    },
+    "same_labeled_bin_relative_error": {
+      "median_range": [
+        0.00019888421702865544,
+        0.00032334702035443003
+      ],
+      "p95_range": [
+        0.008578096786632062,
+        0.010461102048843256
+      ],
+      "max_range": [
+        0.07655793394119238,
+        0.16953304707940411
+      ],
+      "count_gt_1pct_per_day_range": [
+        11,
+        16
+      ],
+      "count_gt_5pct_per_day_range": [
+        1,
+        4
+      ]
+    },
+    "shifted_bin_median_relative_error": {
+      "minus_5m_range": [
+        0.3142658788374598,
+        0.323504151054249
+      ],
+      "plus_5m_range": [
+        0.30030808384741337,
+        0.343916473245716
+      ]
+    },
+    "metric_archive_sha256": {
+      "BTCUSDT-2026-06-24": "6bb5ab473189fa7c935b4d9a58d34b2c96cc329cd74fd6f9f17f8abc48ece649",
+      "BTCUSDT-2026-06-25": "56e0751dabd8108d61d1f9de86931ac68e901dad202d4dbac03173e2768be68e",
+      "ETHUSDT-2026-06-24": "1a6a493c12b7baf8274ea4acd79e8cb7ef655e0dc1d8ceed93626e2d93bdd688",
+      "ETHUSDT-2026-06-25": "babb083bc28652856a247965e07b8faa3d05b69daa41ef9892f3ed6fbc7a8ba5"
+    },
+    "aggtrades_archive_sha256": {
+      "BTCUSDT-2026-06-24": "50090a6ffda62306edfbd32020e01535bc4d87940e9eb572defafcd6a928a6db",
+      "BTCUSDT-2026-06-25": "b72b0b2a8471832e6a2bdc109aacde1c20aacd694890f1be4c4c6ba31c7c60d3",
+      "ETHUSDT-2026-06-24": "86297c5bd6ba99b5be4a1bb6ecad3ec4c9c481d2740e1e497e5b542d65356dbc",
+      "ETHUSDT-2026-06-25": "bf7c80784c221a3ead1df337bc00203810201542b8de984d0124939335de7808"
+    }
+  },
+  "strategy_outcomes": null,
+  "qualified_signals": 0
+}
