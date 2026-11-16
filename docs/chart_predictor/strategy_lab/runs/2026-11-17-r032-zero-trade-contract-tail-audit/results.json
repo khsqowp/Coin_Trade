@@ -1,0 +1,39 @@
+{
+  "run_id": "R032",
+  "status": "DIAGNOSTIC_COMPLETE_PERFORMANCE_IMPACT_UNMEASURED",
+  "preregistered": false,
+  "strategy_performance_computed": false,
+  "futures_settlement_utc": {
+    "ALPHAUSDT": "2025-09-23T09:00:00Z",
+    "BLZUSDT": "2024-12-23T09:00:00Z",
+    "RENUSDT": "2024-12-03T09:00:00Z",
+    "BALUSDT": "2025-04-14T09:00:00Z",
+    "ICXUSDT": "2026-08-26T09:00:00Z"
+  },
+  "direct_kline_samples": [
+    {"symbol":"ALPHAUSDT","date":"2025-09-22","phase":"pre-settlement","rows":1440,"zero_trade_rows":0,"volume_zero_rows":0,"trade_count_sum":2085234,"volume_sum":11479417716,"close_min":0.01431,"close_max":0.04181,"sha256":"bebe0afb23069348c4910f7adccb6981870c577b8837682f7f10040e8d2543a4a"},
+    {"symbol":"ALPHAUSDT","date":"2025-12-01","phase":"post-settlement","rows":1440,"zero_trade_rows":1440,"volume_zero_rows":1440,"trade_count_sum":0,"volume_sum":0,"close_min":0.02027,"close_max":0.02027,"sha256":"c437865ca46c3c21fd4bdb33178c5cb546f0523b6971be89c4ce98fcff31b2a7"},
+    {"symbol":"BLZUSDT","date":"2024-12-22","phase":"pre-settlement","rows":1440,"zero_trade_rows":0,"volume_zero_rows":0,"trade_count_sum":203757,"volume_sum":488359489,"close_min":0.06568,"close_max":0.07433,"sha256":"71cda8fd4040525c71cecbb74e9aa06a630990ea07ee9844fd0464e6a2c2e735"},
+    {"symbol":"BLZUSDT","date":"2025-03-01","phase":"post-settlement","rows":1440,"zero_trade_rows":1440,"volume_zero_rows":1440,"trade_count_sum":0,"volume_sum":0,"close_min":0.06836,"close_max":0.06836,"sha256":"95af198fb7ad3f6d4ad698a0a04a037d1c2b62c66976dfdbd3d1954418811ec0"},
+    {"symbol":"RENUSDT","date":"2024-12-02","phase":"pre-settlement","rows":1440,"zero_trade_rows":0,"volume_zero_rows":0,"trade_count_sum":457650,"volume_sum":1437361770,"close_min":0.04424,"close_max":0.05158,"sha256":"0eb98a9a86d6e70b089b3de19d96be5681591c4f398a3ccc6fcbd35d68ee72ff"},
+    {"symbol":"RENUSDT","date":"2025-03-01","phase":"post-settlement","rows":1440,"zero_trade_rows":1440,"volume_zero_rows":1440,"trade_count_sum":0,"volume_sum":0,"close_min":0.048,"close_max":0.048,"sha256":"87291aed23637afb0996b8487be8a887a55e85e0395bf7ed734620e34bfcaaff"}
+  ],
+  "local_db_tail_through_utc": "2026-10-31T23:59:00Z",
+  "local_db_rows_per_symbol": 3067200,
+  "local_db_zero_trade_tails": [
+    {"symbol":"RENUSDT","days_after_last_trade":697.6,"zero_trade_rows":1006749},
+    {"symbol":"BLZUSDT","days_after_last_trade":677.6,"zero_trade_rows":979066},
+    {"symbol":"BALUSDT","days_after_last_trade":565.6,"zero_trade_rows":825648},
+    {"symbol":"ALPHAUSDT","days_after_last_trade":403.6,"zero_trade_rows":584694},
+    {"symbol":"ICXUSDT","days_after_last_trade":66.6,"zero_trade_rows":133566}
+  ],
+  "code_path_checks": {
+    "crypto_exhaustive_consensus_reads_volume_and_trades": true,
+    "crypto_exhaustive_consensus_uses_them_as_validity_gate": false,
+    "resample_requires_complete_timestamp_grid": true,
+    "resample_requires_each_minute_to_have_trades": false,
+    "performance_impact_quantified": false
+  },
+  "decision": "Block strategy selection based on affected all-history replay until contract epochs and executable-bar validity are enforced and frozen candidates are replayed without tuning.",
+  "raw_inputs": "/private/tmp/r032-contract-epoch-probe/"
+}
