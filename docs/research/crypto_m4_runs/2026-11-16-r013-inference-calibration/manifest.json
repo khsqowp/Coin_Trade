@@ -1,0 +1,64 @@
+{
+  "run_id": "2026-11-16-r013-inference-calibration",
+  "parent_run_id": "2026-11-16-r012-overlap-protocol-redesign",
+  "date": "2026-11-16",
+  "status": "preregistered_synthetic_method_test",
+  "hypothesis": "Determine whether the preregistered daily-score HAC or synchronized circular moving-block bootstrap tests maintain nominal null size for overlapping forecast precision under the specified synthetic dependence scenarios.",
+  "data": {
+    "source": "seeded synthetic arrays generated in memory",
+    "market_data_used": false,
+    "market_database_read": false,
+    "forecast_outcomes_read": false,
+    "external_data_or_network": false,
+    "seed": 20261116
+  },
+  "code": {
+    "path": "scripts/research/crypto_r013_inference_calibration.py",
+    "sha256": "863d094fc3bb2745105aa8a618c94dc8505430ef5fa71333762ff39d0ea97295"
+  },
+  "plan": {
+    "path": "docs/research/crypto_m4_runs/2026-11-16-r013-inference-calibration/plan.md",
+    "sha256": "9713f6e4e917a096b57ac7c574a75a04b3d4cfe2d13dcf115ff410e2014688fc"
+  },
+  "tests": {
+    "path": "chart_predictor/tests/test_r013_inference_calibration.py",
+    "sha256": "3bb6d960eec965f61f51d0962c94fb294aca36637ae1445107044479d6a9d393",
+    "red_observed": "test collection failed because the preregistered implementation did not yet exist",
+    "green_observed": "5 dedicated tests passed; full chart_predictor/tests suite: 279 passed, 1 warning"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.2.6",
+    "platform": "macOS local isolated worktree"
+  },
+  "grid": {
+    "days": [365, 900],
+    "timeframes": 12,
+    "mean_opportunities_per_day": [8, 40],
+    "negative_binomial_size": 2,
+    "ar1_rho": [0.0, 0.5, 0.9],
+    "outcome_heterogeneity": 0.75,
+    "common_shock_fraction": [0.0, 0.75],
+    "scenarios": 24,
+    "monte_carlo_repetitions_per_scenario": 1000,
+    "methods": ["bartlett_hac_lag_7", "bartlett_hac_lag_14", "bartlett_hac_lag_30", "synchronized_circular_mbb_block_7", "synchronized_circular_mbb_block_14", "synchronized_circular_mbb_block_30"],
+    "mbb_replicates_per_dataset": 499,
+    "alpha": 0.05,
+    "holm_family_size": 12,
+    "screening_upper_bound_per_test_type1": 0.075,
+    "screening_upper_bound_holm_fwer": 0.085
+  },
+  "execution": {
+    "command": "/opt/anaconda3/bin/python3 scripts/research/crypto_r013_inference_calibration.py --simulations 1000 --bootstrap-reps 499 --seed 20261116 --output docs/research/crypto_m4_runs/2026-11-16-r013-inference-calibration/results.json",
+    "method_dataset_tests": 144000,
+    "failed_cells": 0,
+    "output_path": "docs/research/crypto_m4_runs/2026-11-16-r013-inference-calibration/results.json"
+  },
+  "decision_rule": "A method is only screened as a candidate if every scenario's Wilson 95% upper bound is <= 0.075 per-test type-I and <= 0.085 Holm FWER. This is not proof of real-market validity and cannot authorize label generation.",
+  "decision": "reject_all_six_methods_for_this_protocol; inference_blocker_retained",
+  "pre_run_correction": "A first execution was stopped before output when review found persistence and marginal heterogeneity coupled in the draft DGP. The preregistration separated AR persistence from fixed heterogeneity before retained results. The final DGP then passed the 24-scenario smoke run (2 replications, 49 bootstrap draws); smoke output was not retained as calibration evidence.",
+  "results_sha256": "b494b6a2bd348894d6793a339ea8f64b308f777e14c8e4035fd1ed926897c3bc",
+  "scenario_method_screens_passed": 40,
+  "scenario_method_screens_failed": 104,
+  "runtime_seconds": 165.959
+}
