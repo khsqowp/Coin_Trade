@@ -6,6 +6,8 @@
   "window_end_utc_exclusive": "2024-01-01T00:00:00Z",
   "price_db": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
   "price_db_sha256": "7780d5d4e174db4a55ccf7ecc81240e4138ce915a10f164dd22b35778d629914",
+  "data_attribution": "Binance Vision historical USD-M klines; derived outputs are identified as CC BY-NC-SA 4.0 in docs/chart_predictor/strategy_lab/DATA_ATTRIBUTION.md. Raw archives are not redistributed.",
+  "data_terms_url": "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
   "funding_manifest": "chart_predictor/data/strategy_lab/2026-11-16-r004-macd-zero-rsi50/funding/screen-through-2025-01-01/manifest.json",
   "funding_manifest_sha256": "fd9c8bc80ecc90729be2beabf1cf0e3c9c409aa40a22cdd7efab80824e792a8c4d8",
   "one_off_script_path_at_run": "/private/tmp/macro_lag_pilot.py",

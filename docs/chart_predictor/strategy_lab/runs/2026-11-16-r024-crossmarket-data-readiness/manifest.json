@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-11-16-r024-crossmarket-data-readiness",
+  "status": "NO_GO_DATA_GATE",
+  "run_type": "read_only_source_and_data_readiness_audit",
+  "date": "2026-11-16",
+  "agents": 4,
+  "repositories": {
+    "research_checkout": "/private/tmp/cointrade-round5-ready",
+    "main_checkout": "/Users/user/CODE/Coin_Trade"
+  },
+  "local_datasets": [
+    {
+      "path": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+      "sha256": "7780d5d4e174db4a55ccf7ecc81240e4138ce915a10f164dd22b35778d629914",
+      "rows": 19790858,
+      "symbols": 6,
+      "range_utc": ["2020-01-01T00:00:00Z", "2026-06-30T23:59:00Z"],
+      "assessment": "long_history but current survivors only; does not meet 20-symbol M4 universe or point-in-time membership gate"
+    },
+    {
+      "path": "/Users/user/CODE/Coin_Trade/chart_predictor/data/candles.sqlite",
+      "rows": 17142161,
+      "symbols": 100,
+      "range_utc": ["2026-07-16T18:10:00Z", "2026-11-14T00:28:00Z"],
+      "assessment": "short-window price-only panel; previously exposed to development work and has no aligned historical funding table; not a sealed or long-history panel"
+    }
+  ],
+  "prior_trials_rerun": false,
+  "performance_trials_run": 0,
+  "sealed_price_rows_opened": "not_reported_as_intentionally_opened; not independently verified after the search-output incident",
+  "network_data_downloaded": false,
+  "account_or_api_key_created": false,
+  "provider_contact_or_purchase": false,
+  "exchange_credentials_or_orders": false,
+  "server_accessed": false,
+  "boundary_incident": {
+    "status": "reported_by_US_agent; scope_not_independently_resolved",
+    "description": "A broad repository search returned snippets containing validation-named code/data references. The agent reports that sealed price rows were not intentionally opened, stopped the search, and did not use the snippets for strategy conclusions.",
+    "handling": "Do not use potentially implicated files as the one-time sealed evaluation until an independent path-level audit establishes the affected scope; if scope is uncertain, designate a fresh prospective forward boundary."
+  },
+  "binance_vision_scope": "Personal non-production historical backtesting only; not authorization for live or manual trading signals derived from Vision data.",
+  "public_source_references": [
+    "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+    "https://github.com/binance/binance-public-data/blob/master/README.md",
+    "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd",
+    "https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp",
+    "https://www.nasdaq.com/market-activity/quotes/historical",
+    "https://www.nasdaq.com/legal",
+    "https://www.sec.gov/rules-regulations/exchange-delistings",
+    "https://www.sec.gov/data-research/sec-markets-data/form-n-port-data-sets",
+    "https://www.crsp.org/crsp_pdf/crsp-us-stock-indexes-databases-data-descriptions-guide-crspaccess/"
+  ],
+  "decision": "No additional strategy performance test is decision-useful until the source/universe/sealed-data gates are repaired."
+}

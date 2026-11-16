@@ -1,0 +1,5 @@
+# Binance Vision-derived research output notice
+
+Some historical crypto research summaries in this directory use Binance Vision USDⓈ-M historical klines. Binance's published dataset terms state that the data and derived analyses are subject to the Vision Dataset Terms, limit the relevant permitted scope to non-production personal historical research, and require attribution and the same CC BY-NC-SA 4.0 terms for redistributed derivative work.
+
+Attribution: Binance Vision, historical market data, https://data.binance.vision/ . Applicable terms: https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md . The raw Binance archives and candle databases are not included in this repository. Derived historical research outputs carrying this notice are identified as CC BY-NC-SA 4.0; this notice does not grant permission for live/manual trading use, third-party signal distribution, or any commercial use. Verify the current source terms before future access or redistribution. This is an operational attribution notice, not a legal opinion.

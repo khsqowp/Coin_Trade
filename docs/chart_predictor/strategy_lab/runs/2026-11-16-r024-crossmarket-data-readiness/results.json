@@ -1,0 +1,64 @@
+{
+  "run_id": "2026-11-16-r024-crossmarket-data-readiness",
+  "status": "NO_GO_DATA_GATE",
+  "crypto": {
+    "long_history_panel": {
+      "symbols": 6,
+      "rows": 19790858,
+      "start_utc": "2020-01-01T00:00:00Z",
+      "end_utc": "2026-06-30T23:59:00Z",
+      "funding_and_point_in_time_universe": "not established"
+    },
+    "short_history_panel": {
+      "symbols": 100,
+      "rows": 17142161,
+      "start_utc": "2026-07-16T18:10:00Z",
+      "end_utc": "2026-11-14T00:28:00Z",
+      "price_only": true,
+      "development_exposure": "yes",
+      "sealed_eligibility": "no"
+    },
+    "existing_results": {
+      "R021b_top_target_first": 0.4831,
+      "R021b_top_mean_net_R": -1.308,
+      "R023_candidate_target_first": 0.3003,
+      "R023_candidate_mean_net_R": -0.453,
+      "R023_baseline_target_first": 0.2915,
+      "R023_baseline_mean_net_R": -0.438,
+      "R023_paired_target_rate_difference_ci_includes_zero": true
+    },
+    "new_strategy_trial": "not_run"
+  },
+  "korean_equities": {
+    "public_official_price_source": "KRX Open API catalog describes daily stock/ETF data from 2010-01-04; production access requires account, API key, service request, and administrator approval.",
+    "inactive_and_delisted_history": "KRX pages expose delisting status and price-history components, but a complete reproducible bulk PIT universe and adjusted total-return series were not verified.",
+    "authorized_dataset_in_current_scope": false,
+    "strategy_trial": "not_run"
+  },
+  "us_equities": {
+    "free_official_sources": "Nasdaq offers individual historical quote pages; SEC filings and directories provide event/current-symbol information. No complete free official machine-readable PIT stock+ETF price, corporate-action, inactive-security, and delisting-return panel was verified.",
+    "CRSP": "Official product documentation supports active/inactive securities, daily/monthly history, and corporate actions; a public numeric sample/price was not verified. User permitted public sample/quote lookup only; no account, contact, or purchase was attempted.",
+    "authorized_dataset_in_current_scope": false,
+    "strategy_trial": "not_run"
+  },
+  "portfolio_strategies_qualifying": 0,
+  "crypto_M4_candidates_qualifying": 0,
+  "required_next_state": [
+    "acquire or authorize a synchronized 20+ symbol crypto historical/forward dataset with point-in-time listing and delisting universe and aligned funding/market data where required",
+    "establish a fresh, unexposed prospective crypto evaluation boundary; quarantine any possibly implicated validation files",
+    "obtain authorized KR/US stock+ETF history with inactive securities, PIT membership, corporate actions, adjusted returns, and cost/tax assumptions",
+    "set the equity max-drawdown policy before selecting equity strategies"
+  ],
+  "source_urls": {
+    "binance_terms": "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+    "binance_archive_layout": "https://github.com/binance/binance-public-data/blob/master/README.md",
+    "krx_daily_stock_etf_catalog": "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd",
+    "krx_api_access_process": "https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp",
+    "krx_delisted_security_prices": "https://data.krx.co.kr/contents/MDC/STAT/issue/MDCSTAT239.jsp",
+    "nasdaq_historical_quotes": "https://www.nasdaq.com/market-activity/quotes/historical",
+    "nasdaq_terms": "https://www.nasdaq.com/legal",
+    "sec_exchange_delistings": "https://www.sec.gov/rules-regulations/exchange-delistings",
+    "sec_form_n_port": "https://www.sec.gov/data-research/sec-markets-data/form-n-port-data-sets",
+    "crsp_coverage_guide": "https://www.crsp.org/crsp_pdf/crsp-us-stock-indexes-databases-data-descriptions-guide-crspaccess/"
+  }
+}
