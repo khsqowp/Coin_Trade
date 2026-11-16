@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-11-16-r016-l2-live-recovery-audit",
+  "status": "incomplete_no_live_capture",
+  "decision": "HOLD_NOT_TESTED_DNS_FAILURE",
+  "pilot": {
+    "run_id": "20261116T022419Z-e6b6faed",
+    "status": "incomplete",
+    "reason": "run cancelled before clean completion after repeated DNS gaierror; synchronized capture never began",
+    "elapsed_seconds": 171.943,
+    "capture_started_at": null,
+    "connection_error_records": 20,
+    "connection_errors": ["gaierror"],
+    "depth_connections_established": 0,
+    "aggtrade_connections_established": 0,
+    "depth_events": 0,
+    "aggtrade_events": 0,
+    "disconnect_injection": {
+      "requested_after_capture_seconds": 300,
+      "triggered": false,
+      "result": "not_triggered"
+    },
+    "book_coverage": {
+      "BTCUSDT": 0.0,
+      "ETHUSDT": 0.0,
+      "interpretation": "No synchronized capture denominator; zero is not a measured live coverage rate."
+    },
+    "output": {
+      "directory": "chart_predictor/data/crypto_l2_pilots/20261116T022419Z-e6b6faed/",
+      "capture_file": "capture.jsonl.partial",
+      "capture_bytes": 4309,
+      "record_count": 20,
+      "sha256": "efe42fcc100a1c3cb7f4b7b7c5ce635556f5d7028e3750e62c5fc2643ead08e5",
+      "incomplete_metadata": "incomplete.json",
+      "total_output_bytes": 9269,
+      "preserved_without_deletion": true
+    }
+  },
+  "live_gate": {
+    "60_minute_capture": "not_run",
+    "injection_triggered_once": "not_run",
+    "both_books_recovered_within_30s": "not_run",
+    "coverage_at_least_99pct": "not_run",
+    "segment_and_manifest_verification": "incomplete_artifact_preserved; complete-capture gate not applicable",
+    "overall": "HOLD"
+  },
+  "source": {
+    "script": "scripts/research/crypto_l2_pilot.py",
+    "sha256": "a1f3243adfb28cecb8f21012d9f86f6ad3c8b2fed839356f68bf2508ea88a7e2"
+  },
+  "tests": {
+    "focused_l2_suite": "84 passed",
+    "chart_predictor_suite": "288 passed, 1 third-party CPU-count warning",
+    "compileall": "passed",
+    "git_diff_check": "passed"
+  },
+  "interpretation": "This run provides no evidence for or against live websocket recovery. Connection attempts repeatedly failed at DNS resolution before market streams or REST snapshots connected."
+}
