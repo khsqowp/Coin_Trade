@@ -1,0 +1,56 @@
+{
+  "run_id": "2026-11-16-r023-btc-shock-alt-laggard",
+  "status": "retrospective_exploratory_not_preregistered",
+  "window_utc": "2020-10-01T00:00:00Z/2024-01-01T00:00:00Z exclusive",
+  "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+  "btc_4h_shocks": 719,
+  "candidate": {
+    "n": 393,
+    "target_first": 118,
+    "target_first_rate": 0.30025445292620867,
+    "wilson_rowwise_95": [0.25704887752892774, 0.34732713583781666],
+    "event_clusters": 210,
+    "event_bootstrap_target_rate_95": [0.2421875, 0.35958069896435363],
+    "stop_first": 266,
+    "timeout": 9,
+    "mean_gross_r": -0.0660317418773002,
+    "mean_cost_r": 0.3871971260877013,
+    "mean_funding_r": 0.0,
+    "mean_net_r": -0.4532288679650015,
+    "event_bootstrap_mean_net_r_95": [-0.6401345047558655, -0.26549169597253186],
+    "by_symbol": {
+      "BNBUSDT": {"n": 87, "target_first_rate": 0.3563218390804598, "mean_net_r": -0.33827467991086296},
+      "DOGEUSDT": {"n": 74, "target_first_rate": 0.32432432432432434, "mean_net_r": -0.4185842860455823},
+      "ETHUSDT": {"n": 83, "target_first_rate": 0.25301204819277107, "mean_net_r": -0.6294198742577897},
+      "SOLUSDT": {"n": 84, "target_first_rate": 0.32142857142857145, "mean_net_r": -0.28095121346637686},
+      "XRPUSDT": {"n": 65, "target_first_rate": 0.23076923076923078, "mean_net_r": -0.6441855276316187}
+    }
+  },
+  "baseline_without_laggard_filter": {
+    "n": 1530,
+    "target_first": 446,
+    "target_first_rate": 0.29150326797385623,
+    "wilson_rowwise_95": [0.2692764090292569, 0.31477447424095334],
+    "event_clusters": 502,
+    "event_bootstrap_target_rate_95": [0.2596012559206155, 0.3229989096503413],
+    "stop_first": 1051,
+    "timeout": 33,
+    "mean_gross_r": -0.09719406304037369,
+    "mean_cost_r": 0.3408266782575826,
+    "mean_funding_r": 0.0,
+    "mean_net_r": -0.4380207412506258,
+    "event_bootstrap_mean_net_r_95": [-0.5358032446734527, -0.3390895470083353]
+  },
+  "candidate_coverage_of_baseline_trades": 0.2568627450980392,
+  "paired_event_bootstrap_candidate_minus_baseline": {
+    "target_first_rate_difference_95": [-0.04022344414179615, 0.056262073637302214],
+    "mean_net_r_difference_95": [-0.16881783849403745, 0.13337860168325016],
+    "event_clusters": 502,
+    "replicates": 4000
+  },
+  "by_side_candidate": {
+    "short": {"n": 89, "target_first_rate": 0.3258426966292135, "mean_net_r": -0.29888597698193414},
+    "long": {"n": 304, "target_first_rate": 0.29276315789473684, "mean_net_r": -0.4984147801278074}
+  },
+  "decision": "reject; no improvement over baseline established, both net expectancies are negative, and the candidate target-first rate is far below 80%."
+}
