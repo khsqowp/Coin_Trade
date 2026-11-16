@@ -63,6 +63,46 @@ def test_archive_parser_validates_rows_and_preserves_taker_volume():
     assert parsed.rows[0][0:2] == ("BTCUSDT", expected_start)
     assert parsed.rows[0][-2:] == (1.5, 150.0)
     assert parsed.sha256 == hashlib.sha256(payload).hexdigest()
+    assert parsed.missing_minutes == 0
+
+
+def test_archive_parser_reports_missing_minutes_without_interpolating():
+    start = int(datetime(2025, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
+    rows = [
+        [start, "100", "102", "99", "101", "3", start + 59_999, "301", "5", "1.5", "150", "0"],
+        [start + 180_000, "101", "103", "100", "102", "4", start + 239_999, "406", "6", "2", "204", "0"],
+    ]
+    source = io.BytesIO()
+    csv_text = io.StringIO(newline="")
+    csv.writer(csv_text).writerows(rows)
+    with zipfile.ZipFile(source, "w") as zipped:
+        zipped.writestr("BTCUSDT-1m-2025-01.csv", csv_text.getvalue())
+    parsed = vision.parse_archive("BTCUSDT", date(2025, 1, 1), source.getvalue())
+    assert len(parsed.rows) == 2
+    assert parsed.missing_minutes == 2
+
+
+@pytest.mark.parametrize(
+    "replacement,match",
+    [
+        (("nan", "102", "99", "101", "3", "301", "5", "1.5", "150"), "non-finite"),
+        (("100", "98", "99", "101", "3", "301", "5", "1.5", "150"), "OHLC bounds"),
+        (("100", "102", "99", "101", "-3", "301", "5", "1.5", "150"), "negative"),
+        (("100", "102", "99", "101", "3", "301", "5", "4", "150"), "exceeds total"),
+    ],
+)
+def test_archive_parser_rejects_invalid_ohlcv(replacement, match):
+    start = int(datetime(2025, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
+    open_price, high, low, close, volume, quote, trades, taker_base, taker_quote = replacement
+    row = [start, open_price, high, low, close, volume, start + 59_999,
+           quote, trades, taker_base, taker_quote, "0"]
+    source = io.BytesIO()
+    csv_text = io.StringIO(newline="")
+    csv.writer(csv_text).writerow(row)
+    with zipfile.ZipFile(source, "w") as zipped:
+        zipped.writestr("BTCUSDT-1m-2025-01.csv", csv_text.getvalue())
+    with pytest.raises(ValueError, match=match):
+        vision.parse_archive("BTCUSDT", date(2025, 1, 1), source.getvalue())
 
 
 def test_archive_parser_rejects_duplicate_or_wrong_month_rows():
@@ -107,4 +147,24 @@ def test_insert_is_idempotent_and_writes_manifest():
     vision.insert_month(db, parsed)
     assert db.execute("SELECT COUNT(*) FROM candles").fetchone()[0] == 2
     assert db.execute("SELECT rows FROM archive_manifest").fetchone()[0] == 2
+    db.close()
+
+
+def test_insert_refuses_unmanifested_or_changed_month_data():
+    db = sqlite3.connect(":memory:")
+    db.executescript(vision.SCHEMA)
+    parsed = vision.parse_archive("BTCUSDT", date(2025, 1, 1), archive_bytes())
+    db.execute("INSERT INTO candles VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", parsed.rows[0])
+    with pytest.raises(ValueError, match="unmanifested"):
+        vision.insert_month(db, parsed)
+    db.close()
+
+    db = sqlite3.connect(":memory:")
+    db.executescript(vision.SCHEMA)
+    vision.insert_month(db, parsed)
+    changed = vision.ArchiveMonth(
+        parsed.symbol, parsed.month, "0" * 64, parsed.rows, parsed.archive_bytes, parsed.missing_minutes
+    )
+    with pytest.raises(ValueError, match="changed source archive"):
+        vision.insert_month(db, changed)
     db.close()

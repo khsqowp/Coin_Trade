@@ -12,6 +12,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import sqlite3
 import sys
 import time
@@ -63,6 +64,7 @@ class ArchiveMonth:
     sha256: str
     rows: tuple[tuple[object, ...], ...]
     archive_bytes: int
+    missing_minutes: int
 
 
 def parse_month(value: str) -> date:
@@ -121,6 +123,7 @@ def parse_archive(symbol: str, month: date, archive: bytes) -> ArchiveMonth:
             raise ValueError("archive CSV filename does not match requested symbol/month")
         records = []
         previous_open_ms = -1
+        missing_minutes = 0
         with zipped.open(csv_names[0]) as member:
             reader = csv.reader(io.TextIOWrapper(member, encoding="utf-8", newline=""))
             for line_no, row in enumerate(reader, start=1):
@@ -136,13 +139,33 @@ def parse_archive(symbol: str, month: date, archive: bytes) -> ArchiveMonth:
                     raise ValueError(f"CSV row {line_no} does not match a 1m candle interval")
                 if open_ms <= previous_open_ms:
                     raise ValueError(f"CSV row {line_no} is duplicated or out of order")
+                if previous_open_ms >= 0:
+                    missing_minutes += (open_ms - previous_open_ms) // 60_000 - 1
                 previous_open_ms = open_ms
+                try:
+                    open_price, high, low, close = (float(row[i]) for i in (1, 2, 3, 4))
+                    volume, quote_volume = float(row[5]), float(row[7])
+                    trade_count = int(row[8])
+                    taker_base, taker_quote = float(row[9]), float(row[10])
+                except (ValueError, OverflowError) as exc:
+                    raise ValueError(f"CSV row {line_no} contains an invalid numeric field") from exc
+                numeric = (open_price, high, low, close, volume, quote_volume, taker_base, taker_quote)
+                if not all(math.isfinite(value) for value in numeric):
+                    raise ValueError(f"CSV row {line_no} contains a non-finite numeric field")
+                if min(open_price, high, low, close) <= 0:
+                    raise ValueError(f"CSV row {line_no} contains a non-positive price")
+                if high < max(open_price, close, low) or low > min(open_price, close, high):
+                    raise ValueError(f"CSV row {line_no} has inconsistent OHLC bounds")
+                if min(volume, quote_volume, taker_base, taker_quote, trade_count) < 0:
+                    raise ValueError(f"CSV row {line_no} contains a negative volume or trade count")
+                if taker_base > volume * (1 + 1e-9) or taker_quote > quote_volume * (1 + 1e-9):
+                    raise ValueError(f"CSV row {line_no} taker-buy volume exceeds total volume")
                 records.append((
-                    symbol, open_ms, float(row[1]), float(row[2]), float(row[3]),
-                    float(row[4]), float(row[5]), close_ms, float(row[7]),
-                    int(row[8]), float(row[9]), float(row[10]),
+                    symbol, open_ms, open_price, high, low,
+                    close, volume, close_ms, quote_volume,
+                    trade_count, taker_base, taker_quote,
                 ))
-    return ArchiveMonth(symbol, expected, sha256_hex(archive), tuple(records), len(archive))
+    return ArchiveMonth(symbol, expected, sha256_hex(archive), tuple(records), len(archive), missing_minutes)
 
 
 def request_bytes(url: str, timeout: float = 45.0) -> bytes | None:
@@ -188,10 +211,37 @@ def open_database(path: Path) -> sqlite3.Connection:
 
 
 def insert_month(db: sqlite3.Connection, month: ArchiveMonth) -> None:
+    month_start = parse_month(month.month)
+    start_ms = int(datetime(month_start.year, month_start.month, 1, tzinfo=timezone.utc).timestamp() * 1000)
+    end_ms = start_ms + monthrange(month_start.year, month_start.month)[1] * 86_400_000
     retrieved = datetime.now(timezone.utc).isoformat()
     with db:
+        existing_manifest = db.execute(
+            "SELECT sha256,rows FROM archive_manifest WHERE symbol=? AND month=?",
+            (month.symbol, month.month),
+        ).fetchone()
+        stored_rows = db.execute(
+            "SELECT COUNT(*) FROM candles WHERE symbol=? AND open_ms>=? AND open_ms<?",
+            (month.symbol, start_ms, end_ms),
+        ).fetchone()[0]
+        if existing_manifest and existing_manifest[0] != month.sha256:
+            raise ValueError(f"refusing to replace changed source archive for {month.symbol} {month.month}")
+        if stored_rows and not existing_manifest:
+            raise ValueError(f"refusing to merge with unmanifested candle rows for {month.symbol} {month.month}")
+        if existing_manifest:
+            if existing_manifest[1] != len(month.rows) or stored_rows != len(month.rows):
+                raise ValueError(f"stored row count disagrees with verified archive for {month.symbol} {month.month}")
+            for row in month.rows:
+                stored = db.execute(
+                    "SELECT symbol,open_ms,open,high,low,close,volume,close_ms,quote_volume,trade_count,taker_buy_base,taker_buy_quote "
+                    "FROM candles WHERE symbol=? AND open_ms=?",
+                    (month.symbol, row[1]),
+                ).fetchone()
+                if stored != row:
+                    raise ValueError(f"stored candle differs from verified archive for {month.symbol} {month.month}")
+            return
         db.executemany(
-            "INSERT OR IGNORE INTO candles VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", month.rows
+            "INSERT INTO candles VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", month.rows
         )
         db.execute(
             "INSERT OR REPLACE INTO archive_manifest VALUES(?,?,?,?,?,?)",
@@ -240,7 +290,8 @@ def backfill(
         ).fetchone()[0]
         totals.append((symbol, count, first_ms, last_ms, gaps))
     return {"completed_months": completed, "missing_months": missing,
-            "skipped_existing_months": skipped, "database_rows_by_symbol": totals}
+            "skipped_existing_months": skipped, "database_rows_by_symbol": totals,
+            "note": "missing minutes are reported, never interpolated; no-trade intervals and archive gaps require external classification"}
 
 
 def build_parser() -> argparse.ArgumentParser:
