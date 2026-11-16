@@ -1,0 +1,2388 @@
+{
+  "alpha": 0.05,
+  "bonferroni_interval_count": 312,
+  "elapsed_seconds": 68.348,
+  "failed_replications": 0,
+  "holm_fwer_upper_threshold": 0.085,
+  "method": "self_normalized_recursive_mean_brownian_pivot_corrected_size_aggregation",
+  "note": "synthetic inference calibration only; not a strategy or market result",
+  "numpy": "2.2.6",
+  "one_sided_simultaneous_confidence": 0.95,
+  "per_timeframe_type1_upper_threshold": 0.075,
+  "python": "3.13.5",
+  "reference_paths": 250000,
+  "reference_pvalue_resolution": 1.9999920000319997e-06,
+  "reference_seed": 20261120,
+  "reference_steps": 2048,
+  "scenario_count": 24,
+  "scenarios": [
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.081,
+      "holm_fwer_upper_bound": 0.11766164476833349,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.058916666666666666,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "1m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "3m",
+          "upper_bound": 0.1001589664960756
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.064,
+          "rejections": 64,
+          "timeframe": "5m",
+          "upper_bound": 0.09779825631607764
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.047,
+          "rejections": 47,
+          "timeframe": "10m",
+          "upper_bound": 0.07740687448509188
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "15m",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "30m",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "1h",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.056,
+          "rejections": 56,
+          "timeframe": "2h",
+          "upper_bound": 0.08828047055505647
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "4h",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "6h",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.051,
+          "rejections": 51,
+          "timeframe": "12h",
+          "upper_bound": 0.08226366589446968
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.051,
+          "rejections": 51,
+          "timeframe": "1d",
+          "upper_bound": 0.08226366589446968
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.084,
+      "holm_fwer_upper_bound": 0.12112410333361989,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.06508333333333334,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "1m",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.06,
+          "rejections": 60,
+          "timeframe": "3m",
+          "upper_bound": 0.09305500715091436
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "5m",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.077,
+          "rejections": 77,
+          "timeframe": "10m",
+          "upper_bound": 0.11302652872927058
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "15m",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.047,
+          "rejections": 47,
+          "timeframe": "30m",
+          "upper_bound": 0.07740687448509188
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.072,
+          "rejections": 72,
+          "timeframe": "1h",
+          "upper_bound": 0.10720082690679804
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.072,
+          "rejections": 72,
+          "timeframe": "2h",
+          "upper_bound": 0.10720082690679804
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "4h",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "6h",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "12h",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "1d",
+          "upper_bound": 0.10251279002382342
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.108,
+      "holm_fwer_upper_bound": 0.1484556212658805,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.06758333333333333,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "1m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "3m",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "5m",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "10m",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "15m",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "30m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "1h",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "2h",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "4h",
+          "upper_bound": 0.11881708391413112
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "6h",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "12h",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.076,
+          "rejections": 76,
+          "timeframe": "1d",
+          "upper_bound": 0.11186429693374887
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.089,
+      "holm_fwer_upper_bound": 0.12687005280801425,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.07358333333333333,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.085,
+          "rejections": 85,
+          "timeframe": "1m",
+          "upper_bound": 0.12227572374891726
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.079,
+          "rejections": 79,
+          "timeframe": "3m",
+          "upper_bound": 0.11534680278970418
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "5m",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.076,
+          "rejections": 76,
+          "timeframe": "10m",
+          "upper_bound": 0.11186429693374887
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.077,
+          "rejections": 77,
+          "timeframe": "15m",
+          "upper_bound": 0.11302652872927058
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "30m",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "1h",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "2h",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "4h",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.078,
+          "rejections": 78,
+          "timeframe": "6h",
+          "upper_bound": 0.11418735614100967
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "12h",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.063,
+          "rejections": 63,
+          "timeframe": "1d",
+          "upper_bound": 0.09661522995829339
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.282,
+      "holm_fwer_upper_bound": 0.33573353773308634,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.10858333333333334,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.121,
+          "rejections": 121,
+          "timeframe": "1m",
+          "upper_bound": 0.16303067258338272
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.118,
+          "rejections": 118,
+          "timeframe": "3m",
+          "upper_bound": 0.15967965766538023
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.115,
+          "rejections": 115,
+          "timeframe": "5m",
+          "upper_bound": 0.1563213590118827
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.105,
+          "rejections": 105,
+          "timeframe": "10m",
+          "upper_bound": 0.1450712141146527
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.086,
+          "rejections": 86,
+          "timeframe": "15m",
+          "upper_bound": 0.1234261104589951
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.114,
+          "rejections": 114,
+          "timeframe": "30m",
+          "upper_bound": 0.15520026634041872
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.118,
+          "rejections": 118,
+          "timeframe": "1h",
+          "upper_bound": 0.15967965766538023
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.109,
+          "rejections": 109,
+          "timeframe": "2h",
+          "upper_bound": 0.14958193178403922
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.091,
+          "rejections": 91,
+          "timeframe": "4h",
+          "upper_bound": 0.1291601753961241
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.113,
+          "rejections": 113,
+          "timeframe": "6h",
+          "upper_bound": 0.15407832844883695
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.105,
+          "rejections": 105,
+          "timeframe": "12h",
+          "upper_bound": 0.1450712141146527
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.108,
+          "rejections": 108,
+          "timeframe": "1d",
+          "upper_bound": 0.1484556212658805
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.173,
+      "holm_fwer_upper_bound": 0.220145307123252,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.10966666666666666,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.111,
+          "rejections": 111,
+          "timeframe": "1m",
+          "upper_bound": 0.15183187884171107
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.124,
+          "rejections": 124,
+          "timeframe": "3m",
+          "upper_bound": 0.16637463022873533
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.108,
+          "rejections": 108,
+          "timeframe": "5m",
+          "upper_bound": 0.1484556212658805
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "10m",
+          "upper_bound": 0.1416783585959604
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.109,
+          "rejections": 109,
+          "timeframe": "15m",
+          "upper_bound": 0.14958193178403922
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "30m",
+          "upper_bound": 0.1416783585959604
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.107,
+          "rejections": 107,
+          "timeframe": "1h",
+          "upper_bound": 0.1473284053979083
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.111,
+          "rejections": 111,
+          "timeframe": "2h",
+          "upper_bound": 0.15183187884171107
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.108,
+          "rejections": 108,
+          "timeframe": "4h",
+          "upper_bound": 0.1484556212658805
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.109,
+          "rejections": 109,
+          "timeframe": "6h",
+          "upper_bound": 0.14958193178403922
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.104,
+          "rejections": 104,
+          "timeframe": "12h",
+          "upper_bound": 0.14394121632915177
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.121,
+          "rejections": 121,
+          "timeframe": "1d",
+          "upper_bound": 0.16303067258338272
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.078,
+      "holm_fwer_upper_bound": 0.11418735614100967,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.06125,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.048,
+          "rejections": 48,
+          "timeframe": "1m",
+          "upper_bound": 0.07862494442402815
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "3m",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.063,
+          "rejections": 63,
+          "timeframe": "5m",
+          "upper_bound": 0.09661522995829339
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "10m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "15m",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "30m",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.056,
+          "rejections": 56,
+          "timeframe": "1h",
+          "upper_bound": 0.08828047055505647
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "2h",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "4h",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "6h",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.072,
+          "rejections": 72,
+          "timeframe": "12h",
+          "upper_bound": 0.10720082690679804
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "1d",
+          "upper_bound": 0.11070063639410295
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.059,
+      "holm_fwer_upper_bound": 0.09186441553838574,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.05308333333333334,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "1m",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "3m",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "5m",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "10m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.054,
+          "rejections": 54,
+          "timeframe": "15m",
+          "upper_bound": 0.08588054880817525
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.04,
+          "rejections": 40,
+          "timeframe": "30m",
+          "upper_bound": 0.06880001014421941
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "1h",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.045,
+          "rejections": 45,
+          "timeframe": "2h",
+          "upper_bound": 0.07496254746611632
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.048,
+          "rejections": 48,
+          "timeframe": "4h",
+          "upper_bound": 0.07862494442402815
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.056,
+          "rejections": 56,
+          "timeframe": "6h",
+          "upper_bound": 0.08828047055505647
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.072,
+          "rejections": 72,
+          "timeframe": "12h",
+          "upper_bound": 0.10720082690679804
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "1d",
+          "upper_bound": 0.0810532706568806
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.117,
+      "holm_fwer_upper_bound": 0.1585610456686226,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.06641666666666667,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "1m",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.069,
+          "rejections": 69,
+          "timeframe": "3m",
+          "upper_bound": 0.10368720342901641
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "5m",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "10m",
+          "upper_bound": 0.11881708391413112
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "15m",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.076,
+          "rejections": 76,
+          "timeframe": "30m",
+          "upper_bound": 0.11186429693374887
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "1h",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "2h",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "4h",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.063,
+          "rejections": 63,
+          "timeframe": "6h",
+          "upper_bound": 0.09661522995829339
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "12h",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "1d",
+          "upper_bound": 0.09897948967052247
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.083,
+      "holm_fwer_upper_bound": 0.11997122998303186,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.073,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "1m",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "3m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "5m",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "10m",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "15m",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.077,
+          "rejections": 77,
+          "timeframe": "30m",
+          "upper_bound": 0.11302652872927058
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "1h",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "2h",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "4h",
+          "upper_bound": 0.11881708391413112
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "6h",
+          "upper_bound": 0.1001589664960756
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "12h",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.084,
+          "rejections": 84,
+          "timeframe": "1d",
+          "upper_bound": 0.12112410333361989
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.323,
+      "holm_fwer_upper_bound": 0.3781769700950481,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.10925,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.09,
+          "rejections": 90,
+          "timeframe": "1m",
+          "upper_bound": 0.12801568666873517
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "3m",
+          "upper_bound": 0.1416783585959604
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.115,
+          "rejections": 115,
+          "timeframe": "5m",
+          "upper_bound": 0.1563213590118827
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.113,
+          "rejections": 113,
+          "timeframe": "10m",
+          "upper_bound": 0.15407832844883695
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.122,
+          "rejections": 122,
+          "timeframe": "15m",
+          "upper_bound": 0.16414609847919304
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.106,
+          "rejections": 106,
+          "timeframe": "30m",
+          "upper_bound": 0.14620027336699531
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.101,
+          "rejections": 101,
+          "timeframe": "1h",
+          "upper_bound": 0.1405454746829814
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.118,
+          "rejections": 118,
+          "timeframe": "2h",
+          "upper_bound": 0.15967965766538023
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.107,
+          "rejections": 107,
+          "timeframe": "4h",
+          "upper_bound": 0.1473284053979083
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.119,
+          "rejections": 119,
+          "timeframe": "6h",
+          "upper_bound": 0.16079746047584942
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.116,
+          "rejections": 116,
+          "timeframe": "12h",
+          "upper_bound": 0.1574416157548838
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "1d",
+          "upper_bound": 0.1416783585959604
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 365,
+      "failed_replications": 0,
+      "holm_fwer": 0.18,
+      "holm_fwer_upper_bound": 0.22771578293563444,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.11375,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.136,
+          "rejections": 136,
+          "timeframe": "1m",
+          "upper_bound": 0.17968397828088545
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.117,
+          "rejections": 117,
+          "timeframe": "3m",
+          "upper_bound": 0.1585610456686226
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.099,
+          "rejections": 99,
+          "timeframe": "5m",
+          "upper_bound": 0.13827673470286433
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.118,
+          "rejections": 118,
+          "timeframe": "10m",
+          "upper_bound": 0.15967965766538023
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.123,
+          "rejections": 123,
+          "timeframe": "15m",
+          "upper_bound": 0.16526074839558094
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.109,
+          "rejections": 109,
+          "timeframe": "30m",
+          "upper_bound": 0.14958193178403922
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "1h",
+          "upper_bound": 0.1416783585959604
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.113,
+          "rejections": 113,
+          "timeframe": "2h",
+          "upper_bound": 0.15407832844883695
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.11,
+          "rejections": 110,
+          "timeframe": "4h",
+          "upper_bound": 0.15070734752771564
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.112,
+          "rejections": 112,
+          "timeframe": "6h",
+          "upper_bound": 0.15295553584727908
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.102,
+          "rejections": 102,
+          "timeframe": "12h",
+          "upper_bound": 0.1416783585959604
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.124,
+          "rejections": 124,
+          "timeframe": "1d",
+          "upper_bound": 0.16637463022873533
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.064,
+      "holm_fwer_upper_bound": 0.09779825631607764,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.0565,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "1m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.045,
+          "rejections": 45,
+          "timeframe": "3m",
+          "upper_bound": 0.07496254746611632
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "5m",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "10m",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.054,
+          "rejections": 54,
+          "timeframe": "15m",
+          "upper_bound": 0.08588054880817525
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.046,
+          "rejections": 46,
+          "timeframe": "30m",
+          "upper_bound": 0.07618610164185885
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "1h",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "2h",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "4h",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "6h",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.063,
+          "rejections": 63,
+          "timeframe": "12h",
+          "upper_bound": 0.09661522995829339
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.069,
+          "rejections": 69,
+          "timeframe": "1d",
+          "upper_bound": 0.10368720342901641
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.065,
+      "holm_fwer_upper_bound": 0.09897948967052247,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.057916666666666665,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.054,
+          "rejections": 54,
+          "timeframe": "1m",
+          "upper_bound": 0.08588054880817525
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.054,
+          "rejections": 54,
+          "timeframe": "3m",
+          "upper_bound": 0.08588054880817525
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "5m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.071,
+          "rejections": 71,
+          "timeframe": "10m",
+          "upper_bound": 0.10603119179956545
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "15m",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "30m",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "1h",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.046,
+          "rejections": 46,
+          "timeframe": "2h",
+          "upper_bound": 0.07618610164185885
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "4h",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "6h",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "12h",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "1d",
+          "upper_bound": 0.1001589664960756
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.089,
+      "holm_fwer_upper_bound": 0.12687005280801425,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.06066666666666667,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "1m",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "3m",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "5m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.069,
+          "rejections": 69,
+          "timeframe": "10m",
+          "upper_bound": 0.10368720342901641
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.049,
+          "rejections": 49,
+          "timeframe": "15m",
+          "upper_bound": 0.07984038610766314
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "30m",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.06,
+          "rejections": 60,
+          "timeframe": "1h",
+          "upper_bound": 0.09305500715091436
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "2h",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.051,
+          "rejections": 51,
+          "timeframe": "4h",
+          "upper_bound": 0.08226366589446968
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "6h",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.043,
+          "rejections": 43,
+          "timeframe": "12h",
+          "upper_bound": 0.0725067608342623
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "1d",
+          "upper_bound": 0.09543037275441839
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.059,
+      "holm_fwer_upper_bound": 0.09186441553838574,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.05425,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.06,
+          "rejections": 60,
+          "timeframe": "1m",
+          "upper_bound": 0.09305500715091436
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "3m",
+          "upper_bound": 0.1001589664960756
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "5m",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "10m",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.06,
+          "rejections": 60,
+          "timeframe": "15m",
+          "upper_bound": 0.09305500715091436
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.041,
+          "rejections": 41,
+          "timeframe": "30m",
+          "upper_bound": 0.07003880046252142
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "1h",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.045,
+          "rejections": 45,
+          "timeframe": "2h",
+          "upper_bound": 0.07496254746611632
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "4h",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "6h",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.063,
+          "rejections": 63,
+          "timeframe": "12h",
+          "upper_bound": 0.09661522995829339
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.048,
+          "rejections": 48,
+          "timeframe": "1d",
+          "upper_bound": 0.07862494442402815
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.161,
+      "holm_fwer_upper_bound": 0.20710870325515301,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.08058333333333334,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.086,
+          "rejections": 86,
+          "timeframe": "1m",
+          "upper_bound": 0.1234261104589951
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.077,
+          "rejections": 77,
+          "timeframe": "3m",
+          "upper_bound": 0.11302652872927058
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.091,
+          "rejections": 91,
+          "timeframe": "5m",
+          "upper_bound": 0.1291601753961241
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "10m",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.08,
+          "rejections": 80,
+          "timeframe": "15m",
+          "upper_bound": 0.11650489158767442
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "30m",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "1h",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.08,
+          "rejections": 80,
+          "timeframe": "2h",
+          "upper_bound": 0.11650489158767442
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.084,
+          "rejections": 84,
+          "timeframe": "4h",
+          "upper_bound": 0.12112410333361989
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.084,
+          "rejections": 84,
+          "timeframe": "6h",
+          "upper_bound": 0.12112410333361989
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.088,
+          "rejections": 88,
+          "timeframe": "12h",
+          "upper_bound": 0.1257232570468268
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "1d",
+          "upper_bound": 0.11881708391413112
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.086,
+      "holm_fwer_upper_bound": 0.1234261104589951,
+      "mean_count": 8,
+      "mean_per_test_type1": 0.07391666666666667,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.067,
+          "rejections": 67,
+          "timeframe": "1m",
+          "upper_bound": 0.10133672196744942
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "3m",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "5m",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "10m",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.078,
+          "rejections": 78,
+          "timeframe": "15m",
+          "upper_bound": 0.11418735614100967
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.079,
+          "rejections": 79,
+          "timeframe": "30m",
+          "upper_bound": 0.11534680278970418
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "1h",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.08,
+          "rejections": 80,
+          "timeframe": "2h",
+          "upper_bound": 0.11650489158767442
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.081,
+          "rejections": 81,
+          "timeframe": "4h",
+          "upper_bound": 0.11766164476833349
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.08,
+          "rejections": 80,
+          "timeframe": "6h",
+          "upper_bound": 0.11650489158767442
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.071,
+          "rejections": 71,
+          "timeframe": "12h",
+          "upper_bound": 0.10603119179956545
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "1d",
+          "upper_bound": 0.10251279002382342
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.063,
+      "holm_fwer_upper_bound": 0.09661522995829339,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.05516666666666667,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "1m",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "3m",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "5m",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "10m",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.049,
+          "rejections": 49,
+          "timeframe": "15m",
+          "upper_bound": 0.07984038610766314
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.064,
+          "rejections": 64,
+          "timeframe": "30m",
+          "upper_bound": 0.09779825631607764
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "1h",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.049,
+          "rejections": 49,
+          "timeframe": "2h",
+          "upper_bound": 0.07984038610766314
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.06,
+          "rejections": 60,
+          "timeframe": "4h",
+          "upper_bound": 0.09305500715091436
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "6h",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "12h",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.047,
+          "rejections": 47,
+          "timeframe": "1d",
+          "upper_bound": 0.07740687448509188
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.056,
+      "holm_fwer_upper_bound": 0.08828047055505647,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.057666666666666665,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.052,
+          "rejections": 52,
+          "timeframe": "1m",
+          "upper_bound": 0.08347163655618034
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "3m",
+          "upper_bound": 0.1001589664960756
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.072,
+          "rejections": 72,
+          "timeframe": "5m",
+          "upper_bound": 0.10720082690679804
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.04,
+          "rejections": 40,
+          "timeframe": "10m",
+          "upper_bound": 0.06880001014421941
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.065,
+          "rejections": 65,
+          "timeframe": "15m",
+          "upper_bound": 0.09897948967052247
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "30m",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.05,
+          "rejections": 50,
+          "timeframe": "1h",
+          "upper_bound": 0.0810532706568806
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "2h",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "4h",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.046,
+          "rejections": 46,
+          "timeframe": "6h",
+          "upper_bound": 0.07618610164185885
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.069,
+          "rejections": 69,
+          "timeframe": "12h",
+          "upper_bound": 0.10368720342901641
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.056,
+          "rejections": 56,
+          "timeframe": "1d",
+          "upper_bound": 0.08828047055505647
+        }
+      ],
+      "rho": 0.0,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.086,
+      "holm_fwer_upper_bound": 0.1234261104589951,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.06366666666666666,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.069,
+          "rejections": 69,
+          "timeframe": "1m",
+          "upper_bound": 0.10368720342901641
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "3m",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "5m",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.059,
+          "rejections": 59,
+          "timeframe": "10m",
+          "upper_bound": 0.09186441553838574
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.071,
+          "rejections": 71,
+          "timeframe": "15m",
+          "upper_bound": 0.10603119179956545
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.054,
+          "rejections": 54,
+          "timeframe": "30m",
+          "upper_bound": 0.08588054880817525
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.073,
+          "rejections": 73,
+          "timeframe": "1h",
+          "upper_bound": 0.10836892774325703
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.055,
+          "rejections": 55,
+          "timeframe": "2h",
+          "upper_bound": 0.08708160610486664
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "4h",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "6h",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.066,
+          "rejections": 66,
+          "timeframe": "12h",
+          "upper_bound": 0.1001589664960756
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.071,
+          "rejections": 71,
+          "timeframe": "1d",
+          "upper_bound": 0.10603119179956545
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.051,
+      "holm_fwer_upper_bound": 0.08226366589446968,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.05991666666666667,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "1m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.053,
+          "rejections": 53,
+          "timeframe": "3m",
+          "upper_bound": 0.08467724448469456
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "5m",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.061,
+          "rejections": 61,
+          "timeframe": "10m",
+          "upper_bound": 0.09424364542009478
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "15m",
+          "upper_bound": 0.1048599938279333
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.058,
+          "rejections": 58,
+          "timeframe": "30m",
+          "upper_bound": 0.09067182647981709
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "1h",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.049,
+          "rejections": 49,
+          "timeframe": "2h",
+          "upper_bound": 0.07984038610766314
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.068,
+          "rejections": 68,
+          "timeframe": "4h",
+          "upper_bound": 0.10251279002382342
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.057,
+          "rejections": 57,
+          "timeframe": "6h",
+          "upper_bound": 0.08947719408156707
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.056,
+          "rejections": 56,
+          "timeframe": "12h",
+          "upper_bound": 0.08828047055505647
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.071,
+          "rejections": 71,
+          "timeframe": "1d",
+          "upper_bound": 0.10603119179956545
+        }
+      ],
+      "rho": 0.5,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.0,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.165,
+      "holm_fwer_upper_bound": 0.21146275491657124,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.0875,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.09,
+          "rejections": 90,
+          "timeframe": "1m",
+          "upper_bound": 0.12801568666873517
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.094,
+          "rejections": 94,
+          "timeframe": "3m",
+          "upper_bound": 0.13258693196218072
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.086,
+          "rejections": 86,
+          "timeframe": "5m",
+          "upper_bound": 0.1234261104589951
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.091,
+          "rejections": 91,
+          "timeframe": "10m",
+          "upper_bound": 0.1291601753961241
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.085,
+          "rejections": 85,
+          "timeframe": "15m",
+          "upper_bound": 0.12227572374891726
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.087,
+          "rejections": 87,
+          "timeframe": "30m",
+          "upper_bound": 0.12457528216245178
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.09,
+          "rejections": 90,
+          "timeframe": "1h",
+          "upper_bound": 0.12801568666873517
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.078,
+          "rejections": 78,
+          "timeframe": "2h",
+          "upper_bound": 0.11418735614100967
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "4h",
+          "upper_bound": 0.11881708391413112
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.104,
+          "rejections": 104,
+          "timeframe": "6h",
+          "upper_bound": 0.14394121632915177
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.08,
+          "rejections": 80,
+          "timeframe": "12h",
+          "upper_bound": 0.11650489158767442
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.083,
+          "rejections": 83,
+          "timeframe": "1d",
+          "upper_bound": 0.11997122998303186
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    },
+    {
+      "common_fraction": 0.75,
+      "days": 900,
+      "failed_replications": 0,
+      "holm_fwer": 0.087,
+      "holm_fwer_upper_bound": 0.12457528216245178,
+      "mean_count": 40,
+      "mean_per_test_type1": 0.078,
+      "per_timeframe_type1": [
+        {
+          "frame_index": 0,
+          "rate": 0.062,
+          "rejections": 62,
+          "timeframe": "1m",
+          "upper_bound": 0.09543037275441839
+        },
+        {
+          "frame_index": 1,
+          "rate": 0.077,
+          "rejections": 77,
+          "timeframe": "3m",
+          "upper_bound": 0.11302652872927058
+        },
+        {
+          "frame_index": 2,
+          "rate": 0.076,
+          "rejections": 76,
+          "timeframe": "5m",
+          "upper_bound": 0.11186429693374887
+        },
+        {
+          "frame_index": 3,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "10m",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 4,
+          "rate": 0.075,
+          "rejections": 75,
+          "timeframe": "15m",
+          "upper_bound": 0.11070063639410295
+        },
+        {
+          "frame_index": 5,
+          "rate": 0.074,
+          "rejections": 74,
+          "timeframe": "30m",
+          "upper_bound": 0.10953552197740825
+        },
+        {
+          "frame_index": 6,
+          "rate": 0.083,
+          "rejections": 83,
+          "timeframe": "1h",
+          "upper_bound": 0.11997122998303186
+        },
+        {
+          "frame_index": 7,
+          "rate": 0.098,
+          "rejections": 98,
+          "timeframe": "2h",
+          "upper_bound": 0.1371408529110989
+        },
+        {
+          "frame_index": 8,
+          "rate": 0.082,
+          "rejections": 82,
+          "timeframe": "4h",
+          "upper_bound": 0.11881708391413112
+        },
+        {
+          "frame_index": 9,
+          "rate": 0.085,
+          "rejections": 85,
+          "timeframe": "6h",
+          "upper_bound": 0.12227572374891726
+        },
+        {
+          "frame_index": 10,
+          "rate": 0.079,
+          "rejections": 79,
+          "timeframe": "12h",
+          "upper_bound": 0.11534680278970418
+        },
+        {
+          "frame_index": 11,
+          "rate": 0.07,
+          "rejections": 70,
+          "timeframe": "1d",
+          "upper_bound": 0.1048599938279333
+        }
+      ],
+      "rho": 0.9,
+      "screen_qualified": false,
+      "simulations": 1000
+    }
+  ],
+  "schema_version": 1,
+  "seed": 20261119,
+  "timeframes": [
+    "1m",
+    "3m",
+    "5m",
+    "10m",
+    "15m",
+    "30m",
+    "1h",
+    "2h",
+    "4h",
+    "6h",
+    "12h",
+    "1d"
+  ]
+}

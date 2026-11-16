@@ -58,7 +58,8 @@
   "decision": "reject_all_six_methods_for_this_protocol; inference_blocker_retained",
   "pre_run_correction": "A first execution was stopped before output when review found persistence and marginal heterogeneity coupled in the draft DGP. The preregistration separated AR persistence from fixed heterogeneity before retained results. The final DGP then passed the 24-scenario smoke run (2 replications, 49 bootstrap draws); smoke output was not retained as calibration evidence.",
   "results_sha256": "b494b6a2bd348894d6793a339ea8f64b308f777e14c8e4035fd1ed926897c3bc",
-  "scenario_method_screens_passed": 40,
-  "scenario_method_screens_failed": 104,
+  "withdrawn_initial_screen_pass_count": 40,
+  "withdrawn_initial_screen_fail_count": 104,
+  "post_run_audit_correction": "The stored per-test Wilson intervals incorrectly treated dependent timeframe indicators as independent. Their screen_qualified flags and 40/144 count are withdrawn. The registered all-method failure is preserved by independent family-level Holm-FWER Wilson intervals; see audit.md.",
   "runtime_seconds": 165.959
 }

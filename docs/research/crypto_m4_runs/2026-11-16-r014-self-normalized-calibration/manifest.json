@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-11-16-r014-self-normalized-calibration",
+  "parent_run_id": "2026-11-16-r013-inference-calibration",
+  "date": "2026-11-16",
+  "status": "invalid_per_test_aggregation_fwer_screen_failed",
+  "hypothesis": "The recursive self-normalized mean-score test with a Brownian-pivot reference will control per-timeframe type-I error and 12-timeframe Holm FWER across the frozen dependence scenarios.",
+  "data": {
+    "source": "frozen R013 seeded synthetic generator, imported from versioned source",
+    "market_data_used": false,
+    "market_database_read": false,
+    "forecast_outcomes_read": false,
+    "network_used": false,
+    "strategy_performance_estimated": false,
+    "dgp_sha256": "863d094fc3bb2745105aa8a618c94dc8505430ef5fa71333762ff39d0ea97295"
+  },
+  "plan": {
+    "path": "docs/research/crypto_m4_runs/2026-11-16-r014-self-normalized-calibration/plan.md",
+    "sha256": "9dd133ae3dfdd79a73014c520d740c095d016892a921ba415c92b8dffa86d56f"
+  },
+  "code": {
+    "path": "scripts/research/crypto_r014_self_normalized_calibration.py",
+    "sha256": "5c3dfe634128ae91eb3ad99c88f7c0ab561f810bec576e4f667b2cc103f6f091"
+  },
+  "tests": {
+    "path": "chart_predictor/tests/test_r014_self_normalized_calibration.py",
+    "sha256": "f0caf76a637d6a2554158c80b9e36448ced315aefccdffe431b523b830d8a366",
+    "red_observed": "collection failed because implementation was absent",
+    "green_observed": "3 passed"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.2.6",
+    "platform": "local isolated Mac worktree"
+  },
+  "grid": {
+    "days": [365, 900],
+    "timeframes": 12,
+    "mean_opportunities_per_day": [8, 40],
+    "negative_binomial_size": 2,
+    "ar1_rho": [0.0, 0.5, 0.9],
+    "outcome_heterogeneity": 0.75,
+    "common_shock_fraction": [0.0, 0.75],
+    "scenarios": 24,
+    "monte_carlo_replications_per_scenario": 1000,
+    "brownian_reference_paths": 250000,
+    "brownian_reference_steps": 2048,
+    "evaluation_seed": 20261117,
+    "reference_seed": 20261118,
+    "alpha": 0.05,
+    "holm_family_size": 12,
+    "simultaneous_one_sided_wilson_intervals": 312,
+    "per_timeframe_type1_upper_threshold": 0.075,
+    "holm_fwer_upper_threshold": 0.085
+  },
+  "execution": {
+    "command": "/opt/anaconda3/bin/python3 scripts/research/crypto_r014_self_normalized_calibration.py --simulations 1000 --reference-paths 250000 --reference-steps 2048 --seed 20261117 --reference-seed 20261118 --output docs/research/crypto_m4_runs/2026-11-16-r014-self-normalized-calibration/results.json",
+    "synthetic_dataset_repetitions": 24000,
+    "per_timeframe_test_instances": 288000,
+    "bootstrap_or_block_resamples": 0,
+    "failed_cells": 0,
+    "output_path": "docs/research/crypto_m4_runs/2026-11-16-r014-self-normalized-calibration/results.json"
+  },
+  "decision_rule": "The single registered method qualifies only if all 288 per-timeframe one-sided simultaneous 95% Wilson upper bounds are <=0.075 and all 24 scenario-level Holm-FWER upper bounds are <=0.085, with zero failed replications. Bounds use Bonferroni z over all 312 intervals; timeframe tests are not assumed independent.",
+  "decision": "do_not_qualify; per_test_metrics_withdrawn; Holm_FWER_screen_failed",
+  "results_sha256": "79721e8428d4a5788ab25d5b03ddf5da9e2085ddd0596f4fc32708201645dab2",
+  "runtime_seconds": 66.855,
+  "post_run_audit_correction": "Per-timeframe rejection metrics were erroneously computed from Holm-adjusted decisions rather than raw p <= alpha. Those metrics and screen_qualified are withdrawn. Scenario Holm FWER is correctly computed and shows method failure; see audit.md."
+}
