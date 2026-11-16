@@ -1,0 +1,75 @@
+{
+  "run_id": "2026-11-16-r012-overlap-protocol-redesign",
+  "status": "blocked_protocol_draft",
+  "data_read": false,
+  "outcome_labels_read": false,
+  "performance_cells": 0,
+  "metrics": null,
+  "deterministic_horizon_arithmetic": {
+    "formula": "floor(365*24*60/(20*T_minutes))",
+    "interpretation": "Upper bound on non-overlapping 20T calendar windows in 365 days; not an empirical count of independent outcomes or proof of adequate power.",
+    "windows_by_timeframe": [
+      {"timeframe_minutes": 1, "max_windows_365d": 26280},
+      {"timeframe_minutes": 3, "max_windows_365d": 8760},
+      {"timeframe_minutes": 5, "max_windows_365d": 5256},
+      {"timeframe_minutes": 10, "max_windows_365d": 2628},
+      {"timeframe_minutes": 15, "max_windows_365d": 1752},
+      {"timeframe_minutes": 30, "max_windows_365d": 876},
+      {"timeframe_minutes": 60, "max_windows_365d": 438},
+      {"timeframe_minutes": 120, "max_windows_365d": 219},
+      {"timeframe_minutes": 240, "max_windows_365d": 109.5},
+      {"timeframe_minutes": 360, "max_windows_365d": 73},
+      {"timeframe_minutes": 720, "max_windows_365d": 36.5},
+      {"timeframe_minutes": 1440, "max_windows_365d": 18.25}
+    ],
+    "proposed_minimum_final_days": {
+      "formula": "max(365, 200*20*T_minutes/(24*60), 30*max(60*T_minutes/(24*60),30))",
+      "by_timeframe": [
+        {"timeframe_minutes": 1, "days": 900},
+        {"timeframe_minutes": 3, "days": 900},
+        {"timeframe_minutes": 5, "days": 900},
+        {"timeframe_minutes": 10, "days": 900},
+        {"timeframe_minutes": 15, "days": 900},
+        {"timeframe_minutes": 30, "days": 900},
+        {"timeframe_minutes": 60, "days": 900},
+        {"timeframe_minutes": 120, "days": 900},
+        {"timeframe_minutes": 240, "days": 900},
+        {"timeframe_minutes": 360, "days": 1000},
+        {"timeframe_minutes": 720, "days": 2000},
+        {"timeframe_minutes": 1440, "days": 4000}
+      ]
+    }
+  },
+  "review": {
+    "reviewers_requested": 4,
+    "revision_followups_completed": 3,
+    "direct_file_review_completed": 1,
+    "summary_based_reviewers": 3,
+    "pending": 0,
+    "initial_findings": [
+      "Overlapping forecasts remove the mathematical coverage ceiling but do not guarantee observed coverage or accuracy.",
+      "Separate model accuracy from unresolved-feed outcomes and report label-resolution rate; unresolved final labels must not be silently dropped.",
+      "365 days are insufficient for 200 non-overlapping 20T calendar windows at 4h and longer; the daily horizon alone allows only 18.25 such windows.",
+      "Make per-cell development and per-selected-cell final opportunity keys explicit; use idempotent forecast IDs and define sealing after each 20T deadline.",
+      "A 200-window floor is not independence or power proof; fully define block resampling and all multiplicity gates.",
+      "Add operations headroom, host clock, exchange feed semantics, per-stream completeness, quarantine and release gates before capture."
+    ],
+    "baseline_and_inference_findings": [
+      "R005 macro-only same-anchor comparator is tautological because candidate direction equals the confirmed BTC regime at every emitted candidate anchor.",
+      "Policy-level comparisons on each policy's own anchors estimate whole-policy behavior, not isolated signal selection; geometry differences also change target-first outcomes and risk.",
+      "Validation-frozen coverage thresholds do not guarantee equal final coverage or anchor/regime composition; report realized final coverage and do not call it test-matched.",
+      "Synchronized time-block resampling does not create paired observations for policies with different anchors; conditional precision, matched-geometry ablation, and common-calendar policy P&L are separate estimands.",
+      "The proposed composite p-value and confirmatory Holm acceptance language were withdrawn; exact statistics, variance/studentization, null-centering and validity checks remain unspecified.",
+      "Baseline policy mechanics, including aggression direction/ties, randomization inputs/seed/scope, capital and overlapping-position rules, remain incomplete."
+    ],
+    "remaining_open_design_gates": [
+      "Exact model/calibration implementation and minimum train/calibration/validation counts.",
+      "Final UTC issue start/end per timeframe, user fee schedule and permissible feed-use/retention terms.",
+      "Storage/capacity and multi-symbol reconnect/recovery evidence; no capture is authorized."
+    ],
+    "review_disagreements_or_limitations": [
+      "Three follow-up reviewers evaluated the supplied protocol summary rather than reading the file directly; one direct file-based adversarial review identified the main estimand and missing-label issues.",
+      "The statistical reviewer confirmed no remaining simple arithmetic contradiction but states duration/block floors do not prove independence, power, or valid p-values."
+    ]
+  }
+}
