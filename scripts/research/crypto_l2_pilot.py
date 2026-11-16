@@ -9,6 +9,7 @@ import math
 import os
 import resource
 import shutil
+import socket
 import sys
 import time
 import urllib.parse
@@ -33,6 +34,7 @@ MAX_BYTES = 512 * 1024 * 1024
 MAX_MANIFEST_RESERVE_BYTES = 1024 * 1024
 CAPTURE_SECONDS = 60 * 60
 MAX_WALL_SECONDS = 75 * 60
+DEFAULT_STARTUP_TIMEOUT_SECONDS = 60
 MAX_BUFFERED_DEPTH_EVENTS = 50_000
 DEPTH_URL = "wss://fstream.binance.com/public/stream?streams=" + "/".join(
     f"{symbol.lower()}@depth@500ms" for symbol in SYMBOLS
@@ -260,28 +262,82 @@ def coverage_summary(total_s: dict[str, float], valid_s: dict[str, float],
     return result
 
 
-def _fetch_snapshot(symbol: str) -> dict[str, Any]:
+def _fetch_snapshot(symbol: str, *, timeout_s: float = 12) -> dict[str, Any]:
     query = urllib.parse.urlencode({"symbol": symbol, "limit": 1000})
     request = urllib.request.Request(
         f"https://fapi.binance.com/fapi/v1/depth?{query}",
         headers={"User-Agent": "CoinTrade-L2-research-pilot/1.0"},
     )
-    with urllib.request.urlopen(request, timeout=12) as response:
+    with urllib.request.urlopen(request, timeout=timeout_s) as response:
         payload = json.loads(response.read())
     if not isinstance(payload, dict) or "lastUpdateId" not in payload:
         raise ValueError(f"invalid depth snapshot response for {symbol}")
     return payload
 
 
+async def preflight(*, timeout_s: float = 8) -> dict[str, Any]:
+    """Check required DNS, both public streams, and both REST snapshots without writing files."""
+    timeout_s = float(timeout_s)
+    if not math.isfinite(timeout_s) or timeout_s <= 0:
+        raise ValueError("preflight timeout must be a finite positive number")
+
+    hosts = ("fstream.binance.com", "fapi.binance.com")
+    for host in hosts:
+        await asyncio.wait_for(
+            asyncio.to_thread(socket.getaddrinfo, host, 443, type=socket.SOCK_STREAM),
+            timeout=timeout_s,
+        )
+
+    for url in (DEPTH_URL, TRADES_URL):
+        async with websockets.connect(
+            url,
+            open_timeout=timeout_s,
+            close_timeout=min(2.0, timeout_s),
+            ping_interval=None,
+            max_size=4 * 1024 * 1024,
+        ):
+            pass
+
+    snapshots = await asyncio.gather(*(
+        asyncio.wait_for(
+            asyncio.to_thread(_fetch_snapshot, symbol, timeout_s=timeout_s),
+            timeout=timeout_s,
+        )
+        for symbol in SYMBOLS
+    ))
+    for symbol, snapshot in zip(SYMBOLS, snapshots):
+        update_id = snapshot.get("lastUpdateId") if isinstance(snapshot, dict) else None
+        if isinstance(update_id, bool) or not isinstance(update_id, int):
+            raise ValueError(f"invalid depth snapshot response for {symbol}")
+
+    return {
+        "status": "ready",
+        "dns_hosts": list(hosts),
+        "websocket_streams": ["depth@500ms", "aggTrade"],
+        "snapshot_symbols": list(SYMBOLS),
+        "timeout_seconds": timeout_s,
+        "capture_files_created": False,
+    }
+
+
 class Pilot:
     def __init__(self, output_dir: Path, *, capture_seconds: float = CAPTURE_SECONDS,
                  max_wall_seconds: float = MAX_WALL_SECONDS, max_bytes: int = MAX_BYTES,
-                 inject_depth_disconnect_after_s: float | None = None):
+                 inject_depth_disconnect_after_s: float | None = None,
+                 startup_timeout_s: float | None = None):
         self.output_dir = Path(output_dir)
         self.capture_seconds = float(capture_seconds)
         self.max_wall_seconds = float(max_wall_seconds)
         if self.capture_seconds <= 0 or self.max_wall_seconds <= 0:
             raise ValueError("capture and wall-clock limits must be positive")
+        if startup_timeout_s is None:
+            startup_timeout_s = min(DEFAULT_STARTUP_TIMEOUT_SECONDS,
+                                    self.max_wall_seconds / 2)
+        self.startup_timeout_s = float(startup_timeout_s)
+        if (not math.isfinite(self.startup_timeout_s)
+                or self.startup_timeout_s <= 0
+                or self.startup_timeout_s >= self.max_wall_seconds):
+            raise ValueError("startup timeout must be positive and shorter than the wall-clock limit")
         if (inject_depth_disconnect_after_s is not None
                 and not 0 < inject_depth_disconnect_after_s < self.capture_seconds):
             raise ValueError("disconnect injection must be inside the capture window")
@@ -303,6 +359,7 @@ class Pilot:
         self.free_space_before = shutil.disk_usage(free_path).free
         self.capture_start: float | None = None
         self.stop = asyncio.Event()
+        self.startup_timed_out = False
         self.books = {symbol: LocalBook() for symbol in SYMBOLS}
         initialized_ms = time.time_ns() // 1_000_000
         initialized_mono = time.monotonic()
@@ -682,6 +739,9 @@ class Pilot:
                         self.trade_valid_s[symbol] += observed
                 if now - self.capture_start >= self.capture_seconds:
                     self.stop.set()
+            elif now - self.started_wall >= self.startup_timeout_s:
+                self.startup_timed_out = True
+                self.stop.set()
             if now - self.started_wall >= self.max_wall_seconds:
                 self.stop.set()
 
@@ -703,6 +763,8 @@ class Pilot:
                     raise RuntimeError("collector task exited before the pilot stop condition")
             if self.capture_start is not None and time.monotonic() - self.capture_start >= self.capture_seconds:
                 status = "completed"
+            elif self.startup_timed_out:
+                failure = "synchronized startup timeout"
             else:
                 failure = "maximum wall time reached before full synchronized capture"
         except CaptureLimit as exc:
@@ -758,6 +820,7 @@ class Pilot:
                 "capture_started_at": self.capture_started_at,
                 "capture_seconds_target": self.capture_seconds,
                 "max_wall_seconds": self.max_wall_seconds,
+                "startup_timeout_seconds": self.startup_timeout_s,
                 "hard_byte_cap": self.segment.max_bytes,
                 "symbols": list(SYMBOLS),
                 "streams": ["depth@500ms", "aggTrade"],
@@ -821,6 +884,7 @@ class Pilot:
                     "trade_stream": "aggTrade",
                     "capture_seconds": self.capture_seconds,
                     "max_wall_seconds": self.max_wall_seconds,
+                    "startup_timeout_seconds": self.startup_timeout_s,
                     "hard_total_bytes": self.segment.max_bytes,
                     "max_buffered_depth_events": MAX_BUFFERED_DEPTH_EVENTS,
                 },
@@ -853,16 +917,33 @@ def _validated_output_root(path: Path) -> Path:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true", help="connect to public Binance streams for the bounded pilot")
+    parser.add_argument("--preflight", action="store_true",
+                        help="check public DNS, WebSocket streams, and REST snapshots without creating capture files")
+    parser.add_argument("--preflight-timeout-s", type=float, default=8,
+                        help="timeout per preflight connection/check (default: 8)")
+    parser.add_argument("--startup-timeout-s", type=float, default=DEFAULT_STARTUP_TIMEOUT_SECONDS,
+                        help="stop and record incomplete if books do not synchronize by this time (default: 60)")
     parser.add_argument("--output-root", type=Path, default=DATA_ROOT)
     parser.add_argument("--inject-depth-disconnect-after-s", type=float,
                         help="close the live depth socket once after N seconds of synchronized capture")
     args = parser.parse_args()
-    if not args.run:
+    if args.run and args.preflight:
+        parser.error("choose either --run or --preflight")
+    if not args.run and not args.preflight:
         parser.error("network access requires explicit --run")
+    if args.preflight:
+        try:
+            result = asyncio.run(preflight(timeout_s=args.preflight_timeout_s))
+        except Exception as exc:
+            print(json.dumps({"status": "failed", "reason": type(exc).__name__}, indent=2))
+            return 10
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return 0
     pilot: Pilot | None = None
     try:
         output_root = _validated_output_root(args.output_root)
         pilot = Pilot(output_root,
+                      startup_timeout_s=args.startup_timeout_s,
                       inject_depth_disconnect_after_s=args.inject_depth_disconnect_after_s)
         result = asyncio.run(pilot.run())
     except CaptureLimit as exc:

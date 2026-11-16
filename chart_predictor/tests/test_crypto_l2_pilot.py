@@ -60,7 +60,7 @@ def test_preflight_checks_both_hosts_streams_and_symbol_snapshots(monkeypatch):
     assert result["status"] == "ready"
     assert {host for host, _ in resolved} == {"fstream.binance.com", "fapi.binance.com"}
     assert opened == [pilot_module.DEPTH_URL, pilot_module.TRADES_URL]
-    assert [symbol for symbol, _ in snapshots] == list(SYMBOLS)
+    assert {symbol for symbol, _ in snapshots} == set(SYMBOLS)
     assert all(timeout == 2 for _, timeout in snapshots)
 
 
@@ -93,6 +93,29 @@ def test_cli_preflight_failure_does_not_create_capture_output(tmp_path, monkeypa
     assert main() == 10
     assert not output_root.exists()
     assert json.loads(capsys.readouterr().out)["reason"] == "OSError"
+
+
+def test_pilot_stops_and_records_reason_when_synchronization_startup_expires(tmp_path):
+    class IdlePilot(Pilot):
+        async def _depth_loop(self):
+            await self.stop.wait()
+
+        async def _trades_loop(self):
+            await self.stop.wait()
+
+    pilot = IdlePilot(
+        tmp_path,
+        capture_seconds=1,
+        max_wall_seconds=2,
+        startup_timeout_s=0.05,
+    )
+
+    result = asyncio.run(pilot.run())
+
+    assert result["status"] == "incomplete"
+    assert result["reason"] == "synchronized startup timeout"
+    assert result["startup_timeout_seconds"] == 0.05
+    assert result["capture_started_at"] is None
 
 
 def test_jsonl_segment_close_verifies_hash_count_and_time_range(tmp_path):
@@ -645,7 +668,9 @@ def test_cli_runs_by_file_path_without_package_path_setup():
     )
     assert result.returncode == 0, result.stderr
     assert "--run" in result.stdout
+    assert "--preflight" in result.stdout
     assert "--inject-depth-disconnect-after-s" in result.stdout
+    assert "--startup-timeout-s" in result.stdout
 
 
 def test_collector_task_failure_stops_run_and_writes_incomplete_manifest(tmp_path):
