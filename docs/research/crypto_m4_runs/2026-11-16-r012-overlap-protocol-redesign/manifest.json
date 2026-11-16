@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-11-16-r012-overlap-protocol-redesign",
+  "parent_run_ids": [
+    "2026-11-16-r005-liquidity-replenishment",
+    "2026-11-16-r007-r005-coverage-feasibility",
+    "2026-11-16-r008-overlap-inference-design",
+    "2026-11-16-r010-l2-pilot-finalization-rerun"
+  ],
+  "date": "2026-11-16",
+  "status": "blocked_protocol_draft",
+  "question": "Can separate overlapping forecast ledgers remove R007's structural coverage cap while retaining leakage-safe, dependence-aware evaluation?",
+  "performance_cells": 0,
+  "market_outcomes_opened": false,
+  "market_data_read": false,
+  "code_changed": false,
+  "parent_artifact_sha256": {
+    "r005_plan": "82618a5f8d878274338c5aaf3780ee1771044fc840025a18fdd9a166720c933a",
+    "r007_results": "44770d668a1bd5d676c5189ffe8d8e2ad8ccc12a26eb8186496cbdac80dc7d99",
+    "r008_plan": "1ac490d6760c1a4575a3e29d01d1c9f9cede856869f19f6c9a68ca7bceb76abb"
+  },
+  "source_revision_at_draft": "c822c9bfe231626c461a771ed915b4a911ffa3e3",
+  "costs": "No costs or returns were calculated. R005's proposed fee/slippage assumptions are preserved in the draft and remain unvalidated.",
+  "final_partition": "Not opened; no dates authorized or frozen.",
+  "decision": "blocked_before_outcomes_baseline_estimand_and_inference_not_frozen"
+}
