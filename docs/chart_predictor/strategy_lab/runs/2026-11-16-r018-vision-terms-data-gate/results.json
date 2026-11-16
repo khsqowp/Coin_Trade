@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-11-16-r018-vision-terms-data-gate",
+  "status": "audit_complete_no_performance_result",
+  "queries": {
+    "vision_dev_repaired": "SQLite read-only schema inspection and grouped candle/archive-manifest counts",
+    "candles": "SQLite read-only table/schema inspection"
+  },
+  "observations": {
+    "vision_dev_repaired": {
+      "candle_rows": 19790858,
+      "symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+      "archive_manifest_rows": 453,
+      "archive_manifest_row_sum": 19776458,
+      "repair_pages_table_present": true,
+      "funding_history_present": false,
+      "mark_price_or_premium_index_present": false,
+      "point_in_time_contract_membership_present": false
+    },
+    "candles": {
+      "tables": ["candles"],
+      "funding_history_present": false,
+      "point_in_time_contract_membership_present": false
+    }
+  },
+  "interpretation": [
+    "The current Vision terms expressly allow algorithmic historical backtesting for purely personal non-production research under CC BY-NC-SA 4.0, with attribution/share-alike conditions.",
+    "The same terms prohibit live proprietary trading execution, automated commercial order generation, and compensated third-party signal distribution. The user explicitly restricted this project to historical backtesting and excluded Vision-derived live/manual signals; those uses will not be pursued here.",
+    "The user explicitly authorized Vision use for historical backtesting only and excluded live/manual signals derived from it. The user separately authorized research into official KRX/CRSP sample and price-quote information only, without accounts or purchases.",
+    "The inspected candle DBs do not contain historical funding, premium/index/mark-price, or point-in-time contract-universe tables. The six-symbol repaired data are not sufficient to establish a broad futures-universe, funding-adjusted strategy result.",
+    "An official source path is documented but not yet verified: Vision publishes USD-M premium-index, mark-price, and index-price kline archives from 2020-01-01; the official funding-history endpoint supports inclusive timestamp windows, ascending results, and up to 1000 records per request. Actual per-symbol history, full pagination, API retention, and delisted-contract membership remain unverified.",
+    "A metadata-only HTTP HEAD request for BTCUSDT 1h premium-index January 2025 returned 200 and Content-Length 16691 bytes. No archive body was downloaded; this validates one object only.",
+    "Four independent role reviews received the same evidence snapshot. Trend/momentum, cross-sectional/regime, and red-team reviewers recommended no performance test; the mean-reversion reviewer found premium/index basis mechanically distinct from price-only VWAP/RSI but also recommended no-go until coverage is verified. Agents did not inspect the checkout or raw databases.",
+    "No strategy metrics, indicator values, or return outcomes were calculated. No sealed interval was accessed."
+  ],
+  "limits": [
+    "The local database files are in the canonical sibling checkout, not this research worktree; this audit did not copy or modify them.",
+    "Schema absence does not prove that no separate external funding dataset exists; it proves only that these inspected DBs do not contain it.",
+    "No legal opinion is offered; the user selected a history-only use scope, so no live/manual use of Vision-derived data will be pursued in this research.",
+    "No KRX or CRSP account, paid sample, purchase, or provider communication occurred in R018."
+  ],
+  "references": [
+    "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+    "https://github.com/binance/binance-public-data/blob/master/README.md",
+    "https://github.com/binance/binance-public-data/blob/master/python/README.md",
+    "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data"
+  ]
+}

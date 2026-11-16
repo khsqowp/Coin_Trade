@@ -1,0 +1,19 @@
+{
+  "run_id": "2026-11-16-r020-equity-source-sample-quote-audit",
+  "date": "2026-11-16",
+  "status": "public_source_audit_complete_pricing_and_sample_gates_unresolved",
+  "study_type": "official_public_data_access_audit",
+  "markets": ["KR", "US"],
+  "instruments": ["stocks", "ETFs"],
+  "providers": ["KRX", "CRSP"],
+  "scope": {
+    "public_official_pages_only": true,
+    "login_or_account_created": false,
+    "licensed_sample_downloaded": false,
+    "purchase_or_vendor_contact": false,
+    "user_identity_or_contact_disclosed": false,
+    "market_rows_or_strategy_metrics_accessed": false
+  },
+  "hypothesis": "Official KRX and CRSP public materials identify historical stock data relevant to backtesting, but public information alone may not establish current sample access, complete ETF/inactive-security coverage, and an affordable license.",
+  "decision_gate": "No equity strategy backtest until sample data, point-in-time universe including delisted securities, ETF scope, corporate actions, license rights, and total price are established."
+}
