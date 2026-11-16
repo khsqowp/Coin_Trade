@@ -2,7 +2,7 @@
 
 ## Verdict
 
-Binance Vision now has enough public-index evidence to justify assembling a **development-only** 20+ symbol USDT-M sample. It does **not** yet qualify a confirmatory OOS or prospective manual-signal test. No strategy outcomes were calculated. A bounded 2021-01 archive sample was downloaded and structurally audited after the initial metadata-only source audit; the exact scope and limitations are recorded below.
+Binance Vision now has a checksum-verified **development-only** 1m sample for the fixed 86-symbol seed cohort through 2026-10. It does **not** qualify as a confirmatory OOS or prospective manual-signal test. No strategy outcomes were calculated from this backfill. The exact coverage, eight quarantined source months, and unresolved universe/gap classifications are recorded below.
 
 ## User-fixed outcome contract
 
@@ -12,15 +12,24 @@ The underlying `chart_predictor/SPEC.md` had stale language saying the accuracy 
 
 ## Archive metadata observations
 
-The checks below read only object metadata or directory names. They did not retrieve candle rows, use API credentials, or make account/trading requests.
+The initial public-index observations below read only object metadata or directory names. The later backfill audit retrieved historical candle rows; neither step used API credentials or made account/trading requests.
 
-### Downloaded development sample (2026-11-16)
+### Initial 2021-01 seed sample (2026-11-16)
 
 - Downloaded the Binance Vision USD-M monthly 1m kline archives for the fixed 2021-01 cohort of 86 symbols found in the metadata inventory. This is historical research data only; no Binance REST/API key, account, order endpoint, or live signal path was used.
 - SQLite contains 86 manifest rows and 3,645,000 candle rows. The sum of manifest row counts equals the candle count, every candle maps to a manifest row, and `PRAGMA integrity_check` returned `ok`.
 - A per-symbol timestamp-delta audit found zero missing minute intervals between each symbol's first observed bar and 2021-01-31 23:59 UTC. Eighty symbols have a full 44,640 rows; six start later in January and therefore have fewer rows. Missing minutes were not synthesized. This within-file continuity does not classify the pre-first-bar period as pre-listing, no-trade, or archive omission; that requires dated contract-status evidence.
 - Two names, `DEFIUSDT` and `DOTECOUSDT`, are composite index contracts rather than single-coin underlyings. Excluding those leaves 84 candidate coin-underlying symbols, not a verified complete historical universe. Binance identifies [DEFI](https://www.binance.com/en/support/announcement/detail/ebee6da5df3946519fdb9ab27706d1a4) and [DOTECO](https://www.binance.com/en/support/announcement/detail/9381a09f6dae4899b8c00046a4afc08b) as composite baskets, not individual tokens.
 - The sample is development-only and cannot support a sealed OOS claim: its performance history has not been tested, and the fixed cohort itself was chosen from archive-file availability rather than an independently proven historical listing census. No signal labels, strategy returns, hit rates, or parameters were calculated from this download.
+
+### Full historical backfill and integrity audit (2026-11-17)
+
+- The fixed seed cohort was backfilled from 2021-01 through 2026-10 where monthly archives were available. The local SQLite database contains **5,522 accepted symbol-month archives** for 86 symbols and **241,389,061 candle rows**. Manifest row counts sum to exactly 241,389,061; a month-by-month indexed range-count comparison found **0 manifest/candle row-count mismatches**. The candle table's `(symbol, open_ms)` primary key prevents duplicate keys, and `PRAGMA integrity_check` returned `ok`.
+- Eight checksum-verified monthly source archives were rejected and quarantined rather than repaired: DOTUSDT 2023-11, EOSUSDT 2023-11, LRCUSDT 2023-09, ONTUSDT 2023-09, QTUMUSDT 2023-09, TRBUSDT 2023-09, XRPUSDT 2023-11, and ZENUSDT 2023-11. All eight are absent from `archive_manifest` and contribute **zero candle rows**. Each raw archive was re-downloaded and fully audited: each contains 43,200 ordered 1m rows, zero missing intervals, and exactly one taker-buy volume invariant violation. Seven violations are `taker_buy_base > volume`; LRCUSDT 2023-09 is `taker_buy_quote > quote_volume`. No source values were altered. The 2023-09 errors share a timestamp/row cluster across symbols; the 2023-11 errors also recur at matching row positions, consistent with a source-field anomaly but not proof of its cause.
+- The fixed panel still has **84 single-coin-underlying candidates** after excluding the two composite index symbols `DEFIUSDT` and `DOTECOUSDT`. It is not a complete point-in-time historical contract universe. Archive availability and early termination alone do not classify a period as pre-listing, inactive/no-trade, delisted, or missing archive. The downloader's returned `missing_months: 0` applies only to the final resumed subset's unrecorded requests; it does not establish lifetime completeness of the full panel.
+- An independent full-database timestamp-delta scan found **74 gaps spanning 577,125 missing minute slots across 38 of the 86 symbols**; the largest single gap is 43,200 minutes. The eight quarantined months explain 345,600 slots, so further gaps remain. This arithmetic detects discontinuities only: it cannot classify the remaining slots as pre-listing, no-trade, exchange outage, delisting, or archive omission. Until dated contract-status evidence resolves them, any strategy needing those intervals must treat affected windows as ineligible rather than fill or impute bars.
+- The SQLite database is local and git-ignored; the large raw dataset was not committed. This download is permitted only for personal historical backtesting under the user's consent. Binance Vision-derived outputs are not authorized as a real-time or manual-trading signal feed.
+- No strategy labels, TP/stop outcomes, returns, hit rates, or tuned parameters were calculated from the backfill. All historical bars are exposed development data, not a sealed OOS sample. The data-quality audit alone cannot satisfy the user's target-first ≥80% / OOS N≥200 contract.
 
 | Check | Observed result | What it establishes | What it does not establish |
 |---|---|---|---|
@@ -51,9 +60,9 @@ An independent red-team review called attention to stale contract language. Dire
 
 ## Next eligible technical step
 
-1. Build an explicit dated contract-status map for the fixed 84-symbol candidate panel, excluding composite indexes and distinguishing pre-listing, active, no-trade, archive gap, and delisting periods. Do not infer instrument type or listing history from a `USDT` suffix.
-2. Before any performance metric, validate monthly object checksums, OHLCV schema, expected minute counts, duplicates, timestamp continuity, listing/delisting boundary handling, mark-price alignment, and the 2026-06-25 metrics timestamp-convention anomaly if metrics are used.
-3. Register one genuinely distinct, macro-to-micro candidate and its TP/stop/10-bar/20-bar labels, baselines, coverage, non-overlap, cost assumptions, and trial count before running a development screen. Do not reuse the exposed six-symbol winner table as validation.
+1. Build an explicit dated contract-status map for the fixed 84-symbol candidate panel, excluding composite indexes and distinguishing pre-listing, active, no-trade, archive gap, and delisting periods. Resolve the 577,125 observed missing-minute slots or exclude each affected window. Do not infer instrument type or listing history from a `USDT` suffix.
+2. Validate funding and mark-price alignment for the eligible symbols and dates; confirm the 2026-06-25 metrics timestamp-convention anomaly before using those metrics. Price-only precision remains insufficient for the charter's cost/expectancy diagnostics.
+3. Reconcile prior experiments against the candidate registry and red-team findings. Current review promotes **zero new crypto hypotheses**: the 10 existing proposals were rejected/conditional and historical MTF, sweep/MSS, and BTC-lead/alt-lag families already have exposed development results. Register a genuinely distinct, causal macro-to-micro rule only if it adds decision value, with TP/stop/10-bar/20-bar labels, baseline, coverage, non-overlap, cost assumptions, and total trial count fixed before a development screen. Do not reuse the exposed six-symbol winner table as validation.
 4. Reserve a truly future cohort for confirmation. The present research scope does not authorize beginning a new live prospective capture; obtain separate authorization and freeze the capture/score contract before that step.
 
 No new API keys, exchange account, purchase, vendor contact, or Oracle action occurred. No historical strategy trial was run in this feasibility audit.
