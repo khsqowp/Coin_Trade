@@ -29,6 +29,7 @@ DEFAULT_SYMBOLS = ("BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "BNBUSDT", "DOGEU
 DEFAULT_DB = Path(__file__).parents[2] / "chart_predictor" / "data" / "vision_dev.sqlite"
 MAX_ARCHIVE_BYTES = 20_000_000
 MIN_REQUEST_INTERVAL_SECONDS = 1.0
+READ_TIMEOUT_RETRIES = 2
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS candles (
   symbol TEXT NOT NULL,
@@ -190,13 +191,20 @@ def parse_archive(symbol: str, month: date, archive: bytes) -> ArchiveMonth:
 
 def request_bytes(url: str, timeout: float = 45.0) -> bytes | None:
     request = urllib.request.Request(url, headers={"User-Agent": "CoinTrade-Personal-Research/1.0"})
-    try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
-            data = response.read(MAX_ARCHIVE_BYTES + 1)
-    except urllib.error.HTTPError as exc:
-        if exc.code == 404:
-            return None
-        raise RuntimeError(f"archive request failed with HTTP {exc.code}") from exc
+    for attempt in range(READ_TIMEOUT_RETRIES + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                data = response.read(MAX_ARCHIVE_BYTES + 1)
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return None
+            raise RuntimeError(f"archive request failed with HTTP {exc.code}") from exc
+        except (TimeoutError, urllib.error.URLError) as exc:
+            reason = exc.reason if isinstance(exc, urllib.error.URLError) else exc
+            if not isinstance(reason, TimeoutError) or attempt >= READ_TIMEOUT_RETRIES:
+                raise
+            time.sleep(2 ** attempt)
     if len(data) > MAX_ARCHIVE_BYTES:
         raise RuntimeError(f"response exceeds {MAX_ARCHIVE_BYTES} byte safety limit")
     return data

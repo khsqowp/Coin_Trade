@@ -162,6 +162,29 @@ def test_fetch_wraps_checksum_verified_row_validation_failure():
     assert "exceeds total" in caught.value.reason
 
 
+def test_request_retries_read_timeout_but_returns_successful_response():
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self, limit):
+            assert limit == vision.MAX_ARCHIVE_BYTES + 1
+            return b"verified-later-by-caller"
+
+    sleeps = []
+    with patch.object(
+        vision.urllib.request, "urlopen",
+        side_effect=[TimeoutError("temporary read timeout"), Response()],
+    ) as open_url, patch.object(vision.time, "sleep", side_effect=sleeps.append):
+        result = vision.request_bytes("https://data.binance.vision/example.zip")
+    assert result == b"verified-later-by-caller"
+    assert open_url.call_count == 2
+    assert sleeps == [1]
+
+
 def test_backfill_quarantines_invalid_archive_once_and_never_inserts_it():
     db = sqlite3.connect(":memory:")
     db.executescript(vision.SCHEMA)
