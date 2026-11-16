@@ -205,6 +205,39 @@ def test_injected_disconnect_resnapshot_recovery_is_timed_per_symbol(tmp_path, m
     pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
 
 
+@pytest.mark.parametrize("delay", [0, 60])
+def test_disconnect_injection_delay_must_be_inside_capture_window(tmp_path, delay):
+    with pytest.raises(ValueError, match="disconnect injection"):
+        Pilot(tmp_path, capture_seconds=60, inject_depth_disconnect_after_s=delay)
+
+
+def test_monitor_closes_live_depth_socket_once_at_preregistered_delay(tmp_path):
+    async def scenario():
+        pilot = Pilot(tmp_path, capture_seconds=2, max_wall_seconds=5,
+                      inject_depth_disconnect_after_s=0.1)
+        pilot.capture_start = time.monotonic()
+        pilot.depth_online = True
+        closed = asyncio.Event()
+
+        class Socket:
+            async def close(self, code, reason):
+                assert code == 1012
+                assert reason == "preregistered recovery test"
+                closed.set()
+
+        pilot.active_depth_socket = Socket()
+        task = asyncio.create_task(pilot._monitor())
+        await asyncio.wait_for(closed.wait(), timeout=1)
+        pilot.stop.set()
+        await task
+        assert pilot.disconnect_injection["requested"] is True
+        assert pilot.disconnect_injection["triggered"] is True
+        assert pilot.disconnect_injection["triggered_at_monotonic_s"] is not None
+        pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
+
+    asyncio.run(scenario())
+
+
 def test_first_successful_connection_is_not_counted_as_a_reconnect(tmp_path):
     pilot = Pilot(tmp_path)
     assert pilot._depth_connected() == 1
@@ -344,6 +377,7 @@ def test_short_mocked_end_to_end_capture_completes_and_verifies(tmp_path, monkey
     assert set(result["coverage"]) == set(SYMBOLS)
     assert all(result["coverage"][symbol]["coverage"] >= 0.99 for symbol in SYMBOLS), result["coverage"]
     assert result["acceptance"]["recovery"]["within_30_seconds"] is None
+    assert result["disconnect_injection"]["result"] == "not_requested"
     assert result["resource_metrics"]["total_output_bytes"] <= result["hard_byte_cap"]
     assert result["resource_metrics"]["metadata_bytes"] == (
         pilot.run_dir / "manifest.json"
@@ -385,6 +419,12 @@ def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
             self.last_update = {symbol: (100 if attempt == 1 else 200) for symbol in SYMBOLS}
             self.bridge_sent = {symbol: False for symbol in SYMBOLS}
             self.trade_id = 1
+            self.disconnect_requested = False
+
+        async def close(self, code, reason):
+            assert code == 1012
+            assert reason == "preregistered recovery test"
+            self.disconnect_requested = True
 
         async def __aenter__(self):
             return self
@@ -397,9 +437,7 @@ def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
 
         async def _messages(self):
             while not self.pilot.stop.is_set():
-                if (self.stream_kind == "depth" and self.attempt == 1
-                        and self.pilot.capture_start is not None
-                        and time.monotonic() - self.pilot.capture_start >= 0.05):
+                if self.stream_kind == "depth" and self.disconnect_requested:
                     raise ConnectionResetError("injected depth disconnect")
                 for symbol in SYMBOLS:
                     now_ms = time.time_ns() // 1_000_000
@@ -424,7 +462,8 @@ def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
                     await asyncio.sleep(0.005)
 
     async def run_fixture():
-        pilot = Pilot(tmp_path, capture_seconds=2.2, max_wall_seconds=6)
+        pilot = Pilot(tmp_path, capture_seconds=2.2, max_wall_seconds=6,
+                      inject_depth_disconnect_after_s=0.05)
         connection_counts = {"depth": 0, "trades": 0}
         snapshot_counts = {symbol: 0 for symbol in SYMBOLS}
 
@@ -450,6 +489,8 @@ def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
     recovery = result["acceptance"]["recovery"]
     assert recovery["observed_both_symbols"] is True
     assert recovery["within_30_seconds"] is True
+    assert result["disconnect_injection"]["triggered"] is True
+    assert result["disconnect_injection"]["result"] == "triggered"
     assert all(pilot.recovery_s[symbol][0] <= 30 for symbol in SYMBOLS)
 
 
@@ -533,6 +574,7 @@ def test_cli_runs_by_file_path_without_package_path_setup():
     )
     assert result.returncode == 0, result.stderr
     assert "--run" in result.stdout
+    assert "--inject-depth-disconnect-after-s" in result.stdout
 
 
 def test_collector_task_failure_stops_run_and_writes_incomplete_manifest(tmp_path):
