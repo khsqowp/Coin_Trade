@@ -79,11 +79,24 @@ def test_forward_forecast_abstains_on_any_minute_gap_before_anchor(monkeypatch):
     assert result["missing_open_ms"] == 100 * 60_000
 
 
+@pytest.mark.parametrize("bad_stamp", ["not-a-timestamp", 1.5, np.nan])
+def test_forward_forecast_rejects_malformed_timestamps(bad_stamp):
+    raw = candle_prefix()
+    raw["t_open_ms"] = raw["t_open_ms"].astype(object)
+    raw.loc[10, "t_open_ms"] = bad_stamp
+
+    with pytest.raises(ValueError, match="timestamps"):
+        mtf_forward.forecast_at(
+            raw, symbol="BTCUSDT", entry_ms=7_200 * 60_000,
+            entry_price=100.0,
+        )
+
+
 def test_forward_forecast_respects_per_timeframe_overlap_deadlines(monkeypatch):
     monkeypatch.setattr(mtf_forward, "generate_signals", latest_bar_long)
     entry_ms = 7_200 * 60_000
     blocked_until = {
-        timeframe: entry_ms + 1
+        timeframe: entry_ms + 60_000
         for timeframe in mtf_forward.TIMEFRAME_MINUTES
     }
 
@@ -94,6 +107,28 @@ def test_forward_forecast_respects_per_timeframe_overlap_deadlines(monkeypatch):
 
     assert result["status"] == "ABSTAIN_OVERLAP"
     assert result["event"] is None
+
+
+def test_blocked_timeframe_cannot_veto_unblocked_timeframe_consensus(monkeypatch):
+    calls = 0
+
+    def opposing_latest_bar(frame, setup, prepared=None):
+        nonlocal calls
+        side = "short" if calls < len(mtf_forward.MTF_SETUPS) else "long"
+        calls += 1
+        stop = 101.0 if side == "short" else 99.0
+        return [Signal(index=len(frame) - 2, side=side, stop=stop)]
+
+    monkeypatch.setattr(mtf_forward, "generate_signals", opposing_latest_bar)
+    entry_ms = 7_200 * 60_000
+    result = mtf_forward.forecast_at(
+        candle_prefix(), symbol="BTCUSDT", entry_ms=entry_ms,
+        entry_price=100.0, blocked_until={"1m": entry_ms + 60_000},
+    )
+
+    assert result["status"] == "EMITTED"
+    assert result["event"]["side"] == "long"
+    assert "1m" not in result["event"]["votes"]
 
 
 @pytest.mark.parametrize("entry_ms,entry_price", [
