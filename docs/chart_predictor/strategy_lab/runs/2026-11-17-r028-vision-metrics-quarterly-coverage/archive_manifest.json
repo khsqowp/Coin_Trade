@@ -1,0 +1,2373 @@
+{
+  "run_id": "2026-11-17-r028-vision-metrics-quarterly-coverage",
+  "source": "Binance Vision USD-M daily metrics",
+  "sample_plan": "first UTC day of each calendar quarter 2021-01-01 through 2026-10-01; BTCUSDT ETHUSDT BNBUSDT XRPUSDT",
+  "missing_archive_days": [
+    "ETHUSDT 2021-01-01",
+    "ETHUSDT 2021-04-01",
+    "ETHUSDT 2021-07-01",
+    "ETHUSDT 2021-10-01",
+    "BNBUSDT 2021-01-01",
+    "BNBUSDT 2021-04-01",
+    "BNBUSDT 2021-07-01",
+    "BNBUSDT 2021-10-01",
+    "XRPUSDT 2021-01-01",
+    "XRPUSDT 2021-04-01",
+    "XRPUSDT 2021-07-01",
+    "XRPUSDT 2021-10-01"
+  ],
+  "downloaded_archives": [
+    {
+      "file": "BNBUSDT-metrics-2022-01-01.zip",
+      "sha256": "d62770b606a46700210d49b8964a18f16c910b234c8251576323bf16cd18c080",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2022-04-01.zip",
+      "sha256": "c3af5f4c02c95afc30b2c5b1f4b4280b0f11133cce000818c740a6763a7bb9c9",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2022-07-01.zip",
+      "sha256": "649917bd5d966e32e52f7750b9ed42a504b00375f19e3bdfd4aa4da67ab960aa",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2022-10-01.zip",
+      "sha256": "65bc763ad9a5f6f7e78a01c99b425e91c7ff50075a5ee49c974d3140855d2585",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2023-01-01.zip",
+      "sha256": "5acd298d9289200cbcc85fd243d3e8e98beaadbe3e51281d292f90dc9632ee99",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2023-04-01.zip",
+      "sha256": "cbc57fcc8041dcc03833d01bceaabcc4d6c670deb5057c73c7d3200f686e094d",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2023-07-01.zip",
+      "sha256": "53634cccb2cff2de8e792cd87aa6ebb27ea1a21761632802cfa8abb251501559",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2023-10-01.zip",
+      "sha256": "c2bce4f20517facf8a4e7b9db01aab72476780a6fe17f0aed73cf082fbbd7598",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2024-01-01.zip",
+      "sha256": "7cd333c62f06c4145e2411d76978a1d31247a6608f9e3a13381bafd59d2a5974",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2024-04-01.zip",
+      "sha256": "322fa37078cc20ce8b3a09e31b97fa0ac790174bd154e933c9a06f9450083738",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2024-07-01.zip",
+      "sha256": "caa36638d76e134f5f03b964de236d1829a8aed68f4793f55948f0f64cd3f516",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2024-10-01.zip",
+      "sha256": "39590700e72ae88591155b5bf2775355dbf1ea5624845045ceff216f617b5b82",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2025-01-01.zip",
+      "sha256": "acae9e05b15fc9757dec83771b80b39b35c64636f7d0fff679aefedb76396d7f",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2025-04-01.zip",
+      "sha256": "2d738f1f31cc1bc31ed2feaf6538dbb8d424505b406853e6133e05f9ed93a945",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2025-07-01.zip",
+      "sha256": "41ccdf8b412b9810102584d569bc3bd711fecb906f0b382faedf45be264cc7b3",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2025-10-01.zip",
+      "sha256": "ef93e90a607884edde766540db53a9d6e4690a258ab5af39c01ecdcc0d714327",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2026-01-01.zip",
+      "sha256": "90f4e11a18332baaae2a8f88eeebdd466f419ebf44412286160293883a834cb5",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2026-04-01.zip",
+      "sha256": "a1c3abcdcd50ee5a71a150d525323f23079394baa1324a0057f2b3dcea2d6b79",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2026-07-01.zip",
+      "sha256": "6ba5ea766efade2337d9e6d366a93d58c52f2f4e074130972d4c289d7743a958",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BNBUSDT-metrics-2026-10-01.zip",
+      "sha256": "df089b726a6ac63e614cd78cb006c0117485c9f93d1c6347be32c387a5a7afd6",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2021-01-01.zip",
+      "sha256": "9c42e4fa6048b185439a3d744066fa1d2bf0637b3654da53bb8930d1a3da364a",
+      "publisher_checksum_match": true,
+      "rows": 576,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 288,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2021-04-01.zip",
+      "sha256": "5ed764bbbc0188d157a8cf6e7e9d8872fadaddddb840ef7f9de59e09c0144865",
+      "publisher_checksum_match": true,
+      "rows": 576,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 288,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2021-07-01.zip",
+      "sha256": "ba09104b71b28e65666ad72f975510ac585c4f1f3f7ed0e74d35480e40f76abc",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2021-10-01.zip",
+      "sha256": "1629c628c860570cda077583440a5e4494c621438c0a7376e18c727d4bd0af00",
+      "publisher_checksum_match": true,
+      "rows": 287,
+      "unique_timestamps": 287,
+      "missing_grid_slots": 1,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2022-01-01.zip",
+      "sha256": "1846df7dc4a6279afd20c010cb09ee271db8ffa9991c7acea7a73f0e00c0b2c5",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2022-04-01.zip",
+      "sha256": "653825018d7915a8d4b36d4d5be822d69e63f37d753a132549fb177d6fb7aae2",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2022-07-01.zip",
+      "sha256": "9b5abcbfa84754ea27b8d705b1cfb3074c4245cf6da00f0fe15cc0bef2fd47d6",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2022-10-01.zip",
+      "sha256": "de9c0d511b9cdf5d8413453baa90f27d9e0cebd98353a9bd53f56d99380900a7",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2023-01-01.zip",
+      "sha256": "9e6e8c092362c63194b99a5da8244cfcdbdb162662c3a356f23197d617f0993e",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2023-04-01.zip",
+      "sha256": "33c2e8ced85a6488f360d0097dfcc77a0b5259b417c8e6ab56f8005ce9966a0e",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2023-07-01.zip",
+      "sha256": "06b112d5e7529e84e665ce90112698d5ef9988012f6a60027eeb6bfc32c74fab",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2023-10-01.zip",
+      "sha256": "ffc01317aedb22739f0611f789c9db6ab4b0753b1fbc2a181d407a9baf591ed5",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2024-01-01.zip",
+      "sha256": "08bd122b32cf7aa8b35e985c069117c17dc2ea4a138a66e5fb9a1064b290d6c1",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2024-04-01.zip",
+      "sha256": "f4b25671c486b627b986fca5352cb6d787839a3c6572d583267d7756fb9cff09",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2024-07-01.zip",
+      "sha256": "e4236dcb22fda0ce5c881b7cbf9a4a9c3b220d879dd14a0b53c6c47e6d1c9ca7",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2024-10-01.zip",
+      "sha256": "3029f23423c2e012a7a695a620d33f8ef84d3c3b978d4436856015481dffdc62",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2025-01-01.zip",
+      "sha256": "cfabcf9c533d40d0832141340f7e5c9d678f614cf502c3cbe2623eebed4cef03",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2025-04-01.zip",
+      "sha256": "92f3e38968288fb6a8a55242a8840e6643b4b548fa27f5bf6bd45b742ca26de9",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2025-07-01.zip",
+      "sha256": "dfd51f9204b97499ea033c56c534deae530e40885b715a7b5b12c0748bdec7b0",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2025-10-01.zip",
+      "sha256": "7871182d6a7a07acb6d7ac504ade286ef7371eb509d1d05690b4a00af9af45c4",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2026-01-01.zip",
+      "sha256": "b57d5f67f3ffcad415f0f7908d4434e9a1328092e3166d5590673f4d615fcd06",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2026-04-01.zip",
+      "sha256": "23d8fad28ee0bca023ad05741833f04d06b4722386644d1ef370355ee686d43b",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2026-07-01.zip",
+      "sha256": "4a16be30dbbbb1042a9085c4e896b0aa57c5718314c5d0c19e689c1d175a5cd8",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "BTCUSDT-metrics-2026-10-01.zip",
+      "sha256": "e65cebeb721c5179e7734cbf7053516f1e5ec04fe273f2dfa3174ac17d716042",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2022-01-01.zip",
+      "sha256": "3d31688022e6afd6a45b29d9af84bc583d2e595dadf745d7d83a7f829a884489",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2022-04-01.zip",
+      "sha256": "2c12edd910c6f94aecc160cbaaca43e98c13150bf3dfabb18e422da7d2a656c7",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2022-07-01.zip",
+      "sha256": "473654769b94d043fc2f13d0ab1f35561bd9be7f37cf900ca0b455d55a57b561",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2022-10-01.zip",
+      "sha256": "719d452bc562e592aa5f68c9f5daa9400afe0e535fe2f6d78ae68c693fc25a93",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2023-01-01.zip",
+      "sha256": "a6e0807d73616345cafd8e2f9de2238150058ba0bdf4c2470c5335e8e823f8a5",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2023-04-01.zip",
+      "sha256": "896e8832ddad7b72a1db46f00a44c5d635cb7c7ce2db475a1664a66e96ef91d4",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2023-07-01.zip",
+      "sha256": "3d7125f22b68e87ee6909b5b5a58fedc035b8b4353fad5bafbdfaf517ae1edb1",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2023-10-01.zip",
+      "sha256": "50f9a2b5f1a347fa4eef38eebc7bfbc8472dd533e98fc39b7bc0477123d7c9e8",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2024-01-01.zip",
+      "sha256": "fbccf5c54f13967613a127007de488d02bf490c54a3b2d91701ec505e7431df6",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2024-04-01.zip",
+      "sha256": "59c6166f9e593e095f5c0d0c31f60841fce7c4c35cc86cfd6fbc53ca16f6ce70",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2024-07-01.zip",
+      "sha256": "5b4aaaaa61957dae14cb7b9fe26c848c0d91adc45b32ba93a6634683d2ea7ae0",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2024-10-01.zip",
+      "sha256": "b528b594142ff7586f4d4aa0677aa2b37ea40cf354f8e8b6877d5d8150298462",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2025-01-01.zip",
+      "sha256": "3ee0d9de21591261c6cf6f1cfb5e309008cdbd80a8622b7592ecc86062a2b916",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2025-04-01.zip",
+      "sha256": "c21eedfc4e288d45a74087a1af2b3742b2f3d7c792298c7f1a0f63b3156341d6",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2025-07-01.zip",
+      "sha256": "afe9caa37ab929b8b6b486c90a89743c084774e1e6ec2f64671424cc772f98b4",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2025-10-01.zip",
+      "sha256": "6b780491fe5f20f991d4b940e2f437a2bb8e4172866effcc67a95482e1300532",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2026-01-01.zip",
+      "sha256": "a080407d63fe7f5c4280dc9ffcc1e70f386430cf6594a0a0c09ba0dc2dd8ba49",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2026-04-01.zip",
+      "sha256": "29a4b78951e0cc7009655497f6bcb4cfccc4e35899842036454ac935b64c7e95",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2026-07-01.zip",
+      "sha256": "daa755da252c6a6a9454e2e4dc021faacaacbcba985dcd3fc0648de4ae955c68",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "ETHUSDT-metrics-2026-10-01.zip",
+      "sha256": "d0b5faea7810d35cc2a16f4513d0f6f89b70442532d37763e0584800608a29ab",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2022-01-01.zip",
+      "sha256": "888e469a1f7c94e6d14105c1d1e087e7bece94c604ec93ae1ba0880f878d4e0a",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 288,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2022-04-01.zip",
+      "sha256": "a810c4d0b21777cf6b8fc4aa70bea09d4e4b4f25758902747bd5bb5372de72c8",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 288,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2022-07-01.zip",
+      "sha256": "b8427a0249f42c2321619f387da9e9e1848c31ac5873321450f63f870e102171",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2022-10-01.zip",
+      "sha256": "193efd1a01ffe6d4511a3bfa62b38a62a9f9798d53a97fb8912a1a68ef19f860",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 288,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 288
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2023-01-01.zip",
+      "sha256": "585464031cb8605d40b127a53ed7350901264a153499ad1802d916b415c127fa",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2023-04-01.zip",
+      "sha256": "29709071caf416ff0ad8cd1e714c60d05bdb022cac98548cbfcc19724b750727",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2023-07-01.zip",
+      "sha256": "9032262642a67bff5773d3db203ee8f6339f9c8bca9b11b4e265beab2c23d495",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2023-10-01.zip",
+      "sha256": "2a390153f52ee2c0bcf4c1438552a1ec94dfed5dcf66efc32d9eb84beefb2ce7",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2024-01-01.zip",
+      "sha256": "8ecc324f15939e9f1f92acb9e07a134f76667b25814e7b5e9aad5435a75ec4ec",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2024-04-01.zip",
+      "sha256": "29e5eb87c39b1364884d424680c34d0cf7b11538fd225f9007d4af3770f4abe8",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2024-07-01.zip",
+      "sha256": "c56708cbef7067692c016a3835542b465f6e2a94b8df1b67360706b855e673ee",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2024-10-01.zip",
+      "sha256": "fb42d5ea020eff5e1c123ceaf6687e0ed7d62f591a05848152e0b97a012eacfd",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2025-01-01.zip",
+      "sha256": "bcec112519ec58093c3b26b1cad59122c54a3a4fdfea86095d63247b347d119a",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2025-04-01.zip",
+      "sha256": "482b06bfa4f79befaac35acd924a360bde467ab36f1c6e87b2e04fc1db6a3a7c",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2025-07-01.zip",
+      "sha256": "beeec1562f485adfd049014292cdc371a6be013e8b092189bba554aacf20c14e",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2025-10-01.zip",
+      "sha256": "a3b74274f414942089382bf3568ff1db956d9da7d33fc093336368ef296ba9cc",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2026-01-01.zip",
+      "sha256": "b83260dd5fb15ff4eeadd9b4c0822d6ad1d0ffa30c967e06326ed020b3c47b58",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2026-04-01.zip",
+      "sha256": "87fb1d7787bc49a6cbc8d1ad52999eb909e6bc2e4772e5372748153eb1a4b85b",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2026-07-01.zip",
+      "sha256": "a8c8ff2e759565425a7faf96984931dac1f7cc735817a9e114816b608529569e",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    },
+    {
+      "file": "XRPUSDT-metrics-2026-10-01.zip",
+      "sha256": "fac6b846e489034286d0a2d5f8f2856b8f50af6876425ccb4440bd6d3338c5ba",
+      "publisher_checksum_match": true,
+      "rows": 288,
+      "unique_timestamps": 288,
+      "missing_grid_slots": 0,
+      "duplicate_rows": 0,
+      "off_grid_count": 0,
+      "blank_values_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "create_time": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0,
+        "symbol": 0
+      },
+      "nonfinite_or_non_numeric_by_column": {
+        "count_long_short_ratio": 0,
+        "count_toptrader_long_short_ratio": 0,
+        "sum_open_interest": 0,
+        "sum_open_interest_value": 0,
+        "sum_taker_long_short_vol_ratio": 0,
+        "sum_toptrader_long_short_ratio": 0
+      }
+    }
+  ]
+}

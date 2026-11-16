@@ -1,0 +1,66 @@
+{
+  "run_id": "2026-11-17-r028-vision-metrics-quarterly-coverage",
+  "classification": "historical_archive_quality_only",
+  "strategy_trial": false,
+  "target_first_metrics": null,
+  "sample": {
+    "symbols": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT"],
+    "dates": "first UTC day of each calendar quarter, 2021-01-01 through 2026-10-01 inclusive",
+    "attempted_symbol_days": 96,
+    "archives_downloaded": 84,
+    "http_404": 12,
+    "missing_objects": [
+      "ETHUSDT: 2021-01-01, 2021-04-01, 2021-07-01, 2021-10-01",
+      "BNBUSDT: 2021-01-01, 2021-04-01, 2021-07-01, 2021-10-01",
+      "XRPUSDT: 2021-01-01, 2021-04-01, 2021-07-01, 2021-10-01"
+    ]
+  },
+  "archive_audit": {
+    "auditor": "scripts/research/audit_vision_daily_archive.py --interval-minutes 5",
+    "publisher_checksums_matched": 84,
+    "rows": 24767,
+    "duplicate_rows": 576,
+    "exact_duplicate_timestamps": 576,
+    "archives_with_duplicates": [
+      {
+        "file": "BTCUSDT-metrics-2021-01-01.zip",
+        "duplicate_rows": 288,
+        "conflicting_duplicate_rows": 0,
+        "all_duplicate_rows_byte_field_equal": true
+      },
+      {
+        "file": "BTCUSDT-metrics-2021-04-01.zip",
+        "duplicate_rows": 288,
+        "conflicting_duplicate_rows": 0,
+        "all_duplicate_rows_byte_field_equal": true
+      }
+    ],
+    "missing_5m_slots": [
+      {
+        "file": "BTCUSDT-metrics-2021-10-01.zip",
+        "timestamp_utc": "2021-10-01T10:45:00Z",
+        "count": 1
+      }
+    ],
+    "off_grid_timestamps": 0,
+    "oi_fields": {
+      "sum_open_interest_blank_values": 0,
+      "sum_open_interest_nonfinite_or_non_numeric": 0,
+      "sum_open_interest_value_blank_values": 0,
+      "sum_open_interest_value_nonfinite_or_non_numeric": 0
+    },
+    "other_blank_values": {
+      "count_toptrader_long_short_ratio": 4608,
+      "sum_toptrader_long_short_ratio": 4608,
+      "count_long_short_ratio": 1152,
+      "sum_taker_long_short_vol_ratio": 2304
+    }
+  },
+  "interpretation": [
+    "The sampled OI columns are populated and numeric in all 84 downloaded archives, but two early BTC archives duplicate every 5-minute row exactly and one BTC sample omits one 5-minute slot.",
+    "All 12 missing archive objects are the four sampled 2021 dates for ETHUSDT, BNBUSDT, and XRPUSDT; this does not establish whether the symbols were unlisted, the files unavailable, or another cause.",
+    "The sample cannot establish archive-wide completeness, point-in-time contract eligibility, OI publication-time semantics beyond the separate limited R026 check, or OOS strategy performance. Do not infer OI direction from the field alone."
+  ],
+  "temporary_input_root": "/private/tmp/r028-vision-metrics-quarterly-coverage",
+  "audit_json": "/private/tmp/r028-vision-metrics-quarterly-coverage/audit.json"
+}
