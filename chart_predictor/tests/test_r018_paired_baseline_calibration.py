@@ -49,6 +49,45 @@ def test_paired_bound_uses_all_48_contrasts_and_is_deterministic():
     np.testing.assert_array_equal(first["lower"], larger_batch["lower"])
 
 
+def test_vectorized_bootstrap_matches_original_cluster_resample_formula():
+    rng = np.random.default_rng(440)
+    n = rng.integers(4, 24, size=(47, 48)).astype(float)
+    x = np.empty_like(n)
+    for day in range(n.shape[0]):
+        x[day] = rng.integers(-n[day].astype(int), n[day].astype(int) + 1)
+    eligible = np.ones(48, dtype=bool)
+    eligible[[3, 17, 46]] = False
+    seed, reps, block = 818, 1999, 7
+
+    # Independent, deliberately simple reference using the original day-index
+    # gather and per-replicate cluster residual calculation.
+    active = np.flatnonzero(eligible)
+    nn, xx = n[:, active], x[:, active]
+    total = nn.sum(axis=0)
+    delta = xx.sum(axis=0) / total
+    d = len(nn)
+    se = np.sqrt(d / (d - 1) * ((xx - nn * delta) ** 2).sum(axis=0)) / total
+    indices = R018.stationary_indices(np.random.default_rng(seed), reps, d, block)
+    maxima = np.empty(reps)
+    for b, ix in enumerate(indices):
+        n_star, x_star = nn[ix], xx[ix]
+        total_star = n_star.sum(axis=0)
+        delta_star = x_star.sum(axis=0) / total_star
+        se_star = np.sqrt(d / (d - 1) *
+                          ((x_star - n_star * delta_star) ** 2).sum(axis=0)) / total_star
+        maxima[b] = ((delta_star - delta) / se_star).max()
+    critical = float(np.quantile(maxima, 0.95, method="higher"))
+
+    result = R018.paired_lower_bounds(
+        n, x, reps=reps, mean_block=block, seed=seed,
+        eligible_contrasts=eligible)
+    np.testing.assert_allclose(result["delta"][active], delta, rtol=1e-13, atol=1e-13)
+    np.testing.assert_allclose(result["se"][active], se, rtol=1e-13, atol=1e-13)
+    assert result["critical"] == pytest.approx(critical, rel=1e-12, abs=1e-12)
+    np.testing.assert_allclose(result["lower"][active], delta-critical*se,
+                               rtol=1e-12, atol=1e-12)
+
+
 def test_future_mutation_guard_accepts_causal_and_rejects_peeking_functions():
     prefix = np.array([[1.0], [2.0], [3.0]])
     future_a = np.array([[4.0], [5.0]])

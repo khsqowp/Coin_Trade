@@ -147,23 +147,29 @@ def paired_lower_bounds(n: np.ndarray, x: np.ndarray, *, reps: int,
     if not np.isfinite(se).all() or (se <= 0).any():
         raise ValueError("invalid observed cluster standard error")
     indices = stationary_indices(np.random.default_rng(seed), reps, d, mean_block)
-    max_t = np.empty(reps, dtype=np.float64)
-    for start in range(0, reps, batch_size):
-        stop = min(reps, start + batch_size)
-        ix = indices[start:stop]
-        count_star = n[ix]
-        score_star = x[ix]
-        bn = count_star.sum(axis=1)
-        bx = score_star.sum(axis=1)
-        if (bn <= 0).any():
-            raise ValueError("bootstrap sample has an empty contrast")
-        delta_star = bx / bn
-        residual_star = score_star - count_star * delta_star[:, None, :]
-        se_star = np.sqrt(d / (d - 1) * (residual_star ** 2).sum(axis=1)) / bn
-        if not np.isfinite(se_star).all() or (se_star <= 0).any():
-            raise ValueError("invalid bootstrap cluster standard error")
-        t_star = (delta_star - delta[None, :]) / se_star
-        max_t[start:stop] = t_star.max(axis=1)
+    # Exact sufficient-statistic form of the same cluster bootstrap. A sampled
+    # day may occur repeatedly; its multiplicity is its weight. This avoids
+    # materializing reps×days×contrasts copies of n/x in Python batches.
+    weights = np.zeros((reps, d), dtype=np.float64)
+    rows = np.repeat(np.arange(reps, dtype=np.int32), d)
+    np.add.at(weights, (rows, indices.reshape(-1)), 1.0)
+    bn = weights @ n
+    bx = weights @ x
+    if (bn <= 0).any():
+        raise ValueError("bootstrap sample has an empty contrast")
+    delta_star = bx / bn
+    sum_x2 = weights @ (x * x)
+    sum_xn = weights @ (x * n)
+    sum_n2 = weights @ (n * n)
+    residual_ss = sum_x2 - 2.0 * delta_star * sum_xn + delta_star * delta_star * sum_n2
+    if (residual_ss < -1e-9).any():
+        raise ValueError("negative bootstrap residual sum of squares")
+    residual_ss = np.maximum(residual_ss, 0.0)
+    se_star = np.sqrt(d / (d - 1) * residual_ss) / bn
+    if not np.isfinite(se_star).all() or (se_star <= 0).any():
+        raise ValueError("invalid bootstrap cluster standard error")
+    t_star = (delta_star - delta[None, :]) / se_star
+    max_t = t_star.max(axis=1)
     critical = float(np.quantile(max_t, 0.95, method="higher"))
     lower = np.full(CONTRASTS, np.nan)
     delta_full, se_full = np.full(CONTRASTS, np.nan), np.full(CONTRASTS, np.nan)
