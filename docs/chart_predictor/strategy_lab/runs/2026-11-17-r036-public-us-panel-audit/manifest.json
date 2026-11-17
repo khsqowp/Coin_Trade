@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-11-17-r036-public-us-panel-audit",
+  "date": "2026-11-17",
+  "type": "source_readiness_audit",
+  "performance_trial": false,
+  "asset_downloaded": false,
+  "candidate_code_executed": false,
+  "repo": "https://github.com/Johnbrick123/sp500-data",
+  "repo_license_metadata": null,
+  "release_tag": "data",
+  "release_assets_observed": {
+    "prices.parquet": 235889476,
+    "raw.tar.zst": 135041959
+  },
+  "strategy_metrics_calculated": false,
+  "decision": "NO_GO"
+}

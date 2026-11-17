@@ -1,0 +1,25 @@
+{
+  "decision": "NO_GO",
+  "gates": {
+    "explicit_dataset_and_code_license": "FAIL_UNVERIFIED: repository license metadata is null and root LICENSE returned 404",
+    "digest_pinned_release_available": "PARTIAL: release metadata exposes asset sizes and SHA-256 digests; bytes were not acquired or checked",
+    "reproducible_release_lineage": "FAIL_UNVERIFIED: mutable nightly release combines code and external data inputs without a verified immutable source snapshot for the inspected asset",
+    "point_in_time_membership": "PARTIAL: repo claims historical S&P membership; current and recent memberships are built from external Wikipedia snapshots and were not independently validated",
+    "daily_ohlcv_coverage": "FAIL_FOR_FULL_HISTORY: README says pre-1996 history has no OHLCV",
+    "inactive_names_and_delisting_execution": "PARTIAL: suffix labels and exit-gap files are described, but coverage and execution treatment were not audited from asset bytes",
+    "corporate_actions_and_dividends": "PARTIAL: pipeline and anomaly reports are described; independent panel-level verification not performed",
+    "point_in_time_etf_universe": "FAIL_UNVERIFIED: README lists selected ETFs with varying inception dates; no terminated-ETF universe is established"
+  },
+  "observations": [
+    "GitHub API repository metadata reported license=null; root LICENSE lookup returned 404.",
+    "Release metadata listed prices.parquet (235889476 bytes) and raw.tar.zst (135041959 bytes), with asset digests.",
+    "README identifies yfinance as the principal live-price source, optional Tiingo recovery, and CRSP-derived pre-1996 inputs.",
+    "README documents 17 recycled tickers, incomplete second-source coverage in parts of 2025-2026, no pre-1996 OHLCV, and handpicked ETFs with histories beginning at inception."
+  ],
+  "strategy_metrics": null,
+  "limitations": [
+    "No release asset content was downloaded or parsed.",
+    "No legal conclusion was made; absence of an explicit license is a research gate, not a determination of infringement.",
+    "README statements are repository-author claims and were not independently reproduced."
+  ]
+}
