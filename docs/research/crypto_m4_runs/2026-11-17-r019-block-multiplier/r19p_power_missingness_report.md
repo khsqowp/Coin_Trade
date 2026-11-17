@@ -26,6 +26,8 @@ The `(0.79,0.50)` detection rate varies substantially by profile; treat it as a 
 
 ## Missingness diagnostics
 
+Preregistration wording note: it calls these “six fixed missingness cells,” but its enumerated design has five applicable cells (three independent-1% profiles and B/C common-shock-5%); A common-shock is explicitly structurally inapplicable. The five listed applicable cells were run, with no substitution.
+
 | Profile | Simulations | All-claim eligibility | Unresolved promotions | Failed panels | Decision |
 |---|---:|---:|---:|---:|---|
 | A independent 1% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
