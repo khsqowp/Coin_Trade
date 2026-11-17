@@ -51,13 +51,14 @@ def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None
 
 
 def resolve_ohlc_path(opens, highs, lows, closes, *, side, stop, target,
-                      expected_opens=None, bar_ms=60_000):
+                      open_times_ms, expected_start_ms, expected_count,
+                      bar_ms=60_000):
     """Resolve a stop/target path conservatively; missing or malformed bars are unresolved.
 
     Stop wins when both barriers are inside one OHLC bar. Stop gaps fill at the
-    observed open; target gaps fill at the registered target. ``expected_opens``
-    is the complete expected timestamp sequence for the path, allowing a caller
-    to detect missing native candles before treating a timeout as resolved.
+    observed open; target gaps fill at the registered target. The observed
+    timestamps, expected first timestamp, and full horizon length detect missing
+    leading, interior, and trailing rows without penalizing post-exit gaps.
     """
     arrays = [np.asarray(x, dtype=float) for x in (opens, highs, lows, closes)]
     if side not in ("long", "short") or not np.isfinite(stop) or not np.isfinite(target):
@@ -66,13 +67,13 @@ def resolve_ohlc_path(opens, highs, lows, closes, *, side, stop, target,
         raise ValueError("target and stop are reversed for side")
     if not arrays[0].size or any(a.ndim != 1 or len(a) != len(arrays[0]) for a in arrays):
         raise ValueError("OHLC arrays must be non-empty, one-dimensional, and equally sized")
-    times = None if expected_opens is None else np.asarray(expected_opens, dtype=np.int64)
-    if times is not None and (times.ndim != 1 or len(times) != len(arrays[0]) or bar_ms <= 0):
-        raise ValueError("expected_opens must align with OHLC rows and bar_ms must be positive")
+    times = np.asarray(open_times_ms, dtype=np.int64)
+    if times.ndim != 1 or len(times) != len(arrays[0]) or bar_ms <= 0 or expected_count < 1:
+        raise ValueError("observed times must align; expected_count and bar_ms must be positive")
 
     o, h, l, c = arrays
-    for i in range(len(o)):
-        if times is not None and (i and times[i] - times[i - 1] != bar_ms):
+    for i in range(expected_count):
+        if i >= len(o) or times[i] != expected_start_ms + i * bar_ms:
             return {"status": "unresolved", "price": None, "bar_index": i}
         if (not np.all(np.isfinite([o[i], h[i], l[i], c[i]])) or
                 h[i] < max(o[i], c[i]) or l[i] > min(o[i], c[i]) or l[i] > h[i]):
@@ -95,7 +96,8 @@ def resolve_ohlc_path(opens, highs, lows, closes, *, side, stop, target,
                 return {"status": "stop", "price": float(stop), "bar_index": i}
             if l[i] <= target:
                 return {"status": "target", "price": float(target), "bar_index": i}
-    return {"status": "timeout", "price": float(c[-1]), "bar_index": len(c) - 1}
+    return {"status": "timeout", "price": float(c[expected_count - 1]),
+            "bar_index": expected_count - 1}
 
 
 def drawdown_pct(returns):
@@ -150,15 +152,19 @@ def walk_forward_windows(start_day, *, train_days=504, test_days=252, count=5):
     return windows
 
 
-def plateau_summary(rows, *, min_neighbor_pass_fraction=0.80, max_neighbor_m2_gap=0.10):
+def plateau_summary(rows, *, expected_params=None, min_neighbor_pass_fraction=0.80,
+                    max_neighbor_m2_gap=0.10):
     """Score a frozen rectangular parameter grid using one-step neighbors.
 
     Each row needs `params` (mapping), `m2`, `n`, `net_expectancy`, `resolved`.
     A cell passes only at M2>=0.80, n>=30, resolved=true and positive expectancy.
     """
     by_key = {tuple(sorted(row["params"].items())): row for row in rows}
-    dimensions = sorted({k for row in rows for k in row["params"]})
-    levels = {d: sorted({row["params"][d] for row in rows}) for d in dimensions}
+    if len(by_key) != len(rows):
+        raise ValueError("parameter grid contains duplicate cells")
+    universe = list(expected_params) if expected_params is not None else [r["params"] for r in rows]
+    dimensions = sorted({k for params in universe for k in params})
+    levels = {d: sorted({params[d] for params in universe}) for d in dimensions}
     results = []
     for key, row in by_key.items():
         params = dict(key)
@@ -170,13 +176,12 @@ def plateau_summary(rows, *, min_neighbor_pass_fraction=0.80, max_neighbor_m2_ga
                     changed = dict(params)
                     changed[dim] = levels[dim][adjacent]
                     neighbor = by_key.get(tuple(sorted(changed.items())))
-                    if neighbor is not None:
-                        neighbors.append(neighbor)
-        passing = [n for n in neighbors if n.get("resolved", False) and n.get("m2") is not None
+                    neighbors.append(neighbor)
+        passing = [n for n in neighbors if n is not None and n.get("resolved", False) and n.get("m2") is not None
                    and n["m2"] >= 0.80 and n["n"] >= 30
                    and n["net_expectancy"] > 0 and n.get("resolved", False)]
         fraction = len(passing) / len(neighbors) if neighbors else None
-        valid_m2 = [n["m2"] for n in neighbors if n.get("resolved", False) and n.get("m2") is not None]
+        valid_m2 = [n["m2"] for n in neighbors if n is not None and n.get("resolved", False) and n.get("m2") is not None]
         median_m2 = float(np.median(valid_m2)) if valid_m2 else None
         robust = (row.get("resolved", False) and row.get("m2") is not None and row["m2"] >= 0.80 and row["n"] >= 30
                   and row["net_expectancy"] > 0 and len(neighbors) >= 4

@@ -34,12 +34,19 @@ def test_divergence_features_are_prefix_invariant_and_future_peek_probe_is_detec
                                        lag=2, macro_direction=np.ones(len(low), dtype=int))
     assert [s for s in base if s.index < cutoff] == [s for s in changed if s.index < cutoff]
 
-    # Control: this intentionally faulty feature reads beyond the prefix, and
-    # the same perturbation must make the prefix-invariance assertion fail.
+    # Control: feed a deliberately future-peeking feature to the same
+    # prefix-invariance checker and prove the checker rejects it.
     def deliberately_peeking_feature(values):
-        return float(np.min(values[cutoff:]))
+        return np.full(cutoff, np.min(values[cutoff:]))
 
-    assert deliberately_peeking_feature(low) != deliberately_peeking_feature(altered_low)
+    def prefix_invariant(feature, first, second):
+        try:
+            np.testing.assert_array_equal(feature(first), feature(second))
+        except AssertionError:
+            return False
+        return True
+
+    assert not prefix_invariant(deliberately_peeking_feature, low, altered_low)
 
 
 def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
@@ -54,18 +61,22 @@ def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
 
 def test_ohlc_path_is_long_short_symmetric_and_stop_wins_same_bar_tie():
     tie = study.resolve_ohlc_path([100], [111], [89], [101],
-                                  side="long", stop=90, target=110)
+                                  side="long", stop=90, target=110,
+                                  open_times_ms=[0], expected_start_ms=0, expected_count=1)
     mirror = study.resolve_ohlc_path([100], [111], [89], [99],
-                                     side="short", stop=110, target=90)
+                                     side="short", stop=110, target=90,
+                                     open_times_ms=[0], expected_start_ms=0, expected_count=1)
     assert tie == {"status": "stop", "price": 90.0, "bar_index": 0}
     assert mirror == {"status": "stop", "price": 110.0, "bar_index": 0}
 
 
 def test_ohlc_path_applies_adverse_stop_gap_and_target_price_on_favorable_gap():
     stop_gap = study.resolve_ohlc_path([85], [88], [80], [82],
-                                       side="long", stop=90, target=110)
+                                       side="long", stop=90, target=110,
+                                       open_times_ms=[0], expected_start_ms=0, expected_count=1)
     target_gap = study.resolve_ohlc_path([115], [118], [112], [116],
-                                         side="long", stop=90, target=110)
+                                         side="long", stop=90, target=110,
+                                         open_times_ms=[0], expected_start_ms=0, expected_count=1)
     assert stop_gap == {"status": "stop", "price": 85.0, "bar_index": 0}
     assert target_gap == {"status": "target", "price": 110.0, "bar_index": 0}
 
@@ -73,11 +84,26 @@ def test_ohlc_path_applies_adverse_stop_gap_and_target_price_on_favorable_gap():
 def test_ohlc_path_marks_missing_or_malformed_required_path_unresolved():
     missing = study.resolve_ohlc_path([100, 100, 100], [102]*3, [98]*3, [100]*3,
                                       side="long", stop=90, target=110,
-                                      expected_opens=[0, 60_000, 180_000])
+                                      open_times_ms=[0, 60_000, 180_000],
+                                      expected_start_ms=0, expected_count=3)
     malformed = study.resolve_ohlc_path([100], [99], [98], [100],
-                                        side="long", stop=90, target=110)
+                                        side="long", stop=90, target=110,
+                                        open_times_ms=[0], expected_start_ms=0, expected_count=1)
     assert missing == {"status": "unresolved", "price": None, "bar_index": 2}
     assert malformed == {"status": "unresolved", "price": None, "bar_index": 0}
+
+
+def test_ohlc_path_detects_missing_first_and_last_required_bar():
+    leading = study.resolve_ohlc_path([100, 100], [102, 102], [98, 98], [100, 100],
+                                      side="long", stop=90, target=110,
+                                      open_times_ms=[60_000, 120_000],
+                                      expected_start_ms=0, expected_count=2)
+    trailing = study.resolve_ohlc_path([100], [102], [98], [100],
+                                        side="long", stop=90, target=110,
+                                        open_times_ms=[0], expected_start_ms=0,
+                                        expected_count=2)
+    assert leading == {"status": "unresolved", "price": None, "bar_index": 0}
+    assert trailing == {"status": "unresolved", "price": None, "bar_index": 1}
 
 
 def test_monte_carlo_has_exactly_1000_deterministic_reorders():
@@ -133,4 +159,15 @@ def test_unresolved_adjacent_cell_counts_as_plateau_failure():
     center = next(x for x in study.plateau_summary(grid)
                   if x["params"] == {"lag": 2, "target": 2})
     assert center["neighbor_pass_fraction"] < 1
+    assert not center["plateau_robust"]
+
+
+def test_missing_grid_neighbor_counts_as_failure_when_expected_grid_is_frozen():
+    params = [{"lag": a, "target": b} for a in (1, 2, 3) for b in (1, 2, 3)]
+    grid = [_cell(p["lag"], p["target"]) for p in params
+            if p != {"lag": 1, "target": 2}]
+    center = next(x for x in study.plateau_summary(grid, expected_params=params)
+                  if x["params"] == {"lag": 2, "target": 2})
+    assert center["neighbor_count"] == 4
+    assert center["neighbor_pass_fraction"] == 0.75
     assert not center["plateau_robust"]

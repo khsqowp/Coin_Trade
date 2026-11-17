@@ -28,13 +28,15 @@ The `(0.79,0.50)` detection rate varies substantially by profile; treat it as a 
 
 Preregistration wording note: it calls these “six fixed missingness cells,” but its enumerated design has five applicable cells (three independent-1% profiles and B/C common-shock-5%); A common-shock is explicitly structurally inapplicable. The five listed applicable cells were run, with no substitution.
 
-| Profile | Simulations | All-claim eligibility | Unresolved promotions | Failed panels | Decision |
-|---|---:|---:|---:|---:|---|
-| A independent 1% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
-| B independent 1% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
-| C independent 1% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
-| B common shock 5% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
-| C common shock 5% | 5,000 | 0% | 0 | 0 | DIAGNOSTIC_ONLY |
+| Profile | Eligible claims min/median/max | Unresolved claims min/median/max | Unresolved events min/median/max | Resolved-only M2 P05/median/P95 | All-unresolved-loss M2 P05/median/P95 | Paired coverage | Panels with any promotion | Promotion with unresolved | Error panels |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A independent 1% | 0/0/0 | 24/24/24 | 4,174/4,401/4,648 | 24.73%/65.23%/95.14% | 24.48%/64.57%/94.20% | 0% | 0 | 0 | 0 |
+| B independent 1% | 0/0/0 | 24/24/24 | 4,156/4,401/4,649 | 24.42%/66.27%/95.29% | 24.17%/65.63%/94.34% | 0% | 0 | 0 | 0 |
+| C independent 1% | 0/0/0 | 24/24/24 | 4,166/4,400/4,631 | 24.40%/65.61%/95.31% | 24.16%/64.98%/94.36% | 0% | 0 | 0 | 0 |
+| B common shock 5% | 0/0/0 | 24/24/24 | 18,132/22,008/25,824 | 24.44%/66.44%/95.29% | 23.21%/63.06%/90.61% | 0% | 0 | 0 | 0 |
+| C common shock 5% | 0/0/0 | 24/24/24 | 16,966/21,984/27,770 | 24.33%/66.07%/95.32% | 23.11%/62.49%/90.71% | 0% | 0 | 0 | 0 |
+
+M2 quantiles are calculated across claim-panel rates (120,000 claim-panel observations per profile), not event-weighted as a single pooled precision estimate. Every panel in each missingness cell has at least one unresolved event in every one of the 24 claims; therefore none of the claims is eligible and the zero paired coverage is a diagnostic failure of coverage, not evidence of robust inference.
 
 Zero eligibility is not a pass and does not show that missingness is harmless. Under the frozen rule, these missing-data profiles cannot be promoted; their zero coverage makes the inference unusable. A future market-data run must therefore classify unresolved outcome paths as inconclusive and report coverage, without dropping them from the denominator to inflate the hit rate.
 
