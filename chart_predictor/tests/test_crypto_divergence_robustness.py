@@ -106,6 +106,13 @@ def test_ohlc_path_detects_missing_first_and_last_required_bar():
     assert trailing == {"status": "unresolved", "price": None, "bar_index": 1}
 
 
+def test_ohlc_path_rejects_non_integer_timestamps():
+    with pytest.raises(ValueError, match="integer millisecond"):
+        study.resolve_ohlc_path([100], [102], [98], [100], side="long", stop=90, target=110,
+                                open_times_ms=[0.5], expected_start_ms=0,
+                                expected_count=1)
+
+
 def test_monte_carlo_has_exactly_1000_deterministic_reorders():
     values = [-1.0, 0.8, -0.3, 1.2, -0.5, 0.6]
     a = study.monte_carlo_reorder_mdd(values)
@@ -140,13 +147,14 @@ def test_plateau_rejects_isolated_spike_and_accepts_broad_neighborhood():
     grid = [_cell(a, b, m2=(0.91 if (a, b) == (2, 2) else 0.55),
                   ev=(0.2 if (a, b) == (2, 2) else -0.1))
             for a in (1, 2, 3) for b in (1, 2, 3)]
-    spike = study.plateau_summary(grid)
+    expected = [{"lag": a, "target": b} for a in (1, 2, 3) for b in (1, 2, 3)]
+    spike = study.plateau_summary(grid, expected_params=expected)
     selected = next(x for x in spike if x["params"] == {"lag": 2, "target": 2})
     assert selected["neighbor_pass_fraction"] == 0
     assert not selected["plateau_robust"]
 
     broad = [_cell(a, b) for a in (1, 2, 3) for b in (1, 2, 3)]
-    plateau = study.plateau_summary(broad)
+    plateau = study.plateau_summary(broad, expected_params=expected)
     center = next(x for x in plateau if x["params"] == {"lag": 2, "target": 2})
     assert center["neighbor_pass_fraction"] == 1
     assert center["plateau_robust"]
@@ -156,7 +164,8 @@ def test_unresolved_adjacent_cell_counts_as_plateau_failure():
     grid = [_cell(a, b) for a in (1, 2, 3) for b in (1, 2, 3)]
     row = next(x for x in grid if x["params"] == {"lag": 1, "target": 2})
     row["resolved"] = False; row["m2"] = None; row["n"] = 0; row["net_expectancy"] = 0
-    center = next(x for x in study.plateau_summary(grid)
+    expected = [{"lag": a, "target": b} for a in (1, 2, 3) for b in (1, 2, 3)]
+    center = next(x for x in study.plateau_summary(grid, expected_params=expected)
                   if x["params"] == {"lag": 2, "target": 2})
     assert center["neighbor_pass_fraction"] < 1
     assert not center["plateau_robust"]
@@ -171,3 +180,8 @@ def test_missing_grid_neighbor_counts_as_failure_when_expected_grid_is_frozen():
     assert center["neighbor_count"] == 4
     assert center["neighbor_pass_fraction"] == 0.75
     assert not center["plateau_robust"]
+
+
+def test_plateau_requires_the_frozen_expected_grid():
+    with pytest.raises(TypeError):
+        study.plateau_summary([_cell(a, b) for a in (1, 2) for b in (1, 2)])

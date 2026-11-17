@@ -67,9 +67,19 @@ def resolve_ohlc_path(opens, highs, lows, closes, *, side, stop, target,
         raise ValueError("target and stop are reversed for side")
     if not arrays[0].size or any(a.ndim != 1 or len(a) != len(arrays[0]) for a in arrays):
         raise ValueError("OHLC arrays must be non-empty, one-dimensional, and equally sized")
-    times = np.asarray(open_times_ms, dtype=np.int64)
-    if times.ndim != 1 or len(times) != len(arrays[0]) or bar_ms <= 0 or expected_count < 1:
+    raw_times = np.asarray(open_times_ms)
+    if raw_times.dtype.kind not in "iu":
+        raise ValueError("open_times_ms must contain integer millisecond timestamps")
+    if raw_times.dtype.kind == "u" and raw_times.size and np.any(raw_times > np.iinfo(np.int64).max):
+        raise ValueError("open_times_ms exceed signed 64-bit timestamp range")
+    if (not isinstance(expected_start_ms, (int, np.integer)) or isinstance(expected_start_ms, bool)
+            or not isinstance(expected_count, (int, np.integer)) or isinstance(expected_count, bool)
+            or not isinstance(bar_ms, (int, np.integer)) or isinstance(bar_ms, bool)):
+        raise ValueError("expected_start_ms, expected_count, and bar_ms must be integers")
+    if (raw_times.ndim != 1 or len(raw_times) != len(arrays[0]) or bar_ms <= 0
+            or expected_count < 1):
         raise ValueError("observed times must align; expected_count and bar_ms must be positive")
+    times = raw_times.astype(np.int64, copy=False)
 
     o, h, l, c = arrays
     for i in range(expected_count):
@@ -152,7 +162,7 @@ def walk_forward_windows(start_day, *, train_days=504, test_days=252, count=5):
     return windows
 
 
-def plateau_summary(rows, *, expected_params=None, min_neighbor_pass_fraction=0.80,
+def plateau_summary(rows, *, expected_params, min_neighbor_pass_fraction=0.80,
                     max_neighbor_m2_gap=0.10):
     """Score a frozen rectangular parameter grid using one-step neighbors.
 
@@ -162,7 +172,17 @@ def plateau_summary(rows, *, expected_params=None, min_neighbor_pass_fraction=0.
     by_key = {tuple(sorted(row["params"].items())): row for row in rows}
     if len(by_key) != len(rows):
         raise ValueError("parameter grid contains duplicate cells")
-    universe = list(expected_params) if expected_params is not None else [r["params"] for r in rows]
+    universe = list(expected_params)
+    if not universe:
+        raise ValueError("expected_params must be the complete preregistered grid")
+    dimensions_expected = set(universe[0])
+    if any(set(params) != dimensions_expected for params in universe):
+        raise ValueError("every expected grid cell must define the same parameter dimensions")
+    expected_keys = {tuple(sorted(params.items())) for params in universe}
+    if len(expected_keys) != len(universe):
+        raise ValueError("expected parameter grid contains duplicate cells")
+    if not set(by_key).issubset(expected_keys):
+        raise ValueError("observed rows contain cells outside the expected grid")
     dimensions = sorted({k for params in universe for k in params})
     levels = {d: sorted({params[d] for params in universe}) for d in dimensions}
     results = []
