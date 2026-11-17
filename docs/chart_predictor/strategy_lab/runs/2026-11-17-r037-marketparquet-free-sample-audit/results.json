@@ -1,0 +1,33 @@
+{
+  "decision": "NO_GO_FOR_PERFORMANCE_TESTING",
+  "sample_access": {
+    "newest_daily_files_without_account": true,
+    "daily_free_window_claimed": "approximately 365 days; account/API key required for the broader free window according to the sample guide",
+    "intraday_sample": "one fixed week, 30 symbols; no account according to FAQ",
+    "latest_daily_file_size_bytes": null,
+    "metadata_probe": "HEAD followed redirect but returned HTTP 403; subsequent range GET failed DNS resolution; no sample bytes retained"
+  },
+  "gates": {
+    "explicit_usage_rights_for_free_sample": "PARTIAL: Terms say free sample files are offered without account and data use is governed by license; license describes an account license granted on archive payment, so exact sample rights are not explicit enough to conclude",
+    "history_depth_for_long_horizon_equity_strategy": "FAIL: no-account sample has only recent daily files; broader free daily window is about one year, far shorter than the multi-regime OOS objective",
+    "daily_fields": "PARTIAL: OHLCV shown; price history is split-adjusted, not cash-dividend total-return adjusted",
+    "point_in_time_security_universe": "PARTIAL: provider states delisted names are marked with a suffix and retained, but security identity, dated ETF membership, ticker reuse, and complete delisting-return semantics were not independently validated from files",
+    "corporate_actions": "FAIL_FOR_TOTAL_RETURN_WITHOUT_ADDITIONAL_DATA: cash dividends are not embedded; other merger/spin-off treatment is case-specific",
+    "data_quality_independence": "PARTIAL: public methodology and correction log are unusually detailed, but claims are vendor statements and the sample was not downloaded or independently audited",
+    "reproducibility": "PARTIAL: provider documents nightly updates and corrections; no immutable sample checksum or versioned full panel was established"
+  },
+  "observations": [
+    "Official pages advertise a free recent daily sample for stocks, ETFs, and futures; the newest seven daily files are stated to be no-account downloads.",
+    "Official pages advertise a no-account one-week intraday sample for 30 symbols; a translated page lists 4.0 MB, but this size was not independently verified from the English download endpoint.",
+    "The data license permits personal trading/research and derived aggregate publication while prohibiting raw-file redistribution; its scope wording refers to archive owners and payment, creating ambiguity for the no-cost sample.",
+    "The methodology states split adjustment but excludes cash dividends; delisted listings are merged from a separate weekly feed, and ticker identity requires human review in some cases.",
+    "The public correction log documents numerous historical split, symbol mapping, missing-data, timestamp, duplicate/copy-bar, and OHLC defects and their repairs. This supports diligence, not independent verification."
+  ],
+  "strategy_metrics": null,
+  "limitations": [
+    "No Parquet/ZIP sample was downloaded or parsed; no exact data-file size or byte-level schema/coverage validation is available.",
+    "All universe, quality, and adjustment claims are provider statements, not independently reproduced evidence.",
+    "No legal determination was made; usage-right ambiguity is a research gate, not a conclusion about legality.",
+    "A roughly one-year free panel cannot establish robust multi-regime strategy performance or the required OOS trade sample."
+  ]
+}

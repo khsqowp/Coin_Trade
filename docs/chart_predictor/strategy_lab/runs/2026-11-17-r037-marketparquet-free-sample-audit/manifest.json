@@ -1,0 +1,13 @@
+{
+  "run_id": "2026-11-17-r037-marketparquet-free-sample-audit",
+  "date": "2026-11-17",
+  "type": "source_readiness_audit",
+  "performance_trial": false,
+  "market_data_downloaded": false,
+  "account_or_api_key_created": false,
+  "provider_contacted": false,
+  "purchase_made": false,
+  "strategy_metrics_calculated": false,
+  "candidate": "MarketParquet free sample",
+  "decision": "NO_GO_FOR_PERFORMANCE_TESTING"
+}
