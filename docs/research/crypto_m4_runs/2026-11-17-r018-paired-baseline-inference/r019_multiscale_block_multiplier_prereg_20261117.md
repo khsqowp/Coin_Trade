@@ -42,10 +42,11 @@ The overlapping block-sum multiplier is an implementation candidate motivated by
 ### Stage R19-P: power and unresolved-label diagnostics (only after all R19-N profiles pass)
 
 - Run every fixed R018 alternative pair `(0.79,0.50)`, `(0.80,0.50)`, `(0.80,0.80)`, `(0.85,0.50)`, `(0.85,0.80)` under profiles A/B/C with fresh indexed child seeds; report point-M2 gate and multi-scale paired/full-rule promotion separately. These are power diagnostics, not a threshold-selection set.
+- The `(0.80,0.80)` cells create a partial-null family. For the registered true-null contrasts only, compute multi-scale paired FWER and its 95% Wilson interval. Require Wilson upper ≤6%, all-claim eligibility ≥95%, and zero runtime/numerical errors for every profile before proceeding. Non-null contrasts do not enter that partial-null FWER numerator, but remain in the simultaneous maximum family as registered.
 - Run independent 1% and common-shock 5% missingness under profiles allowed by the generator. Any unresolved emitted event makes its claim inconclusive under the frozen rule; report all-unresolved-as-loss sensitivity. Do not silently count missingness as a trade loss or remove affected claims.
 - Run the separately registered OHLC-path method-only test for executable next-bar entry, stop-first ties, gaps, fees, and stress costs. R019-N/P cannot validate path labels or actual trading costs.
 
-Only if all required R19-N, R19-P, unresolved, and OHLC-path method gates pass and an independent review confirms the exact code/config/data fingerprints may market outcomes be considered. Such permission is still development-only and does not establish sealed OOS performance.
+Only if all required R19-N, partial-null, alternative, unresolved, and OHLC-path method gates pass and an independent review confirms the exact code/config/data fingerprints may market outcomes be considered. Such permission is still development-only and does not establish sealed OOS performance.
 
 ## 5. Failure conditions and interpretation
 
