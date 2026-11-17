@@ -50,6 +50,54 @@ def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None
     return out
 
 
+def resolve_ohlc_path(opens, highs, lows, closes, *, side, stop, target,
+                      expected_opens=None, bar_ms=60_000):
+    """Resolve a stop/target path conservatively; missing or malformed bars are unresolved.
+
+    Stop wins when both barriers are inside one OHLC bar. Stop gaps fill at the
+    observed open; target gaps fill at the registered target. ``expected_opens``
+    is the complete expected timestamp sequence for the path, allowing a caller
+    to detect missing native candles before treating a timeout as resolved.
+    """
+    arrays = [np.asarray(x, dtype=float) for x in (opens, highs, lows, closes)]
+    if side not in ("long", "short") or not np.isfinite(stop) or not np.isfinite(target):
+        raise ValueError("side must be long/short and barriers must be finite")
+    if (side == "long" and target <= stop) or (side == "short" and target >= stop):
+        raise ValueError("target and stop are reversed for side")
+    if not arrays[0].size or any(a.ndim != 1 or len(a) != len(arrays[0]) for a in arrays):
+        raise ValueError("OHLC arrays must be non-empty, one-dimensional, and equally sized")
+    times = None if expected_opens is None else np.asarray(expected_opens, dtype=np.int64)
+    if times is not None and (times.ndim != 1 or len(times) != len(arrays[0]) or bar_ms <= 0):
+        raise ValueError("expected_opens must align with OHLC rows and bar_ms must be positive")
+
+    o, h, l, c = arrays
+    for i in range(len(o)):
+        if times is not None and (i and times[i] - times[i - 1] != bar_ms):
+            return {"status": "unresolved", "price": None, "bar_index": i}
+        if (not np.all(np.isfinite([o[i], h[i], l[i], c[i]])) or
+                h[i] < max(o[i], c[i]) or l[i] > min(o[i], c[i]) or l[i] > h[i]):
+            return {"status": "unresolved", "price": None, "bar_index": i}
+        if side == "long":
+            if o[i] <= stop:
+                return {"status": "stop", "price": float(o[i]), "bar_index": i}
+            if o[i] >= target:
+                return {"status": "target", "price": float(target), "bar_index": i}
+            if l[i] <= stop:
+                return {"status": "stop", "price": float(stop), "bar_index": i}
+            if h[i] >= target:
+                return {"status": "target", "price": float(target), "bar_index": i}
+        else:
+            if o[i] >= stop:
+                return {"status": "stop", "price": float(o[i]), "bar_index": i}
+            if o[i] <= target:
+                return {"status": "target", "price": float(target), "bar_index": i}
+            if h[i] >= stop:
+                return {"status": "stop", "price": float(stop), "bar_index": i}
+            if l[i] <= target:
+                return {"status": "target", "price": float(target), "bar_index": i}
+    return {"status": "timeout", "price": float(c[-1]), "bar_index": len(c) - 1}
+
+
 def drawdown_pct(returns):
     """Compound per-trade fractional returns and return peak-to-trough MDD."""
     r = np.asarray(returns, dtype=float)

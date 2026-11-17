@@ -1,6 +1,6 @@
 # Crypto divergence study: preregistration and mandatory robustness gates
 
-Status: preregistered design and tested validation primitives; the market-data divergence backtest has not yet run, so no strategy result is available.
+Status: preregistered design and tested validation primitives, including a long/short OHLC path resolver; the market-data divergence backtest has not yet run, so no strategy result is available.
 
 ## Decision rule
 
@@ -32,7 +32,7 @@ Primary oscillator is RSI(14); MACD histogram (12,26,9) is a separately reported
 
 ## Causal and data checks
 
-Before backtesting, unit-test pivot-anchor oscillator sampling, confirmation delay, next-bar entry, closed-4h alignment, stop/target tie handling, timeout, short symmetry, and parameter bounds. Run prefix-invariance and deliberate future-peeking injection checks. Audit gaps, duplicate candles, symbol listing periods, and delisted/contract universe availability before selecting the data window. Freeze an immutable data fingerprint and trial manifest. Split chronologically; never use final sealed data to choose the grid or filters.
+Before backtesting, unit-test pivot-anchor oscillator sampling, confirmation delay, next-bar entry, closed-4h alignment, stop/target tie handling, timeout, short symmetry, and parameter bounds. The shared OHLC resolver marks missing/malformed required paths unresolved, applies adverse stop-gap fills, and resolves same-bar barrier ties as stop-first. Run prefix-invariance and deliberate future-peeking injection checks. Audit gaps, duplicate candles, symbol listing periods, and delisted/contract universe availability before selecting the data window. Freeze an immutable data fingerprint and trial manifest. Split chronologically; never use final sealed data to choose the grid or filters.
 
 Initial read-only source audit: `vision_pit_dev_sample.sqlite` contains 86 symbols and monthly archive metadata from 2021-01 through 2026-10. 67 symbols have a manifest entry for every month in that span; 19 have shorter or incomplete archive histories. Eight monthly archive files are listed as rejected due to taker-buy volume validation. This is an 86-symbol archived universe, not proof of complete exchange-wide point-in-time membership. Any signal whose required candle path crosses a missing minute must be marked unresolved, never silently dropped or called a win. Re-check candle-level gaps and all five walk-forward windows before the backtest is permitted to report performance.
 

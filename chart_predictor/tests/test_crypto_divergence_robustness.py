@@ -17,6 +17,31 @@ def test_divergence_uses_anchor_oscillator_and_emits_only_at_confirmation(monkey
     assert all(s.index > s.anchor for s in signals)
 
 
+def test_divergence_features_are_prefix_invariant_and_future_peek_probe_is_detected():
+    low = np.array([13, 12, 11, 12, 10, 11, 12, 11, 10, 11, 9, 10, 11, 12, 13, 12, 11], float)
+    high = low + np.array([3, 4, 2, 4, 3, 2, 4, 3, 2, 4, 3, 2, 4, 3, 2, 4, 3])
+    close = (high + low) / 2
+    osc = np.linspace(20, 60, len(low))
+    cutoff = 14
+    base = study.divergence_signals(high, low, close, osc, lag=2,
+                                    macro_direction=np.ones(len(low), dtype=int))
+    altered_low, altered_high, altered_close, altered_osc = (x.copy() for x in (low, high, close, osc))
+    altered_low[cutoff:] = [100, 1, 100]
+    altered_high[cutoff:] = altered_low[cutoff:] + 2
+    altered_close[cutoff:] = (altered_high[cutoff:] + altered_low[cutoff:]) / 2
+    altered_osc[cutoff:] = -1000
+    changed = study.divergence_signals(altered_high, altered_low, altered_close, altered_osc,
+                                       lag=2, macro_direction=np.ones(len(low), dtype=int))
+    assert [s for s in base if s.index < cutoff] == [s for s in changed if s.index < cutoff]
+
+    # Control: this intentionally faulty feature reads beyond the prefix, and
+    # the same perturbation must make the prefix-invariance assertion fail.
+    def deliberately_peeking_feature(values):
+        return float(np.min(values[cutoff:]))
+
+    assert deliberately_peeking_feature(low) != deliberately_peeking_feature(altered_low)
+
+
 def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
     sh = np.full(12, np.nan); sl = np.full(12, np.nan)
     sl[5], sl[9] = 10.0, 9.0
@@ -25,6 +50,34 @@ def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
     args = (np.ones(12)*11, np.ones(12)*10, np.ones(12)*10.5, osc)
     assert study.divergence_signals(*args, lag=2, macro_direction=np.full(12, -1)) == []
     assert study.divergence_signals(*args, lag=2, macro_direction=np.ones(12))
+
+
+def test_ohlc_path_is_long_short_symmetric_and_stop_wins_same_bar_tie():
+    tie = study.resolve_ohlc_path([100], [111], [89], [101],
+                                  side="long", stop=90, target=110)
+    mirror = study.resolve_ohlc_path([100], [111], [89], [99],
+                                     side="short", stop=110, target=90)
+    assert tie == {"status": "stop", "price": 90.0, "bar_index": 0}
+    assert mirror == {"status": "stop", "price": 110.0, "bar_index": 0}
+
+
+def test_ohlc_path_applies_adverse_stop_gap_and_target_price_on_favorable_gap():
+    stop_gap = study.resolve_ohlc_path([85], [88], [80], [82],
+                                       side="long", stop=90, target=110)
+    target_gap = study.resolve_ohlc_path([115], [118], [112], [116],
+                                         side="long", stop=90, target=110)
+    assert stop_gap == {"status": "stop", "price": 85.0, "bar_index": 0}
+    assert target_gap == {"status": "target", "price": 110.0, "bar_index": 0}
+
+
+def test_ohlc_path_marks_missing_or_malformed_required_path_unresolved():
+    missing = study.resolve_ohlc_path([100, 100, 100], [102]*3, [98]*3, [100]*3,
+                                      side="long", stop=90, target=110,
+                                      expected_opens=[0, 60_000, 180_000])
+    malformed = study.resolve_ohlc_path([100], [99], [98], [100],
+                                        side="long", stop=90, target=110)
+    assert missing == {"status": "unresolved", "price": None, "bar_index": 2}
+    assert malformed == {"status": "unresolved", "price": None, "bar_index": 0}
 
 
 def test_monte_carlo_has_exactly_1000_deterministic_reorders():
