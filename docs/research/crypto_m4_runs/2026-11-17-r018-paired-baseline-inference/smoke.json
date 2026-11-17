@@ -1,0 +1,81 @@
+{
+  "block_lengths": [
+    1,
+    2,
+    5,
+    10,
+    20
+  ],
+  "bootstrap_reps": 199,
+  "claims": 24,
+  "elapsed_seconds": 3.651,
+  "market_data_read": false,
+  "method_only": true,
+  "outcomes": [
+    {
+      "all_emitted_N": 880916,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7885,
+      "panel": 0
+    },
+    {
+      "all_emitted_N": 880012,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7868,
+      "panel": 1
+    },
+    {
+      "all_emitted_N": 880708,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7852,
+      "panel": 2
+    },
+    {
+      "all_emitted_N": 877528,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7861,
+      "panel": 3
+    },
+    {
+      "all_emitted_N": 877652,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7865,
+      "panel": 4
+    },
+    {
+      "all_emitted_N": 880208,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7803,
+      "panel": 5
+    },
+    {
+      "all_emitted_N": 876604,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7814,
+      "panel": 6
+    },
+    {
+      "all_emitted_N": 879500,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7810,
+      "panel": 7
+    },
+    {
+      "all_emitted_N": 883280,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7841,
+      "panel": 8
+    },
+    {
+      "all_emitted_N": 879564,
+      "eligible_claims": 24,
+      "nonoverlap_min_N": 7841,
+      "panel": 9
+    }
+  ],
+  "paired_contrasts": 48,
+  "run_id": "r018-smoke",
+  "seed": 20261120,
+  "simulations": 10,
+  "source_sha256": "512f7e26614da5838e2d60017d6590d500eb7a054a74c0413f61d971f1b422cd"
+}

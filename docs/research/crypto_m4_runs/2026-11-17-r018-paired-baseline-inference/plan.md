@@ -39,6 +39,11 @@ Predeclared block lengths: 1, 2, 5, 10, and 20 **UTC calendar days**. This is a 
 4. Only if step 3 passes, evaluate the fixed overlap/persistence and missingness profiles with the same method and day blocks. Ineligible replications count as no promotion in unconditional FWER; also report FWER conditional on all 24 claims meeting eligibility. If the all-eligible replication rate is below 95%, classify that profile `INCONCLUSIVE`, not pass.
 5. A separate method-only OHLC path simulation is required to validate barrier ordering, same-bar stop-first, executable entry, and base/stress costs before any market outcomes. If the paired-comparison method fails at any required profile, reject it and register a distinct iteration; do not tune its block lengths or thresholds using market results.
 
+### Execution log (2026-11-17)
+
+- `scripts/research/crypto_r018_paired_baseline_calibration.py` and its focused tests implement the hourly-anchor IID smoke fixture and paired max-T stationary bootstrap. Smoke output is saved as `smoke.json` (seed `20261120`, 10 panels, 199 bootstrap draws, 24 claims, 48 paired contrasts, block lengths 1/2/5/10/20). It completed in 3.651 seconds with deterministic replay, zero runtime errors, all claims meeting synthetic coverage/non-overlap eligibility; all-emitted counts ranged 876,604–883,280 and minimum per-claim non-overlap count ranged 7,803–7,885.
+- This is **partial smoke evidence only**, not a completed R018 step-1/step-2 gate: the implementation still lacks the registered clustered/overlap profiles, alternative DGPs, unresolved-label stresses, and an injected future-peeking causal-guard test. No paired FWER calibration was run; no promotion or market performance conclusion follows. Implement and test those missing components before the full preregistered calibration. No market data or market labels were read.
+
 ## Limitations and non-goals
 
 - Synthetic Bernoulli outcomes do not represent OHLC barrier paths, target/stop order, fee drag, funding, spread, or liquidation. A calibration pass here would be necessary but not sufficient.
