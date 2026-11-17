@@ -30,6 +30,7 @@ TFS = tuple(TIMEFRAME_MINUTES)
 FEE_PER_SIDE = 0.0005
 TARGET_R = 2.0
 HORIZON_MULTIPLES = (10, 20)
+TARGET_R_MULTIPLES = (0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0)
 
 
 def enumerate_subsets():
@@ -64,8 +65,8 @@ def wilson_interval(successes, n):
     return [mid-rad, mid+rad]
 
 
-def evaluate_event(frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
-                   signal_i, side, stop, horizon_bars):
+def evaluate_event_grid(frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
+                        signal_i, side, stop, horizon_bars, target_multiples):
     entry_i = signal_i + 1
     if entry_i >= len(frame):
         return None
@@ -74,7 +75,6 @@ def evaluate_event(frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
     risk = sign * (entry - stop)
     if not math.isfinite(risk) or risk <= 0:
         return None
-    target = entry + sign * TARGET_R * risk
     last_i = entry_i + horizon_bars - 1
     begin_ms = int(frame.t_open_ms.iloc[entry_i])
     end_ms = begin_ms + horizon_bars * 60_000 * int(frame.attrs["tf_minutes"])
@@ -82,26 +82,54 @@ def evaluate_event(frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
     hi = int(np.searchsorted(raw_times, end_ms, side="left"))
     if hi <= lo:
         return None
-    reason, exit_price, exit_ms = "timeout", float(frame.c.iloc[last_i]), int(raw_times[hi - 1])
+    if not target_multiples or any(not math.isfinite(float(x)) or x <= 0
+                                   for x in target_multiples):
+        raise ValueError("target multiples must be finite and positive")
+    if tuple(sorted(set(target_multiples))) != tuple(target_multiples):
+        raise ValueError("target multiples must be sorted and unique")
+    exits = {float(mult): None for mult in target_multiples}
     for j in range(lo, hi):
         if raw_trades[j] <= 0:
             continue
         hit_stop = raw_low[j] <= stop if side == "long" else raw_high[j] >= stop
-        hit_target = raw_high[j] >= target if side == "long" else raw_low[j] <= target
-        if hit_stop or hit_target:
-            reason = "stop" if hit_stop else "target"
-            if hit_stop and ((side == "long" and raw_open[j] < stop)
-                             or (side == "short" and raw_open[j] > stop)):
-                exit_price = float(raw_open[j])
-            else:
-                exit_price = stop if hit_stop else target
-            exit_ms = int(raw_times[j])
+        if hit_stop:
+            stop_price = float(raw_open[j]) if (
+                (side == "long" and raw_open[j] < stop)
+                or (side == "short" and raw_open[j] > stop)) else stop
+            for mult in target_multiples:
+                exits[float(mult)] = exits[float(mult)] or (
+                    "stop", float(stop_price), int(raw_times[j]))
             break
-    gross = sign * (exit_price / entry - 1.0)
-    net = gross - 2 * FEE_PER_SIDE
-    return {"reason": reason, "net_pct": 100 * net,
-            "net_r": net / (risk / entry), "exit_ms": exit_ms,
-            "deadline_direction_correct": sign * (float(frame.c.iloc[last_i]) / entry - 1) > 0}
+        for mult in target_multiples:
+            key = float(mult)
+            if exits[key] is not None:
+                continue
+            target = entry + sign * key * risk
+            hit_target = raw_high[j] >= target if side == "long" else raw_low[j] <= target
+            if hit_target:
+                exits[key] = ("target", float(target), int(raw_times[j]))
+        if all(value is not None for value in exits.values()):
+            break
+    deadline_direction_correct = sign * (float(frame.c.iloc[last_i]) / entry - 1) > 0
+    output = {}
+    for mult in target_multiples:
+        reason, exit_price, exit_ms = exits[float(mult)] or (
+            "timeout", float(frame.c.iloc[last_i]), int(raw_times[hi - 1]))
+        gross = sign * (exit_price / entry - 1.0)
+        net = gross - 2 * FEE_PER_SIDE
+        output[float(mult)] = {"reason": reason, "net_pct": 100 * net,
+                               "net_r": net / (risk / entry), "exit_ms": exit_ms,
+                               "deadline_direction_correct": deadline_direction_correct}
+    return output
+
+
+def evaluate_event(frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
+                   signal_i, side, stop, horizon_bars):
+    """Compatibility wrapper for the R033 2R barrier replay tests."""
+    grid = evaluate_event_grid(frame, raw_times, raw_open, raw_high, raw_low,
+                               raw_trades, signal_i, side, stop, horizon_bars,
+                               (TARGET_R,))
+    return None if grid is None else grid[TARGET_R]
 
 
 def parse_settlement_ms(value):
@@ -232,8 +260,33 @@ def load_symbols(path, connection):
     return symbols
 
 
-def summarize(trades):
-    n = len(trades)
+def empty_accumulator():
+    return {"n": 0, "wins": 0, "direction_hits": 0, "timeouts": 0,
+            "sum_net_pct": 0.0, "sum_net_r": 0.0,
+            "positive_net_pct": 0.0, "negative_net_pct": 0.0,
+            "per_symbol": {}}
+
+
+def add_to_accumulator(acc, trade, symbol):
+    net_pct = float(trade["net_pct"])
+    row = acc["per_symbol"].setdefault(symbol, {
+        "n": 0, "wins": 0, "direction_hits": 0, "timeouts": 0,
+        "sum_net_pct": 0.0, "sum_net_r": 0.0,
+        "positive_net_pct": 0.0, "negative_net_pct": 0.0,
+    })
+    for target in (acc, row):
+        target["n"] += 1
+        target["wins"] += trade["reason"] == "target"
+        target["direction_hits"] += bool(trade["deadline_direction_correct"])
+        target["timeouts"] += trade["reason"] == "timeout"
+        target["sum_net_pct"] += net_pct
+        target["sum_net_r"] += float(trade["net_r"])
+        target["positive_net_pct"] += max(0.0, net_pct)
+        target["negative_net_pct"] += max(0.0, -net_pct)
+
+
+def summarize_accumulator(acc):
+    n = acc["n"]
     if not n:
         return {"n": 0, "target_first_pct": None,
                 "target_first_wilson95_pct": [None, None],
@@ -241,33 +294,35 @@ def summarize(trades):
                 "deadline_direction_wilson95_pct": [None, None],
                 "mean_net_pct": None,
                 "sum_trade_net_pct": 0.0, "profit_factor": None,
-                "timeout_pct": None, "symbols": 0}
-    returns = np.asarray([x["net_pct"] for x in trades], dtype=float)
-    wins = sum(x["reason"] == "target" for x in trades)
-    direction_hits = sum(bool(x["deadline_direction_correct"]) for x in trades)
-    positive, negative = returns[returns > 0].sum(), -returns[returns < 0].sum()
+                "timeout_pct": None, "symbols": 0, "per_symbol": {}}
     per_symbol = {}
-    for symbol in sorted({x["symbol"] for x in trades}):
-        sample = [x for x in trades if x["symbol"] == symbol]
-        sn = len(sample)
+    for symbol, sample in sorted(acc["per_symbol"].items()):
+        sn = sample["n"]
         per_symbol[symbol] = {
             "n": sn,
-            "target_first_pct": 100 * sum(x["reason"] == "target" for x in sample) / sn,
-            "deadline_direction_accuracy": sum(bool(x["deadline_direction_correct"])
-                                                for x in sample) / sn,
-            "mean_net_pct": float(np.mean([x["net_pct"] for x in sample])),
+            "target_first_pct": 100 * sample["wins"] / sn,
+            "deadline_direction_accuracy": sample["direction_hits"] / sn,
+            "mean_net_pct": sample["sum_net_pct"] / sn,
         }
-    return {"n": n, "target_first_pct": 100 * wins / n,
-            "target_first_wilson95_pct": [100 * x for x in wilson_interval(wins, n)],
-            "deadline_direction_accuracy": direction_hits / n,
+    return {"n": n, "target_first_pct": 100 * acc["wins"] / n,
+            "target_first_wilson95_pct": [100 * x for x in wilson_interval(acc["wins"], n)],
+            "deadline_direction_accuracy": acc["direction_hits"] / n,
             "deadline_direction_wilson95_pct": [
-                100 * x for x in wilson_interval(direction_hits, n)],
-            "mean_net_pct": float(returns.mean()),
-            "sum_trade_net_pct": float(returns.sum()),
-            "mean_net_r": float(np.mean([x["net_r"] for x in trades])),
-            "profit_factor": float(positive / negative) if negative else None,
-            "timeout_pct": 100 * sum(x["reason"] == "timeout" for x in trades) / n,
+                100 * x for x in wilson_interval(acc["direction_hits"], n)],
+            "mean_net_pct": acc["sum_net_pct"] / n,
+            "sum_trade_net_pct": acc["sum_net_pct"],
+            "mean_net_r": acc["sum_net_r"] / n,
+            "profit_factor": (acc["positive_net_pct"] / acc["negative_net_pct"]
+                              if acc["negative_net_pct"] else None),
+            "timeout_pct": 100 * acc["timeouts"] / n,
             "symbols": len(per_symbol), "per_symbol": per_symbol}
+
+
+def summarize(trades):
+    acc = empty_accumulator()
+    for trade in trades:
+        add_to_accumulator(acc, trade, trade["symbol"])
+    return summarize_accumulator(acc)
 
 
 def main():
@@ -282,9 +337,11 @@ def main():
     con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
     symbols = load_symbols(args.symbols_json, con)
     subsets = enumerate_subsets()
-    groups = {(subset, tf, regime, horizon): [] for subset in subsets for tf in TFS
+    groups = {(subset, tf, regime, horizon, target_r): empty_accumulator()
+              for subset in subsets for tf in TFS
               for regime in ("unfiltered", "1d_supertrend")
-              for horizon in HORIZON_MULTIPLES}
+              for horizon in HORIZON_MULTIPLES
+              for target_r in TARGET_R_MULTIPLES}
     signal_counts = {rule: 0 for rule in RULES}
     data_hash = hashlib.sha256()
     skipped_event_windows = {}
@@ -383,34 +440,54 @@ def main():
                                 key = f"{regime}:{horizon}:{rejection}"
                                 skipped_event_windows[key] = skipped_event_windows.get(key, 0) + 1
                                 continue
-                            trade = evaluate_event(frame, raw_times, raw_open, raw_high, raw_low,
-                                                   raw_trades, i, side, stop, horizon)
-                            if trade is None:
+                            target_trades = evaluate_event_grid(
+                                frame, raw_times, raw_open, raw_high, raw_low, raw_trades,
+                                i, side, stop, horizon, TARGET_R_MULTIPLES)
+                            if target_trades is None:
                                 continue
                             last_entry[(regime, horizon)] = i + horizon
-                            groups[(subset, tf, regime, horizon)].append(
-                                {**trade, "symbol": symbol})
+                            for target_r, trade in target_trades.items():
+                                add_to_accumulator(
+                                    groups[(subset, tf, regime, horizon, target_r)],
+                                    trade, symbol)
             print(f"processed symbol={symbol} tf={tf} bars={len(frame)} elapsed={time.monotonic()-start:.1f}s", flush=True)
     con.close()
     if missing_symbols:
         raise ValueError(f"frozen universe symbols missing/without trades: {missing_symbols}")
 
     rows = []
-    for (subset, tf, regime, horizon), trades in groups.items():
-        n_events = len(trades)
+    for (subset, tf, regime, horizon, target_r), accumulator in groups.items():
+        n_events = accumulator["n"]
         available_bars = eligible_anchor_bars[tf]
         row = {"subset": list(subset), "k": len(subset), "timeframe": tf,
                      "regime_filter": regime, "horizon_bars": horizon,
                      "horizon_minutes": horizon * TIMEFRAME_MINUTES[tf],
+                     "target_r": target_r,
                      "eligible_anchor_bars": available_bars,
                      "consensus_signal_opportunities": consensus_opportunities.get((subset, tf), 0),
                      "macro_aligned_signal_opportunities": macro_aligned_opportunities.get((subset, tf), 0),
                      "entry_coverage_pct": 100 * n_events / available_bars if available_bars else None,
-                     **summarize(trades)}
+                     **summarize_accumulator(accumulator)}
         denom = (consensus_opportunities.get((subset, tf), 0) if regime == "unfiltered"
                  else macro_aligned_opportunities.get((subset, tf), 0))
         row["nonoverlap_event_rate_pct"] = 100 * n_events / denom if denom else None
         rows.append(row)
+    expected_cells = (len(subsets) * len(TFS) * 2 * len(HORIZON_MULTIPLES)
+                      * len(TARGET_R_MULTIPLES))
+    result_keys = {(tuple(row["subset"]), row["timeframe"], row["regime_filter"],
+                    row["horizon_bars"], row["target_r"]) for row in rows}
+    if len(rows) != expected_cells or len(result_keys) != expected_cells:
+        raise ValueError(f"incomplete or duplicate target matrix: {len(result_keys)}/{expected_cells}")
+
+    anchor_signatures = {}
+    for row in rows:
+        anchor_key = (tuple(row["subset"]), row["timeframe"],
+                      row["regime_filter"], row["horizon_bars"])
+        signature = (row["n"], row["deadline_direction_accuracy"],
+                     row["deadline_direction_wilson95_pct"])
+        if anchor_key in anchor_signatures and anchor_signatures[anchor_key] != signature:
+            raise ValueError(f"target variants do not share event anchors: {anchor_key}")
+        anchor_signatures[anchor_key] = signature
     # Keep the preregistered matrix in deterministic configuration order.
     # Sorting by observed performance or printing a "best" cell would turn
     # this exploratory grid into an implicit post-hoc selection step.
@@ -418,12 +495,14 @@ def main():
               "data_path": str(db_path), "data_sha256": data_hash.hexdigest(),
               "symbols": symbols, "timeframes": list(TFS), "rules": list(RULES),
               "horizon_multiples": list(HORIZON_MULTIPLES),
+              "target_r_multiples": list(TARGET_R_MULTIPLES),
               "subsets_enumerated": len(subsets), "result_cells": len(rows),
               "subset_sizes": {str(k): sum(len(x) == k for x in subsets)
                                for k in range(1, len(RULES)+1)},
               "combination": "strict majority of all rules in subset at the same closed bar; ties/abstentions are flat",
               "stop": "median structural stop among agreeing votes",
-              "entry": "next timeframe open", "target": f"{TARGET_R}R",
+              "entry": "next timeframe open",
+              "target": "grid of fixed target distances in R; target barriers evaluated in one minute-path scan",
               "max_hold_bars": list(HORIZON_MULTIPLES),
               "same_minute_barrier_tie": "stop first",
               "fee_per_side": FEE_PER_SIDE,
