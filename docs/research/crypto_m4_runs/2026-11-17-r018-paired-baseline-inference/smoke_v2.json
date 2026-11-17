@@ -1,0 +1,131 @@
+{
+  "block_lengths": [
+    1,
+    2,
+    5,
+    10,
+    20
+  ],
+  "bootstrap_reps": 199,
+  "claims": 24,
+  "elapsed_seconds": 3.42,
+  "market_data_read": false,
+  "method_only": true,
+  "outcomes": [
+    {
+      "all_emitted_N": 442022,
+      "baseline_m2_max": 0.9508857999454893,
+      "baseline_m2_min": 0.24496607572773035,
+      "eligible_claims": 24,
+      "m2_max": 0.9536881013208676,
+      "m2_min": 0.24534796170807788,
+      "nonoverlap_min_N": 5398,
+      "nonoverlap_min_symbols": 20,
+      "panel": 0
+    },
+    {
+      "all_emitted_N": 440540,
+      "baseline_m2_max": 0.9523429179978701,
+      "baseline_m2_min": 0.24836887987280004,
+      "eligible_claims": 24,
+      "m2_max": 0.9523651635720601,
+      "m2_min": 0.24738198366138495,
+      "nonoverlap_min_N": 5385,
+      "nonoverlap_min_symbols": 20,
+      "panel": 1
+    },
+    {
+      "all_emitted_N": 439546,
+      "baseline_m2_max": 0.9536105032822757,
+      "baseline_m2_min": 0.24549783786742568,
+      "eligible_claims": 24,
+      "m2_max": 0.9507581933800751,
+      "m2_min": 0.24692101373912093,
+      "nonoverlap_min_N": 5362,
+      "nonoverlap_min_symbols": 20,
+      "panel": 2
+    },
+    {
+      "all_emitted_N": 437418,
+      "baseline_m2_max": 0.9529111960556201,
+      "baseline_m2_min": 0.2426466530544672,
+      "eligible_claims": 24,
+      "m2_max": 0.9529038955362509,
+      "m2_min": 0.24253628386954362,
+      "nonoverlap_min_N": 5394,
+      "nonoverlap_min_symbols": 20,
+      "panel": 3
+    },
+    {
+      "all_emitted_N": 440062,
+      "baseline_m2_max": 0.9527753400614305,
+      "baseline_m2_min": 0.24609395830000533,
+      "eligible_claims": 24,
+      "m2_max": 0.9513082184344805,
+      "m2_min": 0.24504885133350937,
+      "nonoverlap_min_N": 5376,
+      "nonoverlap_min_symbols": 20,
+      "panel": 4
+    },
+    {
+      "all_emitted_N": 440512,
+      "baseline_m2_max": 0.9520711342441986,
+      "baseline_m2_min": 0.24140393276941668,
+      "eligible_claims": 24,
+      "m2_max": 0.9523525908278737,
+      "m2_min": 0.24642021015952523,
+      "nonoverlap_min_N": 5381,
+      "nonoverlap_min_symbols": 20,
+      "panel": 5
+    },
+    {
+      "all_emitted_N": 440568,
+      "baseline_m2_max": 0.9519554865978278,
+      "baseline_m2_min": 0.24537241075363597,
+      "eligible_claims": 24,
+      "m2_max": 0.9514448383284994,
+      "m2_min": 0.245195530726257,
+      "nonoverlap_min_N": 5342,
+      "nonoverlap_min_symbols": 20,
+      "panel": 6
+    },
+    {
+      "all_emitted_N": 439426,
+      "baseline_m2_max": 0.9533016549238079,
+      "baseline_m2_min": 0.2457102519548219,
+      "eligible_claims": 24,
+      "m2_max": 0.9523394045152143,
+      "m2_min": 0.24750876802315872,
+      "nonoverlap_min_N": 5399,
+      "nonoverlap_min_symbols": 20,
+      "panel": 7
+    },
+    {
+      "all_emitted_N": 437052,
+      "baseline_m2_max": 0.9520438957475994,
+      "baseline_m2_min": 0.24756681185137389,
+      "eligible_claims": 24,
+      "m2_max": 0.9515500685871057,
+      "m2_min": 0.24764281752634498,
+      "nonoverlap_min_N": 5366,
+      "nonoverlap_min_symbols": 20,
+      "panel": 8
+    },
+    {
+      "all_emitted_N": 443196,
+      "baseline_m2_max": 0.9510957573140452,
+      "baseline_m2_min": 0.24122359012956293,
+      "eligible_claims": 24,
+      "m2_max": 0.9501483679525222,
+      "m2_min": 0.2479612917255627,
+      "nonoverlap_min_N": 5397,
+      "nonoverlap_min_symbols": 20,
+      "panel": 9
+    }
+  ],
+  "paired_contrasts": 48,
+  "run_id": "r018-smoke",
+  "seed": 20261120,
+  "simulations": 10,
+  "source_sha256": "d8c03e53b717c0c221b2f1693f8fe05911c5312d7fe1cdd99c29e3c4ff5974e3"
+}
