@@ -11,7 +11,8 @@ def test_divergence_uses_anchor_oscillator_and_emits_only_at_confirmation(monkey
     osc = np.zeros(12); osc[3], osc[7] = 30.0, 40.0
     osc[5], osc[9] = 90.0, 1.0  # deliberately misleading confirmation-bar values
     signals = study.divergence_signals(np.ones(12)*11, np.ones(12)*10,
-                                       np.ones(12)*10.5, osc, lag=2)
+                                       np.ones(12)*10.5, osc, lag=2,
+                                       macro_direction=np.ones(12, dtype=int))
     assert len(signals) == 1
     assert signals[0] == study.DivergenceSignal(9, 7, "long", 9.0, 40.0)
     assert all(s.index > s.anchor for s in signals)
@@ -71,6 +72,23 @@ def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
     args = (np.ones(12)*11, np.ones(12)*10, np.ones(12)*10.5, osc)
     assert study.divergence_signals(*args, lag=2, macro_direction=np.full(12, -1)) == []
     assert study.divergence_signals(*args, lag=2, macro_direction=np.ones(12))
+
+
+def test_divergence_requires_explicit_closed_macro_regime():
+    with pytest.raises(ValueError, match="macro_direction must be supplied"):
+        study.divergence_signals(np.ones(8), np.ones(8), np.ones(8),
+                                 np.ones(8), lag=2, macro_direction=None)
+
+
+def test_nan_oscillator_pivot_is_not_skipped_to_an_older_pivot(monkeypatch):
+    sh = np.full(14, np.nan); sl = np.full(14, np.nan)
+    sl[5], sl[8], sl[11] = 12.0, 11.0, 10.0  # anchors 3, 6, 9
+    monkeypatch.setattr(study, "_unique_confirmed_swings", lambda h, l, lag: (sh, sl))
+    osc = np.full(14, 20.0); osc[3], osc[6], osc[9] = 30.0, np.nan, 40.0
+    got = study.divergence_signals(np.ones(14)*13, np.ones(14)*9,
+                                   np.ones(14)*10, osc, lag=2,
+                                   macro_direction=np.ones(14, dtype=int))
+    assert got == []
 
 
 def test_ohlc_path_is_long_short_symmetric_and_stop_wins_same_bar_tie():
@@ -199,3 +217,22 @@ def test_missing_grid_neighbor_counts_as_failure_when_expected_grid_is_frozen():
 def test_plateau_requires_the_frozen_expected_grid():
     with pytest.raises(TypeError):
         study.plateau_summary([_cell(a, b) for a in (1, 2) for b in (1, 2)])
+
+
+def test_plateau_uses_absolute_gap_and_undersampling_fails_neighbor():
+    params = [{"lag": a, "target": b} for a in (1, 2, 3) for b in (1, 2, 3)]
+    rows = [_cell(p["lag"], p["target"]) for p in params]
+    center = next(row for row in rows if row["params"] == {"lag": 2, "target": 2})
+    for row in rows:
+        if row is not center and abs(row["params"]["lag"] - 2) + abs(row["params"]["target"] - 2) == 1:
+            row["m2"] = 0.99
+    result = next(x for x in study.plateau_summary(rows, expected_params=params)
+                  if x["params"] == {"lag": 2, "target": 2})
+    assert result["neighbor_median_m2"] == 0.99
+    assert not result["plateau_robust"]
+
+    next(row for row in rows if row["params"] == {"lag": 1, "target": 2}).update(n=10)
+    result = next(x for x in study.plateau_summary(rows, expected_params=params)
+                  if x["params"] == {"lag": 2, "target": 2})
+    assert result["neighbor_median_m2"] == 0.99  # 0.99, 0.99, 0.99, 0.0 -> median 0.99 only if float median check?
+    assert result["neighbor_pass_fraction"] == 0.75

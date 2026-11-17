@@ -40,7 +40,7 @@ def _unique_confirmed_swings(high, low, lag):
     return sh, sl
 
 
-def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None):
+def divergence_signals(high, low, close, oscillator, *, lag, macro_direction):
     """Return regular divergence events at pivot confirmation, using anchor values.
 
     macro_direction is an optional {-1, 0, +1} series aligned to close; a signal
@@ -51,22 +51,26 @@ def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None
         raise ValueError("OHLC and oscillator arrays must have equal lengths")
     if lag < 1:
         raise ValueError("lag must be positive")
-    macro = np.ones(len(c), dtype=int) if macro_direction is None else np.asarray(macro_direction, dtype=int)
+    if macro_direction is None:
+        raise ValueError("macro_direction must be supplied from timestamp-aligned closed 4h bars")
+    macro = np.asarray(macro_direction, dtype=int)
     if len(macro) != len(c):
         raise ValueError("macro_direction must align with candles")
     sh, sl = _unique_confirmed_swings(h, l, lag)
     out, lows, highs = [], [], []
     for i in range(len(c)):
         anchor = i - lag
-        if np.isfinite(sl[i]) and np.isfinite(osc[anchor]):
+        if np.isfinite(sl[i]):
             price, value = float(sl[i]), float(osc[anchor])
             if (lows and anchor - lows[-1][0] >= lag and price < lows[-1][1]
+                    and np.isfinite(value) and np.isfinite(lows[-1][2])
                     and value > lows[-1][2] and macro[i] == 1):
                 out.append(DivergenceSignal(i, anchor, "long", price, value))
             lows.append((anchor, price, value))
-        if np.isfinite(sh[i]) and np.isfinite(osc[anchor]):
+        if np.isfinite(sh[i]):
             price, value = float(sh[i]), float(osc[anchor])
             if (highs and anchor - highs[-1][0] >= lag and price > highs[-1][1]
+                    and np.isfinite(value) and np.isfinite(highs[-1][2])
                     and value < highs[-1][2] and macro[i] == -1):
                 out.append(DivergenceSignal(i, anchor, "short", price, value))
             highs.append((anchor, price, value))
@@ -224,13 +228,17 @@ def plateau_summary(rows, *, expected_params, min_neighbor_pass_fraction=0.80,
                    and n["m2"] >= 0.80 and n["n"] >= 30
                    and n["net_expectancy"] > 0 and n.get("resolved", False)]
         fraction = len(passing) / len(neighbors) if neighbors else None
-        valid_m2 = [n["m2"] for n in neighbors if n is not None and n.get("resolved", False) and n.get("m2") is not None]
-        median_m2 = float(np.median(valid_m2)) if valid_m2 else None
+        neighbor_m2 = [
+            (float(n["m2"]) if n is not None and n.get("resolved", False)
+             and n.get("m2") is not None and n.get("n", 0) >= 30 else 0.0)
+            for n in neighbors
+        ]
+        median_m2 = float(np.median(neighbor_m2)) if neighbor_m2 else None
         robust = (row.get("resolved", False) and row.get("m2") is not None and row["m2"] >= 0.80 and row["n"] >= 30
                   and row["net_expectancy"] > 0 and len(neighbors) >= 4
                   and fraction is not None and fraction >= min_neighbor_pass_fraction
                   and median_m2 is not None
-                  and median_m2 >= row["m2"] - max_neighbor_m2_gap)
+                  and abs(median_m2 - row["m2"]) <= max_neighbor_m2_gap)
         results.append({"params": params, "neighbor_count": len(neighbors),
                         "neighbor_pass_fraction": fraction, "neighbor_median_m2": median_m2,
                         "plateau_robust": bool(robust)})
