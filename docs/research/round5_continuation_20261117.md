@@ -169,7 +169,6 @@ Official documentation supporting the source audit: [Tiingo pricing](https://www
 **N=200 interpretation remains open.** The user confirmed OOS minimum N=200, while the SPEC says claim-level non-overlapping N≥200 and separately requires raw signal coverage≥10%. These can coexist only if the protocol explicitly distinguishes the primary precision denominator from the non-overlap sample gate. A clarification was requested; until answered, do not choose the more permissive interpretation or generate performance labels.
 
 **R039 decision:** no strategy or source passes; no market-label or performance run occurred. Next: resolve the N=200 denominator/sample relationship, freeze a synthetic event-level inference test and its estimands, then run that method test before any further outcome scoring. For equity tracks, preserve Tiingo and EODHD as conditional source leads only; Databento is a possible corporate-action component, not a demonstrated complete panel.
-
 ### R040 — target-first criterion reconfirmed; inference calibration design review, 2026-11-17
 
 The user reconfirmed the crypto scoring contract: **target-first rate ≥80% is the primary criterion; deadline-close direction accuracy is reported separately.** This does not change the SPEC's target/stop/deadline ordering, OOS gate, cost gate, coverage gate, or one-shot sealed evaluation.
