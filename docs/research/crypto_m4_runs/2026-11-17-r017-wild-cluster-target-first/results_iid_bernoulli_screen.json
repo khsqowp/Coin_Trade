@@ -1,0 +1,91 @@
+{
+  "alpha": 0.05,
+  "block_lengths": [
+    1,
+    2,
+    5
+  ],
+  "bootstrap_reps": 999,
+  "claims_per_replication": 24,
+  "days": 365,
+  "elapsed_seconds": 93.222,
+  "family_branches": [
+    "all_emitted",
+    "outcome_blind_nonoverlap"
+  ],
+  "horizons": [
+    10,
+    20
+  ],
+  "interpretation": "synthetic inference-method calibration only; no market outcomes",
+  "method": "synchronized_mammen_wild_cluster_bootstrap_max_t",
+  "numpy": "2.2.6",
+  "profile": "iid_bernoulli",
+  "python": "3.13.5",
+  "r016_generator_sha256": "045baa14c8b7728557a4446a9e541d0e6a8b7c00572231ccab43b77899558333",
+  "results": [
+    {
+      "all_emitted_N_ge_200_rate": 1.0,
+      "block_length": 1,
+      "failed_replications": 0,
+      "family_false_pass_rate_conservative": 0.056,
+      "family_false_pass_wilson95": [
+        0.03902562068315149,
+        0.0797447936467069
+      ],
+      "family_false_passes": 28,
+      "mean_eligible_claim_slots": 44.32,
+      "mean_raw_coverage": 0.10502808219178081,
+      "nonoverlap_N_ge_200_rate": 1.0,
+      "screen_pass": false,
+      "simulations": 500
+    },
+    {
+      "all_emitted_N_ge_200_rate": 1.0,
+      "block_length": 2,
+      "failed_replications": 0,
+      "family_false_pass_rate_conservative": 0.056,
+      "family_false_pass_wilson95": [
+        0.03902562068315149,
+        0.0797447936467069
+      ],
+      "family_false_passes": 28,
+      "mean_eligible_claim_slots": 44.104,
+      "mean_raw_coverage": 0.10500310502283106,
+      "nonoverlap_N_ge_200_rate": 1.0,
+      "screen_pass": false,
+      "simulations": 500
+    },
+    {
+      "all_emitted_N_ge_200_rate": 1.0,
+      "block_length": 5,
+      "failed_replications": 0,
+      "family_false_pass_rate_conservative": 0.086,
+      "family_false_pass_wilson95": [
+        0.06447314240360771,
+        0.11383981149855754
+      ],
+      "family_false_passes": 43,
+      "mean_eligible_claim_slots": 44.648,
+      "mean_raw_coverage": 0.10504294520547944,
+      "nonoverlap_N_ge_200_rate": 1.0,
+      "screen_pass": false,
+      "simulations": 500
+    }
+  ],
+  "run_id": "r017-wild-cluster-target-first",
+  "schema_version": 1,
+  "seed": 20261122,
+  "settings": {
+    "clustered_issuance": false,
+    "independent_claim_outcomes": true,
+    "overlap_windows": false,
+    "rho_common": 0.0,
+    "rho_frame": 0.0,
+    "rho_symbol": 0.0
+  },
+  "source_sha256": "37d3098fc5c0c20c4cf381d8b8344f0d4f3c707db0120e2d2fa6db688aabe06c",
+  "symbols": 20,
+  "target_rate_null": 0.8,
+  "timeframes": 12
+}

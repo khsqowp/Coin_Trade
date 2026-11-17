@@ -1,0 +1,62 @@
+{
+  "alpha": 0.05,
+  "block_lengths": [
+    1
+  ],
+  "bootstrap_reps": 199,
+  "claims_per_replication": 24,
+  "days": 365,
+  "denominator_branches_in_joint_family": [
+    "all_emitted",
+    "outcome_blind_nonoverlap"
+  ],
+  "dgp": {
+    "clustered_signal_issuance": false,
+    "common_ar1_rho": 0.0,
+    "frame_ar1_rho": 0.0,
+    "independent_claim_outcomes": true,
+    "marginal_target_first_probability": 0.8,
+    "overlapping_future_window_labels": false,
+    "symbol_ar1_rho": 0.0,
+    "target_first_outcomes_are_synthetic_binary_labels": true
+  },
+  "elapsed_seconds": 55.767,
+  "horizons": [
+    10,
+    20
+  ],
+  "interpretation": "synthetic method calibration only; not strategy or market evidence",
+  "method": "synchronized_stationary_block_bootstrap_max_standardized_error",
+  "numpy": "2.2.6",
+  "python": "3.13.5",
+  "run_id": "r016-synthetic-event-target-first-calibration",
+  "scenarios": [
+    {
+      "all_emitted_N_median": 766.0,
+      "all_emitted_all_claims_20_symbols_rate": 1.0,
+      "all_emitted_all_claims_N_ge_200_rate": 1.0,
+      "all_timeframe_coverage_ge_10pct_rate": 0.394,
+      "failed_replications": 0,
+      "family_false_pass_rate": 0.116,
+      "family_false_pass_rate_conservative_errors_as_pass": 0.116,
+      "family_false_pass_wilson95": [
+        0.09081365651103794,
+        0.1470418369634342
+      ],
+      "family_false_passes": 58,
+      "mean_block_length": 1,
+      "mean_raw_coverage": 0.10497673515981736,
+      "nonoverlap_N_median": 319.5,
+      "nonoverlap_all_claims_20_symbols_rate": 1.0,
+      "nonoverlap_all_claims_N_ge_200_rate": 1.0,
+      "screen_pass": false,
+      "simulations": 500
+    }
+  ],
+  "schema_version": 1,
+  "seed": 20261121,
+  "source_sha256": "045baa14c8b7728557a4446a9e541d0e6a8b7c00572231ccab43b77899558333",
+  "symbols": 20,
+  "target_rate_null": 0.8,
+  "timeframes": 12
+}
