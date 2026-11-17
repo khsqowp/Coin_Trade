@@ -34,6 +34,22 @@
     "resample_requires_each_minute_to_have_trades": false,
     "performance_impact_quantified": false
   },
-  "decision": "Block strategy selection based on affected all-history replay until contract epochs and executable-bar validity are enforced and frozen candidates are replayed without tuning.",
+  "r025_scope_audit": {
+    "recorded_symbols": ["BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"],
+    "overlap_with_five_confirmed_settlements": [],
+    "original_vision_dev_repaired_db_present_in_checkout": false,
+    "original_row_level_replay_validity_reverified": false,
+    "current_pit_sample_last_trade_equals_last_bar_utc": "2026-10-31T23:59:00Z",
+    "current_pit_sample_six_symbol_zero_trade_rows": {
+      "BNBUSDT": 273,
+      "BTCUSDT": 367,
+      "DOGEUSDT": 283,
+      "ETHUSDT": 272,
+      "SOLUSDT": 276,
+      "XRPUSDT": 269
+    },
+    "interpretation": "The five known delisted-contract tails do not overlap R025's recorded symbol list. The newer PIT sample has traded final bars for these six; it is a different database and cannot attest to R025's unavailable original rows."
+  },
+  "decision": "R032 does not establish that R025's reported numbers are contaminated. Preserve R025 as exploratory and unvalidated. Any broader replay using the 37-symbol cohort must apply the official settlement cutoffs and execution-valid event rules.",
   "raw_inputs": "/private/tmp/r032-contract-epoch-probe/"
 }
