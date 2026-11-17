@@ -50,6 +50,9 @@ def test_multiscale_promotion_requires_every_scale_and_both_baselines():
     assert R19.multiscale_claim_promotions(m2, eligible, lower).all()
 
     lower[2, 7] = 0.0
+    paired = R19.paired_claim_rejections(lower, eligible)
+    assert not paired[3]
+    assert paired.sum() == R19.CLAIMS - 1
     promoted = R19.multiscale_claim_promotions(m2, eligible, lower)
     assert not promoted[3]
     assert promoted.sum() == R19.CLAIMS - 1

@@ -47,9 +47,20 @@ def multiscale_claim_promotions(m2: np.ndarray, eligible: np.ndarray,
         raise ValueError("M2 and eligibility must contain 24 claims")
     if lower.shape != (len(BLOCKS), CONTRASTS):
         raise ValueError("lower_by_block must have shape (5, 48)")
+    return eligible & (m2 >= 0.80) & paired_claim_rejections(lower, eligible)
+
+
+def paired_claim_rejections(lower_by_block: np.ndarray,
+                            eligible: np.ndarray) -> np.ndarray:
+    """Claims passing both paired baselines at all scales, before the M2 gate."""
+    lower = np.asarray(lower_by_block, dtype=np.float64)
+    eligible = np.asarray(eligible, dtype=bool)
+    if lower.shape != (len(BLOCKS), CONTRASTS):
+        raise ValueError("lower_by_block must have shape (5, 48)")
+    if eligible.shape != (CLAIMS,):
+        raise ValueError("eligibility must contain 24 claims")
     both = lower.reshape(len(BLOCKS), CLAIMS, 2) > 0.0
-    both_baselines_all_scales = both.all(axis=0).all(axis=1)
-    return eligible & (m2 >= 0.80) & both_baselines_all_scales
+    return eligible & both.all(axis=0).all(axis=1)
 
 
 def block_multiplier_lower_bounds(n: np.ndarray, x: np.ndarray, *,
@@ -167,7 +178,8 @@ def _panel_result(panel: int, profile: str, *, source_hash: str,
 
     if not errors:
         m2 = np.asarray(aux["m2_resolved"], dtype=np.float64)
-        robust_pair_fwer = bool(np.any(np.all(lowers[:, contrast_ok] > 0.0, axis=0)))
+        paired_rejections = paired_claim_rejections(lowers, claim_ok)
+        robust_pair_fwer = bool(paired_rejections.any())
         full_promotions = multiscale_claim_promotions(m2, claim_ok, lowers)
         single_scale_fwer = {
             str(ell): bool(np.any(lowers[i, contrast_ok] > 0.0))

@@ -29,6 +29,7 @@ The overlapping block-sum multiplier is an implementation candidate motivated by
 - The robust paired family rejects only if at least one eligible claim satisfies that two-baseline condition at all five lengths. The full user-rule promotion additionally requires that claim’s all-emitted `M2≥0.80` and its separate eligibility gate.
 - No per-scale result is promoted alone; no “best block length” is selected. Per-scale FWER, interval coverage, and error counts are diagnostics. The inferential claim is restricted to the **predeclared all-scale intersection decision**, and only across the tested synthetic DGPs.
 - Report both the paired-only multi-scale false-superiority rate and the full user-rule false-promotion rate. The calibration does not establish that a point M2 of 80% has 5% type-I error, nor does it prove profitability.
+- For paired-only family error, a panel is a false rejection when **any eligible claim** has both paired baseline lower bounds positive at all five scales while its registered true paired effect is `Δ≤0`. A claim is not counted as rejected merely because one comparator passes. The full-rule false-promotion event reruns, within the same panel, the complete rule including eligibility and `M2≥0.80`; count the panel once if any claim is promoted. Under R19-N all paired true effects equal zero.
 
 ## 4. Calibration run order and gates
 
