@@ -21,6 +21,9 @@ from pathlib import Path
 from typing import Any
 
 SYMBOLS = ("BTCUSDT", "ETHUSDT")
+MAX_SYMBOLS = 20
+MAX_CAPTURE_SECONDS = 24 * 60 * 60
+MAX_CAPTURE_BYTES = 4 * 1024 * 1024 * 1024
 BASE = Path(__file__).resolve().parents[2]
 if str(BASE) not in sys.path:
     sys.path.insert(0, str(BASE))
@@ -42,6 +45,28 @@ DEPTH_URL = "wss://fstream.binance.com/public/stream?streams=" + "/".join(
 TRADES_URL = "wss://fstream.binance.com/market/stream?streams=" + "/".join(
     f"{symbol.lower()}@aggTrade" for symbol in SYMBOLS
 )
+
+
+def stream_urls(symbols: tuple[str, ...]) -> tuple[str, str]:
+    normalized = tuple(symbol.lower() for symbol in symbols)
+    depth = "wss://fstream.binance.com/public/stream?streams=" + "/".join(
+        f"{symbol}@depth@500ms" for symbol in normalized
+    )
+    trades = "wss://fstream.binance.com/market/stream?streams=" + "/".join(
+        f"{symbol}@aggTrade" for symbol in normalized
+    )
+    return depth, trades
+
+
+def parse_symbols(value: str) -> tuple[str, ...]:
+    symbols = tuple(part.strip().upper() for part in value.split(",") if part.strip())
+    if not symbols or len(symbols) > MAX_SYMBOLS:
+        raise ValueError(f"symbols must contain 1 to {MAX_SYMBOLS} entries")
+    if len(set(symbols)) != len(symbols):
+        raise ValueError("symbols must be unique")
+    if any(not symbol.endswith("USDT") or not symbol[:-4].isalnum() for symbol in symbols):
+        raise ValueError("symbols must be alphanumeric USDT-M contract symbols")
+    return symbols
 
 
 class CaptureLimit(RuntimeError):
@@ -233,12 +258,13 @@ def interval_overlap(start: float, end: float, window_start: float,
     return max(0.0, min(end, window_end) - max(start, window_start))
 
 
-def recovery_acceptance(recovery_s: dict[str, list[float]]) -> dict[str, Any]:
-    observed = all(recovery_s.get(symbol) for symbol in SYMBOLS)
+def recovery_acceptance(recovery_s: dict[str, list[float]],
+                        symbols: tuple[str, ...] = SYMBOLS) -> dict[str, Any]:
+    observed = all(recovery_s.get(symbol) for symbol in symbols)
     return {
-        "observed_both_symbols": observed,
+        "observed_all_symbols": observed,
         "within_30_seconds": (
-            all(max(recovery_s[symbol]) <= 30 for symbol in SYMBOLS) if observed else None
+            all(max(recovery_s[symbol]) <= 30 for symbol in symbols) if observed else None
         ),
         "no_recovery_observed_is_not_a_pass": True,
     }
@@ -246,9 +272,10 @@ def recovery_acceptance(recovery_s: dict[str, list[float]]) -> dict[str, Any]:
 
 def coverage_summary(total_s: dict[str, float], valid_s: dict[str, float],
                      invalid_runs_s: dict[str, list[float]],
-                     recovery_s: dict[str, list[float]]) -> dict[str, dict[str, Any]]:
+                     recovery_s: dict[str, list[float]],
+                     symbols: tuple[str, ...] = SYMBOLS) -> dict[str, dict[str, Any]]:
     result = {}
-    for symbol in SYMBOLS:
+    for symbol in symbols:
         denominator = float(total_s.get(symbol, 0.0))
         valid = float(valid_s.get(symbol, 0.0))
         result[symbol] = {
@@ -275,11 +302,29 @@ def _fetch_snapshot(symbol: str, *, timeout_s: float = 12) -> dict[str, Any]:
     return payload
 
 
-async def preflight(*, timeout_s: float = 8) -> dict[str, Any]:
-    """Check required DNS, both public streams, and both REST snapshots without writing files."""
+def _fetch_exchange_symbols(*, timeout_s: float = 12) -> dict[str, dict[str, Any]]:
+    request = urllib.request.Request(
+        "https://fapi.binance.com/fapi/v1/exchangeInfo",
+        headers={"User-Agent": "CoinTrade-L2-research-pilot/1.0"},
+    )
+    with urllib.request.urlopen(request, timeout=timeout_s) as response:
+        payload = json.loads(response.read())
+    rows = payload.get("symbols") if isinstance(payload, dict) else None
+    if not isinstance(rows, list):
+        raise ValueError("invalid USD-M exchangeInfo response")
+    return {
+        row["symbol"]: row for row in rows
+        if isinstance(row, dict) and isinstance(row.get("symbol"), str)
+    }
+
+
+async def preflight(*, timeout_s: float = 8,
+                    symbols: tuple[str, ...] = SYMBOLS) -> dict[str, Any]:
+    """Check public contract metadata, streams, and snapshots without writing files."""
     timeout_s = float(timeout_s)
     if not math.isfinite(timeout_s) or timeout_s <= 0:
         raise ValueError("preflight timeout must be a finite positive number")
+    symbols = parse_symbols(",".join(symbols))
 
     hosts = ("fstream.binance.com", "fapi.binance.com")
     for host in hosts:
@@ -288,7 +333,18 @@ async def preflight(*, timeout_s: float = 8) -> dict[str, Any]:
             timeout=timeout_s,
         )
 
-    for url in (DEPTH_URL, TRADES_URL):
+    exchange_symbols = await asyncio.wait_for(
+        asyncio.to_thread(_fetch_exchange_symbols, timeout_s=timeout_s), timeout=timeout_s
+    )
+    for symbol in symbols:
+        contract = exchange_symbols.get(symbol)
+        if (not contract or contract.get("status") != "TRADING"
+                or contract.get("contractType") != "PERPETUAL"
+                or contract.get("quoteAsset") != "USDT"):
+            raise ValueError(f"{symbol} is not an active USDT-margined perpetual")
+
+    depth_url, trades_url = stream_urls(symbols)
+    for url in (depth_url, trades_url):
         async with websockets.connect(
             url,
             open_timeout=timeout_s,
@@ -303,9 +359,9 @@ async def preflight(*, timeout_s: float = 8) -> dict[str, Any]:
             asyncio.to_thread(_fetch_snapshot, symbol, timeout_s=timeout_s),
             timeout=timeout_s,
         )
-        for symbol in SYMBOLS
+        for symbol in symbols
     ))
-    for symbol, snapshot in zip(SYMBOLS, snapshots):
+    for symbol, snapshot in zip(symbols, snapshots):
         update_id = snapshot.get("lastUpdateId") if isinstance(snapshot, dict) else None
         if isinstance(update_id, bool) or not isinstance(update_id, int):
             raise ValueError(f"invalid depth snapshot response for {symbol}")
@@ -314,7 +370,12 @@ async def preflight(*, timeout_s: float = 8) -> dict[str, Any]:
         "status": "ready",
         "dns_hosts": list(hosts),
         "websocket_streams": ["depth@500ms", "aggTrade"],
-        "snapshot_symbols": list(SYMBOLS),
+        "snapshot_symbols": list(symbols),
+        "validated_contracts": {
+            symbol: {key: exchange_symbols[symbol].get(key)
+                     for key in ("baseAsset", "quoteAsset", "contractType", "status")}
+            for symbol in symbols
+        },
         "timeout_seconds": timeout_s,
         "capture_files_created": False,
     }
@@ -324,12 +385,20 @@ class Pilot:
     def __init__(self, output_dir: Path, *, capture_seconds: float = CAPTURE_SECONDS,
                  max_wall_seconds: float = MAX_WALL_SECONDS, max_bytes: int = MAX_BYTES,
                  inject_depth_disconnect_after_s: float | None = None,
-                 startup_timeout_s: float | None = None):
+                 startup_timeout_s: float | None = None,
+                 symbols: tuple[str, ...] = SYMBOLS):
         self.output_dir = Path(output_dir)
+        self.symbols = parse_symbols(",".join(symbols))
         self.capture_seconds = float(capture_seconds)
         self.max_wall_seconds = float(max_wall_seconds)
-        if self.capture_seconds <= 0 or self.max_wall_seconds <= 0:
+        self.max_bytes = int(max_bytes)
+        if (not math.isfinite(self.capture_seconds) or self.capture_seconds <= 0
+                or self.capture_seconds > MAX_CAPTURE_SECONDS
+                or not math.isfinite(self.max_wall_seconds) or self.max_wall_seconds <= 0
+                or self.max_wall_seconds > MAX_CAPTURE_SECONDS + 3600):
             raise ValueError("capture and wall-clock limits must be positive")
+        if self.max_bytes <= MAX_MANIFEST_RESERVE_BYTES or self.max_bytes > MAX_CAPTURE_BYTES:
+            raise ValueError("max_bytes is outside the permitted bounded capture range")
         if startup_timeout_s is None:
             startup_timeout_s = min(DEFAULT_STARTUP_TIMEOUT_SECONDS,
                                     self.max_wall_seconds / 2)
@@ -360,7 +429,7 @@ class Pilot:
         self.capture_start: float | None = None
         self.stop = asyncio.Event()
         self.startup_timed_out = False
-        self.books = {symbol: LocalBook() for symbol in SYMBOLS}
+        self.books = {symbol: LocalBook() for symbol in self.symbols}
         initialized_ms = time.time_ns() // 1_000_000
         initialized_mono = time.monotonic()
         self.book_validity_intervals: dict[str, list[dict[str, Any]]] = {
@@ -373,13 +442,13 @@ class Pilot:
                 "duration_seconds": None,
                 "reason": "startup_unsynchronized",
             }]
-            for symbol in SYMBOLS
+            for symbol in self.symbols
         }
-        self.buffers: dict[str, list[dict[str, Any]]] = {symbol: [] for symbol in SYMBOLS}
-        self.snapshots: dict[str, dict[str, Any] | None] = {symbol: None for symbol in SYMBOLS}
+        self.buffers: dict[str, list[dict[str, Any]]] = {symbol: [] for symbol in self.symbols}
+        self.snapshots: dict[str, dict[str, Any] | None] = {symbol: None for symbol in self.symbols}
         self.snapshot_tasks: dict[str, asyncio.Task] = {}
         self.snapshot_retry_tasks: dict[str, asyncio.Task] = {}
-        self.snapshot_retry_delay_s = {symbol: 1.0 for symbol in SYMBOLS}
+        self.snapshot_retry_delay_s = {symbol: 1.0 for symbol in self.symbols}
         self.retired_snapshot_tasks: list[asyncio.Task] = []
         self.depth_online = False
         self.trades_online = False
@@ -387,25 +456,25 @@ class Pilot:
         self.reconnects = {"depth": 0, "trades": 0}
         self.capture_connection_baseline = {"depth": 0, "trades": 0}
         self.capture_reconnect_baseline = {"depth": 0, "trades": 0}
-        self.fault_since: dict[str, float | None] = {symbol: None for symbol in SYMBOLS}
+        self.fault_since: dict[str, float | None] = {symbol: None for symbol in self.symbols}
         self.recovery_s: dict[str, list[float]] = defaultdict(list)
         self.event_latency_ms: dict[str, list[int]] = defaultdict(list)
         self.event_counts: dict[str, int] = defaultdict(int)
         self.first_last_trade_id: dict[str, dict[str, int | None]] = {
             symbol: {"first": None, "last": None, "possible_id_jumps": 0,
-                     "possible_missing_ids": 0} for symbol in SYMBOLS
+                     "possible_missing_ids": 0} for symbol in self.symbols
         }
-        self.total_s = {symbol: 0.0 for symbol in SYMBOLS}
-        self.valid_s = {symbol: 0.0 for symbol in SYMBOLS}
-        self.trade_valid_s = {symbol: 0.0 for symbol in SYMBOLS}
-        self.invalid_run_s = {symbol: 0.0 for symbol in SYMBOLS}
-        self.longest_invalid_s = {symbol: [0.0] for symbol in SYMBOLS}
+        self.total_s = {symbol: 0.0 for symbol in self.symbols}
+        self.valid_s = {symbol: 0.0 for symbol in self.symbols}
+        self.trade_valid_s = {symbol: 0.0 for symbol in self.symbols}
+        self.invalid_run_s = {symbol: 0.0 for symbol in self.symbols}
+        self.longest_invalid_s = {symbol: [0.0] for symbol in self.symbols}
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:8]
         self.run_dir = self.output_dir / run_id
         self.run_dir.mkdir(parents=True, exist_ok=False)
         self.segment = JsonlSegment(
             self.run_dir / "capture.jsonl",
-            max_bytes=max_bytes,
+            max_bytes=self.max_bytes,
             manifest_reserve_bytes=MAX_MANIFEST_RESERVE_BYTES,
         )
         self.capture_started_at: str | None = None
@@ -469,7 +538,7 @@ class Pilot:
         self.depth_online = True
         if self.connection_attempts["depth"]:
             self.reconnects["depth"] += 1
-            for symbol in SYMBOLS:
+            for symbol in self.symbols:
                 self._invalidate(symbol, "depth_reconnect")
                 self.snapshots[symbol] = None
                 self.buffers[symbol].clear()
@@ -483,7 +552,7 @@ class Pilot:
             self.retired_snapshot_tasks.append(task)
         self.snapshot_tasks.clear()
         self.snapshot_retry_tasks.clear()
-        for symbol in SYMBOLS:
+        for symbol in self.symbols:
             self._invalidate(symbol, "depth_disconnect")
             self.snapshots[symbol] = None
             self.buffers[symbol].clear()
@@ -584,16 +653,17 @@ class Pilot:
 
     async def _depth_loop(self) -> None:
         delay = 1.0
+        depth_url, _ = stream_urls(self.symbols)
         while not self.stop.is_set():
             try:
-                async with websockets.connect(DEPTH_URL, ping_interval=20, ping_timeout=60,
+                async with websockets.connect(depth_url, ping_interval=20, ping_timeout=60,
                                               close_timeout=5, max_size=4 * 1024 * 1024) as ws:
                     self.active_depth_socket = ws
                     attempt = self._depth_connected()
                     now_ms, mono = time.time_ns() // 1_000_000, time.monotonic()
                     self._write("connection", None, None, now_ms, mono,
                                 stream="depth", state="connected", attempt=attempt)
-                    for symbol in SYMBOLS:
+                    for symbol in self.symbols:
                         self._start_snapshot(symbol, force=True)
                     delay = 1.0
                     async for message in ws:
@@ -652,9 +722,10 @@ class Pilot:
 
     async def _trades_loop(self) -> None:
         delay = 1.0
+        _, trades_url = stream_urls(self.symbols)
         while not self.stop.is_set():
             try:
-                async with websockets.connect(TRADES_URL, ping_interval=20, ping_timeout=60,
+                async with websockets.connect(trades_url, ping_interval=20, ping_timeout=60,
                                               close_timeout=5, max_size=4 * 1024 * 1024) as ws:
                     self.trades_online = True
                     if self.connection_attempts["trades"]:
@@ -725,7 +796,7 @@ class Pilot:
                     )
                 capture_end = self.capture_start + self.capture_seconds
                 observed = interval_overlap(interval_start, now, self.capture_start, capture_end)
-                for symbol in SYMBOLS:
+                for symbol in self.symbols:
                     self.total_s[symbol] += observed
                     valid = self.depth_online and self.books[symbol].valid
                     if valid:
@@ -787,15 +858,16 @@ class Pilot:
             for task in snapshot_tasks:
                 task.cancel()
             await asyncio.gather(*snapshot_tasks, return_exceptions=True)
-            for symbol in SYMBOLS:
+            for symbol in self.symbols:
                 self.longest_invalid_s[symbol].append(self.invalid_run_s[symbol])
                 self._close_book_interval(
                     symbol, time.time_ns() // 1_000_000, time.monotonic(), "capture_ended"
                 )
             coverage = coverage_summary(self.total_s, self.valid_s,
-                                        self.longest_invalid_s, self.recovery_s)
+                                        self.longest_invalid_s, self.recovery_s,
+                                        self.symbols)
             latency = {}
-            for symbol in SYMBOLS:
+            for symbol in self.symbols:
                 values = sorted(self.event_latency_ms[symbol])
                 latency[symbol] = {
                     "samples": len(values),
@@ -822,7 +894,7 @@ class Pilot:
                 "max_wall_seconds": self.max_wall_seconds,
                 "startup_timeout_seconds": self.startup_timeout_s,
                 "hard_byte_cap": self.segment.max_bytes,
-                "symbols": list(SYMBOLS),
+                "symbols": list(self.symbols),
                 "streams": ["depth@500ms", "aggTrade"],
                 "credentials_used": False,
                 "signals_or_orders": False,
@@ -853,7 +925,7 @@ class Pilot:
                                      if self.total_s[symbol] else 0.0),
                         "meaning": "socket-connected time only; not proof of event completeness",
                     }
-                    for symbol in SYMBOLS
+                    for symbol in self.symbols
                 },
                 "book_validity_intervals": self.book_validity_intervals,
                 "disconnect_injection": self.disconnect_injection,
@@ -870,16 +942,18 @@ class Pilot:
                     "output_directory_free_bytes_before_manifest": shutil.disk_usage(self.run_dir).free,
                 },
                 "acceptance": {
-                    "coverage_ge_99pct_both": all(coverage[s]["coverage"] >= .99 for s in SYMBOLS),
+                    "coverage_ge_99pct_all_symbols": all(
+                        coverage[s]["coverage"] >= .99 for s in self.symbols
+                    ),
                     "fault_scope": (
                         "one controlled client-side depth websocket close; router, ISP, and server faults are not injected"
                     ),
                     "disconnect_injection_triggered": self.disconnect_injection["triggered"],
-                    "recovery": recovery_acceptance(self.recovery_s),
-                    "complete_60m": status == "completed",
+                    "recovery": recovery_acceptance(self.recovery_s, self.symbols),
+                    "complete_requested_capture": status == "completed",
                 },
                 "configuration": {
-                    "symbols": list(SYMBOLS),
+                    "symbols": list(self.symbols),
                     "depth_stream": "depth@500ms",
                     "trade_stream": "aggTrade",
                     "capture_seconds": self.capture_seconds,
@@ -923,17 +997,30 @@ def main() -> int:
                         help="timeout per preflight connection/check (default: 8)")
     parser.add_argument("--startup-timeout-s", type=float, default=DEFAULT_STARTUP_TIMEOUT_SECONDS,
                         help="stop and record incomplete if books do not synchronize by this time (default: 60)")
+    parser.add_argument("--symbols", default=",".join(SYMBOLS),
+                        help=f"comma-separated USDT-M symbols (1-{MAX_SYMBOLS}; default: BTCUSDT,ETHUSDT)")
+    parser.add_argument("--capture-seconds", type=float, default=CAPTURE_SECONDS,
+                        help="bounded capture duration, maximum 86400 seconds")
+    parser.add_argument("--max-wall-seconds", type=float, default=MAX_WALL_SECONDS,
+                        help="maximum wall time including startup and recovery")
+    parser.add_argument("--max-bytes", type=int, default=MAX_BYTES,
+                        help="hard total output cap, maximum 4 GiB")
     parser.add_argument("--output-root", type=Path, default=DATA_ROOT)
     parser.add_argument("--inject-depth-disconnect-after-s", type=float,
                         help="close the live depth socket once after N seconds of synchronized capture")
     args = parser.parse_args()
+    try:
+        symbols = parse_symbols(args.symbols)
+    except ValueError as exc:
+        parser.error(str(exc))
     if args.run and args.preflight:
         parser.error("choose either --run or --preflight")
     if not args.run and not args.preflight:
         parser.error("network access requires explicit --run")
     if args.preflight:
         try:
-            result = asyncio.run(preflight(timeout_s=args.preflight_timeout_s))
+            result = asyncio.run(preflight(timeout_s=args.preflight_timeout_s,
+                                           symbols=symbols))
         except Exception as exc:
             print(json.dumps({"status": "failed", "reason": type(exc).__name__}, indent=2))
             return 10
@@ -943,8 +1030,12 @@ def main() -> int:
     try:
         output_root = _validated_output_root(args.output_root)
         pilot = Pilot(output_root,
+                      capture_seconds=args.capture_seconds,
+                      max_wall_seconds=args.max_wall_seconds,
+                      max_bytes=args.max_bytes,
                       startup_timeout_s=args.startup_timeout_s,
-                      inject_depth_disconnect_after_s=args.inject_depth_disconnect_after_s)
+                      inject_depth_disconnect_after_s=args.inject_depth_disconnect_after_s,
+                      symbols=symbols)
         result = asyncio.run(pilot.run())
     except CaptureLimit as exc:
         print(json.dumps({

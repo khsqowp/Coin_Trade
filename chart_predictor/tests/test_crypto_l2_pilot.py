@@ -20,6 +20,7 @@ from scripts.research.crypto_l2_pilot import (
     coverage_summary,
     interval_overlap,
     main,
+    parse_symbols,
     preflight,
     recovery_acceptance,
     stream_event_latency_ms,
@@ -54,6 +55,10 @@ def test_preflight_checks_both_hosts_streams_and_symbol_snapshots(monkeypatch):
     monkeypatch.setattr(pilot_module.socket, "getaddrinfo", fake_getaddrinfo)
     monkeypatch.setattr(pilot_module.websockets, "connect", fake_connect)
     monkeypatch.setattr(pilot_module, "_fetch_snapshot", fake_snapshot)
+    monkeypatch.setattr(pilot_module, "_fetch_exchange_symbols", lambda **kwargs: {
+        symbol: {"status": "TRADING", "contractType": "PERPETUAL", "quoteAsset": "USDT"}
+        for symbol in SYMBOLS
+    })
 
     result = asyncio.run(preflight(timeout_s=2))
 
@@ -62,6 +67,72 @@ def test_preflight_checks_both_hosts_streams_and_symbol_snapshots(monkeypatch):
     assert opened == [pilot_module.DEPTH_URL, pilot_module.TRADES_URL]
     assert {symbol for symbol, _ in snapshots} == set(SYMBOLS)
     assert all(timeout == 2 for _, timeout in snapshots)
+
+
+def test_preflight_builds_streams_and_snapshots_for_requested_symbols(monkeypatch):
+    opened = []
+    snapshots = []
+
+    class FakeSocket:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *_):
+            return False
+
+    monkeypatch.setattr(pilot_module.socket, "getaddrinfo", lambda *a, **k: [(None,)])
+    monkeypatch.setattr(pilot_module.websockets, "connect",
+                        lambda url, **kwargs: (opened.append(url), FakeSocket())[1])
+    monkeypatch.setattr(pilot_module, "_fetch_snapshot",
+                        lambda symbol, *, timeout_s: (snapshots.append(symbol)
+                                                      or {"lastUpdateId": 1}))
+    symbols = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
+    monkeypatch.setattr(pilot_module, "_fetch_exchange_symbols", lambda **kwargs: {
+        symbol: {"status": "TRADING", "contractType": "PERPETUAL", "quoteAsset": "USDT"}
+        for symbol in symbols
+    })
+
+    result = asyncio.run(preflight(timeout_s=2, symbols=symbols))
+
+    assert opened == list(pilot_module.stream_urls(symbols))
+    assert set(snapshots) == set(symbols)
+    assert result["snapshot_symbols"] == list(symbols)
+
+
+def test_preflight_rejects_non_perpetual_or_inactive_contract(monkeypatch):
+    monkeypatch.setattr(pilot_module, "_fetch_exchange_symbols", lambda **kwargs: {
+        "BTCUSDT": {"status": "TRADING", "contractType": "CURRENT_QUARTER", "quoteAsset": "USDT"},
+        "ETHUSDT": {"status": "TRADING", "contractType": "PERPETUAL", "quoteAsset": "USDT"},
+    })
+    monkeypatch.setattr(pilot_module.socket, "getaddrinfo", lambda *a, **k: [(None,)])
+
+    with pytest.raises(ValueError, match="active USDT-margined perpetual"):
+        asyncio.run(preflight(timeout_s=2, symbols=("BTCUSDT", "ETHUSDT")))
+
+
+@pytest.mark.parametrize("value", [
+    "", "BTCUSDT,BTCUSDT", "BTCUSD", "BTC-USDT", ",,,",
+])
+def test_symbol_parser_rejects_empty_duplicate_or_non_usdt_symbols(value):
+    with pytest.raises(ValueError):
+        parse_symbols(value)
+
+
+def test_symbol_parser_caps_count_and_normalizes_case():
+    symbols = [f"COIN{i}USDT" for i in range(21)]
+    with pytest.raises(ValueError, match="1 to 20"):
+        parse_symbols(",".join(symbols))
+    assert parse_symbols("btcusdt, ethusdt") == ("BTCUSDT", "ETHUSDT")
+
+
+def test_pilot_applies_explicit_symbol_list_and_resource_bounds(tmp_path):
+    pilot = Pilot(tmp_path, capture_seconds=60, max_wall_seconds=90,
+                  max_bytes=2_000_000, symbols=("BTCUSDT", "ETHUSDT", "SOLUSDT"))
+    assert tuple(pilot.books) == ("BTCUSDT", "ETHUSDT", "SOLUSDT")
+    assert pilot.segment.max_bytes == 2_000_000
+    with pytest.raises(ValueError, match="bounded capture range"):
+        Pilot(tmp_path / "too-large", capture_seconds=60, max_wall_seconds=90,
+              max_bytes=pilot_module.MAX_CAPTURE_BYTES + 1)
 
 
 def test_preflight_stops_before_websocket_if_dns_fails(monkeypatch):
@@ -82,7 +153,7 @@ def test_preflight_stops_before_websocket_if_dns_fails(monkeypatch):
 def test_cli_preflight_failure_does_not_create_capture_output(tmp_path, monkeypatch, capsys):
     output_root = tmp_path / "must-not-exist"
 
-    async def fail_preflight(*, timeout_s):
+    async def fail_preflight(*, timeout_s, symbols):
         raise OSError("DNS unavailable")
 
     monkeypatch.setattr(pilot_module, "preflight", fail_preflight)
@@ -294,7 +365,7 @@ def test_injected_disconnect_resnapshot_recovery_is_timed_per_symbol(tmp_path, m
     assert pilot.recovery_s["BTCUSDT"] == [21.0]
     assert pilot.recovery_s["ETHUSDT"] == [28.0]
     result = recovery_acceptance(pilot.recovery_s)
-    assert result["observed_both_symbols"] is True
+    assert result["observed_all_symbols"] is True
     assert result["within_30_seconds"] is True
     pilot.segment.close(complete=False, run_manifest={"run_id": pilot.run_dir.name})
 
@@ -471,6 +542,8 @@ def test_short_mocked_end_to_end_capture_completes_and_verifies(tmp_path, monkey
     assert set(result["coverage"]) == set(SYMBOLS)
     assert all(result["coverage"][symbol]["coverage"] >= 0.99 for symbol in SYMBOLS), result["coverage"]
     assert result["acceptance"]["recovery"]["within_30_seconds"] is None
+    assert result["acceptance"]["complete_requested_capture"] is True
+    assert "complete_60m" not in result["acceptance"]
     assert result["disconnect_injection"]["result"] == "not_requested"
     assert result["resource_metrics"]["total_output_bytes"] <= result["hard_byte_cap"]
     assert result["resource_metrics"]["metadata_bytes"] == (
@@ -581,7 +654,7 @@ def test_mocked_websocket_disconnect_resnapshot_recovers_both_books_under_30s(
     assert result["status"] == "completed"
     assert result["reconnects_during_capture"]["depth"] == 1
     recovery = result["acceptance"]["recovery"]
-    assert recovery["observed_both_symbols"] is True
+    assert recovery["observed_all_symbols"] is True
     assert recovery["within_30_seconds"] is True
     assert result["disconnect_injection"]["triggered"] is True
     assert result["disconnect_injection"]["result"] == "triggered"
@@ -637,7 +710,7 @@ def test_coverage_interval_excludes_time_before_sync_and_after_window():
 
 def test_no_live_recovery_is_not_reported_as_recovery_pass():
     result = recovery_acceptance({"BTCUSDT": [], "ETHUSDT": []})
-    assert result["observed_both_symbols"] is False
+    assert result["observed_all_symbols"] is False
     assert result["within_30_seconds"] is None
     assert result["no_recovery_observed_is_not_a_pass"] is True
 
@@ -671,6 +744,9 @@ def test_cli_runs_by_file_path_without_package_path_setup():
     assert "--preflight" in result.stdout
     assert "--inject-depth-disconnect-after-s" in result.stdout
     assert "--startup-timeout-s" in result.stdout
+    assert "--symbols" in result.stdout
+    assert "--capture-seconds" in result.stdout
+    assert "--max-bytes" in result.stdout
 
 
 def test_collector_task_failure_stops_run_and_writes_incomplete_manifest(tmp_path):
