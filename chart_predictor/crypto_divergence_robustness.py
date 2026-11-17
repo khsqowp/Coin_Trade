@@ -19,6 +19,27 @@ class DivergenceSignal:
     oscillator_at_anchor: float
 
 
+def _unique_confirmed_swings(high, low, lag):
+    """Return centered-window pivots only when the extreme is unique."""
+    h, l = np.asarray(high, dtype=float), np.asarray(low, dtype=float)
+    if h.ndim != 1 or l.ndim != 1 or len(h) != len(l):
+        raise ValueError("high and low must be equal-length one-dimensional arrays")
+    if not isinstance(lag, (int, np.integer)) or isinstance(lag, bool) or lag < 1:
+        raise ValueError("lag must be a positive integer")
+    sh, sl = np.full(len(h), np.nan), np.full(len(l), np.nan)
+    for confirm in range(2 * lag, len(h)):
+        anchor = confirm - lag
+        window_h = h[anchor - lag:confirm + 1]
+        window_l = l[anchor - lag:confirm + 1]
+        if not (np.isfinite(window_h).all() and np.isfinite(window_l).all()):
+            continue
+        if np.count_nonzero(window_h == h[anchor]) == 1 and h[anchor] == np.max(window_h):
+            sh[confirm] = h[anchor]
+        if np.count_nonzero(window_l == l[anchor]) == 1 and l[anchor] == np.min(window_l):
+            sl[confirm] = l[anchor]
+    return sh, sl
+
+
 def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None):
     """Return regular divergence events at pivot confirmation, using anchor values.
 
@@ -33,18 +54,20 @@ def divergence_signals(high, low, close, oscillator, lag=3, macro_direction=None
     macro = np.ones(len(c), dtype=int) if macro_direction is None else np.asarray(macro_direction, dtype=int)
     if len(macro) != len(c):
         raise ValueError("macro_direction must align with candles")
-    sh, sl = indicators.confirmed_swings(h, l, lag)
+    sh, sl = _unique_confirmed_swings(h, l, lag)
     out, lows, highs = [], [], []
     for i in range(len(c)):
         anchor = i - lag
         if np.isfinite(sl[i]) and np.isfinite(osc[anchor]):
             price, value = float(sl[i]), float(osc[anchor])
-            if lows and price < lows[-1][1] and value > lows[-1][2] and macro[i] == 1:
+            if (lows and anchor - lows[-1][0] >= lag and price < lows[-1][1]
+                    and value > lows[-1][2] and macro[i] == 1):
                 out.append(DivergenceSignal(i, anchor, "long", price, value))
             lows.append((anchor, price, value))
         if np.isfinite(sh[i]) and np.isfinite(osc[anchor]):
             price, value = float(sh[i]), float(osc[anchor])
-            if highs and price > highs[-1][1] and value < highs[-1][2] and macro[i] == -1:
+            if (highs and anchor - highs[-1][0] >= lag and price > highs[-1][1]
+                    and value < highs[-1][2] and macro[i] == -1):
                 out.append(DivergenceSignal(i, anchor, "short", price, value))
             highs.append((anchor, price, value))
     return out

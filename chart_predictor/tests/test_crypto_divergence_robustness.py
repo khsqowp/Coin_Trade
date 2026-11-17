@@ -7,7 +7,7 @@ from chart_predictor import crypto_divergence_robustness as study
 def test_divergence_uses_anchor_oscillator_and_emits_only_at_confirmation(monkeypatch):
     sh = np.full(12, np.nan); sl = np.full(12, np.nan)
     sl[5], sl[9] = 10.0, 9.0  # lag 2 => anchors 3 and 7
-    monkeypatch.setattr(study.indicators, "confirmed_swings", lambda h, l, lag: (sh, sl))
+    monkeypatch.setattr(study, "_unique_confirmed_swings", lambda h, l, lag: (sh, sl))
     osc = np.zeros(12); osc[3], osc[7] = 30.0, 40.0
     osc[5], osc[9] = 90.0, 1.0  # deliberately misleading confirmation-bar values
     signals = study.divergence_signals(np.ones(12)*11, np.ones(12)*10,
@@ -15,6 +15,20 @@ def test_divergence_uses_anchor_oscillator_and_emits_only_at_confirmation(monkey
     assert len(signals) == 1
     assert signals[0] == study.DivergenceSignal(9, 7, "long", 9.0, 40.0)
     assert all(s.index > s.anchor for s in signals)
+
+
+def test_unique_pivot_confirmation_rejects_equal_extreme_ties():
+    # Equal lows in a centered window must not create duplicate pivot events.
+    low = np.array([12, 11, 10, 10, 11, 12, 11], dtype=float)
+    high = low + 2
+    sh, sl = study._unique_confirmed_swings(high, low, lag=2)
+    assert not np.isfinite(sl).any()
+    # A strictly unique low is confirmed exactly two bars after its anchor.
+    low = np.array([12, 11, 10, 11, 12, 13, 14], dtype=float)
+    high = low + 2
+    _, sl = study._unique_confirmed_swings(high, low, lag=2)
+    assert sl[4] == 10
+    assert np.count_nonzero(np.isfinite(sl)) == 1
 
 
 def test_divergence_features_are_prefix_invariant_and_future_peek_probe_is_detected():
@@ -52,7 +66,7 @@ def test_divergence_features_are_prefix_invariant_and_future_peek_probe_is_detec
 def test_macro_filter_blocks_wrong_regime_and_allows_mirror_signal(monkeypatch):
     sh = np.full(12, np.nan); sl = np.full(12, np.nan)
     sl[5], sl[9] = 10.0, 9.0
-    monkeypatch.setattr(study.indicators, "confirmed_swings", lambda h, l, lag: (sh, sl))
+    monkeypatch.setattr(study, "_unique_confirmed_swings", lambda h, l, lag: (sh, sl))
     osc = np.arange(12, dtype=float)
     args = (np.ones(12)*11, np.ones(12)*10, np.ones(12)*10.5, osc)
     assert study.divergence_signals(*args, lag=2, macro_direction=np.full(12, -1)) == []
