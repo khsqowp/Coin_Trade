@@ -20,4 +20,8 @@ The dataset has enough calendar span and at least 20 structurally continuous sym
 
 The archive is not proven to be a complete point-in-time universe of every listed/delisted perpetual contract. The findings support conclusions only for this frozen 86-symbol archive sample. Symbol listing/delisting and contract-incarnation survivorship remain material limitations and must be explicit in every result.
 
+## Independent fingerprint check
+
+A separate read-only red-team pass independently recomputed the file size (30,363,320,320 bytes), SHA-256, `candles` row/symbol counts and timestamp extrema, plus `archive_manifest` row/symbol/month extrema. All values matched this audit. The reviewer did not read OHLC values, signals, returns, or market labels.
+
 This audit did not inspect OHLC outcomes, build divergence signals, or access any sealed performance labels. No strategy result is available yet.
