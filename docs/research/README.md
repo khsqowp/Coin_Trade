@@ -112,9 +112,21 @@ someone to find later by accident.
   locally** (the actual `docker-compose.trading.yml` lives on the remote
   trading server, not in this repo); treat it as an unverified claim about
   live config, not a confirmed fact, until checked against the server.
-- `docs/research/equity_transfer_2026-10/` — KR/US equity ports of the coin
-  Round3-16 strategies (ROUND*_TRANSFER.md, MACH7/PSAR/TRX/VOLUME portfolio
-  transfers); triage in progress.
+- `docs/research/equity_transfer_2026-10/` — a much bigger 2026-10-14 port of
+  the coin side's entire 98-strategy-family offline registry onto KR/US
+  daily equities (separate from, and larger than, `stocks_kr.md`/
+  `stocks_us.md`'s 2026-10-13 momentum-grid-only port). All REJECT except
+  two post-hoc-selected `VALIDATION_REQUIRED` cells and one bundle not yet
+  read in detail (registry phases `equity_transfer_*`). No cell beats the
+  stock bar.
+  **`full_runs/` inside this directory is 687MB across 295 gzipped CSVs and
+  is committed to git** (not gitignored) — this is very likely the single
+  biggest contributor to this repo's `.git` size (~592MB as of 2026-11-18).
+  The headline numbers are already captured in the registry and in
+  `FULL_TRANSFER_REPORT.md`; nothing was deleted here, since removing
+  already-pushed blobs requires a git-history rewrite (BFG/`git
+  filter-repo` + force-push), which is a decision for the user, not
+  something to do silently.
 
 ## Conventions
 
