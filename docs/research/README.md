@@ -120,13 +120,14 @@ someone to find later by accident.
   read in detail (registry phases `equity_transfer_*`). No cell beats the
   stock bar.
   **`full_runs/` inside this directory is 687MB across 295 gzipped CSVs and
-  is committed to git** (not gitignored) — this is very likely the single
-  biggest contributor to this repo's `.git` size (~592MB as of 2026-11-18).
-  The headline numbers are already captured in the registry and in
-  `FULL_TRANSFER_REPORT.md`; nothing was deleted here, since removing
-  already-pushed blobs requires a git-history rewrite (BFG/`git
-  filter-repo` + force-push), which is a decision for the user, not
-  something to do silently.
+  is committed to git** (not gitignored) — very likely the single biggest
+  contributor to this repo's `.git` size (~592MB as of 2026-11-18). The
+  headline numbers are already captured in the registry and in
+  `FULL_TRANSFER_REPORT.md`, but the user explicitly decided (2026-11-18)
+  to keep the raw per-trial CSVs as-is rather than rewrite git history to
+  remove them ("그것 마저도 데이터야" — raw trial data is data too). **Do
+  not propose deleting or history-rewriting `full_runs/` again** unless the
+  user reopens this.
 
 ## Conventions
 
