@@ -1,5 +1,7 @@
 # Agent strategy research rounds — 2026-11-15
 
+> For a one-line verdict per round across this whole repo (not just this doc), see [`docs/research/INDEX.md`](INDEX.md) first.
+
 Status: in progress. Exploratory results only; no strategy has passed validation or been promoted.
 
 ## Research boundaries
