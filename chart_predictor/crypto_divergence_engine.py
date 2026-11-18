@@ -220,6 +220,12 @@ def evaluate_divergence_event(*, minute_open_ms, minute_opens, minute_highs,
         entry_ms = int(native_bars.open_ms[entry_i])
         entry_price = float(native_bars.open[entry_i])
         minute_start = int(np.searchsorted(raw_ts, entry_ms))
+        # The native entry and its underlying 1m execution path must describe
+        # the same observed open. Fail closed if callers pass mismatched bars.
+        if (minute_start >= len(raw_ts) or raw_ts[minute_start] != entry_ms
+                or not np.isclose(mo[minute_start], entry_price, rtol=0, atol=0)):
+            return {"status": "unresolved", "target_first": None, "entry_ms": entry_ms,
+                    "entry_price": entry_price, "exit_price": None, "trade_net_r": None}
     else:
         for k in range(3):
             native_i = entry_i + k

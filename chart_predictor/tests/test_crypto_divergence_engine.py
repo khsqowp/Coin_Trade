@@ -112,6 +112,28 @@ def test_next_open_target_first_has_realized_trade_net_r():
     assert result["trade_net_r"] == 1
 
 
+def test_next_open_rejects_mismatched_native_and_minute_execution_prices():
+    native = _native()
+    times = np.arange(13, dtype=np.int64) * MINUTE_MS
+    opens = np.full(13, 100.0)
+    highs = np.full(13, 101.0)
+    lows = np.full(13, 99.0)
+    closes = np.full(13, 100.0)
+    # Deliberately corrupt the execution-level open while leaving the native
+    # candle's open unchanged. A target touch later must not rescue this path.
+    opens[1], highs[1], lows[1], closes[1] = 101.0, 102.0, 100.5, 101.0
+    highs[2] = 111.0
+    result = evaluate_divergence_event(
+        minute_open_ms=times, minute_opens=opens, minute_highs=highs,
+        minute_lows=lows, minute_closes=closes, native_bars=native,
+        native_tf_minutes=1, signal_index=0, side="long", pivot_stop=90,
+        atr_at_signal=2, stop_buffer_atr=0, target_r=1, horizon_bars=10,
+        entry_mode="next_open", fee_per_side=0, slippage_per_side=0)
+    assert result["status"] == "unresolved"
+    assert result["target_first"] is None
+    assert result["trade_net_r"] is None
+
+
 def test_short_target_first_is_mirrored_and_costs_reduce_net_r():
     native = _native()
     times = np.arange(13, dtype=np.int64) * MINUTE_MS
