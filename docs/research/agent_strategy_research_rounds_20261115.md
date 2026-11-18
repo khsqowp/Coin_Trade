@@ -264,3 +264,37 @@ Interpretation: the 92-symbol cohort mixes stocks with bond, cash, gold, FX, and
 Verdict: **REJECTED** under the same Gen17 screen (strictly beat B&H on CAGR and Sharpe, with MDD no worse, at both cost levels). KR fails CAGR at both costs (it passes Sharpe and MDD). US fails CAGR and Sharpe at both costs. Neither market approaches the 20% CAGR bar. Not promoted; no parameter retry. Reproduce with `PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python3 scripts/research/low_vol_decile_probe.py`.
 
 Summary: Rejected. KR has better Sharpe and MDD but CAGR 5.3–5.5% vs B&H 11.9%. US has CAGR 1.6–3.0% vs 16.4–16.6% and also trails on Sharpe. In this mixed universe the decile collapses into bond/T-bill ETFs. Overlap with the low-skew picks is 20% in KR and 5% in US.
+
+## Round 6 — volatility-targeted overlay on US 126-day momentum
+
+Purpose: keep the existing top US candidate unchanged (126-session momentum, top-10 equal weight, daily rebalance at the next open, ungated; Round 3 base-cost 22.42% / 34.17% MDD / Sharpe 0.871). Add only a volatility-targeting exposure overlay, and check whether it cuts MDD enough to clear the bar. This is not a new selection signal. It is an E2 exploratory screen, not SPEC.md E3 sealed validation, and it is not independent OOS. The 2021-07-29 to 2026-11-12 US window has already been inspected repeatedly in Rounds 1–5 with this same strategy. The 92-symbol cache is a current survivor cohort with no point-in-time membership and no delisted/merged names, so absolute returns are biased upward.
+
+Fixed before the run and not changed afterward: realized_vol_t = sample std (ddof=1) of the last 20 daily close-to-close returns of the *pre-overlay* momentum portfolio, annualized by √252, using closes through t. Exposure at the day-t open is scale_t = min(1.0, 0.15 / realized_vol_{t−1}). There is no leverage: the cap is 1.0, per SPEC.md's cash equities/ETF scope. scale_t = 1.0 when realized_vol_{t−1} is missing (the 20-return warmup), zero, or non-finite. The account holds scale_t × NAV in the top-10 equal weights and the remainder in zero-interest cash. Scale changes alter per-name share counts. They therefore enter the same per-name |Δshares × open| turnover that is charged fee + slippage, together with the normal daily rebalance trades. The pre-overlay series is the same-cost-scenario baseline NAV, so base uses the base-cost baseline and stress uses the stress-cost baseline. Costs are unchanged: 8+10 bp base and 36+25 bp stress per side. The run was executed once. target_vol (15%), lookback (20), the cap (1.0), and the cost treatment were not retried.
+
+Implementation: `scripts/research/us_mom126_voltarget_probe.py` imports `read_market`, `metrics`, `K`, and `us_run` from `equity_trend_gate_probe.py`. `us_ledger` is a line-for-line copy of `us_run`'s daily ungated ledger with one change: the target is multiplied by scale_t. With scale = 1 it asserts equality to `us_run` on CAGR, MDD, Sharpe, and turnover (difference below 1e-9) for both cost scenarios. A future-mutation check confirmed that changing pre-overlay NAV from date t onward leaves every scale up to and including t unchanged. The baseline reproduced exactly: base 22.42% / 34.17% / 0.871, stress 2.99% / 47.98%.
+
+| US daily top-10 126-session momentum | Cost | CAGR | MDD | Sharpe | Mean exposure | Cum. one-way turnover (per year) | Passes 20/30/1.0 |
+|---|---|---:|---:|---:|---:|---:|:---:|
+| Baseline (no overlay) | Base | 22.42% | 34.17% | 0.871 | 99.9% | 106.2× (20.08×) | No (MDD, Sharpe) |
+| Vol-target 15% / 20d | Base | 14.36% | 24.19% | 0.964 | 59.5% | 73.3× (13.86×) | No (CAGR, Sharpe) |
+| Baseline (no overlay) | Stress | 2.99% | 47.98% | 0.261 | 99.9% | 106.2× (20.07×) | No (all three) |
+| Vol-target 15% / 20d | Stress | 1.57% | 36.32% | 0.186 | 59.6% | 73.3× (13.86×) | No (all three) |
+
+Turnover is the cumulative one-way figure from `metrics()`, divided by 5.29 years for the per-year number. The Round 3 table's 90.97× was the *gated* variant. The ungated baseline is 106.2×.
+
+Exposure diagnostics (base; stress differs by under 0.1 pp): mean scale_t 0.596, median 0.568, minimum 0.187. scale_t was below 1.0 on 91.3% of trading days. The pre-overlay portfolio's 20-day realized vol averaged 29.1% (median 26.6%, 90th percentile 45.4%), about twice the 15% target. The overlay therefore acts mostly as a permanent ~40% cash sleeve rather than a crisis-only de-risking switch. Mean scale fell every year: 0.80 (2021), 0.73 (2022), 0.64 (2023), 0.59 (2024), 0.47 (2025), 0.38 (2026 YTD).
+
+| Year | Baseline base | Vol-target base | Baseline stress | Vol-target stress |
+|---|---:|---:|---:|---:|
+| 2021 (from 07-29) | +12.4% | +9.0% | +4.7% | +2.1% |
+| 2022 | −29.1% | −18.0% | −43.6% | −31.4% |
+| 2023 | +63.6% | +33.6% | +36.7% | +17.4% |
+| 2024 | +45.4% | +28.8% | +20.3% | +13.1% |
+| 2025 | +8.8% | +12.4% | −2.5% | +5.9% |
+| 2026 (to 11-12) | +41.5% | +17.5% | +23.4% | +10.3% |
+
+Interpretation: the overlay did what vol targeting mechanically does. At base cost, MDD fell 10.0 pp to 24.19%, below the 30% limit, and Sharpe rose 0.09 to 0.964. CAGR fell 8.06 pp to 14.36%, well below 20%, and Sharpe still did not reach 1.0. The 2022 loss shrank (−29.1% → −18.0%), and 2025 improved. In the strong 2023, 2024, and 2026 tapes, it gave up roughly a third to a half of the return because exposure was held near 40–60%. At stress cost, both versions are near zero CAGR. The overlay cuts turnover by about 31%, but the daily equal-weight re-targeting cost still dominates, and the overlay lowers CAGR and Sharpe further while reducing MDD by 11.7 pp. A 15% target is far below this concentrated 10-name portfolio's natural ~27–29% vol, so the result reads mostly as "hold ~60% of the baseline". This is close to scaling a Sharpe-0.87 stream down, plus a small vol-timing gain (+0.09 Sharpe at base). It is not evidence of a robust drawdown-control edge. No bootstrap or uncertainty interval was computed. A Sharpe change of 0.09 on 5.3 years of daily data is well within sampling noise.
+
+Verdict: **FAILS the bar.** The 20% CAGR + ≤30% MDD + ≥1.0 Sharpe requirement is not met in either cost case. Base fails CAGR (14.36%) and Sharpe (0.964) while passing MDD (24.19%). Stress fails all three (1.57% / 36.32% / 0.186). The fixed hypothesis is recorded as tested once and not promoted. Per preregistration, no retry with another target_vol, lookback, or cap. Reproduce with `PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python3 scripts/research/us_mom126_voltarget_probe.py` (prints full JSON, including the per-year mean scale).
+
+Summary: The 15%/20-day vol target on US mom126 cut MDD from 34.2% to 24.2% at base, but CAGR fell from 22.4% to 14.4% and Sharpe reached only 0.96. Mean exposure was 60%. Stress CAGR was 1.6%. Fails the bar; no retry.
