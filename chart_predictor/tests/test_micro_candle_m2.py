@@ -87,3 +87,46 @@ def test_adverse_short_stop_gap_fills_at_open():
     assert result is not None
     assert result[0] is False and result[1] is False
     assert result[2] < -1.9
+
+
+def test_single_candle_features_are_prefix_invariant_with_future_peek_control(tmp_path):
+    import sqlite3
+
+    def make_db(path, future_shift):
+        db = sqlite3.connect(path)
+        db.execute("""CREATE TABLE candles(
+            symbol TEXT, open_ms INTEGER, open REAL, high REAL, low REAL, close REAL,
+            volume REAL, quote_volume REAL, trade_count INTEGER,
+            PRIMARY KEY(symbol,open_ms))""")
+        rows = []
+        for i in range(40):
+            shift = future_shift if i >= 25 else 0.0
+            op = 100.0 + shift
+            rows.append(("TESTUSDT", i*m2.MINUTE, op, op+1.0, op-1.0,
+                         op+0.5, 1.0, op+0.5, 1))
+        db.executemany("INSERT INTO candles VALUES(?,?,?,?,?,?,?,?,?)", rows)
+        db.commit()
+        return db
+
+    base_db = make_db(tmp_path / "base.sqlite", 0.0)
+    changed_db = make_db(tmp_path / "future_changed.sqlite", 20.0)
+    try:
+        base = m2.load_symbol(base_db, "TESTUSDT")
+        changed = m2.load_symbol(changed_db, "TESTUSDT")
+    finally:
+        base_db.close()
+        changed_db.close()
+
+    cutoff = 25
+    for feature_index in (5, 6):  # ATR and emitted one-candle signal
+        np.testing.assert_array_equal(base[feature_index][:cutoff],
+                                      changed[feature_index][:cutoff])
+
+    # Negative control: a feature that reads the next candle must be changed
+    # when only data after the cutoff are mutated.
+    def leaking_next_close(close):
+        out = np.zeros(len(close), dtype=np.int8)
+        out[:-1] = np.sign(np.diff(close)).astype(np.int8)
+        return out
+
+    assert leaking_next_close(base[4])[cutoff-1] != leaking_next_close(changed[4])[cutoff-1]
