@@ -45,6 +45,11 @@ def test_collector_fills_leading_internal_and_trailing_gaps(tmp_path):
     assert [p["startTime"] for p in session.calls] == [start, start+3*60_000, start+6*60_000]
     assert [p["endTime"] for p in session.calls] == [start+2*60_000-1, start+5*60_000-1, start+8*60_000-1]
     assert db.execute("SELECT COUNT(*) FROM candles WHERE symbol='BTCUSDT'").fetchone()[0] == 8
+    run = db.execute("SELECT status,inserted_rows FROM collection_runs").fetchone()
+    page_rows = db.execute("SELECT COUNT(*),SUM(response_row_count),SUM(inserted_row_count) FROM collection_pages").fetchone()
+    assert run == ("complete", 6)
+    assert page_rows == (3, 6, 6)
+    assert db.execute("SELECT COUNT(DISTINCT response_payload_sha256) FROM collection_pages").fetchone()[0] == 3
     db.close()
 
 
@@ -60,6 +65,62 @@ def test_collector_rerun_is_idempotent_and_makes_no_request(tmp_path):
     assert collect_symbol("ETHUSDT", start, start+4*60_000, db=db, session=session) == 0
     assert session.calls == []
     assert db.execute("SELECT COUNT(*) FROM candles WHERE symbol='ETHUSDT'").fetchone()[0] == 4
+    assert db.execute("SELECT status,inserted_rows FROM collection_runs").fetchone() == ("complete", 0)
+    assert db.execute("SELECT COUNT(*) FROM collection_pages").fetchone()[0] == 0
+    db.close()
+
+
+def test_collector_records_incomplete_response_coverage(tmp_path):
+    db = connect(tmp_path / "candles.sqlite")
+    start = 1_700_000_000_000 // 60_000 * 60_000
+    session = Session([[]])
+
+    assert collect_symbol("BTCUSDT", start, start+2*60_000, db=db,
+                          session=session, sleep=lambda _: None) == 0
+    assert db.execute("SELECT status,inserted_rows,error_class FROM collection_runs").fetchone() == (
+        "incomplete", 0, None)
+    assert db.execute("SELECT requested_start_ms,requested_end_ms_exclusive,response_row_count "
+                      "FROM collection_pages").fetchone() == (start, start+2*60_000, 0)
+    db.close()
+
+
+def test_collector_empty_page_advances_page_number_across_multiple_gaps(tmp_path):
+    db = connect(tmp_path / "candles.sqlite")
+    start = 1_700_000_000_000 // 60_000 * 60_000
+    for minute in (1, 3):
+        row = kline(start + minute*60_000)
+        db.execute("INSERT INTO candles VALUES(?,?,?,?,?,?,?,?,?)",
+                   ("BTCUSDT", row[0], 10, 11, 9, 10.5, 3, 31.5, 7))
+    db.commit()
+    session = Session([[], [kline(start+2*60_000)],
+                       [kline(start+4*60_000), kline(start+5*60_000)]])
+
+    inserted = collect_symbol("BTCUSDT", start, start+6*60_000, db=db,
+                              session=session, sleep=lambda _: None)
+
+    assert inserted == 3
+    assert db.execute("SELECT status,inserted_rows FROM collection_runs").fetchone() == (
+        "incomplete", 3)
+    pages = db.execute(
+        "SELECT page_number,response_row_count,inserted_row_count "
+        "FROM collection_pages ORDER BY page_number").fetchall()
+    assert pages == [(1, 0, 0), (2, 1, 1), (3, 2, 2)]
+    assert len(session.calls) == 3
+    db.close()
+
+
+def test_collector_records_failed_request_class_without_suppressing_error(tmp_path):
+    class BrokenSession:
+        def get(self, url, **kwargs):
+            raise ConnectionError("mocked network failure")
+
+    db = connect(tmp_path / "candles.sqlite")
+    start = 1_700_000_000_000 // 60_000 * 60_000
+    with pytest.raises(ConnectionError, match="mocked network failure"):
+        collect_symbol("BTCUSDT", start, start+2*60_000, db=db,
+                       session=BrokenSession(), sleep=lambda _: None)
+    assert db.execute("SELECT status,error_class FROM collection_runs").fetchone() == (
+        "failed", "ConnectionError")
     db.close()
 
 

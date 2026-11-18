@@ -54,7 +54,23 @@ def connect_trials(path=None):
 
 def record_trial(db, ts, model, prompt_version, code_sha, split, hypothesis, n_predictions,
                  data_fingerprint=None):
-    """Record one experiment or sealed-data access event."""
+    """Record one unique experiment identity; return its stable trial ID.
+
+    Repeating an identical run with the same data fingerprint reuses its row,
+    preventing deterministic reruns from inflating the multiple-testing count.
+    A changed code, prompt, split, hypothesis, sample count, or fingerprint is
+    a distinct trial and remains visible.
+    """
+    if data_fingerprint is not None:
+        existing = db.execute(
+            "SELECT trial_id FROM trials WHERE model=? AND prompt_version=? AND code_sha=? "
+            "AND split=? AND hypothesis=? AND n_predictions=? AND data_fingerprint=? "
+            "ORDER BY trial_id LIMIT 1",
+            (model, prompt_version, code_sha, split, hypothesis,
+             int(n_predictions), data_fingerprint),
+        ).fetchone()
+        if existing:
+            return int(existing[0])
     cur = db.execute("INSERT INTO trials(ts,model,prompt_version,code_sha,split,hypothesis,n_predictions,data_fingerprint)"
                      " VALUES(?,?,?,?,?,?,?,?)", (ts, model, prompt_version, code_sha, split,
                                                    hypothesis, int(n_predictions), data_fingerprint))

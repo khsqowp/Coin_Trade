@@ -48,6 +48,13 @@ HYPOTHESES={
  "doji_macd_flip_strict":"The same doji+MACD-flip reversal should perform better once the doji body threshold is tightened from 10% to 5% of range, filtering out marginal/less-indecisive candles.",
  "star_pattern_volume_climax":"A strict ATR-scaled morning/evening star reversal pattern confirmed by climax volume on its third candle should precede directional follow-through.",
  "star_pattern_volume_climax_strict":"The same ATR-scaled morning/evening star reversal with a rarer 5x trailing-volume climax on its third candle should filter ordinary volume noise.",
+ "order_block_engulfing_confirm":"An order-block retest whose reclaim bar is itself an engulfing candle in the trade direction should filter the weak/ambiguous reclaims that dilute order_block's pooled expectancy.",
+ "order_block_confluence_aggressive":"Taking every order-block retest (no confluence filter) should behave like base order_block; included as the loose end of the aggressive-to-conservative spectrum.",
+ "order_block_confluence_balanced":"An order-block retest with a decisive reclaim body, same-timeframe trend agreement, and average-or-above volume should skip ambiguous setups and improve on taking every retest.",
+ "order_block_confluence_conservative":"An order-block retest with a strong reclaim body, strict trend agreement, above-average volume, and an ATR-buffered wider stop should skip more setups than balanced but keep only the highest-conviction ones.",
+ "fvg_fill_confluence_aggressive":"Taking every fair-value-gap first overlap (no confluence filter) should behave like base fvg_fill; the loose end of the same aggressive-to-conservative spectrum applied to a different zone.",
+ "fvg_fill_confluence_balanced":"A fair-value-gap fill with a decisive fill-bar body, same-timeframe trend agreement, and average-or-above volume should skip ambiguous fills and improve on taking every fill.",
+ "fvg_fill_confluence_conservative":"A fair-value-gap fill with a strong fill-bar body, strict trend agreement, above-average volume, and an ATR-buffered wider stop should keep only the highest-conviction fills.",
 }
 EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
 
@@ -130,9 +137,37 @@ def _metrics(key,trades,years):
       "years_tested":years,"num_parameters":0,"slippage_tested":True,"backtest_expert":{"score":ev["quality_score"],"decision":ev["decision"],"verdict":ev["verdict"],"red_flags":ev["red_flags"],"blocking_reasons":ev["blocking_reasons"]},
       "hit_gate_75":wins/n>=.75 if n else False,"minimum_trade_gate_met":n>=30,"holm_adjusted_flag":False,"holm_adjusted_p":None,"folds":[],"tiers":tiers}
 
+def _code_fingerprint():
+    digest=hashlib.sha256()
+    root=Path(__file__).parent
+    files=(root/"setup_backtest.py",root/"setups.py",root/"indicators.py",
+           root/"resample.py",EVALUATOR)
+    for path in files:
+        name=str(path.relative_to(root.parent))
+        digest.update(name.encode()); digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+def _record_setup_trial(report,trial_path):
+    setups=report["tested_setups"]
+    names=", ".join(setups)
+    hypotheses="; ".join(f"{name}: {HYPOTHESES[name]}" for name in setups)
+    trials=connect_trials(trial_path or Path(__file__).parent/"data/trials.sqlite")
+    record_trial(trials,datetime.now(timezone.utc).isoformat(),"setup_backtest",
+                 f"stage_{report['stage']}",report["code_fingerprint"],report["split"],
+                 f"{names} | {hypotheses}",
+                 sum(r.get("n_signals",r.get("n",0)) for r in report["results"]),
+                 report["fingerprint"])
+    trials.close()
+
 def _write(report,report_dir, data_hash, stage):
     report_dir.mkdir(parents=True,exist_ok=True)
-    fingerprint=hashlib.sha256((data_hash+json.dumps(report["results"],sort_keys=True,allow_nan=False,default=lambda x:x.item() if isinstance(x,np.generic) else str(x))+stage).encode()).hexdigest()[:16]
+    report["data_fingerprint"]=data_hash
+    report["code_fingerprint"]=_code_fingerprint()
+    identity={key:report.get(key) for key in ("stage","split","start_ms","cutoff_exclusive_ms",
+        "symbols","timeframes","fee_per_side","slippage","method","tested_setups","hypotheses",
+        "data_fingerprint","code_fingerprint","results")}
+    fingerprint=hashlib.sha256(json.dumps(identity,sort_keys=True,allow_nan=False,
+        default=lambda x:x.item() if isinstance(x,np.generic) else str(x)).encode()).hexdigest()[:16]
     report["fingerprint"]=fingerprint
     jp=report_dir/f"report_{fingerprint}.json"; mp=report_dir/f"report_{fingerprint}.md"
     jp.write_text(json.dumps(report,indent=2,allow_nan=False,default=lambda x:x.item() if isinstance(x,np.generic) else str(x)),encoding="utf-8")
@@ -198,7 +233,7 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
     for k,trades in grouped.items():rows.append(_metrics(k,trades,years))
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
     runtime=time.monotonic()-t0
-    report={"stage":stage,"status":"complete","split":"dev_first_70pct","start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"cutoff_utc":"2026-10-09T00:00:00Z","symbols":symbols,"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"fees modeled; no separate slippage stress test","runtime_seconds":runtime,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Signal close; next timeframe open; scan 1m rows; stop-first same-minute ties; maximum 12 timeframe bars; pooled symbol metrics; 2R target; notional exposure; 30-trade minimum for verdict interpretation."}
+    report={"stage":stage,"status":"complete","split":"dev_first_70pct","start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"cutoff_utc":"2026-10-09T00:00:00Z","symbols":symbols,"tested_setups":list(setups),"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"fees modeled; no separate slippage stress test","runtime_seconds":runtime,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Signal close; next timeframe open; scan 1m rows; stop-first same-minute ties; maximum 12 timeframe bars; pooled symbol metrics; 2R target; notional exposure; 30-trade minimum for verdict interpretation."}
     jp,mp=_write(report,report_dir,data_hash.hexdigest(),stage)
     if stage=="A":
         cp=report_dir/f"signals_{report['fingerprint']}.json"
@@ -206,7 +241,7 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
         report["signal_cache_file"]=str(cp)
         jp.write_text(json.dumps(report,indent=2,allow_nan=False),encoding="utf-8")
         with mp.open("a",encoding="utf-8") as f:f.write(f"\nSignal cache: `{cp}`\n")
-    trials=connect_trials(trial_path or report_dir.parent/"trials.sqlite"); record_trial(trials,datetime.now(timezone.utc).isoformat(),"setups","P5","","dev",f"P5 setup backtest dev (staged) Stage {stage}",sum(r["n_signals"] for r in rows),report["fingerprint"]); trials.close()
+    _record_setup_trial(report,trial_path or report_dir.parent/"trials.sqlite")
     report["json_path"]=str(jp); report["markdown_path"]=str(mp)
     return report,jp,mp
 
@@ -214,7 +249,7 @@ def run_stage_b(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
     """Add 3R results by replaying persisted Stage A signals; indicators are not regenerated."""
     t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups")
     base=json.loads(Path(stage_a_json).read_text()); cache_path=Path(base["signal_cache_file"])
-    signals=json.loads(cache_path.read_text()); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); grouped={}; loaded={}
+    signals=json.loads(cache_path.read_text()); tested_setups=base.get("tested_setups") or sorted({x["setup"] for x in signals}); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); grouped={}; loaded={}
     for tf in WIDTH:
         tf0=time.monotonic()
         for item in (x for x in signals if x["timeframe"]==tf):
@@ -233,15 +268,15 @@ def run_stage_b(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
         print(f"[Stage B] timeframe={tf} elapsed={time.monotonic()-tf0:.1f}s cumulative={time.monotonic()-t0:.1f}s",flush=True)
     db.close(); years=0; rows=[_metrics(k,v,years) for k,v in grouped.items()]
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
-    report={"stage":"B","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"3R target exit replay using persisted Stage A signal indices/stops; next timeframe open, chronological 1m stop-first, maximum 12 timeframe bars; pooled, base, notional."}
+    report={"stage":"B","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"3R target exit replay using persisted Stage A signal indices/stops; next timeframe open, chronological 1m stop-first, maximum 12 timeframe bars; pooled, base, notional."}
     jp,mp=_write(report,report_dir,base["fingerprint"],"B"); report["json_path"]=str(jp); report["markdown_path"]=str(mp)
-    trials=connect_trials(trial_path or report_dir.parent/"trials.sqlite"); record_trial(trials,datetime.now(timezone.utc).isoformat(),"setups","P5","","dev","P5 setup backtest dev (staged)",sum(r["n_signals"] for r in rows),report["fingerprint"]); trials.close()
+    _record_setup_trial(report,trial_path or report_dir.parent/"trials.sqlite")
     return report,jp,mp
 
 def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
     """Add 5 chronological folds and a lagged top-third ATR-volatility filter."""
     t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups")
-    base=json.loads(Path(stage_a_json).read_text()); signals=json.loads(Path(base["signal_cache_file"]).read_text())
+    base=json.loads(Path(stage_a_json).read_text()); signals=json.loads(Path(base["signal_cache_file"]).read_text()); tested_setups=base.get("tested_setups") or sorted({x["setup"] for x in signals})
     by_symbol_tf={}; htf_cache={}
     for item in signals:by_symbol_tf.setdefault((item["symbol"],item["timeframe"]),[]).append(item)
     db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); grouped={}; stage_times={}
@@ -307,7 +342,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
             pair[2]["red_flags_detected"].append("target_R_parameter_instability")
             pair[3]["red_flags_detected"].append("target_R_parameter_instability")
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
-    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; htf_trend_align uses the latest fully closed HTF SuperTrend bar (60m for entries below 60m, 240m for 60m); entry at next timeframe open; 1m stop-first; 12-bar maximum; pooled independent base/filter variants; both fixed R targets."}
+    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; htf_trend_align uses the latest fully closed HTF SuperTrend bar (60m for entries below 60m, 240m for 60m); entry at next timeframe open; 1m stop-first; 12-bar maximum; pooled independent base/filter variants; both fixed R targets."}
     jp,mp=_write(report,report_dir,base["fingerprint"],"C"); report["json_path"]=str(jp); report["markdown_path"]=str(mp)
-    trials=connect_trials(trial_path or report_dir.parent/"trials.sqlite"); record_trial(trials,datetime.now(timezone.utc).isoformat(),"setups","P5","","dev","P5 setup backtest dev (staged)",sum(r["n_signals"] for r in rows),report["fingerprint"]); trials.close()
+    _record_setup_trial(report,trial_path or report_dir.parent/"trials.sqlite")
     return report,jp,mp

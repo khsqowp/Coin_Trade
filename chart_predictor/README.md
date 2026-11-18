@@ -28,6 +28,8 @@ python -m chart_predictor.cli report
 
 `candles.sqlite`는 수집 캔들, `predictions.sqlite`는 append-only 예측과 별도 점수, `trials.sqlite`는 모델/프롬프트/코드/분할/가설별 누적 시험과 봉인 데이터 접근 시도를 보관한다. 실험 횟수는 `cumulative_trial_count()`로 확인한다. `sealed_registry.json`은 최초 생성 때 freeze timestamp를 고정한다. 해당 시각 이후 앵커를 개발/검증용으로 읽으려 하면 접근 시도를 trials에 기록하고 예외를 낸다. 이 파일을 이동하거나 시각을 바꾸면 경계 보장이 달라지므로 보존해야 한다.
 
+데이터 품질 감사, 복구 패치, immutable merged snapshot 규칙은 [`docs/chart_predictor/DATA_QUALITY.md`](../docs/chart_predictor/DATA_QUALITY.md)에 기록한다. 기존 연구 결과를 재현할 때는 원래 DB를 사용하고, 복구 이력이 필요한 신규 과거 연구에서만 `vision_dev_repaired.sqlite`를 명시한다.
+
 시간 분할은 시간순 앞 60% 개발, 뒤 40% 검증이며 앵커는 horizon 이상 간격을 둔다. 심볼은 SHA-256 기반으로 70% 개발 / 30% held-out으로 결정적으로 나눈다. 표본은 같은 앵커 날짜에 상관될 수 있어 날짜 군집 결과도 함께 본다. 봉인 구간 수치만으로 성공을 주장할 수 있으며, 이 패키지는 자동 성공 판정을 하지 않는다.
 
 ## 기존 P1 명령

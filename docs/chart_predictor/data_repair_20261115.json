@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-15",
+  "gap_windows": [
+    {
+      "end_utc_exclusive": "2022-03-01T00:00:00Z",
+      "rows_per_symbol": 4320,
+      "start_utc": "2022-02-26T00:00:00Z",
+      "symbols": [
+        "SOLUSDT",
+        "XRPUSDT"
+      ]
+    },
+    {
+      "end_utc_exclusive": "2022-04-03T00:00:00Z",
+      "rows_per_symbol": 2880,
+      "start_utc": "2022-04-01T00:00:00Z",
+      "symbols": [
+        "SOLUSDT",
+        "XRPUSDT"
+      ]
+    }
+  ],
+  "integrity_checks": {
+    "close_ms_matches_open_plus_59999": true,
+    "exact_minute_grid_per_requested_gap": true,
+    "merged_snapshot_observed_span_gaps": 0,
+    "ohlc_and_nonnegative_volume_valid": true,
+    "page_payload_sha256_verified": true,
+    "source_database_modified": false,
+    "source_patch_key_overlap": 0
+  },
+  "interval": "1m",
+  "limitations": [
+    "The source and patch databases are gitignored local data.",
+    "Use vision_dev_repaired.sqlite explicitly for future studies requiring these restored intervals; prior study inputs and results remain tied to the original source database."
+  ],
+  "merged_snapshot": {
+    "bytes": 2562351104,
+    "database": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+    "duplicate_rows": 0,
+    "invalid_ohlcv_rows": 0,
+    "metadata_fingerprint": "2b421901d3777f6127c90772b090341b3947046c71d4e15e45ccf00e557c438a",
+    "missing_minutes": 0,
+    "retained_repair_pages": 10,
+    "rows": 19790858
+  },
+  "patch_quality": {
+    "duplicate_rows": 0,
+    "invalid_ohlcv_rows": 0,
+    "null_rows": 0,
+    "off_grid_rows": 0,
+    "requested_gap_missing_rows": 0,
+    "symbol_count": 2,
+    "total_rows": 14400
+  },
+  "public_source": "https://fapi.binance.com/fapi/v1/klines",
+  "repair_database": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_gap_repair.sqlite",
+  "repair_database_bytes": 3694592,
+  "rows_by_symbol": {
+    "SOLUSDT": 7200,
+    "XRPUSDT": 7200
+  },
+  "source_audit": "vision_data_quality_20261115.json",
+  "source_database": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev.sqlite",
+  "source_database_bytes": 2558599168,
+  "source_metadata_fingerprint": "ad676e414a4f5f0b88a726519acd1bf3c2a99840d97b16dd7c56c10beeacbbe8",
+  "source_pages": [
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1645833600000,
+      "retrieved_utc": "2026-11-15T13:09:16.811507+00:00",
+      "rows": 1500,
+      "sha256": "b134f536610447af295ca65a21d20f8aae1de50df0548326cdf6a80c1126fa75",
+      "symbol": "SOLUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1645923600000,
+      "retrieved_utc": "2026-11-15T13:09:17.127880+00:00",
+      "rows": 1500,
+      "sha256": "927880bb0dfaf127221c4dd4a5781c55a09c48db7cae0f1c6df4b3c846dd20b4",
+      "symbol": "SOLUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1646013600000,
+      "retrieved_utc": "2026-11-15T13:09:17.423468+00:00",
+      "rows": 1320,
+      "sha256": "05c02e163b68f542c49637bac1fbf49e21f749fae6a523c9bb5ad6414989baf0",
+      "symbol": "SOLUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1648944000000,
+      "request_start_ms": 1648771200000,
+      "retrieved_utc": "2026-11-15T13:09:19.099869+00:00",
+      "rows": 1500,
+      "sha256": "b7552cab74959bd4537966516b8f85957c2b4ec0f2d0c90e562d60ebd81ace0b",
+      "symbol": "SOLUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1648944000000,
+      "request_start_ms": 1648861200000,
+      "retrieved_utc": "2026-11-15T13:09:19.414235+00:00",
+      "rows": 1380,
+      "sha256": "8491edd6718a78fa8a7d9824dd5c7ed59c91cfd1d04fe816537f78d7fe208f4d",
+      "symbol": "SOLUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1645833600000,
+      "retrieved_utc": "2026-11-15T13:09:17.540325+00:00",
+      "rows": 1500,
+      "sha256": "ff7863b0f253c1d116ac25cffb94800c0f8f1566f2a1d7bfa158cac22ba751d8",
+      "symbol": "XRPUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1645923600000,
+      "retrieved_utc": "2026-11-15T13:09:17.840841+00:00",
+      "rows": 1500,
+      "sha256": "3b637e4df042aa34349e9d8512044e7562a45e8b5f8334c163664062f190ed28",
+      "symbol": "XRPUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1646092800000,
+      "request_start_ms": 1646013600000,
+      "retrieved_utc": "2026-11-15T13:09:18.151309+00:00",
+      "rows": 1320,
+      "sha256": "538b385431cfd540283195c5d836baa8aa046467e4388a2521b0b3fe1cc86b52",
+      "symbol": "XRPUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1648944000000,
+      "request_start_ms": 1648771200000,
+      "retrieved_utc": "2026-11-15T13:09:19.548908+00:00",
+      "rows": 1500,
+      "sha256": "dfb6e0f2c77c6ad369cca88fa66093d6a0e77b944bd9638cd9737faa611e7335",
+      "symbol": "XRPUSDT"
+    },
+    {
+      "request_end_ms_exclusive": 1648944000000,
+      "request_start_ms": 1648861200000,
+      "retrieved_utc": "2026-11-15T13:09:19.840176+00:00",
+      "rows": 1380,
+      "sha256": "947f1bd824c3471232de1024877cf43e1685c4a457a7573ff1cd581d4a1453da",
+      "symbol": "XRPUSDT"
+    }
+  ],
+  "source_rows_unchanged": true,
+  "status": "complete",
+  "total_rows": 14400
+}

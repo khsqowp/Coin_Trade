@@ -1,0 +1,117 @@
+{
+  "column_mapping": {
+    "c": "close",
+    "h": "high",
+    "l": "low",
+    "o": "open",
+    "quote_v": "quote_volume",
+    "symbol": "symbol",
+    "t_open_ms": "open_ms",
+    "trades": "trade_count",
+    "v": "volume"
+  },
+  "database": "/Users/user/CODE/Coin_Trade/chart_predictor/data/vision_dev_repaired.sqlite",
+  "database_bytes": 2562351104,
+  "duplicate_rows": 0,
+  "fingerprint_scope": "schema and per-symbol coverage metadata; not a full candle-content hash",
+  "indexes": [
+    "sqlite_autoindex_candles_1"
+  ],
+  "invalid_ohlcv_rows": 0,
+  "metadata_fingerprint": "2b421901d3777f6127c90772b090341b3947046c71d4e15e45ccf00e557c438a",
+  "null_value_rows": 0,
+  "off_grid_rows": 0,
+  "primary_key": [
+    "symbol",
+    "open_ms"
+  ],
+  "requested_window": {
+    "end_ms_exclusive": null,
+    "start_ms": null
+  },
+  "symbol_count": 6,
+  "symbols": [
+    {
+      "first_open_ms": 1581321660000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3359039,
+      "symbol": "BNBUSDT",
+      "window_first_open_ms": 1581321660000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3359039
+    },
+    {
+      "first_open_ms": 1577836800000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3417120,
+      "symbol": "BTCUSDT",
+      "window_first_open_ms": 1577836800000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3417120
+    },
+    {
+      "first_open_ms": 1594371600000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3141540,
+      "symbol": "DOGEUSDT",
+      "window_first_open_ms": 1594371600000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3141540
+    },
+    {
+      "first_open_ms": 1577836800000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3417120,
+      "symbol": "ETHUSDT",
+      "window_first_open_ms": 1577836800000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3417120
+    },
+    {
+      "first_open_ms": 1600066800000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3046620,
+      "symbol": "SOLUSDT",
+      "window_first_open_ms": 1600066800000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3046620
+    },
+    {
+      "first_open_ms": 1578298860000,
+      "invalid_ohlcv_rows": 0,
+      "last_open_ms": 1782863940000,
+      "null_value_rows": 0,
+      "off_grid_rows": 0,
+      "row_count": 3409419,
+      "symbol": "XRPUSDT",
+      "window_first_open_ms": 1578298860000,
+      "window_last_open_ms": 1782863940000,
+      "window_missing_minutes": 0,
+      "window_rows": 3409419
+    }
+  ],
+  "table": "candles",
+  "total_rows": 19790858,
+  "window_missing_minutes": 0,
+  "window_rows": 19790858
+}
