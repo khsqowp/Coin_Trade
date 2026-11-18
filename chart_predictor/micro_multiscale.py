@@ -1,4 +1,4 @@
-"""Label-blind 3m/5m frequency screen for frozen micro-candle rules."""
+"""Label-blind multiscale frequency screen for frozen micro-candle rules."""
 from __future__ import annotations
 
 import argparse
@@ -12,6 +12,7 @@ import pandas as pd
 
 MINUTE_MS = 60_000
 SIZES = (3, 5)
+SUPPORTED_SIZES = (3, 5, 10, 15)
 HORIZONS = (10, 20)
 RULES = ("body_dominance", "sweep_reclaim")
 EXPECTED_BYTES = 1_864_249_344
@@ -39,8 +40,8 @@ def _sha256(path: Path) -> str:
 def aggregate_bars(open_ms, open_, high, low, close, size_minutes: int) -> dict[str, np.ndarray]:
     """Aggregate only exact, complete, valid UTC-epoch minute buckets."""
     width = size_minutes * MINUTE_MS
-    if size_minutes not in SIZES:
-        raise ValueError("size_minutes must be 3 or 5")
+    if size_minutes not in SUPPORTED_SIZES:
+        raise ValueError(f"size_minutes must be one of {SUPPORTED_SIZES}")
     t = np.asarray(open_ms, dtype=np.int64)
     op, hi, lo, cl = (np.asarray(x, dtype=np.float64) for x in (open_, high, low, close))
     if any(len(x) != len(t) for x in (op, hi, lo, cl)):
@@ -146,8 +147,14 @@ def _signal_stats(signal, eligible, availability, boundaries, interval_ms):
     return result
 
 
-def frequency_scan(database: Path) -> dict:
+def frequency_scan(database: Path, sizes: tuple[int, ...] = SIZES,
+                   protocol: str = "phase7-multiscale",
+                   preregistration: Path = PREREGISTRATION) -> dict:
     """Run outcome-label-blind frequency counts on a pinned read-only snapshot."""
+    sizes = tuple(sizes)
+    if not sizes or len(set(sizes)) != len(sizes) or any(size not in SUPPORTED_SIZES for size in sizes):
+        raise ValueError(f"sizes must be a unique non-empty subset of {SUPPORTED_SIZES}")
+    preregistration = preregistration.resolve()
     database = database.resolve()
     if database.stat().st_size != EXPECTED_BYTES:
         raise ValueError("pinned source database size mismatch")
@@ -170,12 +177,12 @@ def frequency_scan(database: Path) -> dict:
             raise ValueError(f"expected {EXPECTED_SYMBOLS} symbols, got {len(symbols)}")
 
         bounds = np.array([FOLDS[0][0], *(end for _, end in FOLDS)], dtype=np.int64)
-        details = {rule: {str(size): [] for size in SIZES} for rule in RULES}
+        details = {rule: {str(size): [] for size in sizes} for rule in RULES}
         totals = {rule: {str(size): {"eligible": 0, "signals": 0,
                                      "long": 0, "short": 0,
                                      "nonoverlap": {str(h): 0 for h in HORIZONS},
                                      "symbols": {str(h): set() for h in HORIZONS}}
-                         for size in SIZES} for rule in RULES}
+                         for size in sizes} for rule in RULES}
         for symbol_number, symbol in enumerate(symbols, 1):
             raw = pd.read_sql_query(
                 "SELECT t_open_ms,o,h,l,c FROM candles WHERE symbol=? AND t_open_ms+60000<=? ORDER BY t_open_ms",
@@ -187,7 +194,7 @@ def frequency_scan(database: Path) -> dict:
             raw_o, raw_h, raw_l, raw_c = (raw[k].to_numpy(np.float64) for k in ("o", "h", "l", "c"))
             if len(t) and np.any(np.diff(t) <= 0):
                 raise ValueError(f"duplicate or unordered minute rows in {symbol}")
-            for size in SIZES:
+            for size in sizes:
                 bars = aggregate_bars(t, raw_o, raw_h, raw_l, raw_c, size)
                 interval_ms = size * MINUTE_MS
                 availability = bars["open_ms"] + interval_ms
@@ -220,7 +227,7 @@ def frequency_scan(database: Path) -> dict:
     if before_hash != after_hash or database.stat().st_size != EXPECTED_BYTES:
         raise ValueError("source snapshot changed during frequency scan")
     for rule in RULES:
-        for size in SIZES:
+        for size in sizes:
             cell = totals[rule][str(size)]
             cell["coverage"] = cell["signals"] / cell["eligible"] if cell["eligible"] else None
             cell["horizons"] = {}
@@ -235,17 +242,18 @@ def frequency_scan(database: Path) -> dict:
 
     source_hash = _sha256(Path(__file__).resolve())
     return {
-        "protocol": "micro-candle-phase7-multiscale-frequency",
+        "protocol": f"micro-candle-{protocol}-frequency",
         "database": str(database), "database_bytes": EXPECTED_BYTES,
         "database_sha256": after_hash, "completed_through_utc": "2026-11-14T00:29:00Z",
-        "aggregate_sizes_minutes": list(SIZES), "horizons_aggregate_bars": list(HORIZONS),
+        "aggregate_sizes_minutes": list(sizes), "horizons_aggregate_bars": list(HORIZONS),
         "symbols": symbols, "symbol_count": len(symbols), "folds": [
             {"fold": i + 1, "start_ms": start, "end_ms": end}
             for i, (start, end) in enumerate(FOLDS)],
         "totals": totals, "per_symbol_fold": details,
         "outcome_rows_read": 0, "target_stop_labels_read": 0,
         "source_sha256": source_hash,
-        "preregistration_sha256": _sha256(PREREGISTRATION),
+        "preregistration_path": str(preregistration.relative_to(Path(__file__).resolve().parents[1])),
+        "preregistration_sha256": _sha256(preregistration),
     }
 
 
@@ -253,8 +261,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--sizes", default="3,5", help="comma-separated aggregate candle sizes")
+    parser.add_argument("--protocol", default="phase7-multiscale", help="protocol family")
+    parser.add_argument("--preregistration", type=Path, default=PREREGISTRATION)
     args = parser.parse_args()
-    report = frequency_scan(args.db)
+    if args.output.exists():
+        raise FileExistsError(f"refusing to overwrite frequency report: {args.output}")
+    sizes = tuple(int(value) for value in args.sizes.split(","))
+    report = frequency_scan(args.db, sizes, args.protocol, args.preregistration)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(json.dumps({rule: report["totals"][rule] for rule in RULES}, indent=2, sort_keys=True))

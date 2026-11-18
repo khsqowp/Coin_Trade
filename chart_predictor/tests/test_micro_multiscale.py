@@ -60,3 +60,16 @@ def test_nonoverlap_uses_actual_availability_time_and_allows_exact_boundary():
 def test_fold_membership_is_half_open_on_availability():
     boundaries = np.array([0, 10, 20], dtype=np.int64)
     assert fold_indices(np.array([0, 9, 10, 19, 20]), boundaries).tolist() == [0, 0, 1, 1, -1]
+
+
+def test_10m_and_15m_exact_utc_buckets_aggregate():
+    for size in (10, 15):
+        t = np.arange(size, dtype=np.int64) * MINUTE
+        o = 100.0 + np.arange(size)
+        h, low, c = o + 2, o - 2, o + 1
+        bars = aggregate_bars(t, o, h, low, c, size)
+        assert bars["open_ms"].tolist() == [0]
+        assert bars["open"].tolist() == [100.0]
+        assert bars["high"].tolist() == [float(size + 101)]
+        assert bars["low"].tolist() == [98.0]
+        assert bars["close"].tolist() == [float(100 + size)]

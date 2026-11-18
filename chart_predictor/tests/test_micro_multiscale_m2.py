@@ -3,7 +3,8 @@ import pytest
 
 from chart_predictor.micro_multiscale import HORIZONS, RULES, SIZES
 from chart_predictor.micro_multiscale_m2 import (
-    _score_body, _score_one, _score_sweep, _verify_frequency_counts,
+    _atr, _scalar_audit_pass, _score_body, _score_one, _score_sweep,
+    _verify_frequency_counts,
 )
 
 
@@ -15,6 +16,33 @@ def _bars():
     close = np.array([100., 101.5, 100., 100., 100., 100.])
     atr = np.ones(6)
     return t, open_, high, low, close, atr
+
+
+def test_atr_returns_mutable_masked_array_on_15m_series():
+    interval = 15 * 60_000
+    t = np.arange(20, dtype=np.int64) * interval
+    open_ = np.full(20, 100.0)
+    high = np.full(20, 102.0)
+    low = np.full(20, 99.0)
+    close = np.full(20, 101.0)
+    aggregates = {"open_ms": t, "open": open_, "high": high,
+                  "low": low, "close": close}
+
+    synthetic_t, atr = _atr(aggregates, interval)
+
+    assert synthetic_t.shape == (20,)
+    assert np.isnan(atr[:14]).all()
+    assert np.isfinite(atr[14:]).all()
+
+
+def test_no_trade_audit_sample_required_only_when_no_trade_events_exist():
+    audit = {"sampled": 1, "resolved_samples": 1, "tradable_samples": 1,
+             "label_mismatches": 0, "no_trade_mismatches": 0,
+             "max_abs_net_r_error": 0.0, "max_abs_stress_net_r_error": 0.0,
+             "no_trade_samples": 0}
+
+    assert _scalar_audit_pass(audit, "sweep_reclaim", 0)
+    assert not _scalar_audit_pass(audit, "sweep_reclaim", 1)
 
 
 def test_fixed_stop_target_same_bar_tie_is_stop_first_and_scalar_matches():

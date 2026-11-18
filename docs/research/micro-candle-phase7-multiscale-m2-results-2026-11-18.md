@@ -39,6 +39,8 @@
 
 두 에이전트는 OHLC-only 1분 패턴 후보를 더 만들면 이미 조사된 inside-bar, 돌파/압축, pullback/re-entry, 반전 패밀리와 중복될 가능성이 높다고 판단했다. 이어 3분·5분 스케일 확장안을 독립 검토했고, 둘 다 사전등록·코드 게이트의 수정사항 반영 후 PASS했다.
 
-다음은 이와 같은 저분봉 규칙을 10분·15분봉으로 넓혀 같은 고정 목표·비용·분모를 재검증한다. 그 단계에서도 성과가 없으면 OHLC 패턴 변형을 무한히 추가하지 않고, 이미 준비된 microstructure/L2 데이터가 정확한 시간·시퀀스 품질 게이트를 만족하는지 검토하는 쪽으로 범위를 넓힌다. 이 순서에서 거시 필터는 아직 사용하지 않는다.
+후속 Phase 8에서 같은 규칙을 10분·15분으로 확대했으나 여덟 셀 모두 M2 46.93–48.64%, 비용 후 평균 순 R 음수로 탈락했다. 따라서 더 큰 봉으로 같은 OHLC 패턴을 반복하지 않는다. 다음 단계는 1분 OHLCV와 구별되는 이벤트 단위 거래흐름 데이터가 있는지, 기존 taker-imbalance 시험과 중복되지 않는지 먼저 검토하는 것이다. 거시 필터는 추가하지 않는다.
 
 세부 결과: [`micro-candle-phase7-multiscale-m2-results-2026-11-18.json`](micro-candle-phase7-multiscale-m2-results-2026-11-18.json). 빈도 보고서: [`micro-candle-phase7-multiscale-frequency-2026-11-18.json`](micro-candle-phase7-multiscale-frequency-2026-11-18.json). 동결 프로토콜: [`micro-candle-phase7-multiscale-prereg-2026-11-18.md`](micro-candle-phase7-multiscale-prereg-2026-11-18.md).
+
+Phase 8 문서: [`10m/15m 결과`](micro-candle-phase8-10m-15m-m2-results-2026-11-18.md), [`빈도 표`](micro-candle-phase8-10m-15m-frequency-2026-11-18.json), [`사전등록`](micro-candle-phase8-10m-15m-prereg-2026-11-18.md).

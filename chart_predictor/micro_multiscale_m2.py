@@ -13,7 +13,7 @@ import pandas as pd
 from chart_predictor.micro_candle_m2 import score_chunk, sha_side
 from chart_predictor.micro_multiscale import (
     CUTOFF_MS, EXPECTED_BYTES, EXPECTED_SHA256, FOLDS, HORIZONS, MINUTE_MS,
-    RULES, SIZES, _sha256, aggregate_bars, fold_indices, nonoverlap_indices,
+    RULES, SIZES, SUPPORTED_SIZES, _sha256, aggregate_bars, fold_indices, nonoverlap_indices,
     signal_masks,
 )
 from chart_predictor.micro_sweep_m2 import _score_dynamic
@@ -21,6 +21,12 @@ from chart_predictor.micro_sweep_m2 import _score_dynamic
 BASE_COST = 0.0014
 STRESS_COST = 0.0028
 PREREGISTRATION = Path(__file__).resolve().parents[1] / "docs/research/micro-candle-phase7-multiscale-prereg-2026-11-18.md"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _prereg_path(value: str) -> Path:
+    path = Path(value)
+    return path.resolve() if path.is_absolute() else (REPO_ROOT / path).resolve()
 
 
 def _empty() -> dict:
@@ -81,6 +87,17 @@ def _metrics(agg: dict) -> dict:
     }
 
 
+def _scalar_audit_pass(audit: dict, rule: str, no_trade_total: int) -> bool:
+    return (audit["sampled"] > 0 and audit["resolved_samples"] > 0
+            and audit["tradable_samples"] > 0
+            and audit["label_mismatches"] == 0
+            and audit["no_trade_mismatches"] == 0
+            and audit["max_abs_net_r_error"] < 1e-12
+            and audit["max_abs_stress_net_r_error"] < 1e-12
+            and (audit["no_trade_samples"] > 0 or rule == "body_dominance"
+                 or (rule == "sweep_reclaim" and no_trade_total == 0)))
+
+
 def _empty_score(n: int) -> np.ndarray:
     result = np.zeros((n, 8), dtype=np.float64)
     return result
@@ -107,7 +124,7 @@ def _atr(aggregates: dict[str, np.ndarray], interval_ms: int):
     contiguous = np.r_[False, np.diff(t) == interval_ms]
     prior_close = np.r_[np.nan, c[:-1]]
     tr = np.maximum(h - low, np.maximum(np.abs(h - prior_close), np.abs(low - prior_close)))
-    atr = pd.Series(tr).rolling(14, min_periods=14).mean().to_numpy()
+    atr = pd.Series(tr).rolling(14, min_periods=14).mean().to_numpy(copy=True)
     atr_valid = np.zeros(len(t), dtype=bool)
     for i in range(14, len(t)):
         atr_valid[i] = (np.all(contiguous[i - 13:i + 1])
@@ -174,19 +191,23 @@ def _score_one(t, o, h, low, c, atr, index, side, stop_price, horizon, rule):
             (gross - STRESS_COST) / risk_fraction, False)
 
 
-def _validate_frequency(report: dict) -> None:
-    if report.get("protocol") != "micro-candle-phase7-multiscale-frequency":
+def _validate_frequency(report: dict, sizes: tuple[int, ...], protocol: str) -> None:
+    expected_protocol = f"micro-candle-{protocol}-frequency"
+    if report.get("protocol") != expected_protocol:
         raise ValueError("wrong frequency-report protocol")
+    if report.get("aggregate_sizes_minutes") != list(sizes):
+        raise ValueError("frequency report candle sizes differ from requested sizes")
     if report.get("database_sha256") != EXPECTED_SHA256 or report.get("database_bytes") != EXPECTED_BYTES:
         raise ValueError("frequency report is for another database snapshot")
     if report.get("symbol_count") != 100 or len(report.get("symbols", [])) != 100:
         raise ValueError("frequency report symbol count mismatch")
     if report.get("source_sha256") != _sha256(Path(__file__).resolve().with_name("micro_multiscale.py")):
         raise ValueError("frequency screen source changed since screen")
-    if report.get("preregistration_sha256") != _sha256(PREREGISTRATION):
+    preregistration = _prereg_path(report.get("preregistration_path", ""))
+    if report.get("preregistration_sha256") != _sha256(preregistration):
         raise ValueError("preregistration changed since frequency screen")
     for rule in RULES:
-        for size in SIZES:
+        for size in sizes:
             cell = report.get("totals", {}).get(rule, {}).get(str(size), {})
             for horizon in HORIZONS:
                 gate = cell.get("horizons", {}).get(str(horizon), {})
@@ -196,10 +217,10 @@ def _validate_frequency(report: dict) -> None:
                     raise ValueError(f"frequency gate failed for {rule}/{size}m/{horizon}")
 
 
-def _verify_frequency_counts(report: dict, recomputed: dict) -> None:
+def _verify_frequency_counts(report: dict, recomputed: dict, sizes: tuple[int, ...] = SIZES) -> None:
     expected = report["per_symbol_fold"]
     for rule in RULES:
-        for size in SIZES:
+        for size in sizes:
             key = str(size)
             if len(expected[rule][key]) != len(recomputed[rule][key]):
                 raise ValueError("frequency per-symbol row count mismatch")
@@ -242,11 +263,11 @@ def _verify_frequency_counts(report: dict, recomputed: dict) -> None:
                     raise ValueError(f"frequency total reconciliation failed: {rule}/{size}/{field}")
 
 
-def _recompute_frequency(bars_by_symbol: dict, symbols: list[str]) -> dict:
+def _recompute_frequency(bars_by_symbol: dict, symbols: list[str], sizes: tuple[int, ...]) -> dict:
     bounds = np.array([FOLDS[0][0], *(end for _, end in FOLDS)], dtype=np.int64)
-    result = {rule: {str(size): [] for size in SIZES} for rule in RULES}
+    result = {rule: {str(size): [] for size in sizes} for rule in RULES}
     for symbol in symbols:
-        for size in SIZES:
+        for size in sizes:
             bars = bars_by_symbol[symbol][size]
             interval = size * MINUTE_MS
             availability = bars["open_ms"] + interval
@@ -273,7 +294,12 @@ def _recompute_frequency(bars_by_symbol: dict, symbols: list[str]) -> dict:
     return result
 
 
-def run(database: Path, frequency_path: Path) -> dict:
+def run(database: Path, frequency_path: Path, sizes: tuple[int, ...] = SIZES,
+        protocol: str = "phase7-multiscale") -> dict:
+    sizes = tuple(sizes)
+    if (not sizes or len(set(sizes)) != len(sizes)
+            or any(size not in SUPPORTED_SIZES for size in sizes)):
+        raise ValueError(f"sizes must be a unique non-empty subset of {SUPPORTED_SIZES}")
     database = database.resolve()
     frequency_path = frequency_path.resolve()
     if database.stat().st_size != EXPECTED_BYTES or _sha256(database) != EXPECTED_SHA256:
@@ -282,7 +308,8 @@ def run(database: Path, frequency_path: Path) -> dict:
         if Path(f"{database}{suffix}").exists():
             raise ValueError(f"SQLite sidecar exists: {suffix}")
     frequency = json.loads(frequency_path.read_text())
-    _validate_frequency(frequency)
+    _validate_frequency(frequency, sizes, protocol)
+    preregistration = _prereg_path(frequency.get("preregistration_path", ""))
     db = sqlite3.connect(database.as_uri() + "?mode=ro", uri=True)
     try:
         if db.execute("PRAGMA journal_mode").fetchone()[0].lower() == "wal":
@@ -303,11 +330,11 @@ def run(database: Path, frequency_path: Path) -> dict:
             t = raw.t_open_ms.to_numpy(np.int64)
             arrays = [raw[k].to_numpy(np.float64) for k in ("o", "h", "l", "c")]
             bars_by_symbol[symbol] = {
-                size: aggregate_bars(t, *arrays, size) for size in SIZES
+                size: aggregate_bars(t, *arrays, size) for size in sizes
             }
             print(f"load {i}/{len(symbols)} {symbol}", flush=True)
-        recomputed = _recompute_frequency(bars_by_symbol, symbols)
-        _verify_frequency_counts(frequency, recomputed)
+        recomputed = _recompute_frequency(bars_by_symbol, symbols, sizes)
+        _verify_frequency_counts(frequency, recomputed, sizes)
 
         outcomes = {rule: {str(size): {str(h): {"folds": [], "nonoverlap_folds": [],
                                                 "symbols": [], "scalar_audit": {
@@ -318,12 +345,12 @@ def run(database: Path, frequency_path: Path) -> dict:
                                                     "max_abs_stress_net_r_error": 0.0},
                                                 "_fold_agg": [_empty() for _ in FOLDS],
                                                 "_nonoverlap_fold_agg": [_empty() for _ in FOLDS]}
-                                           for h in HORIZONS} for size in SIZES}
+                                           for h in HORIZONS} for size in sizes}
                     for rule in RULES}
         bounds = np.array([FOLDS[0][0], *(end for _, end in FOLDS)], dtype=np.int64)
 
         for symbol_number, symbol in enumerate(symbols, 1):
-            for size in SIZES:
+            for size in sizes:
                 bars = bars_by_symbol[symbol][size]
                 interval = size * MINUTE_MS
                 t_actual = bars["open_ms"]
@@ -429,7 +456,7 @@ def run(database: Path, frequency_path: Path) -> dict:
             print(f"scored {symbol_number}/{len(symbols)} {symbol}", flush=True)
 
         for rule in RULES:
-            for size in SIZES:
+            for size in sizes:
                 for horizon in HORIZONS:
                     cell = outcomes[rule][str(size)][str(horizon)]
                     pooled = cell["pooled"]
@@ -444,13 +471,7 @@ def run(database: Path, frequency_path: Path) -> dict:
                         {"fold": i + 1, "n_issued": agg["issued"], "metrics": _metrics(agg)}
                         for i, agg in enumerate(cell.pop("_nonoverlap_fold_agg"))]
                     audit = cell["scalar_audit"]
-                    audit["pass"] = (audit["sampled"] > 0 and audit["resolved_samples"] > 0
-                                      and audit["tradable_samples"] > 0
-                                      and audit["label_mismatches"] == 0
-                                      and audit["no_trade_mismatches"] == 0
-                                      and audit["max_abs_net_r_error"] < 1e-12
-                                      and audit["max_abs_stress_net_r_error"] < 1e-12
-                                      and (audit["no_trade_samples"] > 0 or rule == "body_dominance"))
+                    audit["pass"] = _scalar_audit_pass(audit, rule, pooled["no_trade"])
                     freq_gate = frequency["totals"][rule][str(size)]["horizons"][str(horizon)]
                     m = cell["pooled"]
                     performance = {
@@ -476,11 +497,13 @@ def run(database: Path, frequency_path: Path) -> dict:
         if final_hash != EXPECTED_SHA256 or database.stat().st_size != EXPECTED_BYTES:
             raise ValueError("pinned source snapshot changed during outcome replay")
         return {
-            "protocol": "micro-candle-phase7-multiscale-m2",
+            "protocol": f"micro-candle-{protocol}-m2",
+            "aggregate_sizes_minutes": list(sizes),
             "database": str(database), "database_bytes": EXPECTED_BYTES,
             "database_sha256": final_hash,
             "frequency_report_sha256": _sha256(frequency_path),
-            "preregistration_sha256": _sha256(PREREGISTRATION),
+            "preregistration_path": str(preregistration.relative_to(REPO_ROOT)),
+            "preregistration_sha256": _sha256(preregistration),
             "implementation_source_sha256": {
                 "runner": _sha256(Path(__file__).resolve()),
                 "frequency_screen": _sha256(Path(__file__).resolve().with_name("micro_multiscale.py")),
@@ -503,10 +526,13 @@ def main() -> None:
     parser.add_argument("--db", type=Path, required=True)
     parser.add_argument("--frequency-report", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--sizes", default="3,5", help="comma-separated aggregate candle sizes")
+    parser.add_argument("--protocol", default="phase7-multiscale", help="protocol family")
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError(f"refusing to overwrite result: {args.output}")
-    result = run(args.db, args.frequency_report)
+    sizes = tuple(int(value) for value in args.sizes.split(","))
+    result = run(args.db, args.frequency_report, sizes, args.protocol)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
     summary = {rule: {size: {h: cell["decision"] for h, cell in horizons.items()}

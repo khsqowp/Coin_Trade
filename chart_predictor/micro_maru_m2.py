@@ -87,7 +87,7 @@ def _load_symbol(db: sqlite3.Connection, symbol: str, cutoff_ms: int):
 
     tr = np.maximum(h - l, np.maximum(np.abs(h - np.r_[np.nan, c[:-1]]),
                                       np.abs(l - np.r_[np.nan, c[:-1]])))
-    atr = pd.Series(tr).rolling(ATR_N, min_periods=ATR_N).mean().to_numpy()
+    atr = pd.Series(tr).rolling(ATR_N, min_periods=ATR_N).mean().to_numpy(copy=True)
     atr_valid = np.zeros(len(t), dtype=bool)
     for i in range(ATR_N, len(t)):
         atr_valid[i] = (np.all(contiguous[i - ATR_N + 1:i + 1])
