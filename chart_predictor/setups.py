@@ -19,7 +19,9 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "star_pattern_volume_climax", "star_pattern_volume_climax_strict",
           "order_block_engulfing_confirm",
           "order_block_confluence_aggressive", "order_block_confluence_balanced",
-          "order_block_confluence_conservative")
+          "order_block_confluence_conservative",
+          "fvg_fill_confluence_aggressive", "fvg_fill_confluence_balanced",
+          "fvg_fill_confluence_conservative")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -322,6 +324,44 @@ def generate_signals(frame, setup, prepared=None):
             if i>=2:
                 if l[i]>h[i-2]: zones.append((h[i-2],l[i],i,"long"))
                 # Symmetric short side is an extension; the cited source defines long only.
+                if h[i]<l[i-2]: zones.append((h[i],l[i-2],i,"short"))
+    elif setup in ("fvg_fill_confluence_aggressive","fvg_fill_confluence_balanced",
+                   "fvg_fill_confluence_conservative"):
+        # Second track of the same aggressive/balanced/conservative confluence
+        # idea applied to a structurally different zone (a 3-bar price gap
+        # instead of an order_block impulse zone), to see whether the P9-E
+        # null (confluence shrinks sample, not hit rate) is specific to
+        # order_block or holds for a different base setup too. Thresholds and
+        # stop-buffer are identical to order_block_confluence_* for a direct
+        # two-track comparison; only the zone-formation/expiry rule (fvg_fill's
+        # 3-bar gap, 12-bar freshness) changes.
+        mode=setup.rsplit("_",1)[-1]
+        min_body_ratio={"aggressive":0.0,"balanced":0.35,"conservative":0.55}[mode]
+        require_trend=mode!="aggressive"
+        min_vol_mult={"aggressive":0.0,"balanced":1.0,"conservative":1.5}[mode]
+        stop_atr_buffer=0.25 if mode=="conservative" else 0.0
+        direction=prepared["supertrend_dir"] if "supertrend_dir" in prepared else indicators.supertrend_direction(h,l,c,a)
+        vol_ma=pd.Series(v).rolling(20,min_periods=20).mean().shift(1).to_numpy()
+        zones=[]
+        for i in range(n):
+            remaining=[]
+            for low,high,born,side in zones:
+                invalid=(i-born>12 or (c[i]<low if side=="long" else c[i]>high))
+                if invalid: continue
+                if l[i]<=high and h[i]>=low:
+                    body_ratio=abs(c[i]-o[i])/max(h[i]-l[i],1e-12)
+                    decisive=body_ratio>=min_body_ratio
+                    trend_ok=(not require_trend) or direction[i]==0 or \
+                              ((direction[i]>0) if side=="long" else (direction[i]<0))
+                    vol_ok=(min_vol_mult<=0) or (not np.isfinite(vol_ma[i])) or vol_ma[i]<=0 or \
+                            v[i]>=min_vol_mult*vol_ma[i]
+                    if decisive and trend_ok and vol_ok:
+                        buf=stop_atr_buffer*a[i] if np.isfinite(a[i]) else 0.0
+                        emit(i,side,low-buf if side=="long" else high+buf)
+                else: remaining.append((low,high,born,side))
+            zones=remaining
+            if i>=2:
+                if l[i]>h[i-2]: zones.append((h[i-2],l[i],i,"long"))
                 if h[i]<l[i-2]: zones.append((h[i],l[i-2],i,"short"))
     elif setup in ("frvp_breakout","frvp_breakout_strong"):
         # Fixed-range volume profile, ported from the daily-candle rule in

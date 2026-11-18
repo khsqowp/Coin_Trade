@@ -223,6 +223,62 @@ def test_confluence_all_modes_fire_on_strong_reclaim_with_wider_conservative_sto
     if side=="long": assert conservative[0].stop<zone_edge
     else: assert conservative[0].stop>zone_edge
 
+_FVG_CONFLUENCE_MODES=("fvg_fill_confluence_aggressive","fvg_fill_confluence_balanced",
+                       "fvg_fill_confluence_conservative")
+
+def test_fvg_confluence_aggressive_only_fires_on_weak_body_fill():
+    """Reuses the base fvg_fill long fixture: the fill bar is a doji (body
+    ratio 0), so balanced/conservative skip it entirely while aggressive
+    still takes it -- the same ambiguous-skip behavior as order_block's
+    confluence variants, now on a different zone mechanism."""
+    o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)
+    h[0],l[2],c[2]=100,102,101
+    o[3],h[3],l[3],c[3]=101,103,100.5,101
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _FVG_CONFLUENCE_MODES}
+    assert any(s.index==3 and s.side=="long" for s in sigs["fvg_fill_confluence_aggressive"])
+    assert not any(s.index==3 for s in sigs["fvg_fill_confluence_balanced"])
+    assert not any(s.index==3 for s in sigs["fvg_fill_confluence_conservative"])
+
+def test_fvg_confluence_balanced_fires_on_moderate_body_conservative_needs_more():
+    """Same gap zone, fill bar body ratio ~0.48: clears balanced's 0.35 floor
+    but not conservative's 0.55 floor."""
+    o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)
+    h[0],l[2],c[2]=100,102,101
+    o[3],h[3],l[3],c[3]=101,103,100.5,102.2
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _FVG_CONFLUENCE_MODES}
+    assert any(s.index==3 and s.side=="long" for s in sigs["fvg_fill_confluence_aggressive"])
+    assert any(s.index==3 and s.side=="long" for s in sigs["fvg_fill_confluence_balanced"])
+    assert not any(s.index==3 for s in sigs["fvg_fill_confluence_conservative"])
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_fvg_confluence_all_modes_fire_on_strong_fill_with_wider_conservative_stop(side):
+    """Gap formed well past ATR14 warmup so conservative's buffer is non-zero:
+    all three modes take a strong-body (ratio ~0.6-0.67) fill, but
+    conservative's stop sits an extra 0.25 ATR14 beyond the zone edge."""
+    n=20
+    o=np.full(n,100.); h=np.full(n,101.); l=np.full(n,99.); c=np.full(n,100.)
+    if side=="long":
+        h[14]=100
+        l[16],h[16],c[16]=102,103,101.5
+        o[17],h[17],l[17],c[17]=101,103,100,102.8
+        zone_edge=100.0
+    else:
+        l[14]=101
+        h[16],l[16],c[16]=99,98.5,98.7
+        o[17],h[17],l[17],c[17]=103,104,98,99
+        zone_edge=101.0
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _FVG_CONFLUENCE_MODES}
+    for mode in ("fvg_fill_confluence_aggressive","fvg_fill_confluence_balanced"):
+        match=[s for s in sigs[mode] if s.index==17 and s.side==side]
+        assert match and match[0].stop==zone_edge
+    conservative=[s for s in sigs["fvg_fill_confluence_conservative"] if s.index==17 and s.side==side]
+    assert conservative
+    if side=="long": assert conservative[0].stop<zone_edge
+    else: assert conservative[0].stop>zone_edge
+
 @pytest.mark.parametrize("side",["long","short"])
 def test_fvg_fill_first_overlap_without_reclaim(side):
     o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)
