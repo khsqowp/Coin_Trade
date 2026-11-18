@@ -399,3 +399,15 @@ P5~P8의 다른 13개 셋업은 전부 추세추종·SMC(오더블록·FVG·유�
 **테스트.** 사용자가 확인한 동일 환경 baseline은 변경 전 `138 passed, 0 failed`였고, 기존 P9-D 변경 포함 상태는 `148 passed, 0 failed`였다. 이번 회차에서 문서 수정 후 `.venv313/bin/python -m pytest chart_predictor/tests/ -q`를 다시 실행해 `148 passed, 0 failed`를 확인했다(경고 1건: joblib이 물리 코어 수를 읽지 못해 논리 코어 수를 사용함).
 
 **부가 확인.** 단일 Stage A 신호 캐시 `signals_b86a34111bbafcdd.json`은 1,657,908 bytes다. `chart_predictor/data/`는 로컬 전용·미추적이며 커밋 대상이 아니다. 이 실행에 사용한 `candles.sqlite`, `.claude/skills/backtest-expert/`, `chart_predictor/data/universe_collect.json`은 모두 메인 체크아웃에서 fresh worktree로 복사된 gitignored 입력이며 커밋하지 않는다.
+
+## P9-E — 재진입 확신도별 order_block 변형(aggressive/balanced/conservative), 1종목→5종목 단계적 확인 (2026-11-18)
+
+범위: P5~P9이 전부 "기계적 트리거 하나가 맞으면 무조건 진입"이었던 것과 달리, 이번은 사용자 지시로 **애매하면 진입 자체를 포기하는 재량적(discretionary)/Pine 스크립트식 구조**를 시험했다. `order_block` 하나를 기반으로 재진입 확신도에 따라 세 변형(`order_block_confluence_aggressive/balanced/conservative`, `chart_predictor/setups.py`)을 만들었다: aggressive는 기존 `order_block`과 동일(모든 재진입 즉시 진입), balanced는 재진입 봉의 몸통이 자기 레인지의 35% 이상(애매한 도지성 캔들 배제) + 같은 타임프레임 SuperTrend가 그 방향을 적극적으로 반대하지 않음(미확정 0은 거부로 보지 않음) + 거래량이 20봉 평균 이상, conservative는 몸통 55% 이상 + 같은 트렌드 조건 + 거래량 1.5배 이상 + 손절을 zone 경계에서 0.25 ATR14 더 바깥으로. 세 변형 모두 조건 미충족 시 그 재진입 자체를 버리고(신호 없음), 이후 다른 캔들이 같은 zone을 다시 확인하는 것을 기다리지 않는다(zone은 최초 재진입에서 소비).
+
+큰 그리드로 바로 가지 않고 **1종목(BTC)→5종목(BTC/ETH/ZEC/SOL/XRP)** 순서로만 확인했다(사용자 지시: 기반부터 단계적으로). 둘 다 84일 개발 구간, 2R, Stage A만. 단위테스트 7개(애매한 도지성 재진입은 aggressive만 받아들이고 balanced/conservative는 거부, 중간 몸통은 balanced까지만 받아들이고 conservative는 거부, 강한 재진입은 셋 다 받아들이되 conservative 손절만 더 넓음)를 `chart_predictor/tests/test_setups.py`에 추가했고 전체 스위트는 200개 통과한다.
+
+**결과: 확신도 필터는 표본만 줄였고 적중률은 그대로다.** 5종목 1분봉에서 aggressive 22.9%/22.3%(n=9,126/9,016) → balanced 22.2%/22.1%(n=1,763/1,531, 약 80% 신호 감소) → conservative 20.2%/20.6%(n=707/645, 약 92% 신호 감소)로, 신호 수는 극적으로 줄었지만 적중률은 20~23% 범위에 그대로 머문다. 60분봉도 같다: aggressive long n=104 적중 18.3%(기대값 +0.032R, `VALIDATION_REQUIRED`) → balanced n=27 적중 18.5%(기대값 +0.098R, `NOT_EVALUABLE`, 표본 미달) → conservative n=16 적중 0%(`NOT_EVALUABLE`). 1종목(BTC) 단계에서도 동일 패턴이 재현된다(1분봉 aggressive 24.4%→balanced 24.3%→conservative 19.0%). "확신이 큰 재진입만 거르면 승률이 오를 것"이라는 가설은 이 구조(order_block 몸통·트렌드·거래량 필터)로는 성립하지 않는다 — P9-A~D의 캔들+지표 합류 가설과 같은 결론이, 캔들+트렌드+거래량+가변 손절의 재량적 합류 구조에서도 반복된다.
+
+표본이 10 이하로 떨어진 극소 셀 중 하나(1종목 BTC, balanced long 60분봉, n=5)는 적중 80.0%로 숫자상 이 프로젝트의 목표 바와 우연히 일치하지만, n=5는 4/5 여부로 뒤집히는 수준이라 증거로 보지 않는다. 5종목으로 늘리자 같은 셀(balanced long 60m)은 n=27, 적중 18.5%로 돌아왔다 — 1종목 단계의 80%는 극소표본 우연이었다.
+
+**결론**: 손절을 과감/보수적으로, 진입을 선택적으로 바꾸는 재량적 구조로 다시 짜봐도 order_block 계열의 15~25% 적중률 천장은 그대로다. 다음 단계(더 큰 유니버스, 또는 다른 기반 셋업에 같은 aggressive/balanced/conservative 틀 적용)는 사용자 확인 후 진행한다.
