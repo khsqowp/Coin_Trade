@@ -49,7 +49,7 @@ These are focused unit tests, not the complete repository suite, not the full R0
 
 The primary `/Users/user/CODE/Coin_Trade` checkout contains user-owned, uncommitted cleanup changes. Its repair reports state that 14,400 missing SOL/XRP minutes were stored in a separate patch and merged into `vision_dev_repaired.sqlite`; the original `vision_dev.sqlite` remains the historical input. The 100-symbol `candles.sqlite` has structural consistency over its observed spans but lacks proven PIT universe and complete page-level lineage. A known collector edge case remains: after an empty page, `page_number` is not incremented before a later missing range, potentially colliding with the `(collection_id, page_number)` primary key. The current tests do not exercise that multi-range sequence.
 
-No database was modified by this audit. No cleanup files were staged, committed, or pushed. The separate research worktree has no tracked source changes; its large untracked R018 panel outputs are preserved.
+No database was modified. No user-owned data-cleanup files were staged, committed, or pushed. Follow-up research changes in the separate worktree are limited to the execution-path guard, synthetic tests, and this audit record; large untracked R018 panel outputs remain preserved.
 
 ## Stock/ETF research status
 
@@ -65,7 +65,7 @@ The Korea and US agents found no candidate ready for a strategy backtest. Korea 
 
 An independent review found that `evaluate_divergence_event()` accepted a next-native-bar open that disagreed with the corresponding raw 1m execution open. The backtest currently derives both from the same source, but a mismatched caller input could otherwise be scored against a different execution path. The engine now fails closed as `unresolved` for that mismatch, with a synthetic regression test. The focused engine + robustness suite passes **32 tests**. This closes only that specific integrity gap; it is not the full integrated R019 matrix, does not test market labels, and does not unblock the R019 or strategy study.
 
-Still required before any market-label study: synthetic long/short gap and tie integration, boundary/interior missing timestamps and malformed OHLC, exact registered base/stress-cost arithmetic, timeout semantics, full execution-path prefix/future-peek checks, and independent R019 archive/config provenance reconciliation. The first market hypothesis must remain a single completed 1m candle with no macro or higher-timeframe feature; prior Phase 0 and Phase 4–8 outcomes are exposed development evidence and cannot be reused as independent confirmation.
+At the initial entry-path follow-up, still-required items included long/short gap and tie integration, missing timestamps, malformed OHLC, exact base/stress costs, and timeout behavior. The next section records those synthetic cases now added. Still open before any market-label study: full signal-feature and execution-path future-peek injection across registered timeframes/horizons, independent R019 archive/config/preregistration provenance reconciliation, and a genuinely new 1m candidate. Any first market hypothesis must remain a single completed 1m candle with no macro or higher-timeframe feature; prior Phase 0 and Phase 4–8 outcomes are exposed development evidence and cannot be reused as independent confirmation.
 
 ## Follow-up — integrated synthetic path checks
 
