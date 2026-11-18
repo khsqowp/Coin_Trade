@@ -7,13 +7,14 @@ Preregistered (fixed before the single run, no retry):
   * realized_vol_t = sample std (ddof=1) of the last 20 daily returns of the
     *pre-overlay* momentum portfolio (same cost scenario), annualized by sqrt(252),
     using closes through t.
-  * scale_t = min(1, 0.15 / realized_vol_{t-1}); scale_t = 1 when realized_vol_{t-1}
+  * scale_t = min(1, target_vol / realized_vol_{t-1}) (Round 6: 0.15; Round 7: 0.22 via --target-vol); scale_t = 1 when realized_vol_{t-1}
     is missing (first 20 returns of warmup), zero or non-finite. No leverage.
   * At each open the account holds scale_t x NAV in the top-10 equal weights and the
     rest in zero-interest cash. Scale changes alter share counts, so they enter the
     same per-name |delta shares x open| turnover that is charged fee+slippage.
   * Costs reused unchanged: US base 8+10 bp, stress 36+25 bp per side.
 """
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -80,24 +81,24 @@ def us_ledger(frames, fee, slip, scales=None):
     return pd.Series(navs, index=dates), exposure, total_turnover / 2
 
 
-def vol_target_scales(pre_nav):
+def vol_target_scales(pre_nav, target_vol=TARGET_VOL):
     """scale_t from pre-overlay returns through t-1 only."""
     ret = pre_nav.pct_change()
     rvol = ret.rolling(LOOKBACK, min_periods=LOOKBACK).std(ddof=1) * np.sqrt(252)
     rvol_prev = rvol.shift(1)
-    raw = TARGET_VOL / rvol_prev
+    raw = target_vol / rvol_prev
     ok = np.isfinite(raw) & (rvol_prev > 0)
     scales = pd.Series(MAX_SCALE, index=pre_nav.index)
     scales[ok] = np.minimum(MAX_SCALE, raw[ok])
     return scales, rvol
 
 
-def causality_check(pre_nav, scales):
+def causality_check(pre_nav, scales, target_vol=TARGET_VOL):
     """Mutating returns from date t onward must not change scale on or before t."""
     cut = len(pre_nav) // 2
     mutated = pre_nav.copy()
     mutated.iloc[cut:] = mutated.iloc[cut:] * np.linspace(1., 3., len(mutated) - cut)
-    s2, _ = vol_target_scales(mutated)
+    s2, _ = vol_target_scales(mutated, target_vol)
     return bool(np.allclose(s2.iloc[:cut + 1], scales.iloc[:cut + 1]))
 
 
@@ -116,6 +117,10 @@ def summarize(nav, exposure, turnover, label, scales=None):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--target-vol', type=float, default=TARGET_VOL,
+                    help='annualized target vol (Round 6: 0.15; Round 7 preregistered single refinement: 0.22)')
+    target_vol = ap.parse_args().target_vol
     us = read_market('US')
     assert len(us) == 92 and 'SPY' in us
     out = []
@@ -125,15 +130,16 @@ def main():
         base = summarize(pre_nav, pre_exp, pre_to, 'US_mom126_daily_top10_base')
         for key in ('cagr_pct', 'mdd_pct', 'sharpe', 'one_way_turnover_x'):
             assert abs(base[key] - ref[key]) < 1e-9, (scenario, key, base[key], ref[key])
-        scales, rvol = vol_target_scales(pre_nav)
-        assert causality_check(pre_nav, scales)
+        scales, rvol = vol_target_scales(pre_nav, target_vol)
+        assert causality_check(pre_nav, scales, target_vol)
         vt_nav, vt_exp, vt_to = us_ledger(us, fee, slip, scales)
-        vt = summarize(vt_nav, vt_exp, vt_to, 'US_mom126_daily_top10_voltarget15_lb20', scales)
+        vt = summarize(vt_nav, vt_exp, vt_to, f'US_mom126_daily_top10_voltarget{round(target_vol * 100):d}_lb{LOOKBACK}', scales)
         rv = rvol.dropna()
         vt['pre_overlay_realized_vol_pct'] = {'mean': float(rv.mean() * 100), 'median': float(rv.median() * 100),
                                               'p90': float(rv.quantile(.9) * 100)}
         annual_scale = scales.iloc[1:].groupby(scales.index[1:].year).mean()
         vt['mean_scale_by_year'] = {str(int(y)): round(float(v), 4) for y, v in annual_scale.items()}
+        vt['target_vol'] = target_vol
         for r in (base, vt):
             r['scenario'] = scenario
             out.append(r)

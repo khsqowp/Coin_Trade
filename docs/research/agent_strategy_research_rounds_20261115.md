@@ -298,3 +298,35 @@ Interpretation: the overlay did what vol targeting mechanically does. At base co
 Verdict: **FAILS the bar.** The 20% CAGR + ≤30% MDD + ≥1.0 Sharpe requirement is not met in either cost case. Base fails CAGR (14.36%) and Sharpe (0.964) while passing MDD (24.19%). Stress fails all three (1.57% / 36.32% / 0.186). The fixed hypothesis is recorded as tested once and not promoted. Per preregistration, no retry with another target_vol, lookback, or cap. Reproduce with `PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python3 scripts/research/us_mom126_voltarget_probe.py` (prints full JSON, including the per-year mean scale).
 
 Summary: The 15%/20-day vol target on US mom126 cut MDD from 34.2% to 24.2% at base, but CAGR fell from 22.4% to 14.4% and Sharpe reached only 0.96. Mean exposure was 60%. Stress CAGR was 1.6%. Fails the bar; no retry.
+
+## Round 7 — volatility-targeted overlay refinement (target_vol 22%)
+
+Purpose: Round 6 found that the 15% target was far below the pre-overlay portfolio's natural ~29% realized vol, so the overlay worked as a permanent ~40% cash sleeve. The user approved one preregistered calibration before this run: change only target_vol to 22% annualized and rerun the identical Round 6 script and logic. The lookback (20 returns), cap (1.0, no leverage), scale_t = 1 fallback, next-open execution, zero-interest cash, same-scenario pre-overlay baseline, and costs (8+10 bp base, 36+25 bp stress per side) are unchanged. This is the last change allowed in this calibration round. If 22% also fails the bar, the overlay is rejected with no further target_vol, lookback, or cap retries. The status is the same as Round 6: E2 exploratory screen, not SPEC.md E3 sealed validation, and not independent OOS. The 2021-07-29 to 2026-11-12 US window has already been inspected in Rounds 1–6. The 92-symbol cache is a current survivor cohort with no point-in-time membership and no delisted/merged names, so absolute returns are biased upward. Choosing 22% after seeing Round 6's realized-vol distribution is itself a use of in-sample information.
+
+Implementation: `scripts/research/us_mom126_voltarget_probe.py` now accepts `--target-vol`. The default stays 0.15, and rerunning without the argument reproduces Round 6 exactly: base 14.36% / 24.19% / 0.964 and stress 1.57% / 36.32% / 0.186. The value is passed into `vol_target_scales` and `causality_check`, and nothing else changed. The same assertions passed: the scale = 1 ledger matched `us_run` to within 1e-9, and the future-mutation causality check passed. The run was executed once with `--target-vol 0.22`.
+
+| US daily top-10 126-session momentum | Cost | CAGR | MDD | Sharpe | Mean exposure | Cum. one-way turnover (per year) | Passes 20/30/1.0 |
+|---|---|---:|---:|---:|---:|---:|:---:|
+| Baseline (no overlay) | Base | 22.42% | 34.17% | 0.871 | 99.9% | 106.2× (20.08×) | No (MDD, Sharpe) |
+| Vol-target 15% / 20d (Round 6) | Base | 14.36% | 24.19% | 0.964 | 59.5% | 73.3× (13.86×) | No (CAGR, Sharpe) |
+| Vol-target 22% / 20d (Round 7) | Base | 18.30% | 30.94% | 0.934 | 79.2% | 93.1× (17.61×) | No (all three) |
+| Baseline (no overlay) | Stress | 2.99% | 47.98% | 0.261 | 99.9% | 106.2× (20.07×) | No (all three) |
+| Vol-target 15% / 20d (Round 6) | Stress | 1.57% | 36.32% | 0.186 | 59.6% | 73.3× (13.86×) | No (all three) |
+| Vol-target 22% / 20d (Round 7) | Stress | 1.73% | 44.14% | 0.197 | 79.3% | 93.2× (17.62×) | No (all three) |
+
+Exposure diagnostics at 22% (base; stress differs by under 0.1 pp): mean scale_t 0.793, median 0.833, minimum 0.274. scale_t was below 1.0 on 70.0% of trading days, compared with 91.3% at 15%. The pre-overlay realized vol was the same as in Round 6: mean 29.1%, median 26.6%, 90th percentile 45.4%. Mean scale by year was 0.93 (2021), 0.91 (2022), 0.88 (2023), 0.81 (2024), 0.63 (2025), and 0.56 (2026 YTD).
+
+| Year | Baseline base | VT15 base | VT22 base | Baseline stress | VT15 stress | VT22 stress |
+|---|---:|---:|---:|---:|---:|---:|
+| 2021 (from 07-29) | +12.4% | +9.0% | +12.3% | +4.7% | +2.1% | +4.8% |
+| 2022 | −29.1% | −18.0% | −25.3% | −43.6% | −31.4% | −39.7% |
+| 2023 | +63.6% | +33.6% | +51.5% | +36.7% | +17.4% | +27.6% |
+| 2024 | +45.4% | +28.8% | +37.5% | +20.3% | +13.1% | +15.6% |
+| 2025 | +8.8% | +12.4% | +10.7% | −2.5% | +5.9% | +2.4% |
+| 2026 (to 11-12) | +41.5% | +17.5% | +25.8% | +23.4% | +10.3% | +14.7% |
+
+Interpretation: raising the target to 22% moved the result along the expected exposure trade-off without finding a feasible point. At base cost, CAGR recovered 3.9 pp to 18.30%, still 1.7 pp short of 20%. MDD rose to 30.94%, so it now also misses the 30% limit. Sharpe was 0.934, below both the 15% run (0.964) and 1.0. The overlay still cut the 2022 drawdown less than the 15% version did, because during the 2022 decline scale stayed near 0.9. It mostly de-risked in the high-vol 2025–2026 period, when the baseline was strongly positive. That is why the vol-timing Sharpe gain shrank to +0.06 over the baseline. At stress cost, the overlay lowered turnover by about 12%, but CAGR stayed near zero (1.73%) and MDD was 44.14%. Across the two preregistered targets, no target_vol between 15% and 22% appears able to clear all three criteria at once. Near 15%, CAGR is the binding constraint. Near 22%, MDD binds while CAGR is still below 20%. Sharpe stays below 1.0 throughout. No bootstrap was computed, and Sharpe differences of 0.03–0.09 on 5.3 years of daily data are within sampling noise.
+
+Verdict: **FAILS the bar — overlay rejected.** At base cost, 22% fails all three criteria: CAGR 18.30% < 20%, MDD 30.94% > 30%, Sharpe 0.934 < 1.0. Stress also fails all three (1.73% / 44.14% / 0.197). This was the single approved calibration, so the vol-target overlay on US mom126 is closed with no further target_vol, lookback, or cap retries. Reproduce with `PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python3 scripts/research/us_mom126_voltarget_probe.py --target-vol 0.22`.
+
+Summary: Vol-target 22% on US mom126 (base) gives CAGR 18.3%, MDD 30.9%, Sharpe 0.93, all three below the bar. Stress CAGR is 1.7%. This was the only approved calibration, so the overlay is rejected.
