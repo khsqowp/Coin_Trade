@@ -287,6 +287,9 @@ def evaluate_divergence_event(*, minute_open_ms, minute_opens, minute_highs,
                              ml[path_ix:path_ix+expected_count],
                              mc[path_ix:path_ix+expected_count], side, stop, target)
     status, exit_price, exit_minute = resolved
+    if status == "unresolved" or exit_price is None:
+        return {"status": "unresolved", "target_first": None, "entry_ms": entry_ms,
+                "entry_price": entry_price, "exit_price": None, "trade_net_r": None}
     net_r = _net_r(entry_price, exit_price, side, stop,
                    fee_per_side=fee_per_side, slippage_per_side=slippage_per_side)
     return {"status": status, "target_first": status == "target", "entry_ms": entry_ms,
