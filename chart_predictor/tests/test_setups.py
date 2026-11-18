@@ -116,6 +116,46 @@ def test_order_block_impulse_retest_and_invalidation(side):
     assert not any(s.index==16 and s.side==side for s in near)
 
 @pytest.mark.parametrize("side",["long","short"])
+def test_order_block_engulfing_confirm_rejects_non_engulfing_reclaim(side):
+    """Reuses the base order_block retest fixture above, whose reclaim bar 16
+    is never an engulfing candle (the prior bar's own direction rules that
+    out); order_block still fires there but the confirm variant must not."""
+    o=np.full(18,100.); h=np.full(18,101.); l=np.full(18,99.); c=np.full(18,100.)
+    if side=="long":
+        o[14],h[14],l[14],c[14]=100,101,98,99
+        o[15],h[15],l[15],c[15]=100,105,99,104
+        o[16],h[16],l[16],c[16]=100,102,99,101.2
+    else:
+        o[14],h[14],l[14],c[14]=101,102,100,101.5
+        o[15],h[15],l[15],c[15]=101,101.5,95,97
+        o[16],h[16],l[16],c[16]=100,101,99,99.5
+    f=_ohlc(o,h,l,c)
+    assert any(s.index==16 and s.side==side for s in generate_signals(f,"order_block"))
+    assert not any(s.index==16 for s in generate_signals(f,"order_block_engulfing_confirm"))
+
+def test_order_block_engulfing_confirm_fires_long_on_engulfing_reclaim():
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    o[14],h[14],l[14],c[14]=100,101,98,99
+    o[15],h[15],l[15],c[15]=100,105,99,104
+    o[16],h[16],l[16],c[16]=103,104,102,103
+    o[17],h[17],l[17],c[17]=100,101,97,98
+    o[18],h[18],l[18],c[18]=97,103,96,102
+    f=_ohlc(o,h,l,c)
+    assert any(s.index==18 and s.side=="long" and s.stop==98.0
+               for s in generate_signals(f,"order_block_engulfing_confirm"))
+
+def test_order_block_engulfing_confirm_fires_short_on_engulfing_reclaim():
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    o[14],h[14],l[14],c[14]=100,102,99,101
+    o[15],h[15],l[15],c[15]=100,101,95,96
+    o[16],h[16],l[16],c[16]=97,98,96,97
+    o[17],h[17],l[17],c[17]=100,103,99,102
+    o[18],h[18],l[18],c[18]=103,104,96,97
+    f=_ohlc(o,h,l,c)
+    assert any(s.index==18 and s.side=="short" and s.stop==102.0
+               for s in generate_signals(f,"order_block_engulfing_confirm"))
+
+@pytest.mark.parametrize("side",["long","short"])
 def test_fvg_fill_first_overlap_without_reclaim(side):
     o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)
     if side=="long":

@@ -16,7 +16,8 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "engulfing_rsi_extreme", "engulfing_rsi_extreme_strict",
           "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict",
           "doji_macd_flip", "doji_macd_flip_strict",
-          "star_pattern_volume_climax", "star_pattern_volume_climax_strict")
+          "star_pattern_volume_climax", "star_pattern_volume_climax_strict",
+          "order_block_engulfing_confirm")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -188,6 +189,38 @@ def generate_signals(frame, setup, prepared=None):
                     for j in range(i-1,max(-1,i-6),-1):
                         if c[j]<o[j]: zones.append((l[j],h[j],i,"long")); break
                 # Symmetric short side is an extension; the cited source defines long only.
+                if o[i]-c[i]>1.5*a[i-1] and c[i]<l[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]>o[j]: zones.append((l[j],h[j],i,"short")); break
+    elif setup=="order_block_engulfing_confirm":
+        # Foundational step after order_block's poor 1m/5m pooled expectancy
+        # (see docs/research run on BTC alone): same impulse/zone/retest
+        # tracking as order_block, but the reclaim bar i must itself be an
+        # engulfing candle in the trade direction. This is a causal self-bar
+        # check (bull_engulfing[i]/bear_engulfing[i] read only bars i-1..i),
+        # the same convention bb_squeeze_breakout and vwap_band_fade already
+        # use for their own signal-bar close condition. Zone formation/expiry
+        # is identical to order_block; only the emit() condition gains the
+        # candle-shape requirement. A zone is consumed by its first retest
+        # whether or not that bar is confirmed (matching order_block's
+        # first-retest-only semantics); an unconfirmed retest does not leave
+        # the zone open for a later bar to confirm.
+        pat=prepared["patterns"] if "patterns" in prepared else indicators.candle_patterns(o,h,l,c)
+        zones=[]
+        for i in range(n):
+            remaining=[]
+            for low,high,born,side in zones:
+                invalid=(i-born>60 or (c[i]<low if side=="long" else c[i]>high))
+                if invalid: continue
+                if l[i]<=high and h[i]>=low and (c[i]>high if side=="long" else c[i]<low):
+                    confirmed=pat["bull_engulfing"][i] if side=="long" else pat["bear_engulfing"][i]
+                    if confirmed: emit(i,side,low if side=="long" else high)
+                else: remaining.append((low,high,born,side))
+            zones=remaining
+            if i>=14 and np.isfinite(a[i-1]):
+                if c[i]-o[i]>1.5*a[i-1] and c[i]>h[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]<o[j]: zones.append((l[j],h[j],i,"long")); break
                 if o[i]-c[i]>1.5*a[i-1] and c[i]<l[i-1]:
                     for j in range(i-1,max(-1,i-6),-1):
                         if c[j]>o[j]: zones.append((l[j],h[j],i,"short")); break
