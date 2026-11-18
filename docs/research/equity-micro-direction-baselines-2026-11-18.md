@@ -5,7 +5,7 @@ Decision: no strategy candidate is promoted. These are next-observed-session dir
 ## Data and fixed classification
 
 - Read-only cache: `/Users/user/CODE/Coin_Trade/.kis-cache-local`.
-- KR: 92 daily CSVs, 326,225 rows, 2010-05-28–2026-11-12. Using the repository's fixed ETF tickers, 25 cached files classify as ETFs and 67 as non-ETF symbols.
+- KR: 92 daily CSVs, 326,225 rows, 2010-05-28–2026-11-12. Using the repository's fixed ETF tickers, 26 cached files classify as ETFs and 66 as non-ETF symbols.
 - US: 92 daily CSVs, 339,303 rows, 2010-01-27–2026-11-12. Using the repository's fixed ETF list, 38 are ETFs and 54 are stocks.
 - All 92 symbols in each market had evaluation labels. Timestamp duplicates: 0 in both caches. OHLC shape violations: 0 KR; 62 US. The US violations occur on 2021-05-05 (36 files), 2023-06-05 (22), 2018-11-15 (3), and 2017-07-03 (1). Cause is unknown; do not infer an adjustment/vendor explanation without source verification.
 - Split: training labels whose signal date and next observed session date are both before 2021-01-01; evaluation signal dates 2021-01-01 through 2024-12-31, with the next observed session also before 2025-01-01.
