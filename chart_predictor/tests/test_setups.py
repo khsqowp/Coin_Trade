@@ -155,6 +155,74 @@ def test_order_block_engulfing_confirm_fires_short_on_engulfing_reclaim():
     assert any(s.index==18 and s.side=="short" and s.stop==102.0
                for s in generate_signals(f,"order_block_engulfing_confirm"))
 
+_CONFLUENCE_MODES=("order_block_confluence_aggressive","order_block_confluence_balanced",
+                    "order_block_confluence_conservative")
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_confluence_aggressive_only_fires_on_weak_body_reclaim(side):
+    """A near-doji reclaim (body ratio far below balanced's 0.35 floor) is the
+    'ambiguous -> skip entirely' case: aggressive still takes it, balanced and
+    conservative both decline to trade it at all."""
+    o=np.full(18,100.); h=np.full(18,101.); l=np.full(18,99.); c=np.full(18,100.)
+    if side=="long":
+        o[14],h[14],l[14],c[14]=100,101,98,99
+        o[15],h[15],l[15],c[15]=100,105,99,104
+        o[16],h[16],l[16],c[16]=100.9,102,99,101.1
+    else:
+        o[14],h[14],l[14],c[14]=101,102,100,101.5
+        o[15],h[15],l[15],c[15]=101,101.5,95,97
+        o[16],h[16],l[16],c[16]=100.1,101,99,99.9
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _CONFLUENCE_MODES}
+    assert any(s.index==16 and s.side==side for s in sigs["order_block_confluence_aggressive"])
+    assert not any(s.index==16 for s in sigs["order_block_confluence_balanced"])
+    assert not any(s.index==16 for s in sigs["order_block_confluence_conservative"])
+
+def test_confluence_balanced_fires_on_moderate_body_conservative_needs_more():
+    """Reuses the base order_block long fixture (reclaim body ratio ~0.40):
+    decisive enough for balanced's 0.35 floor but short of conservative's
+    0.55 floor, so only conservative skips it."""
+    o=np.full(18,100.); h=np.full(18,101.); l=np.full(18,99.); c=np.full(18,100.)
+    o[14],h[14],l[14],c[14]=100,101,98,99
+    o[15],h[15],l[15],c[15]=100,105,99,104
+    o[16],h[16],l[16],c[16]=100,102,99,101.2
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _CONFLUENCE_MODES}
+    assert any(s.index==16 and s.side=="long" for s in sigs["order_block_confluence_aggressive"])
+    assert any(s.index==16 and s.side=="long" for s in sigs["order_block_confluence_balanced"])
+    assert not any(s.index==16 for s in sigs["order_block_confluence_conservative"])
+
+@pytest.mark.parametrize("side",["long","short"])
+def test_confluence_all_modes_fire_on_strong_reclaim_with_wider_conservative_stop(side):
+    """Reuses the order_block_engulfing_confirm strong-reclaim fixtures (body
+    ratio >=0.7): every mode takes the trade, but conservative's stop sits an
+    extra 0.25 ATR14 beyond the zone edge -- wider invalidation for the same
+    signal, not a different signal."""
+    o=np.full(20,100.); h=np.full(20,101.); l=np.full(20,99.); c=np.full(20,100.)
+    if side=="long":
+        o[14],h[14],l[14],c[14]=100,101,98,99
+        o[15],h[15],l[15],c[15]=100,105,99,104
+        o[16],h[16],l[16],c[16]=103,104,102,103
+        o[17],h[17],l[17],c[17]=100,101,97,98
+        o[18],h[18],l[18],c[18]=97,103,96,102
+        zone_edge=98.0
+    else:
+        o[14],h[14],l[14],c[14]=100,102,99,101
+        o[15],h[15],l[15],c[15]=100,101,95,96
+        o[16],h[16],l[16],c[16]=97,98,96,97
+        o[17],h[17],l[17],c[17]=100,103,99,102
+        o[18],h[18],l[18],c[18]=103,104,96,97
+        zone_edge=102.0
+    f=_ohlc(o,h,l,c)
+    sigs={m:generate_signals(f,m) for m in _CONFLUENCE_MODES}
+    for mode in ("order_block_confluence_aggressive","order_block_confluence_balanced"):
+        match=[s for s in sigs[mode] if s.index==18 and s.side==side]
+        assert match and match[0].stop==zone_edge
+    conservative=[s for s in sigs["order_block_confluence_conservative"] if s.index==18 and s.side==side]
+    assert conservative
+    if side=="long": assert conservative[0].stop<zone_edge
+    else: assert conservative[0].stop>zone_edge
+
 @pytest.mark.parametrize("side",["long","short"])
 def test_fvg_fill_first_overlap_without_reclaim(side):
     o=np.full(9,100.); h=np.full(9,101.); l=np.full(9,99.); c=np.full(9,100.)

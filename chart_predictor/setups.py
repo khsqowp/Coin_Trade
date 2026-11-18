@@ -17,7 +17,9 @@ SETUPS = ("supertrend", "trendline_breakout", "sr_retest", "sweep_choch_retest",
           "pinbar_stochastic_cross", "pinbar_stochastic_cross_strict",
           "doji_macd_flip", "doji_macd_flip_strict",
           "star_pattern_volume_climax", "star_pattern_volume_climax_strict",
-          "order_block_engulfing_confirm")
+          "order_block_engulfing_confirm",
+          "order_block_confluence_aggressive", "order_block_confluence_balanced",
+          "order_block_confluence_conservative")
 
 SESSION_MS=28_800_000
 OR_WINDOW_MS=1_800_000
@@ -215,6 +217,64 @@ def generate_signals(frame, setup, prepared=None):
                 if l[i]<=high and h[i]>=low and (c[i]>high if side=="long" else c[i]<low):
                     confirmed=pat["bull_engulfing"][i] if side=="long" else pat["bear_engulfing"][i]
                     if confirmed: emit(i,side,low if side=="long" else high)
+                else: remaining.append((low,high,born,side))
+            zones=remaining
+            if i>=14 and np.isfinite(a[i-1]):
+                if c[i]-o[i]>1.5*a[i-1] and c[i]>h[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]<o[j]: zones.append((l[j],h[j],i,"long")); break
+                if o[i]-c[i]>1.5*a[i-1] and c[i]<l[i-1]:
+                    for j in range(i-1,max(-1,i-6),-1):
+                        if c[j]>o[j]: zones.append((l[j],h[j],i,"short")); break
+    elif setup in ("order_block_confluence_aggressive","order_block_confluence_balanced",
+                   "order_block_confluence_conservative"):
+        # Discretionary-style rewrite: order_block and order_block_engulfing_confirm
+        # above fire on every mechanical retest/every engulfing retest. A real
+        # discretionary (or Pine-script) trader skips the reclaim bar entirely when
+        # it reads as ambiguous, and tightens/widens stop and selectivity by
+        # conviction. These three variants share the same zone mechanism and only
+        # differ in how much confluence the reclaim bar must show before a trade is
+        # taken at all -- an ambiguous bar now means NO signal, not a weaker one.
+        #   aggressive:   any retest close back through the zone (== order_block).
+        #   balanced:     reclaim body >=35% of its own range (not an indecisive
+        #                 candle) AND same-timeframe SuperTrend does not actively
+        #                 oppose the trade (no flip yet = no veto, same as
+        #                 direction==0 below) AND volume >= its own trailing-20
+        #                 average.
+        #   conservative: reclaim body >=55% of range AND SuperTrend agreement AND
+        #                 volume >=1.5x trailing average AND the stop sits 0.25
+        #                 ATR14 beyond the zone edge (wider invalidation than the
+        #                 zone itself, same buffer convention as frvp_breakout_strong).
+        # Trend/volume use only this timeframe's own closed bars (no HTF access
+        # inside generate_signals), so this is a same-timeframe confluence filter,
+        # not the Stage C htf_trend_align post-filter applied to every setup.
+        mode=setup.rsplit("_",1)[-1]
+        min_body_ratio={"aggressive":0.0,"balanced":0.35,"conservative":0.55}[mode]
+        require_trend=mode!="aggressive"
+        min_vol_mult={"aggressive":0.0,"balanced":1.0,"conservative":1.5}[mode]
+        stop_atr_buffer=0.25 if mode=="conservative" else 0.0
+        direction=prepared["supertrend_dir"] if "supertrend_dir" in prepared else indicators.supertrend_direction(h,l,c,a)
+        vol_ma=pd.Series(v).rolling(20,min_periods=20).mean().shift(1).to_numpy()
+        zones=[]
+        for i in range(n):
+            remaining=[]
+            for low,high,born,side in zones:
+                invalid=(i-born>60 or (c[i]<low if side=="long" else c[i]>high))
+                if invalid: continue
+                if l[i]<=high and h[i]>=low and (c[i]>high if side=="long" else c[i]<low):
+                    body_ratio=abs(c[i]-o[i])/max(h[i]-l[i],1e-12)
+                    decisive=body_ratio>=min_body_ratio
+                    # direction[i]==0 means SuperTrend has not yet flipped (no
+                    # established read either way); that is treated as "no
+                    # veto", not as agreement -- only an active OPPOSING
+                    # direction blocks the trade.
+                    trend_ok=(not require_trend) or direction[i]==0 or \
+                              ((direction[i]>0) if side=="long" else (direction[i]<0))
+                    vol_ok=(min_vol_mult<=0) or (not np.isfinite(vol_ma[i])) or vol_ma[i]<=0 or \
+                            v[i]>=min_vol_mult*vol_ma[i]
+                    if decisive and trend_ok and vol_ok:
+                        buf=stop_atr_buffer*a[i] if np.isfinite(a[i]) else 0.0
+                        emit(i,side,low-buf if side=="long" else high+buf)
                 else: remaining.append((low,high,born,side))
             zones=remaining
             if i>=14 and np.isfinite(a[i-1]):
