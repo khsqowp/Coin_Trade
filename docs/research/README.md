@@ -116,9 +116,20 @@ someone to find later by accident.
   the coin side's entire 98-strategy-family offline registry onto KR/US
   daily equities (separate from, and larger than, `stocks_kr.md`/
   `stocks_us.md`'s 2026-10-13 momentum-grid-only port). All REJECT except
-  two post-hoc-selected `VALIDATION_REQUIRED` cells and one bundle not yet
-  read in detail (registry phases `equity_transfer_*`). No cell beats the
-  stock bar.
+  four post-hoc-selected `VALIDATION_REQUIRED` cells (registry phases
+  `equity_transfer_mach7_portfolio`, `round12_13_account_policy_transfer`,
+  `round13_extension_account_policy_transfer`,
+  `round14_prereg_portfolio_transfer` — each has a best-of-grid cell that
+  numerically clears the stock bar but is a post-hoc pick out of
+  44-106 settings, not independent evidence). The former
+  `equity_transfer_round3_10_12_13_14_16_bundle` `NOT_EVALUABLE` row (left
+  as-is per registry convention) is now superseded in substance by six
+  per-round rows (`round3_account_policy_transfer`,
+  `round10_regime_meta_transfer`, `round12_13_account_policy_transfer`,
+  `round13_extension_account_policy_transfer`,
+  `round14_prereg_portfolio_transfer`, `round16_liquidation_proxy_transfer`),
+  all read individually 2026-11-18. No cell beats the stock bar on
+  anything but a cherry-picked single config.
   **`full_runs/` inside this directory is 687MB across 295 gzipped CSVs and
   is committed to git** (not gitignored) — very likely the single biggest
   contributor to this repo's `.git` size (~592MB as of 2026-11-18). The
