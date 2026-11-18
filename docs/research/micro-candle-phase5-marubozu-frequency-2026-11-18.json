@@ -1,0 +1,1029 @@
+{
+  "active_symbols": 100,
+  "completed_through_ms": 1794616140000,
+  "completed_through_utc": "2026-11-14T00:29:00Z",
+  "cooldown_events_10m": 1266358,
+  "cooldown_events_20m": 724507,
+  "database": "/Users/user/CODE/Coin_Trade/chart_predictor/data/candles.sqlite",
+  "database_bytes": 1864249344,
+  "database_sha256": "cac23a3d18be66e226bdf8c3dbc0d08f5c6c185d4f18ed2a8687f08d2b6f67b1",
+  "decision": "OPEN_REVIEW_BEFORE_OUTCOMES",
+  "gates": {
+    "active_symbols_ge_20": true,
+    "coverage_ge_10pct": true,
+    "nonoverlap_10m_n_ge_200": true,
+    "nonoverlap_20m_n_ge_200": true
+  },
+  "long_events": 2152614,
+  "outcome_rows_read": 0,
+  "per_symbol": [
+    {
+      "cooldown_events_10m": 12745,
+      "cooldown_events_20m": 7299,
+      "long_events": 20345,
+      "raw_coverage": 0.2341083382641282,
+      "raw_events": 40357,
+      "scheduled_anchors": 172386,
+      "short_events": 20012,
+      "symbol": "1000BONKUSDT"
+    },
+    {
+      "cooldown_events_10m": 12206,
+      "cooldown_events_20m": 7147,
+      "long_events": 17922,
+      "raw_coverage": 0.20358796296296297,
+      "raw_events": 35180,
+      "scheduled_anchors": 172800,
+      "short_events": 17258,
+      "symbol": "1000PEPEUSDT"
+    },
+    {
+      "cooldown_events_10m": 12940,
+      "cooldown_events_20m": 7371,
+      "long_events": 19951,
+      "raw_coverage": 0.23725015633323296,
+      "raw_events": 40975,
+      "scheduled_anchors": 172708,
+      "short_events": 21024,
+      "symbol": "1000SHIBUSDT"
+    },
+    {
+      "cooldown_events_10m": 12871,
+      "cooldown_events_20m": 7342,
+      "long_events": 20085,
+      "raw_coverage": 0.23111779854741168,
+      "raw_events": 39936,
+      "scheduled_anchors": 172795,
+      "short_events": 19851,
+      "symbol": "AAVEUSDT"
+    },
+    {
+      "cooldown_events_10m": 12218,
+      "cooldown_events_20m": 7171,
+      "long_events": 16966,
+      "raw_coverage": 0.20877340200815997,
+      "raw_events": 36075,
+      "scheduled_anchors": 172795,
+      "short_events": 19109,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "cooldown_events_10m": 12931,
+      "cooldown_events_20m": 7387,
+      "long_events": 20836,
+      "raw_coverage": 0.24508024066380385,
+      "raw_events": 42119,
+      "scheduled_anchors": 171858,
+      "short_events": 21283,
+      "symbol": "AEROUSDT"
+    },
+    {
+      "cooldown_events_10m": 12286,
+      "cooldown_events_20m": 7115,
+      "long_events": 19954,
+      "raw_coverage": 0.22922800465924856,
+      "raw_events": 39162,
+      "scheduled_anchors": 170843,
+      "short_events": 19208,
+      "symbol": "AGTUSDT"
+    },
+    {
+      "cooldown_events_10m": 12152,
+      "cooldown_events_20m": 7057,
+      "long_events": 21311,
+      "raw_coverage": 0.23662213374268445,
+      "raw_events": 39461,
+      "scheduled_anchors": 166768,
+      "short_events": 18150,
+      "symbol": "AINUSDT"
+    },
+    {
+      "cooldown_events_10m": 13091,
+      "cooldown_events_20m": 7384,
+      "long_events": 24790,
+      "raw_coverage": 0.275706330210125,
+      "raw_events": 45845,
+      "scheduled_anchors": 166282,
+      "short_events": 21055,
+      "symbol": "AIOTUSDT"
+    },
+    {
+      "cooldown_events_10m": 9831,
+      "cooldown_events_20m": 6254,
+      "long_events": 10559,
+      "raw_coverage": 0.12398726851851852,
+      "raw_events": 21425,
+      "scheduled_anchors": 172800,
+      "short_events": 10866,
+      "symbol": "AKEUSDT"
+    },
+    {
+      "cooldown_events_10m": 12220,
+      "cooldown_events_20m": 7084,
+      "long_events": 20417,
+      "raw_coverage": 0.23768108992609552,
+      "raw_events": 39654,
+      "scheduled_anchors": 166837,
+      "short_events": 19237,
+      "symbol": "APRUSDT"
+    },
+    {
+      "cooldown_events_10m": 12683,
+      "cooldown_events_20m": 7296,
+      "long_events": 19428,
+      "raw_coverage": 0.2260807650450367,
+      "raw_events": 39055,
+      "scheduled_anchors": 172748,
+      "short_events": 19627,
+      "symbol": "APTUSDT"
+    },
+    {
+      "cooldown_events_10m": 12162,
+      "cooldown_events_20m": 7092,
+      "long_events": 17819,
+      "raw_coverage": 0.20612661832198023,
+      "raw_events": 35616,
+      "scheduled_anchors": 172787,
+      "short_events": 17797,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "cooldown_events_10m": 12619,
+      "cooldown_events_20m": 7253,
+      "long_events": 22100,
+      "raw_coverage": 0.2469621647367011,
+      "raw_events": 41481,
+      "scheduled_anchors": 167965,
+      "short_events": 19381,
+      "symbol": "ARIAUSDT"
+    },
+    {
+      "cooldown_events_10m": 13546,
+      "cooldown_events_20m": 7571,
+      "long_events": 25386,
+      "raw_coverage": 0.28426446012440815,
+      "raw_events": 48989,
+      "scheduled_anchors": 172336,
+      "short_events": 23603,
+      "symbol": "ASTERUSDT"
+    },
+    {
+      "cooldown_events_10m": 13850,
+      "cooldown_events_20m": 7666,
+      "long_events": 26592,
+      "raw_coverage": 0.3118099305298204,
+      "raw_events": 53008,
+      "scheduled_anchors": 170001,
+      "short_events": 26416,
+      "symbol": "ATOMUSDT"
+    },
+    {
+      "cooldown_events_10m": 12738,
+      "cooldown_events_20m": 7336,
+      "long_events": 19481,
+      "raw_coverage": 0.22574465991886433,
+      "raw_events": 39008,
+      "scheduled_anchors": 172797,
+      "short_events": 19527,
+      "symbol": "AVAXUSDT"
+    },
+    {
+      "cooldown_events_10m": 14593,
+      "cooldown_events_20m": 7905,
+      "long_events": 32594,
+      "raw_coverage": 0.4830920438947073,
+      "raw_events": 63701,
+      "scheduled_anchors": 131861,
+      "short_events": 31107,
+      "symbol": "BARDUSDT"
+    },
+    {
+      "cooldown_events_10m": 13477,
+      "cooldown_events_20m": 7564,
+      "long_events": 25337,
+      "raw_coverage": 0.31587315552650763,
+      "raw_events": 50263,
+      "scheduled_anchors": 159124,
+      "short_events": 24926,
+      "symbol": "BATUSDT"
+    },
+    {
+      "cooldown_events_10m": 13361,
+      "cooldown_events_20m": 7519,
+      "long_events": 24073,
+      "raw_coverage": 0.2710307422478713,
+      "raw_events": 46823,
+      "scheduled_anchors": 172759,
+      "short_events": 22750,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "cooldown_events_10m": 11954,
+      "cooldown_events_20m": 7001,
+      "long_events": 18651,
+      "raw_coverage": 0.2187962419260129,
+      "raw_events": 37261,
+      "scheduled_anchors": 170300,
+      "short_events": 18610,
+      "symbol": "BEATUSDT"
+    },
+    {
+      "cooldown_events_10m": 13204,
+      "cooldown_events_20m": 7465,
+      "long_events": 24140,
+      "raw_coverage": 0.2785969789750565,
+      "raw_events": 46497,
+      "scheduled_anchors": 166897,
+      "short_events": 22357,
+      "symbol": "BIRBUSDT"
+    },
+    {
+      "cooldown_events_10m": 12885,
+      "cooldown_events_20m": 7304,
+      "long_events": 23258,
+      "raw_coverage": 0.28064647732622,
+      "raw_events": 44714,
+      "scheduled_anchors": 159325,
+      "short_events": 21456,
+      "symbol": "BMTUSDT"
+    },
+    {
+      "cooldown_events_10m": 14502,
+      "cooldown_events_20m": 7872,
+      "long_events": 32734,
+      "raw_coverage": 0.3722800925925926,
+      "raw_events": 64330,
+      "scheduled_anchors": 172800,
+      "short_events": 31596,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "cooldown_events_10m": 14795,
+      "cooldown_events_20m": 7955,
+      "long_events": 36201,
+      "raw_coverage": 0.4156216181806608,
+      "raw_events": 71819,
+      "scheduled_anchors": 172799,
+      "short_events": 35618,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "cooldown_events_10m": 9534,
+      "cooldown_events_20m": 6121,
+      "long_events": 9988,
+      "raw_coverage": 0.11645028911436658,
+      "raw_events": 20119,
+      "scheduled_anchors": 172769,
+      "short_events": 10131,
+      "symbol": "BTWUSDT"
+    },
+    {
+      "cooldown_events_10m": 11149,
+      "cooldown_events_20m": 6688,
+      "long_events": 15168,
+      "raw_coverage": 0.1746361625672671,
+      "raw_events": 30083,
+      "scheduled_anchors": 172261,
+      "short_events": 14915,
+      "symbol": "BULLAUSDT"
+    },
+    {
+      "cooldown_events_10m": 11284,
+      "cooldown_events_20m": 6805,
+      "long_events": 15101,
+      "raw_coverage": 0.17673016149140355,
+      "raw_events": 30478,
+      "scheduled_anchors": 172455,
+      "short_events": 15377,
+      "symbol": "CAPUSDT"
+    },
+    {
+      "cooldown_events_10m": 13036,
+      "cooldown_events_20m": 7418,
+      "long_events": 21245,
+      "raw_coverage": 0.25345379742396973,
+      "raw_events": 43370,
+      "scheduled_anchors": 171116,
+      "short_events": 22125,
+      "symbol": "CRVUSDT"
+    },
+    {
+      "cooldown_events_10m": 13963,
+      "cooldown_events_20m": 7685,
+      "long_events": 28389,
+      "raw_coverage": 0.38032096164570295,
+      "raw_events": 55242,
+      "scheduled_anchors": 145251,
+      "short_events": 26853,
+      "symbol": "CYBERUSDT"
+    },
+    {
+      "cooldown_events_10m": 12616,
+      "cooldown_events_20m": 7286,
+      "long_events": 20348,
+      "raw_coverage": 0.23141786927611138,
+      "raw_events": 39849,
+      "scheduled_anchors": 172195,
+      "short_events": 19501,
+      "symbol": "DASHUSDT"
+    },
+    {
+      "cooldown_events_10m": 12357,
+      "cooldown_events_20m": 7155,
+      "long_events": 19317,
+      "raw_coverage": 0.21781275409455222,
+      "raw_events": 37503,
+      "scheduled_anchors": 172180,
+      "short_events": 18186,
+      "symbol": "DODOXUSDT"
+    },
+    {
+      "cooldown_events_10m": 12659,
+      "cooldown_events_20m": 7305,
+      "long_events": 19159,
+      "raw_coverage": 0.22280671296296295,
+      "raw_events": 38501,
+      "scheduled_anchors": 172800,
+      "short_events": 19342,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "cooldown_events_10m": 12927,
+      "cooldown_events_20m": 7396,
+      "long_events": 20859,
+      "raw_coverage": 0.240973339661739,
+      "raw_events": 41632,
+      "scheduled_anchors": 172766,
+      "short_events": 20773,
+      "symbol": "DOTUSDT"
+    },
+    {
+      "cooldown_events_10m": 11818,
+      "cooldown_events_20m": 7019,
+      "long_events": 16285,
+      "raw_coverage": 0.1872522410430616,
+      "raw_events": 32357,
+      "scheduled_anchors": 172799,
+      "short_events": 16072,
+      "symbol": "ENAUSDT"
+    },
+    {
+      "cooldown_events_10m": 12433,
+      "cooldown_events_20m": 7211,
+      "long_events": 19915,
+      "raw_coverage": 0.23050503748073214,
+      "raw_events": 39329,
+      "scheduled_anchors": 170621,
+      "short_events": 19414,
+      "symbol": "ERAUSDT"
+    },
+    {
+      "cooldown_events_10m": 13775,
+      "cooldown_events_20m": 7658,
+      "long_events": 25575,
+      "raw_coverage": 0.30070996275605216,
+      "raw_events": 51674,
+      "scheduled_anchors": 171840,
+      "short_events": 26099,
+      "symbol": "ETCUSDT"
+    },
+    {
+      "cooldown_events_10m": 12649,
+      "cooldown_events_20m": 7286,
+      "long_events": 19282,
+      "raw_coverage": 0.22422057485321478,
+      "raw_events": 38685,
+      "scheduled_anchors": 172531,
+      "short_events": 19403,
+      "symbol": "ETHFIUSDT"
+    },
+    {
+      "cooldown_events_10m": 13865,
+      "cooldown_events_20m": 7691,
+      "long_events": 28418,
+      "raw_coverage": 0.32123595375856057,
+      "raw_events": 55631,
+      "scheduled_anchors": 173178,
+      "short_events": 27213,
+      "symbol": "ETHUSDT"
+    },
+    {
+      "cooldown_events_10m": 13227,
+      "cooldown_events_20m": 7468,
+      "long_events": 23413,
+      "raw_coverage": 0.2698470395797546,
+      "raw_events": 46027,
+      "scheduled_anchors": 170567,
+      "short_events": 22614,
+      "symbol": "FARTCOINUSDT"
+    },
+    {
+      "cooldown_events_10m": 13038,
+      "cooldown_events_20m": 7412,
+      "long_events": 21625,
+      "raw_coverage": 0.2509237935575188,
+      "raw_events": 43256,
+      "scheduled_anchors": 172387,
+      "short_events": 21631,
+      "symbol": "FETUSDT"
+    },
+    {
+      "cooldown_events_10m": 12557,
+      "cooldown_events_20m": 7225,
+      "long_events": 19258,
+      "raw_coverage": 0.2201973436731387,
+      "raw_events": 38049,
+      "scheduled_anchors": 172795,
+      "short_events": 18791,
+      "symbol": "FILUSDT"
+    },
+    {
+      "cooldown_events_10m": 14342,
+      "cooldown_events_20m": 7820,
+      "long_events": 30617,
+      "raw_coverage": 0.36622651676141693,
+      "raw_events": 60490,
+      "scheduled_anchors": 165171,
+      "short_events": 29873,
+      "symbol": "GRAMUSDT"
+    },
+    {
+      "cooldown_events_10m": 13421,
+      "cooldown_events_20m": 7532,
+      "long_events": 23453,
+      "raw_coverage": 0.2700203911391232,
+      "raw_events": 46612,
+      "scheduled_anchors": 172624,
+      "short_events": 23159,
+      "symbol": "HBARUSDT"
+    },
+    {
+      "cooldown_events_10m": 12899,
+      "cooldown_events_20m": 7356,
+      "long_events": 22678,
+      "raw_coverage": 0.26286363290420406,
+      "raw_events": 44900,
+      "scheduled_anchors": 170811,
+      "short_events": 22222,
+      "symbol": "HUMAUSDT"
+    },
+    {
+      "cooldown_events_10m": 12351,
+      "cooldown_events_20m": 7170,
+      "long_events": 20401,
+      "raw_coverage": 0.22598285029494236,
+      "raw_events": 38846,
+      "scheduled_anchors": 171898,
+      "short_events": 18445,
+      "symbol": "HUSDT"
+    },
+    {
+      "cooldown_events_10m": 12729,
+      "cooldown_events_20m": 7326,
+      "long_events": 19880,
+      "raw_coverage": 0.22977430555555556,
+      "raw_events": 39705,
+      "scheduled_anchors": 172800,
+      "short_events": 19825,
+      "symbol": "HYPEUSDT"
+    },
+    {
+      "cooldown_events_10m": 13296,
+      "cooldown_events_20m": 7489,
+      "long_events": 23479,
+      "raw_coverage": 0.2691351266357236,
+      "raw_events": 46214,
+      "scheduled_anchors": 171713,
+      "short_events": 22735,
+      "symbol": "ICPUSDT"
+    },
+    {
+      "cooldown_events_10m": 12793,
+      "cooldown_events_20m": 7270,
+      "long_events": 23542,
+      "raw_coverage": 0.2853910894436896,
+      "raw_events": 46422,
+      "scheduled_anchors": 162661,
+      "short_events": 22880,
+      "symbol": "IDOLUSDT"
+    },
+    {
+      "cooldown_events_10m": 14459,
+      "cooldown_events_20m": 7863,
+      "long_events": 30834,
+      "raw_coverage": 0.45992319081295985,
+      "raw_events": 61196,
+      "scheduled_anchors": 133057,
+      "short_events": 30362,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "cooldown_events_10m": 13186,
+      "cooldown_events_20m": 7456,
+      "long_events": 24626,
+      "raw_coverage": 0.29472260141897805,
+      "raw_events": 48145,
+      "scheduled_anchors": 163357,
+      "short_events": 23519,
+      "symbol": "INITUSDT"
+    },
+    {
+      "cooldown_events_10m": 12036,
+      "cooldown_events_20m": 7089,
+      "long_events": 16613,
+      "raw_coverage": 0.19425538810565549,
+      "raw_events": 33565,
+      "scheduled_anchors": 172788,
+      "short_events": 16952,
+      "symbol": "INJUSDT"
+    },
+    {
+      "cooldown_events_10m": 12034,
+      "cooldown_events_20m": 7056,
+      "long_events": 20167,
+      "raw_coverage": 0.22377334145729544,
+      "raw_events": 37461,
+      "scheduled_anchors": 167406,
+      "short_events": 17294,
+      "symbol": "JCTUSDT"
+    },
+    {
+      "cooldown_events_10m": 13515,
+      "cooldown_events_20m": 7585,
+      "long_events": 24474,
+      "raw_coverage": 0.2917957802807221,
+      "raw_events": 49249,
+      "scheduled_anchors": 168779,
+      "short_events": 24775,
+      "symbol": "JUPUSDT"
+    },
+    {
+      "cooldown_events_10m": 13902,
+      "cooldown_events_20m": 7657,
+      "long_events": 29865,
+      "raw_coverage": 0.3796436851402076,
+      "raw_events": 55021,
+      "scheduled_anchors": 144928,
+      "short_events": 25156,
+      "symbol": "KGENUSDT"
+    },
+    {
+      "cooldown_events_10m": 13293,
+      "cooldown_events_20m": 7498,
+      "long_events": 22048,
+      "raw_coverage": 0.25604977571986687,
+      "raw_events": 44239,
+      "scheduled_anchors": 172775,
+      "short_events": 22191,
+      "symbol": "LINKUSDT"
+    },
+    {
+      "cooldown_events_10m": 11492,
+      "cooldown_events_20m": 6891,
+      "long_events": 14958,
+      "raw_coverage": 0.17289573591369972,
+      "raw_events": 29875,
+      "scheduled_anchors": 172792,
+      "short_events": 14917,
+      "symbol": "LITUSDT"
+    },
+    {
+      "cooldown_events_10m": 13461,
+      "cooldown_events_20m": 7576,
+      "long_events": 23435,
+      "raw_coverage": 0.27315547058312334,
+      "raw_events": 47148,
+      "scheduled_anchors": 172605,
+      "short_events": 23713,
+      "symbol": "LTCUSDT"
+    },
+    {
+      "cooldown_events_10m": 11451,
+      "cooldown_events_20m": 6829,
+      "long_events": 16078,
+      "raw_coverage": 0.18503978103036348,
+      "raw_events": 31909,
+      "scheduled_anchors": 172444,
+      "short_events": 15831,
+      "symbol": "MAGMAUSDT"
+    },
+    {
+      "cooldown_events_10m": 11841,
+      "cooldown_events_20m": 7013,
+      "long_events": 16243,
+      "raw_coverage": 0.19015731169477595,
+      "raw_events": 32855,
+      "scheduled_anchors": 172778,
+      "short_events": 16612,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "cooldown_events_10m": 13604,
+      "cooldown_events_20m": 7583,
+      "long_events": 25010,
+      "raw_coverage": 0.3129368583762879,
+      "raw_events": 50815,
+      "scheduled_anchors": 162381,
+      "short_events": 25805,
+      "symbol": "NIGHTUSDT"
+    },
+    {
+      "cooldown_events_10m": 12541,
+      "cooldown_events_20m": 7263,
+      "long_events": 18426,
+      "raw_coverage": 0.21408067596504426,
+      "raw_events": 36991,
+      "scheduled_anchors": 172790,
+      "short_events": 18565,
+      "symbol": "ONDOUSDT"
+    },
+    {
+      "cooldown_events_10m": 11971,
+      "cooldown_events_20m": 7033,
+      "long_events": 19188,
+      "raw_coverage": 0.22078022402471997,
+      "raw_events": 37154,
+      "scheduled_anchors": 168285,
+      "short_events": 17966,
+      "symbol": "ONEUSDT"
+    },
+    {
+      "cooldown_events_10m": 11483,
+      "cooldown_events_20m": 6814,
+      "long_events": 17955,
+      "raw_coverage": 0.20103074504426766,
+      "raw_events": 34014,
+      "scheduled_anchors": 169198,
+      "short_events": 16059,
+      "symbol": "ONUSDT"
+    },
+    {
+      "cooldown_events_10m": 13069,
+      "cooldown_events_20m": 7429,
+      "long_events": 21574,
+      "raw_coverage": 0.25465265940793824,
+      "raw_events": 43923,
+      "scheduled_anchors": 172482,
+      "short_events": 22349,
+      "symbol": "OPUSDT"
+    },
+    {
+      "cooldown_events_10m": 15300,
+      "cooldown_events_20m": 8112,
+      "long_events": 40460,
+      "raw_coverage": 0.4812108806512299,
+      "raw_events": 81341,
+      "scheduled_anchors": 169034,
+      "short_events": 40881,
+      "symbol": "PAXGUSDT"
+    },
+    {
+      "cooldown_events_10m": 12592,
+      "cooldown_events_20m": 7263,
+      "long_events": 18972,
+      "raw_coverage": 0.21721062409927247,
+      "raw_events": 37529,
+      "scheduled_anchors": 172777,
+      "short_events": 18557,
+      "symbol": "PENGUUSDT"
+    },
+    {
+      "cooldown_events_10m": 12815,
+      "cooldown_events_20m": 7324,
+      "long_events": 20292,
+      "raw_coverage": 0.247175612755864,
+      "raw_events": 42204,
+      "scheduled_anchors": 170745,
+      "short_events": 21912,
+      "symbol": "PIEVERSEUSDT"
+    },
+    {
+      "cooldown_events_10m": 13029,
+      "cooldown_events_20m": 7399,
+      "long_events": 26182,
+      "raw_coverage": 0.276617896535463,
+      "raw_events": 45167,
+      "scheduled_anchors": 163283,
+      "short_events": 18985,
+      "symbol": "PLAYUSDT"
+    },
+    {
+      "cooldown_events_10m": 13956,
+      "cooldown_events_20m": 7684,
+      "long_events": 27076,
+      "raw_coverage": 0.34249995271688766,
+      "raw_events": 54327,
+      "scheduled_anchors": 158619,
+      "short_events": 27251,
+      "symbol": "PLUMEUSDT"
+    },
+    {
+      "cooldown_events_10m": 6544,
+      "cooldown_events_20m": 3924,
+      "long_events": 8331,
+      "raw_coverage": 0.16827927544169252,
+      "raw_events": 16592,
+      "scheduled_anchors": 98598,
+      "short_events": 8261,
+      "symbol": "PONSUSDT"
+    },
+    {
+      "cooldown_events_10m": 11405,
+      "cooldown_events_20m": 6854,
+      "long_events": 14385,
+      "raw_coverage": 0.1685668317977684,
+      "raw_events": 29127,
+      "scheduled_anchors": 172792,
+      "short_events": 14742,
+      "symbol": "PUMPUSDT"
+    },
+    {
+      "cooldown_events_10m": 13333,
+      "cooldown_events_20m": 7489,
+      "long_events": 23458,
+      "raw_coverage": 0.2750860970892107,
+      "raw_events": 46648,
+      "scheduled_anchors": 169576,
+      "short_events": 23190,
+      "symbol": "PYTHUSDT"
+    },
+    {
+      "cooldown_events_10m": 13333,
+      "cooldown_events_20m": 7480,
+      "long_events": 25069,
+      "raw_coverage": 0.31726032175088287,
+      "raw_events": 50939,
+      "scheduled_anchors": 160559,
+      "short_events": 25870,
+      "symbol": "QNTUSDT"
+    },
+    {
+      "cooldown_events_10m": 11896,
+      "cooldown_events_20m": 6963,
+      "long_events": 18586,
+      "raw_coverage": 0.21844860275327674,
+      "raw_events": 37100,
+      "scheduled_anchors": 169834,
+      "short_events": 18514,
+      "symbol": "QUSDT"
+    },
+    {
+      "cooldown_events_10m": 13960,
+      "cooldown_events_20m": 7730,
+      "long_events": 26815,
+      "raw_coverage": 0.32689320620355106,
+      "raw_events": 54718,
+      "scheduled_anchors": 167388,
+      "short_events": 27903,
+      "symbol": "RENDERUSDT"
+    },
+    {
+      "cooldown_events_10m": 12614,
+      "cooldown_events_20m": 7271,
+      "long_events": 18681,
+      "raw_coverage": 0.21586805555555555,
+      "raw_events": 37302,
+      "scheduled_anchors": 172800,
+      "short_events": 18621,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "cooldown_events_10m": 12693,
+      "cooldown_events_20m": 7273,
+      "long_events": 22504,
+      "raw_coverage": 0.2573972996265441,
+      "raw_events": 43008,
+      "scheduled_anchors": 167088,
+      "short_events": 20504,
+      "symbol": "SOPHUSDT"
+    },
+    {
+      "cooldown_events_10m": 13052,
+      "cooldown_events_20m": 7394,
+      "long_events": 23354,
+      "raw_coverage": 0.2765651580132736,
+      "raw_events": 46172,
+      "scheduled_anchors": 166948,
+      "short_events": 22818,
+      "symbol": "STRKUSDT"
+    },
+    {
+      "cooldown_events_10m": 13024,
+      "cooldown_events_20m": 7388,
+      "long_events": 21854,
+      "raw_coverage": 0.277283424717929,
+      "raw_events": 44654,
+      "scheduled_anchors": 161041,
+      "short_events": 22800,
+      "symbol": "STXUSDT"
+    },
+    {
+      "cooldown_events_10m": 12503,
+      "cooldown_events_20m": 7252,
+      "long_events": 18761,
+      "raw_coverage": 0.21660676979345705,
+      "raw_events": 37429,
+      "scheduled_anchors": 172797,
+      "short_events": 18668,
+      "symbol": "SUIUSDT"
+    },
+    {
+      "cooldown_events_10m": 12490,
+      "cooldown_events_20m": 7233,
+      "long_events": 19178,
+      "raw_coverage": 0.21580439814814814,
+      "raw_events": 37291,
+      "scheduled_anchors": 172800,
+      "short_events": 18113,
+      "symbol": "TAOUSDT"
+    },
+    {
+      "cooldown_events_10m": 12750,
+      "cooldown_events_20m": 7330,
+      "long_events": 20152,
+      "raw_coverage": 0.23122128370538822,
+      "raw_events": 39857,
+      "scheduled_anchors": 172376,
+      "short_events": 19705,
+      "symbol": "TIAUSDT"
+    },
+    {
+      "cooldown_events_10m": 12476,
+      "cooldown_events_20m": 7193,
+      "long_events": 19853,
+      "raw_coverage": 0.2307304639981463,
+      "raw_events": 39831,
+      "scheduled_anchors": 172630,
+      "short_events": 19978,
+      "symbol": "TRUMPUSDT"
+    },
+    {
+      "cooldown_events_10m": 15075,
+      "cooldown_events_20m": 8030,
+      "long_events": 37747,
+      "raw_coverage": 0.4218649592145103,
+      "raw_events": 72870,
+      "scheduled_anchors": 172733,
+      "short_events": 35123,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "cooldown_events_10m": 11205,
+      "cooldown_events_20m": 6720,
+      "long_events": 16421,
+      "raw_coverage": 0.18426206574959197,
+      "raw_events": 31612,
+      "scheduled_anchors": 171560,
+      "short_events": 15191,
+      "symbol": "UAIUSDT"
+    },
+    {
+      "cooldown_events_10m": 12093,
+      "cooldown_events_20m": 7107,
+      "long_events": 17220,
+      "raw_coverage": 0.19638764786221904,
+      "raw_events": 33935,
+      "scheduled_anchors": 172796,
+      "short_events": 16715,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "cooldown_events_10m": 11561,
+      "cooldown_events_20m": 6895,
+      "long_events": 15661,
+      "raw_coverage": 0.18308084473838543,
+      "raw_events": 31530,
+      "scheduled_anchors": 172219,
+      "short_events": 15869,
+      "symbol": "USELESSUSDT"
+    },
+    {
+      "cooldown_events_10m": 13268,
+      "cooldown_events_20m": 7479,
+      "long_events": 22994,
+      "raw_coverage": 0.26419229163767916,
+      "raw_events": 45570,
+      "scheduled_anchors": 172488,
+      "short_events": 22576,
+      "symbol": "VIRTUALUSDT"
+    },
+    {
+      "cooldown_events_10m": 11853,
+      "cooldown_events_20m": 6982,
+      "long_events": 15769,
+      "raw_coverage": 0.189090424730996,
+      "raw_events": 32651,
+      "scheduled_anchors": 172674,
+      "short_events": 16882,
+      "symbol": "VVVUSDT"
+    },
+    {
+      "cooldown_events_10m": 11629,
+      "cooldown_events_20m": 6938,
+      "long_events": 15453,
+      "raw_coverage": 0.1756886574074074,
+      "raw_events": 30359,
+      "scheduled_anchors": 172800,
+      "short_events": 14906,
+      "symbol": "WLDUSDT"
+    },
+    {
+      "cooldown_events_10m": 12767,
+      "cooldown_events_20m": 7333,
+      "long_events": 21983,
+      "raw_coverage": 0.23892343624129958,
+      "raw_events": 41226,
+      "scheduled_anchors": 172549,
+      "short_events": 19243,
+      "symbol": "WLFIUSDT"
+    },
+    {
+      "cooldown_events_10m": 15463,
+      "cooldown_events_20m": 8162,
+      "long_events": 42190,
+      "raw_coverage": 0.4972132504693166,
+      "raw_events": 85285,
+      "scheduled_anchors": 171526,
+      "short_events": 43095,
+      "symbol": "XAUTUSDT"
+    },
+    {
+      "cooldown_events_10m": 13162,
+      "cooldown_events_20m": 7451,
+      "long_events": 22322,
+      "raw_coverage": 0.25619686438372813,
+      "raw_events": 44268,
+      "scheduled_anchors": 172789,
+      "short_events": 21946,
+      "symbol": "XLMUSDT"
+    },
+    {
+      "cooldown_events_10m": 12607,
+      "cooldown_events_20m": 7271,
+      "long_events": 21039,
+      "raw_coverage": 0.23027545769736119,
+      "raw_events": 39784,
+      "scheduled_anchors": 172767,
+      "short_events": 18745,
+      "symbol": "XMRUSDT"
+    },
+    {
+      "cooldown_events_10m": 12407,
+      "cooldown_events_20m": 7190,
+      "long_events": 18354,
+      "raw_coverage": 0.2112381790191335,
+      "raw_events": 36499,
+      "scheduled_anchors": 172786,
+      "short_events": 18145,
+      "symbol": "XPLUSDT"
+    },
+    {
+      "cooldown_events_10m": 12904,
+      "cooldown_events_20m": 7363,
+      "long_events": 20663,
+      "raw_coverage": 0.2367013888888889,
+      "raw_events": 40902,
+      "scheduled_anchors": 172800,
+      "short_events": 20239,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "cooldown_events_10m": 11453,
+      "cooldown_events_20m": 6827,
+      "long_events": 14444,
+      "raw_coverage": 0.17144675925925926,
+      "raw_events": 29626,
+      "scheduled_anchors": 172800,
+      "short_events": 15182,
+      "symbol": "ZECUSDT"
+    },
+    {
+      "cooldown_events_10m": 12275,
+      "cooldown_events_20m": 7136,
+      "long_events": 17864,
+      "raw_coverage": 0.21183013144590496,
+      "raw_events": 36453,
+      "scheduled_anchors": 172086,
+      "short_events": 18589,
+      "symbol": "ZROUSDT"
+    },
+    {
+      "cooldown_events_10m": 6955,
+      "cooldown_events_20m": 4230,
+      "long_events": 8708,
+      "raw_coverage": 0.15667263233638998,
+      "raw_events": 16983,
+      "scheduled_anchors": 108398,
+      "short_events": 8275,
+      "symbol": "\u725b\u6765USDT"
+    }
+  ],
+  "raw_coverage": 0.2532828333520274,
+  "raw_events": 4252077,
+  "rule": "single completed 1m candle; abs(close-open)/(high-low)>=0.80; side=body sign",
+  "scheduled_anchors": 16787861,
+  "short_events": 2099463,
+  "symbols": 100,
+  "target_stop_labels_read": 0,
+  "trial": "micro-candle-phase5-marubozu"
+}

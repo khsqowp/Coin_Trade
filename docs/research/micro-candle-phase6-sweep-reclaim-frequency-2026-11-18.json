@@ -1,0 +1,4960 @@
+{
+  "candidate": "bar2 sweeps exactly one bar1 extreme, then closes inside bar1 range and beyond its midpoint; entry and outcomes not evaluated",
+  "completed_through_utc": "2026-11-14T00:29:00Z",
+  "database_bytes": 1864249344,
+  "database_sha256": "cac23a3d18be66e226bdf8c3dbc0d08f5c6c185d4f18ed2a8687f08d2b6f67b1",
+  "horizons": {
+    "10m": {
+      "coverage": 0.03894292751279601,
+      "decision": "READY_FOR_OUTCOME_PREREG",
+      "eligible_pairs": 17142060,
+      "folds": [
+        {
+          "coverage": 0.029696426525233674,
+          "eligible_pairs": 3420984,
+          "end_utc": "2026-08-10T00:00:00Z",
+          "fold": 1,
+          "long": 51262,
+          "nonoverlap_n": 72404,
+          "nonoverlap_symbols": 98,
+          "short": 50329,
+          "signals": 101591,
+          "start_utc": "2026-07-16T18:10:00Z"
+        },
+        {
+          "coverage": 0.03495425047789648,
+          "eligible_pairs": 3391948,
+          "end_utc": "2026-09-03T00:00:00Z",
+          "fold": 2,
+          "long": 59712,
+          "nonoverlap_n": 83695,
+          "nonoverlap_symbols": 99,
+          "short": 58851,
+          "signals": 118563,
+          "start_utc": "2026-08-10T00:00:00Z"
+        },
+        {
+          "coverage": 0.04098806440406192,
+          "eligible_pairs": 3451273,
+          "end_utc": "2026-09-27T00:00:00Z",
+          "fold": 3,
+          "long": 71249,
+          "nonoverlap_n": 97834,
+          "nonoverlap_symbols": 100,
+          "short": 70212,
+          "signals": 141461,
+          "start_utc": "2026-09-03T00:00:00Z"
+        },
+        {
+          "coverage": 0.044817418981481484,
+          "eligible_pairs": 3456000,
+          "end_utc": "2026-10-21T00:00:00Z",
+          "fold": 4,
+          "long": 75515,
+          "nonoverlap_n": 104430,
+          "nonoverlap_symbols": 100,
+          "short": 79374,
+          "signals": 154889,
+          "start_utc": "2026-09-27T00:00:00Z"
+        },
+        {
+          "coverage": 0.04414506166976684,
+          "eligible_pairs": 3421855,
+          "end_utc": "2026-11-14T00:29:00Z",
+          "fold": 5,
+          "long": 71797,
+          "nonoverlap_n": 102809,
+          "nonoverlap_symbols": 100,
+          "short": 79261,
+          "signals": 151058,
+          "start_utc": "2026-10-21T00:00:00Z"
+        }
+      ],
+      "frequency_gate_pass": true,
+      "nonoverlap_n": 461172,
+      "nonoverlap_symbols": 100,
+      "signals": 667562
+    },
+    "20m": {
+      "coverage": 0.03894292751279601,
+      "decision": "READY_FOR_OUTCOME_PREREG",
+      "eligible_pairs": 17142060,
+      "folds": [
+        {
+          "coverage": 0.029696426525233674,
+          "eligible_pairs": 3420984,
+          "end_utc": "2026-08-10T00:00:00Z",
+          "fold": 1,
+          "long": 51262,
+          "nonoverlap_n": 56104,
+          "nonoverlap_symbols": 98,
+          "short": 50329,
+          "signals": 101591,
+          "start_utc": "2026-07-16T18:10:00Z"
+        },
+        {
+          "coverage": 0.03495425047789648,
+          "eligible_pairs": 3391948,
+          "end_utc": "2026-09-03T00:00:00Z",
+          "fold": 2,
+          "long": 59712,
+          "nonoverlap_n": 64340,
+          "nonoverlap_symbols": 99,
+          "short": 58851,
+          "signals": 118563,
+          "start_utc": "2026-08-10T00:00:00Z"
+        },
+        {
+          "coverage": 0.04098806440406192,
+          "eligible_pairs": 3451273,
+          "end_utc": "2026-09-27T00:00:00Z",
+          "fold": 3,
+          "long": 71249,
+          "nonoverlap_n": 73859,
+          "nonoverlap_symbols": 100,
+          "short": 70212,
+          "signals": 141461,
+          "start_utc": "2026-09-03T00:00:00Z"
+        },
+        {
+          "coverage": 0.044817418981481484,
+          "eligible_pairs": 3456000,
+          "end_utc": "2026-10-21T00:00:00Z",
+          "fold": 4,
+          "long": 75515,
+          "nonoverlap_n": 77857,
+          "nonoverlap_symbols": 100,
+          "short": 79374,
+          "signals": 154889,
+          "start_utc": "2026-09-27T00:00:00Z"
+        },
+        {
+          "coverage": 0.04414506166976684,
+          "eligible_pairs": 3421855,
+          "end_utc": "2026-11-14T00:29:00Z",
+          "fold": 5,
+          "long": 71797,
+          "nonoverlap_n": 76790,
+          "nonoverlap_symbols": 100,
+          "short": 79261,
+          "signals": 151058,
+          "start_utc": "2026-10-21T00:00:00Z"
+        }
+      ],
+      "frequency_gate_pass": true,
+      "nonoverlap_n": 348950,
+      "nonoverlap_symbols": 100,
+      "signals": 667562
+    }
+  },
+  "implementation_source_sha256": {
+    "frequency_screen": "1b98d87963d626f597dd79ed81f48ed516709030e1345a4deb87802ec21767e9",
+    "timestamp_and_nonoverlap_helper": "87634ab5433eedfdcfe5a2fb80b9696634f216cbba4193eccc3faceb3bdc5b12"
+  },
+  "outcome_rows_read": 0,
+  "per_symbol": [
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 414,
+          "nonoverlap_10m": 682,
+          "nonoverlap_20m": 566,
+          "short": 461,
+          "signals": 875
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 446,
+          "nonoverlap_10m": 654,
+          "nonoverlap_20m": 543,
+          "short": 427,
+          "signals": 873
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 637,
+          "nonoverlap_10m": 913,
+          "nonoverlap_20m": 699,
+          "short": 613,
+          "signals": 1250
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 566,
+          "nonoverlap_10m": 881,
+          "nonoverlap_20m": 685,
+          "short": 643,
+          "signals": 1209
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 423,
+          "nonoverlap_10m": 706,
+          "nonoverlap_20m": 571,
+          "short": 511,
+          "signals": 934
+        }
+      },
+      "snapshot_long": 2486,
+      "snapshot_short": 2655,
+      "snapshot_signals": 5141,
+      "symbol": "1000BONKUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 923,
+          "nonoverlap_10m": 1237,
+          "nonoverlap_20m": 907,
+          "short": 907,
+          "signals": 1830
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 954,
+          "nonoverlap_10m": 1259,
+          "nonoverlap_20m": 923,
+          "short": 932,
+          "signals": 1886
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1016,
+          "nonoverlap_10m": 1337,
+          "nonoverlap_20m": 964,
+          "short": 1054,
+          "signals": 2070
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1078,
+          "nonoverlap_10m": 1419,
+          "nonoverlap_20m": 1012,
+          "short": 1173,
+          "signals": 2251
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 983,
+          "nonoverlap_10m": 1347,
+          "nonoverlap_20m": 978,
+          "short": 1129,
+          "signals": 2112
+        }
+      },
+      "snapshot_long": 4954,
+      "snapshot_short": 5195,
+      "snapshot_signals": 10149,
+      "symbol": "1000PEPEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 446,
+          "nonoverlap_10m": 716,
+          "nonoverlap_20m": 557,
+          "short": 485,
+          "signals": 931
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 593,
+          "nonoverlap_10m": 819,
+          "nonoverlap_20m": 656,
+          "short": 553,
+          "signals": 1146
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 702,
+          "nonoverlap_10m": 977,
+          "nonoverlap_20m": 759,
+          "short": 703,
+          "signals": 1405
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 545,
+          "nonoverlap_10m": 842,
+          "nonoverlap_20m": 656,
+          "short": 588,
+          "signals": 1133
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 418,
+          "nonoverlap_10m": 704,
+          "nonoverlap_20m": 561,
+          "short": 497,
+          "signals": 915
+        }
+      },
+      "snapshot_long": 2704,
+      "snapshot_short": 2826,
+      "snapshot_signals": 5530,
+      "symbol": "1000SHIBUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 756,
+          "nonoverlap_10m": 1074,
+          "nonoverlap_20m": 808,
+          "short": 712,
+          "signals": 1468
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 788,
+          "nonoverlap_10m": 1071,
+          "nonoverlap_20m": 813,
+          "short": 762,
+          "signals": 1550
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 987,
+          "nonoverlap_10m": 1268,
+          "nonoverlap_20m": 916,
+          "short": 946,
+          "signals": 1933
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 989,
+          "nonoverlap_10m": 1301,
+          "nonoverlap_20m": 936,
+          "short": 1045,
+          "signals": 2034
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 853,
+          "nonoverlap_10m": 1228,
+          "nonoverlap_20m": 903,
+          "short": 982,
+          "signals": 1835
+        }
+      },
+      "snapshot_long": 4373,
+      "snapshot_short": 4447,
+      "snapshot_signals": 8820,
+      "symbol": "AAVEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 228,
+          "nonoverlap_10m": 381,
+          "nonoverlap_20m": 324,
+          "short": 210,
+          "signals": 438
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 346,
+          "nonoverlap_10m": 548,
+          "nonoverlap_20m": 445,
+          "short": 352,
+          "signals": 698
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 432,
+          "nonoverlap_10m": 722,
+          "nonoverlap_20m": 605,
+          "short": 484,
+          "signals": 916
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 498,
+          "nonoverlap_10m": 821,
+          "nonoverlap_20m": 654,
+          "short": 602,
+          "signals": 1100
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 273,
+          "nonoverlap_10m": 503,
+          "nonoverlap_20m": 430,
+          "short": 339,
+          "signals": 612
+        }
+      },
+      "snapshot_long": 1777,
+      "snapshot_short": 1987,
+      "snapshot_signals": 3764,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 588,
+          "nonoverlap_10m": 882,
+          "nonoverlap_20m": 682,
+          "short": 608,
+          "signals": 1196
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 497,
+          "nonoverlap_10m": 734,
+          "nonoverlap_20m": 590,
+          "short": 472,
+          "signals": 969
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 771,
+          "nonoverlap_10m": 1073,
+          "nonoverlap_20m": 810,
+          "short": 758,
+          "signals": 1529
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 875,
+          "nonoverlap_10m": 1234,
+          "nonoverlap_20m": 907,
+          "short": 1010,
+          "signals": 1885
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 742,
+          "nonoverlap_10m": 1116,
+          "nonoverlap_20m": 832,
+          "short": 917,
+          "signals": 1659
+        }
+      },
+      "snapshot_long": 3473,
+      "snapshot_short": 3765,
+      "snapshot_signals": 7238,
+      "symbol": "AEROUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1192,
+          "nonoverlap_10m": 1438,
+          "nonoverlap_20m": 1002,
+          "short": 1195,
+          "signals": 2387
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 955,
+          "nonoverlap_10m": 1263,
+          "nonoverlap_20m": 951,
+          "short": 1001,
+          "signals": 1956
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 949,
+          "nonoverlap_10m": 1208,
+          "nonoverlap_20m": 893,
+          "short": 899,
+          "signals": 1848
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 950,
+          "nonoverlap_10m": 1270,
+          "nonoverlap_20m": 926,
+          "short": 1017,
+          "signals": 1967
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 813,
+          "nonoverlap_10m": 1121,
+          "nonoverlap_20m": 835,
+          "short": 854,
+          "signals": 1667
+        }
+      },
+      "snapshot_long": 4859,
+      "snapshot_short": 4966,
+      "snapshot_signals": 9825,
+      "symbol": "AGTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1086,
+          "nonoverlap_10m": 1355,
+          "nonoverlap_20m": 968,
+          "short": 1150,
+          "signals": 2236
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 715,
+          "nonoverlap_10m": 1086,
+          "nonoverlap_20m": 822,
+          "short": 884,
+          "signals": 1599
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1091,
+          "nonoverlap_10m": 1098,
+          "nonoverlap_20m": 820,
+          "short": 531,
+          "signals": 1622
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 760,
+          "nonoverlap_10m": 1048,
+          "nonoverlap_20m": 799,
+          "short": 747,
+          "signals": 1507
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 963,
+          "nonoverlap_10m": 1243,
+          "nonoverlap_20m": 907,
+          "short": 995,
+          "signals": 1958
+        }
+      },
+      "snapshot_long": 4615,
+      "snapshot_short": 4307,
+      "snapshot_signals": 8922,
+      "symbol": "AINUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 730,
+          "nonoverlap_10m": 1057,
+          "nonoverlap_20m": 802,
+          "short": 785,
+          "signals": 1515
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 554,
+          "nonoverlap_10m": 919,
+          "nonoverlap_20m": 727,
+          "short": 703,
+          "signals": 1257
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 612,
+          "nonoverlap_10m": 916,
+          "nonoverlap_20m": 718,
+          "short": 666,
+          "signals": 1278
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 782,
+          "nonoverlap_10m": 1041,
+          "nonoverlap_20m": 810,
+          "short": 707,
+          "signals": 1489
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 898,
+          "nonoverlap_10m": 1237,
+          "nonoverlap_20m": 903,
+          "short": 984,
+          "signals": 1882
+        }
+      },
+      "snapshot_long": 3576,
+      "snapshot_short": 3845,
+      "snapshot_signals": 7421,
+      "symbol": "AIOTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1176,
+          "nonoverlap_10m": 1446,
+          "nonoverlap_20m": 1020,
+          "short": 1184,
+          "signals": 2360
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 963,
+          "nonoverlap_10m": 1265,
+          "nonoverlap_20m": 941,
+          "short": 986,
+          "signals": 1949
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1057,
+          "nonoverlap_10m": 1327,
+          "nonoverlap_20m": 960,
+          "short": 970,
+          "signals": 2027
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1026,
+          "nonoverlap_10m": 1325,
+          "nonoverlap_20m": 947,
+          "short": 1059,
+          "signals": 2085
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 952,
+          "nonoverlap_10m": 1349,
+          "nonoverlap_20m": 964,
+          "short": 1156,
+          "signals": 2108
+        }
+      },
+      "snapshot_long": 5174,
+      "snapshot_short": 5355,
+      "snapshot_signals": 10529,
+      "symbol": "AKEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 308,
+          "nonoverlap_10m": 496,
+          "nonoverlap_20m": 406,
+          "short": 308,
+          "signals": 616
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 561,
+          "nonoverlap_10m": 810,
+          "nonoverlap_20m": 638,
+          "short": 523,
+          "signals": 1084
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 364,
+          "nonoverlap_10m": 538,
+          "nonoverlap_20m": 455,
+          "short": 328,
+          "signals": 692
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 355,
+          "nonoverlap_10m": 547,
+          "nonoverlap_20m": 438,
+          "short": 405,
+          "signals": 760
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 849,
+          "nonoverlap_10m": 1179,
+          "nonoverlap_20m": 870,
+          "short": 905,
+          "signals": 1754
+        }
+      },
+      "snapshot_long": 2437,
+      "snapshot_short": 2469,
+      "snapshot_signals": 4906,
+      "symbol": "APRUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 512,
+          "nonoverlap_10m": 735,
+          "nonoverlap_20m": 590,
+          "short": 458,
+          "signals": 970
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 584,
+          "nonoverlap_10m": 853,
+          "nonoverlap_20m": 663,
+          "short": 594,
+          "signals": 1178
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 888,
+          "nonoverlap_10m": 1219,
+          "nonoverlap_20m": 911,
+          "short": 913,
+          "signals": 1801
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 945,
+          "nonoverlap_10m": 1314,
+          "nonoverlap_20m": 957,
+          "short": 1062,
+          "signals": 2007
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 738,
+          "nonoverlap_10m": 1124,
+          "nonoverlap_20m": 853,
+          "short": 890,
+          "signals": 1628
+        }
+      },
+      "snapshot_long": 3667,
+      "snapshot_short": 3917,
+      "snapshot_signals": 7584,
+      "symbol": "APTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 643,
+          "nonoverlap_10m": 955,
+          "nonoverlap_20m": 746,
+          "short": 683,
+          "signals": 1326
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 763,
+          "nonoverlap_10m": 1072,
+          "nonoverlap_20m": 818,
+          "short": 786,
+          "signals": 1549
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 969,
+          "nonoverlap_10m": 1301,
+          "nonoverlap_20m": 947,
+          "short": 992,
+          "signals": 1961
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1009,
+          "nonoverlap_10m": 1385,
+          "nonoverlap_20m": 968,
+          "short": 1141,
+          "signals": 2150
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 948,
+          "nonoverlap_10m": 1345,
+          "nonoverlap_20m": 972,
+          "short": 1129,
+          "signals": 2077
+        }
+      },
+      "snapshot_long": 4332,
+      "snapshot_short": 4731,
+      "snapshot_signals": 9063,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 435,
+          "nonoverlap_10m": 624,
+          "nonoverlap_20m": 505,
+          "short": 371,
+          "signals": 806
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 608,
+          "nonoverlap_10m": 900,
+          "nonoverlap_20m": 718,
+          "short": 617,
+          "signals": 1225
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 532,
+          "nonoverlap_10m": 779,
+          "nonoverlap_20m": 625,
+          "short": 491,
+          "signals": 1023
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 717,
+          "nonoverlap_10m": 1029,
+          "nonoverlap_20m": 793,
+          "short": 731,
+          "signals": 1448
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 980,
+          "nonoverlap_10m": 1309,
+          "nonoverlap_20m": 949,
+          "short": 1015,
+          "signals": 1995
+        }
+      },
+      "snapshot_long": 3272,
+      "snapshot_short": 3225,
+      "snapshot_signals": 6497,
+      "symbol": "ARIAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 129,
+          "nonoverlap_10m": 227,
+          "nonoverlap_20m": 201,
+          "short": 131,
+          "signals": 260
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 448,
+          "nonoverlap_10m": 645,
+          "nonoverlap_20m": 506,
+          "short": 435,
+          "signals": 883
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 726,
+          "nonoverlap_10m": 1022,
+          "nonoverlap_20m": 800,
+          "short": 699,
+          "signals": 1425
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 693,
+          "nonoverlap_10m": 972,
+          "nonoverlap_20m": 737,
+          "short": 695,
+          "signals": 1388
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 493,
+          "nonoverlap_10m": 722,
+          "nonoverlap_20m": 583,
+          "short": 474,
+          "signals": 967
+        }
+      },
+      "snapshot_long": 2489,
+      "snapshot_short": 2434,
+      "snapshot_signals": 4923,
+      "symbol": "ASTERUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 39,
+          "nonoverlap_10m": 80,
+          "nonoverlap_20m": 76,
+          "short": 47,
+          "signals": 86
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 134,
+          "nonoverlap_10m": 232,
+          "nonoverlap_20m": 209,
+          "short": 123,
+          "signals": 257
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 272,
+          "nonoverlap_10m": 451,
+          "nonoverlap_20m": 385,
+          "short": 262,
+          "signals": 534
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 314,
+          "nonoverlap_10m": 550,
+          "nonoverlap_20m": 470,
+          "short": 342,
+          "signals": 656
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 165,
+          "nonoverlap_10m": 286,
+          "nonoverlap_20m": 250,
+          "short": 162,
+          "signals": 327
+        }
+      },
+      "snapshot_long": 924,
+      "snapshot_short": 936,
+      "snapshot_signals": 1860,
+      "symbol": "ATOMUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 544,
+          "nonoverlap_10m": 813,
+          "nonoverlap_20m": 654,
+          "short": 551,
+          "signals": 1095
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 640,
+          "nonoverlap_10m": 918,
+          "nonoverlap_20m": 719,
+          "short": 626,
+          "signals": 1266
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 773,
+          "nonoverlap_10m": 1090,
+          "nonoverlap_20m": 830,
+          "short": 789,
+          "signals": 1562
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 916,
+          "nonoverlap_10m": 1268,
+          "nonoverlap_20m": 926,
+          "short": 1048,
+          "signals": 1964
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 779,
+          "nonoverlap_10m": 1120,
+          "nonoverlap_20m": 849,
+          "short": 871,
+          "signals": 1650
+        }
+      },
+      "snapshot_long": 3652,
+      "snapshot_short": 3885,
+      "snapshot_signals": 7537,
+      "symbol": "AVAXUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 61,
+          "nonoverlap_10m": 88,
+          "nonoverlap_20m": 80,
+          "short": 45,
+          "signals": 106
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 66,
+          "nonoverlap_10m": 111,
+          "nonoverlap_20m": 97,
+          "short": 57,
+          "signals": 123
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 66,
+          "nonoverlap_10m": 123,
+          "nonoverlap_20m": 111,
+          "short": 62,
+          "signals": 128
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 67,
+          "nonoverlap_10m": 110,
+          "nonoverlap_20m": 103,
+          "short": 57,
+          "signals": 124
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 109,
+          "nonoverlap_10m": 158,
+          "nonoverlap_20m": 132,
+          "short": 101,
+          "signals": 210
+        }
+      },
+      "snapshot_long": 369,
+      "snapshot_short": 322,
+      "snapshot_signals": 691,
+      "symbol": "BARDUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 214,
+          "nonoverlap_10m": 369,
+          "nonoverlap_20m": 325,
+          "short": 217,
+          "signals": 431
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 407,
+          "nonoverlap_10m": 642,
+          "nonoverlap_20m": 529,
+          "short": 415,
+          "signals": 822
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 604,
+          "nonoverlap_10m": 880,
+          "nonoverlap_20m": 691,
+          "short": 592,
+          "signals": 1196
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 930,
+          "nonoverlap_10m": 1206,
+          "nonoverlap_20m": 897,
+          "short": 882,
+          "signals": 1812
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 952,
+          "nonoverlap_10m": 1282,
+          "nonoverlap_20m": 929,
+          "short": 977,
+          "signals": 1929
+        }
+      },
+      "snapshot_long": 3107,
+      "snapshot_short": 3083,
+      "snapshot_signals": 6190,
+      "symbol": "BATUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 693,
+          "nonoverlap_10m": 997,
+          "nonoverlap_20m": 775,
+          "short": 675,
+          "signals": 1368
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 704,
+          "nonoverlap_10m": 992,
+          "nonoverlap_20m": 750,
+          "short": 685,
+          "signals": 1389
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 936,
+          "nonoverlap_10m": 1212,
+          "nonoverlap_20m": 882,
+          "short": 881,
+          "signals": 1817
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 956,
+          "nonoverlap_10m": 1264,
+          "nonoverlap_20m": 946,
+          "short": 1018,
+          "signals": 1974
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 953,
+          "nonoverlap_10m": 1241,
+          "nonoverlap_20m": 909,
+          "short": 986,
+          "signals": 1939
+        }
+      },
+      "snapshot_long": 4242,
+      "snapshot_short": 4245,
+      "snapshot_signals": 8487,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 910,
+          "nonoverlap_10m": 1200,
+          "nonoverlap_20m": 882,
+          "short": 838,
+          "signals": 1748
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 699,
+          "nonoverlap_10m": 961,
+          "nonoverlap_20m": 742,
+          "short": 658,
+          "signals": 1357
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 226,
+          "nonoverlap_10m": 353,
+          "nonoverlap_20m": 301,
+          "short": 199,
+          "signals": 425
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 230,
+          "nonoverlap_10m": 367,
+          "nonoverlap_20m": 291,
+          "short": 270,
+          "signals": 500
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 865,
+          "nonoverlap_10m": 1266,
+          "nonoverlap_20m": 911,
+          "short": 1024,
+          "signals": 1889
+        }
+      },
+      "snapshot_long": 2930,
+      "snapshot_short": 2989,
+      "snapshot_signals": 5919,
+      "symbol": "BEATUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 727,
+          "nonoverlap_10m": 1048,
+          "nonoverlap_20m": 817,
+          "short": 745,
+          "signals": 1472
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 748,
+          "nonoverlap_10m": 1049,
+          "nonoverlap_20m": 797,
+          "short": 696,
+          "signals": 1444
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 681,
+          "nonoverlap_10m": 974,
+          "nonoverlap_20m": 749,
+          "short": 668,
+          "signals": 1349
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 684,
+          "nonoverlap_10m": 1031,
+          "nonoverlap_20m": 774,
+          "short": 725,
+          "signals": 1409
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 946,
+          "nonoverlap_10m": 1298,
+          "nonoverlap_20m": 929,
+          "short": 1023,
+          "signals": 1969
+        }
+      },
+      "snapshot_long": 3786,
+      "snapshot_short": 3857,
+      "snapshot_signals": 7643,
+      "symbol": "BIRBUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 74,
+          "nonoverlap_10m": 117,
+          "nonoverlap_20m": 96,
+          "short": 86,
+          "signals": 160
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 592,
+          "nonoverlap_10m": 879,
+          "nonoverlap_20m": 698,
+          "short": 586,
+          "signals": 1178
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 221,
+          "nonoverlap_10m": 363,
+          "nonoverlap_20m": 323,
+          "short": 212,
+          "signals": 433
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 171,
+          "nonoverlap_10m": 282,
+          "nonoverlap_20m": 251,
+          "short": 166,
+          "signals": 337
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 679,
+          "nonoverlap_10m": 1003,
+          "nonoverlap_20m": 768,
+          "short": 718,
+          "signals": 1397
+        }
+      },
+      "snapshot_long": 1737,
+      "snapshot_short": 1768,
+      "snapshot_signals": 3505,
+      "symbol": "BMTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 625,
+          "nonoverlap_10m": 954,
+          "nonoverlap_20m": 745,
+          "short": 704,
+          "signals": 1329
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 752,
+          "nonoverlap_10m": 1024,
+          "nonoverlap_20m": 773,
+          "short": 722,
+          "signals": 1474
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 907,
+          "nonoverlap_10m": 1184,
+          "nonoverlap_20m": 869,
+          "short": 852,
+          "signals": 1759
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 836,
+          "nonoverlap_10m": 1159,
+          "nonoverlap_20m": 867,
+          "short": 872,
+          "signals": 1708
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 789,
+          "nonoverlap_10m": 1132,
+          "nonoverlap_20m": 864,
+          "short": 906,
+          "signals": 1695
+        }
+      },
+      "snapshot_long": 3909,
+      "snapshot_short": 4056,
+      "snapshot_signals": 7965,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 743,
+          "nonoverlap_10m": 982,
+          "nonoverlap_20m": 751,
+          "short": 726,
+          "signals": 1469
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 842,
+          "nonoverlap_10m": 1102,
+          "nonoverlap_20m": 805,
+          "short": 810,
+          "signals": 1652
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 845,
+          "nonoverlap_10m": 1139,
+          "nonoverlap_20m": 839,
+          "short": 858,
+          "signals": 1703
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 830,
+          "nonoverlap_10m": 1142,
+          "nonoverlap_20m": 853,
+          "short": 897,
+          "signals": 1727
+        },
+        "5": {
+          "eligible_pairs": 34210,
+          "long": 813,
+          "nonoverlap_10m": 1122,
+          "nonoverlap_20m": 823,
+          "short": 860,
+          "signals": 1673
+        }
+      },
+      "snapshot_long": 4073,
+      "snapshot_short": 4151,
+      "snapshot_signals": 8224,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1038,
+          "nonoverlap_10m": 1286,
+          "nonoverlap_20m": 927,
+          "short": 924,
+          "signals": 1962
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 1051,
+          "nonoverlap_10m": 1349,
+          "nonoverlap_20m": 954,
+          "short": 1071,
+          "signals": 2122
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1051,
+          "nonoverlap_10m": 1312,
+          "nonoverlap_20m": 954,
+          "short": 946,
+          "signals": 1997
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1079,
+          "nonoverlap_10m": 1381,
+          "nonoverlap_20m": 983,
+          "short": 1082,
+          "signals": 2161
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 966,
+          "nonoverlap_10m": 1331,
+          "nonoverlap_20m": 960,
+          "short": 1113,
+          "signals": 2079
+        }
+      },
+      "snapshot_long": 5185,
+      "snapshot_short": 5136,
+      "snapshot_signals": 10321,
+      "symbol": "BTWUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1114,
+          "nonoverlap_10m": 1352,
+          "nonoverlap_20m": 969,
+          "short": 1018,
+          "signals": 2132
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 1107,
+          "nonoverlap_10m": 1416,
+          "nonoverlap_20m": 1011,
+          "short": 1248,
+          "signals": 2355
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 988,
+          "nonoverlap_10m": 1285,
+          "nonoverlap_20m": 933,
+          "short": 998,
+          "signals": 1986
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 768,
+          "nonoverlap_10m": 1081,
+          "nonoverlap_20m": 819,
+          "short": 771,
+          "signals": 1539
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 949,
+          "nonoverlap_10m": 1255,
+          "nonoverlap_20m": 926,
+          "short": 913,
+          "signals": 1862
+        }
+      },
+      "snapshot_long": 4926,
+      "snapshot_short": 4948,
+      "snapshot_signals": 9874,
+      "symbol": "BULLAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 784,
+          "nonoverlap_10m": 1057,
+          "nonoverlap_20m": 796,
+          "short": 743,
+          "signals": 1527
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 819,
+          "nonoverlap_10m": 1170,
+          "nonoverlap_20m": 882,
+          "short": 873,
+          "signals": 1692
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 718,
+          "nonoverlap_10m": 1018,
+          "nonoverlap_20m": 792,
+          "short": 717,
+          "signals": 1435
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 919,
+          "nonoverlap_10m": 1200,
+          "nonoverlap_20m": 883,
+          "short": 878,
+          "signals": 1797
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 985,
+          "nonoverlap_10m": 1328,
+          "nonoverlap_20m": 958,
+          "short": 1058,
+          "signals": 2043
+        }
+      },
+      "snapshot_long": 4225,
+      "snapshot_short": 4269,
+      "snapshot_signals": 8494,
+      "symbol": "CAPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 125,
+          "nonoverlap_10m": 214,
+          "nonoverlap_20m": 199,
+          "short": 119,
+          "signals": 244
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 470,
+          "nonoverlap_10m": 715,
+          "nonoverlap_20m": 567,
+          "short": 456,
+          "signals": 926
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 625,
+          "nonoverlap_10m": 940,
+          "nonoverlap_20m": 736,
+          "short": 667,
+          "signals": 1292
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 694,
+          "nonoverlap_10m": 993,
+          "nonoverlap_20m": 760,
+          "short": 705,
+          "signals": 1399
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 473,
+          "nonoverlap_10m": 784,
+          "nonoverlap_20m": 623,
+          "short": 512,
+          "signals": 985
+        }
+      },
+      "snapshot_long": 2387,
+      "snapshot_short": 2459,
+      "snapshot_signals": 4846,
+      "symbol": "CRVUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 74,
+          "nonoverlap_10m": 128,
+          "nonoverlap_20m": 119,
+          "short": 70,
+          "signals": 144
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 206,
+          "nonoverlap_10m": 339,
+          "nonoverlap_20m": 288,
+          "short": 204,
+          "signals": 410
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 282,
+          "nonoverlap_10m": 500,
+          "nonoverlap_20m": 417,
+          "short": 340,
+          "signals": 622
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 517,
+          "nonoverlap_10m": 788,
+          "nonoverlap_20m": 631,
+          "short": 508,
+          "signals": 1025
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 476,
+          "nonoverlap_10m": 742,
+          "nonoverlap_20m": 592,
+          "short": 529,
+          "signals": 1005
+        }
+      },
+      "snapshot_long": 1555,
+      "snapshot_short": 1651,
+      "snapshot_signals": 3206,
+      "symbol": "CYBERUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 269,
+          "nonoverlap_10m": 434,
+          "nonoverlap_20m": 383,
+          "short": 239,
+          "signals": 508
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 505,
+          "nonoverlap_10m": 725,
+          "nonoverlap_20m": 559,
+          "short": 466,
+          "signals": 971
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 930,
+          "nonoverlap_10m": 1244,
+          "nonoverlap_20m": 910,
+          "short": 900,
+          "signals": 1830
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 735,
+          "nonoverlap_10m": 1083,
+          "nonoverlap_20m": 820,
+          "short": 843,
+          "signals": 1578
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 722,
+          "nonoverlap_10m": 1067,
+          "nonoverlap_20m": 810,
+          "short": 808,
+          "signals": 1530
+        }
+      },
+      "snapshot_long": 3161,
+      "snapshot_short": 3256,
+      "snapshot_signals": 6417,
+      "symbol": "DASHUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 996,
+          "nonoverlap_10m": 1404,
+          "nonoverlap_20m": 1006,
+          "short": 1149,
+          "signals": 2145
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 836,
+          "nonoverlap_10m": 1202,
+          "nonoverlap_20m": 882,
+          "short": 953,
+          "signals": 1789
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 987,
+          "nonoverlap_10m": 1248,
+          "nonoverlap_20m": 915,
+          "short": 913,
+          "signals": 1900
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 880,
+          "nonoverlap_10m": 1194,
+          "nonoverlap_20m": 872,
+          "short": 905,
+          "signals": 1785
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 942,
+          "nonoverlap_10m": 1256,
+          "nonoverlap_20m": 919,
+          "short": 998,
+          "signals": 1940
+        }
+      },
+      "snapshot_long": 4641,
+      "snapshot_short": 4918,
+      "snapshot_signals": 9559,
+      "symbol": "DODOXUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 461,
+          "nonoverlap_10m": 724,
+          "nonoverlap_20m": 596,
+          "short": 476,
+          "signals": 937
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 638,
+          "nonoverlap_10m": 890,
+          "nonoverlap_20m": 687,
+          "short": 642,
+          "signals": 1280
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 753,
+          "nonoverlap_10m": 1098,
+          "nonoverlap_20m": 818,
+          "short": 833,
+          "signals": 1586
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 715,
+          "nonoverlap_10m": 1063,
+          "nonoverlap_20m": 796,
+          "short": 799,
+          "signals": 1514
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 651,
+          "nonoverlap_10m": 985,
+          "nonoverlap_20m": 756,
+          "short": 747,
+          "signals": 1398
+        }
+      },
+      "snapshot_long": 3218,
+      "snapshot_short": 3497,
+      "snapshot_signals": 6715,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 436,
+          "nonoverlap_10m": 663,
+          "nonoverlap_20m": 515,
+          "short": 428,
+          "signals": 864
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 698,
+          "nonoverlap_10m": 945,
+          "nonoverlap_20m": 726,
+          "short": 633,
+          "signals": 1331
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 856,
+          "nonoverlap_10m": 1201,
+          "nonoverlap_20m": 874,
+          "short": 920,
+          "signals": 1776
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 950,
+          "nonoverlap_10m": 1293,
+          "nonoverlap_20m": 935,
+          "short": 1014,
+          "signals": 1964
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 785,
+          "nonoverlap_10m": 1194,
+          "nonoverlap_20m": 867,
+          "short": 971,
+          "signals": 1756
+        }
+      },
+      "snapshot_long": 3725,
+      "snapshot_short": 3966,
+      "snapshot_signals": 7691,
+      "symbol": "DOTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 842,
+          "nonoverlap_10m": 1158,
+          "nonoverlap_20m": 862,
+          "short": 831,
+          "signals": 1673
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 858,
+          "nonoverlap_10m": 1162,
+          "nonoverlap_20m": 874,
+          "short": 846,
+          "signals": 1704
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 984,
+          "nonoverlap_10m": 1298,
+          "nonoverlap_20m": 928,
+          "short": 1002,
+          "signals": 1986
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1039,
+          "nonoverlap_10m": 1416,
+          "nonoverlap_20m": 1003,
+          "short": 1242,
+          "signals": 2281
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 984,
+          "nonoverlap_10m": 1354,
+          "nonoverlap_20m": 973,
+          "short": 1114,
+          "signals": 2098
+        }
+      },
+      "snapshot_long": 4707,
+      "snapshot_short": 5035,
+      "snapshot_signals": 9742,
+      "symbol": "ENAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 661,
+          "nonoverlap_10m": 997,
+          "nonoverlap_20m": 766,
+          "short": 781,
+          "signals": 1442
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 637,
+          "nonoverlap_10m": 905,
+          "nonoverlap_20m": 706,
+          "short": 562,
+          "signals": 1199
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 509,
+          "nonoverlap_10m": 752,
+          "nonoverlap_20m": 607,
+          "short": 470,
+          "signals": 979
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 737,
+          "nonoverlap_10m": 1079,
+          "nonoverlap_20m": 815,
+          "short": 788,
+          "signals": 1525
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 890,
+          "nonoverlap_10m": 1192,
+          "nonoverlap_20m": 882,
+          "short": 905,
+          "signals": 1795
+        }
+      },
+      "snapshot_long": 3434,
+      "snapshot_short": 3506,
+      "snapshot_signals": 6940,
+      "symbol": "ERAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 352,
+          "nonoverlap_10m": 545,
+          "nonoverlap_20m": 480,
+          "short": 315,
+          "signals": 667
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 527,
+          "nonoverlap_10m": 785,
+          "nonoverlap_20m": 608,
+          "short": 527,
+          "signals": 1054
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 816,
+          "nonoverlap_10m": 1099,
+          "nonoverlap_20m": 826,
+          "short": 758,
+          "signals": 1574
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 710,
+          "nonoverlap_10m": 1054,
+          "nonoverlap_20m": 791,
+          "short": 773,
+          "signals": 1483
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 536,
+          "nonoverlap_10m": 848,
+          "nonoverlap_20m": 680,
+          "short": 591,
+          "signals": 1127
+        }
+      },
+      "snapshot_long": 2941,
+      "snapshot_short": 2964,
+      "snapshot_signals": 5905,
+      "symbol": "ETCUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 480,
+          "nonoverlap_10m": 708,
+          "nonoverlap_20m": 576,
+          "short": 417,
+          "signals": 897
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 669,
+          "nonoverlap_10m": 997,
+          "nonoverlap_20m": 765,
+          "short": 714,
+          "signals": 1383
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 883,
+          "nonoverlap_10m": 1213,
+          "nonoverlap_20m": 908,
+          "short": 909,
+          "signals": 1792
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 922,
+          "nonoverlap_10m": 1233,
+          "nonoverlap_20m": 903,
+          "short": 957,
+          "signals": 1879
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 775,
+          "nonoverlap_10m": 1177,
+          "nonoverlap_20m": 852,
+          "short": 916,
+          "signals": 1691
+        }
+      },
+      "snapshot_long": 3729,
+      "snapshot_short": 3913,
+      "snapshot_signals": 7642,
+      "symbol": "ETHFIUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 848,
+          "nonoverlap_10m": 1136,
+          "nonoverlap_20m": 835,
+          "short": 839,
+          "signals": 1687
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 942,
+          "nonoverlap_10m": 1237,
+          "nonoverlap_20m": 906,
+          "short": 967,
+          "signals": 1909
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1005,
+          "nonoverlap_10m": 1285,
+          "nonoverlap_20m": 950,
+          "short": 1017,
+          "signals": 2022
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 930,
+          "nonoverlap_10m": 1198,
+          "nonoverlap_20m": 881,
+          "short": 953,
+          "signals": 1883
+        },
+        "5": {
+          "eligible_pairs": 34589,
+          "long": 929,
+          "nonoverlap_10m": 1278,
+          "nonoverlap_20m": 925,
+          "short": 1069,
+          "signals": 1998
+        }
+      },
+      "snapshot_long": 4654,
+      "snapshot_short": 4845,
+      "snapshot_signals": 9499,
+      "symbol": "ETHUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 114,
+          "nonoverlap_10m": 210,
+          "nonoverlap_20m": 187,
+          "short": 121,
+          "signals": 235
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 434,
+          "nonoverlap_10m": 679,
+          "nonoverlap_20m": 542,
+          "short": 436,
+          "signals": 870
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 499,
+          "nonoverlap_10m": 736,
+          "nonoverlap_20m": 595,
+          "short": 453,
+          "signals": 952
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 357,
+          "nonoverlap_10m": 600,
+          "nonoverlap_20m": 494,
+          "short": 390,
+          "signals": 747
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 189,
+          "nonoverlap_10m": 323,
+          "nonoverlap_20m": 286,
+          "short": 184,
+          "signals": 373
+        }
+      },
+      "snapshot_long": 1593,
+      "snapshot_short": 1584,
+      "snapshot_signals": 3177,
+      "symbol": "FARTCOINUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 73,
+          "nonoverlap_10m": 139,
+          "nonoverlap_20m": 132,
+          "short": 71,
+          "signals": 144
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 265,
+          "nonoverlap_10m": 402,
+          "nonoverlap_20m": 339,
+          "short": 228,
+          "signals": 493
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 459,
+          "nonoverlap_10m": 694,
+          "nonoverlap_20m": 564,
+          "short": 426,
+          "signals": 885
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 623,
+          "nonoverlap_10m": 942,
+          "nonoverlap_20m": 731,
+          "short": 659,
+          "signals": 1282
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 290,
+          "nonoverlap_10m": 517,
+          "nonoverlap_20m": 435,
+          "short": 327,
+          "signals": 617
+        }
+      },
+      "snapshot_long": 1710,
+      "snapshot_short": 1711,
+      "snapshot_signals": 3421,
+      "symbol": "FETUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 548,
+          "nonoverlap_10m": 819,
+          "nonoverlap_20m": 657,
+          "short": 545,
+          "signals": 1093
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 643,
+          "nonoverlap_10m": 968,
+          "nonoverlap_20m": 746,
+          "short": 693,
+          "signals": 1336
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 880,
+          "nonoverlap_10m": 1224,
+          "nonoverlap_20m": 900,
+          "short": 934,
+          "signals": 1814
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1035,
+          "nonoverlap_10m": 1333,
+          "nonoverlap_20m": 960,
+          "short": 1034,
+          "signals": 2069
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 834,
+          "nonoverlap_10m": 1199,
+          "nonoverlap_20m": 874,
+          "short": 963,
+          "signals": 1797
+        }
+      },
+      "snapshot_long": 3940,
+      "snapshot_short": 4169,
+      "snapshot_signals": 8109,
+      "symbol": "FILUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 79,
+          "nonoverlap_10m": 146,
+          "nonoverlap_20m": 135,
+          "short": 85,
+          "signals": 164
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 91,
+          "nonoverlap_10m": 152,
+          "nonoverlap_20m": 139,
+          "short": 82,
+          "signals": 173
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 70,
+          "nonoverlap_10m": 110,
+          "nonoverlap_20m": 103,
+          "short": 48,
+          "signals": 118
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 171,
+          "nonoverlap_10m": 283,
+          "nonoverlap_20m": 238,
+          "short": 171,
+          "signals": 342
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 109,
+          "nonoverlap_10m": 169,
+          "nonoverlap_20m": 150,
+          "short": 91,
+          "signals": 200
+        }
+      },
+      "snapshot_long": 520,
+      "snapshot_short": 477,
+      "snapshot_signals": 997,
+      "symbol": "GRAMUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 376,
+          "nonoverlap_10m": 591,
+          "nonoverlap_20m": 500,
+          "short": 379,
+          "signals": 755
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 541,
+          "nonoverlap_10m": 807,
+          "nonoverlap_20m": 635,
+          "short": 539,
+          "signals": 1080
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 765,
+          "nonoverlap_10m": 1050,
+          "nonoverlap_20m": 801,
+          "short": 722,
+          "signals": 1487
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 903,
+          "nonoverlap_10m": 1240,
+          "nonoverlap_20m": 903,
+          "short": 988,
+          "signals": 1891
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 677,
+          "nonoverlap_10m": 1027,
+          "nonoverlap_20m": 779,
+          "short": 725,
+          "signals": 1402
+        }
+      },
+      "snapshot_long": 3262,
+      "snapshot_short": 3353,
+      "snapshot_signals": 6615,
+      "symbol": "HBARUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 699,
+          "nonoverlap_10m": 948,
+          "nonoverlap_20m": 737,
+          "short": 575,
+          "signals": 1274
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 750,
+          "nonoverlap_10m": 1038,
+          "nonoverlap_20m": 794,
+          "short": 695,
+          "signals": 1445
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 804,
+          "nonoverlap_10m": 1061,
+          "nonoverlap_20m": 807,
+          "short": 677,
+          "signals": 1481
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 898,
+          "nonoverlap_10m": 1219,
+          "nonoverlap_20m": 898,
+          "short": 912,
+          "signals": 1810
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 957,
+          "nonoverlap_10m": 1264,
+          "nonoverlap_20m": 932,
+          "short": 1023,
+          "signals": 1980
+        }
+      },
+      "snapshot_long": 4108,
+      "snapshot_short": 3882,
+      "snapshot_signals": 7990,
+      "symbol": "HUMAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1089,
+          "nonoverlap_10m": 1275,
+          "nonoverlap_20m": 922,
+          "short": 882,
+          "signals": 1971
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 980,
+          "nonoverlap_10m": 1243,
+          "nonoverlap_20m": 903,
+          "short": 892,
+          "signals": 1872
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 916,
+          "nonoverlap_10m": 1212,
+          "nonoverlap_20m": 908,
+          "short": 873,
+          "signals": 1789
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 727,
+          "nonoverlap_10m": 992,
+          "nonoverlap_20m": 768,
+          "short": 641,
+          "signals": 1368
+        },
+        "5": {
+          "eligible_pairs": 34589,
+          "long": 733,
+          "nonoverlap_10m": 1046,
+          "nonoverlap_20m": 783,
+          "short": 704,
+          "signals": 1437
+        }
+      },
+      "snapshot_long": 4445,
+      "snapshot_short": 3992,
+      "snapshot_signals": 8437,
+      "symbol": "HUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1140,
+          "nonoverlap_10m": 1416,
+          "nonoverlap_20m": 983,
+          "short": 1106,
+          "signals": 2246
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 1028,
+          "nonoverlap_10m": 1320,
+          "nonoverlap_20m": 962,
+          "short": 999,
+          "signals": 2027
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1033,
+          "nonoverlap_10m": 1331,
+          "nonoverlap_20m": 948,
+          "short": 1017,
+          "signals": 2050
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1107,
+          "nonoverlap_10m": 1381,
+          "nonoverlap_20m": 984,
+          "short": 1085,
+          "signals": 2192
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 1052,
+          "nonoverlap_10m": 1390,
+          "nonoverlap_20m": 991,
+          "short": 1127,
+          "signals": 2179
+        }
+      },
+      "snapshot_long": 5360,
+      "snapshot_short": 5334,
+      "snapshot_signals": 10694,
+      "symbol": "HYPEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 76,
+          "nonoverlap_10m": 141,
+          "nonoverlap_20m": 127,
+          "short": 80,
+          "signals": 156
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 306,
+          "nonoverlap_10m": 476,
+          "nonoverlap_20m": 396,
+          "short": 297,
+          "signals": 603
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 579,
+          "nonoverlap_10m": 850,
+          "nonoverlap_20m": 686,
+          "short": 584,
+          "signals": 1163
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 612,
+          "nonoverlap_10m": 917,
+          "nonoverlap_20m": 721,
+          "short": 640,
+          "signals": 1252
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 392,
+          "nonoverlap_10m": 634,
+          "nonoverlap_20m": 525,
+          "short": 411,
+          "signals": 803
+        }
+      },
+      "snapshot_long": 1965,
+      "snapshot_short": 2012,
+      "snapshot_signals": 3977,
+      "symbol": "ICPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 373,
+          "nonoverlap_10m": 559,
+          "nonoverlap_20m": 456,
+          "short": 369,
+          "signals": 742
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 69,
+          "nonoverlap_10m": 132,
+          "nonoverlap_20m": 125,
+          "short": 77,
+          "signals": 146
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 112,
+          "nonoverlap_10m": 198,
+          "nonoverlap_20m": 179,
+          "short": 117,
+          "signals": 229
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 69,
+          "nonoverlap_10m": 131,
+          "nonoverlap_20m": 118,
+          "short": 80,
+          "signals": 149
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 942,
+          "nonoverlap_10m": 1223,
+          "nonoverlap_20m": 891,
+          "short": 952,
+          "signals": 1894
+        }
+      },
+      "snapshot_long": 1565,
+      "snapshot_short": 1595,
+      "snapshot_signals": 3160,
+      "symbol": "IDOLUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 10,
+          "nonoverlap_10m": 22,
+          "nonoverlap_20m": 22,
+          "short": 17,
+          "signals": 27
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 63,
+          "nonoverlap_10m": 114,
+          "nonoverlap_20m": 104,
+          "short": 59,
+          "signals": 122
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 114,
+          "nonoverlap_10m": 201,
+          "nonoverlap_20m": 182,
+          "short": 111,
+          "signals": 225
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 230,
+          "nonoverlap_10m": 406,
+          "nonoverlap_20m": 360,
+          "short": 282,
+          "signals": 512
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 70,
+          "nonoverlap_10m": 125,
+          "nonoverlap_20m": 113,
+          "short": 70,
+          "signals": 140
+        }
+      },
+      "snapshot_long": 487,
+      "snapshot_short": 539,
+      "snapshot_signals": 1026,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 353,
+          "nonoverlap_10m": 559,
+          "nonoverlap_20m": 472,
+          "short": 338,
+          "signals": 691
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 614,
+          "nonoverlap_10m": 893,
+          "nonoverlap_20m": 700,
+          "short": 555,
+          "signals": 1169
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 603,
+          "nonoverlap_10m": 904,
+          "nonoverlap_20m": 700,
+          "short": 596,
+          "signals": 1199
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 867,
+          "nonoverlap_10m": 1183,
+          "nonoverlap_20m": 875,
+          "short": 856,
+          "signals": 1723
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 950,
+          "nonoverlap_10m": 1338,
+          "nonoverlap_20m": 947,
+          "short": 1113,
+          "signals": 2063
+        }
+      },
+      "snapshot_long": 3387,
+      "snapshot_short": 3458,
+      "snapshot_signals": 6845,
+      "symbol": "INITUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 528,
+          "nonoverlap_10m": 792,
+          "nonoverlap_20m": 652,
+          "short": 514,
+          "signals": 1042
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 654,
+          "nonoverlap_10m": 917,
+          "nonoverlap_20m": 719,
+          "short": 641,
+          "signals": 1295
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 825,
+          "nonoverlap_10m": 1131,
+          "nonoverlap_20m": 849,
+          "short": 857,
+          "signals": 1682
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 864,
+          "nonoverlap_10m": 1248,
+          "nonoverlap_20m": 914,
+          "short": 1000,
+          "signals": 1864
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 869,
+          "nonoverlap_10m": 1251,
+          "nonoverlap_20m": 920,
+          "short": 1017,
+          "signals": 1886
+        }
+      },
+      "snapshot_long": 3740,
+      "snapshot_short": 4029,
+      "snapshot_signals": 7769,
+      "symbol": "INJUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 781,
+          "nonoverlap_10m": 1099,
+          "nonoverlap_20m": 821,
+          "short": 747,
+          "signals": 1528
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 582,
+          "nonoverlap_10m": 843,
+          "nonoverlap_20m": 673,
+          "short": 545,
+          "signals": 1127
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 283,
+          "nonoverlap_10m": 534,
+          "nonoverlap_20m": 458,
+          "short": 375,
+          "signals": 658
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 507,
+          "nonoverlap_10m": 704,
+          "nonoverlap_20m": 567,
+          "short": 459,
+          "signals": 966
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 1021,
+          "nonoverlap_10m": 1342,
+          "nonoverlap_20m": 956,
+          "short": 1052,
+          "signals": 2073
+        }
+      },
+      "snapshot_long": 3174,
+      "snapshot_short": 3178,
+      "snapshot_signals": 6352,
+      "symbol": "JCTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 132,
+          "nonoverlap_10m": 226,
+          "nonoverlap_20m": 204,
+          "short": 119,
+          "signals": 251
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 270,
+          "nonoverlap_10m": 419,
+          "nonoverlap_20m": 357,
+          "short": 251,
+          "signals": 521
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 594,
+          "nonoverlap_10m": 866,
+          "nonoverlap_20m": 693,
+          "short": 585,
+          "signals": 1179
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 619,
+          "nonoverlap_10m": 930,
+          "nonoverlap_20m": 721,
+          "short": 662,
+          "signals": 1281
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 379,
+          "nonoverlap_10m": 649,
+          "nonoverlap_20m": 524,
+          "short": 426,
+          "signals": 805
+        }
+      },
+      "snapshot_long": 1994,
+      "snapshot_short": 2043,
+      "snapshot_signals": 4037,
+      "symbol": "JUPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 264,
+          "nonoverlap_10m": 395,
+          "nonoverlap_20m": 345,
+          "short": 242,
+          "signals": 506
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 197,
+          "nonoverlap_10m": 353,
+          "nonoverlap_20m": 318,
+          "short": 213,
+          "signals": 410
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 140,
+          "nonoverlap_10m": 236,
+          "nonoverlap_20m": 212,
+          "short": 135,
+          "signals": 275
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 123,
+          "nonoverlap_10m": 246,
+          "nonoverlap_20m": 216,
+          "short": 162,
+          "signals": 285
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 173,
+          "nonoverlap_10m": 251,
+          "nonoverlap_20m": 215,
+          "short": 162,
+          "signals": 335
+        }
+      },
+      "snapshot_long": 897,
+      "snapshot_short": 914,
+      "snapshot_signals": 1811,
+      "symbol": "KGENUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 521,
+          "nonoverlap_10m": 786,
+          "nonoverlap_20m": 635,
+          "short": 544,
+          "signals": 1065
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 809,
+          "nonoverlap_10m": 1119,
+          "nonoverlap_20m": 851,
+          "short": 794,
+          "signals": 1603
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 928,
+          "nonoverlap_10m": 1215,
+          "nonoverlap_20m": 900,
+          "short": 893,
+          "signals": 1821
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 920,
+          "nonoverlap_10m": 1280,
+          "nonoverlap_20m": 932,
+          "short": 1049,
+          "signals": 1969
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 856,
+          "nonoverlap_10m": 1208,
+          "nonoverlap_20m": 882,
+          "short": 910,
+          "signals": 1766
+        }
+      },
+      "snapshot_long": 4034,
+      "snapshot_short": 4190,
+      "snapshot_signals": 8224,
+      "symbol": "LINKUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 948,
+          "nonoverlap_10m": 1294,
+          "nonoverlap_20m": 942,
+          "short": 997,
+          "signals": 1945
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 997,
+          "nonoverlap_10m": 1282,
+          "nonoverlap_20m": 938,
+          "short": 967,
+          "signals": 1964
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1015,
+          "nonoverlap_10m": 1364,
+          "nonoverlap_20m": 975,
+          "short": 1079,
+          "signals": 2094
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1026,
+          "nonoverlap_10m": 1392,
+          "nonoverlap_20m": 980,
+          "short": 1147,
+          "signals": 2173
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 994,
+          "nonoverlap_10m": 1351,
+          "nonoverlap_20m": 962,
+          "short": 1140,
+          "signals": 2134
+        }
+      },
+      "snapshot_long": 4980,
+      "snapshot_short": 5330,
+      "snapshot_signals": 10310,
+      "symbol": "LITUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 274,
+          "nonoverlap_10m": 445,
+          "nonoverlap_20m": 376,
+          "short": 250,
+          "signals": 524
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 347,
+          "nonoverlap_10m": 529,
+          "nonoverlap_20m": 438,
+          "short": 337,
+          "signals": 684
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 624,
+          "nonoverlap_10m": 928,
+          "nonoverlap_20m": 709,
+          "short": 640,
+          "signals": 1264
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 629,
+          "nonoverlap_10m": 903,
+          "nonoverlap_20m": 720,
+          "short": 629,
+          "signals": 1258
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 549,
+          "nonoverlap_10m": 833,
+          "nonoverlap_20m": 651,
+          "short": 561,
+          "signals": 1110
+        }
+      },
+      "snapshot_long": 2423,
+      "snapshot_short": 2417,
+      "snapshot_signals": 4840,
+      "symbol": "LTCUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 961,
+          "nonoverlap_10m": 1267,
+          "nonoverlap_20m": 925,
+          "short": 983,
+          "signals": 1944
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 990,
+          "nonoverlap_10m": 1249,
+          "nonoverlap_20m": 914,
+          "short": 885,
+          "signals": 1875
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1069,
+          "nonoverlap_10m": 1340,
+          "nonoverlap_20m": 961,
+          "short": 1036,
+          "signals": 2105
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1010,
+          "nonoverlap_10m": 1299,
+          "nonoverlap_20m": 953,
+          "short": 1007,
+          "signals": 2017
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 1059,
+          "nonoverlap_10m": 1393,
+          "nonoverlap_20m": 998,
+          "short": 1146,
+          "signals": 2205
+        }
+      },
+      "snapshot_long": 5089,
+      "snapshot_short": 5057,
+      "snapshot_signals": 10146,
+      "symbol": "MAGMAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 208,
+          "nonoverlap_10m": 347,
+          "nonoverlap_20m": 303,
+          "short": 192,
+          "signals": 400
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 338,
+          "nonoverlap_10m": 548,
+          "nonoverlap_20m": 451,
+          "short": 349,
+          "signals": 687
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 736,
+          "nonoverlap_10m": 1050,
+          "nonoverlap_20m": 792,
+          "short": 767,
+          "signals": 1503
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 955,
+          "nonoverlap_10m": 1271,
+          "nonoverlap_20m": 937,
+          "short": 1022,
+          "signals": 1977
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 810,
+          "nonoverlap_10m": 1198,
+          "nonoverlap_20m": 893,
+          "short": 938,
+          "signals": 1748
+        }
+      },
+      "snapshot_long": 3047,
+      "snapshot_short": 3268,
+      "snapshot_signals": 6315,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 262,
+          "nonoverlap_10m": 379,
+          "nonoverlap_20m": 313,
+          "short": 235,
+          "signals": 497
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 120,
+          "nonoverlap_10m": 208,
+          "nonoverlap_20m": 189,
+          "short": 124,
+          "signals": 244
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 212,
+          "nonoverlap_10m": 359,
+          "nonoverlap_20m": 311,
+          "short": 216,
+          "signals": 428
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 796,
+          "nonoverlap_10m": 1093,
+          "nonoverlap_20m": 817,
+          "short": 785,
+          "signals": 1581
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 643,
+          "nonoverlap_10m": 968,
+          "nonoverlap_20m": 755,
+          "short": 694,
+          "signals": 1337
+        }
+      },
+      "snapshot_long": 2033,
+      "snapshot_short": 2054,
+      "snapshot_signals": 4087,
+      "symbol": "NIGHTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 655,
+          "nonoverlap_10m": 945,
+          "nonoverlap_20m": 742,
+          "short": 632,
+          "signals": 1287
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 557,
+          "nonoverlap_10m": 779,
+          "nonoverlap_20m": 614,
+          "short": 505,
+          "signals": 1062
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 702,
+          "nonoverlap_10m": 1012,
+          "nonoverlap_20m": 772,
+          "short": 701,
+          "signals": 1403
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 808,
+          "nonoverlap_10m": 1187,
+          "nonoverlap_20m": 879,
+          "short": 925,
+          "signals": 1733
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 609,
+          "nonoverlap_10m": 964,
+          "nonoverlap_20m": 743,
+          "short": 727,
+          "signals": 1336
+        }
+      },
+      "snapshot_long": 3331,
+      "snapshot_short": 3490,
+      "snapshot_signals": 6821,
+      "symbol": "ONDOUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 96,
+          "nonoverlap_10m": 175,
+          "nonoverlap_20m": 157,
+          "short": 104,
+          "signals": 200
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 703,
+          "nonoverlap_10m": 947,
+          "nonoverlap_20m": 735,
+          "short": 684,
+          "signals": 1387
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 894,
+          "nonoverlap_10m": 1202,
+          "nonoverlap_20m": 884,
+          "short": 849,
+          "signals": 1743
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1002,
+          "nonoverlap_10m": 1319,
+          "nonoverlap_20m": 966,
+          "short": 1032,
+          "signals": 2034
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 990,
+          "nonoverlap_10m": 1313,
+          "nonoverlap_20m": 944,
+          "short": 992,
+          "signals": 1982
+        }
+      },
+      "snapshot_long": 3685,
+      "snapshot_short": 3661,
+      "snapshot_signals": 7346,
+      "symbol": "ONEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1084,
+          "nonoverlap_10m": 1370,
+          "nonoverlap_20m": 1000,
+          "short": 1118,
+          "signals": 2202
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 695,
+          "nonoverlap_10m": 1000,
+          "nonoverlap_20m": 759,
+          "short": 703,
+          "signals": 1398
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 384,
+          "nonoverlap_10m": 625,
+          "nonoverlap_20m": 518,
+          "short": 392,
+          "signals": 776
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 254,
+          "nonoverlap_10m": 402,
+          "nonoverlap_20m": 345,
+          "short": 236,
+          "signals": 490
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 555,
+          "nonoverlap_10m": 844,
+          "nonoverlap_20m": 664,
+          "short": 591,
+          "signals": 1146
+        }
+      },
+      "snapshot_long": 2972,
+      "snapshot_short": 3040,
+      "snapshot_signals": 6012,
+      "symbol": "ONUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 29,
+          "nonoverlap_10m": 46,
+          "nonoverlap_20m": 40,
+          "short": 20,
+          "signals": 49
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 528,
+          "nonoverlap_10m": 755,
+          "nonoverlap_20m": 574,
+          "short": 597,
+          "signals": 1125
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 927,
+          "nonoverlap_10m": 1254,
+          "nonoverlap_20m": 903,
+          "short": 967,
+          "signals": 1894
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1020,
+          "nonoverlap_10m": 1369,
+          "nonoverlap_20m": 961,
+          "short": 1095,
+          "signals": 2115
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 834,
+          "nonoverlap_10m": 1221,
+          "nonoverlap_20m": 908,
+          "short": 1034,
+          "signals": 1868
+        }
+      },
+      "snapshot_long": 3338,
+      "snapshot_short": 3713,
+      "snapshot_signals": 7051,
+      "symbol": "OPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 486,
+          "nonoverlap_10m": 679,
+          "nonoverlap_20m": 518,
+          "short": 467,
+          "signals": 953
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 599,
+          "nonoverlap_10m": 852,
+          "nonoverlap_20m": 628,
+          "short": 673,
+          "signals": 1272
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 589,
+          "nonoverlap_10m": 773,
+          "nonoverlap_20m": 568,
+          "short": 560,
+          "signals": 1149
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 443,
+          "nonoverlap_10m": 649,
+          "nonoverlap_20m": 500,
+          "short": 486,
+          "signals": 929
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 542,
+          "nonoverlap_10m": 740,
+          "nonoverlap_20m": 548,
+          "short": 540,
+          "signals": 1082
+        }
+      },
+      "snapshot_long": 2659,
+      "snapshot_short": 2726,
+      "snapshot_signals": 5385,
+      "symbol": "PAXGUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 682,
+          "nonoverlap_10m": 970,
+          "nonoverlap_20m": 745,
+          "short": 662,
+          "signals": 1344
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 822,
+          "nonoverlap_10m": 1063,
+          "nonoverlap_20m": 805,
+          "short": 730,
+          "signals": 1552
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 904,
+          "nonoverlap_10m": 1237,
+          "nonoverlap_20m": 907,
+          "short": 938,
+          "signals": 1842
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 935,
+          "nonoverlap_10m": 1292,
+          "nonoverlap_20m": 930,
+          "short": 1005,
+          "signals": 1940
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 758,
+          "nonoverlap_10m": 1144,
+          "nonoverlap_20m": 857,
+          "short": 878,
+          "signals": 1636
+        }
+      },
+      "snapshot_long": 4101,
+      "snapshot_short": 4213,
+      "snapshot_signals": 8314,
+      "symbol": "PENGUUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 736,
+          "nonoverlap_10m": 996,
+          "nonoverlap_20m": 770,
+          "short": 694,
+          "signals": 1430
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 774,
+          "nonoverlap_10m": 1104,
+          "nonoverlap_20m": 835,
+          "short": 846,
+          "signals": 1620
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 871,
+          "nonoverlap_10m": 1206,
+          "nonoverlap_20m": 886,
+          "short": 899,
+          "signals": 1770
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 820,
+          "nonoverlap_10m": 1141,
+          "nonoverlap_20m": 847,
+          "short": 839,
+          "signals": 1659
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 814,
+          "nonoverlap_10m": 1209,
+          "nonoverlap_20m": 894,
+          "short": 976,
+          "signals": 1790
+        }
+      },
+      "snapshot_long": 4015,
+      "snapshot_short": 4254,
+      "snapshot_signals": 8269,
+      "symbol": "PIEVERSEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 396,
+          "nonoverlap_10m": 621,
+          "nonoverlap_20m": 531,
+          "short": 384,
+          "signals": 780
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 302,
+          "nonoverlap_10m": 553,
+          "nonoverlap_20m": 457,
+          "short": 407,
+          "signals": 709
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 640,
+          "nonoverlap_10m": 783,
+          "nonoverlap_20m": 624,
+          "short": 421,
+          "signals": 1061
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 531,
+          "nonoverlap_10m": 641,
+          "nonoverlap_20m": 531,
+          "short": 309,
+          "signals": 840
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 459,
+          "nonoverlap_10m": 644,
+          "nonoverlap_20m": 532,
+          "short": 353,
+          "signals": 812
+        }
+      },
+      "snapshot_long": 2328,
+      "snapshot_short": 1874,
+      "snapshot_signals": 4202,
+      "symbol": "PLAYUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 87,
+          "nonoverlap_10m": 168,
+          "nonoverlap_20m": 145,
+          "short": 95,
+          "signals": 182
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 215,
+          "nonoverlap_10m": 354,
+          "nonoverlap_20m": 307,
+          "short": 200,
+          "signals": 415
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 227,
+          "nonoverlap_10m": 355,
+          "nonoverlap_20m": 304,
+          "short": 199,
+          "signals": 426
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 406,
+          "nonoverlap_10m": 682,
+          "nonoverlap_20m": 551,
+          "short": 453,
+          "signals": 859
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 166,
+          "nonoverlap_10m": 300,
+          "nonoverlap_20m": 259,
+          "short": 194,
+          "signals": 360
+        }
+      },
+      "snapshot_long": 1101,
+      "snapshot_short": 1141,
+      "snapshot_signals": 2242,
+      "symbol": "PLUMEUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 0,
+          "long": 0,
+          "nonoverlap_10m": 0,
+          "nonoverlap_20m": 0,
+          "short": 0,
+          "signals": 0
+        },
+        "2": {
+          "eligible_pairs": 0,
+          "long": 0,
+          "nonoverlap_10m": 0,
+          "nonoverlap_20m": 0,
+          "short": 0,
+          "signals": 0
+        },
+        "3": {
+          "eligible_pairs": 29833,
+          "long": 880,
+          "nonoverlap_10m": 1128,
+          "nonoverlap_20m": 819,
+          "short": 843,
+          "signals": 1723
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 880,
+          "nonoverlap_10m": 1187,
+          "nonoverlap_20m": 889,
+          "short": 900,
+          "signals": 1780
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 619,
+          "nonoverlap_10m": 987,
+          "nonoverlap_20m": 758,
+          "short": 723,
+          "signals": 1342
+        }
+      },
+      "snapshot_long": 2379,
+      "snapshot_short": 2466,
+      "snapshot_signals": 4845,
+      "symbol": "PONSUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 458,
+          "nonoverlap_10m": 687,
+          "nonoverlap_20m": 562,
+          "short": 408,
+          "signals": 866
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 778,
+          "nonoverlap_10m": 1051,
+          "nonoverlap_20m": 808,
+          "short": 738,
+          "signals": 1516
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 842,
+          "nonoverlap_10m": 1126,
+          "nonoverlap_20m": 857,
+          "short": 803,
+          "signals": 1645
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 940,
+          "nonoverlap_10m": 1261,
+          "nonoverlap_20m": 925,
+          "short": 1004,
+          "signals": 1944
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 764,
+          "nonoverlap_10m": 1171,
+          "nonoverlap_20m": 865,
+          "short": 948,
+          "signals": 1712
+        }
+      },
+      "snapshot_long": 3782,
+      "snapshot_short": 3901,
+      "snapshot_signals": 7683,
+      "symbol": "PUMPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 358,
+          "nonoverlap_10m": 575,
+          "nonoverlap_20m": 482,
+          "short": 348,
+          "signals": 706
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 547,
+          "nonoverlap_10m": 790,
+          "nonoverlap_20m": 625,
+          "short": 513,
+          "signals": 1060
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 726,
+          "nonoverlap_10m": 1032,
+          "nonoverlap_20m": 801,
+          "short": 728,
+          "signals": 1454
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 856,
+          "nonoverlap_10m": 1232,
+          "nonoverlap_20m": 897,
+          "short": 978,
+          "signals": 1834
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 793,
+          "nonoverlap_10m": 1146,
+          "nonoverlap_20m": 856,
+          "short": 880,
+          "signals": 1673
+        }
+      },
+      "snapshot_long": 3280,
+      "snapshot_short": 3447,
+      "snapshot_signals": 6727,
+      "symbol": "PYTHUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 150,
+          "nonoverlap_10m": 251,
+          "nonoverlap_20m": 226,
+          "short": 149,
+          "signals": 299
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 327,
+          "nonoverlap_10m": 484,
+          "nonoverlap_20m": 403,
+          "short": 299,
+          "signals": 626
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 457,
+          "nonoverlap_10m": 665,
+          "nonoverlap_20m": 532,
+          "short": 430,
+          "signals": 887
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1070,
+          "nonoverlap_10m": 1363,
+          "nonoverlap_20m": 974,
+          "short": 1069,
+          "signals": 2139
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 1014,
+          "nonoverlap_10m": 1340,
+          "nonoverlap_20m": 963,
+          "short": 1081,
+          "signals": 2095
+        }
+      },
+      "snapshot_long": 3018,
+      "snapshot_short": 3028,
+      "snapshot_signals": 6046,
+      "symbol": "QNTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1044,
+          "nonoverlap_10m": 1316,
+          "nonoverlap_20m": 957,
+          "short": 995,
+          "signals": 2039
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 820,
+          "nonoverlap_10m": 1128,
+          "nonoverlap_20m": 849,
+          "short": 836,
+          "signals": 1656
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 818,
+          "nonoverlap_10m": 1164,
+          "nonoverlap_20m": 869,
+          "short": 896,
+          "signals": 1714
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 983,
+          "nonoverlap_10m": 1271,
+          "nonoverlap_20m": 919,
+          "short": 966,
+          "signals": 1949
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 943,
+          "nonoverlap_10m": 1246,
+          "nonoverlap_20m": 917,
+          "short": 912,
+          "signals": 1855
+        }
+      },
+      "snapshot_long": 4608,
+      "snapshot_short": 4605,
+      "snapshot_signals": 9213,
+      "symbol": "QUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 42,
+          "nonoverlap_10m": 75,
+          "nonoverlap_20m": 73,
+          "short": 39,
+          "signals": 81
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 152,
+          "nonoverlap_10m": 243,
+          "nonoverlap_20m": 211,
+          "short": 135,
+          "signals": 287
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 256,
+          "nonoverlap_10m": 430,
+          "nonoverlap_20m": 371,
+          "short": 273,
+          "signals": 529
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 419,
+          "nonoverlap_10m": 693,
+          "nonoverlap_20m": 562,
+          "short": 444,
+          "signals": 863
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 282,
+          "nonoverlap_10m": 467,
+          "nonoverlap_20m": 386,
+          "short": 289,
+          "signals": 571
+        }
+      },
+      "snapshot_long": 1151,
+      "snapshot_short": 1180,
+      "snapshot_signals": 2331,
+      "symbol": "RENDERUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 489,
+          "nonoverlap_10m": 788,
+          "nonoverlap_20m": 621,
+          "short": 518,
+          "signals": 1007
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 711,
+          "nonoverlap_10m": 970,
+          "nonoverlap_20m": 737,
+          "short": 671,
+          "signals": 1382
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 805,
+          "nonoverlap_10m": 1083,
+          "nonoverlap_20m": 819,
+          "short": 764,
+          "signals": 1569
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 837,
+          "nonoverlap_10m": 1181,
+          "nonoverlap_20m": 875,
+          "short": 931,
+          "signals": 1768
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 790,
+          "nonoverlap_10m": 1122,
+          "nonoverlap_20m": 841,
+          "short": 858,
+          "signals": 1648
+        }
+      },
+      "snapshot_long": 3632,
+      "snapshot_short": 3742,
+      "snapshot_signals": 7374,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 257,
+          "nonoverlap_10m": 453,
+          "nonoverlap_20m": 394,
+          "short": 277,
+          "signals": 534
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 549,
+          "nonoverlap_10m": 775,
+          "nonoverlap_20m": 622,
+          "short": 457,
+          "signals": 1006
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 746,
+          "nonoverlap_10m": 1055,
+          "nonoverlap_20m": 799,
+          "short": 736,
+          "signals": 1482
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 466,
+          "nonoverlap_10m": 728,
+          "nonoverlap_20m": 590,
+          "short": 464,
+          "signals": 930
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 469,
+          "nonoverlap_10m": 718,
+          "nonoverlap_20m": 563,
+          "short": 473,
+          "signals": 942
+        }
+      },
+      "snapshot_long": 2487,
+      "snapshot_short": 2407,
+      "snapshot_signals": 4894,
+      "symbol": "SOPHUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 168,
+          "nonoverlap_10m": 286,
+          "nonoverlap_20m": 257,
+          "short": 164,
+          "signals": 332
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 296,
+          "nonoverlap_10m": 442,
+          "nonoverlap_20m": 366,
+          "short": 253,
+          "signals": 549
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 567,
+          "nonoverlap_10m": 872,
+          "nonoverlap_20m": 671,
+          "short": 614,
+          "signals": 1181
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 956,
+          "nonoverlap_10m": 1277,
+          "nonoverlap_20m": 931,
+          "short": 1000,
+          "signals": 1956
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 794,
+          "nonoverlap_10m": 1127,
+          "nonoverlap_20m": 855,
+          "short": 847,
+          "signals": 1641
+        }
+      },
+      "snapshot_long": 2781,
+      "snapshot_short": 2878,
+      "snapshot_signals": 5659,
+      "symbol": "STRKUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 63,
+          "nonoverlap_10m": 113,
+          "nonoverlap_20m": 103,
+          "short": 70,
+          "signals": 133
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 360,
+          "nonoverlap_10m": 551,
+          "nonoverlap_20m": 429,
+          "short": 353,
+          "signals": 713
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 507,
+          "nonoverlap_10m": 747,
+          "nonoverlap_20m": 598,
+          "short": 465,
+          "signals": 972
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 649,
+          "nonoverlap_10m": 990,
+          "nonoverlap_20m": 776,
+          "short": 719,
+          "signals": 1368
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 515,
+          "nonoverlap_10m": 864,
+          "nonoverlap_20m": 696,
+          "short": 638,
+          "signals": 1153
+        }
+      },
+      "snapshot_long": 2094,
+      "snapshot_short": 2245,
+      "snapshot_signals": 4339,
+      "symbol": "STXUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 489,
+          "nonoverlap_10m": 788,
+          "nonoverlap_20m": 636,
+          "short": 548,
+          "signals": 1037
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 713,
+          "nonoverlap_10m": 975,
+          "nonoverlap_20m": 743,
+          "short": 702,
+          "signals": 1415
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 861,
+          "nonoverlap_10m": 1172,
+          "nonoverlap_20m": 880,
+          "short": 837,
+          "signals": 1698
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 973,
+          "nonoverlap_10m": 1331,
+          "nonoverlap_20m": 982,
+          "short": 1082,
+          "signals": 2055
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 813,
+          "nonoverlap_10m": 1247,
+          "nonoverlap_20m": 911,
+          "short": 1006,
+          "signals": 1819
+        }
+      },
+      "snapshot_long": 3849,
+      "snapshot_short": 4175,
+      "snapshot_signals": 8024,
+      "symbol": "SUIUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 881,
+          "nonoverlap_10m": 1176,
+          "nonoverlap_20m": 877,
+          "short": 858,
+          "signals": 1739
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 925,
+          "nonoverlap_10m": 1240,
+          "nonoverlap_20m": 906,
+          "short": 925,
+          "signals": 1850
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1059,
+          "nonoverlap_10m": 1311,
+          "nonoverlap_20m": 949,
+          "short": 995,
+          "signals": 2054
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1111,
+          "nonoverlap_10m": 1455,
+          "nonoverlap_20m": 1026,
+          "short": 1194,
+          "signals": 2305
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 946,
+          "nonoverlap_10m": 1299,
+          "nonoverlap_20m": 954,
+          "short": 1111,
+          "signals": 2057
+        }
+      },
+      "snapshot_long": 4922,
+      "snapshot_short": 5083,
+      "snapshot_signals": 10005,
+      "symbol": "TAOUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 371,
+          "nonoverlap_10m": 596,
+          "nonoverlap_20m": 486,
+          "short": 370,
+          "signals": 741
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 482,
+          "nonoverlap_10m": 701,
+          "nonoverlap_20m": 566,
+          "short": 448,
+          "signals": 930
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 701,
+          "nonoverlap_10m": 1021,
+          "nonoverlap_20m": 785,
+          "short": 719,
+          "signals": 1420
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 930,
+          "nonoverlap_10m": 1268,
+          "nonoverlap_20m": 932,
+          "short": 982,
+          "signals": 1912
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 706,
+          "nonoverlap_10m": 1097,
+          "nonoverlap_20m": 817,
+          "short": 845,
+          "signals": 1551
+        }
+      },
+      "snapshot_long": 3190,
+      "snapshot_short": 3364,
+      "snapshot_signals": 6554,
+      "symbol": "TIAUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 123,
+          "nonoverlap_10m": 202,
+          "nonoverlap_20m": 182,
+          "short": 98,
+          "signals": 221
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 485,
+          "nonoverlap_10m": 666,
+          "nonoverlap_20m": 535,
+          "short": 451,
+          "signals": 936
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 481,
+          "nonoverlap_10m": 763,
+          "nonoverlap_20m": 600,
+          "short": 520,
+          "signals": 1001
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 376,
+          "nonoverlap_10m": 593,
+          "nonoverlap_20m": 498,
+          "short": 397,
+          "signals": 773
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 315,
+          "nonoverlap_10m": 502,
+          "nonoverlap_20m": 433,
+          "short": 301,
+          "signals": 616
+        }
+      },
+      "snapshot_long": 1780,
+      "snapshot_short": 1767,
+      "snapshot_signals": 3547,
+      "symbol": "TRUMPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 110,
+          "nonoverlap_10m": 198,
+          "nonoverlap_20m": 179,
+          "short": 115,
+          "signals": 225
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 207,
+          "nonoverlap_10m": 341,
+          "nonoverlap_20m": 297,
+          "short": 193,
+          "signals": 400
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 183,
+          "nonoverlap_10m": 279,
+          "nonoverlap_20m": 247,
+          "short": 141,
+          "signals": 324
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 186,
+          "nonoverlap_10m": 271,
+          "nonoverlap_20m": 240,
+          "short": 139,
+          "signals": 325
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 275,
+          "nonoverlap_10m": 396,
+          "nonoverlap_20m": 329,
+          "short": 255,
+          "signals": 530
+        }
+      },
+      "snapshot_long": 961,
+      "snapshot_short": 843,
+      "snapshot_signals": 1804,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 695,
+          "nonoverlap_10m": 991,
+          "nonoverlap_20m": 759,
+          "short": 680,
+          "signals": 1375
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 658,
+          "nonoverlap_10m": 933,
+          "nonoverlap_20m": 723,
+          "short": 617,
+          "signals": 1275
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 901,
+          "nonoverlap_10m": 1222,
+          "nonoverlap_20m": 895,
+          "short": 910,
+          "signals": 1811
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 603,
+          "nonoverlap_10m": 858,
+          "nonoverlap_20m": 673,
+          "short": 580,
+          "signals": 1183
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 663,
+          "nonoverlap_10m": 989,
+          "nonoverlap_20m": 746,
+          "short": 726,
+          "signals": 1389
+        }
+      },
+      "snapshot_long": 3520,
+      "snapshot_short": 3513,
+      "snapshot_signals": 7033,
+      "symbol": "UAIUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 603,
+          "nonoverlap_10m": 852,
+          "nonoverlap_20m": 667,
+          "short": 543,
+          "signals": 1146
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 675,
+          "nonoverlap_10m": 938,
+          "nonoverlap_20m": 713,
+          "short": 668,
+          "signals": 1343
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 907,
+          "nonoverlap_10m": 1254,
+          "nonoverlap_20m": 926,
+          "short": 1004,
+          "signals": 1911
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 868,
+          "nonoverlap_10m": 1250,
+          "nonoverlap_20m": 916,
+          "short": 1016,
+          "signals": 1884
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 851,
+          "nonoverlap_10m": 1246,
+          "nonoverlap_20m": 904,
+          "short": 1033,
+          "signals": 1884
+        }
+      },
+      "snapshot_long": 3904,
+      "snapshot_short": 4264,
+      "snapshot_signals": 8168,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 781,
+          "nonoverlap_10m": 1096,
+          "nonoverlap_20m": 838,
+          "short": 758,
+          "signals": 1539
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 869,
+          "nonoverlap_10m": 1132,
+          "nonoverlap_20m": 816,
+          "short": 792,
+          "signals": 1661
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1076,
+          "nonoverlap_10m": 1368,
+          "nonoverlap_20m": 963,
+          "short": 1059,
+          "signals": 2135
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1022,
+          "nonoverlap_10m": 1378,
+          "nonoverlap_20m": 988,
+          "short": 1194,
+          "signals": 2216
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 977,
+          "nonoverlap_10m": 1362,
+          "nonoverlap_20m": 979,
+          "short": 1159,
+          "signals": 2136
+        }
+      },
+      "snapshot_long": 4725,
+      "snapshot_short": 4962,
+      "snapshot_signals": 9687,
+      "symbol": "USELESSUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 537,
+          "nonoverlap_10m": 771,
+          "nonoverlap_20m": 606,
+          "short": 500,
+          "signals": 1037
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 683,
+          "nonoverlap_10m": 940,
+          "nonoverlap_20m": 729,
+          "short": 679,
+          "signals": 1362
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 819,
+          "nonoverlap_10m": 1145,
+          "nonoverlap_20m": 861,
+          "short": 834,
+          "signals": 1653
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 887,
+          "nonoverlap_10m": 1221,
+          "nonoverlap_20m": 902,
+          "short": 965,
+          "signals": 1852
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 587,
+          "nonoverlap_10m": 931,
+          "nonoverlap_20m": 722,
+          "short": 692,
+          "signals": 1279
+        }
+      },
+      "snapshot_long": 3513,
+      "snapshot_short": 3670,
+      "snapshot_signals": 7183,
+      "symbol": "VIRTUALUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 910,
+          "nonoverlap_10m": 1224,
+          "nonoverlap_20m": 899,
+          "short": 915,
+          "signals": 1825
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 908,
+          "nonoverlap_10m": 1213,
+          "nonoverlap_20m": 896,
+          "short": 891,
+          "signals": 1799
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 980,
+          "nonoverlap_10m": 1279,
+          "nonoverlap_20m": 937,
+          "short": 1002,
+          "signals": 1982
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1040,
+          "nonoverlap_10m": 1330,
+          "nonoverlap_20m": 960,
+          "short": 1022,
+          "signals": 2062
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 981,
+          "nonoverlap_10m": 1340,
+          "nonoverlap_20m": 973,
+          "short": 1135,
+          "signals": 2116
+        }
+      },
+      "snapshot_long": 4819,
+      "snapshot_short": 4965,
+      "snapshot_signals": 9784,
+      "symbol": "VVVUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 559,
+          "nonoverlap_10m": 856,
+          "nonoverlap_20m": 689,
+          "short": 549,
+          "signals": 1108
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 688,
+          "nonoverlap_10m": 985,
+          "nonoverlap_20m": 749,
+          "short": 669,
+          "signals": 1357
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 779,
+          "nonoverlap_10m": 1116,
+          "nonoverlap_20m": 842,
+          "short": 854,
+          "signals": 1633
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 920,
+          "nonoverlap_10m": 1271,
+          "nonoverlap_20m": 921,
+          "short": 1041,
+          "signals": 1961
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 723,
+          "nonoverlap_10m": 1080,
+          "nonoverlap_20m": 814,
+          "short": 834,
+          "signals": 1557
+        }
+      },
+      "snapshot_long": 3669,
+      "snapshot_short": 3947,
+      "snapshot_signals": 7616,
+      "symbol": "WLDUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 406,
+          "nonoverlap_10m": 603,
+          "nonoverlap_20m": 507,
+          "short": 330,
+          "signals": 736
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 591,
+          "nonoverlap_10m": 786,
+          "nonoverlap_20m": 616,
+          "short": 475,
+          "signals": 1066
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 626,
+          "nonoverlap_10m": 883,
+          "nonoverlap_20m": 702,
+          "short": 575,
+          "signals": 1201
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 468,
+          "nonoverlap_10m": 678,
+          "nonoverlap_20m": 543,
+          "short": 433,
+          "signals": 901
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 471,
+          "nonoverlap_10m": 671,
+          "nonoverlap_20m": 542,
+          "short": 409,
+          "signals": 880
+        }
+      },
+      "snapshot_long": 2562,
+      "snapshot_short": 2222,
+      "snapshot_signals": 4784,
+      "symbol": "WLFIUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 406,
+          "nonoverlap_10m": 605,
+          "nonoverlap_20m": 470,
+          "short": 427,
+          "signals": 833
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 601,
+          "nonoverlap_10m": 818,
+          "nonoverlap_20m": 611,
+          "short": 623,
+          "signals": 1224
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 537,
+          "nonoverlap_10m": 730,
+          "nonoverlap_20m": 553,
+          "short": 529,
+          "signals": 1066
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 477,
+          "nonoverlap_10m": 668,
+          "nonoverlap_20m": 511,
+          "short": 474,
+          "signals": 951
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 585,
+          "nonoverlap_10m": 796,
+          "nonoverlap_20m": 593,
+          "short": 571,
+          "signals": 1156
+        }
+      },
+      "snapshot_long": 2606,
+      "snapshot_short": 2624,
+      "snapshot_signals": 5230,
+      "symbol": "XAUTUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 792,
+          "nonoverlap_10m": 1094,
+          "nonoverlap_20m": 832,
+          "short": 782,
+          "signals": 1574
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 806,
+          "nonoverlap_10m": 1077,
+          "nonoverlap_20m": 819,
+          "short": 773,
+          "signals": 1579
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1025,
+          "nonoverlap_10m": 1293,
+          "nonoverlap_20m": 958,
+          "short": 1004,
+          "signals": 2029
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 974,
+          "nonoverlap_10m": 1303,
+          "nonoverlap_20m": 957,
+          "short": 1057,
+          "signals": 2031
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 831,
+          "nonoverlap_10m": 1198,
+          "nonoverlap_20m": 898,
+          "short": 950,
+          "signals": 1781
+        }
+      },
+      "snapshot_long": 4428,
+      "snapshot_short": 4566,
+      "snapshot_signals": 8994,
+      "symbol": "XLMUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 700,
+          "nonoverlap_10m": 1036,
+          "nonoverlap_20m": 801,
+          "short": 762,
+          "signals": 1462
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 908,
+          "nonoverlap_10m": 1167,
+          "nonoverlap_20m": 878,
+          "short": 787,
+          "signals": 1695
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 947,
+          "nonoverlap_10m": 1261,
+          "nonoverlap_20m": 923,
+          "short": 918,
+          "signals": 1865
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1044,
+          "nonoverlap_10m": 1296,
+          "nonoverlap_20m": 940,
+          "short": 886,
+          "signals": 1930
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 993,
+          "nonoverlap_10m": 1269,
+          "nonoverlap_20m": 914,
+          "short": 949,
+          "signals": 1942
+        }
+      },
+      "snapshot_long": 4592,
+      "snapshot_short": 4302,
+      "snapshot_signals": 8894,
+      "symbol": "XMRUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 744,
+          "nonoverlap_10m": 1057,
+          "nonoverlap_20m": 804,
+          "short": 752,
+          "signals": 1496
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 791,
+          "nonoverlap_10m": 1123,
+          "nonoverlap_20m": 854,
+          "short": 805,
+          "signals": 1596
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 943,
+          "nonoverlap_10m": 1298,
+          "nonoverlap_20m": 925,
+          "short": 956,
+          "signals": 1899
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 975,
+          "nonoverlap_10m": 1295,
+          "nonoverlap_20m": 931,
+          "short": 1026,
+          "signals": 2001
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 785,
+          "nonoverlap_10m": 1187,
+          "nonoverlap_20m": 882,
+          "short": 917,
+          "signals": 1702
+        }
+      },
+      "snapshot_long": 4238,
+      "snapshot_short": 4456,
+      "snapshot_signals": 8694,
+      "symbol": "XPLUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 528,
+          "nonoverlap_10m": 768,
+          "nonoverlap_20m": 617,
+          "short": 493,
+          "signals": 1021
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 724,
+          "nonoverlap_10m": 1022,
+          "nonoverlap_20m": 764,
+          "short": 717,
+          "signals": 1441
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 870,
+          "nonoverlap_10m": 1191,
+          "nonoverlap_20m": 882,
+          "short": 898,
+          "signals": 1768
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 863,
+          "nonoverlap_10m": 1192,
+          "nonoverlap_20m": 890,
+          "short": 941,
+          "signals": 1804
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 755,
+          "nonoverlap_10m": 1104,
+          "nonoverlap_20m": 830,
+          "short": 860,
+          "signals": 1615
+        }
+      },
+      "snapshot_long": 3740,
+      "snapshot_short": 3909,
+      "snapshot_signals": 7649,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 1130,
+          "nonoverlap_10m": 1399,
+          "nonoverlap_20m": 1003,
+          "short": 1077,
+          "signals": 2207
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 1032,
+          "nonoverlap_10m": 1275,
+          "nonoverlap_20m": 931,
+          "short": 979,
+          "signals": 2011
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 1035,
+          "nonoverlap_10m": 1404,
+          "nonoverlap_20m": 994,
+          "short": 1108,
+          "signals": 2143
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1140,
+          "nonoverlap_10m": 1443,
+          "nonoverlap_20m": 1027,
+          "short": 1237,
+          "signals": 2377
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 1069,
+          "nonoverlap_10m": 1416,
+          "nonoverlap_20m": 1011,
+          "short": 1224,
+          "signals": 2293
+        }
+      },
+      "snapshot_long": 5406,
+      "snapshot_short": 5625,
+      "snapshot_signals": 11031,
+      "symbol": "ZECUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 34908,
+          "long": 732,
+          "nonoverlap_10m": 964,
+          "nonoverlap_20m": 769,
+          "short": 606,
+          "signals": 1338
+        },
+        "2": {
+          "eligible_pairs": 34560,
+          "long": 696,
+          "nonoverlap_10m": 1011,
+          "nonoverlap_20m": 778,
+          "short": 691,
+          "signals": 1387
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 918,
+          "nonoverlap_10m": 1255,
+          "nonoverlap_20m": 943,
+          "short": 982,
+          "signals": 1900
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 1057,
+          "nonoverlap_10m": 1362,
+          "nonoverlap_20m": 966,
+          "short": 1114,
+          "signals": 2171
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 882,
+          "nonoverlap_10m": 1275,
+          "nonoverlap_20m": 939,
+          "short": 1046,
+          "signals": 1928
+        }
+      },
+      "snapshot_long": 4285,
+      "snapshot_short": 4439,
+      "snapshot_signals": 8724,
+      "symbol": "ZROUSDT"
+    },
+    {
+      "folds": {
+        "1": {
+          "eligible_pairs": 0,
+          "long": 0,
+          "nonoverlap_10m": 0,
+          "nonoverlap_20m": 0,
+          "short": 0,
+          "signals": 0
+        },
+        "2": {
+          "eligible_pairs": 5068,
+          "long": 125,
+          "nonoverlap_10m": 175,
+          "nonoverlap_20m": 131,
+          "short": 141,
+          "signals": 266
+        },
+        "3": {
+          "eligible_pairs": 34560,
+          "long": 948,
+          "nonoverlap_10m": 1286,
+          "nonoverlap_20m": 929,
+          "short": 936,
+          "signals": 1884
+        },
+        "4": {
+          "eligible_pairs": 34560,
+          "long": 961,
+          "nonoverlap_10m": 1245,
+          "nonoverlap_20m": 904,
+          "short": 959,
+          "signals": 1920
+        },
+        "5": {
+          "eligible_pairs": 34211,
+          "long": 892,
+          "nonoverlap_10m": 1206,
+          "nonoverlap_20m": 890,
+          "short": 919,
+          "signals": 1811
+        }
+      },
+      "snapshot_long": 2926,
+      "snapshot_short": 2955,
+      "snapshot_signals": 5881,
+      "symbol": "\u725b\u6765USDT"
+    }
+  ],
+  "protocol": "micro-candle-phase6-sweep-reclaim-frequency-only",
+  "symbols": 100,
+  "target_stop_labels_read": 0
+}
