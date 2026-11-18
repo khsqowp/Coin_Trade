@@ -116,6 +116,35 @@ def test_registered_base_and_stress_costs_match_independent_net_r(fee, slip):
     assert result["trade_net_r"] == pytest.approx(independently_computed, abs=1e-12)
 
 
+@pytest.mark.parametrize(
+    "side,trigger_edit,exit_edit,status,entry,exit_price",
+    [
+        ("long", _set_bar(2, high=103), _set_bar(3, high=115), "target", 102, 114),
+        ("long", _set_bar(2, high=103), _set_bar(3, low=89), "stop", 102, 90),
+        ("short", _set_bar(2, low=97), _set_bar(3, low=85), "target", 98, 86),
+        ("short", _set_bar(2, low=97), _set_bar(3, high=111), "stop", 98, 110),
+    ],
+)
+def test_stop_entry_uses_first_trigger_then_resolves_later_path(
+        side, trigger_edit, exit_edit, status, entry, exit_price):
+    times, opens, highs, lows, closes, native, stop = _fixture(side)
+    trigger_edit(opens, highs, lows, closes)
+    exit_edit(opens, highs, lows, closes)
+    native = Bars(times.copy(), opens.copy(), highs.copy(), lows.copy(),
+                  closes.copy(), np.ones(13))
+    result = evaluate_divergence_event(
+        minute_open_ms=times, minute_opens=opens, minute_highs=highs,
+        minute_lows=lows, minute_closes=closes, native_bars=native,
+        native_tf_minutes=1, signal_index=0, side=side, pivot_stop=stop,
+        atr_at_signal=2, stop_buffer_atr=0, target_r=1, horizon_bars=10,
+        entry_mode="stop_entry", fee_per_side=0, slippage_per_side=0)
+    assert result["status"] == status
+    assert result["entry_ms"] == times[2]
+    assert result["entry_price"] == entry
+    assert result["exit_price"] == exit_price
+    assert result["target_first"] is (status == "target")
+
+
 @pytest.mark.parametrize("missing_index", [1, 5, 10])
 def test_missing_entry_interior_or_horizon_tail_is_unresolved(missing_index):
     times, opens, highs, lows, closes, native, stop = _fixture()
