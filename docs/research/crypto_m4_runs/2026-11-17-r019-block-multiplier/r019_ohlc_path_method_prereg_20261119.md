@@ -23,7 +23,9 @@ Independently validate `chart_predictor.crypto_divergence_engine.evaluate_diverg
   - Long invalid stop: pivot stop=100 → `invalid, false, null,null,null,null`.
   - Malformed bar at t=2 (H=98 with O=C=100) → `unresolved, null, 1,100,null,null`.
   - Stop-entry malformed activation bar at t=2 (H=98 with O=C=100), after t=1 remains a no-trigger ordinary bar → `unresolved, null, null,null,null,null`.
-  - Duplicate t=5 timestamp (replace it with t=4), and separately omit t=1, t=5, or t=10 → each `unresolved, null, 1,100,null,null`.
+  - Duplicate t=5 timestamp (replace it with t=4) → `unresolved, null, 1,100,null,null`.
+  - Omit t=1 (the first required minute, before the entry is established) → `unresolved, null, null,null,null,null`.
+  - Separately omit t=5 or t=10 after the entry open has been established → each `unresolved, null, 1,100,null,null`.
   Mirror the adverse-gap, favorable-gap, tie, and stop-entry-through-trigger cases for short with prices reflected around 100 (stop 110, trigger 98, target 90); expected exit prices are respectively 111, 90, 110, and stop-entry timeout entry 97 / exit 100 at t=11. Each sentinel mutates only its stated field; expected output is fixed before running.
 
 ## Pass/fail criteria
