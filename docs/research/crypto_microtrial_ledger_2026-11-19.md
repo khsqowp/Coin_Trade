@@ -15,7 +15,7 @@ The wider crypto/KR/US strategy-family inventory and current data gates are in [
 | Round screen A | Three-bar impulse/pullback/confirmation breakout | 6 symbols; 277,170 events / 18,345,578 eligible anchors (1.5108%) | Below 10% coverage and overlaps prior R021 pullback/re-entry family; no future outcomes queried. | Rejected at feasibility. |
 | Phase 2 | Expansion followed by compression; expansion-bar direction | 6 symbols; 614,904 events / 18,345,380 eligible anchors (3.3518%) | Below 10% frozen coverage; no target/stop paths or M2 queried. | Rejected at feasibility. |
 | Phase 3 | Large-body impulse followed by inside candle with opposite-side close acceptance | 100 recorded symbols; 181,512 events / 17,139,961 scheduled anchors (1.0590%); cooldown count 156,809 | Below 10% coverage; no forward path/outcome rows read. Collection provenance and coin-only contract membership also remain unverified. | Rejected at feasibility. |
-| Phase 4 | 1m close-location upper/lower 20%; next-open entry; 1 ATR stop and target | 86 archived symbols; 2 primary M2 cells (10m, 20m) | M2 47.977% / 49.379%; base mean net R −1.489 / −1.490. Five chronological folds, but exposed development data. | Both primary cells rejected before Monte Carlo/plateau. |
+| Phase 4 | 1m close-location upper/lower 20%; next-open entry; 1 ATR stop and target | 86 archived symbols; 2 primary M2 cells (10m, 20m) | All-issued M2 47.9772% / 49.3788%; resolved-only sensitivity 47.9772% / 49.3789%; unresolved 54 / 109 of 75.35M / 75.35M issued. Base mean net R −1.489 / −1.490. Five chronological folds, but exposed development data. | Both primary cells rejected before Monte Carlo/plateau; denominator clarification in [`Phase 4 addendum`](micro-candle-phase4-m2-denominator-addendum-2026-11-19.md). |
 | Phase 5 | 1m body/range ≥0.80; follow body direction; 1 ATR stop/target | 100 recorded symbols; 2 M2 cells (10m, 20m) | M2 47.64% / 49.22%; base mean net R −4.268 / −2.925. | Both rejected; no parameter rescue. |
 | Phase 6 | 1m two-bar sweep/reclaim; next-open entry; sweep-extreme stop and 1R target | 100 recorded symbols; 2 M2 cells (10m, 20m) | M2 46.13% / 47.33%; base mean net R −1.426 / −1.426; raw coverage 3.894%. | Both rejected; below 80% M2 and negative net R. |
 | Phase 7 | Fixed Phase 5/6 patterns aggregated to 3m and 5m | 2 rules × 2 timeframes × 2 horizons = 8 M2 cells | All cells M2 46.45–49.50%; base mean net R negative (−2.302 to −0.676). | All 8 rejected. |
@@ -43,6 +43,7 @@ Four separate reviews were completed: crypto candidate novelty, crypto red-team,
 - `docs/research/micro-candle-phase0-results-2026-11-18.md` and `docs/research/micro-candle-phase1-exploratory-2026-11-18.md`
 - `docs/research/micro-candle-phase2-prereg-2026-11-18.md` and `docs/research/micro-candle-phase3-prereg-2026-11-18.md` with `micro-candle-phase3-frequency-2026-11-18.json`
 - `docs/research/micro-candle-phase4-m2-decision-2026-11-18.md`
+- `docs/research/micro-candle-phase4-m2-denominator-addendum-2026-11-19.md`
 - `docs/research/micro-candle-phase5-marubozu-m2-results-2026-11-18.md`
 - `docs/research/micro-candle-phase6-sweep-reclaim-m2-results-2026-11-18.md`
 - `docs/research/micro-candle-phase7-multiscale-m2-results-2026-11-18.md`
