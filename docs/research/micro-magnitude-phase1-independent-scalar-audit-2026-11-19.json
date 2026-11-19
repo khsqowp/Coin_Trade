@@ -1,0 +1,69 @@
+{
+  "audit_date": "2026-11-19",
+  "audit_kind": "independent_read_only_scalar_recomputation",
+  "scope": {
+    "symbols": ["ADAUSDT", "ETCUSDT", "GRTUSDT", "TRBUSDT", "XLMUSDT"],
+    "sqlite_mode": "ro",
+    "query_only": true,
+    "project_scoring_helpers_imported": false,
+    "full_database_hash_recomputed": false,
+    "elapsed_seconds": 25.323
+  },
+  "frozen_semantics": {
+    "bar_close_boundary_ms": "open_ms + 60000",
+    "train_interval": "[TRAIN_START, TRAIN_END)",
+    "evaluation_interval": "[EVAL_START, EVAL_END)",
+    "consecutive_bar_interval_ms": 60000,
+    "validity": "finite OHLCV; positive OHLC; nonnegative volume; OHLC range consistency; minute-aligned open_ms"
+  },
+  "initial_discrepancy": {
+    "train_count_difference": "+1 per symbol versus frozen result",
+    "cause": "The initial scalar audit selected train rows using open_ms and filtered by stored close_ms; it therefore included the final candle whose stored close_ms is TRAIN_END-1 even though its frozen bar-close boundary open_ms+60000 equals the exclusive TRAIN_END.",
+    "resolution": "Recomputed using the preregistered bar-close-boundary convention; the +1 discrepancy disappeared.",
+    "boundary_rows_observed": "For all five symbols, open_ms=TRAIN_END-60000 and close_ms=TRAIN_END-1; the protocol boundary is TRAIN_END and is excluded."
+  },
+  "corrected_comparison": [
+    {
+      "symbol": "ADAUSDT",
+      "train_returns": 2629438,
+      "eval_forecasts": 129598,
+      "train_median_abs_log_return": 0.0005919611846334775,
+      "candidate_mae": 0.000677435672425879,
+      "baseline_mae": 0.0005384803924564321
+    },
+    {
+      "symbol": "ETCUSDT",
+      "train_returns": 2629438,
+      "eval_forecasts": 129598,
+      "train_median_abs_log_return": 0.0005514199202308797,
+      "candidate_mae": 0.0005862131903285956,
+      "baseline_mae": 0.0004705480637313476
+    },
+    {
+      "symbol": "GRTUSDT",
+      "train_returns": 2622236,
+      "eval_forecasts": 129598,
+      "train_median_abs_log_return": 0.0007303200750113644,
+      "candidate_mae": 0.0007059781112933155,
+      "baseline_mae": 0.0005738602847157738
+    },
+    {
+      "symbol": "TRBUSDT",
+      "train_returns": 2579035,
+      "eval_forecasts": 129598,
+      "train_median_abs_log_return": 0.000834376352119561,
+      "candidate_mae": 0.0007024758268375724,
+      "baseline_mae": 0.0006082239438179871
+    },
+    {
+      "symbol": "XLMUSDT",
+      "train_returns": 2622236,
+      "eval_forecasts": 129598,
+      "train_median_abs_log_return": 0.000500458764303162,
+      "candidate_mae": 0.0006154962868671071,
+      "baseline_mae": 0.0004836361890415703
+    }
+  ],
+  "decision": "REPRODUCED_UNDER_FROZEN_BOUNDARY_RULE",
+  "interpretation": "No result or strategy decision changed. This follow-up only resolves a timestamp-semantics mismatch in the first independent audit. The underlying diagnostic remains STOP_MAGNITUDE_BRANCH and does not test trading returns or M2 target-first success."
+}
