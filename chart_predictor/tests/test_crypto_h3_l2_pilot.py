@@ -310,3 +310,28 @@ def test_score_reports_per_symbol_unscorable_and_count_invariants():
         assert horizon["by_symbol"]["BTCUSDT"]["unscorable"] == 1
         assert horizon["by_symbol"]["ETHUSDT"]["unscorable"] == 0
     assert result["signal_coverage_per_valid_book_time"]["BTCUSDT"]["valid_book_seconds"] == 10.0
+
+
+def test_score_persists_event_level_outcomes_for_independent_recalculation():
+    event = {"symbol": "BTCUSDT", "side": 1, "entry_mono": 0.0,
+             "entry_ms": 0, "trigger_mono": -0.2, "trigger_ms": -200,
+             "entry_mid": 100.0, "entry_bid": 99.9, "entry_ask": 100.1,
+             "epoch": 0}
+    points = [q(1.0, 0.0, mid=100.1), q(3.0, 0.0, mid=100.2),
+              q(5.0, 0.0, mid=100.3)]
+    coverage = {symbol: {"valid_book_seconds": 10.0,
+                         "invalid_book_seconds": 0.0,
+                         "book_time_coverage": 1.0}
+                for symbol in ("BTCUSDT", "ETHUSDT")}
+    result = score({"BTCUSDT": points, "ETHUSDT": []}, [event],
+                   {"BTCUSDT": 3, "ETHUSDT": 0},
+                   {"coverage_by_symbol": coverage},
+                   {"BTCUSDT": 0.1, "ETHUSDT": 0.01})
+    assert result["result_schema_revision"] == 2
+    for horizon in result["scores"].values():
+        assert len(horizon["event_outcomes"]) == horizon["n_scored"] == 1
+        row = horizon["event_outcomes"][0]
+        assert row["symbol"] == "BTCUSDT"
+        assert row["entry_ms"] == 0
+        assert "side_correct" in row
+        assert "cross_spread_net_return_bps" in row
