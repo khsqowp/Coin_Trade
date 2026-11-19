@@ -1,0 +1,4978 @@
+{
+  "attribution": "Derived from Binance Vision USD-M raw trades; preserve applicable attribution and CC BY-NC-SA 4.0 terms.",
+  "bin_widths_ms": [
+    1000,
+    10000,
+    60000
+  ],
+  "buyer_initiated_rows": 43235452,
+  "classification": "historical_source_resolution_only_not_a_strategy_or_signal_test",
+  "included_symbol_days": 80,
+  "limitations": [
+    "Four isolated UTC dates are not a continuous or regime-representative panel.",
+    "Event density is not a candidate signal frequency or predictive result.",
+    "No prices, outcomes, labels, returns, targets, stops, or costs were computed."
+  ],
+  "per_symbol_day": [
+    {
+      "buyer_initiated_rows": 354718,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 343150,
+      "symbol": "AAVEUSDT",
+      "trade_rows": 697868,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 57132,
+          "active_bins_only": {
+            "max": 2587,
+            "p50": 6,
+            "p95": 37,
+            "p99": 82
+          },
+          "active_fraction": 0.66125,
+          "all_bins": {
+            "max": 2587,
+            "p50": 2,
+            "p95": 30,
+            "p99": 66
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8629,
+          "active_bins_only": {
+            "max": 5015,
+            "p50": 61,
+            "p95": 191,
+            "p99": 400
+          },
+          "active_fraction": 0.9987268518518518,
+          "all_bins": {
+            "max": 5015,
+            "p50": 61,
+            "p95": 191,
+            "p99": 400
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 5230,
+            "p50": 403,
+            "p95": 1023,
+            "p99": 1757
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5230,
+            "p50": 403,
+            "p95": 1023,
+            "p99": 1757
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 560852,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 530435,
+      "symbol": "ADAUSDT",
+      "trade_rows": 1091287,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 73216,
+          "active_bins_only": {
+            "max": 2225,
+            "p50": 7,
+            "p95": 48,
+            "p99": 107
+          },
+          "active_fraction": 0.8474074074074074,
+          "all_bins": {
+            "max": 2225,
+            "p50": 5,
+            "p95": 44,
+            "p99": 99
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 2516,
+            "p50": 87,
+            "p95": 348,
+            "p99": 711
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2516,
+            "p50": 87,
+            "p95": 348,
+            "p99": 711
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 6152,
+            "p50": 549,
+            "p95": 2077,
+            "p99": 3329
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6152,
+            "p50": 549,
+            "p95": 2077,
+            "p99": 3329
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 345906,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 345753,
+      "symbol": "APTUSDT",
+      "trade_rows": 691659,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 59497,
+          "active_bins_only": {
+            "max": 1230,
+            "p50": 7,
+            "p95": 35,
+            "p99": 75
+          },
+          "active_fraction": 0.6886226851851852,
+          "all_bins": {
+            "max": 1230,
+            "p50": 3,
+            "p95": 29,
+            "p99": 62
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8630,
+          "active_bins_only": {
+            "max": 2116,
+            "p50": 62,
+            "p95": 197,
+            "p99": 374
+          },
+          "active_fraction": 0.9988425925925926,
+          "all_bins": {
+            "max": 2116,
+            "p50": 62,
+            "p95": 197,
+            "p99": 374
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2833,
+            "p50": 409,
+            "p95": 1028,
+            "p99": 1536
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2833,
+            "p50": 409,
+            "p95": 1028,
+            "p99": 1536
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 309102,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 300163,
+      "symbol": "AVAXUSDT",
+      "trade_rows": 609265,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 55556,
+          "active_bins_only": {
+            "max": 1826,
+            "p50": 6,
+            "p95": 34,
+            "p99": 67
+          },
+          "active_fraction": 0.6430092592592592,
+          "all_bins": {
+            "max": 1826,
+            "p50": 2,
+            "p95": 28,
+            "p99": 56
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8621,
+          "active_bins_only": {
+            "max": 2202,
+            "p50": 56,
+            "p95": 172,
+            "p99": 312
+          },
+          "active_fraction": 0.997800925925926,
+          "all_bins": {
+            "max": 2202,
+            "p50": 56,
+            "p95": 172,
+            "p99": 312
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3372,
+            "p50": 358,
+            "p95": 902,
+            "p99": 1389
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3372,
+            "p50": 358,
+            "p95": 902,
+            "p99": 1389
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 183589,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 187647,
+      "symbol": "BCHUSDT",
+      "trade_rows": 371236,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 40363,
+          "active_bins_only": {
+            "max": 2111,
+            "p50": 5,
+            "p95": 27,
+            "p99": 60
+          },
+          "active_fraction": 0.46716435185185184,
+          "all_bins": {
+            "max": 2111,
+            "p50": 0,
+            "p95": 18,
+            "p99": 39
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8519,
+          "active_bins_only": {
+            "max": 3038,
+            "p50": 31,
+            "p95": 108,
+            "p99": 221
+          },
+          "active_fraction": 0.9859953703703703,
+          "all_bins": {
+            "max": 3038,
+            "p50": 30,
+            "p95": 108,
+            "p99": 221
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 7574,
+            "p50": 201,
+            "p95": 535,
+            "p99": 1058
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7574,
+            "p50": 201,
+            "p95": 535,
+            "p99": 1058
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 359376,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 365423,
+      "symbol": "BNBUSDT",
+      "trade_rows": 724799,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 69310,
+          "active_bins_only": {
+            "max": 3032,
+            "p50": 3,
+            "p95": 40,
+            "p99": 81
+          },
+          "active_fraction": 0.8021990740740741,
+          "all_bins": {
+            "max": 3032,
+            "p50": 2,
+            "p95": 35,
+            "p99": 73
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 4194,
+            "p50": 68,
+            "p95": 189,
+            "p99": 370
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4194,
+            "p50": 68,
+            "p95": 189,
+            "p99": 370
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 4932,
+            "p50": 439,
+            "p95": 963,
+            "p99": 1636
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4932,
+            "p50": 439,
+            "p95": 963,
+            "p99": 1636
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 902508,
+      "prior_cross_source_failure_reasons": [
+        "field_mismatch:quote_volume",
+        "field_mismatch:taker_buy_quote"
+      ],
+      "seller_initiated_rows": 901852,
+      "symbol": "BTCUSDT",
+      "trade_rows": 1804360,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 82747,
+          "active_bins_only": {
+            "max": 4941,
+            "p50": 7,
+            "p95": 87,
+            "p99": 203
+          },
+          "active_fraction": 0.9577199074074074,
+          "all_bins": {
+            "max": 4941,
+            "p50": 6,
+            "p95": 85,
+            "p99": 200
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 7957,
+            "p50": 143,
+            "p95": 560,
+            "p99": 1204
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7957,
+            "p50": 143,
+            "p95": 560,
+            "p99": 1204
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 19013,
+            "p50": 983,
+            "p95": 2939,
+            "p99": 5874
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 19013,
+            "p50": 983,
+            "p95": 2939,
+            "p99": 5874
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 882517,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 851197,
+      "symbol": "DOGEUSDT",
+      "trade_rows": 1733714,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 80469,
+          "active_bins_only": {
+            "max": 3222,
+            "p50": 10,
+            "p95": 67,
+            "p99": 165
+          },
+          "active_fraction": 0.9313541666666667,
+          "all_bins": {
+            "max": 3222,
+            "p50": 9,
+            "p95": 64,
+            "p99": 159
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 4680,
+            "p50": 157,
+            "p95": 455,
+            "p99": 880
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4680,
+            "p50": 157,
+            "p95": 455,
+            "p99": 880
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 7816,
+            "p50": 1011,
+            "p95": 2521,
+            "p99": 3816
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7816,
+            "p50": 1011,
+            "p95": 2521,
+            "p99": 3816
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 268737,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 250165,
+      "symbol": "DOTUSDT",
+      "trade_rows": 518902,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 52146,
+          "active_bins_only": {
+            "max": 952,
+            "p50": 6,
+            "p95": 30,
+            "p99": 63
+          },
+          "active_fraction": 0.6035416666666666,
+          "all_bins": {
+            "max": 952,
+            "p50": 1,
+            "p95": 24,
+            "p99": 50
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8602,
+          "active_bins_only": {
+            "max": 1185,
+            "p50": 45,
+            "p95": 159,
+            "p99": 298
+          },
+          "active_fraction": 0.9956018518518519,
+          "all_bins": {
+            "max": 1185,
+            "p50": 44,
+            "p95": 158,
+            "p99": 298
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2255,
+            "p50": 280,
+            "p95": 836,
+            "p99": 1459
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2255,
+            "p50": 280,
+            "p95": 836,
+            "p99": 1459
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 194574,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 186398,
+      "symbol": "ETCUSDT",
+      "trade_rows": 380972,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 42036,
+          "active_bins_only": {
+            "max": 1882,
+            "p50": 5,
+            "p95": 26,
+            "p99": 63
+          },
+          "active_fraction": 0.4865277777777778,
+          "all_bins": {
+            "max": 1882,
+            "p50": 0,
+            "p95": 18,
+            "p99": 41
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8461,
+          "active_bins_only": {
+            "max": 2792,
+            "p50": 31,
+            "p95": 113,
+            "p99": 234
+          },
+          "active_fraction": 0.9792824074074075,
+          "all_bins": {
+            "max": 2792,
+            "p50": 31,
+            "p95": 112,
+            "p99": 230
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 5956,
+            "p50": 212,
+            "p95": 579,
+            "p99": 1079
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5956,
+            "p50": 212,
+            "p95": 579,
+            "p99": 1079
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1297230,
+      "prior_cross_source_failure_reasons": [
+        "field_mismatch:quote_volume"
+      ],
+      "seller_initiated_rows": 1198628,
+      "symbol": "ETHUSDT",
+      "trade_rows": 2495858,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 83447,
+          "active_bins_only": {
+            "max": 3090,
+            "p50": 9,
+            "p95": 114,
+            "p99": 232
+          },
+          "active_fraction": 0.9658217592592593,
+          "all_bins": {
+            "max": 3090,
+            "p50": 8,
+            "p95": 112,
+            "p99": 229
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 5024,
+            "p50": 227,
+            "p95": 701,
+            "p99": 1298
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5024,
+            "p50": 227,
+            "p95": 701,
+            "p99": 1298
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 10517,
+            "p50": 1468,
+            "p95": 3603,
+            "p99": 6249
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 10517,
+            "p50": 1468,
+            "p95": 3603,
+            "p99": 6249
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 197215,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 180487,
+      "symbol": "FILUSDT",
+      "trade_rows": 377702,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 44398,
+          "active_bins_only": {
+            "max": 792,
+            "p50": 5,
+            "p95": 26,
+            "p99": 50
+          },
+          "active_fraction": 0.5138657407407408,
+          "all_bins": {
+            "max": 792,
+            "p50": 1,
+            "p95": 20,
+            "p99": 38
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8537,
+          "active_bins_only": {
+            "max": 1284,
+            "p50": 35,
+            "p95": 112,
+            "p99": 190
+          },
+          "active_fraction": 0.9880787037037037,
+          "all_bins": {
+            "max": 1284,
+            "p50": 34,
+            "p95": 111,
+            "p99": 189
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1912,
+            "p50": 217,
+            "p95": 559,
+            "p99": 879
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1912,
+            "p50": 217,
+            "p95": 559,
+            "p99": 879
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 464762,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 461002,
+      "symbol": "LINKUSDT",
+      "trade_rows": 925764,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 67581,
+          "active_bins_only": {
+            "max": 1547,
+            "p50": 7,
+            "p95": 44,
+            "p99": 93
+          },
+          "active_fraction": 0.7821875,
+          "all_bins": {
+            "max": 1547,
+            "p50": 4,
+            "p95": 39,
+            "p99": 83
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8639,
+          "active_bins_only": {
+            "max": 2138,
+            "p50": 81,
+            "p95": 277,
+            "p99": 516
+          },
+          "active_fraction": 0.9998842592592593,
+          "all_bins": {
+            "max": 2138,
+            "p50": 81,
+            "p95": 277,
+            "p99": 516
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 5242,
+            "p50": 524,
+            "p95": 1445,
+            "p99": 2333
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5242,
+            "p50": 524,
+            "p95": 1445,
+            "p99": 2333
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 284132,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 318793,
+      "symbol": "LTCUSDT",
+      "trade_rows": 602925,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 51164,
+          "active_bins_only": {
+            "max": 1943,
+            "p50": 6,
+            "p95": 35,
+            "p99": 82
+          },
+          "active_fraction": 0.5921759259259259,
+          "all_bins": {
+            "max": 1943,
+            "p50": 1,
+            "p95": 27,
+            "p99": 61
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8612,
+          "active_bins_only": {
+            "max": 2361,
+            "p50": 50,
+            "p95": 167,
+            "p99": 395
+          },
+          "active_fraction": 0.9967592592592592,
+          "all_bins": {
+            "max": 2361,
+            "p50": 50,
+            "p95": 166,
+            "p99": 395
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 9795,
+            "p50": 320,
+            "p95": 842,
+            "p99": 1986
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 9795,
+            "p50": 320,
+            "p95": 842,
+            "p99": 1986
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 183203,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 175567,
+      "symbol": "NEARUSDT",
+      "trade_rows": 358770,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 41925,
+          "active_bins_only": {
+            "max": 1804,
+            "p50": 5,
+            "p95": 26,
+            "p99": 52
+          },
+          "active_fraction": 0.4852430555555556,
+          "all_bins": {
+            "max": 1804,
+            "p50": 0,
+            "p95": 18,
+            "p99": 38
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8524,
+          "active_bins_only": {
+            "max": 2833,
+            "p50": 32,
+            "p95": 107,
+            "p99": 210
+          },
+          "active_fraction": 0.986574074074074,
+          "all_bins": {
+            "max": 2833,
+            "p50": 31,
+            "p95": 106,
+            "p99": 209
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3445,
+            "p50": 196,
+            "p95": 555,
+            "p99": 965
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3445,
+            "p50": 196,
+            "p95": 555,
+            "p99": 965
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 550383,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 495484,
+      "symbol": "SOLUSDT",
+      "trade_rows": 1045867,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 71596,
+          "active_bins_only": {
+            "max": 1788,
+            "p50": 7,
+            "p95": 49,
+            "p99": 109
+          },
+          "active_fraction": 0.8286574074074075,
+          "all_bins": {
+            "max": 1788,
+            "p50": 4,
+            "p95": 44,
+            "p99": 99
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 2518,
+            "p50": 94,
+            "p95": 299,
+            "p99": 558
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2518,
+            "p50": 94,
+            "p95": 299,
+            "p99": 558
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 4566,
+            "p50": 614,
+            "p95": 1568,
+            "p99": 2217
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4566,
+            "p50": 614,
+            "p95": 1568,
+            "p99": 2217
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 127216,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 122983,
+      "symbol": "TRXUSDT",
+      "trade_rows": 250199,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 39162,
+          "active_bins_only": {
+            "max": 2015,
+            "p50": 2,
+            "p95": 25,
+            "p99": 54
+          },
+          "active_fraction": 0.4532638888888889,
+          "all_bins": {
+            "max": 2015,
+            "p50": 0,
+            "p95": 15,
+            "p99": 38
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8468,
+          "active_bins_only": {
+            "max": 3230,
+            "p50": 21,
+            "p95": 82,
+            "p99": 150
+          },
+          "active_fraction": 0.9800925925925926,
+          "all_bins": {
+            "max": 3230,
+            "p50": 20,
+            "p95": 81,
+            "p99": 148
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3649,
+            "p50": 152,
+            "p95": 328,
+            "p99": 515
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3649,
+            "p50": 152,
+            "p95": 328,
+            "p99": 515
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 205731,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 202773,
+      "symbol": "UNIUSDT",
+      "trade_rows": 408504,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 43156,
+          "active_bins_only": {
+            "max": 1947,
+            "p50": 5,
+            "p95": 27,
+            "p99": 60
+          },
+          "active_fraction": 0.49949074074074074,
+          "all_bins": {
+            "max": 1947,
+            "p50": 0,
+            "p95": 19,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8519,
+          "active_bins_only": {
+            "max": 3336,
+            "p50": 35,
+            "p95": 118,
+            "p99": 262
+          },
+          "active_fraction": 0.9859953703703703,
+          "all_bins": {
+            "max": 3336,
+            "p50": 34,
+            "p95": 117,
+            "p99": 261
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3528,
+            "p50": 228,
+            "p95": 625,
+            "p99": 1142
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3528,
+            "p50": 228,
+            "p95": 625,
+            "p99": 1142
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1863193,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1877165,
+      "symbol": "XLMUSDT",
+      "trade_rows": 3740358,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 74975,
+          "active_bins_only": {
+            "max": 2595,
+            "p50": 27,
+            "p95": 165,
+            "p99": 347
+          },
+          "active_fraction": 0.8677662037037037,
+          "all_bins": {
+            "max": 2595,
+            "p50": 21,
+            "p95": 153,
+            "p99": 327
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8636,
+          "active_bins_only": {
+            "max": 7354,
+            "p50": 281,
+            "p95": 1316,
+            "p99": 2469
+          },
+          "active_fraction": 0.999537037037037,
+          "all_bins": {
+            "max": 7354,
+            "p50": 281,
+            "p95": 1315,
+            "p99": 2469
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 19489,
+            "p50": 1921,
+            "p95": 7482,
+            "p99": 11334
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 19489,
+            "p50": 1921,
+            "p95": 7482,
+            "p99": 11334
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1856055,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1805968,
+      "symbol": "XRPUSDT",
+      "trade_rows": 3662023,
+      "utc_date": "2025-01-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 85197,
+          "active_bins_only": {
+            "max": 2945,
+            "p50": 25,
+            "p95": 132,
+            "p99": 288
+          },
+          "active_fraction": 0.9860763888888889,
+          "all_bins": {
+            "max": 2945,
+            "p50": 25,
+            "p95": 131,
+            "p99": 286
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 8300,
+            "p50": 292,
+            "p95": 1197,
+            "p99": 2267
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 8300,
+            "p50": 292,
+            "p95": 1197,
+            "p99": 2267
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 21082,
+            "p50": 1850,
+            "p95": 6862,
+            "p99": 10661
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 21082,
+            "p50": 1850,
+            "p95": 6862,
+            "p99": 10661
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 292472,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 271523,
+      "symbol": "AAVEUSDT",
+      "trade_rows": 563995,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 59344,
+          "active_bins_only": {
+            "max": 2508,
+            "p50": 5,
+            "p95": 29,
+            "p99": 63
+          },
+          "active_fraction": 0.6868518518518518,
+          "all_bins": {
+            "max": 2508,
+            "p50": 2,
+            "p95": 24,
+            "p99": 52
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8631,
+          "active_bins_only": {
+            "max": 3087,
+            "p50": 49,
+            "p95": 160,
+            "p99": 313
+          },
+          "active_fraction": 0.9989583333333333,
+          "all_bins": {
+            "max": 3087,
+            "p50": 49,
+            "p95": 159,
+            "p99": 313
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3500,
+            "p50": 312,
+            "p95": 866,
+            "p99": 1558
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3500,
+            "p50": 312,
+            "p95": 866,
+            "p99": 1558
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 519600,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 509897,
+      "symbol": "ADAUSDT",
+      "trade_rows": 1029497,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 74339,
+          "active_bins_only": {
+            "max": 2646,
+            "p50": 5,
+            "p95": 48,
+            "p99": 93
+          },
+          "active_fraction": 0.8604050925925926,
+          "all_bins": {
+            "max": 2646,
+            "p50": 4,
+            "p95": 45,
+            "p99": 87
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 3006,
+            "p50": 90,
+            "p95": 286,
+            "p99": 546
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3006,
+            "p50": 90,
+            "p95": 286,
+            "p99": 546
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 4625,
+            "p50": 567,
+            "p95": 1599,
+            "p99": 2860
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4625,
+            "p50": 567,
+            "p95": 1599,
+            "p99": 2860
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 196830,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 179294,
+      "symbol": "APTUSDT",
+      "trade_rows": 376124,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 42692,
+          "active_bins_only": {
+            "max": 1429,
+            "p50": 4,
+            "p95": 29,
+            "p99": 70
+          },
+          "active_fraction": 0.4941203703703704,
+          "all_bins": {
+            "max": 1429,
+            "p50": 0,
+            "p95": 19,
+            "p99": 47
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8543,
+          "active_bins_only": {
+            "max": 1481,
+            "p50": 31,
+            "p95": 123,
+            "p99": 258
+          },
+          "active_fraction": 0.9887731481481481,
+          "all_bins": {
+            "max": 1481,
+            "p50": 30,
+            "p95": 123,
+            "p99": 258
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2073,
+            "p50": 207,
+            "p95": 592,
+            "p99": 1156
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2073,
+            "p50": 207,
+            "p95": 592,
+            "p99": 1156
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 363127,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 343309,
+      "symbol": "AVAXUSDT",
+      "trade_rows": 706436,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 55333,
+          "active_bins_only": {
+            "max": 2249,
+            "p50": 8,
+            "p95": 39,
+            "p99": 84
+          },
+          "active_fraction": 0.6404282407407408,
+          "all_bins": {
+            "max": 2249,
+            "p50": 2,
+            "p95": 31,
+            "p99": 68
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8624,
+          "active_bins_only": {
+            "max": 3465,
+            "p50": 61,
+            "p95": 203,
+            "p99": 380
+          },
+          "active_fraction": 0.9981481481481481,
+          "all_bins": {
+            "max": 3465,
+            "p50": 61,
+            "p95": 203,
+            "p99": 380
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 6776,
+            "p50": 389,
+            "p95": 1070,
+            "p99": 2070
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6776,
+            "p50": 389,
+            "p95": 1070,
+            "p99": 2070
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 250988,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 253772,
+      "symbol": "BCHUSDT",
+      "trade_rows": 504760,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 41416,
+          "active_bins_only": {
+            "max": 855,
+            "p50": 5,
+            "p95": 32,
+            "p99": 208
+          },
+          "active_fraction": 0.47935185185185186,
+          "all_bins": {
+            "max": 855,
+            "p50": 0,
+            "p95": 20,
+            "p99": 74
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8492,
+          "active_bins_only": {
+            "max": 4068,
+            "p50": 30,
+            "p95": 120,
+            "p99": 566
+          },
+          "active_fraction": 0.9828703703703704,
+          "all_bins": {
+            "max": 4068,
+            "p50": 30,
+            "p95": 119,
+            "p99": 544
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 18108,
+            "p50": 197,
+            "p95": 669,
+            "p99": 3451
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 18108,
+            "p50": 197,
+            "p95": 669,
+            "p99": 3451
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 643519,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 603662,
+      "symbol": "BNBUSDT",
+      "trade_rows": 1247181,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 73638,
+          "active_bins_only": {
+            "max": 3167,
+            "p50": 6,
+            "p95": 59,
+            "p99": 134
+          },
+          "active_fraction": 0.8522916666666667,
+          "all_bins": {
+            "max": 3167,
+            "p50": 4,
+            "p95": 54,
+            "p99": 123
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 4462,
+            "p50": 91,
+            "p95": 435,
+            "p99": 875
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4462,
+            "p50": 91,
+            "p95": 435,
+            "p99": 875
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 8333,
+            "p50": 556,
+            "p95": 2585,
+            "p99": 4381
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 8333,
+            "p50": 556,
+            "p95": 2585,
+            "p99": 4381
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1584500,
+      "prior_cross_source_failure_reasons": [
+        "field_mismatch:quote_volume",
+        "field_mismatch:taker_buy_quote"
+      ],
+      "seller_initiated_rows": 1620484,
+      "symbol": "BTCUSDT",
+      "trade_rows": 3204984,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 84421,
+          "active_bins_only": {
+            "max": 3633,
+            "p50": 12,
+            "p95": 136,
+            "p99": 309
+          },
+          "active_fraction": 0.9770949074074075,
+          "all_bins": {
+            "max": 3633,
+            "p50": 12,
+            "p95": 135,
+            "p99": 305
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 10292,
+            "p50": 239,
+            "p95": 1090,
+            "p99": 2197
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 10292,
+            "p50": 239,
+            "p95": 1090,
+            "p99": 2197
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 18131,
+            "p50": 1529,
+            "p95": 6312,
+            "p99": 12896
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 18131,
+            "p50": 1529,
+            "p95": 6312,
+            "p99": 12896
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 950888,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 888249,
+      "symbol": "DOGEUSDT",
+      "trade_rows": 1839137,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 78619,
+          "active_bins_only": {
+            "max": 2670,
+            "p50": 12,
+            "p95": 78,
+            "p99": 163
+          },
+          "active_fraction": 0.9099421296296296,
+          "all_bins": {
+            "max": 2670,
+            "p50": 10,
+            "p95": 74,
+            "p99": 156
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 3949,
+            "p50": 155,
+            "p95": 536,
+            "p99": 1085
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3949,
+            "p50": 155,
+            "p95": 536,
+            "p99": 1085
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 9107,
+            "p50": 973,
+            "p95": 2966,
+            "p99": 5360
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 9107,
+            "p50": 973,
+            "p95": 2966,
+            "p99": 5360
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 203152,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 168406,
+      "symbol": "DOTUSDT",
+      "trade_rows": 371558,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 47456,
+          "active_bins_only": {
+            "max": 396,
+            "p50": 3,
+            "p95": 28,
+            "p99": 53
+          },
+          "active_fraction": 0.5492592592592592,
+          "all_bins": {
+            "max": 396,
+            "p50": 1,
+            "p95": 21,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8553,
+          "active_bins_only": {
+            "max": 901,
+            "p50": 34,
+            "p95": 111,
+            "p99": 187
+          },
+          "active_fraction": 0.9899305555555555,
+          "all_bins": {
+            "max": 901,
+            "p50": 34,
+            "p95": 110,
+            "p99": 187
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1742,
+            "p50": 217,
+            "p95": 558,
+            "p99": 807
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1742,
+            "p50": 217,
+            "p95": 558,
+            "p99": 807
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 122283,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 111624,
+      "symbol": "ETCUSDT",
+      "trade_rows": 233907,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 33152,
+          "active_bins_only": {
+            "max": 1127,
+            "p50": 4,
+            "p95": 22,
+            "p99": 49
+          },
+          "active_fraction": 0.3837037037037037,
+          "all_bins": {
+            "max": 1127,
+            "p50": 0,
+            "p95": 13,
+            "p99": 30
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8263,
+          "active_bins_only": {
+            "max": 1343,
+            "p50": 20,
+            "p95": 78,
+            "p99": 166
+          },
+          "active_fraction": 0.9563657407407408,
+          "all_bins": {
+            "max": 1343,
+            "p50": 19,
+            "p95": 77,
+            "p99": 164
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1881,
+            "p50": 124,
+            "p95": 408,
+            "p99": 699
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1881,
+            "p50": 124,
+            "p95": 408,
+            "p99": 699
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 2005297,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1987182,
+      "symbol": "ETHUSDT",
+      "trade_rows": 3992479,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 84555,
+          "active_bins_only": {
+            "max": 5244,
+            "p50": 19,
+            "p95": 159,
+            "p99": 387
+          },
+          "active_fraction": 0.9786458333333333,
+          "all_bins": {
+            "max": 5244,
+            "p50": 18,
+            "p95": 157,
+            "p99": 379
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 20221,
+            "p50": 302,
+            "p95": 1272,
+            "p99": 2657
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 20221,
+            "p50": 302,
+            "p95": 1272,
+            "p99": 2657
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 34850,
+            "p50": 1880,
+            "p95": 7503,
+            "p99": 16312
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 34850,
+            "p50": 1880,
+            "p95": 7503,
+            "p99": 16312
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 162151,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 125064,
+      "symbol": "FILUSDT",
+      "trade_rows": 287215,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 40797,
+          "active_bins_only": {
+            "max": 642,
+            "p50": 2,
+            "p95": 26,
+            "p99": 51
+          },
+          "active_fraction": 0.4721875,
+          "all_bins": {
+            "max": 642,
+            "p50": 0,
+            "p95": 17,
+            "p99": 38
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8512,
+          "active_bins_only": {
+            "max": 745,
+            "p50": 25,
+            "p95": 91,
+            "p99": 179
+          },
+          "active_fraction": 0.9851851851851852,
+          "all_bins": {
+            "max": 745,
+            "p50": 24,
+            "p95": 91,
+            "p99": 178
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1249,
+            "p50": 161,
+            "p95": 467,
+            "p99": 769
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1249,
+            "p50": 161,
+            "p95": 467,
+            "p99": 769
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 302589,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 298631,
+      "symbol": "LINKUSDT",
+      "trade_rows": 601220,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 60305,
+          "active_bins_only": {
+            "max": 773,
+            "p50": 5,
+            "p95": 32,
+            "p99": 65
+          },
+          "active_fraction": 0.697974537037037,
+          "all_bins": {
+            "max": 773,
+            "p50": 2,
+            "p95": 27,
+            "p99": 56
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8630,
+          "active_bins_only": {
+            "max": 1371,
+            "p50": 51,
+            "p95": 182,
+            "p99": 345
+          },
+          "active_fraction": 0.9988425925925926,
+          "all_bins": {
+            "max": 1371,
+            "p50": 51,
+            "p95": 182,
+            "p99": 345
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2774,
+            "p50": 331,
+            "p95": 966,
+            "p99": 1773
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2774,
+            "p50": 331,
+            "p95": 966,
+            "p99": 1773
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 220069,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 204453,
+      "symbol": "LTCUSDT",
+      "trade_rows": 424522,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 55214,
+          "active_bins_only": {
+            "max": 1642,
+            "p50": 3,
+            "p95": 25,
+            "p99": 51
+          },
+          "active_fraction": 0.6390509259259259,
+          "all_bins": {
+            "max": 1642,
+            "p50": 1,
+            "p95": 20,
+            "p99": 41
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8628,
+          "active_bins_only": {
+            "max": 2096,
+            "p50": 38,
+            "p95": 119,
+            "p99": 221
+          },
+          "active_fraction": 0.9986111111111111,
+          "all_bins": {
+            "max": 2096,
+            "p50": 37,
+            "p95": 119,
+            "p99": 221
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2930,
+            "p50": 239,
+            "p95": 596,
+            "p99": 1248
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2930,
+            "p50": 239,
+            "p95": 596,
+            "p99": 1248
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 165269,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 146815,
+      "symbol": "NEARUSDT",
+      "trade_rows": 312084,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 42270,
+          "active_bins_only": {
+            "max": 1100,
+            "p50": 3,
+            "p95": 26,
+            "p99": 46
+          },
+          "active_fraction": 0.4892361111111111,
+          "all_bins": {
+            "max": 1100,
+            "p50": 0,
+            "p95": 19,
+            "p99": 36
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8524,
+          "active_bins_only": {
+            "max": 1369,
+            "p50": 29,
+            "p95": 91,
+            "p99": 169
+          },
+          "active_fraction": 0.986574074074074,
+          "all_bins": {
+            "max": 1369,
+            "p50": 28,
+            "p95": 91,
+            "p99": 163
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 4143,
+            "p50": 181,
+            "p95": 447,
+            "p99": 724
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4143,
+            "p50": 181,
+            "p95": 447,
+            "p99": 724
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 834051,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 830848,
+      "symbol": "SOLUSDT",
+      "trade_rows": 1664899,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 75428,
+          "active_bins_only": {
+            "max": 2543,
+            "p50": 9,
+            "p95": 75,
+            "p99": 212
+          },
+          "active_fraction": 0.8730092592592592,
+          "all_bins": {
+            "max": 2543,
+            "p50": 6,
+            "p95": 69,
+            "p99": 194
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8639,
+          "active_bins_only": {
+            "max": 5300,
+            "p50": 122,
+            "p95": 563,
+            "p99": 1248
+          },
+          "active_fraction": 0.9998842592592593,
+          "all_bins": {
+            "max": 5300,
+            "p50": 122,
+            "p95": 562,
+            "p99": 1248
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 11187,
+            "p50": 791,
+            "p95": 3119,
+            "p99": 5859
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 11187,
+            "p50": 791,
+            "p95": 3119,
+            "p99": 5859
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 170241,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 170656,
+      "symbol": "TRXUSDT",
+      "trade_rows": 340897,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 39636,
+          "active_bins_only": {
+            "max": 644,
+            "p50": 2,
+            "p95": 35,
+            "p99": 77
+          },
+          "active_fraction": 0.45875,
+          "all_bins": {
+            "max": 644,
+            "p50": 0,
+            "p95": 21,
+            "p99": 55
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8467,
+          "active_bins_only": {
+            "max": 736,
+            "p50": 27,
+            "p95": 121,
+            "p99": 243
+          },
+          "active_fraction": 0.9799768518518519,
+          "all_bins": {
+            "max": 736,
+            "p50": 26,
+            "p95": 121,
+            "p99": 242
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1489,
+            "p50": 205,
+            "p95": 520,
+            "p99": 810
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1489,
+            "p50": 205,
+            "p95": 520,
+            "p99": 810
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 125128,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 114688,
+      "symbol": "UNIUSDT",
+      "trade_rows": 239816,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 34756,
+          "active_bins_only": {
+            "max": 846,
+            "p50": 4,
+            "p95": 21,
+            "p99": 46
+          },
+          "active_fraction": 0.4022685185185185,
+          "all_bins": {
+            "max": 846,
+            "p50": 0,
+            "p95": 13,
+            "p99": 29
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8385,
+          "active_bins_only": {
+            "max": 987,
+            "p50": 21,
+            "p95": 74,
+            "p99": 151
+          },
+          "active_fraction": 0.9704861111111112,
+          "all_bins": {
+            "max": 987,
+            "p50": 20,
+            "p95": 73,
+            "p99": 147
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1681,
+            "p50": 135,
+            "p95": 371,
+            "p99": 617
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1681,
+            "p50": 135,
+            "p95": 371,
+            "p99": 617
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 227663,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 207328,
+      "symbol": "XLMUSDT",
+      "trade_rows": 434991,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 47947,
+          "active_bins_only": {
+            "max": 1704,
+            "p50": 5,
+            "p95": 29,
+            "p99": 58
+          },
+          "active_fraction": 0.5549421296296296,
+          "all_bins": {
+            "max": 1704,
+            "p50": 1,
+            "p95": 21,
+            "p99": 45
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8536,
+          "active_bins_only": {
+            "max": 1866,
+            "p50": 38,
+            "p95": 133,
+            "p99": 254
+          },
+          "active_fraction": 0.9879629629629629,
+          "all_bins": {
+            "max": 1866,
+            "p50": 37,
+            "p95": 132,
+            "p99": 254
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2489,
+            "p50": 242,
+            "p95": 669,
+            "p99": 1127
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2489,
+            "p50": 242,
+            "p95": 669,
+            "p99": 1127
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1240937,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1190803,
+      "symbol": "XRPUSDT",
+      "trade_rows": 2431740,
+      "utc_date": "2025-04-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 82885,
+          "active_bins_only": {
+            "max": 4008,
+            "p50": 14,
+            "p95": 98,
+            "p99": 227
+          },
+          "active_fraction": 0.9593171296296297,
+          "all_bins": {
+            "max": 4008,
+            "p50": 13,
+            "p95": 96,
+            "p99": 221
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 8477,
+            "p50": 190,
+            "p95": 772,
+            "p99": 1536
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 8477,
+            "p50": 190,
+            "p95": 772,
+            "p99": 1536
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 17530,
+            "p50": 1221,
+            "p95": 4311,
+            "p99": 7550
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 17530,
+            "p50": 1221,
+            "p95": 4311,
+            "p99": 7550
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 316423,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 301313,
+      "symbol": "AAVEUSDT",
+      "trade_rows": 617736,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 54860,
+          "active_bins_only": {
+            "max": 1736,
+            "p50": 6,
+            "p95": 37,
+            "p99": 78
+          },
+          "active_fraction": 0.6349537037037037,
+          "all_bins": {
+            "max": 1736,
+            "p50": 2,
+            "p95": 29,
+            "p99": 63
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8628,
+          "active_bins_only": {
+            "max": 3437,
+            "p50": 54,
+            "p95": 173,
+            "p99": 366
+          },
+          "active_fraction": 0.9986111111111111,
+          "all_bins": {
+            "max": 3437,
+            "p50": 54,
+            "p95": 172,
+            "p99": 366
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 4299,
+            "p50": 363,
+            "p95": 942,
+            "p99": 1502
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4299,
+            "p50": 363,
+            "p95": 942,
+            "p99": 1502
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 446243,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 483919,
+      "symbol": "ADAUSDT",
+      "trade_rows": 930162,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 65851,
+          "active_bins_only": {
+            "max": 2001,
+            "p50": 3,
+            "p95": 50,
+            "p99": 115
+          },
+          "active_fraction": 0.7621643518518518,
+          "all_bins": {
+            "max": 2001,
+            "p50": 2,
+            "p95": 43,
+            "p99": 99
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8639,
+          "active_bins_only": {
+            "max": 4196,
+            "p50": 70,
+            "p95": 274,
+            "p99": 1012
+          },
+          "active_fraction": 0.9998842592592593,
+          "all_bins": {
+            "max": 4196,
+            "p50": 70,
+            "p95": 274,
+            "p99": 1012
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 12913,
+            "p50": 471,
+            "p95": 1500,
+            "p99": 3913
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 12913,
+            "p50": 471,
+            "p95": 1500,
+            "p99": 3913
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 317053,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 338061,
+      "symbol": "APTUSDT",
+      "trade_rows": 655114,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 54083,
+          "active_bins_only": {
+            "max": 3122,
+            "p50": 5,
+            "p95": 41,
+            "p99": 102
+          },
+          "active_fraction": 0.6259606481481481,
+          "all_bins": {
+            "max": 3122,
+            "p50": 1,
+            "p95": 30,
+            "p99": 78
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8620,
+          "active_bins_only": {
+            "max": 4418,
+            "p50": 53,
+            "p95": 200,
+            "p99": 460
+          },
+          "active_fraction": 0.9976851851851852,
+          "all_bins": {
+            "max": 4418,
+            "p50": 53,
+            "p95": 199,
+            "p99": 460
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 5213,
+            "p50": 368,
+            "p95": 971,
+            "p99": 2217
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5213,
+            "p50": 368,
+            "p95": 971,
+            "p99": 2217
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 232041,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 265080,
+      "symbol": "AVAXUSDT",
+      "trade_rows": 497121,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 52168,
+          "active_bins_only": {
+            "max": 997,
+            "p50": 5,
+            "p95": 31,
+            "p99": 64
+          },
+          "active_fraction": 0.6037962962962963,
+          "all_bins": {
+            "max": 997,
+            "p50": 1,
+            "p95": 24,
+            "p99": 52
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8611,
+          "active_bins_only": {
+            "max": 1155,
+            "p50": 45,
+            "p95": 140,
+            "p99": 272
+          },
+          "active_fraction": 0.9966435185185185,
+          "all_bins": {
+            "max": 1155,
+            "p50": 45,
+            "p95": 140,
+            "p99": 272
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1966,
+            "p50": 295,
+            "p95": 705,
+            "p99": 1371
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1966,
+            "p50": 295,
+            "p95": 705,
+            "p99": 1371
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 502104,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 582009,
+      "symbol": "BCHUSDT",
+      "trade_rows": 1084113,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 70366,
+          "active_bins_only": {
+            "max": 3860,
+            "p50": 5,
+            "p95": 53,
+            "p99": 137
+          },
+          "active_fraction": 0.8144212962962963,
+          "all_bins": {
+            "max": 3860,
+            "p50": 3,
+            "p95": 47,
+            "p99": 122
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8638,
+          "active_bins_only": {
+            "max": 6457,
+            "p50": 82,
+            "p95": 312,
+            "p99": 907
+          },
+          "active_fraction": 0.9997685185185186,
+          "all_bins": {
+            "max": 6457,
+            "p50": 82,
+            "p95": 311,
+            "p99": 907
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 13198,
+            "p50": 564,
+            "p95": 1684,
+            "p99": 4792
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 13198,
+            "p50": 564,
+            "p95": 1684,
+            "p99": 4792
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 210180,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 263133,
+      "symbol": "BNBUSDT",
+      "trade_rows": 473313,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 56516,
+          "active_bins_only": {
+            "max": 1136,
+            "p50": 2,
+            "p95": 36,
+            "p99": 76
+          },
+          "active_fraction": 0.6541203703703704,
+          "all_bins": {
+            "max": 1136,
+            "p50": 1,
+            "p95": 27,
+            "p99": 63
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8634,
+          "active_bins_only": {
+            "max": 2150,
+            "p50": 34,
+            "p95": 146,
+            "p99": 357
+          },
+          "active_fraction": 0.9993055555555556,
+          "all_bins": {
+            "max": 2150,
+            "p50": 34,
+            "p95": 146,
+            "p99": 357
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3827,
+            "p50": 261,
+            "p95": 769,
+            "p99": 1576
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3827,
+            "p50": 261,
+            "p95": 769,
+            "p99": 1576
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1011823,
+      "prior_cross_source_failure_reasons": [
+        "field_mismatch:quote_volume",
+        "field_mismatch:taker_buy_quote"
+      ],
+      "seller_initiated_rows": 1031908,
+      "symbol": "BTCUSDT",
+      "trade_rows": 2043731,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 83527,
+          "active_bins_only": {
+            "max": 3763,
+            "p50": 6,
+            "p95": 101,
+            "p99": 250
+          },
+          "active_fraction": 0.9667476851851852,
+          "all_bins": {
+            "max": 3763,
+            "p50": 6,
+            "p95": 99,
+            "p99": 245
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 11723,
+            "p50": 142,
+            "p95": 739,
+            "p99": 1683
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 11723,
+            "p50": 142,
+            "p95": 739,
+            "p99": 1683
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 22591,
+            "p50": 949,
+            "p95": 4195,
+            "p99": 8233
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 22591,
+            "p50": 949,
+            "p95": 4195,
+            "p99": 8233
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 590689,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 666087,
+      "symbol": "DOGEUSDT",
+      "trade_rows": 1256776,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 73115,
+          "active_bins_only": {
+            "max": 1396,
+            "p50": 5,
+            "p95": 58,
+            "p99": 124
+          },
+          "active_fraction": 0.8462384259259259,
+          "all_bins": {
+            "max": 1396,
+            "p50": 3,
+            "p95": 53,
+            "p99": 115
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 3330,
+            "p50": 106,
+            "p95": 350,
+            "p99": 1098
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3330,
+            "p50": 106,
+            "p95": 350,
+            "p99": 1098
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 7122,
+            "p50": 688,
+            "p95": 1933,
+            "p99": 4491
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7122,
+            "p50": 688,
+            "p95": 1933,
+            "p99": 4491
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 161049,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 162433,
+      "symbol": "DOTUSDT",
+      "trade_rows": 323482,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 50816,
+          "active_bins_only": {
+            "max": 686,
+            "p50": 2,
+            "p95": 27,
+            "p99": 51
+          },
+          "active_fraction": 0.5881481481481482,
+          "all_bins": {
+            "max": 686,
+            "p50": 1,
+            "p95": 20,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8586,
+          "active_bins_only": {
+            "max": 1121,
+            "p50": 29,
+            "p95": 94,
+            "p99": 172
+          },
+          "active_fraction": 0.99375,
+          "all_bins": {
+            "max": 1121,
+            "p50": 29,
+            "p95": 94,
+            "p99": 170
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1554,
+            "p50": 200,
+            "p95": 440,
+            "p99": 772
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1554,
+            "p50": 200,
+            "p95": 440,
+            "p99": 772
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 108844,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 117115,
+      "symbol": "ETCUSDT",
+      "trade_rows": 225959,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 33393,
+          "active_bins_only": {
+            "max": 696,
+            "p50": 3,
+            "p95": 22,
+            "p99": 45
+          },
+          "active_fraction": 0.3864930555555556,
+          "all_bins": {
+            "max": 696,
+            "p50": 0,
+            "p95": 13,
+            "p99": 30
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8345,
+          "active_bins_only": {
+            "max": 922,
+            "p50": 20,
+            "p95": 70,
+            "p99": 139
+          },
+          "active_fraction": 0.9658564814814815,
+          "all_bins": {
+            "max": 922,
+            "p50": 19,
+            "p95": 69,
+            "p99": 134
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1090,
+            "p50": 135,
+            "p95": 321,
+            "p99": 609
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1090,
+            "p50": 135,
+            "p95": 321,
+            "p99": 609
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1815790,
+      "prior_cross_source_failure_reasons": [
+        "field_mismatch:quote_volume"
+      ],
+      "seller_initiated_rows": 1740004,
+      "symbol": "ETHUSDT",
+      "trade_rows": 3555794,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 84697,
+          "active_bins_only": {
+            "max": 5652,
+            "p50": 12,
+            "p95": 147,
+            "p99": 393
+          },
+          "active_fraction": 0.9802893518518518,
+          "all_bins": {
+            "max": 5652,
+            "p50": 12,
+            "p95": 145,
+            "p99": 388
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 21882,
+            "p50": 261,
+            "p95": 1156,
+            "p99": 2709
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 21882,
+            "p50": 261,
+            "p95": 1156,
+            "p99": 2709
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 27917,
+            "p50": 1688,
+            "p95": 6488,
+            "p99": 14615
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 27917,
+            "p50": 1688,
+            "p95": 6488,
+            "p99": 14615
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 102994,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 122683,
+      "symbol": "FILUSDT",
+      "trade_rows": 225677,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 32464,
+          "active_bins_only": {
+            "max": 650,
+            "p50": 2,
+            "p95": 31,
+            "p99": 61
+          },
+          "active_fraction": 0.37574074074074076,
+          "all_bins": {
+            "max": 650,
+            "p50": 0,
+            "p95": 15,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8366,
+          "active_bins_only": {
+            "max": 973,
+            "p50": 18,
+            "p95": 80,
+            "p99": 133
+          },
+          "active_fraction": 0.968287037037037,
+          "all_bins": {
+            "max": 973,
+            "p50": 17,
+            "p95": 79,
+            "p99": 131
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1109,
+            "p50": 132,
+            "p95": 332,
+            "p99": 744
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1109,
+            "p50": 132,
+            "p95": 332,
+            "p99": 744
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 194434,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 207620,
+      "symbol": "LINKUSDT",
+      "trade_rows": 402054,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 47196,
+          "active_bins_only": {
+            "max": 641,
+            "p50": 4,
+            "p95": 28,
+            "p99": 57
+          },
+          "active_fraction": 0.54625,
+          "all_bins": {
+            "max": 641,
+            "p50": 1,
+            "p95": 21,
+            "p99": 44
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8599,
+          "active_bins_only": {
+            "max": 1081,
+            "p50": 36,
+            "p95": 117,
+            "p99": 226
+          },
+          "active_fraction": 0.9952546296296296,
+          "all_bins": {
+            "max": 1081,
+            "p50": 36,
+            "p95": 116,
+            "p99": 224
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1590,
+            "p50": 240,
+            "p95": 557,
+            "p99": 961
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1590,
+            "p50": 240,
+            "p95": 557,
+            "p99": 961
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 170538,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 182638,
+      "symbol": "LTCUSDT",
+      "trade_rows": 353176,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 42222,
+          "active_bins_only": {
+            "max": 951,
+            "p50": 3,
+            "p95": 31,
+            "p99": 64
+          },
+          "active_fraction": 0.48868055555555556,
+          "all_bins": {
+            "max": 951,
+            "p50": 0,
+            "p95": 21,
+            "p99": 47
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8545,
+          "active_bins_only": {
+            "max": 1014,
+            "p50": 31,
+            "p95": 112,
+            "p99": 201
+          },
+          "active_fraction": 0.9890046296296297,
+          "all_bins": {
+            "max": 1014,
+            "p50": 30,
+            "p95": 111,
+            "p99": 201
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1824,
+            "p50": 210,
+            "p95": 494,
+            "p99": 918
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1824,
+            "p50": 210,
+            "p95": 494,
+            "p99": 918
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 120864,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 139521,
+      "symbol": "NEARUSDT",
+      "trade_rows": 260385,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 35207,
+          "active_bins_only": {
+            "max": 1345,
+            "p50": 2,
+            "p95": 33,
+            "p99": 62
+          },
+          "active_fraction": 0.40748842592592593,
+          "all_bins": {
+            "max": 1345,
+            "p50": 0,
+            "p95": 18,
+            "p99": 46
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8365,
+          "active_bins_only": {
+            "max": 1360,
+            "p50": 22,
+            "p95": 90,
+            "p99": 153
+          },
+          "active_fraction": 0.9681712962962963,
+          "all_bins": {
+            "max": 1360,
+            "p50": 21,
+            "p95": 88,
+            "p99": 152
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1884,
+            "p50": 155,
+            "p95": 371,
+            "p99": 679
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1884,
+            "p50": 155,
+            "p95": 371,
+            "p99": 679
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1131388,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1114568,
+      "symbol": "SOLUSDT",
+      "trade_rows": 2245956,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 84093,
+          "active_bins_only": {
+            "max": 3070,
+            "p50": 9,
+            "p95": 91,
+            "p99": 227
+          },
+          "active_fraction": 0.9732986111111112,
+          "all_bins": {
+            "max": 3070,
+            "p50": 8,
+            "p95": 89,
+            "p99": 223
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 10500,
+            "p50": 181,
+            "p95": 684,
+            "p99": 1457
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 10500,
+            "p50": 181,
+            "p95": 684,
+            "p99": 1457
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 20995,
+            "p50": 1161,
+            "p95": 3793,
+            "p99": 7637
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 20995,
+            "p50": 1161,
+            "p95": 3793,
+            "p99": 7637
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 95457,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 108942,
+      "symbol": "TRXUSDT",
+      "trade_rows": 204399,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 33118,
+          "active_bins_only": {
+            "max": 677,
+            "p50": 2,
+            "p95": 28,
+            "p99": 64
+          },
+          "active_fraction": 0.38331018518518517,
+          "all_bins": {
+            "max": 677,
+            "p50": 0,
+            "p95": 11,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8378,
+          "active_bins_only": {
+            "max": 807,
+            "p50": 12,
+            "p95": 80,
+            "p99": 150
+          },
+          "active_fraction": 0.9696759259259259,
+          "all_bins": {
+            "max": 807,
+            "p50": 11,
+            "p95": 80,
+            "p99": 147
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 933,
+            "p50": 117,
+            "p95": 315,
+            "p99": 661
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 933,
+            "p50": 117,
+            "p95": 315,
+            "p99": 661
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 243714,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 282727,
+      "symbol": "UNIUSDT",
+      "trade_rows": 526441,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 47788,
+          "active_bins_only": {
+            "max": 4364,
+            "p50": 4,
+            "p95": 36,
+            "p99": 82
+          },
+          "active_fraction": 0.5531018518518519,
+          "all_bins": {
+            "max": 4364,
+            "p50": 1,
+            "p95": 26,
+            "p99": 60
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8597,
+          "active_bins_only": {
+            "max": 6727,
+            "p50": 41,
+            "p95": 150,
+            "p99": 369
+          },
+          "active_fraction": 0.9950231481481482,
+          "all_bins": {
+            "max": 6727,
+            "p50": 40,
+            "p95": 149,
+            "p99": 368
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 12365,
+            "p50": 263,
+            "p95": 790,
+            "p99": 1972
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 12365,
+            "p50": 263,
+            "p95": 790,
+            "p99": 1972
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 173297,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 189873,
+      "symbol": "XLMUSDT",
+      "trade_rows": 363170,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 41632,
+          "active_bins_only": {
+            "max": 1104,
+            "p50": 3,
+            "p95": 29,
+            "p99": 67
+          },
+          "active_fraction": 0.48185185185185186,
+          "all_bins": {
+            "max": 1104,
+            "p50": 0,
+            "p95": 19,
+            "p99": 46
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8523,
+          "active_bins_only": {
+            "max": 1296,
+            "p50": 27,
+            "p95": 119,
+            "p99": 293
+          },
+          "active_fraction": 0.9864583333333333,
+          "all_bins": {
+            "max": 1296,
+            "p50": 26,
+            "p95": 118,
+            "p99": 291
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3054,
+            "p50": 187,
+            "p95": 677,
+            "p99": 1147
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3054,
+            "p50": 187,
+            "p95": 677,
+            "p99": 1147
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 949272,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 979616,
+      "symbol": "XRPUSDT",
+      "trade_rows": 1928888,
+      "utc_date": "2025-07-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 82860,
+          "active_bins_only": {
+            "max": 4350,
+            "p50": 7,
+            "p95": 83,
+            "p99": 181
+          },
+          "active_fraction": 0.9590277777777778,
+          "all_bins": {
+            "max": 4350,
+            "p50": 7,
+            "p95": 82,
+            "p99": 178
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 6722,
+            "p50": 161,
+            "p95": 572,
+            "p99": 1306
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6722,
+            "p50": 161,
+            "p95": 572,
+            "p99": 1306
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 10833,
+            "p50": 1061,
+            "p95": 3156,
+            "p99": 6100
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 10833,
+            "p50": 1061,
+            "p95": 3156,
+            "p99": 6100
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 255892,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 251447,
+      "symbol": "AAVEUSDT",
+      "trade_rows": 507339,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 41819,
+          "active_bins_only": {
+            "max": 1914,
+            "p50": 6,
+            "p95": 40,
+            "p99": 94
+          },
+          "active_fraction": 0.4840162037037037,
+          "all_bins": {
+            "max": 1914,
+            "p50": 0,
+            "p95": 27,
+            "p99": 63
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8522,
+          "active_bins_only": {
+            "max": 2670,
+            "p50": 41,
+            "p95": 162,
+            "p99": 344
+          },
+          "active_fraction": 0.9863425925925926,
+          "all_bins": {
+            "max": 2670,
+            "p50": 41,
+            "p95": 161,
+            "p99": 343
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 6882,
+            "p50": 279,
+            "p95": 756,
+            "p99": 1583
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6882,
+            "p50": 279,
+            "p95": 756,
+            "p99": 1583
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 404315,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 365364,
+      "symbol": "ADAUSDT",
+      "trade_rows": 769679,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 64561,
+          "active_bins_only": {
+            "max": 1279,
+            "p50": 4,
+            "p95": 44,
+            "p99": 98
+          },
+          "active_fraction": 0.7472337962962963,
+          "all_bins": {
+            "max": 1279,
+            "p50": 2,
+            "p95": 38,
+            "p99": 86
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8637,
+          "active_bins_only": {
+            "max": 2103,
+            "p50": 63,
+            "p95": 235,
+            "p99": 499
+          },
+          "active_fraction": 0.9996527777777777,
+          "all_bins": {
+            "max": 2103,
+            "p50": 63,
+            "p95": 234,
+            "p99": 499
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 7466,
+            "p50": 423,
+            "p95": 1242,
+            "p99": 2235
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7466,
+            "p50": 423,
+            "p95": 1242,
+            "p99": 2235
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 354140,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 339497,
+      "symbol": "APTUSDT",
+      "trade_rows": 693637,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 54661,
+          "active_bins_only": {
+            "max": 1279,
+            "p50": 6,
+            "p95": 48,
+            "p99": 105
+          },
+          "active_fraction": 0.632650462962963,
+          "all_bins": {
+            "max": 1279,
+            "p50": 2,
+            "p95": 36,
+            "p99": 88
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8626,
+          "active_bins_only": {
+            "max": 1609,
+            "p50": 57,
+            "p95": 225,
+            "p99": 456
+          },
+          "active_fraction": 0.9983796296296297,
+          "all_bins": {
+            "max": 1609,
+            "p50": 57,
+            "p95": 225,
+            "p99": 456
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3640,
+            "p50": 388,
+            "p95": 1044,
+            "p99": 2026
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3640,
+            "p50": 388,
+            "p95": 1044,
+            "p99": 2026
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 472822,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 472346,
+      "symbol": "AVAXUSDT",
+      "trade_rows": 945168,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 59991,
+          "active_bins_only": {
+            "max": 1606,
+            "p50": 8,
+            "p95": 53,
+            "p99": 108
+          },
+          "active_fraction": 0.6943402777777777,
+          "all_bins": {
+            "max": 1606,
+            "p50": 3,
+            "p95": 45,
+            "p99": 92
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8627,
+          "active_bins_only": {
+            "max": 2453,
+            "p50": 83,
+            "p95": 286,
+            "p99": 549
+          },
+          "active_fraction": 0.9984953703703704,
+          "all_bins": {
+            "max": 2453,
+            "p50": 83,
+            "p95": 285,
+            "p99": 549
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 7635,
+            "p50": 540,
+            "p95": 1463,
+            "p99": 2570
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 7635,
+            "p50": 540,
+            "p95": 1463,
+            "p99": 2570
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 293720,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 268155,
+      "symbol": "BCHUSDT",
+      "trade_rows": 561875,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 43949,
+          "active_bins_only": {
+            "max": 4524,
+            "p50": 4,
+            "p95": 47,
+            "p99": 117
+          },
+          "active_fraction": 0.5086689814814814,
+          "all_bins": {
+            "max": 4524,
+            "p50": 1,
+            "p95": 30,
+            "p99": 80
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8567,
+          "active_bins_only": {
+            "max": 5913,
+            "p50": 35,
+            "p95": 191,
+            "p99": 524
+          },
+          "active_fraction": 0.991550925925926,
+          "all_bins": {
+            "max": 5913,
+            "p50": 35,
+            "p95": 191,
+            "p99": 520
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 11235,
+            "p50": 242,
+            "p95": 1047,
+            "p99": 2909
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 11235,
+            "p50": 242,
+            "p95": 1047,
+            "p99": 2909
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 598105,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 554966,
+      "symbol": "BNBUSDT",
+      "trade_rows": 1153071,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 78165,
+          "active_bins_only": {
+            "max": 2180,
+            "p50": 5,
+            "p95": 53,
+            "p99": 121
+          },
+          "active_fraction": 0.9046875,
+          "all_bins": {
+            "max": 2180,
+            "p50": 4,
+            "p95": 50,
+            "p99": 114
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 4061,
+            "p50": 102,
+            "p95": 335,
+            "p99": 664
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 4061,
+            "p50": 102,
+            "p95": 335,
+            "p99": 664
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 10252,
+            "p50": 664,
+            "p95": 1727,
+            "p99": 2987
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 10252,
+            "p50": 664,
+            "p95": 1727,
+            "p99": 2987
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1791112,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1704685,
+      "symbol": "BTCUSDT",
+      "trade_rows": 3495797,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 85641,
+          "active_bins_only": {
+            "max": 4741,
+            "p50": 10,
+            "p95": 172,
+            "p99": 382
+          },
+          "active_fraction": 0.9912152777777777,
+          "all_bins": {
+            "max": 4741,
+            "p50": 9,
+            "p95": 171,
+            "p99": 379
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 15671,
+            "p50": 261,
+            "p95": 1151,
+            "p99": 2555
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 15671,
+            "p50": 261,
+            "p95": 1151,
+            "p99": 2555
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 51563,
+            "p50": 1643,
+            "p95": 6310,
+            "p99": 14296
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 51563,
+            "p50": 1643,
+            "p95": 6310,
+            "p99": 14296
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 965620,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 895489,
+      "symbol": "DOGEUSDT",
+      "trade_rows": 1861109,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 76551,
+          "active_bins_only": {
+            "max": 1750,
+            "p50": 10,
+            "p95": 87,
+            "p99": 187
+          },
+          "active_fraction": 0.8860069444444445,
+          "all_bins": {
+            "max": 1750,
+            "p50": 8,
+            "p95": 82,
+            "p99": 177
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 5688,
+            "p50": 157,
+            "p95": 571,
+            "p99": 1117
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 5688,
+            "p50": 157,
+            "p95": 571,
+            "p99": 1117
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 16640,
+            "p50": 999,
+            "p95": 3114,
+            "p99": 5886
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 16640,
+            "p50": 999,
+            "p95": 3114,
+            "p99": 5886
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 170122,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 155340,
+      "symbol": "DOTUSDT",
+      "trade_rows": 325462,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 43808,
+          "active_bins_only": {
+            "max": 1391,
+            "p50": 2,
+            "p95": 27,
+            "p99": 58
+          },
+          "active_fraction": 0.5070370370370371,
+          "all_bins": {
+            "max": 1391,
+            "p50": 1,
+            "p95": 19,
+            "p99": 42
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8568,
+          "active_bins_only": {
+            "max": 1561,
+            "p50": 26,
+            "p95": 107,
+            "p99": 250
+          },
+          "active_fraction": 0.9916666666666667,
+          "all_bins": {
+            "max": 1561,
+            "p50": 25,
+            "p95": 106,
+            "p99": 249
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3262,
+            "p50": 169,
+            "p95": 521,
+            "p99": 1266
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3262,
+            "p50": 169,
+            "p95": 521,
+            "p99": 1266
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 198328,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 195110,
+      "symbol": "ETCUSDT",
+      "trade_rows": 393438,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 38878,
+          "active_bins_only": {
+            "max": 2158,
+            "p50": 6,
+            "p95": 30,
+            "p99": 71
+          },
+          "active_fraction": 0.4499768518518519,
+          "all_bins": {
+            "max": 2158,
+            "p50": 0,
+            "p95": 20,
+            "p99": 47
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8378,
+          "active_bins_only": {
+            "max": 2974,
+            "p50": 31,
+            "p95": 130,
+            "p99": 275
+          },
+          "active_fraction": 0.9696759259259259,
+          "all_bins": {
+            "max": 2974,
+            "p50": 30,
+            "p95": 128,
+            "p99": 273
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 6499,
+            "p50": 210,
+            "p95": 593,
+            "p99": 1160
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6499,
+            "p50": 210,
+            "p95": 593,
+            "p99": 1160
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 2777326,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 2734922,
+      "symbol": "ETHUSDT",
+      "trade_rows": 5512248,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 85256,
+          "active_bins_only": {
+            "max": 6498,
+            "p50": 17,
+            "p95": 230,
+            "p99": 642
+          },
+          "active_fraction": 0.9867592592592592,
+          "all_bins": {
+            "max": 6498,
+            "p50": 17,
+            "p95": 228,
+            "p99": 638
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 17369,
+            "p50": 410,
+            "p95": 1776,
+            "p99": 4702
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 17369,
+            "p50": 410,
+            "p95": 1776,
+            "p99": 4702
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 68283,
+            "p50": 2695,
+            "p95": 9076,
+            "p99": 25941
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 68283,
+            "p50": 2695,
+            "p95": 9076,
+            "p99": 25941
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 110549,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 95945,
+      "symbol": "FILUSDT",
+      "trade_rows": 206494,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 40937,
+          "active_bins_only": {
+            "max": 210,
+            "p50": 1,
+            "p95": 23,
+            "p99": 49
+          },
+          "active_fraction": 0.47380787037037037,
+          "all_bins": {
+            "max": 210,
+            "p50": 0,
+            "p95": 13,
+            "p99": 36
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8534,
+          "active_bins_only": {
+            "max": 635,
+            "p50": 14,
+            "p95": 72,
+            "p99": 157
+          },
+          "active_fraction": 0.9877314814814815,
+          "all_bins": {
+            "max": 635,
+            "p50": 14,
+            "p95": 72,
+            "p99": 157
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 2681,
+            "p50": 115,
+            "p95": 324,
+            "p99": 622
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 2681,
+            "p50": 115,
+            "p95": 324,
+            "p99": 622
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 430480,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 379813,
+      "symbol": "LINKUSDT",
+      "trade_rows": 810293,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 61325,
+          "active_bins_only": {
+            "max": 1040,
+            "p50": 7,
+            "p95": 44,
+            "p99": 100
+          },
+          "active_fraction": 0.7097800925925926,
+          "all_bins": {
+            "max": 1040,
+            "p50": 3,
+            "p95": 37,
+            "p99": 86
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8637,
+          "active_bins_only": {
+            "max": 2389,
+            "p50": 69,
+            "p95": 239,
+            "p99": 542
+          },
+          "active_fraction": 0.9996527777777777,
+          "all_bins": {
+            "max": 2389,
+            "p50": 68,
+            "p95": 238,
+            "p99": 542
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 8094,
+            "p50": 451,
+            "p95": 1228,
+            "p99": 2552
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 8094,
+            "p50": 451,
+            "p95": 1228,
+            "p99": 2552
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 312293,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 271410,
+      "symbol": "LTCUSDT",
+      "trade_rows": 583703,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 45221,
+          "active_bins_only": {
+            "max": 1423,
+            "p50": 4,
+            "p95": 50,
+            "p99": 123
+          },
+          "active_fraction": 0.5233912037037037,
+          "all_bins": {
+            "max": 1423,
+            "p50": 1,
+            "p95": 31,
+            "p99": 90
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8561,
+          "active_bins_only": {
+            "max": 3891,
+            "p50": 36,
+            "p95": 224,
+            "p99": 579
+          },
+          "active_fraction": 0.9908564814814815,
+          "all_bins": {
+            "max": 3891,
+            "p50": 36,
+            "p95": 224,
+            "p99": 578
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 6480,
+            "p50": 258,
+            "p95": 1137,
+            "p99": 2607
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 6480,
+            "p50": 258,
+            "p95": 1137,
+            "p99": 2607
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 193031,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 178930,
+      "symbol": "NEARUSDT",
+      "trade_rows": 371961,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 48677,
+          "active_bins_only": {
+            "max": 1049,
+            "p50": 2,
+            "p95": 30,
+            "p99": 64
+          },
+          "active_fraction": 0.5633912037037037,
+          "all_bins": {
+            "max": 1049,
+            "p50": 1,
+            "p95": 22,
+            "p99": 50
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8576,
+          "active_bins_only": {
+            "max": 2492,
+            "p50": 30,
+            "p95": 123,
+            "p99": 231
+          },
+          "active_fraction": 0.9925925925925926,
+          "all_bins": {
+            "max": 2492,
+            "p50": 30,
+            "p95": 121,
+            "p99": 230
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3675,
+            "p50": 211,
+            "p95": 590,
+            "p99": 1133
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3675,
+            "p50": 211,
+            "p95": 590,
+            "p99": 1133
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 1556978,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 1540761,
+      "symbol": "SOLUSDT",
+      "trade_rows": 3097739,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 83904,
+          "active_bins_only": {
+            "max": 2515,
+            "p50": 14,
+            "p95": 129,
+            "p99": 310
+          },
+          "active_fraction": 0.9711111111111111,
+          "all_bins": {
+            "max": 2515,
+            "p50": 13,
+            "p95": 128,
+            "p99": 304
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 11108,
+            "p50": 261,
+            "p95": 928,
+            "p99": 1918
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 11108,
+            "p50": 261,
+            "p95": 928,
+            "p99": 1918
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 29635,
+            "p50": 1674,
+            "p95": 4857,
+            "p99": 10330
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 29635,
+            "p50": 1674,
+            "p95": 4857,
+            "p99": 10330
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 141574,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 114241,
+      "symbol": "TRXUSDT",
+      "trade_rows": 255815,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 41081,
+          "active_bins_only": {
+            "max": 602,
+            "p50": 2,
+            "p95": 27,
+            "p99": 71
+          },
+          "active_fraction": 0.475474537037037,
+          "all_bins": {
+            "max": 602,
+            "p50": 0,
+            "p95": 14,
+            "p99": 48
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8532,
+          "active_bins_only": {
+            "max": 687,
+            "p50": 14,
+            "p95": 105,
+            "p99": 229
+          },
+          "active_fraction": 0.9875,
+          "all_bins": {
+            "max": 687,
+            "p50": 14,
+            "p95": 104,
+            "p99": 229
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 1496,
+            "p50": 136,
+            "p95": 426,
+            "p99": 788
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 1496,
+            "p50": 136,
+            "p95": 426,
+            "p99": 788
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 167571,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 163566,
+      "symbol": "UNIUSDT",
+      "trade_rows": 331137,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 38420,
+          "active_bins_only": {
+            "max": 503,
+            "p50": 4,
+            "p95": 28,
+            "p99": 69
+          },
+          "active_fraction": 0.4446759259259259,
+          "all_bins": {
+            "max": 503,
+            "p50": 0,
+            "p95": 18,
+            "p99": 43
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8500,
+          "active_bins_only": {
+            "max": 1930,
+            "p50": 26,
+            "p95": 111,
+            "p99": 246
+          },
+          "active_fraction": 0.9837962962962963,
+          "all_bins": {
+            "max": 1930,
+            "p50": 26,
+            "p95": 110,
+            "p99": 244
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3608,
+            "p50": 176,
+            "p95": 549,
+            "p99": 1046
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3608,
+            "p50": 176,
+            "p95": 549,
+            "p99": 1046
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 335067,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 311470,
+      "symbol": "XLMUSDT",
+      "trade_rows": 646537,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 46772,
+          "active_bins_only": {
+            "max": 745,
+            "p50": 7,
+            "p95": 48,
+            "p99": 108
+          },
+          "active_fraction": 0.5413425925925925,
+          "all_bins": {
+            "max": 745,
+            "p50": 1,
+            "p95": 33,
+            "p99": 82
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8521,
+          "active_bins_only": {
+            "max": 1466,
+            "p50": 53,
+            "p95": 220,
+            "p99": 395
+          },
+          "active_fraction": 0.9862268518518519,
+          "all_bins": {
+            "max": 1466,
+            "p50": 52,
+            "p95": 219,
+            "p99": 395
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 3901,
+            "p50": 352,
+            "p95": 1057,
+            "p99": 1756
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3901,
+            "p50": 352,
+            "p95": 1057,
+            "p99": 1756
+          },
+          "expected_bins": 1440
+        }
+      }
+    },
+    {
+      "buyer_initiated_rows": 840457,
+      "prior_cross_source_failure_reasons": [],
+      "seller_initiated_rows": 796651,
+      "symbol": "XRPUSDT",
+      "trade_rows": 1637108,
+      "utc_date": "2025-10-01",
+      "widths_ms": {
+        "1000": {
+          "active_bins": 78912,
+          "active_bins_only": {
+            "max": 2526,
+            "p50": 7,
+            "p95": 78,
+            "p99": 170
+          },
+          "active_fraction": 0.9133333333333333,
+          "all_bins": {
+            "max": 2526,
+            "p50": 6,
+            "p95": 74,
+            "p99": 162
+          },
+          "expected_bins": 86400
+        },
+        "10000": {
+          "active_bins": 8640,
+          "active_bins_only": {
+            "max": 3630,
+            "p50": 143,
+            "p95": 482,
+            "p99": 951
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 3630,
+            "p50": 143,
+            "p95": 482,
+            "p99": 951
+          },
+          "expected_bins": 8640
+        },
+        "60000": {
+          "active_bins": 1440,
+          "active_bins_only": {
+            "max": 12269,
+            "p50": 909,
+            "p95": 2536,
+            "p99": 4357
+          },
+          "active_fraction": 1.0,
+          "all_bins": {
+            "max": 12269,
+            "p50": 909,
+            "p95": 2536,
+            "p99": 4357
+          },
+          "expected_bins": 1440
+        }
+      }
+    }
+  ],
+  "pooled_density": {
+    "1000": {
+      "active_bins": 4653777,
+      "active_bins_only": {
+        "max": 6498,
+        "p50": 6,
+        "p95": 70,
+        "p99": 178
+      },
+      "active_fraction": 0.6732894965277778,
+      "all_bins": {
+        "max": 6498,
+        "p50": 2,
+        "p95": 53,
+        "p99": 144
+      },
+      "expected_bins": 6912000
+    },
+    "10000": {
+      "active_bins": 686044,
+      "active_bins_only": {
+        "max": 21882,
+        "p50": 57,
+        "p95": 443,
+        "p99": 1081
+      },
+      "active_fraction": 0.9925405092592593,
+      "all_bins": {
+        "max": 21882,
+        "p50": 56,
+        "p95": 441,
+        "p99": 1076
+      },
+      "expected_bins": 691200
+    },
+    "60000": {
+      "active_bins": 115200,
+      "active_bins_only": {
+        "max": 68283,
+        "p50": 363,
+        "p95": 2531,
+        "p99": 5824
+      },
+      "active_fraction": 1.0,
+      "all_bins": {
+        "max": 68283,
+        "p50": 363,
+        "p95": 2531,
+        "p99": 5824
+      },
+      "expected_bins": 115200
+    }
+  },
+  "sample": {
+    "symbol_days": 80,
+    "symbols": 20,
+    "utc_dates": 4,
+    "utc_dates_used": [
+      "2025-01-01",
+      "2025-04-01",
+      "2025-07-01",
+      "2025-10-01"
+    ]
+  },
+  "seller_initiated_rows": 42397079,
+  "symbol_days_with_prior_cross_source_mismatches": 5,
+  "trade_rows": 85632531
+}
