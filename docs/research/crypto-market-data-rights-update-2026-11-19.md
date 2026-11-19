@@ -30,6 +30,14 @@ The official Binance USDT Futures historical-data documentation lists native `bo
 
 Primary sources: [Tardis.dev Terms of Service](https://docs.tardis.dev/legal/terms-of-service), [Binance USDT Futures historical-data details](https://docs.tardis.dev/historical-data-details/binance-futures), and [Tardis data types](https://docs.tardis.dev/downloadable-csv-files/data-types).
 
+## Published access cost and storage screen
+
+The official pricing page currently lists the **Solo Derivatives** plan at **USD 700/month**. It lists CSV downloads for Solo, while raw replay API and Tardis Machine are unavailable on Solo. The billing FAQ says Solo subscriptions include 4 years of historical data with yearly billing, 12 months with quarterly billing, or 4 months with monthly billing. The lower Academic price is not assumed applicable; that plan requires eligibility confirmation. Prices and access terms can change, and no checkout was opened.
+
+Earlier metadata-only work in `crypto-microdata-readiness-2026-11-19.md` measured the advertised compressed size of a single 2026-11-01 `book_ticker` sample for the frozen 20-symbol cohort at 520.6 MiB; no body was downloaded. This gives an order-of-magnitude storage screen only. Daily volume is variable, so multiplying that one-day figure by a month is not a verified monthly estimate. The current live check also found `/Volumes/HDD2TB` absent. Therefore the existing local+NAS archive requirement is unsatisfied, and no sample/history batch should be acquired until storage is restored and capacity is explicitly estimated from authorized metadata.
+
+Primary sources: [Tardis pricing](https://tardis.dev/), [Tardis billing and subscriptions](https://docs.tardis.dev/faq/billing-and-subscriptions).
+
 ## Research consequence
 
 1. Keep Binance Vision historical work isolated to approved offline, non-production backtests.
