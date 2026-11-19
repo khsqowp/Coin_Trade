@@ -240,6 +240,13 @@ def evaluate_divergence_event(*, minute_open_ms, minute_opens, minute_highs,
                 return {"status": "unresolved", "target_first": None, "entry_ms": None,
                         "entry_price": None, "exit_price": None, "trade_net_r": None}
             for mi in range(first, first+nminutes):
+                if (not np.isfinite([mo[mi], mh[mi], ml[mi], mc[mi]]).all()
+                        or mh[mi] < max(mo[mi], mc[mi])
+                        or ml[mi] > min(mo[mi], mc[mi])
+                        or mh[mi] < ml[mi]):
+                    return {"status": "unresolved", "target_first": None,
+                            "entry_ms": None, "entry_price": None,
+                            "exit_price": None, "trade_net_r": None}
                 if side == "long":
                     if mo[mi] >= trigger:
                         entry_ms, entry_price = int(raw_ts[mi]), float(mo[mi]); entry_native_index = native_i; break
