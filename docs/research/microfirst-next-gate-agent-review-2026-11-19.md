@@ -15,8 +15,9 @@
 - United States: no nonduplicative candidate was advanced. A 12–1 common-stock momentum proposal overlaps the existing momentum exploration; the public Databento sample does not establish delisted/PIT completeness or permission for persistent local-plus-Linux copies. No account, API key, sample request, purchase, or backtest was initiated.
 - Both equity-market performance tracks remain gated on licensed daily histories with point-in-time membership, inactive securities, splits/distributions, source lineage, and permitted storage. Their already frozen performance goals remain net CAGR ≥20%, MDD ≤30%, Sharpe ≥1.0, and ≥200 closed OOS round trips per market.
 
-## Next admissible work
+## Updated next admissible work
 
-1. Metadata-only audit of official Binance Vision `aggTrades` coverage and byte sizes for one frozen 20-symbol futures cohort, without downloading archives or opening outcomes; compare only against an explicit local/NAS storage cap.
-2. Resume strategy performance testing only if that source gate passes and a genuinely new, preregistered target-first rule exists. Otherwise, use a permitted live-feed collection as prospective shadow data only after its storage destination, cap, and collection contract are verified.
-3. Do not expand the old exposed OHLC grid, retune its thresholds, or relabel the fixed-expiry selective-prediction paper as target-first evidence.
+1. The metadata-only screen is now complete: all 20 frozen USD-M contracts have a published 2026-10 `aggTrades` archive, totaling 2,040,955,218 compressed bytes (1.90 GiB). No body was downloaded; 18/20 contracts already have that month in the local 1m development panel. Detailed evidence is in [`crypto-microdata-readiness-2026-11-19.md`](crypto-microdata-readiness-2026-11-19.md).
+2. A separate two-agent literature/novelty review of event-level mechanisms is pending. Download only if that review identifies a distinct candidate, the OOS protocol is preregistered, and storage rights/cap/destination pass. Do not use Binance Vision-derived signals for live/manual output.
+3. If no distinct candidate survives, do not expand the exposed OHLC grid or download multi-gigabyte archives merely to generate more tests. Reserve future eligible data for chronological OOS, after an archive destination and capture cap are verified.
+4. Do not retune old thresholds or relabel the fixed-expiry selective-prediction paper as target-first evidence.
