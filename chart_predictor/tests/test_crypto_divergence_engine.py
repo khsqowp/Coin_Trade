@@ -66,19 +66,20 @@ def test_mirrored_fair_direction_barriers_cannot_both_win_on_one_path():
         path = Bars(np.arange(count, dtype=np.int64) * MINUTE_MS,
                     opens.copy(), highs.copy(), lows.copy(), closes.copy(),
                     np.ones(count))
-        wins = []
-        for side, stop in (("long", 99.0), ("short", 101.0)):
-            outcome = evaluate_divergence_event(
-                minute_open_ms=path.open_ms, minute_opens=path.open,
-                minute_highs=path.high, minute_lows=path.low,
-                minute_closes=path.close, native_bars=path,
-                native_tf_minutes=1, signal_index=0, side=side,
-                pivot_stop=stop, atr_at_signal=1.0, stop_buffer_atr=0.0,
-                target_r=1.0, horizon_bars=10, entry_mode="next_open",
-                fee_per_side=0.0, slippage_per_side=0.0)
-            assert outcome["status"] != "unresolved"
-            wins.append(bool(outcome["target_first"]))
-        assert sum(wins) <= 1
+        for target_r in (1.0, 1.5, 2.0, 3.0):
+            wins = []
+            for side, stop in (("long", 99.0), ("short", 101.0)):
+                outcome = evaluate_divergence_event(
+                    minute_open_ms=path.open_ms, minute_opens=path.open,
+                    minute_highs=path.high, minute_lows=path.low,
+                    minute_closes=path.close, native_bars=path,
+                    native_tf_minutes=1, signal_index=0, side=side,
+                    pivot_stop=stop, atr_at_signal=1.0, stop_buffer_atr=0.0,
+                    target_r=target_r, horizon_bars=10, entry_mode="next_open",
+                    fee_per_side=0.0, slippage_per_side=0.0)
+                assert outcome["status"] != "unresolved"
+                wins.append(bool(outcome["target_first"]))
+            assert sum(wins) <= 1
 
 
 def test_sha_fair_direction_is_balanced_and_independent_on_fixed_anchors():
