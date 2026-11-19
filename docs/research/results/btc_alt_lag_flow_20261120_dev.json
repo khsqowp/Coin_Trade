@@ -1,0 +1,483 @@
+{
+  "benchmarks": {
+    "btc_buy_hold_nav_base": 6.597392113436656,
+    "btc_buy_hold_nav_stress": 6.594350419066347,
+    "btc_gross_return": 5.604235925769848,
+    "cash_nav": 1.0
+  },
+  "code_sha256": "d2bc81784fcf77edf2e04a99eed4b0736648b4540139929538789c9b2f77a2f6",
+  "derived_data_license": "CC BY-NC-SA 4.0 (with attribution), per Binance Vision Dataset Terms v1.0",
+  "end_ms_exclusive": 1704067200000,
+  "integrity_check": "ok",
+  "results": {
+    "lag": {
+      "base": {
+        "issued": 5071,
+        "labels": {
+          "stop": 2519,
+          "target": 1058,
+          "timeout": 1494,
+          "unscorable": 0
+        },
+        "m1_expiry_direction_accuracy": 0.484717018339578,
+        "m2_target_first": 0.20863734963518044,
+        "m2_wilson_95": [
+          0.19767626900557675,
+          0.22003953079269098
+        ],
+        "mean_net_return": -0.0017945946213994448,
+        "nonoverlap": {
+          "m2": 0.20822199383350462,
+          "n": 4865,
+          "wilson_95": [
+            0.1970447487765278,
+            0.21985965774164049
+          ]
+        },
+        "portfolio": {
+          "cagr": -0.9052414280612993,
+          "closed_trade_mdd": 0.9998540136687657,
+          "final_nav": 0.00014721677489414346,
+          "intratrade_marked_mdd": 0.9998543081155201,
+          "total_return": -0.9998527832251058,
+          "trades": 4865
+        },
+        "positive_net_rate": 0.2942220469335437,
+        "scorable": 5071,
+        "unscorable": 0
+      },
+      "by_direction_base": {
+        "long": {
+          "issued": 2901,
+          "labels": {
+            "stop": 1286,
+            "target": 519,
+            "timeout": 1096,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.5025853154084798,
+          "m2_target_first": 0.17890382626680454,
+          "m2_wilson_95": [
+            0.16538420452739078,
+            0.19327270449499018
+          ],
+          "mean_net_return": -0.001722222985884552,
+          "positive_net_rate": 0.28921061702861084,
+          "scorable": 2901,
+          "unscorable": 0
+        },
+        "short": {
+          "issued": 2170,
+          "labels": {
+            "stop": 1233,
+            "target": 539,
+            "timeout": 398,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.4608294930875576,
+          "m2_target_first": 0.24838709677419354,
+          "m2_wilson_95": [
+            0.2306629447839565,
+            0.2670005138049654
+          ],
+          "mean_net_return": -0.0018913458262974645,
+          "positive_net_rate": 0.3009216589861751,
+          "scorable": 2170,
+          "unscorable": 0
+        }
+      },
+      "by_symbol_base": {
+        "BNBUSDT": {
+          "issued": 1240,
+          "labels": {
+            "stop": 534,
+            "target": 210,
+            "timeout": 496,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.4935483870967742,
+          "m2_target_first": 0.1693548387096774,
+          "m2_wilson_95": [
+            0.14950742629856884,
+            0.19124456891354197
+          ],
+          "mean_net_return": -0.0017270614813647198,
+          "positive_net_rate": 0.28951612903225804,
+          "scorable": 1240,
+          "unscorable": 0
+        },
+        "DOGEUSDT": {
+          "issued": 874,
+          "labels": {
+            "stop": 432,
+            "target": 199,
+            "timeout": 243,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.4794050343249428,
+          "m2_target_first": 0.22768878718535468,
+          "m2_wilson_95": [
+            0.20111480834017942,
+            0.2566460490252658
+          ],
+          "mean_net_return": -0.001691777479759572,
+          "positive_net_rate": 0.3100686498855835,
+          "scorable": 874,
+          "unscorable": 0
+        },
+        "ETHUSDT": {
+          "issued": 1027,
+          "labels": {
+            "stop": 497,
+            "target": 243,
+            "timeout": 287,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.5053554040895814,
+          "m2_target_first": 0.23661148977604674,
+          "m2_wilson_95": [
+            0.21163009947669825,
+            0.26355592901412694
+          ],
+          "mean_net_return": -0.0015786919874775356,
+          "positive_net_rate": 0.32327166504381694,
+          "scorable": 1027,
+          "unscorable": 0
+        },
+        "SOLUSDT": {
+          "issued": 811,
+          "labels": {
+            "stop": 490,
+            "target": 194,
+            "timeout": 127,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.48212083847102344,
+          "m2_target_first": 0.23921085080147966,
+          "m2_wilson_95": [
+            0.2111235195237409,
+            0.269757091764496
+          ],
+          "mean_net_return": -0.0020141666998960816,
+          "positive_net_rate": 0.2885326757090012,
+          "scorable": 811,
+          "unscorable": 0
+        },
+        "XRPUSDT": {
+          "issued": 1119,
+          "labels": {
+            "stop": 566,
+            "target": 212,
+            "timeout": 341,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.46201966041108133,
+          "m2_target_first": 0.18945487042001788,
+          "m2_wilson_95": [
+            0.16757186468292695,
+            0.21346274662368658
+          ],
+          "mean_net_return": -0.0019887521949591733,
+          "positive_net_rate": 0.2645218945487042,
+          "scorable": 1119,
+          "unscorable": 0
+        }
+      },
+      "by_year_nonoverlap": {
+        "2020": {
+          "base_net_nav": 0.17861766689247538,
+          "m2": 0.1619644723092999,
+          "n": 957,
+          "stress_net_nav": 0.08293001756437449
+        },
+        "2021": {
+          "base_net_nav": 0.020763465955213865,
+          "m2": 0.2416475972540046,
+          "n": 2185,
+          "stress_net_nav": 0.003601056236160382
+        },
+        "2022": {
+          "base_net_nav": 0.10550143260365569,
+          "m2": 0.2111017661900757,
+          "n": 1189,
+          "stress_net_nav": 0.040662915968034466
+        },
+        "2023": {
+          "base_net_nav": 0.37624841575227175,
+          "m2": 0.14794007490636704,
+          "n": 534,
+          "stress_net_nav": 0.2452009068273335
+        }
+      },
+      "stress": {
+        "issued": 5071,
+        "labels": {
+          "stop": 2519,
+          "target": 1058,
+          "timeout": 1494,
+          "unscorable": 0
+        },
+        "m1_expiry_direction_accuracy": 0.484717018339578,
+        "m2_target_first": 0.20863734963518044,
+        "m2_wilson_95": [
+          0.19767626900557675,
+          0.22003953079269098
+        ],
+        "mean_net_return": -0.0025946280567434765,
+        "portfolio": {
+          "cagr": -0.9665654734913296,
+          "closed_trade_mdd": 0.9999970426188078,
+          "final_nav": 2.977571863726686e-06,
+          "intratrade_marked_mdd": 0.9999970509495952,
+          "total_return": -0.9999970224281363,
+          "trades": 4865
+        },
+        "positive_net_rate": 0.2573456911851706,
+        "scorable": 5071,
+        "unscorable": 0
+      }
+    },
+    "leader": {
+      "base": {
+        "issued": 5071,
+        "labels": {
+          "stop": 2503,
+          "target": 1060,
+          "timeout": 1508,
+          "unscorable": 0
+        },
+        "m1_expiry_direction_accuracy": 0.48018142378229145,
+        "m2_target_first": 0.209031749161901,
+        "m2_wilson_95": [
+          0.19806260456388572,
+          0.22044139719743003
+        ],
+        "mean_net_return": -0.0017909323007935316,
+        "nonoverlap": {
+          "m2": 0.20865818629462454,
+          "n": 4874,
+          "wilson_95": [
+            0.1974819282967596,
+            0.220293326603259
+          ]
+        },
+        "portfolio": {
+          "cagr": -0.9043613468101845,
+          "closed_trade_mdd": 0.9998488715883445,
+          "final_nav": 0.0001524021952651091,
+          "intratrade_marked_mdd": 0.9998491764064047,
+          "total_return": -0.9998475978047349,
+          "trades": 4874
+        },
+        "positive_net_rate": 0.29363044764346286,
+        "scorable": 5071,
+        "unscorable": 0
+      },
+      "by_direction_base": {
+        "long": {
+          "issued": 2901,
+          "labels": {
+            "stop": 1275,
+            "target": 540,
+            "timeout": 1086,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.49672526714925885,
+          "m2_target_first": 0.18614270941054809,
+          "m2_wilson_95": [
+            0.17239752317577373,
+            0.20071800625512037
+          ],
+          "mean_net_return": -0.001695627606589216,
+          "positive_net_rate": 0.2930024129610479,
+          "scorable": 2901,
+          "unscorable": 0
+        },
+        "short": {
+          "issued": 2170,
+          "labels": {
+            "stop": 1228,
+            "target": 520,
+            "timeout": 422,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.45806451612903226,
+          "m2_target_first": 0.23963133640552994,
+          "m2_wilson_95": [
+            0.2221415929193293,
+            0.2580412900527235
+          ],
+          "mean_net_return": -0.001918341940372665,
+          "positive_net_rate": 0.2944700460829493,
+          "scorable": 2170,
+          "unscorable": 0
+        }
+      },
+      "by_symbol_base": {
+        "BNBUSDT": {
+          "issued": 1181,
+          "labels": {
+            "stop": 547,
+            "target": 190,
+            "timeout": 444,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.47502116850127013,
+          "m2_target_first": 0.16088060965283657,
+          "m2_wilson_95": [
+            0.14103025711608738,
+            0.18292992841180786
+          ],
+          "mean_net_return": -0.0019090166021993164,
+          "positive_net_rate": 0.2701100762066046,
+          "scorable": 1181,
+          "unscorable": 0
+        },
+        "DOGEUSDT": {
+          "issued": 786,
+          "labels": {
+            "stop": 404,
+            "target": 173,
+            "timeout": 209,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.49872773536895676,
+          "m2_target_first": 0.22010178117048346,
+          "m2_wilson_95": [
+            0.19253695878748228,
+            0.2503892195154895
+          ],
+          "mean_net_return": -0.0018060660551630931,
+          "positive_net_rate": 0.2951653944020356,
+          "scorable": 786,
+          "unscorable": 0
+        },
+        "ETHUSDT": {
+          "issued": 1526,
+          "labels": {
+            "stop": 716,
+            "target": 351,
+            "timeout": 459,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.4921363040629096,
+          "m2_target_first": 0.23001310615989515,
+          "m2_wilson_95": [
+            0.20959179227743965,
+            0.2517903037240667
+          ],
+          "mean_net_return": -0.0015954935555131124,
+          "positive_net_rate": 0.31847968545216254,
+          "scorable": 1526,
+          "unscorable": 0
+        },
+        "SOLUSDT": {
+          "issued": 564,
+          "labels": {
+            "stop": 328,
+            "target": 146,
+            "timeout": 90,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.4716312056737589,
+          "m2_target_first": 0.25886524822695034,
+          "m2_wilson_95": [
+            0.22443328745062924,
+            0.29655977183585597
+          ],
+          "mean_net_return": -0.0018193284231018663,
+          "positive_net_rate": 0.3102836879432624,
+          "scorable": 564,
+          "unscorable": 0
+        },
+        "XRPUSDT": {
+          "issued": 1014,
+          "labels": {
+            "stop": 508,
+            "target": 200,
+            "timeout": 306,
+            "unscorable": 0
+          },
+          "m1_expiry_direction_accuracy": 0.45857988165680474,
+          "m2_target_first": 0.19723865877712032,
+          "m2_wilson_95": [
+            0.17390921932101136,
+            0.2228534152926334
+          ],
+          "mean_net_return": -0.001919996818960505,
+          "positive_net_rate": 0.27317554240631164,
+          "scorable": 1014,
+          "unscorable": 0
+        }
+      },
+      "by_year_nonoverlap": {
+        "2020": {
+          "base_net_nav": 0.1722886989061831,
+          "m2": 0.1671858774662513,
+          "n": 963,
+          "stress_net_nav": 0.07960604366324639
+        },
+        "2021": {
+          "base_net_nav": 0.021823903401353855,
+          "m2": 0.23888124713434206,
+          "n": 2181,
+          "stress_net_nav": 0.003797376724666971
+        },
+        "2022": {
+          "base_net_nav": 0.09824755585249592,
+          "m2": 0.20871751886001677,
+          "n": 1193,
+          "stress_net_nav": 0.037741198344041
+        },
+        "2023": {
+          "base_net_nav": 0.4125534713859437,
+          "m2": 0.1601489757914339,
+          "n": 537,
+          "stress_net_nav": 0.2682281077694289
+        }
+      },
+      "stress": {
+        "issued": 5071,
+        "labels": {
+          "stop": 2503,
+          "target": 1060,
+          "timeout": 1508,
+          "unscorable": 0
+        },
+        "m1_expiry_direction_accuracy": 0.48018142378229145,
+        "m2_target_first": 0.209031749161901,
+        "m2_wilson_95": [
+          0.19806260456388572,
+          0.22044139719743003
+        ],
+        "mean_net_return": -0.0025909764442099198,
+        "portfolio": {
+          "cagr": -0.9663201750077183,
+          "closed_trade_mdd": 0.9999969605517693,
+          "final_nav": 3.0601991914538962e-06,
+          "intratrade_marked_mdd": 0.9999969691137351,
+          "total_return": -0.9999969398008085,
+          "trades": 4874
+        },
+        "positive_net_rate": 0.2585288897653323,
+        "scorable": 5071,
+        "unscorable": 0
+      }
+    }
+  },
+  "signal_coverage": 0.6365005648299235,
+  "source": "vision_dev_repaired.sqlite",
+  "source_attribution": "Binance Vision USD\u24c8-M Futures historical klines",
+  "source_sha256": "7780d5d4e174db4a55ccf7ecc81240e4138ce915a10f164dd22b35778d629914",
+  "start_ms": 1585699200000,
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "DOGEUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "trial_count_candidates": 1,
+  "valid_btc_shock_anchors": 7967
+}
