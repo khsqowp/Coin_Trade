@@ -189,6 +189,10 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
         "kline_rows": 0,
         "first_trade_id": None,
         "last_trade_id": None,
+        "min_trade_timestamp_ms": None,
+        "max_trade_timestamp_ms": None,
+        "min_kline_open_time_ms": None,
+        "max_kline_open_time_ms": None,
     }
     buckets: dict[int, dict[str, Any]] = {}
     trade_hash: str | None = None
@@ -226,6 +230,14 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
                 previous_id, previous_time = trade_id, timestamp
                 integrity["first_trade_id"] = trade_id if integrity["first_trade_id"] is None else integrity["first_trade_id"]
                 integrity["last_trade_id"] = trade_id
+                integrity["min_trade_timestamp_ms"] = (
+                    timestamp if integrity["min_trade_timestamp_ms"] is None
+                    else min(int(integrity["min_trade_timestamp_ms"]), timestamp)
+                )
+                integrity["max_trade_timestamp_ms"] = (
+                    timestamp if integrity["max_trade_timestamp_ms"] is None
+                    else max(int(integrity["max_trade_timestamp_ms"]), timestamp)
+                )
                 if not start_ms <= timestamp < end_ms:
                     integrity["outside_utc_day_trades"] = int(integrity["outside_utc_day_trades"] or 0) + 1
                     continue
@@ -284,6 +296,14 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
                 if previous_open is not None and open_time <= previous_open:
                     integrity["nonmonotone_kline_timestamps"] = int(integrity["nonmonotone_kline_timestamps"] or 0) + 1
                 previous_open = open_time
+                integrity["min_kline_open_time_ms"] = (
+                    open_time if integrity["min_kline_open_time_ms"] is None
+                    else min(int(integrity["min_kline_open_time_ms"]), open_time)
+                )
+                integrity["max_kline_open_time_ms"] = (
+                    open_time if integrity["max_kline_open_time_ms"] is None
+                    else max(int(integrity["max_kline_open_time_ms"]), open_time)
+                )
                 if not start_ms <= open_time < end_ms:
                     integrity["outside_utc_day_klines"] = int(integrity["outside_utc_day_klines"] or 0) + 1
                     continue
@@ -327,7 +347,9 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
     if len(native_active) == 0:
         failures.append("zero_native_active_minutes_ohlc_ineligible")
     for field in NUMERIC_FIELDS:
-        minutes = common_active if field in {"open", "high", "low", "close"} else expected_grid
+        # Native-active minutes remain in the denominator even when the raw
+        # archive has no corresponding trade bucket; that is a source mismatch.
+        minutes = native_active if field in {"open", "high", "low", "close"} else expected_grid
         bad = 0
         max_difference = Decimal(0)
         for minute in minutes:
@@ -412,6 +434,11 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
             "raw_active": len(raw_active), "common_active": len(common_active),
             "native_only_active": len(native_active - raw_active),
             "raw_only_active": len(raw_active - native_active),
+            "native_active_minutes_ms": sorted(native_active),
+            "raw_active_minutes_ms": sorted(raw_active),
+            "native_only_active_minutes_ms": sorted(native_active - raw_active),
+            "raw_only_active_minutes_ms": sorted(raw_active - native_active),
+            "union_active_minutes_ms": sorted(native_active | raw_active),
         },
         "mismatches": mismatch,
         "max_absolute_difference": max_abs,
