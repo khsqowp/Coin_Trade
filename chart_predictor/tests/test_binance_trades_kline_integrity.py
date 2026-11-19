@@ -32,14 +32,15 @@ def _write_zip(path, member, header, rows):
     )
 
 
-def _synthetic_pair(root, *, native_taker_buy_quote="100", native_only_minute=False):
+def _synthetic_pair(root, *, native_taker_buy_quote="100", native_only_minute=False,
+                    trade_quote_qty="100"):
     trades_dir = root / "trades"
     klines_dir = root / "klines"
     trades_dir.mkdir()
     klines_dir.mkdir()
 
     trade_rows = [
-        [1, "100", "1", "100", DAY_START_MS + 1, "false"],
+        [1, "100", "1", trade_quote_qty, DAY_START_MS + 1, "false"],
         [2, "101", "1", "101", DAY_START_MS + 2, "true"],
     ]
     _write_zip(
@@ -95,6 +96,12 @@ def test_synthetic_raw_trades_reconstruct_one_active_kline_and_full_zero_grid(tm
     assert all(item["count"] == 0 for key, item in result["mismatches"].items()
                if key != "quote_price_times_qty_diagnostic")
     assert result["integrity"]["trade_rows"] == 2
+    assert result["quote_qty_arithmetic_anomalies"] == []
+    assert result["mismatches"]["taker_buy_quote_price_times_qty_diagnostic"] == {
+        "count": 0,
+        "denominator": 1440,
+        "gating": False,
+    }
 
 
 def test_synthetic_taker_buy_quote_mismatch_fails_full_grid_field_check(tmp_path):
@@ -109,6 +116,13 @@ def test_synthetic_taker_buy_quote_mismatch_fails_full_grid_field_check(tmp_path
         "count": 1,
         "denominator": 1440,
     }
+    assert {
+        "field": "taker_buy_quote",
+        "minute_open_time_ms": DAY_START_MS,
+        "raw_value": "100",
+        "native_value": "99",
+        "absolute_difference": "1",
+    } in result["mismatch_details"]
     assert "field_mismatch:taker_buy_quote" in result["failure_reasons"]
 
 
@@ -131,3 +145,23 @@ def test_native_only_active_minute_is_counted_as_ohlc_mismatch_and_reported(tmp_
     assert result["integrity"]["max_trade_timestamp_ms"] == DAY_START_MS + 2
     assert result["integrity"]["min_kline_open_time_ms"] == DAY_START_MS
     assert result["integrity"]["max_kline_open_time_ms"] == DAY_START_MS + 1439 * MINUTE_MS
+
+
+def test_quote_qty_arithmetic_anomaly_is_reported_without_gating_product_diagnostic(tmp_path):
+    trades_dir, klines_dir = _synthetic_pair(tmp_path, trade_quote_qty="1")
+
+    result = audit_pair(trades_dir, klines_dir, SYMBOL, DAY)
+
+    assert result["quote_qty_arithmetic_anomalies"] == [{
+        "trade_id": 1,
+        "timestamp_ms": DAY_START_MS + 1,
+        "price": "100",
+        "qty": "1",
+        "quote_qty": "1",
+        "price_times_qty": "100",
+        "absolute_difference": "99",
+        "is_buyer_maker": "false",
+    }]
+    assert result["mismatches"]["quote_price_times_qty_diagnostic"]["count"] == 0
+    assert result["mismatches"]["taker_buy_quote_price_times_qty_diagnostic"]["count"] == 0
+    assert "field_mismatch:quote_volume" in result["failure_reasons"]

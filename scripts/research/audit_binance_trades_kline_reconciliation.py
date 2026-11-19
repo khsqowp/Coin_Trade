@@ -195,6 +195,7 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
         "max_kline_open_time_ms": None,
     }
     buckets: dict[int, dict[str, Any]] = {}
+    quote_qty_arithmetic_anomalies: list[dict[str, Any]] = []
     trade_hash: str | None = None
     kline_hash: str | None = None
     try:
@@ -248,7 +249,20 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
                     "base_volume": Decimal(0), "quote_volume": Decimal(0),
                     "quote_price_times_qty": Decimal(0), "trade_count": 0,
                     "taker_buy_base": Decimal(0), "taker_buy_quote": Decimal(0),
+                    "taker_buy_quote_price_times_qty": Decimal(0),
                 })
+                price_times_qty = price * qty
+                if not _equal(quote_qty, price_times_qty):
+                    quote_qty_arithmetic_anomalies.append({
+                        "trade_id": trade_id,
+                        "timestamp_ms": timestamp,
+                        "price": str(price),
+                        "qty": str(qty),
+                        "quote_qty": str(quote_qty),
+                        "price_times_qty": str(price_times_qty),
+                        "absolute_difference": str(abs(price_times_qty - quote_qty)),
+                        "is_buyer_maker": buyer_maker_text,
+                    })
                 key = (timestamp, trade_id)
                 if bucket["first_key"] is None or key < bucket["first_key"]:
                     bucket["first_key"], bucket["open"] = key, price
@@ -258,11 +272,12 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
                 bucket["low"] = price if bucket["low"] is None else min(bucket["low"], price)
                 bucket["base_volume"] += qty
                 bucket["quote_volume"] += quote_qty
-                bucket["quote_price_times_qty"] += price * qty
+                bucket["quote_price_times_qty"] += price_times_qty
                 bucket["trade_count"] += 1
                 if buyer_maker_text == "false":
                     bucket["taker_buy_base"] += qty
                     bucket["taker_buy_quote"] += quote_qty
+                    bucket["taker_buy_quote_price_times_qty"] += price_times_qty
     except (OSError, ValueError, csv.Error, zipfile.BadZipFile) as exc:
         failures.append(f"trades:{type(exc).__name__}:{exc}")
 
@@ -344,6 +359,7 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
 
     mismatch: dict[str, dict[str, Any]] = {}
     max_abs: dict[str, float] = {}
+    mismatch_details: list[dict[str, Any]] = []
     if len(native_active) == 0:
         failures.append("zero_native_active_minutes_ohlc_ineligible")
     for field in NUMERIC_FIELDS:
@@ -357,6 +373,11 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
             raw = buckets.get(minute)
             if native is None:
                 bad += 1
+                mismatch_details.append({
+                    "field": field, "minute_open_time_ms": minute,
+                    "raw_value": None, "native_value": None,
+                    "absolute_difference": None,
+                })
                 continue
             if field in {"open", "high", "low", "close"}:
                 actual = raw[field] if raw else None
@@ -367,12 +388,22 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
             expected_value = native[field]
             if actual is None:
                 bad += 1
+                mismatch_details.append({
+                    "field": field, "minute_open_time_ms": minute,
+                    "raw_value": None, "native_value": str(expected_value),
+                    "absolute_difference": None,
+                })
                 continue
             delta = abs(actual - expected_value)
             max_difference = max(max_difference, delta)
             equal = actual == expected_value if field == "trade_count" else _equal(actual, expected_value)
             if not equal:
                 bad += 1
+                mismatch_details.append({
+                    "field": field, "minute_open_time_ms": minute,
+                    "raw_value": str(actual), "native_value": str(expected_value),
+                    "absolute_difference": str(delta),
+                })
         mismatch[field] = {"count": bad, "denominator": len(minutes)}
         max_abs[field] = float(max_difference)
 
@@ -384,11 +415,21 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
         actual_count = int(buckets.get(minute, {}).get("trade_count", 0))
         if native is None:
             count_mismatch += 1
+            mismatch_details.append({
+                "field": "trade_count", "minute_open_time_ms": minute,
+                "raw_value": actual_count, "native_value": None,
+                "absolute_difference": None,
+            })
             continue
         difference = abs(actual_count - native["trade_count"])
         max_count_difference = max(max_count_difference, difference)
         if difference:
             count_mismatch += 1
+            mismatch_details.append({
+                "field": "trade_count", "minute_open_time_ms": minute,
+                "raw_value": actual_count, "native_value": native["trade_count"],
+                "absolute_difference": difference,
+            })
     mismatch["trade_count"] = {"count": count_mismatch, "denominator": len(expected_grid)}
     max_abs["trade_count"] = float(max_count_difference)
 
@@ -399,6 +440,14 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
         native = klines.get(minute)
         if native is None:
             diagnostic_quote_mismatch += 1
+            mismatch_details.append({
+                "field": "quote_price_times_qty_diagnostic",
+                "minute_open_time_ms": minute,
+                "raw_value": str(buckets.get(minute, {}).get(
+                    "quote_price_times_qty", Decimal(0)
+                )),
+                "native_value": None, "absolute_difference": None,
+            })
             continue
         raw = buckets.get(minute)
         calculated = raw["quote_price_times_qty"] if raw else Decimal(0)
@@ -406,13 +455,54 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
         diagnostic_quote_max_abs = max(diagnostic_quote_max_abs, difference)
         if not _equal(calculated, native["quote_volume"]):
             diagnostic_quote_mismatch += 1
+            mismatch_details.append({
+                "field": "quote_price_times_qty_diagnostic",
+                "minute_open_time_ms": minute,
+                "raw_value": str(calculated),
+                "native_value": str(native["quote_volume"]),
+                "absolute_difference": str(difference),
+            })
     mismatch["quote_price_times_qty_diagnostic"] = {
         "count": diagnostic_quote_mismatch, "denominator": len(expected_grid), "gating": False,
     }
     max_abs["quote_price_times_qty_diagnostic"] = float(diagnostic_quote_max_abs)
 
+    taker_product_mismatch = 0
+    taker_product_max_abs = Decimal(0)
+    for minute in expected_grid:
+        native = klines.get(minute)
+        calculated = buckets.get(minute, {}).get(
+            "taker_buy_quote_price_times_qty", Decimal(0)
+        )
+        if native is None:
+            taker_product_mismatch += 1
+            mismatch_details.append({
+                "field": "taker_buy_quote_price_times_qty_diagnostic",
+                "minute_open_time_ms": minute,
+                "raw_value": str(calculated), "native_value": None,
+                "absolute_difference": None,
+            })
+            continue
+        difference = abs(calculated - native["taker_buy_quote"])
+        taker_product_max_abs = max(taker_product_max_abs, difference)
+        if not _equal(calculated, native["taker_buy_quote"]):
+            taker_product_mismatch += 1
+            mismatch_details.append({
+                "field": "taker_buy_quote_price_times_qty_diagnostic",
+                "minute_open_time_ms": minute,
+                "raw_value": str(calculated),
+                "native_value": str(native["taker_buy_quote"]),
+                "absolute_difference": str(difference),
+            })
+    mismatch["taker_buy_quote_price_times_qty_diagnostic"] = {
+        "count": taker_product_mismatch,
+        "denominator": len(expected_grid),
+        "gating": False,
+    }
+    max_abs["taker_buy_quote_price_times_qty_diagnostic"] = float(taker_product_max_abs)
+
     for field, record in mismatch.items():
-        if field != "quote_price_times_qty_diagnostic" and record["count"]:
+        if record.get("gating", True) and record["count"]:
             failures.append(f"field_mismatch:{field}")
     daily_raw_base = sum((b["base_volume"] for b in buckets.values()), Decimal(0))
     daily_raw_quote = sum((b["quote_volume"] for b in buckets.values()), Decimal(0))
@@ -441,6 +531,11 @@ def audit_pair(trades_dir: Path, klines_dir: Path, symbol: str, day: str) -> dic
             "union_active_minutes_ms": sorted(native_active | raw_active),
         },
         "mismatches": mismatch,
+        "quote_qty_arithmetic_anomalies": quote_qty_arithmetic_anomalies,
+        "mismatch_details": sorted(
+            mismatch_details,
+            key=lambda item: (item["minute_open_time_ms"], item["field"]),
+        ),
         "max_absolute_difference": max_abs,
         "quote_price_times_qty_diagnostic": {
             "mismatches": diagnostic_quote_mismatch,
