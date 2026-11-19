@@ -1,0 +1,426 @@
+{
+  "trial_id": "KR-KODEX200-VOL10-LB20-20261120-DEV",
+  "status": "DEVELOPMENT_ONLY_EXPLORATORY",
+  "data_source_path": "/Users/user/CODE/Coin_Trade/.kis-cache-local/KR_069500.csv",
+  "data_prefix_sha256_before_cutoff": "7def9b2b254cca359c4d43b2d218a6572060b5449410ec1d21a4eacf6e48d503",
+  "cutoff_exclusive_utc": "2024-11-12T00:00:00+00:00",
+  "source_rows_before_cutoff": 3513,
+  "source_first_timestamp_utc": "2010-08-09T00:00:00+00:00",
+  "source_last_timestamp_utc": "2024-11-11T00:00:00+00:00",
+  "script_sha256": "d3aa408ff557c47f1be84a1bb436ebaff29310f5a558d4c05c4a4a88bcb4bd84",
+  "primary_base": {
+    "start": "2010-10-01",
+    "end": "2024-11-11",
+    "terminal_nav": 1.1741914570720637,
+    "total_return_pct": 17.419145707206376,
+    "cagr_pct": 1.1442381844174454,
+    "mdd_pct": 29.321561432830933,
+    "sharpe_252": 0.16112548169364505,
+    "avg_exposure_pct": 71.64882761178013,
+    "one_way_turnover_x": 27.743560718201632,
+    "rebalance_events": 161,
+    "annual_returns_pct": {
+      "2010": 9.142155641870332,
+      "2011": -7.383947046327921,
+      "2012": 3.8548187890514285,
+      "2013": -0.45013781844552847,
+      "2014": -6.573513333609904,
+      "2015": -1.8980272315986646,
+      "2016": 5.59145656060398,
+      "2017": 23.978240395720498,
+      "2018": -17.873072086207607,
+      "2019": 7.650770301709153,
+      "2020": 14.003516677848072,
+      "2021": 1.6680900507238139,
+      "2022": -17.538997713872085,
+      "2023": 10.476070476973876,
+      "2024": 0.31094868002994325
+    }
+  },
+  "primary_stress": {
+    "start": "2010-10-01",
+    "end": "2024-11-11",
+    "terminal_nav": 1.1580096346528204,
+    "total_return_pct": 15.800963465282036,
+    "cagr_pct": 1.0448399431295163,
+    "mdd_pct": 29.478211478791806,
+    "sharpe_252": 0.15194834820597672,
+    "avg_exposure_pct": 71.64882761178013,
+    "one_way_turnover_x": 27.743560718201632,
+    "rebalance_events": 161,
+    "annual_returns_pct": {
+      "2010": 9.071739107348398,
+      "2011": -7.476194465348884,
+      "2012": 3.776751542037271,
+      "2013": -0.5389957255653055,
+      "2014": -6.642809766976654,
+      "2015": -1.9950111640862578,
+      "2016": 5.449314261460003,
+      "2017": 23.914581793662038,
+      "2018": -17.96974225285941,
+      "2019": 7.570711303835709,
+      "2020": 13.873887156476883,
+      "2021": 1.5533812750910592,
+      "2022": -17.601944741818386,
+      "2023": 10.39138866512448,
+      "2024": 0.18266854419948242
+    }
+  },
+  "benchmark_kodex_base": {
+    "start": "2010-10-01",
+    "end": "2024-11-11",
+    "terminal_nav": 1.7725573044167224,
+    "total_return_pct": 77.25573044167224,
+    "cagr_pct": 4.139106833993056,
+    "mdd_pct": 38.065829180995244,
+    "sharpe_252": 0.32827818132367487,
+    "avg_exposure_pct": 100.0,
+    "one_way_turnover_x": 2.0,
+    "rebalance_events": 1,
+    "annual_returns_pct": {
+      "2010": 12.556453157980197,
+      "2011": -10.892848566351287,
+      "2012": 11.378213765967837,
+      "2013": 1.500193573364328,
+      "2014": -5.7118336988651315,
+      "2015": -0.2528317152102666,
+      "2016": 9.1452904795702,
+      "2017": 25.801207617278198,
+      "2018": -16.455602732139607,
+      "2019": 15.3614990277533,
+      "2020": 31.340024517315435,
+      "2021": 6.3380487093481985,
+      "2022": -23.70947391518994,
+      "2023": 21.338175019774177,
+      "2024": -2.843791075291213
+    }
+  },
+  "benchmark_kodex_stress": {
+    "start": "2010-10-01",
+    "end": "2024-11-11",
+    "terminal_nav": 1.770783150484798,
+    "total_return_pct": 77.0783150484798,
+    "cagr_pct": 4.13171827872576,
+    "mdd_pct": 38.065829180995166,
+    "sharpe_252": 0.3278520138211266,
+    "avg_exposure_pct": 100.0,
+    "one_way_turnover_x": 2.0,
+    "rebalance_events": 1,
+    "annual_returns_pct": {
+      "2010": 12.500110136927024,
+      "2011": -10.892848566351287,
+      "2012": 11.378213765967837,
+      "2013": 1.500193573364328,
+      "2014": -5.7118336988651315,
+      "2015": -0.2528317152102666,
+      "2016": 9.1452904795702,
+      "2017": 25.801207617278198,
+      "2018": -16.455602732139607,
+      "2019": 15.3614990277533,
+      "2020": 31.340024517315435,
+      "2021": 6.3380487093481985,
+      "2022": -23.70947391518994,
+      "2023": 21.338175019774177,
+      "2024": -2.892425108892205
+    }
+  },
+  "cash_benchmark": {
+    "start": "2010-10-01",
+    "end": "2024-11-11",
+    "terminal_nav": 1.0,
+    "total_return_pct": 0.0,
+    "cagr_pct": 0.0,
+    "mdd_pct": 0.0,
+    "sharpe_252": 0.0,
+    "avg_exposure_pct": 0.0,
+    "one_way_turnover_x": 0.0,
+    "rebalance_events": 0,
+    "annual_returns_pct": {
+      "2010": 0.0,
+      "2011": 0.0,
+      "2012": 0.0,
+      "2013": 0.0,
+      "2014": 0.0,
+      "2015": 0.0,
+      "2016": 0.0,
+      "2017": 0.0,
+      "2018": 0.0,
+      "2019": 0.0,
+      "2020": 0.0,
+      "2021": 0.0,
+      "2022": 0.0,
+      "2023": 0.0,
+      "2024": 0.0
+    }
+  },
+  "paired_bootstrap_base_vs_kodex": {
+    "paths": 1000,
+    "block_sessions": 20,
+    "seed": 20261120,
+    "strategy_mdd_p95_pct": 55.96401725141577,
+    "strategy_beats_benchmark_fraction": 0.059,
+    "paired_log_wealth_difference_ci95": [
+      -0.9093558619087488,
+      0.11070492127638278
+    ]
+  },
+  "paired_bootstrap_stress_vs_kodex": {
+    "paths": 1000,
+    "block_sessions": 20,
+    "seed": 20261120,
+    "strategy_mdd_p95_pct": 56.25383731221578,
+    "strategy_beats_benchmark_fraction": 0.053,
+    "paired_log_wealth_difference_ci95": [
+      -0.9221480461477307,
+      0.09915467568787703
+    ]
+  },
+  "descriptive_periods_base": {
+    "2010-2014": {
+      "start": "2010-10-01",
+      "end": "2014-12-30",
+      "terminal_nav": 0.976373825866324,
+      "total_return_pct": -2.362617413367596,
+      "cagr_pct": -0.5614646698802739,
+      "mdd_pct": 16.99648957137584,
+      "sharpe_252": 0.0027618954701297397,
+      "avg_exposure_pct": 71.36458732594106,
+      "one_way_turnover_x": 0.0,
+      "rebalance_events": 0,
+      "annual_returns_pct": {
+        "2010": 9.142155641870332,
+        "2011": -7.383947046327921,
+        "2012": 3.8548187890514285,
+        "2013": -0.45013781844552847,
+        "2014": -6.573513333609904
+      }
+    },
+    "2015-2019": {
+      "start": "2014-12-30",
+      "end": "2019-12-30",
+      "terminal_nav": 1.135415213863203,
+      "total_return_pct": 13.541521386320298,
+      "cagr_pct": 2.5728034601958383,
+      "mdd_pct": 25.346319910246617,
+      "sharpe_252": 0.2971980097125617,
+      "avg_exposure_pct": 83.72429775235419,
+      "one_way_turnover_x": 0.0,
+      "rebalance_events": 0,
+      "annual_returns_pct": {
+        "2015": -1.8980272315986646,
+        "2016": 5.59145656060398,
+        "2017": 23.978240395720498,
+        "2018": -17.873072086207607,
+        "2019": 7.650770301709153
+      }
+    },
+    "2020-2024": {
+      "start": "2019-12-30",
+      "end": "2024-11-11",
+      "terminal_nav": 1.0591758709143548,
+      "total_return_pct": 5.917587091435483,
+      "cagr_pct": 1.1880026140806965,
+      "mdd_pct": 25.59845431811708,
+      "sharpe_252": 0.16399054788432796,
+      "avg_exposure_pct": 59.520522614469265,
+      "one_way_turnover_x": 0.0,
+      "rebalance_events": 0,
+      "annual_returns_pct": {
+        "2020": 14.003516677848072,
+        "2021": 1.6680900507238139,
+        "2022": -17.538997713872085,
+        "2023": 10.476070476973876,
+        "2024": 0.31094868002994325
+      }
+    }
+  },
+  "sensitivity": [
+    {
+      "lookback": 16,
+      "target_vol_pct": 8.0,
+      "cost_case": "base",
+      "terminal_nav": 1.2317506070494562,
+      "cagr_pct": 1.4791027754322172,
+      "mdd_pct": 23.78104005445435,
+      "sharpe_252": 0.20852161671972808,
+      "rebalance_events": 169
+    },
+    {
+      "lookback": 16,
+      "target_vol_pct": 8.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.2135725260897712,
+      "cagr_pct": 1.3728766029874606,
+      "mdd_pct": 23.94273462437114,
+      "sharpe_252": 0.1969555510684193,
+      "rebalance_events": 169
+    },
+    {
+      "lookback": 16,
+      "target_vol_pct": 10.0,
+      "cost_case": "base",
+      "terminal_nav": 1.2507704655554297,
+      "cagr_pct": 1.5886992054560123,
+      "mdd_pct": 28.95269861720321,
+      "sharpe_252": 0.19991007157393176,
+      "rebalance_events": 163
+    },
+    {
+      "lookback": 16,
+      "target_vol_pct": 10.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.2322999779812247,
+      "cagr_pct": 1.4822903624214678,
+      "mdd_pct": 29.12149546756605,
+      "sharpe_252": 0.19035874851629345,
+      "rebalance_events": 163
+    },
+    {
+      "lookback": 16,
+      "target_vol_pct": 12.0,
+      "cost_case": "base",
+      "terminal_nav": 1.3305979096427962,
+      "cagr_pct": 2.0324052917185975,
+      "mdd_pct": 31.603847265718954,
+      "sharpe_252": 0.22499442230180236,
+      "rebalance_events": 134
+    },
+    {
+      "lookback": 16,
+      "target_vol_pct": 12.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.3135485095149069,
+      "cagr_pct": 1.939757933611208,
+      "mdd_pct": 31.72437717866471,
+      "sharpe_252": 0.2177339626232274,
+      "rebalance_events": 134
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 8.0,
+      "cost_case": "base",
+      "terminal_nav": 1.169335822405679,
+      "cagr_pct": 1.1145463767475938,
+      "mdd_pct": 24.115423686817717,
+      "sharpe_252": 0.17094315519974465,
+      "rebalance_events": 168
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 8.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.1535666282300467,
+      "cagr_pct": 1.0173225758302262,
+      "mdd_pct": 24.266494263971396,
+      "sharpe_252": 0.16002493009736504,
+      "rebalance_events": 168
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 10.0,
+      "cost_case": "base",
+      "terminal_nav": 1.1741914570720637,
+      "cagr_pct": 1.1442381844174454,
+      "mdd_pct": 29.321561432830933,
+      "sharpe_252": 0.16112548169364505,
+      "rebalance_events": 161
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 10.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.1580096346528204,
+      "cagr_pct": 1.0448399431295163,
+      "mdd_pct": 29.478211478791806,
+      "sharpe_252": 0.15194834820597672,
+      "rebalance_events": 161
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 12.0,
+      "cost_case": "base",
+      "terminal_nav": 1.2332949035042293,
+      "cagr_pct": 1.4967841991020192,
+      "mdd_pct": 31.645660735348326,
+      "sharpe_252": 0.1840095852179407,
+      "rebalance_events": 146
+    },
+    {
+      "lookback": 20,
+      "target_vol_pct": 12.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.2186897081651624,
+      "cagr_pct": 1.4111501643264024,
+      "mdd_pct": 31.782255217265842,
+      "sharpe_252": 0.17713148852958818,
+      "rebalance_events": 146
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 8.0,
+      "cost_case": "base",
+      "terminal_nav": 1.154939903353208,
+      "cagr_pct": 1.0258383333686005,
+      "mdd_pct": 23.769637971185386,
+      "sharpe_252": 0.16180269422049812,
+      "rebalance_events": 168
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 8.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.1415669637954506,
+      "cagr_pct": 0.9425086050979026,
+      "mdd_pct": 23.879457397547444,
+      "sharpe_252": 0.15232993390485763,
+      "rebalance_events": 168
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 10.0,
+      "cost_case": "base",
+      "terminal_nav": 1.1575076218561302,
+      "cagr_pct": 1.0417356918087206,
+      "mdd_pct": 28.514918531439537,
+      "sharpe_252": 0.15207431602918964,
+      "rebalance_events": 162
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 10.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.1437398495583737,
+      "cagr_pct": 0.9561098447991689,
+      "mdd_pct": 28.638861501768474,
+      "sharpe_252": 0.14408590408500282,
+      "rebalance_events": 162
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 12.0,
+      "cost_case": "base",
+      "terminal_nav": 1.2070435503038228,
+      "cagr_pct": 1.3421796312795164,
+      "mdd_pct": 30.680464463433598,
+      "sharpe_252": 0.17177662099786478,
+      "rebalance_events": 141
+    },
+    {
+      "lookback": 24,
+      "target_vol_pct": 12.0,
+      "cost_case": "stress",
+      "terminal_nav": 1.1947955314962915,
+      "cagr_pct": 1.268974475269169,
+      "mdd_pct": 30.79464311281983,
+      "sharpe_252": 0.16586593877128197,
+      "rebalance_events": 141
+    }
+  ],
+  "limitations": [
+    "No genuinely unseen OOS; this cache/window has been used in related exploratory studies.",
+    "Only one Korean ETF; cannot represent all KR equities/ETFs or cross-sectional selection.",
+    "KIS adjusted-price/corporate-action/distribution semantics and exact retrieval parameters are unverified.",
+    "Zero-yield cash assumption; no taxes, market impact, tracking error, or intraday execution model.",
+    "Sensitivity cells are diagnostics and were not used to select a replacement parameter."
+  ]
+}
