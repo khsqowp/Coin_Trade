@@ -31,6 +31,41 @@ def _digest(path: Path) -> str:
     return h.hexdigest()
 
 
+def _source_clock_provenance(source: Path, source_sha256: str) -> tuple[str | None, int | None]:
+    """Validate a sibling capture manifest before deriving legacy clock identity.
+
+    Older captures predate the per-record receive_clock_domain field. Their
+    domain may be recovered only from a complete, matching run manifest; a
+    directory name alone is not provenance.
+    """
+    manifest_path = source.parent / "manifest.json"
+    if not manifest_path.is_file():
+        return None, None
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError("source capture manifest is unreadable") from exc
+    if not isinstance(manifest, dict):
+        raise ValueError("source capture manifest must be an object")
+    run_id = manifest.get("run_id")
+    segment = manifest.get("segment")
+    if not isinstance(run_id, str) or not run_id:
+        raise ValueError("source capture manifest requires a run_id")
+    if not isinstance(segment, dict) or segment.get("complete") is not True:
+        raise ValueError("source capture manifest requires a complete segment")
+    if segment.get("path") != source.name:
+        raise ValueError("source capture manifest path does not match input")
+    if segment.get("sha256") != source_sha256:
+        raise ValueError("source capture manifest hash does not match input")
+    if segment.get("bytes") != source.stat().st_size:
+        raise ValueError("source capture manifest size does not match input")
+    record_count = segment.get("record_count")
+    if (isinstance(record_count, bool) or not isinstance(record_count, int)
+            or record_count < 0):
+        raise ValueError("source capture manifest requires a valid record_count")
+    return run_id, record_count
+
+
 def _depth_metrics(book: LocalBook, mid: float, band_bps: float = 5.0) -> dict[str, float]:
     lower = mid * (1 - band_bps / 10_000)
     upper = mid * (1 + band_bps / 10_000)
@@ -64,6 +99,10 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
     if output.exists() or partial.exists() or manifest_path.exists():
         raise FileExistsError("refusing to overwrite an existing compact output or manifest")
     source_sha256 = _digest(source)
+    manifest_clock_domain, manifest_record_count = _source_clock_provenance(
+        source, source_sha256
+    )
+    observed_clock_domains: set[str] = set()
     books: dict[str, LocalBook] = {}
     pending: dict[str, list[dict[str, Any]]] = {}
     waiting_snapshots: dict[str, tuple[dict[str, Any], dict[str, Any]]] = {}
@@ -86,8 +125,18 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
             if not raw.endswith(b"\n"):
                 raise IOError(f"source has unterminated JSONL at line {line_no}")
             record = json.loads(raw)
-            if not isinstance(record.get("receive_clock_domain"), str) or not record["receive_clock_domain"]:
-                record["receive_clock_domain"] = source.parent.name
+            record_clock_domain = record.get("receive_clock_domain")
+            if not isinstance(record_clock_domain, str) or not record_clock_domain:
+                if manifest_clock_domain is None:
+                    raise ValueError(
+                        "legacy source row lacks receive_clock_domain and has no verified run manifest"
+                    )
+                record["receive_clock_domain"] = manifest_clock_domain
+                record_clock_domain = manifest_clock_domain
+            elif (manifest_clock_domain is not None
+                  and record_clock_domain != manifest_clock_domain):
+                raise ValueError("record receive_clock_domain conflicts with source manifest")
+            observed_clock_domains.add(record_clock_domain)
             raw_records += 1
             kind = record.get("kind")
             symbol = record.get("symbol")
@@ -249,6 +298,11 @@ def reduce_capture(source: Path, output: Path, *, max_output_bytes: int = MAX_OU
 
         dst.flush()
         os.fsync(dst.fileno())
+
+    if len(observed_clock_domains) > 1:
+        raise ValueError("one capture segment cannot mix receive clock domains")
+    if manifest_record_count is not None and raw_records != manifest_record_count:
+        raise ValueError("source capture manifest record_count does not match input")
 
     if _digest(source) != source_sha256:
         raise IOError("source changed during deterministic replay")

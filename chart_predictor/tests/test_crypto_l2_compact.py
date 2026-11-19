@@ -31,7 +31,50 @@ def _record(kind, symbol, event, t, **extra):
 
 
 def _write_source(path, records):
-    path.write_text("".join(json.dumps(row, separators=(",", ":")) + "\n" for row in records))
+    payload = "".join(json.dumps(row, separators=(",", ":")) + "\n" for row in records)
+    path.write_text(payload)
+    domains = {row.get("receive_clock_domain") for row in records
+               if isinstance(row.get("receive_clock_domain"), str)
+               and row["receive_clock_domain"]}
+    run_id = next(iter(domains)) if len(domains) == 1 else path.parent.name
+    (path.parent / "manifest.json").write_text(json.dumps({
+        "run_id": run_id,
+        "segment": {
+            "path": path.name,
+            "complete": True,
+            "sha256": hashlib.sha256(payload.encode()).hexdigest(),
+            "bytes": len(payload.encode()),
+            "record_count": len(records),
+        },
+    }))
+
+
+def test_legacy_clock_domain_is_derived_only_from_matching_run_manifest(tmp_path):
+    source = tmp_path / "capture.jsonl"
+    output = tmp_path / "compact.jsonl"
+    _write_source(source, [{
+        "kind": "connection", "symbol": None, "received_at_ms": 1000,
+        "received_monotonic_s": 1.0, "stream": "depth", "state": "connected",
+    }])
+
+    manifest = reduce_capture(source, output)
+    row = json.loads(output.read_text().splitlines()[0])
+
+    assert row["receive_clock_domain"] == tmp_path.name
+    assert manifest["source_records"] == 1
+
+
+def test_legacy_clock_domain_without_matching_run_manifest_fails_closed(tmp_path):
+    source = tmp_path / "capture.jsonl"
+    output = tmp_path / "compact.jsonl"
+    source.write_text(json.dumps({
+        "kind": "connection", "symbol": None, "received_at_ms": 1000,
+        "received_monotonic_s": 1.0, "stream": "depth", "state": "connected",
+    }) + "\n")
+
+    with pytest.raises(ValueError, match="no verified run manifest"):
+        reduce_capture(source, output)
+    assert not output.exists()
 
 
 def test_reducer_replays_snapshot_bridge_then_emits_causal_trade_quote(tmp_path):
