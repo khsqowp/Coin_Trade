@@ -24,7 +24,13 @@ Read-only independent verification of the current R019 synthetic artifacts and t
 
 The R19-P synthetic calibration is registered for **24 claims / 48 baseline contrasts**. The divergence OHLC-path preregistration explicitly says its intended market family is **20 claims / 40 contrasts** and that R019's larger family is not certified as that study's inference calibration. The source-hash and archive checks above establish current artifact integrity; they do not establish statistical transport from one claim family to the other.
 
-R19-P's five applicable missingness stress cells also report zero eligible claims and zero paired coverage. Those diagnostic cells cannot be described as passes or as proof that missing data are harmless. For any future market evaluation, unresolved outcomes must remain inconclusive, stay in the all-issued denominator, and satisfy the preregistered coverage gate.
+An exact-path red-team review additionally confirmed this is not only a family-size difference. The R018 generator creates **12 signal streams × 2 horizons**; the divergence family is **2 oscillators × 5 native timeframes × 2 horizons**. Its synthetic generator does not model shared anchors across the two oscillator streams, nested 10/20-bar target-first paths, or the dependence induced by multiple native timeframes on the same underlying minute path. Resizing 24/48 arrays to 20/40 would therefore not create the required dependence model.
+
+R19-P's five applicable missingness stress cells also report zero eligible claims and zero paired coverage. The harness requires zero unresolved outcomes for claim eligibility, while the divergence preregistration permits a claim to be considered only when at least 95% of emitted paths resolve and separately reports unresolved-path sensitivity. Thus those R19-P cells do not test the divergence study's 95% resolution boundary and cannot be described as passes or as proof that missing data are harmless. For any future market evaluation, retain the primary resolved-issued M2 and publish the all-issued unresolved-as-failure sensitivity; unresolved counts and the preregistered path-coverage gate remain mandatory.
+
+## Required next calibration
+
+Before any divergence market labels are opened, a new synthetic-only calibration must freeze a 20-claim/40-contrast mapping and model: five timeframe streams, two oscillator families per timeframe, two nested horizons sharing each issued anchor, and horizon outcomes derived from a common simulated path. It must verify null family-wise error, partial-null behavior, ≥95% path resolution handling, all-issued M2 sensitivity, and the divergence eligibility gates. The present R019/R019-P artifacts remain unchanged and are not transferred.
 
 ## Decision
 
