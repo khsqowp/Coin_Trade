@@ -1,6 +1,6 @@
 # Binance USD-M raw trades ↔ 1m kline integrity audit preregistration
 
-Version 2 — frozen 2026-11-19, before archive acquisition. Version 1 was rejected by an independent red-team review before any source archive or outcome label was accessed. This is a source-integrity audit only, not a strategy, prediction, or performance test.
+Version 4 — frozen 2026-11-19, before archive acquisition. Versions 1 and 2 were rejected by independent red-team review; version 3 was conditional. Version 4 received PASS before any source archive or outcome label was accessed. This is a source-integrity audit only, not a strategy, prediction, or performance test.
 
 ## Question
 
@@ -40,4 +40,4 @@ The Binance Vision Terms page, last updated 2026-08-26 and reviewed on 2026-11-1
 - Binance Public Data downloader documentation: <https://github.com/binance/binance-public-data/blob/master/python/README.md>
 - Binance Vision Dataset Terms: <https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md>
 
-Review record: version 1 was rejected for underspecified CSV schema, active-minute denominator, raw-row count definition, UTC boundary, and source-terms qualification. Version 2 was rejected for missing native-kline parser rules and inconsistent treatment of inactive-minute OHLC. Version 3 was conditional because zero-active symbol-days had no OHLC comparison denominator. This version fixes those items; it has not yet received independent re-review. No archive has been acquired and no audit has run.
+Review record: version 1 was rejected for underspecified CSV schema, active-minute denominator, raw-row count definition, UTC boundary, and source-terms qualification. Version 2 was rejected for missing native-kline parser rules and inconsistent treatment of inactive-minute OHLC. Version 3 was conditional because zero-active symbol-days had no OHLC comparison denominator. Version 4 fixed the remaining denominator rule and received independent red-team PASS on 2026-11-19. No archive has been acquired and no audit has run.
