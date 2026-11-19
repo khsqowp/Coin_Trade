@@ -1,0 +1,56 @@
+# Cross-market strategy research inventory — 2026-11-19
+
+## Scope and evidence rules
+
+This is a read-only synthesis of the current research checkout at commit `4417e133a56d61f899684ea58da29c4c0dc77f1a` plus four independent domain reviews. No market outcomes were recalculated, no account/sample/purchase request was made, and no order or deployment action occurred. The counts below retain their original units (registered families, parameter units, result rows, events, or outcome cells); they are not interchangeable and are **not summed into a fictional “total strategies tested.”** Detailed crypto micro-candle outcomes are in [`crypto_microtrial_ledger_2026-11-19.md`](crypto_microtrial_ledger_2026-11-19.md).
+
+Frozen goals remain separate by market:
+
+- Crypto manual long/short research: all-issued out-of-sample M2 target-first ≥80%; separately outcome-blind non-overlap N≥200 across ≥20 symbols; deadline-direction accuracy reported separately. Passing a hit-rate gate alone does not prove positive net expectancy.
+- KR and US cash stocks/ETFs: net portfolio CAGR ≥20%, MDD≤30%, annualized Sharpe≥1, and ≥200 closed OOS round trips in each market. No brokerage simulation or live-trading authorization is implied.
+
+## Crypto
+
+| Strategy family | Documented volume/results | Evidence status |
+|---|---|---|
+| Technical indicator / price action | The historical catalog records R1 480 parameter combinations across 10 supplied families, R3 53 variants, R10 136 settings (124 unique), R12 127, R13 81, R14 31, R16 397 (384 new), and other prior round studies. These counts overlap with follow-up/retest rounds and do not form a unique-hypothesis total. | Many apparent high-return variants were selected on exposed history. HA, VWAP, FRVP, ICT/SMC approximations, indicator and regime combinations have no current validated winner. Large reported returns often carry MDD above the user gate or fail period/parameter robustness. See [`strategy_catalog.md`](strategy_catalog.md). |
+| Dual Thrust / Donchian | Catalog records Dual Thrust 909 trades and a reported 2024–26 “blind” CAGR 57.7% / MDD 31.9%; Donchian70 variant 258 trades and CAGR 68.6% / MDD 35.9%. | Neither clears the fixed MDD≤30% target on reported values; Dual Thrust omits funding/slippage, Donchian is selected from 239 variants and its neighboring-parameter pass rate was 5/8. Neither is a qualifying independent result. |
+| Funding/basis re-entry | R021 tested timeframe/horizon cells with M2 34.1–48.3%. R025 assessed 15 non-empty subsets of four frozen conditions; none reached 80%. | Rejected on exposed development history; do not relabel a parameter/filter variant as new. See [`round2_rule_review_20261116.md`](round2_rule_review_20261116.md). |
+| BTC 1m three-candle streak | One fixed rule, 177,025 non-overlapping BTC trades; target-first 47.67% vs same-anchor always-long 48.95%; mean net return −0.1444% after 0.10% round-trip cost plus 0.04% slippage. | Rejected; development data, not independent OOS; no funding, leverage, liquidation or live fill model. This result file was present and is now included in the inventory. See [`crypto_round11_streak_results_20261115.md`](crypto_round11_streak_results_20261115.md). |
+| Taker flow / liquidity sweep | The long-history taker report covers four symbols and multiple timeframes/horizons/costs; 1m target-first is 21.85–29.74%, with base mean net returns about −0.102% to −0.103%. A separate sweep+taker report records 53,384 events across 8 symbol×horizon cells and max target-first 28.89%. | No promoted edge. Counts are not collapsed into an independent-trial total; spread, actual slippage, funding and liquidations are incompletely modeled. See [`long_history_taker_multitf_corrected_20261115.md`](long_history_taker_multitf_corrected_20261115.md) and the catalog. |
+| L2 / book recovery | H3 pilot recorded 194 events and 1/3/5-second markouts on two symbols over one hour. R005 has zero performance cells. Gate-0/R010 captures establish only bounded ingestion/replay integrity. | Not an M2 strategy result, not 20-symbol OOS evidence, and not a live reliability or capacity pass. R005 remains blocked by the overlap/coverage contract and incomplete capture/execution gates. See [`round4_candidate_triage_20261116.md`](round4_candidate_triage_20261116.md) and [`R005 decision`](crypto_m4_runs/2026-11-16-r005-liquidity-replenishment/decision.md). |
+| On-chain, options, social, institutional/trader-following | No validated performance study or qualifying candidate was found in the focused records reviewed by the two crypto inventory agents. | This means “not found in reviewed scope,” not proof that the entire repository contains zero such work. No strategy is approved. |
+
+The detailed Phase 0–8 and magnitude ledger records 22 primary micro-candle M2 cells; none reached 80%. The divergence WFA did not complete and has no persisted aggregate result. These outcomes and their data-split limitations are documented separately rather than added to the heterogeneous historical catalog counts.
+
+## Korea — cash stocks and ETFs
+
+| Evidence set | Documented outcome | Disposition |
+|---|---|---|
+| Broad daily transfer | 3,171 daily signal/parameter units over 64 cached securities; 913,248 result rows. Six-hour/four-hour units were unavailable because input was daily-only. Sixteen strategy definitions were not faithfully reproduced. | Rows/configurations are not 913,248 independent strategies. Current-member cache, unresolved PIT/delisting/corporate-action/data rights, and exposed history prevent OOS promotion. See [`FULL_TRANSFER_REPORT.md`](equity_transfer_2026-10/FULL_TRANSFER_REPORT.md) and [`strategy_scope_audit.json`](equity_transfer_2026-10/strategy_scope_audit.json). |
+| 069500 compression-breakout | 50 completed non-overlap trades; base CAGR −0.004%, MDD −15.932%; stress CAGR −0.381%. | Rejected; 50 trades, historical series already inspected, distributions omitted, costs/fills idealized. See [`results`](equity_kr_compression_breakout_results_20261115.md). |
+| Failed-breakdown reversal | 5,355 non-overlap events from 64 current-cohort stocks; mean net event return −0.315% base and −0.515% stress. | Rejected as a negative event study; not a sized portfolio CAGR/MDD/Sharpe test and not PIT OOS. See [`results`](equity_kr_failed_breakdown_results_20261115.md). |
+| ETF top-three 126-session momentum | Existing cache row: CAGR 5.209%, MDD 55.421%, Sharpe 0.340. | Fails all three performance goals and has cache/universe limitations. See [`equity_etf_rotation_20261115.csv`](equity_etf_rotation_20261115.csv). |
+| Corrected forward stress-reversal diagnostic | 56 stress dates; stock-minus-069500 excess +0.093 percentage points, with 95% intervals spanning zero under base and stress costs. | Retrospective/post-hoc, already exposed, not a portfolio OOS pass. See [`equity_forward_validation_protocol_20261115.md`](equity_forward_validation_protocol_20261115.md). |
+
+The KR inventory review found no qualifying strategy. Its proposed weekly top-two Korean equity ETF rotation (126-session total return, positive return and above 200-session average) is an **unregistered hypothesis only**. It must first pass duplicate review and wait for permitted point-in-time ETF membership, distribution-adjusted returns, cost/tax and fill assumptions, and a reproducible source snapshot.
+
+## United States — cash stocks and ETFs
+
+| Evidence set | Documented outcome | Disposition |
+|---|---|---|
+| Broad daily transfer | 3,171 daily signal/parameter units over 54 cached securities; 913,248 result rows; 16 definitions not faithfully reproduced; intraday units unavailable. | The output rows combine configurations, costs and sizing and are not independent strategy count. Selected current symbols and unresolved source rights/PIT/delist/distribution data block promotion. See [`FULL_TRANSFER_REPORT.md`](equity_transfer_2026-10/FULL_TRANSFER_REPORT.md). |
+| Largest selected transfer extreme | Reported US OOS CAGR maximum 65.1% for `a_trix_native` top-N/low-cost with MDD 25.9%, selected from thousands of variants. | Extreme-value selection, unresolved provider/universe provenance and no independent confirmation make this **not a winner**. OOS Sharpe/round-trip gate is not established for this selected extreme. |
+| Corrected 12–1 momentum diagnostic | 22 monthly cohorts; top quintile exceeded eligible-stock cohort by 3.036 percentage points/month and SPY by 3.847 points/month; block intervals were positive under stated costs. | Corrective, post-hoc diagnostic on a previously inspected period; event/cohort comparison rather than a fully sized portfolio. It does not prove ≥20% net CAGR, MDD≤30%, Sharpe≥1, or independent OOS. See [`forward protocol/results`](equity_forward_validation_protocol_20261115.md). |
+| ETF downside-beta rotation | Exploratory six-ETF portfolio; base-cost CAGR 3.21%, below SPY 13.88% and matched momentum 10.39%; confidence interval includes zero. | Not promoted; already inspected cache and unverified PIT distributions/cost/fills. See [`equity_us_downside_beta_results_20261115.md`](equity_us_downside_beta_results_20261115.md). |
+
+The US inventory review found no qualifying strategy. Its proposed monthly point-in-time 12–1 common-stock momentum portfolio remains an **unregistered proposal** and overlaps prior US-01–52/momentum work until a source-level duplicate review proves otherwise. It is not eligible to test on the current survivor cache.
+
+## Research decision and next gates
+
+1. **Do not run another historical parameter sweep on the exposed caches.** The catalog has many already tested or near-duplicate mechanisms; it does not contain a validated winner for these frozen gates.
+2. **Crypto next step is data-readiness, not another candle blend:** first prove a legally usable, integrity-auditable event-level `trades` or `aggTrades` panel, choose one format, verify source/hash/timestamps/IDs/gaps, reconcile it to minute aggregates, and only then register one materially distinct micro hypothesis. This step must preserve micro-first ordering; no HTF/macro expansion is justified by a failed micro gate.
+3. **KR/US next step is licensed data readiness:** validate permitted daily sample fields, point-in-time membership/delistings, stable IDs, splits/distributions, source vintage, storage/backup rights, and execution-cost definitions. No account, paid sample, vendor inquiry, purchase, download, or external request has been made in this review.
+4. Once the data gate is open, freeze one candidate per market with universe, entry/exit, sizing, benchmark, costs, train/test boundaries, and multiple-comparison control before opening outcomes. Apply the frozen performance thresholds without lowering them. Monte Carlo, full walk-forward and parameter-plateau gates apply only after an eligible candidate clears its primary gates; they do not rescue failed strategies.
+
+No research candidate is approved, no 80% crypto signal has been demonstrated, and no market currently has a qualifying strategy under the stated goals.
