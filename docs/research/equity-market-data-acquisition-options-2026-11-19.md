@@ -1,0 +1,35 @@
+# KR/US stock and ETF data path check
+
+Checked: 2026-11-19. Scope: identify a lawful daily-history route capable of supporting the frozen KR/US portfolio study. This is a provider/readiness review, not a strategy backtest, account creation, purchase, quote request, or API-key request.
+
+## Decision
+
+**No KR/US strategy backtest is authorized by the evidence currently available.** A plausible domestic daily-data path now exists through KRX OPEN API, but fields, adjustment treatment, delisted coverage, sample contents, price, and the compatibility of the user's requested duplicate storage with the API's no-third-party-provision rule remain unverified. CRSP is a strong US research-data candidate, but current subscription pricing and a usable sample were not publicly confirmed.
+
+## Korea — KRX OPEN API: conditional candidate
+
+- KRX's official API catalog lists daily trading information for KOSPI, KOSDAQ, KONEX, and ETF. The catalog says the KOSPI and KOSDAQ daily series start on 2010-01-04, KONEX on 2013-07-01, and ETF on 2010-01-04. [Official KRX service catalog](https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd)
+- Access requires a KRX Data Marketplace account, authentication-key request, and API service application/approval. The published terms say a key is valid for one year, can be extended, and is limited to 10,000 requests per key per day. The terms restrict use to non-commercial purposes and prohibit providing received information to third parties; they also say the information may no longer be used after the API agreement ends. [Official KRX API use instructions](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp), [official terms](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO002.jsp)
+- The API details page describes daily stock trading data from 2010, but its downloadable field specification and sample response were not exposed in this read-only public-page check. Adjusted OHLC, dividend/split treatment, inactive/delisted history, stable security identifiers, and the exact ETF universe therefore remain **unverified**. [Official KOSPI daily API page](https://openapi.krx.co.kr/contents/OPP/USES/service/OPPUSES002_S2.cmd?BO_ID=JvJFzlAENzZlPBDNGAWC)
+- KRX's separate Data Marketplace purchase route says product detail pages provide period, fields, sample files, and prices after member login; KRX states academic purchases by eligible students, faculty, and institutions receive a 50% discount. No product-specific daily-stock/ETF price was publicly visible in this check. [Official purchase guide](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp)
+
+**Use decision:** keep KRX as the first low-cost domestic sample to investigate, but do not treat it as a validated backtest panel until a permitted sample establishes field semantics, inactive-security coverage, corporate actions, and reproducible downloads. The API's non-commercial and non-sharing restrictions appear compatible with a private personal research workflow, but the planned separate Mac/Oracle copies are not cleared by this research and must not be assumed permitted.
+
+## United States — CRSP US Stock Databases: best-fit paid candidate
+
+- Morningstar/CRSP states that its US Stock Databases provide daily/monthly market data and corporate actions for more than 36,000 active and inactive securities, with permanent PERMNO/PERMCO identifiers. This directly addresses the survivor-bias and identity-history requirements better than the current unverified public panels. [Official CRSP product page](https://indexes.morningstar.com/research-data-products/crsp-us-stock-databases)
+- The CRSP CIZ guide documents daily total-return, price-return, delisting-return, daily OHLC, volume, and security-subtype fields including ETF/ETN. ETF-specific historical coverage, licensing for personal self-directed trading research, complete sample contents, and current price still require confirmation from a licensed sample or subscription response. [Official CRSP CIZ guide](https://www.crsp.org/wp-content/uploads/guides/CRSP_US_Stock_%26_Indexes_Database_Guide_Flat_File_Format_2.0.pdf)
+- The current official product page directs prospective customers to request subscription information; no public list price was found. A WRDS product page exposes a CRSP sample listing, but the reviewed page does not establish that the sample is an unrestricted, downloadable evaluation dataset or that it includes the required daily stock/ETF panel. [Official subscription information](https://indexes.morningstar.com/research-data-products/crsp-us-stock-databases), [WRDS CRSP listing](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/center-for-research-in-security-prices-crsp/)
+
+**Use decision:** CRSP is a strong schema/coverage fit if a personal or eligible institutional license and price are acceptable. Do not buy, create a WRDS account, or treat the listed CRSP sample as adequate until rights, actual daily sample coverage, and price are confirmed.
+
+## Remaining gates before strategy work
+
+1. For KRX, obtain a read-only sample/specification without creating an account or key; if unavailable, the user must decide whether to authorize the required account/key and service application. Test whether OHLC adjustment and delisted/inactive history exist before calculating any strategy outcomes.
+2. For US, obtain an official CRSP daily stock/ETF sample and written subscription quote under the allowed sample/quote scope; no data purchase or account creation is authorized here.
+3. For both markets, verify exact fields, rights, PIT security membership, delisted outcomes, corporate actions, version/hash lineage, execution costs/taxes, and whether local/server duplication is permitted.
+4. Only after all data gates pass, preregister a nonduplicate daily-candle strategy and apply the frozen OOS gates: net CAGR ≥20%, MDD ≤30%, Sharpe ≥1, and ≥200 closed OOS round trips. Do not substitute a current-survivor sample or an unadjusted close series.
+
+## Sources and attribution
+
+Sources are the Korea Exchange KRX OPEN API/Data Marketplace and Morningstar/CRSP product documentation, linked inline. No sample, API key, account, subscription, paid dataset, or strategy result was obtained or created in this review.
