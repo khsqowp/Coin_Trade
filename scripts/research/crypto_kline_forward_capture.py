@@ -24,7 +24,12 @@ from chart_predictor.universe import BASE_URL, select_universe
 
 MAX_DURATION_SECONDS = 24 * 60 * 60
 MAX_CAPTURE_BYTES = 128 * 1024 * 1024
+TAIL_DELIVERY_GRACE_MS = 15_000
 DATA_DIR = Path(__file__).resolve().parents[2] / "chart_predictor" / "data" / "crypto_kline_forward"
+
+
+class CaptureLimitReached(OSError):
+    """Raised when the JSONL artifact reaches its configured hard size cap."""
 
 
 def _integer(value, field):
@@ -41,6 +46,11 @@ def _number(value, field):
     if not math.isfinite(result):
         raise ValueError(f"{field} must be finite")
     return result
+
+
+def _latest_closed_open_ms(finished_ms, grace_ms=TAIL_DELIVERY_GRACE_MS):
+    """Latest candle eligible for tail-gap accounting after delivery grace."""
+    return (finished_ms - grace_ms) // 60_000 * 60_000 - 60_000
 
 
 def parse_closed_kline(envelope, expected_symbols):
@@ -135,6 +145,9 @@ class JsonlCapture:
         self.duplicates = 0
         self.out_of_order = 0
         self.missing_minutes = {symbol: 0 for symbol in symbols}
+        self.tail_missing_minutes = {symbol: 0 for symbol in symbols}
+        self.first_open_ms = {symbol: None for symbol in symbols}
+        self.first_connected_ms = None
         self.started_at = datetime.now(timezone.utc).isoformat()
         self.closed = False
         self._write({"kind": "capture_start", "run_id": self.run_id,
@@ -145,7 +158,7 @@ class JsonlCapture:
     def _write(self, row):
         payload = (json.dumps(row, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode()
         if self.bytes_written + len(payload) > self.max_bytes:
-            raise OSError("capture file size limit reached")
+            raise CaptureLimitReached("capture file size limit reached")
         self.handle.write(payload)
         self.digest.update(payload)
         self.bytes_written += len(payload)
@@ -153,6 +166,14 @@ class JsonlCapture:
     def append_kline(self, row, received_at_ms):
         symbol, open_ms = row["symbol"], row["open_ms"]
         previous = self.last_open_ms.get(symbol)
+        if previous is None and self.first_connected_ms is not None:
+            expected_first = self.first_connected_ms // 60_000 * 60_000
+            if open_ms > expected_first:
+                missing = (open_ms - expected_first) // 60_000
+                self.missing_minutes[symbol] += missing
+                self._write({"kind": "integrity_event", "category": "initial_gap",
+                             "symbol": symbol, "expected_open_ms": expected_first,
+                             "observed_open_ms": open_ms, "missing_minutes": missing})
         if previous is not None:
             if open_ms == previous:
                 self.duplicates += 1
@@ -172,6 +193,8 @@ class JsonlCapture:
         row = dict(row)
         row["received_at_ms"] = received_at_ms
         self._write(row)
+        if self.first_open_ms[symbol] is None:
+            self.first_open_ms[symbol] = open_ms
         self.last_open_ms[symbol] = open_ms
         self.rows_by_symbol[symbol] += 1
         if sum(self.rows_by_symbol.values()) % 100 == 0:
@@ -179,13 +202,27 @@ class JsonlCapture:
         return True
 
     def connection_event(self, state, error_type=None):
+        received_at_ms = int(time.time() * 1000)
+        if state == "connected" and self.first_connected_ms is None:
+            self.first_connected_ms = received_at_ms
         self._write({"kind": "connection_event", "state": state,
-                     "received_at_ms": int(time.time() * 1000), "error_type": error_type})
+                     "received_at_ms": received_at_ms, "error_type": error_type})
         self.handle.flush()
 
-    def finalize(self, complete, reconnects, started_monotonic):
+    def finalize(self, complete, reconnects, started_monotonic, termination_reason=None):
         if self.closed:
             return
+        finished_at = datetime.now(timezone.utc)
+        finished_ms = int(finished_at.timestamp() * 1000)
+        latest_closed_open_ms = _latest_closed_open_ms(finished_ms)
+        for symbol in self.symbols:
+            last_open = self.last_open_ms.get(symbol)
+            if last_open is None:
+                first_expected = self.first_connected_ms // 60_000 * 60_000 if self.first_connected_ms else None
+                if first_expected is not None and latest_closed_open_ms >= first_expected:
+                    self.tail_missing_minutes[symbol] = (latest_closed_open_ms - first_expected) // 60_000 + 1
+            elif latest_closed_open_ms > last_open:
+                self.tail_missing_minutes[symbol] = (latest_closed_open_ms - last_open) // 60_000
         self.handle.flush()
         os.fsync(self.handle.fileno())
         self.handle.close()
@@ -198,22 +235,32 @@ class JsonlCapture:
             data_path = self.partial
         report = {
             "run_id": self.run_id, "complete": bool(complete),
-            "started_at": self.started_at, "finished_at": datetime.now(timezone.utc).isoformat(),
+            "capture_window_elapsed": bool(complete),
+            "feed_completeness_verified": False,
+            "started_at": self.started_at, "finished_at": finished_at.isoformat(),
             "elapsed_seconds": round(time.monotonic() - started_monotonic, 3),
+            "termination_reason": termination_reason or ("duration_elapsed" if complete else "interrupted"),
             "data_path": data_path.name, "sha256": digest,
             "bytes": self.bytes_written, "symbol_count": len(self.symbols),
             "symbols": list(self.symbols), "rows_by_symbol": self.rows_by_symbol,
             "duplicates_skipped": self.duplicates, "out_of_order_skipped": self.out_of_order,
-            "missing_minutes_observed": self.missing_minutes, "reconnects": reconnects,
+            "first_open_ms": self.first_open_ms, "last_open_ms": self.last_open_ms,
+            "missing_minutes_observed": self.missing_minutes,
+            "tail_missing_minutes_at_finalize": self.tail_missing_minutes,
+            "first_connected_ms": self.first_connected_ms, "reconnects": reconnects,
             "strategy_metrics": None,
-            "limitations": ["WebSocket delivery completeness is not guaranteed by row counts alone.",
+            "limitations": ["The complete flag means the requested capture duration elapsed; it does not mean feed completeness.",
+                            f"Tail-gap counts allow {TAIL_DELIVERY_GRACE_MS}ms for final closed-kline delivery.",
+                            "WebSocket delivery completeness is not guaranteed by row counts alone.",
                             "Gaps are recorded and must not be bridged in later model input.",
                             "No predictions, alerts, labels, or orders are produced by this collector."],
         }
-        with self.manifest.open("x", encoding="utf-8") as handle:
+        manifest_tmp = self.manifest.with_suffix(self.manifest.suffix + ".partial")
+        with manifest_tmp.open("x", encoding="utf-8") as handle:
             handle.write(json.dumps(report, sort_keys=True, indent=2) + "\n")
             handle.flush()
             os.fsync(handle.fileno())
+        os.replace(manifest_tmp, self.manifest)
 
 
 async def capture(top_n, duration_seconds, output_dir, session=requests):
@@ -228,45 +275,50 @@ async def capture(top_n, duration_seconds, output_dir, session=requests):
     started = time.monotonic()
     reconnects, delay = 0, 1.0
     complete = False
+    termination_reason = None
     try:
         import websockets
-        while time.monotonic() < deadline:
-            writer.connection_event("connecting")
-            try:
-                async with websockets.connect(url, ping_interval=None, close_timeout=10,
-                                              max_queue=2048) as ws:
-                    writer.connection_event("connected")
-                    delay = 1.0
-                    while time.monotonic() < deadline:
-                        remaining = deadline - time.monotonic()
-                        try:
-                            raw = await asyncio.wait_for(ws.recv(), timeout=remaining)
-                        except asyncio.TimeoutError:
-                            complete = True
+        try:
+            while time.monotonic() < deadline:
+                writer.connection_event("connecting")
+                try:
+                    async with websockets.connect(url, ping_interval=None, close_timeout=10,
+                                                  max_queue=2048) as ws:
+                        writer.connection_event("connected")
+                        delay = 1.0
+                        while time.monotonic() < deadline:
+                            remaining = deadline - time.monotonic()
+                            try:
+                                raw = await asyncio.wait_for(ws.recv(), timeout=remaining)
+                            except asyncio.TimeoutError:
+                                complete = True
+                                break
+                            try:
+                                message = json.loads(raw)
+                                row = parse_closed_kline(message, set(symbols))
+                            except (json.JSONDecodeError, ValueError, TypeError) as exc:
+                                writer.connection_event("invalid_message", type(exc).__name__)
+                                continue
+                            if row is not None:
+                                writer.append_kline(row, int(time.time() * 1000))
+                                count = sum(writer.rows_by_symbol.values())
+                                if count and count % 500 == 0:
+                                    print(f"closed_bars={count} reconnects={reconnects}", flush=True)
+                        if complete:
                             break
-                        try:
-                            message = json.loads(raw)
-                            row = parse_closed_kline(message, set(symbols))
-                        except (json.JSONDecodeError, ValueError, TypeError) as exc:
-                            writer.connection_event("invalid_message", type(exc).__name__)
-                            continue
-                        if row is not None:
-                            writer.append_kline(row, int(time.time() * 1000))
-                            count = sum(writer.rows_by_symbol.values())
-                            if count and count % 500 == 0:
-                                print(f"closed_bars={count} reconnects={reconnects}", flush=True)
-                    if complete:
-                        break
-            except Exception as exc:
-                reconnects += 1
-                writer.connection_event("disconnected", type(exc).__name__)
-                await asyncio.sleep(min(delay, max(0.0, deadline - time.monotonic())))
-                delay = min(delay * 2, 60.0)
-        else:
-            complete = True
+                except Exception as exc:
+                    reconnects += 1
+                    writer.connection_event("disconnected", type(exc).__name__)
+                    await asyncio.sleep(min(delay, max(0.0, deadline - time.monotonic())))
+                    delay = min(delay * 2, 60.0)
+            else:
+                complete = True
+        except CaptureLimitReached:
+            termination_reason = "capture_size_limit"
     finally:
-        writer.finalize(complete, reconnects, started)
+        writer.finalize(complete, reconnects, started, termination_reason)
     return {"run_id": writer.run_id, "complete": complete,
+            "termination_reason": termination_reason or ("duration_elapsed" if complete else "interrupted"),
             "rows_by_symbol": writer.rows_by_symbol, "reconnects": reconnects,
             "manifest_path": str(writer.manifest)}
 

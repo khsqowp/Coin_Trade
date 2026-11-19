@@ -3,7 +3,12 @@ import hashlib
 import json
 import time
 
-from scripts.research.crypto_kline_forward_capture import JsonlCapture, parse_closed_kline
+from scripts.research.crypto_kline_forward_capture import (
+    CaptureLimitReached,
+    JsonlCapture,
+    _latest_closed_open_ms,
+    parse_closed_kline,
+)
 
 
 def kline_message(*, closed=True, quote="100.0", buy_quote="65.0", volume="2",
@@ -94,9 +99,77 @@ def test_capture_skips_duplicate_and_records_gap_with_verified_manifest(tmp_path
 
     report = json.loads(writer.manifest.read_text())
     assert report["complete"] is True
+    assert report["capture_window_elapsed"] is True
+    assert report["feed_completeness_verified"] is False
     assert report["duplicates_skipped"] == 1
     assert report["missing_minutes_observed"]["BTCUSDT"] == 1
     assert report["rows_by_symbol"]["BTCUSDT"] == 2
     assert hashlib.sha256(writer.final.read_bytes()).hexdigest() == report["sha256"]
     records = [json.loads(line) for line in writer.final.read_text().splitlines()]
     assert any(record.get("category") == "minute_gap" for record in records)
+
+
+def test_capture_records_gap_before_first_observed_bar(tmp_path):
+    row = parse_closed_kline(kline_message(), {"BTCUSDT"})
+    expected_open = row["open_ms"]
+    row["open_ms"] += 120_000
+    row["close_ms"] += 120_000
+    writer = JsonlCapture(tmp_path, ["BTCUSDT"], [{"symbol": "BTCUSDT"}])
+    writer.first_connected_ms = expected_open + 1_000
+    started = time.monotonic()
+
+    assert writer.append_kline(row, expected_open + 180_000) is True
+    writer.finalize(True, 0, started)
+
+    report = json.loads(writer.manifest.read_text())
+    assert report["first_open_ms"]["BTCUSDT"] == expected_open + 120_000
+    assert report["missing_minutes_observed"]["BTCUSDT"] == 2
+    records = [json.loads(line) for line in writer.final.read_text().splitlines()]
+    assert any(record.get("category") == "initial_gap" for record in records)
+
+
+def test_finalize_records_unobserved_tail_minutes(tmp_path):
+    now_floor = int(time.time() * 1000) // 60_000 * 60_000
+    open_ms = now_floor - 180_000
+    row = parse_closed_kline(kline_message(), {"BTCUSDT"})
+    row["open_ms"] = open_ms
+    row["close_ms"] = open_ms + 59_999
+    writer = JsonlCapture(tmp_path, ["BTCUSDT"], [{"symbol": "BTCUSDT"}])
+    writer.first_connected_ms = open_ms
+    started = time.monotonic()
+    assert writer.append_kline(row, open_ms + 60_000) is True
+    writer.finalize(True, 0, started)
+
+    report = json.loads(writer.manifest.read_text())
+    assert report["tail_missing_minutes_at_finalize"]["BTCUSDT"] >= 1
+    assert report["last_open_ms"]["BTCUSDT"] == open_ms
+
+
+def test_tail_gap_grace_avoids_counting_a_just_closed_candle_too_early():
+    minute_open = 1_700_000_040_000
+    minute_close_boundary = minute_open + 60_000
+
+    before_delivery_grace = _latest_closed_open_ms(minute_close_boundary + 1_000)
+    after_delivery_grace = _latest_closed_open_ms(minute_close_boundary + 20_000)
+
+    assert before_delivery_grace == minute_open - 60_000
+    assert after_delivery_grace == minute_open
+
+
+def test_size_limit_keeps_partial_data_and_writes_manifest(tmp_path):
+    row = parse_closed_kline(kline_message(), {"BTCUSDT"})
+    writer = JsonlCapture(tmp_path, ["BTCUSDT"], [{"symbol": "BTCUSDT"}])
+    writer.max_bytes = writer.bytes_written + 1
+    started = time.monotonic()
+
+    with pytest.raises(CaptureLimitReached):
+        writer.append_kline(row, 1_700_000_100_000)
+    writer.finalize(False, 0, started, "capture_size_limit")
+
+    report = json.loads(writer.manifest.read_text())
+    assert report["complete"] is False
+    assert report["capture_window_elapsed"] is False
+    assert report["feed_completeness_verified"] is False
+    assert report["termination_reason"] == "capture_size_limit"
+    assert writer.partial.exists()
+    assert hashlib.sha256(writer.partial.read_bytes()).hexdigest() == report["sha256"]
