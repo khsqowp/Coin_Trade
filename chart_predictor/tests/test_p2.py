@@ -33,7 +33,9 @@ def prediction(frame, direction="flat", side="none", inv=100):
         "created_at": "2026-01-01T00:00:00Z", "model": "codex", "prompt_version": "p2",
         "code_sha": "abc", "input_sha256": _digest(frame.iloc[:30]), "direction": direction,
         "confidence": .8, "path": [{"minutes": horizon*k//4, "price": 100} for k in range(1, 5)],
-        "target_low": 99, "target_high": 101, "invalidation": inv, "side": side,
+        "target_low": 104 if side == "long" else 95 if side == "short" else 99,
+        "target_high": 105 if side == "long" else 96 if side == "short" else 101,
+        "invalidation": inv, "side": side,
         "leverage_suggestion": 2, "rationale": ["fixture"]}
 
 
@@ -46,6 +48,10 @@ def test_validator_rejects_bad_hash_enum_and_ranges():
         with pytest.raises(ValueError): validate_prediction(bad, frame)
     bad = dict(pred, side="long", invalidation=100)
     with pytest.raises(ValueError): validate_prediction(bad, frame)
+    bad = prediction(frame, "up", "long", 99)
+    bad["target_low"] = 99
+    with pytest.raises(ValueError): validate_prediction(bad, frame)
+    assert score_prediction(bad, frame)["status"] == "UNSCORABLE"
 
 
 @pytest.mark.parametrize("move,expected", [(2, "up"), (-2, "down"), (0, "flat")])
@@ -56,14 +62,50 @@ def test_scorer_direction_fixtures(move, expected):
     assert result["m1_actual"] == expected and result["m1_hit"]
 
 
-def test_scorer_target_touch_path_mae_and_same_candle_adverse_first():
+def test_target_first_rejects_same_candle_target_and_invalidation():
     frame = frames()
-    frame.loc[39, ["h", "l"]] = [102, 49]
+    frame.loc[39, ["h", "l"]] = [105, 49]
     pred = prediction(frame, "flat", "long", 99)
     result = score_prediction(pred, frame)
-    assert result["m2_hit"] and result["m3_mae_usdt"] == 0
+    assert result["m2_hit"] is False
+    assert result["m2_exit_reason"] == "INVALIDATION"
+    assert result["m3_mae_usdt"] == 0
     assert result["exit_reason"] == "INVALIDATION" and result["exit_price"] == 99
     assert result["invalidation_hit_time"] == frame.t_open_ms.iloc[39]
+
+
+def test_target_first_respects_bar_order():
+    target_first = frames()
+    target_first.loc[34, "h"] = 104.5
+    target_first.loc[39, "l"] = 98.5
+    result = score_prediction(prediction(target_first, "up", "long", 99), target_first)
+    assert result["m2_hit"] is True and result["m2_exit_reason"] == "TARGET"
+
+    stop_first = frames()
+    stop_first.loc[34, "l"] = 98.5
+    stop_first.loc[39, "h"] = 104.5
+    result = score_prediction(prediction(stop_first, "up", "long", 99), stop_first)
+    assert result["m2_hit"] is False and result["m2_exit_reason"] == "INVALIDATION"
+
+
+def test_target_first_short_and_no_trade():
+    short = frames()
+    short.loc[34, "l"] = 95.5
+    result = score_prediction(prediction(short, "down", "short", 101), short)
+    assert result["m2_hit"] is True and result["m2_exit_reason"] == "TARGET"
+
+    no_trade = score_prediction(prediction(frames()), frames())
+    assert no_trade["m2_hit"] is False and no_trade["m2_exit_reason"] == "NO_TRADE"
+
+
+def test_trade_exits_at_target_and_charges_costs():
+    frame = frames()
+    frame.loc[30, "h"] = 104.5
+    result = score_prediction(prediction(frame, "up", "long", 99), frame,
+                              entry_delay_candles=0)
+    assert result["m2_hit"] is True
+    assert result["exit_reason"] == "TARGET" and result["exit_price"] == 104
+    assert result["net_return"] == pytest.approx(.08 - 2 * (.0005 + .0002) * 2)
 
 
 def test_scorer_liquidation_fees_and_unscorable():
@@ -87,6 +129,25 @@ def test_append_only_store_trials_and_stats(tmp_path):
     assert cumulative_trial_count(trials) == 1
     trials.close()
     assert wilson(50, 100) == pytest.approx({"low": .4038, "high": .5962}, abs=.0001)
+
+
+def test_m2_report_uses_actionable_signals_and_separates_no_trade():
+    data = [
+        {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET",
+         "m1_hit": True, "symbol": "BTCUSDT", "timeframe": "5m", "confidence": .8,
+         "anchor_time": "2026-01-01T00:00:00Z"},
+        {"status": "SCORED", "side": "short", "m2_hit": False, "m2_exit_reason": "INVALIDATION",
+         "m1_hit": False, "symbol": "BTCUSDT", "timeframe": "5m", "confidence": .8,
+         "anchor_time": "2026-01-01T00:05:00Z"},
+        {"status": "SCORED", "side": "none", "m2_hit": False, "m2_exit_reason": "NO_TRADE",
+         "m1_hit": True, "symbol": "BTCUSDT", "timeframe": "5m", "confidence": .8,
+         "anchor_time": "2026-01-01T00:10:00Z"},
+    ]
+    result = report(data)
+    assert result["m2_overall"]["n"] == 2
+    assert result["m2_overall"]["target_first_rate"] == pytest.approx(.5)
+    assert result["m2_overall"]["coverage"] == pytest.approx(2 / 3)
+    assert report([])["m2_overall"]["n"] == 0
 
 
 def test_baselines_and_splits_deterministic():
@@ -173,6 +234,10 @@ def test_cli_ingest_score_report_roundtrip(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["chart_predictor.cli", *args])
     cli.main()
     assert json.loads(capsys.readouterr().out)["ingested"] == 1
+    stale = connect_store(tmp_path / "pred.sqlite")
+    stale.execute("INSERT INTO scores VALUES(?,?)", (1, json.dumps({"status": "SCORED", "m2_hit": True})))
+    stale.commit()
+    stale.close()
     args = ["score", "--db", str(tmp_path / "pred.sqlite"), "--data-db", str(data_path)]
     monkeypatch.setattr(sys, "argv", ["chart_predictor.cli", *args])
     cli.main()
@@ -181,6 +246,8 @@ def test_cli_ingest_score_report_roundtrip(tmp_path, monkeypatch, capsys):
     cli.main()
     report_data = json.loads(capsys.readouterr().out)
     assert report_data["overall"]["n"] == 1 and "success" not in report_data
+    assert report_data["scoring_version"] == "target-first-v2"
+    assert report_data["stale_score_count"] == 0
 
 
 @pytest.mark.parametrize("side,inv,high,low,expected", [

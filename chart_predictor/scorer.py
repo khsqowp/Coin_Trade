@@ -6,6 +6,7 @@ from . import indicators
 from .schema import HORIZON
 
 WIDTH = {"1m": 60_000, "5m": 300_000, "30m": 1_800_000, "60m": 3_600_000}
+SCORING_VERSION = "target-first-v2"
 
 
 def score_prediction(prediction, candles, taker_fee=0.0005, slippage=0.0002,
@@ -21,7 +22,7 @@ def score_prediction(prediction, candles, taker_fee=0.0005, slippage=0.0002,
     horizon_candles = HORIZON[tf] // (width // 60_000)
     future = frame[frame.t_open_ms >= anchor_ms].head(horizon_candles)
     if past.empty or len(future) < horizon_candles or not np.all(np.diff(future.t_open_ms) == width):
-        return {"status": "UNSCORABLE"}
+        return {"status": "UNSCORABLE", "scoring_version": SCORING_VERSION}
     return _score_complete(prediction, past, future, taker_fee, slippage, entry_delay_candles, flat_mult)
 
 
@@ -35,14 +36,51 @@ def _score_complete(p, past, future, fee, slip, entry_delay_candles, flat_mult):
     final_move = float(future.c.iloc[-1]) - anchor
     band = flat_mult * atr * math.sqrt(horizon)
     actual = "flat" if abs(final_move) <= band else "up" if final_move > 0 else "down"
-    win = future.iloc[horizon // 2 - 1:]
-    target = float(win.l.min()) <= float(p["target_high"]) and float(win.h.max()) >= float(p["target_low"])
+    target, target_reason = _target_first(p, future, anchor)
+    if target_reason == "INVALID_LEVELS":
+        return {"status": "UNSCORABLE", "scoring_version": SCORING_VERSION,
+                "m2_hit": False, "m2_exit_reason": target_reason}
     width = WIDTH[p["timeframe"]]
     path = _path_errors(p, future, width)
     trade = _trade(p, future, anchor, fee, slip, entry_delay_candles)
-    return {"status": "SCORED", "m1_actual": actual, "m1_hit": p["direction"] == actual,
-            "flat_band": band, "m2_hit": bool(target), "m3_mae_usdt": float(np.mean(path)),
+    return {"status": "SCORED", "scoring_version": SCORING_VERSION,
+            "m1_actual": actual, "m1_hit": p["direction"] == actual,
+            "flat_band": band, "m2_hit": target, "m2_exit_reason": target_reason,
+            "m3_mae_usdt": float(np.mean(path)),
             "m3_mae_atr": float(np.mean(path) / atr) if atr else None, **trade}
+
+
+def _target_first(p, future, anchor):
+    """Resolve a directional target against invalidation in chronological order.
+
+    OHLC bars do not reveal which barrier was crossed first when both barriers
+    lie inside one candle. Such ties are deliberately scored as invalidation.
+    Forecasts with no actionable long/short side have no target-first outcome.
+    """
+    side = p["side"]
+    if side not in {"long", "short"}:
+        return False, "NO_TRADE"
+
+    target = float(p["target_low"] if side == "long" else p["target_high"])
+    invalidation = float(p["invalidation"])
+    if (side == "long" and not invalidation < anchor < target) or (
+            side == "short" and not target < anchor < invalidation):
+        return False, "INVALID_LEVELS"
+    for row in future.itertuples():
+        if side == "long":
+            stop_hit = row.o <= invalidation or row.l <= invalidation
+            target_hit = row.o >= target or row.h >= target
+        else:
+            stop_hit = row.o >= invalidation or row.h >= invalidation
+            target_hit = row.o <= target or row.l <= target
+
+        # If both barriers occur in one OHLC candle, their ordering is unknown;
+        # take the adverse outcome instead of granting the target optimistically.
+        if stop_hit:
+            return False, "INVALIDATION"
+        if target_hit:
+            return True, "TARGET"
+    return False, "TIMEOUT"
 
 
 def _path_errors(p, future, width):
@@ -66,7 +104,17 @@ def _trade(p, future, anchor, fee, slip, entry_delay_candles=1):
     entry = float(anchor if entry_delay_candles == 0 else future.iloc[entry_index].o)
     scan = future.iloc[0 if entry_delay_candles == 0 else entry_index:]
     sign = 1 if side == "long" else -1
+    target = float(p["target_low"] if side == "long" else p["target_high"])
     inv = float(p["invalidation"])
+    if (side == "long" and not inv < anchor < target) or (
+            side == "short" and not target < anchor < inv):
+        return {"invalidation_hit_time": None, "exit_reason": "INVALID_LEVELS",
+                "entry_price": entry, "exit_price": entry, "net_return": None,
+                "r_multiple": None}
+    if (side == "long" and entry >= target) or (side == "short" and entry <= target):
+        return {"invalidation_hit_time": None, "exit_reason": "TARGET_MISSED_BEFORE_ENTRY",
+                "entry_price": None, "exit_price": None, "net_return": 0.0,
+                "r_multiple": None}
     liq = entry * (1 - sign * max(0, 1 / lev - .005))
     for row in scan.itertuples():
         stop = _first_stop(row, side, entry, inv, liq)
@@ -74,6 +122,10 @@ def _trade(p, future, anchor, fee, slip, entry_delay_candles=1):
             reason, exit_price = stop
             hit = int(row.t_open_ms) if reason == "INVALIDATION" else None
             return _trade_result(reason, entry, exit_price, hit, inv, lev, sign, fee, slip)
+        target_hit = ((row.o >= target or row.h >= target) if side == "long"
+                      else (row.o <= target or row.l <= target))
+        if target_hit:
+            return _trade_result("TARGET", entry, target, None, inv, lev, sign, fee, slip)
     exit_price = float(future.c.iloc[-1])
     return _trade_result("HORIZON", entry, exit_price, None, inv, lev, sign, fee, slip)
 

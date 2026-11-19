@@ -31,6 +31,11 @@ def validate_prediction(prediction, candles):
     side, inv = prediction["side"], float(prediction["invalidation"])
     if side == "long" and inv >= price or side == "short" and inv <= price:
         raise ValueError("invalidation is not adverse to anchor price")
+    target = float(prediction["target_low"] if side == "long" else prediction["target_high"])
+    if side == "long" and not inv < price < target:
+        raise ValueError("long target/invalidation must bracket anchor price")
+    if side == "short" and not target < price < inv:
+        raise ValueError("short target/invalidation must bracket anchor price")
     return True
 
 

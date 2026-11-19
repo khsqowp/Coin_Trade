@@ -28,12 +28,18 @@ def emit_baseline(name, candles, symbol, timeframe, anchor_time, seed=0, input_s
     price = float(close[-1])
     atr = float(np.nan_to_num(np.mean(np.abs(np.diff(close[-15:]))), nan=0.0)) or price * .001
     side = "long" if direction == "up" else "short" if direction == "down" else "none"
+    if side == "long":
+        target_low, target_high = price + atr, price + 2 * atr
+    elif side == "short":
+        target_low, target_high = price - 2 * atr, price - atr
+    else:
+        target_low, target_high = price - atr, price + atr
     return {"symbol": symbol, "timeframe": timeframe, "anchor_time": anchor_time,
         "created_at": pd.Timestamp.now(tz="UTC").isoformat(), "model": f"baseline_{name}",
         "prompt_version": "baseline-v1", "code_sha": "baseline-v1", "input_sha256": input_sha256 or _digest(frame),
         "direction": direction, "confidence": .5, "path": [{"minutes": horizon * n // 4,
         "price": price + (atr * (1 if direction == "up" else -1 if direction == "down" else 0) * n / 4)}
-        for n in (1, 2, 3, 4)], "target_low": price - atr, "target_high": price + atr,
+        for n in (1, 2, 3, 4)], "target_low": target_low, "target_high": target_high,
         "invalidation": price - atr if side == "long" else price + atr if side == "short" else price,
         "side": side, "leverage_suggestion": 1, "rationale": [f"deterministic {name} baseline"]}
 

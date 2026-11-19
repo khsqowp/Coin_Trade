@@ -9,7 +9,7 @@ from .features import build_features
 from .resample import load_resampled
 from .store import append_prediction, connect_store, connect_trials, record_trial
 from .schema import validate_prediction
-from .scorer import score_prediction
+from .scorer import SCORING_VERSION, score_prediction
 from .stats import report as make_report
 from .replay import replay
 from .universe import fetch_universe
@@ -82,7 +82,8 @@ def _score(args):
     """Score every not-yet-scored prediction using completed local candles."""
     store = connect_store(args.db)
     done = {row[0] for row in store.execute("SELECT prediction_id,payload FROM scores")
-            if json.loads(row[1]).get("status") == "SCORED"}
+            if (json.loads(row[1]).get("status") == "SCORED" and
+                json.loads(row[1]).get("scoring_version") == SCORING_VERSION)}
     rows = store.execute("SELECT id,payload FROM predictions").fetchall()
     results = []
     for pred_id, payload in rows:
@@ -92,7 +93,8 @@ def _score(args):
         candles = _load_candles(pred["symbol"], pred["timeframe"], args.data_db)
         result = score_prediction(pred, candles)
         result.update({"prediction_id": pred_id, "symbol": pred["symbol"], "timeframe": pred["timeframe"],
-                       "model": pred["model"], "confidence": pred["confidence"], "anchor_time": pred["anchor_time"]})
+                       "model": pred["model"], "confidence": pred["confidence"], "anchor_time": pred["anchor_time"],
+                       "side": pred["side"]})
         store.execute("INSERT INTO scores VALUES(?,?)", (pred_id, json.dumps(result, allow_nan=False)))
         results.append(result)
     store.commit()
@@ -106,9 +108,14 @@ def _report(args):
     latest = {}
     for row in store.execute("SELECT prediction_id,payload FROM scores ORDER BY rowid"):
         latest[row[0]] = json.loads(row[1])
-    scores = list(latest.values())
+    current_scores = [score for score in latest.values()
+                      if score.get("scoring_version") == SCORING_VERSION]
     store.close()
-    print(json.dumps(make_report(scores), indent=2, allow_nan=False))
+    report_data = make_report(current_scores)
+    report_data["scoring_version"] = SCORING_VERSION
+    report_data["stale_score_count"] = sum(
+        score.get("scoring_version") != SCORING_VERSION for score in latest.values())
+    print(json.dumps(report_data, indent=2, allow_nan=False))
 
 
 def _features(args):
