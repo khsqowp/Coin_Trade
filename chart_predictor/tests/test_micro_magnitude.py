@@ -54,6 +54,46 @@ def test_symbol_scan_is_chunk_invariant_and_excludes_invalid_three_bar_windows(t
     ) == len(results)
 
 
+def test_eval_windows_use_candle_close_times_at_both_half_open_boundaries(tmp_path, monkeypatch):
+    db = tmp_path / "candles.sqlite"
+    conn = sqlite3.connect(db)
+    conn.execute(
+        "CREATE TABLE candles (symbol TEXT, open_ms INTEGER, open REAL, high REAL, "
+        "low REAL, close REAL, volume REAL, PRIMARY KEY(symbol,open_ms))"
+    )
+    rows = []
+    price = 100.0
+    for index in range(20):
+        open_price = price
+        price *= 1.001
+        close_price = price
+        high = max(open_price, close_price) * 1.001
+        low = min(open_price, close_price) * 0.999
+        if index == 16:
+            high = low / 2  # Opens inside eval but closes exactly at its exclusive end.
+        rows.append(("BOUNDARY", index * mm.MINUTE_MS, open_price, high, low, close_price, 1.0))
+    conn.executemany("INSERT INTO candles VALUES(?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(mm, "TRAIN_START", 0)
+    monkeypatch.setattr(mm, "TRAIN_END", 10 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "EVAL_START", 10 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "EVAL_END", 17 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "MIN_TRAIN", 2)
+    monkeypatch.setattr(mm, "MIN_EVAL", 1)
+    monkeypatch.setattr(mm, "CHUNK_ROWS", 5)
+
+    conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    result = mm._analyze_symbol(conn, "BOUNDARY", score=False)
+    conn.close()
+
+    assert result["eligible"] is True
+    assert result["train_returns"] == 8
+    assert result["eval_forecasts"] == 5
+    assert result["invalid_rows"] == 1
+
+
 def test_run_persists_outcome_blind_preflight_before_scoring(tmp_path, monkeypatch):
     db = tmp_path / "candles.sqlite"
     conn = sqlite3.connect(db)
@@ -202,3 +242,78 @@ def test_interrupted_run_resumes_completed_symbol_checkpoints(tmp_path, monkeypa
     assert report["eligible_symbols"] == 20
     assert "S00" not in resumed_score_calls
     assert output.is_file()
+
+
+def test_bootstrap_interrupt_is_recorded_and_resume_reuses_scores(tmp_path, monkeypatch):
+    db = tmp_path / "candles.sqlite"
+    conn = sqlite3.connect(db)
+    conn.execute(
+        "CREATE TABLE candles (symbol TEXT, open_ms INTEGER, open REAL, high REAL, "
+        "low REAL, close REAL, volume REAL, PRIMARY KEY(symbol,open_ms))"
+    )
+    rows = []
+    for symbol_index in range(20):
+        price = 100.0 + symbol_index
+        for index in range(40):
+            open_price = price
+            price *= 1.001 if index % 2 else 0.999
+            close_price = price
+            rows.append((
+                f"S{symbol_index:02d}", index * mm.MINUTE_MS, open_price,
+                max(open_price, close_price) * 1.001,
+                min(open_price, close_price) * 0.999,
+                close_price, 1.0,
+            ))
+    conn.executemany("INSERT INTO candles VALUES(?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(mm, "TRAIN_START", 0)
+    monkeypatch.setattr(mm, "TRAIN_END", 10 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "EVAL_START", 10 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "EVAL_END", 14 * mm.MINUTE_MS)
+    monkeypatch.setattr(mm, "MIN_TRAIN", 2)
+    monkeypatch.setattr(mm, "MIN_EVAL", 2)
+    monkeypatch.setattr(mm, "BOOTSTRAP_REPS", 20)
+    monkeypatch.setattr(mm, "BOOTSTRAP_PROGRESS_EVERY", 1)
+    monkeypatch.setattr(mm, "CHUNK_ROWS", 17)
+    expected_sha = hashlib.sha256(db.read_bytes()).hexdigest()
+    output = tmp_path / "bootstrap-resumable.json"
+    state_path = output.with_name(output.name + ".state") / "status.json"
+    stop = {"requested": False}
+    progress = []
+
+    def interrupt_after_three_replicates(completed, _total):
+        progress.append(completed)
+        if completed == 3:
+            stop["requested"] = True
+
+    original_bootstrap = mm._bootstrap
+
+    def track_bootstrap(symbols, **kwargs):
+        kwargs["progress"] = interrupt_after_three_replicates
+        return original_bootstrap(symbols, **kwargs)
+
+    monkeypatch.setattr(mm, "_bootstrap", track_bootstrap)
+    try:
+        mm.run(db, output, expected_sha256=expected_sha,
+               stop_requested=lambda: stop["requested"])
+    except mm.RunInterrupted:
+        pass
+    else:
+        raise AssertionError("bootstrap should stop after the requested checkpoint")
+
+    assert progress == [1, 2, 3]
+    interrupted = json.loads(state_path.read_text())
+    assert interrupted["state"] == "interrupted"
+    assert interrupted["stage"] == "bootstrap"
+    assert not output.exists()
+
+    stop["requested"] = False
+    monkeypatch.setattr(mm, "_bootstrap", original_bootstrap)
+    report = mm.run(db, output, expected_sha256=expected_sha,
+                    stop_requested=lambda: stop["requested"])
+
+    assert report["bootstrap"]["replicates"] == 20
+    assert output.is_file()
+    assert json.loads(state_path.read_text())["state"] == "complete"

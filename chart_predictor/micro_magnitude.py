@@ -26,6 +26,7 @@ BOOTSTRAP_REPS = 5_000
 BLOCK_DAYS = 7
 SEED = 20261119
 CHUNK_ROWS = 100_000
+BOOTSTRAP_PROGRESS_EVERY = 100
 
 
 class RunInterrupted(Exception):
@@ -113,7 +114,10 @@ def _analyze_symbol(
     cur = conn.execute(
         "SELECT open_ms,open,high,low,close,volume FROM candles "
         "WHERE symbol=? AND open_ms>=? AND open_ms<? ORDER BY open_ms",
-        (symbol, TRAIN_START - MINUTE_MS, EVAL_END - MINUTE_MS),
+        # Include the candle whose close is exactly EVAL_END so the explicit
+        # close-time half-open filter below, rather than the query bound, proves
+        # that boundary candle is excluded from scoring.
+        (symbol, TRAIN_START - MINUTE_MS, EVAL_END),
     )
     while True:
         if stop_requested is not None and stop_requested():
@@ -210,13 +214,20 @@ def _analyze_symbol(
     }
 
 
-def _bootstrap(symbols: list[dict]) -> dict:
+def _bootstrap(
+    symbols: list[dict],
+    *,
+    progress: Callable[[int, int], None] | None = None,
+    stop_requested: Callable[[], bool] | None = None,
+) -> dict:
     n_days = (EVAL_END - EVAL_START + 86_400_000 - 1) // 86_400_000
     rng = np.random.default_rng(SEED)
     block_count = (n_days + BLOCK_DAYS - 1) // BLOCK_DAYS
     samples = np.empty(BOOTSTRAP_REPS, dtype=np.float64)
     mse_samples = np.empty(BOOTSTRAP_REPS, dtype=np.float64)
     for rep in range(BOOTSTRAP_REPS):
+        if stop_requested is not None and stop_requested():
+            raise RunInterrupted(f"interrupted during bootstrap after {rep} replicates")
         starts = rng.integers(0, n_days, size=block_count)
         dates = np.concatenate([(s + np.arange(BLOCK_DAYS)) % n_days for s in starts])[:n_days]
         sym_mae, sym_mse = [], []
@@ -232,6 +243,11 @@ def _bootstrap(symbols: list[dict]) -> dict:
                 sym_mse.append(1.0 - cand_mse / base_mse)
         samples[rep] = float(np.mean(sym_mae))
         mse_samples[rep] = float(np.mean(sym_mse))
+        completed = rep + 1
+        if progress is not None and (
+            completed % BOOTSTRAP_PROGRESS_EVERY == 0 or completed == BOOTSTRAP_REPS
+        ):
+            progress(completed, BOOTSTRAP_REPS)
     return {
         "block_days": BLOCK_DAYS, "replicates": BOOTSTRAP_REPS, "seed": SEED,
         "relative_mae_improvement_95pct": np.quantile(samples, [0.025, 0.975]).tolist(),
@@ -280,7 +296,7 @@ def run(
         "min_train": MIN_TRAIN, "min_eval": MIN_EVAL,
         "chunk_rows": CHUNK_ROWS, "minute_ms": MINUTE_MS,
         "bootstrap_reps": BOOTSTRAP_REPS, "block_days": BLOCK_DAYS,
-        "seed": SEED,
+        "seed": SEED, "bootstrap_progress_every": BOOTSTRAP_PROGRESS_EVERY,
     }
     identity = {"database_sha256": actual_sha, "script_sha256": script_sha,
                 "config": config}
@@ -416,6 +432,26 @@ def run(
     eligible = [score_by_symbol[symbol] for symbol in eligible_symbols]
     primary = float(np.mean([r["relative_mae_improvement"] for r in eligible]))
     positive_symbols = sum(r["relative_mae_improvement"] > 0 for r in eligible)
+    def bootstrap_progress(completed: int, total: int) -> None:
+        _atomic_json(status_path, {
+            "state": "running", "stage": "bootstrap",
+            "completed_replicates": completed, "total_replicates": total,
+            "updated_unix": time.time(), "fingerprint": fingerprint,
+        })
+        print(f"bootstrap replicates={completed}/{total}", flush=True)
+
+    try:
+        bootstrap = _bootstrap(
+            eligible, progress=bootstrap_progress, stop_requested=stop_requested,
+        )
+    except RunInterrupted as exc:
+        _atomic_json(status_path, {
+            "state": "interrupted", "stage": "bootstrap",
+            "reason": str(exc), "updated_unix": time.time(),
+            "fingerprint": fingerprint,
+        })
+        raise
+
     report = {
         "study": "micro-magnitude-phase1",
         "status": "development_diagnostic_exposed_history_not_trading_or_M2",
@@ -427,7 +463,7 @@ def run(
         "primary_equal_symbol_relative_mae_improvement": primary,
         "equal_symbol_relative_mse_improvement": float(np.mean([r["relative_mse_improvement"] for r in eligible])),
         "pooled_relative_mae_improvement": 1.0 - sum(r["candidate_mae"] * r["eval_forecasts"] for r in eligible) / sum(r["baseline_mae"] * r["eval_forecasts"] for r in eligible),
-        "bootstrap": _bootstrap(eligible),
+        "bootstrap": bootstrap,
         "data_quality": {"rows_scanned": sum(r["rows_scanned"] for r in results),
                          "invalid_rows": sum(r["invalid_rows"] for r in results),
                          "offgrid_rows": sum(r["offgrid_rows"] for r in results),
