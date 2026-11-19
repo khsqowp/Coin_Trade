@@ -42,6 +42,7 @@ Four separate reviews were completed: crypto candidate novelty, crypto red-team,
 - Four independent follow-up reviews found no justified new crypto 1m OHLC trial, no nonduplicative KR/US equity candidate on the current unlicensed/incomplete panels, and no admissible fresh OOS event panel. The next step is metadata-only Binance Vision `aggTrades` coverage/size feasibility; see `microfirst-next-gate-agent-review-2026-11-19.md`.
 - The metadata-only 2026-10 USD-M `aggTrades` screen now confirms HTTP 200 for the frozen 20-symbol cohort at 2,040,955,218 compressed bytes total; no data body was downloaded. Eighteen cohort symbols already have that month in the local 1m development panel, so it is not an untouched full-cohort OOS month. Do not download until a distinct candidate is registered and storage/destination gates pass. See `crypto-microdata-readiness-2026-11-19.md`.
 - The next recordable task is to reconcile trial registration/status across the broader strategy catalog before any new hypothesis is opened. This ledger deliberately does not claim the whole repository's historical trial count is complete.
+- The Coinbase/Binance fixing-window price-discovery screen was not opened as a performance trial: papers describe venue leadership/activity, not the required 10–20-minute target-first forecast; a BTC-only sketch cannot meet the ≥20-symbol gate. No vendor data was acquired. See `crypto-cross-venue-price-discovery-screen-2026-11-19.md`.
 
 ## Source records
 
