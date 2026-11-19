@@ -2,12 +2,14 @@
 
 ## Scope and evidence rules
 
-This is a read-only synthesis of the research checkout through commit `e445484b63a4543e6c4b4d2ec1cd94455ad128a8`, plus four independent domain reviews. A separate raw-trade source-integrity follow-up is also recorded; it did not calculate market outcomes. No account/sample/purchase request, order, or deployment action occurred. The counts below retain their original units (registered families, parameter units, result rows, events, or outcome cells); they are not interchangeable and are **not summed into a fictional “total strategies tested.”** Detailed crypto micro-candle outcomes are in [`crypto_microtrial_ledger_2026-11-19.md`](crypto_microtrial_ledger_2026-11-19.md).
+This is a selected strategy-evidence synthesis whose initial source cutoff was commit `e445484b63a4543e6c4b4d2ec1cd94455ad128a8`. Subsequent reviews and screens through HEAD `ac25bcb` are linked here, but this is not a complete historical trial registry. No account/sample/purchase request, order, or deployment action occurred. Counts retain their original units (registered families, parameter units, result rows, events, or outcome cells); they are not interchangeable and are **not summed into a fictional “total strategies tested.”** See the [trial-register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md) for omissions, corrections, and audit limits, and the [micro-candle ledger](crypto_microtrial_ledger_2026-11-19.md) for detailed outcomes.
 
 Frozen goals remain separate by market:
 
 - Crypto manual long/short research: all-issued out-of-sample M2 target-first ≥80%; separately outcome-blind non-overlap N≥200 across ≥20 symbols; deadline-direction accuracy reported separately. Passing a hit-rate gate alone does not prove positive net expectancy.
 - KR and US cash stocks/ETFs: net portfolio CAGR ≥20%, MDD≤30%, annualized Sharpe≥1, and ≥200 closed OOS round trips in each market. No brokerage simulation or live-trading authorization is implied.
+
+For crypto claims under the current MTF protocol, the frozen SPEC adds ≥10% coverage, cost-adjusted positive expectancy, a dependence-adjusted simultaneous 95% lower bound above both specified baselines, and a single sealed-OOS evaluation. These are additional gates, not replacements for the user-selected M2 criterion; see the [trial-register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md).
 
 ## Crypto
 
@@ -19,10 +21,14 @@ Frozen goals remain separate by market:
 | BTC 1m three-candle streak | One fixed rule, 177,025 non-overlapping BTC trades; target-first 47.67% vs same-anchor always-long 48.95%; mean net return −0.1444% after 0.10% round-trip cost plus 0.04% slippage. | Rejected; development data, not independent OOS; no funding, leverage, liquidation or live fill model. This result file was present and is now included in the inventory. See [`crypto_round11_streak_results_20261115.md`](crypto_round11_streak_results_20261115.md). |
 | Taker flow / liquidity sweep | The long-history taker report covers four symbols and multiple timeframes/horizons/costs; 1m target-first is 21.85–29.74%, with base mean net returns about −0.102% to −0.103%. A separate sweep+taker report records 53,384 events across 8 symbol×horizon cells and max target-first 28.89%. | No promoted edge. Counts are not collapsed into an independent-trial total; spread, actual slippage, funding and liquidations are incompletely modeled. See [`long_history_taker_multitf_corrected_20261115.md`](long_history_taker_multitf_corrected_20261115.md) and the catalog. |
 | Raw USD-M trade stream reconciliation | 20 symbols × four fixed UTC dates = 80 symbol-days; 85,632,531 trades and 115,200 1m bars. OHLC, base volume, trade count, taker-buy base, and active-minute sets matched. Eight anomalous row-level `quote_qty` values occurred on five symbol-days; separately reconstructed `price × qty` quote volume and buyer-taker quote totals matched all sampled native minutes. | Historical source-integrity diagnostic only, not a signal test. The raw `quote_qty` field still fails the preregistered exact-field gate; sample coverage does not establish full history or PIT universe. See [`quoteQty anomaly follow-up`](binance-trades-quoteqty-anomaly-followup-2026-11-19.md) and [`original preregistration`](binance-trades-kline-integrity-prereg-2026-11-19.md). |
-| L2 / book recovery | H3 pilot recorded 194 events and 1/3/5-second markouts on two symbols over one hour. R005 has zero performance cells. Gate-0/R010 captures establish only bounded ingestion/replay integrity. | Not an M2 strategy result, not 20-symbol OOS evidence, and not a live reliability or capacity pass. R005 remains blocked by the overlap/coverage contract and incomplete capture/execution gates. See [`round4_candidate_triage_20261116.md`](round4_candidate_triage_20261116.md) and [`R005 decision`](crypto_m4_runs/2026-11-16-r005-liquidity-replenishment/decision.md). |
+| L2 / book recovery | H3 pilot recorded 194 events and 1/3/5-second markouts on two symbols over one hour. R007 found the original R005 20T-spacing/coverage contract infeasible; R012 remains a blocked protocol draft with zero performance cells. Gate-0/R010 captures establish only bounded ingestion/replay integrity. | Not an M2 strategy result, not 20-symbol OOS evidence, and not a live reliability or capacity pass. See [`round4_candidate_triage_20261116.md`](round4_candidate_triage_20261116.md), [`R007 decision`](crypto_m4_runs/2026-11-16-r007-r005-coverage-feasibility/decision.md), and [`R012 decision`](crypto_m4_runs/2026-11-16-r012-overlap-protocol-redesign/decision.md). |
 | On-chain, options, social, institutional/trader-following | No validated performance study or qualifying candidate was found in the focused records reviewed by the two crypto inventory agents. | This means “not found in reviewed scope,” not proof that the entire repository contains zero such work. No strategy is approved. |
 
 The detailed Phase 0–8 and magnitude ledger records 22 primary micro-candle M2 cells; none reached 80%. The divergence WFA did not complete and has no persisted aggregate result. These outcomes and their data-split limitations are documented separately rather than added to the heterogeneous historical catalog counts.
+
+The 22 primary M2 cells are not 22 independent mechanisms: Phases 7–8 repeat two rules at larger timeframes. The separate BTC lead/alt-lag results belong to the existing development family. The Coinbase/Binance and quarter-hour order-imbalance reviews are literature/feasibility screens only. R016/R017/R018/R019 are inference-method checks, not market strategy tests; detailed status and failures are in the [register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md).
+
+Legacy “blind” labels in the strategy catalog do not establish an untouched sealed OOS: the selected Dual Thrust/Donchian reports still miss the MDD gate and omit funding/slippage in the cited setup. See the [trial-register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md).
 
 ## Korea — cash stocks and ETFs
 
@@ -36,6 +42,8 @@ The detailed Phase 0–8 and magnitude ledger records 22 primary micro-candle M2
 
 The KR inventory review found no qualifying strategy. Its proposed weekly top-two Korean equity ETF rotation (126-session total return, positive return and above 200-session average) is an **unregistered hypothesis only**. It must first pass duplicate review and wait for permitted point-in-time ETF membership, distribution-adjusted returns, cost/tax and fill assumptions, and a reproducible source snapshot.
 
+The Round 7 proxy and Gen14 results are omitted from the compact results table: Round 7 failed the fixed gate and Gen14 passed 0/6 exploratory candidate-market cells. Round 8/9/15 performed no KR strategy reevaluations. The proposed ETF rotation conflicts with a separate KR-LU1 lead; both remain unregistered and data-blocked. See the [register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md).
+
 ## United States — cash stocks and ETFs
 
 | Evidence set | Documented outcome | Disposition |
@@ -48,6 +56,8 @@ The KR inventory review found no qualifying strategy. Its proposed weekly top-tw
 | Archived Linux US-18 Stage 3 (found in catalog reconciliation) | RSI(2)<5 dip in 126-session top-quartile momentum names, top-100 S&P 500 universe. Recorded N=10 `ann` 25.93%, additive MDD −12.82%, Sharpe 2.010, 332 portfolio events; 410 candidate holdout events. | **Not qualifying:** `ann` is not CAGR and MDD is additive; universe uses current S&P 500 survivors. Frozen-2014 sensitivity Sharpe falls to 0.810. Same-close signal/fill is not executable as modeled; next-open sensitivity has negative DEV mean at 2× costs. Trade exports and raw inputs were excluded from salvage, so results are not independently reconstructible here. See [`US-18 archive audit`](us18-archive-audit-2026-11-19.md). |
 
 The US inventory review found no qualifying strategy. The newly reconciled archived US-18 result is the strongest documented near-miss, not a counterexample: its reported `ann`/additive drawdown are not the user's CAGR/compounded-equity measures, and its survivorship and execution sensitivities fail robustness. The proposed monthly point-in-time 12–1 common-stock momentum portfolio remains an **unregistered proposal** and overlaps prior US-01–52/momentum work until a source-level duplicate review proves otherwise. It is not eligible to test on the current survivor cache.
+
+Round 7's 54-symbol proxy and the separate KIS relative-strength transfer are omitted from the compact results table and do not qualify; Round 8/9/15 performed no US strategy reevaluations. The Round 7 proxy misses CAGR and MDD at both tested costs. See the [register reconciliation](strategy-trial-register-reconciliation-2026-11-19.md).
 
 ## Research decision and next gates
 
