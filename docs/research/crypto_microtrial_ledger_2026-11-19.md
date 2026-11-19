@@ -35,6 +35,8 @@ Four separate reviews were completed: crypto candidate novelty, crypto red-team,
 - The corrected magnitude branch is closed. Its metrics are exposed historical diagnostics and do not establish a directional trading edge.
 - For KR/US, first resolve permitted daily data, PIT universe, adjustment, cost, and lineage gates before preregistering any return test. A single broad-market ETF would reduce universe complexity but still needs valid distribution-adjusted history and enough frozen OOS trades.
 - For crypto, market prediction work can resume only with a genuinely distinct information source/mechanism and a declared sequence that preserves the requested micro-first order. Existing L2 captures are integrity pilots, not strategy labels; R005 remains blocked by its coverage/overlap contract and uncompleted capture/execution gates. Do not call it an 80% candidate.
+- The unfinished RSI/MACD divergence WFA was interrupted before aggregate results and is superseded by the one-candle-first sequence; its proposed R020 calibration also lacks an implementation-grounded mixed-null truth generator and measured end-to-end runtime. Keep its archived design review for audit only; do not reopen that WFA or its market labels under the old identity.
+- The quarter-hour taker-order-imbalance paper was independently re-reviewed. Its input is order imbalance (not open interest); its first-10-second signal's 4-hour horizon is 1,440× the signal interval, outside the requested 10–20× band, and local evidence supports no 20-symbol historical window. It is not a current candidate and no raw trade archive was downloaded. See `crypto-quarter-hour-order-flow-research-2026-11-19.md`.
 - The next recordable task is to reconcile trial registration/status across the broader strategy catalog before any new hypothesis is opened. This ledger deliberately does not claim the whole repository's historical trial count is complete.
 
 ## Source records
@@ -49,5 +51,7 @@ Four separate reviews were completed: crypto candidate novelty, crypto red-team,
 - `docs/research/micro-candle-phase7-multiscale-m2-results-2026-11-18.md`
 - `docs/research/micro-candle-phase8-10m-15m-m2-results-2026-11-18.md`
 - `docs/research/micro-magnitude-phase1-corrected-rerun-2026-11-19.md`
+- `docs/research/micro-first-gate-audit-2026-11-19.md` and `docs/research/micro-candle-next-stage-screen-2026-11-19.md`
+- `docs/research/crypto-r020-divergence-calibration-design-2026-11-19.md` and `docs/research/crypto-quarter-hour-order-flow-research-2026-11-19.md`
 - `docs/research/crypto_m4_runs/2026-11-18-crypto-divergence-wfa-v1/INTERRUPTED.md`
 - Equity gates/data status: `docs/kr-us-equity-trader/SPEC.md`, `docs/research/equity_market_data_catalog_audit_2026-11-19.md`, and `docs/research/equity-market-data-acquisition-options-2026-11-19.md`.
