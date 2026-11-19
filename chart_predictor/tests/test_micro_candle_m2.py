@@ -63,6 +63,27 @@ def test_timeout_is_resolved_failure():
     assert scored[0, 2] == 1
 
 
+def test_execution_label_does_not_read_beyond_registered_horizon():
+    for horizon in (10, 20):
+        t, o, h, l, c, atr = fixture_path()
+        anchor = 10
+        side = np.array([1], dtype=np.int8)
+        baseline = m2.score_chunk(t, o, h, l, c, atr, np.array([anchor]),
+                                  side, horizon, "BTCUSDT")
+
+        # The next-open entry is anchor+1; the final scored bar is anchor+horizon.
+        first_unscored = anchor + horizon + 1
+        o[first_unscored:] += 25.0
+        h[first_unscored:] += 25.0
+        l[first_unscored:] += 25.0
+        c[first_unscored:] += 25.0
+        changed_after_deadline = m2.score_chunk(
+            t, o, h, l, c, atr, np.array([anchor]), side, horizon, "BTCUSDT"
+        )
+
+        np.testing.assert_array_equal(changed_after_deadline, baseline)
+
+
 def test_malformed_ohlc_path_is_unresolved():
     t, o, h, l, c, atr = fixture_path()
     h[11] = 98.0
