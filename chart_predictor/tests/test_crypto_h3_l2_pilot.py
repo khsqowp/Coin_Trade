@@ -203,6 +203,27 @@ def test_reconstruct_rejects_manifest_hash_or_byte_mismatch(tmp_path):
         reconstruct_test_capture(path)
 
 
+def test_manifest_coverage_allows_only_millisecond_rounding_error(tmp_path):
+    path = write_capture(tmp_path, [basic_record("aggTrade", 0.0)])
+    manifest_path = tmp_path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["coverage"]["BTCUSDT"] = {
+        "valid_seconds": 3593.381,
+        "invalid_seconds": 6.619,
+        "coverage": 0.9981614724072279,
+    }
+    manifest_path.write_text(json.dumps(manifest))
+    _, metadata = reconstruct_test_capture(path)
+    assert metadata["coverage_by_symbol"]["BTCUSDT"]["book_time_coverage"] == pytest.approx(
+        0.9981614724072279
+    )
+
+    manifest["coverage"]["BTCUSDT"]["coverage"] = 0.99
+    manifest_path.write_text(json.dumps(manifest))
+    with pytest.raises(ValueError, match="coverage arithmetic"):
+        reconstruct_test_capture(path)
+
+
 def test_reconstruct_rejects_per_stream_receive_time_regression(tmp_path):
     records = [basic_record("depth_snapshot", 1.0, event={}),
                basic_record("depth_delta", 0.9, event={})]

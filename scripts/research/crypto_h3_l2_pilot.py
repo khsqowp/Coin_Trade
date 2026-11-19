@@ -147,7 +147,10 @@ def _validate_capture(path: Path, expected_sha256: str | None,
                or v < 0 for v in (valid, invalid, reported)):
             raise ValueError(f"capture manifest has invalid coverage values for {symbol}")
         duration = valid + invalid
-        if duration <= 0 or not math.isclose(valid / duration, reported, rel_tol=1e-9, abs_tol=1e-9):
+        # Manifest interval totals are rounded to milliseconds, while coverage
+        # is computed from the unrounded capture boundaries.
+        if duration <= 0 or not math.isclose(valid / duration, reported,
+                                             rel_tol=0.0, abs_tol=3e-7):
             raise ValueError(f"capture manifest coverage arithmetic fails for {symbol}")
         validated_coverage[symbol] = {"valid_book_seconds": valid,
                                       "invalid_book_seconds": invalid,
