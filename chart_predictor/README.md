@@ -19,7 +19,7 @@ python -m chart_predictor.cli score
 python -m chart_predictor.cli report
 ```
 
-`ingest`는 앵커까지의 캔들 해시, 필드, 범위, 열거값, 방향별 무효화 위치를 검증한 뒤 `predictions.sqlite`에 추가한다. 예측 행은 SQLite 트리거로 UPDATE/DELETE가 거부된다. `score`는 완료된 미래 봉만 사용하고 horizon 캔들이 부족하거나 빠져 있으면 `UNSCORABLE`로 기록한다. `report`는 채점기 버전별 M1과 target-first M2, Wilson 95% 구간, 커버리지, 신뢰도 임계값별 M4, 심볼·분봉·앵커 날짜 군집 결과, 베이스라인 비교를 출력한다. 채점기 버전 변경 시 이전 점수 행은 보존하고 새 점수 행을 추가한다. 결과에는 성공 판정을 표시하지 않는다.
+`ingest`는 앵커까지의 캔들 해시, 필드, 범위, 열거값, 방향별 무효화 위치를 검증한 뒤 `predictions.sqlite`에 추가한다. 예측 행은 SQLite 트리거로 UPDATE/DELETE가 거부된다. `score`는 완료된 미래 봉만 사용하고 horizon 캔들이 부족하거나 빠져 있으면 `UNSCORABLE`로 기록한다. `report`는 채점기 버전별 M1과 target-first M2, Wilson 95% 구간, 커버리지, 신뢰도 임계값별 M4, 심볼·분봉·앵커 날짜 군집 결과, 베이스라인 비교를 출력한다. M2의 `coverage`는 발행된 actionable 롱·숏 중 채점 가능한 비율이고, `actionable_signal_rate`는 전체 예측 중 롱·숏으로 발행된 비율이다. 채점기 버전 변경 시 이전 점수 행은 보존하고 새 점수 행을 추가한다. 결과에는 성공 판정을 표시하지 않는다.
 
 
 포지션 손익 채점은 기본적으로 앵커 다음 첫 봉의 시가에 진입하고 그 봉부터 무효화/목표 청산을 검사한다. `score_prediction(..., entry_delay_candles=0)`은 레거시 모드로 앵커 종가 진입을 사용한다. 청산가는 실제 진입가와 레버리지로 계산한다. 목표 경계에 닿으면 목표가로 익절하고, 손절·청산 조건은 목표보다 우선 처리한다. 한 봉에서 손절과 청산 수준을 모두 넘으면 진입가에 더 가까운 불리한 수준을 먼저 체결한다. 봉 시가가 불리한 수준을 이미 넘어 갭이 발생하면 수준 가격 대신 시가로 체결한다. 방향·목표·경로 지표 M1-M3는 진입 지연과 무관하게 앵커 가격을 기준으로 계산한다.

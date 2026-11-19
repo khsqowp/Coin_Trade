@@ -56,7 +56,9 @@ HYPOTHESES={
  "fvg_fill_confluence_balanced":"A fair-value-gap fill with a decisive fill-bar body, same-timeframe trend agreement, and average-or-above volume should skip ambiguous fills and improve on taking every fill.",
  "fvg_fill_confluence_conservative":"A fair-value-gap fill with a strong fill-bar body, strict trend agreement, above-average volume, and an ATR-buffered wider stop should keep only the highest-conviction fills.",
 }
-EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
+_REPO_EVALUATOR=Path(__file__).resolve().parents[1]/".claude/skills/backtest-expert/scripts/evaluate_backtest.py"
+_USER_EVALUATOR=Path.home()/".codex/skills/backtest-expert/scripts/evaluate_backtest.py"
+EVALUATOR=next((path for path in (_REPO_EVALUATOR,_USER_EVALUATOR) if path.is_file()),_REPO_EVALUATOR)
 
 def wilson(w,n):
     if not n:return [None,None]
@@ -80,17 +82,24 @@ def resolve_trade(signal, frame, raw1m, timeframe, multiple, fee=FEE, leverage=1
     target=entry+sign*risk*multiple; end=min(len(frame),entry_i+13)
     start=int(frame.t_open_ms.iloc[entry_i]); stop_ms=int(frame.t_open_ms.iloc[end-1])+WIDTH[timeframe]
     if "_p5_arrays" not in raw1m.attrs:
-        raw1m.attrs["_p5_arrays"]=(raw1m.t_open_ms.to_numpy(),raw1m.h.to_numpy(),raw1m.l.to_numpy())
-    times,hh,ll=raw1m.attrs["_p5_arrays"]; lo=np.searchsorted(times,start); hi=np.searchsorted(times,stop_ms)
-    if hi<=lo:return None
+        raw1m.attrs["_p5_arrays"]=(raw1m.t_open_ms.to_numpy(),raw1m.o.to_numpy(),raw1m.h.to_numpy(),raw1m.l.to_numpy())
+    times,oo,hh,ll=raw1m.attrs["_p5_arrays"]; lo=np.searchsorted(times,start); hi=np.searchsorted(times,stop_ms)
+    expected=np.arange(start,stop_ms,60_000,dtype=np.int64)
+    if hi<=lo or not np.array_equal(times[lo:hi],expected):
+        return {"status":"UNSCORABLE_DATA_GAP","reason":"unscorable_data_gap","net":None,
+                "gross":None,"r":None,"entry":entry,"day":None,"exit_ms":None}
     reason="timeout"; exitp=float(frame.c.iloc[end-1]); exit_ms=int(times[hi-1])
     for j in range(lo,hi):
-        hit_s=(ll[j]<=signal.stop if side=="long" else hh[j]>=signal.stop)
+        gap_s=(oo[j]<=signal.stop if side=="long" else oo[j]>=signal.stop)
+        hit_s=(gap_s or ll[j]<=signal.stop) if side=="long" else (gap_s or hh[j]>=signal.stop)
         hit_t=(hh[j]>=target if side=="long" else ll[j]<=target)
         if hit_s or hit_t:
-            reason="stop" if hit_s else "target"; exitp=float(signal.stop if hit_s else target); exit_ms=int(times[j]); break
+            reason="stop" if hit_s else "target"
+            exitp=float(oo[j] if gap_s else signal.stop) if hit_s else float(target)
+            exit_ms=int(times[j]); break
     gross=sign*(exitp/entry-1); net=gross-2*fee
-    return {"reason":reason,"net":net,"gross":gross,"r":net/(risk/entry),"entry":entry,"day":exit_ms//86400000,"exit_ms":exit_ms}
+    return {"reason":reason,"net":net,"gross":gross,"r":net/(risk/entry),"entry":entry,
+            "exit_price":exitp,"day":exit_ms//86400000,"exit_ms":exit_ms}
 
 def load_universe(path):return json.loads(Path(path).read_text())[:50]
 
@@ -102,14 +111,14 @@ def _expert(trades, years):
     avgloss=float(losses.mean()) if len(losses) else 0.0
     eq=np.cumprod(1+np.asarray([x["net"] for x in sorted(trades,key=lambda z:(z["exit_ms"],z["symbol"]))])); peak=np.maximum.accumulate(np.r_[1.,eq])[1:]
     dd=100*max(0.,float(np.max(1-eq/peak))) if len(eq) else 0.
-    args=[sys.executable,str(EVALUATOR),"--total-trades",str(n),"--win-rate",str(wr),"--avg-win-pct",str(avgwin),"--avg-loss-pct",str(avgloss),"--max-drawdown-pct",str(min(dd,100)),"--years-tested",str(years),"--num-parameters","0","--slippage-tested","--output-dir",str(Path(__file__).parent/"data/setups/evaluator")]
+    args=[sys.executable,str(EVALUATOR),"--total-trades",str(n),"--win-rate",str(wr),"--avg-win-pct",str(avgwin),"--avg-loss-pct",str(avgloss),"--max-drawdown-pct",str(min(dd,100)),"--years-tested",str(years),"--num-parameters","0","--output-dir",str(Path(__file__).parent/"data/setups/evaluator")]
     p=subprocess.run(args,capture_output=True,text=True,check=True)
     # The evaluator CLI writes timestamped files; use its canonical evaluate() result for cell data.
     spec=importlib.util.spec_from_file_location("p5_backtest_expert",EVALUATOR); mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
-    evaluated=mod.evaluate(n,wr,avgwin,avgloss,min(dd,100),years,0,True)
+    evaluated=mod.evaluate(n,wr,avgwin,avgloss,min(dd,100),years,0,False)
     return evaluated,wr,avgwin,avgloss,dd
 
-def _metrics(key,trades,years):
+def _metrics(key,trades,years,unscorable_data_gaps=0):
     n=len(trades); wins=sum(t["reason"]=="target" for t in trades); arr=np.asarray([t["net"] for t in trades]); ev,wr,aw,al,dd=_expert(trades,years)
     days=np.asarray([x["day"] for x in trades]); unique=np.unique(days); rng=np.random.default_rng(1729+sum(map(ord,"".join(map(str,key)))))
     daily={d:arr[days==d] for d in unique}; boot=[]
@@ -124,7 +133,9 @@ def _metrics(key,trades,years):
         tiers[tiername]={"n":tn,"hit_rate":sum(x["reason"]=="target" for x in sub)/tn if tn else None,"mean_net_notional_pct":100*float(np.mean([x["net"] for x in sub])) if tn else None,"total_net_return_pct":100*float(sum(x["net"] for x in sub))}
     variant=key[4] if len(key)>4 else "base"
     return {"setup":key[0],"side":key[1],"timeframe":key[2],"R":key[3],"vol_filter":variant,"leverage_cell":1,
-      "n_signals":n,"target_first_rate":wins/n if n else None,"hit_rate":wins/n if n else None,"wilson_95":wilson(wins,n),
+      "n_signals":n,"scored_or_gap_signals":n+unscorable_data_gaps,"unscorable_data_gap_signals":unscorable_data_gaps,
+      "complete_data_fraction":n/(n+unscorable_data_gaps) if n+unscorable_data_gaps else None,
+      "target_first_rate":wins/n if n else None,"hit_rate":wins/n if n else None,"wilson_95":wilson(wins,n),
       "stop_first_rate":sum(x["reason"]=="stop" for x in trades)/n if n else None,"timeout_rate":sum(x["reason"]=="timeout" for x in trades)/n if n else None,
       "expectancy_R":float(np.mean([x["r"] for x in trades])) if n else None,"mean_net_notional_pct":100*float(arr.mean()) if n else None,
       "profit_factor":float(arr[arr>0].sum()/abs(arr[arr<0].sum())) if np.any(arr<0) else None,"total_net_return_pct":100*float(arr.sum()),
@@ -134,7 +145,7 @@ def _metrics(key,trades,years):
       "positive_day_fraction":positive_days/len(unique) if len(unique) else None,"n_active_days":len(unique),"win_rate_net_pct":wr,"avg_win_pct":aw,"avg_loss_pct":al,
       "mean_net_margin_4x_pct":100*float(arr.mean())*4 if n else None,"total_net_margin_4x_pct":100*float(arr.sum())*4,
       "mean_net_margin_5x_pct":100*float(arr.mean())*5 if n else None,"total_net_margin_5x_pct":100*float(arr.sum())*5,
-      "years_tested":years,"num_parameters":0,"slippage_tested":True,"backtest_expert":{"score":ev["quality_score"],"decision":ev["decision"],"verdict":ev["verdict"],"red_flags":ev["red_flags"],"blocking_reasons":ev["blocking_reasons"]},
+      "years_tested":years,"num_parameters":0,"slippage_tested":False,"backtest_expert":{"score":ev["quality_score"],"decision":ev["decision"],"verdict":ev["verdict"],"red_flags":ev["red_flags"],"blocking_reasons":ev["blocking_reasons"]},
       "hit_gate_75":wins/n>=.75 if n else False,"minimum_trade_gate_met":n>=30,"holm_adjusted_flag":False,"holm_adjusted_p":None,"folds":[],"tiers":tiers}
 
 def _code_fingerprint():
@@ -143,7 +154,8 @@ def _code_fingerprint():
     files=(root/"setup_backtest.py",root/"setups.py",root/"indicators.py",
            root/"resample.py",EVALUATOR)
     for path in files:
-        name=str(path.relative_to(root.parent))
+        name=(str(path.relative_to(root.parent)) if path.is_relative_to(root.parent)
+              else "backtest_expert_evaluator.py")
         digest.update(name.encode()); digest.update(path.read_bytes())
     return digest.hexdigest()
 
@@ -200,7 +212,7 @@ def _write(report,report_dir, data_hash, stage):
 
 def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage="A",setups=None):
     t0=time.monotonic(); root=Path(__file__).parent; universe_path=universe_path or root/"data/universe_collect.json"; report_dir=Path(report_dir or root/"data/setups")
-    symbols=load_universe(universe_path); setups=tuple(setups or SETUPS); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); data_hash=hashlib.sha256(); grouped={}; stage_times={}; signal_cache=[]
+    symbols=load_universe(universe_path); setups=tuple(setups or SETUPS); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); data_hash=hashlib.sha256(); grouped={}; unscorable_gaps={}; stage_times={}; signal_cache=[]
     for tf,w in WIDTH.items():
         tf0=time.monotonic(); cache={}
         for tier,symbol in enumerate(symbols,1):
@@ -210,7 +222,7 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
             frame=raw.copy() if tf=="1m" else resample_frame(raw,tf,now_ms=DEV_CUTOFF_MS)
             frame=frame[(frame.t_open_ms>=START_MS)&(frame.t_open_ms+w<=DEV_CUTOFF_MS)].reset_index(drop=True)
             if len(frame)<40:continue
-            raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy())
+            raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.o.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy())
             h,l,c,v=(frame[k].to_numpy(float) for k in ("h","l","c","v"))
             prepared={"atr":atr(h,l,c,14),"swings":indicators.confirmed_swings(h,l,3),
                       "rsi":indicators.rsi(c,14),"vwap":indicators.vwap(h,l,c,v,frame.t_open_ms),
@@ -223,17 +235,21 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
                 for sig in sigs:
                     signal_cache.append({"symbol":symbol,"timeframe":tf,"setup":setup,"side":sig.side,"index":sig.index,"stop":sig.stop,"signal_ms":int(frame.t_open_ms.iloc[sig.index]),"tier":tier})
                     result=resolve_trade(sig,frame,raw,tf,2)
+                    key=(setup,sig.side,tf,2)
                     if result is None:continue
+                    if result.get("status")=="UNSCORABLE_DATA_GAP":
+                        unscorable_gaps[key]=unscorable_gaps.get(key,0)+1
+                        continue
                     x={**result,"symbol":symbol,"tier":"top_1_20" if tier<=20 else "top_21_50","signal_ms":int(frame.t_open_ms.iloc[sig.index])}
-                    grouped.setdefault((setup,sig.side,tf,2),[]).append(x)
+                    grouped.setdefault(key,[]).append(x)
         stage_times[tf]=time.monotonic()-tf0
         print(f"[Stage {stage}] timeframe={tf} elapsed={stage_times[tf]:.1f}s cumulative={time.monotonic()-t0:.1f}s",flush=True)
     db.close()
     rows=[]; years=int((DEV_CUTOFF_MS-START_MS)/(365.2425*86400000))
-    for k,trades in grouped.items():rows.append(_metrics(k,trades,years))
+    for k,trades in grouped.items():rows.append(_metrics(k,trades,years,unscorable_gaps.get(k,0)))
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
     runtime=time.monotonic()-t0
-    report={"stage":stage,"status":"complete","split":"dev_first_70pct","start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"cutoff_utc":"2026-10-09T00:00:00Z","symbols":symbols,"tested_setups":list(setups),"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"fees modeled; no separate slippage stress test","runtime_seconds":runtime,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Signal close; next timeframe open; scan 1m rows; stop-first same-minute ties; maximum 12 timeframe bars; pooled symbol metrics; 2R target; notional exposure; 30-trade minimum for verdict interpretation."}
+    report={"stage":stage,"status":"complete","split":"dev_first_70pct","start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"cutoff_utc":"2026-10-09T00:00:00Z","symbols":symbols,"tested_setups":list(setups),"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"fees modeled; no separate slippage stress test","unscorable_data_gap_signals":sum(unscorable_gaps.values()),"runtime_seconds":runtime,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Signal close; next timeframe open; scan contiguous 1m rows; gap executions are unscorable; stop-first same-minute ties; gaps fill at 1m open; maximum 12 timeframe bars; pooled symbol metrics; 2R target; notional exposure; 30-trade minimum for verdict interpretation."}
     jp,mp=_write(report,report_dir,data_hash.hexdigest(),stage)
     if stage=="A":
         cp=report_dir/f"signals_{report['fingerprint']}.json"
@@ -247,7 +263,7 @@ def run(data_db=DB_PATH,universe_path=None,report_dir=None,trial_path=None,stage
 
 def run_stage_b(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
     """Add 3R results by replaying persisted Stage A signals; indicators are not regenerated."""
-    t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups")
+    t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups"); unscorable_gaps={}
     base=json.loads(Path(stage_a_json).read_text()); cache_path=Path(base["signal_cache_file"])
     signals=json.loads(cache_path.read_text()); tested_setups=base.get("tested_setups") or sorted({x["setup"] for x in signals}); db=sqlite3.connect(f"file:{Path(data_db).resolve()}?mode=ro",uri=True); grouped={}; loaded={}
     for tf in WIDTH:
@@ -258,24 +274,28 @@ def run_stage_b(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
                 raw=pd.read_sql_query("SELECT t_open_ms,o,h,l,c,v,quote_v,trades FROM candles WHERE symbol=? AND t_open_ms>=? AND t_open_ms<? ORDER BY t_open_ms",db,params=(item["symbol"],START_MS,DEV_CUTOFF_MS))
                 frame=raw.copy() if tf=="1m" else resample_frame(raw,tf,now_ms=DEV_CUTOFF_MS)
                 frame=frame[(frame.t_open_ms>=START_MS)&(frame.t_open_ms+WIDTH[tf]<=DEV_CUTOFF_MS)].reset_index(drop=True)
-                raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy()); loaded[key]=(raw,frame)
+                raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.o.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy()); loaded[key]=(raw,frame)
             raw,frame=loaded[key]
             sig=type("CachedSignal",(),{"index":item["index"],"side":item["side"],"stop":item["stop"]})()
             result=resolve_trade(sig,frame,raw,tf,3)
+            group_key=(item["setup"],item["side"],tf,3)
+            if result is not None and result.get("status")=="UNSCORABLE_DATA_GAP":
+                unscorable_gaps[group_key]=unscorable_gaps.get(group_key,0)+1
+                continue
             if result is not None:
                 result.update(symbol=item["symbol"],tier="top_1_20" if item["tier"]<=20 else "top_21_50",signal_ms=item["signal_ms"])
-                grouped.setdefault((item["setup"],item["side"],tf,3),[]).append(result)
+                grouped.setdefault(group_key,[]).append(result)
         print(f"[Stage B] timeframe={tf} elapsed={time.monotonic()-tf0:.1f}s cumulative={time.monotonic()-t0:.1f}s",flush=True)
-    db.close(); years=0; rows=[_metrics(k,v,years) for k,v in grouped.items()]
+    db.close(); years=0; rows=[_metrics(k,v,years,unscorable_gaps.get(k,0)) for k,v in grouped.items()]
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
-    report={"stage":"B","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"3R target exit replay using persisted Stage A signal indices/stops; next timeframe open, chronological 1m stop-first, maximum 12 timeframe bars; pooled, base, notional."}
+    report={"stage":"B","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"not modeled","unscorable_data_gap_signals":sum(unscorable_gaps.values()),"runtime_seconds":time.monotonic()-t0,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"3R target exit replay using persisted Stage A signal indices/stops; next timeframe open, scan contiguous 1m rows; missing 1m data is unscorable; stop-first same-minute ties; stop gaps fill at the 1m open; maximum 12 timeframe bars; pooled, base, notional."}
     jp,mp=_write(report,report_dir,base["fingerprint"],"B"); report["json_path"]=str(jp); report["markdown_path"]=str(mp)
     _record_setup_trial(report,trial_path or report_dir.parent/"trials.sqlite")
     return report,jp,mp
 
 def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
     """Add 5 chronological folds and a lagged top-third ATR-volatility filter."""
-    t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups")
+    t0=time.monotonic(); report_dir=Path(report_dir or Path(__file__).parent/"data/setups"); unscorable_gaps={}
     base=json.loads(Path(stage_a_json).read_text()); signals=json.loads(Path(base["signal_cache_file"]).read_text()); tested_setups=base.get("tested_setups") or sorted({x["setup"] for x in signals})
     by_symbol_tf={}; htf_cache={}
     for item in signals:by_symbol_tf.setdefault((item["symbol"],item["timeframe"]),[]).append(item)
@@ -294,7 +314,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
             htf_cache[(symbol,tf)]=(htf.t_open_ms.to_numpy(np.int64),hdir,hw)
             aa=atr(frame.h,frame.l,frame.c,14)/frame.c.to_numpy(float)
             period=max(1,7*1440//(w//60000)); roll=pd.Series(aa).rolling(period,min_periods=max(1,period//2)).quantile(2/3).shift(1).to_numpy()
-            raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy())
+            raw.attrs["_p5_arrays"]=(raw.t_open_ms.to_numpy(),raw.o.to_numpy(),raw.h.to_numpy(),raw.l.to_numpy())
             for item in items:
                 sig=type("CachedSignal",(),{"index":item["index"],"side":item["side"],"stop":item["stop"]})()
                 nxt=sig.index+1
@@ -309,15 +329,18 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
                     result=resolve_trade(sig,frame,raw,tf,rm)
                     if result is None:continue
                     result.update(symbol=symbol,tier="top_1_20" if item["tier"]<=20 else "top_21_50",signal_ms=item["signal_ms"],fold=fold)
-                    key=(item["setup"],item["side"],tf,rm,"base")
-                    grouped.setdefault(key,[]).append(result)
-                    if vf:grouped.setdefault((item["setup"],item["side"],tf,rm,"vol_top_third"),[]).append(result)
-                    if align:grouped.setdefault((item["setup"],item["side"],tf,rm,"htf_trend_align"),[]).append(result)
+                    keys=[(item["setup"],item["side"],tf,rm,"base")]
+                    if vf:keys.append((item["setup"],item["side"],tf,rm,"vol_top_third"))
+                    if align:keys.append((item["setup"],item["side"],tf,rm,"htf_trend_align"))
+                    if result.get("status")=="UNSCORABLE_DATA_GAP":
+                        for key in keys:unscorable_gaps[key]=unscorable_gaps.get(key,0)+1
+                        continue
+                    for key in keys:grouped.setdefault(key,[]).append(result)
         stage_times[tf]=time.monotonic()-tf0
         print(f"[Stage C] timeframe={tf} elapsed={stage_times[tf]:.1f}s cumulative={time.monotonic()-t0:.1f}s",flush=True)
     db.close(); years=0; rows=[]
     for key,trades in grouped.items():
-        row=_metrics((*key[:4],key[4]),trades,years); folds=[]
+        row=_metrics((*key[:4],key[4]),trades,years,unscorable_gaps.get(key,0)); folds=[]
         for f in range(5):
             sub=[x for x in trades if x["fold"]==f]
             n=len(sub); hits=sum(x["reason"]=="target" for x in sub)
@@ -342,7 +365,7 @@ def run_stage_c(stage_a_json,data_db=DB_PATH,report_dir=None,trial_path=None):
             pair[2]["red_flags_detected"].append("target_R_parameter_instability")
             pair[3]["red_flags_detected"].append("target_R_parameter_instability")
     rows.sort(key=lambda x:x["total_net_return_pct"],reverse=True)
-    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; htf_trend_align uses the latest fully closed HTF SuperTrend bar (60m for entries below 60m, 240m for 60m); entry at next timeframe open; 1m stop-first; 12-bar maximum; pooled independent base/filter variants; both fixed R targets."}
+    report={"stage":"C","status":"complete","stage_a_fingerprint":base["fingerprint"],"split":base["split"],"start_ms":START_MS,"cutoff_exclusive_ms":DEV_CUTOFF_MS,"symbols":base["symbols"],"tested_setups":tested_setups,"timeframes":list(WIDTH),"fee_per_side":FEE,"slippage":"not modeled","unscorable_data_gap_signals":sum(unscorable_gaps.values()),"runtime_seconds":time.monotonic()-t0,"timeframe_seconds":stage_times,"cells_tested":len(rows),"results":rows,"hypotheses":HYPOTHESES,"method":"Five chronological equal-duration folds; volatility filter is ATR14/close >= trailing seven-day 2/3 quantile shifted one bar; htf_trend_align uses the latest fully closed HTF SuperTrend bar (60m for entries below 60m, 240m for 60m); entry at next timeframe open; scan contiguous 1m rows; missing 1m data is unscorable; stop-first same-minute ties; stop gaps fill at 1m open; 12-bar maximum; pooled independent base/filter variants; both fixed R targets."}
     jp,mp=_write(report,report_dir,base["fingerprint"],"C"); report["json_path"]=str(jp); report["markdown_path"]=str(mp)
     _record_setup_trial(report,trial_path or report_dir.parent/"trials.sqlite")
     return report,jp,mp

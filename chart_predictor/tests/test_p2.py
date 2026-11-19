@@ -146,8 +146,22 @@ def test_m2_report_uses_actionable_signals_and_separates_no_trade():
     result = report(data)
     assert result["m2_overall"]["n"] == 2
     assert result["m2_overall"]["target_first_rate"] == pytest.approx(.5)
-    assert result["m2_overall"]["coverage"] == pytest.approx(2 / 3)
+    assert result["m2_overall"]["coverage"] == pytest.approx(1.0)
+    assert result["m2_overall"]["actionable_signal_rate"] == pytest.approx(2 / 3)
     assert report([])["m2_overall"]["n"] == 0
+    assert report([])["m2_overall"]["coverage"] == 0
+
+
+def test_m2_coverage_includes_unscorable_actionable_signals():
+    data = [
+        {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET", "m1_hit": True, "confidence": .8},
+        {"status": "UNSCORABLE", "side": "short"},
+    ]
+    result = report(data)["m2_overall"]
+    assert result["n"] == 1
+    assert result["actionable_issued"] == 2
+    assert result["actionable_unscorable"] == 1
+    assert result["coverage"] == pytest.approx(.5)
 
 
 def test_baselines_and_splits_deterministic():

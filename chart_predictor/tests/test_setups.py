@@ -1,3 +1,4 @@
+import types
 import numpy as np
 import pandas as pd
 import pytest
@@ -53,6 +54,42 @@ def test_cost_math_and_wilson():
     assert out["reason"]=="target"
     assert out["net"]==pytest.approx(.10-.001)
     assert len(wilson(8,10))==2
+
+
+@pytest.mark.parametrize("side,stop,open_price",[("long",95,90),("short",105,110)])
+def test_resolve_trade_stop_gap_fills_at_open(side,stop,open_price):
+    f=pd.DataFrame({"t_open_ms":[0,300000,600000],"o":[100,100,100],"h":[101,101,101],"l":[99,99,99],"c":[100,100,100]})
+    raw=pd.DataFrame({"t_open_ms":np.arange(300000,900000,60000),"o":[open_price]+[100]*9,
+                      "h":[open_price+1]+[101]*9,"l":[open_price-1]+[99]*9,"c":[open_price]+[100]*9})
+    sig=Signal(0,side,stop)
+    out=resolve_trade(sig,f,raw,"5m",2)
+    assert out["reason"]=="stop"
+    assert out["exit_price"]==pytest.approx(open_price)
+
+
+def test_resolve_trade_unscorable_when_minute_bar_is_missing():
+    f=pd.DataFrame({"t_open_ms":[0,300000,600000],"o":[100]*3,"h":[101]*3,"l":[99]*3,"c":[100]*3})
+    raw=pd.DataFrame({"t_open_ms":[300000,420000],"o":[100]*2,"h":[101]*2,"l":[99]*2,"c":[100]*2})
+    out=resolve_trade(Signal(0,"long",95),f,raw,"5m",2)
+    assert out["status"]=="UNSCORABLE_DATA_GAP"
+    assert out["net"] is None
+
+
+def test_metrics_do_not_claim_slippage_was_tested(monkeypatch):
+    from chart_predictor import setup_backtest as bt
+    trade={"reason":"target","net":.01,"gross":.011,"r":1.0,"entry":100.,"day":1,"exit_ms":86400000,"symbol":"TEST"}
+    seen={}
+    def fake_run(args, **kwargs):
+        seen["args"]=args
+        return types.SimpleNamespace(stdout="",stderr="",returncode=0)
+    fake_module=types.SimpleNamespace(evaluate=lambda *args: {"quality_score":0,"decision":"VALIDATION_REQUIRED","verdict":"Refine","red_flags":[],"blocking_reasons":["no_slippage_test"]})
+    monkeypatch.setattr(bt.subprocess,"run",fake_run)
+    monkeypatch.setattr(bt.importlib.util,"spec_from_file_location",lambda *args: types.SimpleNamespace(loader=types.SimpleNamespace(exec_module=lambda mod:None)))
+    monkeypatch.setattr(bt.importlib.util,"module_from_spec",lambda spec:fake_module)
+    result=bt._metrics(("test","long","1m",2),[trade],years=1)
+    assert result["slippage_tested"] is False
+    assert "no_slippage_test" in result["backtest_expert"]["blocking_reasons"]
+    assert "--slippage-tested" not in seen["args"]
 
 def test_single_position_entry_offset():
     f=candles(20); raw=f.copy(); sig=Signal(2,"long",99)

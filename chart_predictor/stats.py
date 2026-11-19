@@ -28,16 +28,22 @@ def _m2_summary(frame):
     """Summarize target-first outcomes over actionable, scored long/short signals."""
     if "status" not in frame:
         return {"n": 0, "target_first_count": 0, "target_first_rate": None,
-                "wilson95": wilson(0, 0), "coverage": 0.0, "exit_reasons": {}}
-    scored = frame[frame.status == "SCORED"]
-    actionable = scored[scored.side.isin(["long", "short"])] if "side" in scored else scored.iloc[0:0]
+                "wilson95": wilson(0, 0), "issued_predictions": 0,
+                "actionable_issued": 0, "actionable_unscorable": 0,
+                "coverage": 0.0, "actionable_signal_rate": 0.0, "exit_reasons": {}}
+    issued = frame[frame.side.isin(["long", "short"])] if "side" in frame else frame.iloc[0:0]
+    actionable = issued[issued.status == "SCORED"]
     n = len(actionable)
     hits = int(actionable.m2_hit.sum()) if n else 0
     reasons = actionable.m2_exit_reason.value_counts().to_dict() if n else {}
     return {"n": n, "target_first_count": hits,
             "target_first_rate": hits / n if n else None,
             "wilson95": wilson(hits, n),
-            "coverage": n / len(scored) if len(scored) else 0.0,
+            "issued_predictions": len(frame),
+            "actionable_issued": len(issued),
+            "actionable_unscorable": len(issued) - n,
+            "coverage": n / len(issued) if len(issued) else 0.0,
+            "actionable_signal_rate": len(issued) / len(frame) if len(frame) else 0.0,
             "exit_reasons": {str(key): int(value) for key, value in reasons.items()}}
 
 
