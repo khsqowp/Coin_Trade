@@ -1,0 +1,463 @@
+{
+  "configurations": {
+    "neighbor_25_4": {
+      "base": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.3150767772105878,
+          "2022": -0.2466099181197111,
+          "2023": 0.5148497559885801
+        },
+        "btc_buy_hold": {
+          "cagr": 0.513928033438771,
+          "final_nav": 3.919340385007389,
+          "mdd": 0.7666956183209546,
+          "sharpe": 0.9654186073651181,
+          "total_return": 2.919340385007389
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.278724259294051,
+          "final_nav": 15.07058683944001,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.2537233721897059,
+          "total_return": 14.07058683944001
+        },
+        "mean_daily_exposure": 0.13923524522028263,
+        "strategy": {
+          "cagr": 0.13119821628946338,
+          "final_nav": 1.500861331676951,
+          "mdd": 0.3596463644293292,
+          "sharpe": 0.6210893748284098,
+          "total_return": 0.500861331676951
+        },
+        "sum_daily_cost_fraction": 0.02275333255804923,
+        "turnover_total": 25.2814806200547
+      },
+      "eligible_signal_days": 926,
+      "holding_days": 4,
+      "long_signal_days": 170,
+      "lookback_days": 25,
+      "mean_target_exposure": 0.13923524522028263,
+      "stress": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.313022997168547,
+          "2022": -0.2490798597815198,
+          "2023": 0.5068894782932749
+        },
+        "btc_buy_hold": {
+          "cagr": 0.5135599586338695,
+          "final_nav": 3.9162027164570565,
+          "mdd": 0.7666956183209537,
+          "sharpe": 0.9650416651115999,
+          "total_return": 2.9162027164570565
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.2781702428754067,
+          "final_nav": 15.058521925011428,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.253504868099412,
+          "total_return": 14.058521925011428
+        },
+        "mean_daily_exposure": 0.13923524522028263,
+        "strategy": {
+          "cagr": 0.12772946829212772,
+          "final_nav": 1.4857559759223993,
+          "mdd": 0.36154572201108737,
+          "sharpe": 0.6087715445747219,
+          "total_return": 0.4857559759223993
+        },
+        "sum_daily_cost_fraction": 0.03286592480607111,
+        "turnover_total": 25.2814806200547
+      }
+    },
+    "neighbor_25_6": {
+      "base": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.2886116106617562,
+          "2022": -0.258774202115444,
+          "2023": 0.3980067225695074
+        },
+        "btc_buy_hold": {
+          "cagr": 0.513928033438771,
+          "final_nav": 3.919340385007389,
+          "mdd": 0.7666956183209546,
+          "sharpe": 0.9654186073651181,
+          "total_return": 2.919340385007389
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.278724259294051,
+          "final_nav": 15.07058683944001,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.2537233721897059,
+          "total_return": 14.07058683944001
+        },
+        "mean_daily_exposure": 0.13840399002493767,
+        "strategy": {
+          "cagr": 0.09176172263080584,
+          "final_nav": 1.3353091537247843,
+          "mdd": 0.3643596474251788,
+          "sharpe": 0.4825027068309975,
+          "total_return": 0.3353091537247843
+        },
+        "sum_daily_cost_fraction": 0.020270036165434487,
+        "turnover_total": 22.522262406038315
+      },
+      "eligible_signal_days": 926,
+      "holding_days": 6,
+      "long_signal_days": 170,
+      "lookback_days": 25,
+      "mean_target_exposure": 0.13840399002493767,
+      "stress": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.2870473895145398,
+          "2022": -0.26070999405859674,
+          "2023": 0.3907821777990197
+        },
+        "btc_buy_hold": {
+          "cagr": 0.5135599586338695,
+          "final_nav": 3.9162027164570565,
+          "mdd": 0.7666956183209537,
+          "sharpe": 0.9650416651115999,
+          "total_return": 2.9162027164570565
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.2781702428754067,
+          "final_nav": 15.058521925011428,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.253504868099412,
+          "total_return": 14.058521925011428
+        },
+        "mean_daily_exposure": 0.13840399002493767,
+        "strategy": {
+          "cagr": 0.08877900287895879,
+          "final_nav": 1.3233310115859755,
+          "mdd": 0.3658601610167572,
+          "sharpe": 0.4713980319658918,
+          "total_return": 0.32333101158597555
+        },
+        "sum_daily_cost_fraction": 0.02927894112784981,
+        "turnover_total": 22.522262406038315
+      }
+    },
+    "neighbor_31_4": {
+      "base": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.0750800280085615,
+          "2022": -0.1939193096152234,
+          "2023": 0.29961257009798614
+        },
+        "btc_buy_hold": {
+          "cagr": 0.513928033438771,
+          "final_nav": 3.919340385007389,
+          "mdd": 0.7666956183209546,
+          "sharpe": 0.9654186073651181,
+          "total_return": 2.919340385007389
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.278724259294051,
+          "final_nav": 15.07058683944001,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.2537233721897059,
+          "total_return": 14.07058683944001
+        },
+        "mean_daily_exposure": 0.1259351620947631,
+        "strategy": {
+          "cagr": 0.036755495855646414,
+          "final_nav": 1.126245879316998,
+          "mdd": 0.33742094173046533,
+          "sharpe": 0.28307680281308284,
+          "total_return": 0.12624587931699804
+        },
+        "sum_daily_cost_fraction": 0.0196445351821054,
+        "turnover_total": 21.827261313450443
+      },
+      "eligible_signal_days": 920,
+      "holding_days": 4,
+      "long_signal_days": 154,
+      "lookback_days": 31,
+      "mean_target_exposure": 0.1259351620947631,
+      "stress": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.07345397184201286,
+          "2022": -0.19586346277267075,
+          "2023": 0.29338289890436453
+        },
+        "btc_buy_hold": {
+          "cagr": 0.5135599586338695,
+          "final_nav": 3.9162027164570565,
+          "mdd": 0.7666956183209537,
+          "sharpe": 0.9650416651115999,
+          "total_return": 2.9162027164570565
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.2781702428754067,
+          "final_nav": 15.058521925011428,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.253504868099412,
+          "total_return": 14.058521925011428
+        },
+        "mean_daily_exposure": 0.1259351620947631,
+        "strategy": {
+          "cagr": 0.03401012557534733,
+          "final_nav": 1.1164527225057044,
+          "mdd": 0.34141174699918964,
+          "sharpe": 0.26950870429969426,
+          "total_return": 0.11645272250570438
+        },
+        "sum_daily_cost_fraction": 0.028375439707485572,
+        "turnover_total": 21.827261313450443
+      }
+    },
+    "neighbor_31_6": {
+      "base": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.057259658249542156,
+          "2022": -0.18202179277867592,
+          "2023": 0.2985592451250274
+        },
+        "btc_buy_hold": {
+          "cagr": 0.513928033438771,
+          "final_nav": 3.919340385007389,
+          "mdd": 0.7666956183209546,
+          "sharpe": 0.9654186073651181,
+          "total_return": 2.919340385007389
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.278724259294051,
+          "final_nav": 15.07058683944001,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.2537233721897059,
+          "total_return": 14.07058683944001
+        },
+        "mean_daily_exposure": 0.1251039068994181,
+        "strategy": {
+          "cagr": 0.035851324066129564,
+          "final_nav": 1.123013980823492,
+          "mdd": 0.32950762112867127,
+          "sharpe": 0.2767678004053592,
+          "total_return": 0.12301398082349202
+        },
+        "sum_daily_cost_fraction": 0.018277279030339755,
+        "turnover_total": 20.308087811488615
+      },
+      "eligible_signal_days": 920,
+      "holding_days": 6,
+      "long_signal_days": 154,
+      "lookback_days": 31,
+      "mean_target_exposure": 0.1251039068994181,
+      "stress": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.055905370856368375,
+          "2022": -0.18379457940658084,
+          "2023": 0.29250447566289783
+        },
+        "btc_buy_hold": {
+          "cagr": 0.5135599586338695,
+          "final_nav": 3.9162027164570565,
+          "mdd": 0.7666956183209537,
+          "sharpe": 0.9650416651115999,
+          "total_return": 2.9162027164570565
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.2781702428754067,
+          "final_nav": 15.058521925011428,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.253504868099412,
+          "total_return": 14.058521925011428
+        },
+        "mean_daily_exposure": 0.1251039068994181,
+        "strategy": {
+          "cagr": 0.033299211517153315,
+          "final_nav": 1.1139264831557338,
+          "mdd": 0.33277341413951134,
+          "sharpe": 0.26445641346715987,
+          "total_return": 0.11392648315573384
+        },
+        "sum_daily_cost_fraction": 0.026400514154935197,
+        "turnover_total": 20.308087811488615
+      }
+    },
+    "primary": {
+      "base": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.169522972193614,
+          "2022": -0.2623765703898493,
+          "2023": 0.4221662923765379
+        },
+        "btc_buy_hold": {
+          "cagr": 0.513928033438771,
+          "final_nav": 3.919340385007389,
+          "mdd": 0.7666956183209546,
+          "sharpe": 0.9654186073651181,
+          "total_return": 2.919340385007389
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.278724259294051,
+          "final_nav": 15.07058683944001,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.2537233721897059,
+          "total_return": 14.07058683944001
+        },
+        "mean_daily_exposure": 0.1396508728179551,
+        "monte_carlo_trade_order": {
+          "mdd_95pct": 0.43233267128115144,
+          "mdd_median": 0.31498353301541687,
+          "observed_order_mdd": 0.40301206606315654,
+          "repetitions": 1000,
+          "seed": 4202026
+        },
+        "seven_day_block_bootstrap": {
+          "annualized_arithmetic_mean_ci95": [
+            -0.12313632647585256,
+            0.30062652273699614
+          ],
+          "block_days": 7,
+          "cagr_ci95": [
+            -0.15005824699836545,
+            0.32051451665191133
+          ],
+          "repetitions": 1000,
+          "seed": 5202026
+        },
+        "strategy": {
+          "cagr": 0.06404176190644151,
+          "final_nav": 1.2268567051032417,
+          "mdd": 0.40301206606315654,
+          "sharpe": 0.38512172932126115,
+          "total_return": 0.22685670510324174
+        },
+        "sum_daily_cost_fraction": 0.0201415432496758,
+        "turnover_total": 22.379492499639774,
+        "walk_forward_chronology": {
+          "first_half": {
+            "end_day": 19120,
+            "nav_multiple": 1.1085686527671792,
+            "start_day": 18520
+          },
+          "note": "Frozen chronological diagnostic only; no parameters were fitted.",
+          "second_half": {
+            "end_day": 19722,
+            "nav_multiple": 1.1067034071735613,
+            "start_day": 19121
+          }
+        }
+      },
+      "eligible_signal_days": 923,
+      "holding_days": 5,
+      "long_signal_days": 171,
+      "lookback_days": 28,
+      "mean_target_exposure": 0.1396508728179551,
+      "stress": {
+        "annual_returns": {
+          "2020": 0.0,
+          "2021": 0.1680836638965557,
+          "2022": -0.2646799023101435,
+          "2023": 0.4156464622032634
+        },
+        "btc_buy_hold": {
+          "cagr": 0.5135599586338695,
+          "final_nav": 3.9162027164570565,
+          "mdd": 0.7666956183209537,
+          "sharpe": 0.9650416651115999,
+          "total_return": 2.9162027164570565
+        },
+        "cash_final_nav": 1.0,
+        "equal_weight_buy_hold": {
+          "cagr": 1.2781702428754067,
+          "final_nav": 15.058521925011428,
+          "mdd": 0.8596617614672212,
+          "sharpe": 1.253504868099412,
+          "total_return": 14.058521925011428
+        },
+        "mean_daily_exposure": 0.1396508728179551,
+        "monte_carlo_trade_order": {
+          "mdd_95pct": 0.4346156433085056,
+          "mdd_median": 0.3159029210152246,
+          "observed_order_mdd": 0.40487332507491214,
+          "repetitions": 1000,
+          "seed": 4202026
+        },
+        "seven_day_block_bootstrap": {
+          "annualized_arithmetic_mean_ci95": [
+            -0.1256595633487784,
+            0.297526955088628
+          ],
+          "block_days": 7,
+          "cagr_ci95": [
+            -0.15319993675454063,
+            0.31633584992579156
+          ],
+          "repetitions": 1000,
+          "seed": 5202026
+        },
+        "strategy": {
+          "cagr": 0.06115308934954666,
+          "final_nav": 1.215920538630495,
+          "mdd": 0.40487332507491236,
+          "sharpe": 0.3735038255428718,
+          "total_return": 0.21592053863049498
+        },
+        "sum_daily_cost_fraction": 0.02909334024953171,
+        "turnover_total": 22.379492499639774,
+        "walk_forward_chronology": {
+          "first_half": {
+            "end_day": 19120,
+            "nav_multiple": 1.1066620750561862,
+            "start_day": 18520
+          },
+          "note": "Frozen chronological diagnostic only; no parameters were fitted.",
+          "second_half": {
+            "end_day": 19722,
+            "nav_multiple": 1.0987279369528966,
+            "start_day": 19121
+          }
+        }
+      }
+    }
+  },
+  "daily_panel_sha256": "108fe9d81b3ab35c575369358901f4f344bcfa873bae4c482f300c23e8b26651",
+  "decision": "REJECT; KEEP_2024_PLUS_UNOPENED",
+  "note": "Funding unavailable; USD-M results are optimistic price-only proxies.",
+  "primary_development_gates": {
+    "base_beats_cash_basket_btc": false,
+    "base_mdd_below_basket_buy_hold": true,
+    "base_positive_cagr_sharpe": true,
+    "positive_log_growth_not_concentrated": false,
+    "stress_beats_cash_basket_btc": false,
+    "stress_mdd_below_basket_buy_hold": true,
+    "stress_positive_cagr_sharpe": true
+  },
+  "primary_gate_contribution_largest_year_fraction": 0.6922111595320386,
+  "source": "Binance Vision USD-M 1m candles, historical research only",
+  "source_rows": 10393920,
+  "study": "fixed_market_time_series_momentum_28_5",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "DOGEUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "window_utc": [
+    "2020-09-15",
+    "2023-12-31"
+  ]
+}
