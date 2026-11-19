@@ -209,23 +209,32 @@ def test_connected_signal_entry_and_target_path_is_causal(
     assert changed_outcome["entry_price"] == original_outcome["entry_price"]
 
 
-def test_future_injection_control_is_detected_by_registered_signal_path():
-    tf = 1
+@pytest.mark.parametrize("tf", TIMEFRAMES)
+@pytest.mark.parametrize("horizon", HORIZONS)
+def test_future_injection_control_is_detected_by_registered_signal_path(tf, horizon):
     raw = _synthetic_native(tf)
     base = _bars_for_tf(raw, tf)
     changed_raw = [x.copy() for x in raw]
-    changed_raw[1][1000:] += 80
-    changed_raw[2][1000:] += 80
-    changed_raw[3][1000:] += 80
-    changed_raw[4][1000:] += 80
-    changed = _bars_for_tf(tuple(changed_raw), tf)
     cutoff = 1000
+    cutoff_minute = cutoff * tf
+    # Force the future suffix to reverse the sign of the full-sample return
+    # while keeping all prices positive and each OHLC bar internally valid.
+    for field in (1, 2, 3, 4):
+        changed_raw[field][cutoff_minute:] -= 60
+    changed = _bars_for_tf(tuple(changed_raw), tf)
 
-    # Negative control: a deliberately leaky macro feature uses the future
-    # suffix to turn all prior states off when that suffix is transformed.
-    leaked_base = np.ones(len(base.open_ms), dtype=np.int8)
-    leaked_changed = np.zeros(len(changed.open_ms), dtype=np.int8)
+    # Negative control: deliberately use the full-sample return as a macro
+    # feature. Mutating only post-cutoff bars must flip this leaky prefix.
+    leaked_base = np.full(
+        len(base.open_ms), 1 if base.close[-1] > base.close[0] else -1,
+        dtype=np.int8)
+    leaked_changed = np.full(
+        len(changed.open_ms), 1 if changed.close[-1] > changed.close[0] else -1,
+        dtype=np.int8)
+    assert leaked_base[cutoff - horizon] != leaked_changed[cutoff - horizon]
     baseline_events = list(_events_by_lag(base, leaked_base, "rsi14", tf))
     mutated_events = list(_events_by_lag(changed, leaked_changed, "rsi14", tf))
-    assert _signal_signature(baseline_events, cutoff)
-    assert _signal_signature(mutated_events, cutoff) != _signal_signature(baseline_events, cutoff)
+    baseline_prefix = _signal_signature(baseline_events, cutoff)
+    mutated_prefix = _signal_signature(mutated_events, cutoff)
+    assert baseline_prefix, "fixture must emit a signal before the mutation boundary"
+    assert mutated_prefix != baseline_prefix
