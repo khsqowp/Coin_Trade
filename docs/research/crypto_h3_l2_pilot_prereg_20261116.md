@@ -46,3 +46,12 @@ Does the existing H3 rule—persistent top-five depth imbalance followed by same
 ## Decision limits
 
 This 2-symbol, 1-hour development pilot cannot satisfy the 20-symbol/N≥200 sealed M4 gate, establish a calibrated ≥80% signal, estimate day-clustered uncertainty, or demonstrate profitability. Even a strong descriptive markout is only a reason to design a fresh prospective multi-symbol recording; a weak/negative result rejects this fixed H3 screen for this pilot but does not prove all order-flow methods fail. No trading orders or API credentials are in scope.
+
+## Pre-result protocol amendment — 2026-11-19
+
+The outcome file was verified absent before this amendment. No H3 signal outcomes or markout scores had been computed or inspected when it was made.
+
+- The original five-second cooldown could admit a new event exactly when the prior five-second label's permitted one-second-late quote was still valid. This leaves touching/overlapping outcome intervals.
+- Change the per-symbol cooldown from 5.000 to **7.000 seconds after confirmation**. Since each label uses a quote no later than horizon +1 second, this leaves at least one full second between the latest permitted quote for an accepted event and the next event's entry.
+- This is an integrity amendment prompted by independent pre-result review, not an outcome-driven parameter optimization. No imbalance, confirmation, horizon, universe, fee, comparison, or scoring rule changes. Report the amended protocol as `H3-L2-pilot-v1.1-amended-2026-11-19` and retain this original registration and amendment history.
+- Before scoring, hard-pin the input path to `chart_predictor/data/crypto_l2_pilots/20261116T025255Z-cc3a1f96/capture.jsonl`, manifest run ID to `20261116T025255Z-cc3a1f96`, and SHA-256 to the frozen value above; do not expose a CLI override for those registered inputs. Require the sibling manifest's complete segment path, byte count, and row count; parse every newline-terminated JSONL row; validate receive-monotonic ordering across both depth and aggregate-trade connection/data records; and report manifest valid/invalid book time and per-symbol unscorable counts. Synthetic tests must cover these checks, horizon grace, zero markout, long/short fee arithmetic, and score-count invariants.

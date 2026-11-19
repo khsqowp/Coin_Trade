@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import random
 import subprocess
 import sys
@@ -18,11 +19,18 @@ if str(BASE) not in sys.path:
 from chart_predictor.l2_book import LocalBook, SequenceGap
 
 FROZEN_INPUT_SHA256 = "aff87b771f2494fdc70ccc424e0a383f32670183d9753a83e68a92b9ebb1a991"
+FROZEN_RUN_ID = "20261116T025255Z-cc3a1f96"
+FROZEN_CAPTURE_RELATIVE_PATH = Path(
+    "chart_predictor/data/crypto_l2_pilots/20261116T025255Z-cc3a1f96/capture.jsonl"
+)
 DEFAULT_TICK_SIZES = {"BTCUSDT": 0.10, "ETHUSDT": 0.01}
 ROUND_TRIP_FEE = 0.001
 HORIZONS_S = (1, 3, 5)
 CONFIRM_SECONDS = 1.0
-COOLDOWN_SECONDS = 5.0
+# Five-second labels may select a quote up to one second late. A seven-second
+# cooldown keeps even the inclusive label-grace boundary disjoint.
+COOLDOWN_SECONDS = 7.0
+PROTOCOL_VERSION = "H3-L2-pilot-v1.1-amended-2026-11-19"
 RANDOM_SEED = 20261116
 
 
@@ -45,6 +53,109 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def _validate_capture(path: Path, expected_sha256: str | None,
+                      expected_run_id: str | None) -> dict[str, Any]:
+    """Validate the frozen segment manifest and every JSONL row before replay."""
+    manifest_path = path.with_name("manifest.json")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot read sibling capture manifest: {exc}") from exc
+    segment = manifest.get("segment")
+    if not isinstance(segment, dict) or segment.get("complete") is not True:
+        raise ValueError("capture manifest does not mark a complete segment")
+    if manifest.get("run_id") != path.parent.name:
+        raise ValueError("capture manifest run_id does not match its directory")
+    if expected_run_id and manifest.get("run_id") != expected_run_id:
+        raise ValueError("capture manifest run_id does not match the preregistered run")
+    segment_name = segment.get("path")
+    if not isinstance(segment_name, str) or Path(segment_name).name != segment_name:
+        raise ValueError("capture manifest segment path must be a sibling filename")
+    if path.resolve() != path.with_name(segment_name).resolve():
+        raise ValueError("capture path does not match manifest segment path")
+    if manifest.get("symbols") != list(DEFAULT_TICK_SIZES):
+        raise ValueError("capture manifest symbols do not match the frozen universe")
+
+    digest = _sha256(path)
+    manifest_digest = segment.get("sha256")
+    if not isinstance(manifest_digest, str) or digest != manifest_digest:
+        raise ValueError("capture SHA-256 does not match sibling manifest")
+    if expected_sha256 and digest != expected_sha256:
+        raise ValueError(f"input SHA-256 mismatch: {digest}")
+    size_bytes = path.stat().st_size
+    manifest_bytes = segment.get("bytes")
+    if (isinstance(manifest_bytes, bool) or not isinstance(manifest_bytes, int)
+            or manifest_bytes != size_bytes):
+        raise ValueError("capture byte count does not match sibling manifest")
+
+    allowed_kinds = {"connection", "depth_snapshot", "depth_delta", "book_state", "aggTrade"}
+    last_received: dict[str, float] = {}
+    row_count = 0
+    with path.open("rb") as handle:
+        for line_number, raw_line in enumerate(handle, 1):
+            if not raw_line.endswith(b"\n"):
+                raise ValueError(f"line {line_number}: JSONL row is not newline-terminated")
+            try:
+                record = json.loads(raw_line)
+            except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+                raise ValueError(f"line {line_number}: invalid JSONL row") from exc
+            if not isinstance(record, dict):
+                raise ValueError(f"line {line_number}: row must be a JSON object")
+            kind = record.get("kind")
+            if kind not in allowed_kinds:
+                raise ValueError(f"line {line_number}: unknown record kind {kind!r}")
+            received = record.get("received_monotonic_s")
+            received_ms = record.get("received_at_ms")
+            if (isinstance(received, bool) or not isinstance(received, (int, float))
+                    or not math.isfinite(received)):
+                raise ValueError(f"line {line_number}: invalid receive-monotonic timestamp")
+            if isinstance(received_ms, bool) or not isinstance(received_ms, int):
+                raise ValueError(f"line {line_number}: invalid receive wall-clock timestamp")
+            if kind == "connection":
+                stream = record.get("stream")
+                if stream not in {"depth", "aggTrade"}:
+                    raise ValueError(f"line {line_number}: unknown connection stream")
+                stream_key = stream
+            elif kind in {"depth_snapshot", "depth_delta", "book_state"}:
+                stream_key = "depth"
+            else:
+                stream_key = "aggTrade"
+            if kind != "connection" and record.get("symbol") not in DEFAULT_TICK_SIZES:
+                raise ValueError(f"line {line_number}: symbol outside frozen universe")
+            if received < last_received.get(stream_key, float("-inf")):
+                raise ValueError(f"line {line_number}: receive order regressed in {stream_key}")
+            last_received[stream_key] = float(received)
+            row_count += 1
+    manifest_rows = segment.get("record_count")
+    if (isinstance(manifest_rows, bool) or not isinstance(manifest_rows, int)
+            or row_count != manifest_rows):
+        raise ValueError("capture row count does not match sibling manifest")
+
+    coverage = manifest.get("coverage")
+    validated_coverage: dict[str, Any] = {}
+    if not isinstance(coverage, dict):
+        raise ValueError("capture manifest lacks book-time coverage")
+    for symbol in DEFAULT_TICK_SIZES:
+        item = coverage.get(symbol)
+        if not isinstance(item, dict):
+            raise ValueError(f"capture manifest lacks coverage for {symbol}")
+        valid, invalid, reported = (item.get("valid_seconds"), item.get("invalid_seconds"),
+                                    item.get("coverage"))
+        if any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v)
+               or v < 0 for v in (valid, invalid, reported)):
+            raise ValueError(f"capture manifest has invalid coverage values for {symbol}")
+        duration = valid + invalid
+        if duration <= 0 or not math.isclose(valid / duration, reported, rel_tol=1e-9, abs_tol=1e-9):
+            raise ValueError(f"capture manifest coverage arithmetic fails for {symbol}")
+        validated_coverage[symbol] = {"valid_book_seconds": valid,
+                                      "invalid_book_seconds": invalid,
+                                      "book_time_coverage": reported}
+    return {"input_sha256": digest, "input_bytes": size_bytes, "input_rows": row_count,
+            "run_id": manifest["run_id"], "coverage_by_symbol": validated_coverage,
+            "receive_order_checked_streams": sorted(last_received),
+            "jsonl_newline_terminated": True}
 
 
 def _point(book: LocalBook, symbol: str, record: dict[str, Any], epoch: int,
@@ -73,11 +184,10 @@ def _point(book: LocalBook, symbol: str, record: dict[str, Any], epoch: int,
     )
 
 
-def reconstruct(path: Path, expected_sha256: str | None = None) -> tuple[dict[str, list[QuotePoint]], dict[str, Any]]:
+def reconstruct(path: Path, expected_sha256: str | None = None,
+                expected_run_id: str | None = None) -> tuple[dict[str, list[QuotePoint]], dict[str, Any]]:
     """Rebuild snapshot-bridged books from the recorded write order, fail closed."""
-    digest = _sha256(path)
-    if expected_sha256 and digest != expected_sha256:
-        raise ValueError(f"input SHA-256 mismatch: {digest}")
+    integrity = _validate_capture(path, expected_sha256, expected_run_id)
     books = {symbol: LocalBook() for symbol in DEFAULT_TICK_SIZES}
     buffers: dict[str, list[dict[str, Any]]] = {symbol: [] for symbol in books}
     snapshots: dict[str, dict[str, Any] | None] = {symbol: None for symbol in books}
@@ -162,7 +272,7 @@ def reconstruct(path: Path, expected_sha256: str | None = None) -> tuple[dict[st
     for symbol, rows in points.items():
         if any(a.received_mono > b.received_mono for a, b in zip(rows, rows[1:])):
             raise ValueError(f"{symbol}: reconstructed quote times are not monotonic")
-    return points, {"input_sha256": digest, **counts,
+    return points, {**integrity, **counts,
                     "quotes_by_symbol": {s: len(v) for s, v in points.items()}}
 
 
@@ -256,7 +366,7 @@ def _outcome(points: list[QuotePoint], event: dict[str, Any], horizon: int) -> d
     if side == 1:
         gross_quote_return = selected.bid / event["entry_ask"] - 1.0
     else:
-        gross_quote_return = event["entry_bid"] / selected.ask - 1.0
+        gross_quote_return = (event["entry_bid"] - selected.ask) / event["entry_bid"]
     net_quote_return = gross_quote_return - ROUND_TRIP_FEE
     return {"observed_mono": selected.received_mono,
             "observed_delay_after_due_s": selected.received_mono - due,
@@ -293,9 +403,11 @@ def score(points: dict[str, list[QuotePoint]], events: list[dict[str, Any]],
         for symbol in points:
             cell = [r for r in rows if r["symbol"] == symbol]
             side_hits = sum(bool(r["side_correct"]) for r in cell)
+            signal_count = sum(e["symbol"] == symbol for e in events)
             by_symbol[symbol] = {
                 "n_scored": len(cell),
-                "signal_count": sum(e["symbol"] == symbol for e in events),
+                "signal_count": signal_count,
+                "unscorable": signal_count - len(cell),
                 "side_correct": side_hits,
                 "directional_hit_rate": side_hits / len(cell) if cell else None,
                 "wilson_95_descriptive_only": _wilson(side_hits, len(cell)),
@@ -321,8 +433,15 @@ def score(points: dict[str, list[QuotePoint]], events: list[dict[str, Any]],
             "comparators": comparator,
             "by_symbol": by_symbol,
         }
+        if len(rows) + (len(events) - len(rows)) != len(events):
+            raise AssertionError(f"scored/unscorable count invariant failed at {horizon}s")
+        if sum(cell["n_scored"] for cell in by_symbol.values()) != len(rows):
+            raise AssertionError(f"per-symbol scored count invariant failed at {horizon}s")
+        if sum(cell["unscorable"] for cell in by_symbol.values()) != len(events) - len(rows):
+            raise AssertionError(f"per-symbol unscorable count invariant failed at {horizon}s")
     return {
         "experiment": "crypto_h3_l2_pilot",
+        "protocol_version": PROTOCOL_VERSION,
         "classification": "descriptive_development_pilot_not_validation",
         "input": metadata,
         "code_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=BASE, check=True,
@@ -335,9 +454,13 @@ def score(points: dict[str, list[QuotePoint]], events: list[dict[str, Any]],
                  "random_seed": RANDOM_SEED},
         "events": events,
         "eligible_depth_updates": eligible_updates,
-        "signal_coverage_per_valid_depth_update": {
-            s: len([e for e in events if e["symbol"] == s]) / eligible_updates[s]
-            if eligible_updates[s] else None for s in eligible_updates
+        "signal_coverage_per_valid_book_time": {
+            s: {**metadata["coverage_by_symbol"][s],
+                "signals_per_valid_book_hour": (
+                    sum(e["symbol"] == s for e in events) /
+                    metadata["coverage_by_symbol"][s]["valid_book_seconds"] * 3600
+                    if metadata["coverage_by_symbol"][s]["valid_book_seconds"] else None)}
+            for s in eligible_updates
         },
         "scores": results,
         "limits": [
@@ -350,12 +473,13 @@ def score(points: dict[str, list[QuotePoint]], events: list[dict[str, Any]],
     }
 
 
-def run(input_path: Path, output_path: Path, expected_sha256: str | None = FROZEN_INPUT_SHA256,
-        tick_sizes: dict[str, float] | None = None) -> dict[str, Any]:
-    ticks = tick_sizes or DEFAULT_TICK_SIZES
-    points, metadata = reconstruct(input_path, expected_sha256)
-    events, eligible = detect_events(points, ticks)
-    result = score(points, events, eligible, metadata, ticks)
+def run(input_path: Path, output_path: Path) -> dict[str, Any]:
+    frozen_input = (BASE / FROZEN_CAPTURE_RELATIVE_PATH).resolve()
+    if input_path.resolve() != frozen_input:
+        raise ValueError("pilot input path differs from the preregistered capture")
+    points, metadata = reconstruct(input_path, FROZEN_INPUT_SHA256, FROZEN_RUN_ID)
+    events, eligible = detect_events(points, DEFAULT_TICK_SIZES)
+    result = score(points, events, eligible, metadata, DEFAULT_TICK_SIZES)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("x", encoding="utf-8") as handle:
         json.dump(result, handle, sort_keys=True, indent=2, allow_nan=False)
@@ -367,9 +491,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--expected-sha256", default=FROZEN_INPUT_SHA256)
     args = parser.parse_args(argv)
-    result = run(args.input, args.output, args.expected_sha256)
+    result = run(args.input, args.output)
     print(json.dumps({"output": str(args.output), "signals": len(result["events"]),
                       "classification": result["classification"],
                       "scores": {h: {"n": r["n_scored"], "hit_rate": r["candidate_directional_hit_rate"]}
