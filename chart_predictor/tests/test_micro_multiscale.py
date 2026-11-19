@@ -47,6 +47,44 @@ def test_body_and_sweep_signals_are_causal_and_require_adjacent_bars():
     # Bar 4 is not adjacent to bar 3 and cannot form a 2-bar signal.
 
 
+def test_aggregated_signal_prefix_is_invariant_to_future_minute_mutation():
+    minute_index = np.arange(180, dtype=np.int64)
+    t = minute_index * MINUTE
+    close = 1000.0 + 0.02 * minute_index + 0.3 * np.sin(minute_index * 0.23)
+    close_mutated = close.copy()
+    cutoff = 120  # aligned to every registered 3/5/10/15-minute bucket
+    close_mutated[cutoff:] = np.linspace(close[cutoff - 1] - 1.0, 900.0,
+                                         len(close) - cutoff)
+
+    def ohlc(closes):
+        opens = np.r_[closes[0], closes[:-1]]
+        highs = np.maximum(opens, closes) + 0.5
+        lows = np.minimum(opens, closes) - 0.5
+        return opens, highs, lows, closes
+
+    original = ohlc(close)
+    changed = ohlc(close_mutated)
+    assert close[-1] > close[0] and close_mutated[-1] < close_mutated[0]
+
+    for size in (3, 5, 10, 15):
+        first = aggregate_bars(t, *original, size)
+        second = aggregate_bars(t, *changed, size)
+        interval_ms = size * MINUTE
+        prefix = first["open_ms"] + interval_ms <= cutoff * MINUTE
+        assert prefix.any()
+        for field in ("open_ms", "open", "high", "low", "close"):
+            np.testing.assert_array_equal(second[field][prefix], first[field][prefix])
+
+        first_body, first_sweep = signal_masks(
+            first["open_ms"], first["open"], first["high"], first["low"],
+            first["close"], interval_ms)
+        second_body, second_sweep = signal_masks(
+            second["open_ms"], second["open"], second["high"], second["low"],
+            second["close"], interval_ms)
+        np.testing.assert_array_equal(second_body[prefix], first_body[prefix])
+        np.testing.assert_array_equal(second_sweep[prefix], first_sweep[prefix])
+
+
 def test_nonoverlap_uses_actual_availability_time_and_allows_exact_boundary():
     availability = np.array([0, 3 * MINUTE, 6 * MINUTE, 9 * MINUTE,
                              12 * MINUTE], dtype=np.int64)
