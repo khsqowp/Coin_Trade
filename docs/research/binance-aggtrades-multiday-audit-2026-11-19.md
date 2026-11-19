@@ -4,6 +4,8 @@ Audit date: 2026-11-19
 Preregistration: [binance-aggtrades-multiday-audit-prereg-2026-11-19.md](binance-aggtrades-multiday-audit-prereg-2026-11-19.md)
 Machine-readable details and per-archive SHA-256 values: [JSON report](binance-aggtrades-multiday-audit-2026-11-19.json)
 
+Correction: this revision supersedes the initial report in commit `3660bc0`. Red-team review found that its underlying-trade-count estimate used the minute-wide ID range instead of summing each aggTrade row's underlying-ID range. The corrected implementation also explicitly orders OHLC open/close by transaction timestamp and trade ID. The prior 17.628% count-mismatch figure is withdrawn; the corrected result is shown below.
+
 ## Result
 
 The sample does **not** certify minute-bucketed `aggTrades` as an exact reconstruction of native USD-M 1-minute klines. All tested archives passed publisher checksums and had complete day coverage, but minute-level volume/count differences and 31 unresolved daily-volume discrepancies remain. This is a source-integrity finding, not a strategy or predictive-signal result.
@@ -14,7 +16,7 @@ The sample does **not** certify minute-bucketed `aggTrades` as an exact reconstr
 - 160 ZIP archives plus 160 `.CHECKSUM` sidecars; all 160 ZIP SHA-256 values matched the publisher sidecars.
 - Parsed 24,112,530 aggregate-trade rows and 115,200 native 1-minute candles.
 - Every symbol-day had all 1,440 expected minutes in both sources: 115,200 shared minutes, zero one-sided minutes.
-- Malformed rows: 0; timestamps outside the requested UTC date: 0; duplicate/non-monotonic aggregate IDs: 0; missing aggregate-ID values between adjacent rows: 0.
+- Malformed rows: 0; timestamps outside the requested UTC date: 0; non-monotonic aggregate-trade or kline timestamps: 0; duplicate/non-monotonic aggregate IDs: 0; missing aggregate-ID values between adjacent rows: 0.
 
 ## Minute-level comparison
 
@@ -30,7 +32,7 @@ Tolerance was fixed before acquisition: relative `1e-8`, absolute floor `1e-10`;
 | Quote volume (`price × quantity`) | 4,321 / 115,200 | 3.751% |
 | Taker-buy base volume | 2,112 / 115,200 | 1.833% |
 | Taker-buy quote volume | 2,112 / 115,200 | 1.833% |
-| Underlying trade-count estimate (`last_id − first_id + 1`) | 20,308 / 115,200 | 17.628% |
+| Underlying trade-count estimate (sum of each aggTrade row's `last_id − first_id + 1`) | 6,845 / 115,200 | 5.942% |
 
 The data was grouped using `transact_time // 60,000`; quantities were not redistributed between minutes. A matching close price does not remove the open, volume, or count discrepancies.
 

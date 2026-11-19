@@ -102,6 +102,8 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
     duplicate_or_nonmonotonic_ids = 0
     id_gaps = 0
     previous_id: int | None = None
+    previous_timestamp: int | None = None
+    nonmonotonic_agg_timestamps = 0
     agg_daily_base = 0.0
     agg_daily_quote = 0.0
     try:
@@ -126,25 +128,33 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
                 elif trade_id != previous_id + 1:
                     id_gaps += trade_id - previous_id - 1
             previous_id = trade_id
+            if previous_timestamp is not None and timestamp < previous_timestamp:
+                nonmonotonic_agg_timestamps += 1
+            previous_timestamp = timestamp
             if not start_ms <= timestamp < end_ms:
                 outside_day += 1
                 continue
             minute = timestamp // MINUTE_MS * MINUTE_MS
+            sort_key = (timestamp, trade_id)
             bucket = buckets.get(minute)
             if bucket is None:
-                bucket = {"open": price, "high": price, "low": price, "close": price, "base": 0.0, "quote": 0.0, "taker_base": 0.0, "taker_quote": 0.0, "first_id": first_id, "last_id": last_id}
+                bucket = {"open": price, "high": price, "low": price, "close": price, "base": 0.0, "quote": 0.0, "taker_base": 0.0, "taker_quote": 0.0, "underlying_trade_count": 0, "first_sort_key": sort_key, "last_sort_key": sort_key}
                 buckets[minute] = bucket
             bucket["high"] = max(float(bucket["high"]), price)
             bucket["low"] = min(float(bucket["low"]), price)
-            bucket["close"] = price
+            if sort_key < bucket["first_sort_key"]:
+                bucket["first_sort_key"] = sort_key
+                bucket["open"] = price
+            if sort_key > bucket["last_sort_key"]:
+                bucket["last_sort_key"] = sort_key
+                bucket["close"] = price
             bucket["base"] = float(bucket["base"]) + quantity
             quote = price * quantity
             bucket["quote"] = float(bucket["quote"]) + quote
             if buyer_maker == "false":
                 bucket["taker_base"] = float(bucket["taker_base"]) + quantity
                 bucket["taker_quote"] = float(bucket["taker_quote"]) + quote
-            bucket["first_id"] = min(int(bucket["first_id"]), first_id)
-            bucket["last_id"] = max(int(bucket["last_id"]), last_id)
+            bucket["underlying_trade_count"] = int(bucket["underlying_trade_count"]) + last_id - first_id + 1
             agg_daily_base += quantity
             agg_daily_quote += quote
 
@@ -152,6 +162,8 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
         kline_rows = 0
         kline_malformed = 0
         kline_outside_day = 0
+        kline_nonmonotonic_timestamps = 0
+        previous_kline_timestamp: int | None = None
         kline_daily_base = 0.0
         kline_daily_quote = 0.0
         for row in kline_reader:
@@ -165,6 +177,9 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
             except (KeyError, TypeError, ValueError, OverflowError):
                 kline_malformed += 1
                 continue
+            if previous_kline_timestamp is not None and timestamp < previous_kline_timestamp:
+                kline_nonmonotonic_timestamps += 1
+            previous_kline_timestamp = timestamp
             if not start_ms <= timestamp < end_ms:
                 kline_outside_day += 1
                 continue
@@ -192,7 +207,7 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
         reconstructed = {
             "open": float(agg["open"]), "high": float(agg["high"]), "low": float(agg["low"]), "close": float(agg["close"]),
             "base": float(agg["base"]), "quote": float(agg["quote"]), "taker_base": float(agg["taker_base"]), "taker_quote": float(agg["taker_quote"]),
-            "underlying_trade_count": int(agg["last_id"]) - int(agg["first_id"]) + 1,
+            "underlying_trade_count": int(agg["underlying_trade_count"]),
         }
         expected = {
             "open": native["open"], "high": native["high"], "low": native["low"], "close": native["close"],
@@ -230,6 +245,8 @@ def audit_pair(root: Path, symbol: str, day: str) -> dict[str, Any]:
             "kline_malformed_rows": kline_malformed,
             "agg_timestamps_outside_utc_day": outside_day,
             "kline_timestamps_outside_utc_day": kline_outside_day,
+            "nonmonotonic_agg_timestamps": nonmonotonic_agg_timestamps,
+            "nonmonotonic_kline_timestamps": kline_nonmonotonic_timestamps,
             "duplicate_or_nonmonotonic_agg_trade_ids": duplicate_or_nonmonotonic_ids,
             "agg_trade_id_missing_values_between_rows": id_gaps,
             "agg_trade_id_last": previous_id,
@@ -259,7 +276,7 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "files": {"publisher_checksum_failures": sum(not r["archives"]["publisher_checksums_passed"] for r in rows)},
         "integrity_totals": {
             key: sum(r["integrity"][key] for r in rows)
-            for key in ("agg_malformed_rows", "kline_malformed_rows", "agg_timestamps_outside_utc_day", "kline_timestamps_outside_utc_day", "duplicate_or_nonmonotonic_agg_trade_ids", "agg_trade_id_missing_values_between_rows")
+            for key in ("agg_malformed_rows", "kline_malformed_rows", "agg_timestamps_outside_utc_day", "kline_timestamps_outside_utc_day", "nonmonotonic_agg_timestamps", "nonmonotonic_kline_timestamps", "duplicate_or_nonmonotonic_agg_trade_ids", "agg_trade_id_missing_values_between_rows")
         },
         "minute_comparison": {
             "expected_minutes_per_archive": 1440,

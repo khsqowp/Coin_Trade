@@ -328,7 +328,9 @@
     "agg_trade_id_missing_values_between_rows": 0,
     "duplicate_or_nonmonotonic_agg_trade_ids": 0,
     "kline_malformed_rows": 0,
-    "kline_timestamps_outside_utc_day": 0
+    "kline_timestamps_outside_utc_day": 0,
+    "nonmonotonic_agg_timestamps": 0,
+    "nonmonotonic_kline_timestamps": 0
   },
   "minute_comparison": {
     "aggTrades_only_minutes_total": 0,
@@ -378,8 +380,8 @@
       },
       "underlying_trade_count": {
         "compared_minutes": 115200,
-        "count": 20308,
-        "rate": 0.17628472222222222
+        "count": 6845,
+        "rate": 0.059418402777777775
       }
     }
   },
@@ -407,7 +409,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 10.689000000001101,
@@ -418,7 +422,7 @@
         "quote": 1007758.9199999906,
         "taker_base": 2.3040000000000873,
         "taker_quote": 216138.24000000302,
-        "underlying_trade_count": 23.0
+        "underlying_trade_count": 21.0
       },
       "minute_mismatch_count": {
         "base": 117,
@@ -429,7 +433,7 @@
         "quote": 117,
         "taker_base": 43,
         "taker_quote": 43,
-        "underlying_trade_count": 341
+        "underlying_trade_count": 144
       },
       "minutes": {
         "aggTrades": 1440,
@@ -469,7 +473,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 21.635999999998603,
@@ -491,7 +497,7 @@
         "quote": 121,
         "taker_base": 57,
         "taker_quote": 57,
-        "underlying_trade_count": 301
+        "underlying_trade_count": 151
       },
       "minutes": {
         "aggTrades": 1440,
@@ -531,7 +537,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 19.780000000000058,
@@ -553,7 +561,7 @@
         "quote": 47,
         "taker_base": 24,
         "taker_quote": 24,
-        "underlying_trade_count": 111
+        "underlying_trade_count": 51
       },
       "minutes": {
         "aggTrades": 1440,
@@ -593,7 +601,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 119.0,
@@ -615,7 +625,7 @@
         "quote": 53,
         "taker_base": 28,
         "taker_quote": 28,
-        "underlying_trade_count": 143
+        "underlying_trade_count": 59
       },
       "minutes": {
         "aggTrades": 1440,
@@ -655,7 +665,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 10864.900000000722,
@@ -677,7 +689,7 @@
         "quote": 232,
         "taker_base": 118,
         "taker_quote": 118,
-        "underlying_trade_count": 621
+        "underlying_trade_count": 325
       },
       "minutes": {
         "aggTrades": 1440,
@@ -717,7 +729,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1764.0,
@@ -739,7 +753,7 @@
         "quote": 41,
         "taker_base": 24,
         "taker_quote": 24,
-        "underlying_trade_count": 118
+        "underlying_trade_count": 45
       },
       "minutes": {
         "aggTrades": 1440,
@@ -779,7 +793,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 17500.0,
@@ -801,7 +817,7 @@
         "quote": 119,
         "taker_base": 67,
         "taker_quote": 67,
-        "underlying_trade_count": 320
+        "underlying_trade_count": 141
       },
       "minutes": {
         "aggTrades": 1440,
@@ -841,7 +857,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 7000.0,
@@ -863,7 +881,7 @@
         "quote": 12,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 41
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -903,7 +921,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 7.488000000000056,
@@ -925,7 +945,7 @@
         "quote": 8,
         "taker_base": 4,
         "taker_quote": 4,
-        "underlying_trade_count": 51
+        "underlying_trade_count": 9
       },
       "minutes": {
         "aggTrades": 1440,
@@ -965,7 +985,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 2.7890000000000086,
@@ -987,7 +1009,7 @@
         "quote": 6,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 46
+        "underlying_trade_count": 7
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1027,7 +1049,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 307.10000000000036,
@@ -1049,7 +1073,7 @@
         "quote": 44,
         "taker_base": 32,
         "taker_quote": 32,
-        "underlying_trade_count": 107
+        "underlying_trade_count": 45
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1089,7 +1113,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 510.900000000016,
@@ -1111,7 +1137,7 @@
         "quote": 18,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 49
+        "underlying_trade_count": 19
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1151,7 +1177,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 103.0,
@@ -1173,7 +1201,7 @@
         "quote": 14,
         "taker_base": 8,
         "taker_quote": 8,
-        "underlying_trade_count": 31
+        "underlying_trade_count": 15
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1213,7 +1241,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 38003.0,
@@ -1224,7 +1254,7 @@
         "quote": 15834.623300001957,
         "taker_base": 38003.0,
         "taker_quote": 13110.274939999945,
-        "underlying_trade_count": 17.0
+        "underlying_trade_count": 16.0
       },
       "minute_mismatch_count": {
         "base": 106,
@@ -1235,7 +1265,7 @@
         "quote": 106,
         "taker_base": 50,
         "taker_quote": 50,
-        "underlying_trade_count": 423
+        "underlying_trade_count": 157
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1275,7 +1305,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1.7462298274040222e-10,
@@ -1286,7 +1318,7 @@
         "quote": 3.259629011154175e-09,
         "taker_base": 2.1827872842550278e-11,
         "taker_quote": 9.313225746154785e-10,
-        "underlying_trade_count": 7.0
+        "underlying_trade_count": 1.0
       },
       "minute_mismatch_count": {
         "base": 0,
@@ -1297,7 +1329,7 @@
         "quote": 0,
         "taker_base": 0,
         "taker_quote": 0,
-        "underlying_trade_count": 55
+        "underlying_trade_count": 1
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1337,7 +1369,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1214.600000000013,
@@ -1359,7 +1393,7 @@
         "quote": 10,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 16
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1399,7 +1433,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 24.0,
@@ -1421,7 +1457,7 @@
         "quote": 2,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 5
+        "underlying_trade_count": 2
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1461,7 +1497,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 9.100000000001273,
@@ -1483,7 +1521,7 @@
         "quote": 12,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 36
+        "underlying_trade_count": 15
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1523,7 +1561,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 131.0,
@@ -1545,7 +1585,7 @@
         "quote": 10,
         "taker_base": 8,
         "taker_quote": 8,
-        "underlying_trade_count": 24
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1585,7 +1625,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 183.9000000000069,
@@ -1607,7 +1649,7 @@
         "quote": 18,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 30
+        "underlying_trade_count": 18
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1647,7 +1689,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 3.286000000038257,
@@ -1669,7 +1713,7 @@
         "quote": 205,
         "taker_base": 113,
         "taker_quote": 113,
-        "underlying_trade_count": 523
+        "underlying_trade_count": 279
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1709,7 +1753,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 52.02500000001692,
@@ -1720,7 +1766,7 @@
         "quote": 99706.95300001372,
         "taker_base": 44.78900000003614,
         "taker_quote": 83532.3807800021,
-        "underlying_trade_count": 62.0
+        "underlying_trade_count": 31.0
       },
       "minute_mismatch_count": {
         "base": 247,
@@ -1731,7 +1777,7 @@
         "quote": 247,
         "taker_base": 92,
         "taker_quote": 92,
-        "underlying_trade_count": 527
+        "underlying_trade_count": 299
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1771,7 +1817,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 33.98999999999978,
@@ -1793,7 +1841,7 @@
         "quote": 44,
         "taker_base": 22,
         "taker_quote": 22,
-        "underlying_trade_count": 212
+        "underlying_trade_count": 62
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1833,7 +1881,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 402.0,
@@ -1855,7 +1905,7 @@
         "quote": 66,
         "taker_base": 28,
         "taker_quote": 28,
-        "underlying_trade_count": 214
+        "underlying_trade_count": 82
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1895,7 +1945,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 7526.300000000221,
@@ -1917,7 +1969,7 @@
         "quote": 164,
         "taker_base": 122,
         "taker_quote": 122,
-        "underlying_trade_count": 528
+        "underlying_trade_count": 213
       },
       "minutes": {
         "aggTrades": 1440,
@@ -1957,7 +2009,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 56346.0,
@@ -1979,7 +2033,7 @@
         "quote": 85,
         "taker_base": 52,
         "taker_quote": 52,
-        "underlying_trade_count": 203
+        "underlying_trade_count": 96
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2019,7 +2073,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 28902.0,
@@ -2030,7 +2086,7 @@
         "quote": 4994.843640000006,
         "taker_base": 28902.0,
         "taker_quote": 4994.843640000006,
-        "underlying_trade_count": 17.0
+        "underlying_trade_count": 16.0
       },
       "minute_mismatch_count": {
         "base": 109,
@@ -2041,7 +2097,7 @@
         "quote": 109,
         "taker_base": 37,
         "taker_quote": 37,
-        "underlying_trade_count": 320
+        "underlying_trade_count": 138
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2081,7 +2137,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 217.0,
@@ -2092,7 +2150,7 @@
         "quote": 51.27710000001389,
         "taker_base": 217.0,
         "taker_quote": 51.27709999999843,
-        "underlying_trade_count": 3.0
+        "underlying_trade_count": 2.0
       },
       "minute_mismatch_count": {
         "base": 3,
@@ -2103,7 +2161,7 @@
         "quote": 3,
         "taker_base": 3,
         "taker_quote": 3,
-        "underlying_trade_count": 47
+        "underlying_trade_count": 5
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2143,7 +2201,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 32.67200000000048,
@@ -2154,7 +2214,7 @@
         "quote": 2756.5366400000057,
         "taker_base": 32.67200000000025,
         "taker_quote": 2756.5366400000057,
-        "underlying_trade_count": 5.0
+        "underlying_trade_count": 4.0
       },
       "minute_mismatch_count": {
         "base": 30,
@@ -2165,7 +2225,7 @@
         "quote": 30,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 110
+        "underlying_trade_count": 33
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2205,7 +2265,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1.1700000000000728,
@@ -2227,7 +2289,7 @@
         "quote": 8,
         "taker_base": 0,
         "taker_quote": 0,
-        "underlying_trade_count": 51
+        "underlying_trade_count": 8
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2267,7 +2329,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 389.8700000000026,
@@ -2289,7 +2353,7 @@
         "quote": 67,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 88
+        "underlying_trade_count": 66
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2329,7 +2393,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 4772.1,
@@ -2351,7 +2417,7 @@
         "quote": 18,
         "taker_base": 12,
         "taker_quote": 12,
-        "underlying_trade_count": 31
+        "underlying_trade_count": 19
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2391,7 +2457,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 440.0,
@@ -2413,7 +2481,7 @@
         "quote": 11,
         "taker_base": 7,
         "taker_quote": 7,
-        "underlying_trade_count": 36
+        "underlying_trade_count": 13
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2453,7 +2521,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 4809.0,
@@ -2475,7 +2545,7 @@
         "quote": 16,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 45
+        "underlying_trade_count": 16
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2515,7 +2585,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 109.43000000000029,
@@ -2526,7 +2598,7 @@
         "quote": 1844.1143600000069,
         "taker_base": 1.0913936421275139e-11,
         "taker_quote": 1.7462298274040222e-10,
-        "underlying_trade_count": 2.0
+        "underlying_trade_count": 1.0
       },
       "minute_mismatch_count": {
         "base": 2,
@@ -2537,7 +2609,7 @@
         "quote": 2,
         "taker_base": 0,
         "taker_quote": 0,
-        "underlying_trade_count": 15
+        "underlying_trade_count": 2
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2577,7 +2649,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 2390.499999999971,
@@ -2588,7 +2662,7 @@
         "quote": 6748.381499999552,
         "taker_base": 14.400000000000546,
         "taker_quote": 41.054400000000896,
-        "underlying_trade_count": 3.0
+        "underlying_trade_count": 7.0
       },
       "minute_mismatch_count": {
         "base": 9,
@@ -2599,7 +2673,7 @@
         "quote": 9,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 17
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2639,7 +2713,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1113.0,
@@ -2661,7 +2737,7 @@
         "quote": 10,
         "taker_base": 4,
         "taker_quote": 4,
-        "underlying_trade_count": 25
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2701,7 +2777,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 8.899999999999864,
@@ -2723,7 +2801,7 @@
         "quote": 14,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 48
+        "underlying_trade_count": 16
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2763,7 +2841,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 134.0,
@@ -2785,7 +2865,7 @@
         "quote": 14,
         "taker_base": 4,
         "taker_quote": 4,
-        "underlying_trade_count": 46
+        "underlying_trade_count": 14
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2825,7 +2905,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 70.2999999999995,
@@ -2847,7 +2929,7 @@
         "quote": 10,
         "taker_base": 1,
         "taker_quote": 1,
-        "underlying_trade_count": 12
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2887,7 +2969,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 3.9769999999999186,
@@ -2898,7 +2982,7 @@
         "quote": 427044.6922000069,
         "taker_base": 3.976999999999986,
         "taker_quote": 427044.69219999714,
-        "underlying_trade_count": 23.0
+        "underlying_trade_count": 43.0
       },
       "minute_mismatch_count": {
         "base": 162,
@@ -2909,7 +2993,7 @@
         "quote": 162,
         "taker_base": 78,
         "taker_quote": 78,
-        "underlying_trade_count": 394
+        "underlying_trade_count": 213
       },
       "minutes": {
         "aggTrades": 1440,
@@ -2949,7 +3033,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 69.73900000000867,
@@ -2971,7 +3057,7 @@
         "quote": 177,
         "taker_base": 102,
         "taker_quote": 102,
-        "underlying_trade_count": 385
+        "underlying_trade_count": 224
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3011,7 +3097,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 3.670000000000641,
@@ -3033,7 +3121,7 @@
         "quote": 22,
         "taker_base": 8,
         "taker_quote": 8,
-        "underlying_trade_count": 87
+        "underlying_trade_count": 26
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3073,7 +3161,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 975.830000000009,
@@ -3084,7 +3174,7 @@
         "quote": 146218.36720000394,
         "taker_base": 340.69000000000597,
         "taker_quote": 50640.16160000069,
-        "underlying_trade_count": 61.0
+        "underlying_trade_count": 60.0
       },
       "minute_mismatch_count": {
         "base": 151,
@@ -3095,7 +3185,7 @@
         "quote": 151,
         "taker_base": 65,
         "taker_quote": 65,
-        "underlying_trade_count": 339
+        "underlying_trade_count": 177
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3135,7 +3225,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 24448.40000000014,
@@ -3157,7 +3249,7 @@
         "quote": 115,
         "taker_base": 60,
         "taker_quote": 60,
-        "underlying_trade_count": 254
+        "underlying_trade_count": 137
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3197,7 +3289,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 43471.0,
@@ -3219,7 +3313,7 @@
         "quote": 39,
         "taker_base": 26,
         "taker_quote": 26,
-        "underlying_trade_count": 72
+        "underlying_trade_count": 42
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3259,7 +3353,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 50375.0,
@@ -3281,7 +3377,7 @@
         "quote": 126,
         "taker_base": 39,
         "taker_quote": 39,
-        "underlying_trade_count": 173
+        "underlying_trade_count": 127
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3321,7 +3417,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 6647.0,
@@ -3343,7 +3441,7 @@
         "quote": 8,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 41
+        "underlying_trade_count": 8
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3383,7 +3481,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 53.125999999999294,
@@ -3405,7 +3505,7 @@
         "quote": 16,
         "taker_base": 3,
         "taker_quote": 3,
-        "underlying_trade_count": 28
+        "underlying_trade_count": 16
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3445,7 +3545,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 5.463000000000079,
@@ -3456,7 +3558,7 @@
         "quote": 2844.4202100001858,
         "taker_base": 1.0210000000000719,
         "taker_quote": 516.6260000000475,
-        "underlying_trade_count": 7.0
+        "underlying_trade_count": 6.0
       },
       "minute_mismatch_count": {
         "base": 46,
@@ -3467,7 +3569,7 @@
         "quote": 46,
         "taker_base": 16,
         "taker_quote": 16,
-        "underlying_trade_count": 125
+        "underlying_trade_count": 53
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3507,7 +3609,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 167.0500000000011,
@@ -3529,7 +3633,7 @@
         "quote": 2,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 22
+        "underlying_trade_count": 2
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3569,7 +3673,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 2897.3000000000757,
@@ -3580,7 +3686,7 @@
         "quote": 9630.62520000001,
         "taker_base": 2897.30000000001,
         "taker_quote": 9630.62519999998,
-        "underlying_trade_count": 16.0
+        "underlying_trade_count": 28.0
       },
       "minute_mismatch_count": {
         "base": 11,
@@ -3591,7 +3697,7 @@
         "quote": 11,
         "taker_base": 9,
         "taker_quote": 9,
-        "underlying_trade_count": 23
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3631,7 +3737,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 150.0,
@@ -3653,7 +3761,7 @@
         "quote": 28,
         "taker_base": 14,
         "taker_quote": 14,
-        "underlying_trade_count": 51
+        "underlying_trade_count": 29
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3693,7 +3801,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1927.0,
@@ -3715,7 +3825,7 @@
         "quote": 12,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 25
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3755,7 +3865,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 90.45999999999913,
@@ -3766,7 +3878,7 @@
         "quote": 1466.0852200000081,
         "taker_base": 62.100000000000136,
         "taker_quote": 998.8163999999961,
-        "underlying_trade_count": 4.0
+        "underlying_trade_count": 6.0
       },
       "minute_mismatch_count": {
         "base": 10,
@@ -3777,7 +3889,7 @@
         "quote": 10,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 11
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3817,7 +3929,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 35768.29999999999,
@@ -3839,7 +3953,7 @@
         "quote": 10,
         "taker_base": 7,
         "taker_quote": 7,
-        "underlying_trade_count": 13
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3879,7 +3993,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1259.0,
@@ -3890,7 +4006,7 @@
         "quote": 8746.27300000003,
         "taker_base": 270.0,
         "taker_quote": 1868.591999999997,
-        "underlying_trade_count": 16.0
+        "underlying_trade_count": 11.0
       },
       "minute_mismatch_count": {
         "base": 20,
@@ -3901,7 +4017,7 @@
         "quote": 20,
         "taker_base": 4,
         "taker_quote": 4,
-        "underlying_trade_count": 32
+        "underlying_trade_count": 23
       },
       "minutes": {
         "aggTrades": 1440,
@@ -3941,7 +4057,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 3.500000000027285,
@@ -3963,7 +4081,7 @@
         "quote": 10,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 34
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4003,7 +4121,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 1090.0,
@@ -4025,7 +4145,7 @@
         "quote": 11,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 62
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4065,7 +4185,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 116.60000000000218,
@@ -4087,7 +4209,7 @@
         "quote": 12,
         "taker_base": 4,
         "taker_quote": 4,
-        "underlying_trade_count": 31
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4127,7 +4249,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 17.452000000000083,
@@ -4138,7 +4262,7 @@
         "quote": 2001201.6427999958,
         "taker_base": 7.184000000000168,
         "taker_quote": 840920.2464000061,
-        "underlying_trade_count": 83.0
+        "underlying_trade_count": 69.0
       },
       "minute_mismatch_count": {
         "base": 242,
@@ -4149,7 +4273,7 @@
         "quote": 243,
         "taker_base": 98,
         "taker_quote": 98,
-        "underlying_trade_count": 1425
+        "underlying_trade_count": 693
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4189,7 +4313,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 134.01699999955235,
@@ -4200,7 +4326,7 @@
         "quote": 573037.9296204746,
         "taker_base": 59.43800000000056,
         "taker_quote": 257622.7177799996,
-        "underlying_trade_count": 63.0
+        "underlying_trade_count": 53.0
       },
       "minute_mismatch_count": {
         "base": 228,
@@ -4211,7 +4337,7 @@
         "quote": 228,
         "taker_base": 118,
         "taker_quote": 118,
-        "underlying_trade_count": 1425
+        "underlying_trade_count": 566
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4251,7 +4377,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 29.75999999999749,
@@ -4262,7 +4390,7 @@
         "quote": 30265.919999999693,
         "taker_base": 13.840000000000032,
         "taker_quote": 14006.633600000001,
-        "underlying_trade_count": 41.0
+        "underlying_trade_count": 38.0
       },
       "minute_mismatch_count": {
         "base": 58,
@@ -4273,7 +4401,7 @@
         "quote": 58,
         "taker_base": 42,
         "taker_quote": 42,
-        "underlying_trade_count": 1429
+        "underlying_trade_count": 198
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4313,7 +4441,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 924.2500000000036,
@@ -4324,7 +4454,7 @@
         "quote": 202410.74999999907,
         "taker_base": 560.5300000000025,
         "taker_quote": 121988.14389999956,
-        "underlying_trade_count": 42.0
+        "underlying_trade_count": 33.0
       },
       "minute_mismatch_count": {
         "base": 168,
@@ -4335,7 +4465,7 @@
         "quote": 168,
         "taker_base": 67,
         "taker_quote": 67,
-        "underlying_trade_count": 1430
+        "underlying_trade_count": 633
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4375,7 +4505,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 9068.900000000023,
@@ -4386,7 +4518,7 @@
         "quote": 26474.83977000136,
         "taker_base": 6853.700000000041,
         "taker_quote": 19592.672190000245,
-        "underlying_trade_count": 38.0
+        "underlying_trade_count": 34.0
       },
       "minute_mismatch_count": {
         "base": 91,
@@ -4397,7 +4529,7 @@
         "quote": 91,
         "taker_base": 55,
         "taker_quote": 55,
-        "underlying_trade_count": 1434
+        "underlying_trade_count": 324
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4437,7 +4569,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 23231.0,
@@ -4448,7 +4582,7 @@
         "quote": 19541.917199999967,
         "taker_base": 20087.0,
         "taker_quote": 16824.871200000052,
-        "underlying_trade_count": 27.0
+        "underlying_trade_count": 23.0
       },
       "minute_mismatch_count": {
         "base": 66,
@@ -4459,7 +4593,7 @@
         "quote": 66,
         "taker_base": 30,
         "taker_quote": 30,
-        "underlying_trade_count": 952
+        "underlying_trade_count": 90
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4499,7 +4633,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 200000.0,
@@ -4510,7 +4646,7 @@
         "quote": 46796.000000000175,
         "taker_base": 200000.0,
         "taker_quote": 46796.00000000012,
-        "underlying_trade_count": 37.0
+        "underlying_trade_count": 36.0
       },
       "minute_mismatch_count": {
         "base": 110,
@@ -4521,7 +4657,7 @@
         "quote": 110,
         "taker_base": 71,
         "taker_quote": 71,
-        "underlying_trade_count": 1435
+        "underlying_trade_count": 260
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4561,7 +4697,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 5135.0,
@@ -4583,7 +4721,7 @@
         "quote": 14,
         "taker_base": 12,
         "taker_quote": 12,
-        "underlying_trade_count": 164
+        "underlying_trade_count": 15
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4623,7 +4761,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 0.5040000000335567,
@@ -4634,7 +4774,7 @@
         "quote": 55.520640002097934,
         "taker_base": 2.1827872842550278e-11,
         "taker_quote": 1.862645149230957e-09,
-        "underlying_trade_count": 7.0
+        "underlying_trade_count": 4.0
       },
       "minute_mismatch_count": {
         "base": 4,
@@ -4645,7 +4785,7 @@
         "quote": 4,
         "taker_base": 0,
         "taker_quote": 0,
-        "underlying_trade_count": 235
+        "underlying_trade_count": 12
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4685,7 +4825,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 6.1840000000000686,
@@ -4707,7 +4849,7 @@
         "quote": 16,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 79
+        "underlying_trade_count": 18
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4747,7 +4889,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 447.56999999999243,
@@ -4769,7 +4913,7 @@
         "quote": 49,
         "taker_base": 32,
         "taker_quote": 32,
-        "underlying_trade_count": 370
+        "underlying_trade_count": 54
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4809,7 +4953,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 3125.900000000005,
@@ -4831,7 +4977,7 @@
         "quote": 6,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 257
+        "underlying_trade_count": 11
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4871,7 +5017,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 411.0,
@@ -4882,7 +5030,7 @@
         "quote": 12342.330000000075,
         "taker_base": 270.0,
         "taker_quote": 8258.48999999999,
-        "underlying_trade_count": 32.0
+        "underlying_trade_count": 29.0
       },
       "minute_mismatch_count": {
         "base": 57,
@@ -4893,7 +5041,7 @@
         "quote": 57,
         "taker_base": 36,
         "taker_quote": 36,
-        "underlying_trade_count": 695
+        "underlying_trade_count": 77
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4933,7 +5081,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 6300.0,
@@ -4955,7 +5105,7 @@
         "quote": 18,
         "taker_base": 15,
         "taker_quote": 15,
-        "underlying_trade_count": 82
+        "underlying_trade_count": 19
       },
       "minutes": {
         "aggTrades": 1440,
@@ -4995,7 +5145,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 101.10000000004948,
@@ -5017,7 +5169,7 @@
         "quote": 32,
         "taker_base": 10,
         "taker_quote": 10,
-        "underlying_trade_count": 42
+        "underlying_trade_count": 33
       },
       "minutes": {
         "aggTrades": 1440,
@@ -5057,7 +5209,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 44.1999999997206,
@@ -5068,7 +5222,7 @@
         "quote": 99.84780000150204,
         "taker_base": 20.100000000000364,
         "taker_quote": 45.42600000000675,
-        "underlying_trade_count": 6.0
+        "underlying_trade_count": 1.0
       },
       "minute_mismatch_count": {
         "base": 3,
@@ -5079,7 +5233,7 @@
         "quote": 3,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 316
+        "underlying_trade_count": 4
       },
       "minutes": {
         "aggTrades": 1440,
@@ -5119,7 +5273,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 166.0,
@@ -5141,7 +5297,7 @@
         "quote": 10,
         "taker_base": 2,
         "taker_quote": 2,
-        "underlying_trade_count": 20
+        "underlying_trade_count": 10
       },
       "minutes": {
         "aggTrades": 1440,
@@ -5181,7 +5337,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 6.199999999999989,
@@ -5203,7 +5361,7 @@
         "quote": 14,
         "taker_base": 8,
         "taker_quote": 8,
-        "underlying_trade_count": 71
+        "underlying_trade_count": 15
       },
       "minutes": {
         "aggTrades": 1440,
@@ -5243,7 +5401,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 4850.0,
@@ -5265,7 +5425,7 @@
         "quote": 11,
         "taker_base": 5,
         "taker_quote": 5,
-        "underlying_trade_count": 161
+        "underlying_trade_count": 14
       },
       "minutes": {
         "aggTrades": 1440,
@@ -5305,7 +5465,9 @@
         "agg_trade_id_missing_values_between_rows": 0,
         "duplicate_or_nonmonotonic_agg_trade_ids": 0,
         "kline_malformed_rows": 0,
-        "kline_timestamps_outside_utc_day": 0
+        "kline_timestamps_outside_utc_day": 0,
+        "nonmonotonic_agg_timestamps": 0,
+        "nonmonotonic_kline_timestamps": 0
       },
       "minute_max_absolute_difference": {
         "base": 279.7999999999938,
@@ -5327,7 +5489,7 @@
         "quote": 13,
         "taker_base": 6,
         "taker_quote": 6,
-        "underlying_trade_count": 117
+        "underlying_trade_count": 15
       },
       "minutes": {
         "aggTrades": 1440,

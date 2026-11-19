@@ -24,14 +24,14 @@ def test_audit_pair_reconciles_valid_archive_pair(tmp_path: Path) -> None:
         tmp_path / f"BTCUSDT-aggTrades-{day}.zip",
         f"BTCUSDT-aggTrades-{day}.csv",
         "agg_trade_id,price,quantity,first_trade_id,last_trade_id,transact_time,is_buyer_maker\n"
-        "10,100,2,20,21,1735689600000,false\n"
-        "11,101,1,22,22,1735689601000,true\n",
+        "10,100,2,20,20,1735689601000,false\n"
+        "11,101,1,22,22,1735689600000,true\n",
     )
     _write_zip(
         tmp_path / f"BTCUSDT-1m-{day}.zip",
         f"BTCUSDT-1m-{day}.csv",
         "open_time,open,high,low,close,volume,close_time,quote_volume,count,taker_buy_volume,taker_buy_quote_volume,ignore\n"
-        "1735689600000,100,101,100,101,3,1735689659999,301,3,2,200,0\n",
+        "1735689600000,101,101,100,100,3,1735689659999,301,2,2,200,0\n",
     )
 
     result = audit_pair(tmp_path, "BTCUSDT", day)
@@ -46,6 +46,7 @@ def test_audit_pair_reconciles_valid_archive_pair(tmp_path: Path) -> None:
         "kline_only": 0,
     }
     assert all(value == 0 for value in result["minute_mismatch_count"].values())
+    assert result["integrity"]["nonmonotonic_agg_timestamps"] == 1
     assert result["daily_totals"]["base_match"] is True
     assert result["daily_totals"]["quote_match"] is True
 
