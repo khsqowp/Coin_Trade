@@ -164,6 +164,35 @@ def test_m2_coverage_includes_unscorable_actionable_signals():
     assert result["coverage"] == pytest.approx(.5)
 
 
+def test_m2_report_adds_conservative_nonoverlap_sample_across_timeframes():
+    rows = [
+        {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET",
+         "symbol": "BTCUSDT", "timeframe": "1m", "anchor_time": 1_700_000_000_000},
+        # Same symbol and anchor, longer horizon: retained as the conservative representative.
+        {"status": "SCORED", "side": "short", "m2_hit": False, "m2_exit_reason": "INVALIDATION",
+         "symbol": "BTCUSDT", "timeframe": "5m", "anchor_time": 1_700_000_000_000},
+        # Falls inside the retained 5m forecast interval and must be excluded.
+        {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET",
+         "symbol": "BTCUSDT", "timeframe": "1m", "anchor_time": 1_700_000_300_000},
+        # Exactly at interval end is allowed; another symbol is independent of this symbol's interval.
+        {"status": "SCORED", "side": "short", "m2_hit": True, "m2_exit_reason": "TARGET",
+         "symbol": "BTCUSDT", "timeframe": "1m", "anchor_time": 1_700_006_000_000},
+        {"status": "SCORED", "side": "short", "m2_hit": False, "m2_exit_reason": "TIMEOUT",
+         "symbol": "ETHUSDT", "timeframe": "1m", "anchor_time": 1_700_000_000_000},
+    ]
+    for row in rows:
+        row.update(m1_hit=False, confidence=.8)
+    result = report(rows)
+    sample = result["m2_nonoverlap"]
+    assert sample["n"] == 3
+    assert sample["target_first_count"] == 1
+    assert sample["target_first_rate"] == pytest.approx(1 / 3)
+    assert sample["excluded_overlapping"] == 2
+    assert sample["per_symbol"]["BTCUSDT"]["n"] == 2
+    assert sample["per_symbol"]["BTCUSDT"]["target_first_count"] == 1
+    assert sample["per_symbol"]["ETHUSDT"]["n"] == 1
+
+
 def test_baselines_and_splits_deterministic():
     frame = frames()
     for name in ("momentum", "random", "flat"):

@@ -1,6 +1,7 @@
 """Transparent accuracy, coverage, confidence and clustered summaries."""
 import math
 import pandas as pd
+from .schema import HORIZON
 
 
 def wilson(successes, total, z=1.959963984540054):
@@ -47,10 +48,88 @@ def _m2_summary(frame):
             "exit_reasons": {str(key): int(value) for key, value in reasons.items()}}
 
 
+def _nonoverlap_m2(frame):
+    """Summarize M2 on a greedy, per-symbol non-overlapping forecast sample.
+
+    Overlapping anchors at the same timestamp are resolved by retaining the
+    longest declared horizon. Subsequent anchors for that symbol are retained
+    only at or after the retained interval's end. This does not make signals
+    across different symbols statistically independent; day clusters remain
+    visible for that reason.
+    """
+    required = {"status", "side", "m2_hit", "symbol", "timeframe", "anchor_time"}
+    empty = {"n": 0, "target_first_count": 0, "target_first_rate": None,
+             "wilson95": wilson(0, 0), "actionable_issued": 0,
+             "scorable_candidates": 0, "excluded_overlapping": 0,
+             "coverage": 0.0, "per_symbol": {}, "anchor_day_clusters": {},
+             "selection": "Per symbol; earliest anchor first; longest horizon wins same-time ties."}
+    if not required.issubset(frame.columns):
+        return empty
+
+    issued = frame[frame.side.isin(["long", "short"])]
+    candidates = issued[issued.status == "SCORED"].copy()
+    candidates = candidates[candidates.timeframe.isin(HORIZON)]
+    candidates = candidates[candidates.symbol.notna() & candidates.anchor_time.notna()]
+    if candidates.empty:
+        return {**empty, "actionable_issued": len(issued)}
+
+    def to_ms(value):
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            return int(value)
+        stamp = pd.Timestamp(value)
+        stamp = stamp.tz_localize("UTC") if stamp.tzinfo is None else stamp.tz_convert("UTC")
+        return int(stamp.timestamp() * 1000)
+
+    try:
+        candidates["_anchor_ms"] = candidates.anchor_time.map(to_ms)
+    except (TypeError, ValueError, OverflowError):
+        candidates = candidates.iloc[0:0].copy()
+    candidates["_horizon_ms"] = candidates.timeframe.map(HORIZON).astype("int64") * 60_000
+    # Stable sorting makes ties deterministic; longest horizon is selected first.
+    candidates = candidates.sort_values(
+        ["symbol", "_anchor_ms", "_horizon_ms", "timeframe"],
+        ascending=[True, True, False, True], kind="mergesort")
+    selected = []
+    for _, group in candidates.groupby("symbol", sort=True):
+        next_available = None
+        for index, row in group.iterrows():
+            anchor = int(row["_anchor_ms"])
+            if next_available is None or anchor >= next_available:
+                selected.append(index)
+                next_available = anchor + int(row["_horizon_ms"])
+    sample = candidates.loc[selected].copy() if selected else candidates.iloc[0:0].copy()
+    n = len(sample)
+    hits = int(sample.m2_hit.astype(bool).sum()) if n else 0
+    by_symbol = {}
+    for symbol, group in sample.groupby("symbol", sort=True):
+        count = len(group)
+        wins = int(group.m2_hit.astype(bool).sum())
+        by_symbol[str(symbol)] = {"n": count, "target_first_count": wins,
+                                  "target_first_rate": wins / count,
+                                  "wilson95": wilson(wins, count)}
+    day_clusters = {}
+    if n:
+        sample["_anchor_day"] = pd.to_datetime(sample["_anchor_ms"], unit="ms", utc=True).dt.date.astype(str)
+        for day, group in sample.groupby("_anchor_day", sort=True):
+            count = len(group)
+            wins = int(group.m2_hit.astype(bool).sum())
+            day_clusters[str(day)] = {"n": count, "target_first_count": wins,
+                                      "target_first_rate": wins / count}
+    return {"n": n, "target_first_count": hits,
+            "target_first_rate": hits / n if n else None,
+            "wilson95": wilson(hits, n), "actionable_issued": len(issued),
+            "scorable_candidates": len(candidates),
+            "excluded_overlapping": len(candidates) - n,
+            "coverage": n / len(issued) if len(issued) else 0.0,
+            "per_symbol": by_symbol, "anchor_day_clusters": day_clusters,
+            "selection": "Per symbol; earliest anchor first; longest horizon wins same-time ties."}
+
+
 def report(scores, thresholds=(.5, .6, .7, .8, .9)):
     """Build M1/M2, confidence, symbol/timeframe, day-cluster and baseline tables."""
     frame = pd.DataFrame(scores)
     result = {"overall": _summary(frame), "m2_overall": _m2_summary(frame),
+              "m2_nonoverlap": _nonoverlap_m2(frame),
               "m2_per_symbol": {}, "m2_per_timeframe": {},
               "m4": {}, "per_symbol": {}, "per_timeframe": {},
               "clustered_by_anchor_day": {}, "baselines": {}}
