@@ -48,7 +48,14 @@ Verification: `chart_predictor/tests` — 217 passed, one non-fatal Joblib CPU-d
 
 ## Next research steps
 
+### Follow-on crypto and equity research (2026-11-20)
+
+- The preregistered 60-minute cross-sectional relative-return mean-reversion candidate was executed and rejected in `results/cs_mr_20261120_dev.md`; its validation interval remained unopened.
+- Four independent research roles then returned: US PEAD/SUE candidate, KR PEAD/SUE candidate, crypto 3-minute candle-pressure proxy candidate, and crypto red-team/funding-carry data audit. The stock candidates are research hypotheses only; historical point-in-time earnings/universe inputs and usage rights were not established. Funding carry remains unscorable without historical funding and aligned spot/perpetual data.
+- The crypto 3-minute close-location proxy was preregistered as `crypto_pressure_20261120_01`, executed once on the development split, and rejected. M2 was 8.88% all signals and 8.67% non-overlap (N=169,619); mean net return was -0.183% per signal; 1x capped portfolio final NAV was 8.49e-19 with 100% MDD. BTC buy-and-hold ended at 1.2786. Its 2x-slippage and 1-minute-delay checks also failed. No validation, Monte Carlo, block bootstrap, parameter grid, or walk-forward was run after failure.
+- Source data remained read-only. The exact preregistration, compact JSON aggregates and decision report are linked in the registry at trial 98. This is not evidence that all regimes or all strategies have been exhausted.
+
 1. Merge these engine corrections only after final diff review and remote-state verification.
-2. Preregister the single fixed 60m cross-sectional candidate on development-only data, with point-in-time universe, chronological target/stop ordering, fees and conservative slippage, coverage, overlapping-signal controls, and net wealth metrics fixed before running.
-3. Audit current equity data entitlements, point-in-time company/ETF universes, and price/corporate-action coverage. Do not backtest PEAD or monthly ETF momentum until their required data exists.
-4. Keep all validation and sealed results untouched until candidate rules are frozen; no success claim from this research round.
+2. Do not reopen either rejected crypto candidate by changing parameters. Choose a distinct, evidence-based hypothesis, or acquire the specific historical funding/order-flow data required by a separately preregistered hypothesis.
+3. For KR/US PEAD, establish data rights and point-in-time histories (including delisted names, as-reported earnings, and timestamped consensus) before any performance test. Mark unavailable data as `NOT_EVALUABLE`, not a strategy rejection.
+4. Keep validation/sealed windows untouched until a candidate's rules are frozen; never claim all-regime success from these short development screens.

@@ -1,0 +1,1131 @@
+{
+  "base_slippage_per_side": 0.0004,
+  "btc_buy_and_hold_base_cost": {
+    "final_equity": 1.2785505886010844,
+    "total_compounded_return": 0.2785505886010844
+  },
+  "btc_buy_and_hold_stress_slippage": {
+    "final_equity": 1.2775277569355639,
+    "total_compounded_return": 0.27752775693556386
+  },
+  "code_sha256": "72a7f3deceebfddeeff243729822b82e6da990bafb8ecfd770ae87b0ddc616d4",
+  "cutoff_exclusive_ms": 1791504000000,
+  "data_sha256_selected_rows": "e5d421f395656422a1bcca38505df54eb9b1da2a6618b57d2c723f4cbddab8c9",
+  "fee_per_side": 0.0005,
+  "horizon_bars": 8,
+  "input_db": "/Users/user/CODE/Coin_Trade/chart_predictor/data/candles.sqlite",
+  "input_db_mtime_ns": 1794616310766641408,
+  "input_db_size_bytes": 1864249344,
+  "signal_cutoff_exclusive_ms": 1791503520000,
+  "split": "development_only",
+  "start_ms": 1784246400000,
+  "stop_pct": 0.002,
+  "strategies": {
+    "pressure_momentum": {
+      "portfolio_base_cost": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 180426,
+        "final_equity": 8.494829509021558e-19,
+        "hourly_sharpe_dev_only": -424.8210661153532,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0017927916740592,
+        "mean_net_return_on_notional": -0.0018449681114319596,
+        "monthly_nav_samples": {
+          "2026-07": 0.0007935307363504073,
+          "2026-08": 2.2068042166579156e-10,
+          "2026-09": 3.37564266055772e-17,
+          "2026-10": 8.62664740229406e-19
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.10734594792324831,
+        "portfolio_trade_positive_net_rate": 0.17946415705053595,
+        "profit_factor": 0.17851913554255702,
+        "total_compounded_return": -1.0
+      },
+      "portfolio_stress_slippage": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 197418,
+        "final_equity": 9.612492773558256e-29,
+        "hourly_sharpe_dev_only": -465.0745009088867,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0016791561159193,
+        "mean_net_return_on_notional": -0.002613961373792339,
+        "monthly_nav_samples": {
+          "2026-07": 1.5212214563373463e-05,
+          "2026-08": 1.4519781326986099e-15,
+          "2026-09": 3.1186331209343026e-26,
+          "2026-10": 9.884066252637323e-29
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.08262671083690444,
+        "portfolio_trade_positive_net_rate": 0.11961928496894914,
+        "profit_factor": 0.08857287722310708,
+        "total_compounded_return": -1.0
+      },
+      "signals": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.4036981722200617,
+        "m1_direction_at_8m_nonoverlap": 0.40359275788679333,
+        "m2_all": 0.08881984494071506,
+        "m2_nonoverlap": 0.08671787948284096,
+        "mean_net_signal_return": -0.0018319179065688334,
+        "n_nonoverlap": 169619,
+        "per_side": {
+          "long": {
+            "m2": 0.09102906741024516,
+            "mean_net_return": -0.0018251668193832661,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.08661062247118495,
+            "mean_net_return": -0.001838668993754401,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.08989931276969794,
+            "mean_net_return": -0.001759050913583984,
+            "n": 12514
+          },
+          "ADAUSDT": {
+            "m2": 0.06480923089293611,
+            "mean_net_return": -0.0018689627512958056,
+            "n": 24873
+          },
+          "AGTUSDT": {
+            "m2": 0.10884337801106007,
+            "mean_net_return": -0.001938384272967252,
+            "n": 42676
+          },
+          "AKEUSDT": {
+            "m2": 0.19952083578806803,
+            "mean_net_return": -0.0019495068074572494,
+            "n": 25461
+          },
+          "ARIAUSDT": {
+            "m2": 0.1158255309431377,
+            "mean_net_return": -0.0018205698748146682,
+            "n": 43790
+          },
+          "BARDUSDT": {
+            "m2": 0.07529548332629801,
+            "mean_net_return": -0.0017849174018548485,
+            "n": 56856
+          },
+          "BNBUSDT": {
+            "m2": 0.01146288209606987,
+            "mean_net_return": -0.0017845506739287717,
+            "n": 23816
+          },
+          "BTCUSDT": {
+            "m2": 0.007841268465970629,
+            "mean_net_return": -0.001801414383853948,
+            "n": 23083
+          },
+          "DOGEUSDT": {
+            "m2": 0.0378417646281865,
+            "mean_net_return": -0.0018167947780729859,
+            "n": 15142
+          },
+          "ENAUSDT": {
+            "m2": 0.150421033500939,
+            "mean_net_return": -0.001766263251291171,
+            "n": 16507
+          },
+          "ETHUSDT": {
+            "m2": 0.01917262231995602,
+            "mean_net_return": -0.0017940381777831332,
+            "n": 14552
+          },
+          "HYPEUSDT": {
+            "m2": 0.06604280950844359,
+            "mean_net_return": -0.0017686440566487777,
+            "n": 18594
+          },
+          "JCTUSDT": {
+            "m2": 0.13262908171258478,
+            "mean_net_return": -0.0019318969029921784,
+            "n": 44681
+          },
+          "LINKUSDT": {
+            "m2": 0.051729251942813075,
+            "mean_net_return": -0.0017720876414460426,
+            "n": 16857
+          },
+          "NEARUSDT": {
+            "m2": 0.10496219103871186,
+            "mean_net_return": -0.0018546298132094577,
+            "n": 26581
+          },
+          "SOLUSDT": {
+            "m2": 0.0312522765352954,
+            "mean_net_return": -0.0017970287142649785,
+            "n": 13727
+          },
+          "SUIUSDT": {
+            "m2": 0.07782479017826177,
+            "mean_net_return": -0.0017795878866615946,
+            "n": 14417
+          },
+          "UNIUSDT": {
+            "m2": 0.12388578335095936,
+            "mean_net_return": -0.0017740856350889715,
+            "n": 19857
+          },
+          "XRPUSDT": {
+            "m2": 0.040311725115125756,
+            "mean_net_return": -0.0018029653260517085,
+            "n": 14115
+          },
+          "ZECUSDT": {
+            "m2": 0.12642703372692282,
+            "mean_net_return": -0.0017812262676134816,
+            "n": 15329
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.08802117351765122,
+          0.08962505102491654
+        ],
+        "wilson95_nonoverlap": [
+          0.08538795309884474,
+          0.08806652511754233
+        ]
+      },
+      "signals_one_minute_extra_delay": {
+        "actionable_coverage": 0.19984125934254912,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483424,
+        "m1_direction_at_8m": 0.40968177004037865,
+        "m1_direction_at_8m_nonoverlap": 0.4088363263332901,
+        "m2_all": 0.08944115310783081,
+        "m2_nonoverlap": 0.08730205520640498,
+        "mean_net_signal_return": -0.001812760804715437,
+        "n_nonoverlap": 169618,
+        "per_side": {
+          "long": {
+            "m2": 0.09113738664195406,
+            "mean_net_return": -0.0018116369718770974,
+            "n": 241712
+          },
+          "short": {
+            "m2": 0.08774491957370756,
+            "mean_net_return": -0.001813884637553776,
+            "n": 241712
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.09069841777209525,
+            "mean_net_return": -0.001752798233484837,
+            "n": 12514
+          },
+          "ADAUSDT": {
+            "m2": 0.06589474530615527,
+            "mean_net_return": -0.001841741164560766,
+            "n": 24873
+          },
+          "AGTUSDT": {
+            "m2": 0.10994469959696317,
+            "mean_net_return": -0.00188975357114653,
+            "n": 42676
+          },
+          "AKEUSDT": {
+            "m2": 0.20949687757747143,
+            "mean_net_return": -0.001870014636903226,
+            "n": 25461
+          },
+          "ARIAUSDT": {
+            "m2": 0.11655629139072848,
+            "mean_net_return": -0.0017961911302761325,
+            "n": 43790
+          },
+          "BARDUSDT": {
+            "m2": 0.0749964823413536,
+            "mean_net_return": -0.0017644993936451081,
+            "n": 56856
+          },
+          "BNBUSDT": {
+            "m2": 0.011001007725898555,
+            "mean_net_return": -0.0017833167964550118,
+            "n": 23816
+          },
+          "BTCUSDT": {
+            "m2": 0.008231165793007842,
+            "mean_net_return": -0.0017983624777798224,
+            "n": 23083
+          },
+          "DOGEUSDT": {
+            "m2": 0.03777821808334984,
+            "mean_net_return": -0.0018092664290267821,
+            "n": 15141
+          },
+          "ENAUSDT": {
+            "m2": 0.1468467922699461,
+            "mean_net_return": -0.0017832548273518337,
+            "n": 16507
+          },
+          "ETHUSDT": {
+            "m2": 0.01910390324354041,
+            "mean_net_return": -0.0017897228903313188,
+            "n": 14552
+          },
+          "HYPEUSDT": {
+            "m2": 0.06453694740238787,
+            "mean_net_return": -0.0017780814124232032,
+            "n": 18594
+          },
+          "JCTUSDT": {
+            "m2": 0.136414503133393,
+            "mean_net_return": -0.0018918516492752132,
+            "n": 44680
+          },
+          "LINKUSDT": {
+            "m2": 0.048881770184493085,
+            "mean_net_return": -0.0017834250917762042,
+            "n": 16857
+          },
+          "NEARUSDT": {
+            "m2": 0.10639178360483052,
+            "mean_net_return": -0.0018213395550611916,
+            "n": 26581
+          },
+          "SOLUSDT": {
+            "m2": 0.029360338044586914,
+            "mean_net_return": -0.0017984468133565319,
+            "n": 13726
+          },
+          "SUIUSDT": {
+            "m2": 0.07858777831726434,
+            "mean_net_return": -0.0017726556625701324,
+            "n": 14417
+          },
+          "UNIUSDT": {
+            "m2": 0.12343875906526994,
+            "mean_net_return": -0.0017612741482993012,
+            "n": 19856
+          },
+          "XRPUSDT": {
+            "m2": 0.03705278072972015,
+            "mean_net_return": -0.0018153331150815772,
+            "n": 14115
+          },
+          "ZECUSDT": {
+            "m2": 0.12310000652358276,
+            "mean_net_return": -0.0017998841501500097,
+            "n": 15329
+          }
+        },
+        "scorable": 483424,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.08863994796646142,
+          0.09024888309021496
+        ],
+        "wilson95_nonoverlap": [
+          0.08596803833675082,
+          0.08865476497724067
+        ]
+      },
+      "signals_stress_slippage": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.33076900800119147,
+        "m1_direction_at_8m_nonoverlap": 0.32890183293145225,
+        "m2_all": 0.06783636860090851,
+        "m2_nonoverlap": 0.06608929424180074,
+        "mean_net_signal_return": -0.0026044239871506007,
+        "n_nonoverlap": 169619,
+        "per_side": {
+          "long": {
+            "m2": 0.06962360475603399,
+            "mean_net_return": -0.002595076409584089,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.06604913244578303,
+            "mean_net_return": -0.0026137715647171116,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.06752437270257312,
+            "mean_net_return": -0.0025540144833135774,
+            "n": 12514
+          },
+          "ADAUSDT": {
+            "m2": 0.04567201383025771,
+            "mean_net_return": -0.002665744252453964,
+            "n": 24873
+          },
+          "AGTUSDT": {
+            "m2": 0.0817321210985097,
+            "mean_net_return": -0.0027241025893531123,
+            "n": 42676
+          },
+          "AKEUSDT": {
+            "m2": 0.15592474765327363,
+            "mean_net_return": -0.002663590292375598,
+            "n": 25461
+          },
+          "ARIAUSDT": {
+            "m2": 0.09040876912537109,
+            "mean_net_return": -0.0025789678012751865,
+            "n": 43790
+          },
+          "BARDUSDT": {
+            "m2": 0.0580237793724497,
+            "mean_net_return": -0.002526252435737074,
+            "n": 56856
+          },
+          "BNBUSDT": {
+            "m2": 0.008733624454148471,
+            "mean_net_return": -0.002574713032627232,
+            "n": 23816
+          },
+          "BTCUSDT": {
+            "m2": 0.0055885283542000605,
+            "mean_net_return": -0.0025945113378743902,
+            "n": 23083
+          },
+          "DOGEUSDT": {
+            "m2": 0.027869502047285697,
+            "mean_net_return": -0.002616423995674292,
+            "n": 15142
+          },
+          "ENAUSDT": {
+            "m2": 0.1150421033500939,
+            "mean_net_return": -0.002551340865297835,
+            "n": 16507
+          },
+          "ETHUSDT": {
+            "m2": 0.014637163276525563,
+            "mean_net_return": -0.002585196264190321,
+            "n": 14552
+          },
+          "HYPEUSDT": {
+            "m2": 0.04942454555232871,
+            "mean_net_return": -0.0025562287581972426,
+            "n": 18594
+          },
+          "JCTUSDT": {
+            "m2": 0.10241489671224906,
+            "mean_net_return": -0.0026703201819818162,
+            "n": 44681
+          },
+          "LINKUSDT": {
+            "m2": 0.038203713590793144,
+            "mean_net_return": -0.002563816836547808,
+            "n": 16857
+          },
+          "NEARUSDT": {
+            "m2": 0.08062149655769159,
+            "mean_net_return": -0.0026401320005359687,
+            "n": 26581
+          },
+          "SOLUSDT": {
+            "m2": 0.022073286224229622,
+            "mean_net_return": -0.0025888151002298587,
+            "n": 13727
+          },
+          "SUIUSDT": {
+            "m2": 0.05847263647083305,
+            "mean_net_return": -0.002565257561385368,
+            "n": 14417
+          },
+          "UNIUSDT": {
+            "m2": 0.09462658004733847,
+            "mean_net_return": -0.0025641516116156546,
+            "n": 19857
+          },
+          "XRPUSDT": {
+            "m2": 0.030109812256464755,
+            "mean_net_return": -0.002596897589413406,
+            "n": 14115
+          },
+          "ZECUSDT": {
+            "m2": 0.09746232630960924,
+            "mean_net_return": -0.0025609645556021006,
+            "n": 15329
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.06713093864923608,
+          0.06854866669262238
+        ],
+        "wilson95_nonoverlap": [
+          0.06491678982029957,
+          0.06728145226765957
+        ]
+      }
+    },
+    "random": {
+      "portfolio_base_cost": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 181002,
+        "final_equity": 2.3672050678762284e-18,
+        "hourly_sharpe_dev_only": -422.28972462825953,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0021184343226432,
+        "mean_net_return_on_notional": -0.001794081798641934,
+        "monthly_nav_samples": {
+          "2026-07": 0.0012421596635844288,
+          "2026-08": 4.478516388733522e-10,
+          "2026-09": 9.163488030697703e-17,
+          "2026-10": 2.4121927540236088e-18
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.10272262184948233,
+        "portfolio_trade_positive_net_rate": 0.18091512800963525,
+        "profit_factor": 0.1791754535543561,
+        "total_compounded_return": -1.0
+      },
+      "portfolio_stress_slippage": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 197736,
+        "final_equity": 2.5260125338924165e-28,
+        "hourly_sharpe_dev_only": -457.85050429609936,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0019751285998784,
+        "mean_net_return_on_notional": -0.0025711800363831007,
+        "monthly_nav_samples": {
+          "2026-07": 2.6843483046676315e-05,
+          "2026-08": 2.9378119401203592e-15,
+          "2026-09": 8.089155491173765e-26,
+          "2026-10": 2.600177856424862e-28
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.0782963142776227,
+        "portfolio_trade_positive_net_rate": 0.1189414168386131,
+        "profit_factor": 0.08684281376188153,
+        "total_compounded_return": -1.0
+      },
+      "signals": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.41365622181586503,
+        "m1_direction_at_8m_nonoverlap": 0.4129236205193864,
+        "m2_all": 0.08604383693124933,
+        "m2_nonoverlap": 0.08481094949555103,
+        "mean_net_signal_return": -0.001784969052878873,
+        "n_nonoverlap": 201507,
+        "per_side": {
+          "long": {
+            "m2": 0.08734702996102832,
+            "mean_net_return": -0.001784068773277799,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.08474064390147033,
+            "mean_net_return": -0.0017858693324799481,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.08084649086550384,
+            "mean_net_return": -0.0017900609464218972,
+            "n": 24194
+          },
+          "ADAUSDT": {
+            "m2": 0.08363077944716527,
+            "mean_net_return": -0.0017858262501186043,
+            "n": 24094
+          },
+          "AGTUSDT": {
+            "m2": 0.11996220368924859,
+            "mean_net_return": -0.001842872869535321,
+            "n": 24341
+          },
+          "AKEUSDT": {
+            "m2": 0.21342656178465894,
+            "mean_net_return": -0.0018540572036034502,
+            "n": 24027
+          },
+          "ARIAUSDT": {
+            "m2": 0.12701973001038422,
+            "mean_net_return": -0.001754776441975083,
+            "n": 24075
+          },
+          "BARDUSDT": {
+            "m2": 0.07725535803289584,
+            "mean_net_return": -0.001779843759811091,
+            "n": 24076
+          },
+          "BNBUSDT": {
+            "m2": 0.010351966873706004,
+            "mean_net_return": -0.001764784260783196,
+            "n": 24150
+          },
+          "BTCUSDT": {
+            "m2": 0.010816411106506423,
+            "mean_net_return": -0.0017909464291382896,
+            "n": 24130
+          },
+          "DOGEUSDT": {
+            "m2": 0.045392590144975424,
+            "mean_net_return": -0.0017789402861531482,
+            "n": 24211
+          },
+          "ENAUSDT": {
+            "m2": 0.1440371496671324,
+            "mean_net_return": -0.0017478422478107085,
+            "n": 24334
+          },
+          "ETHUSDT": {
+            "m2": 0.02334096109839817,
+            "mean_net_return": -0.0017816038298195545,
+            "n": 24035
+          },
+          "HYPEUSDT": {
+            "m2": 0.05876215516881599,
+            "mean_net_return": -0.0017689229741752557,
+            "n": 23961
+          },
+          "JCTUSDT": {
+            "m2": 0.14923522116577098,
+            "mean_net_return": -0.0018429319427370144,
+            "n": 24190
+          },
+          "LINKUSDT": {
+            "m2": 0.05097117406903377,
+            "mean_net_return": -0.001772615346677603,
+            "n": 24249
+          },
+          "NEARUSDT": {
+            "m2": 0.1263567818377662,
+            "mean_net_return": -0.0017789950741632708,
+            "n": 24138
+          },
+          "SOLUSDT": {
+            "m2": 0.03177800616649538,
+            "mean_net_return": -0.0017906805439299811,
+            "n": 24325
+          },
+          "SUIUSDT": {
+            "m2": 0.08278295114247036,
+            "mean_net_return": -0.001765335696322359,
+            "n": 24377
+          },
+          "UNIUSDT": {
+            "m2": 0.1244923331951927,
+            "mean_net_return": -0.0017621460261096683,
+            "n": 24130
+          },
+          "XRPUSDT": {
+            "m2": 0.04205607476635514,
+            "mean_net_return": -0.001799040969659086,
+            "n": 24182
+          },
+          "ZECUSDT": {
+            "m2": 0.11842703126936263,
+            "mean_net_return": -0.0017472460063817077,
+            "n": 24209
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.08525661736924497,
+          0.08683763527196711
+        ],
+        "wilson95_nonoverlap": [
+          0.08360242785332772,
+          0.08603530087307562
+        ]
+      },
+      "signals_stress_slippage": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.33628378993355784,
+        "m1_direction_at_8m_nonoverlap": 0.3362811217476316,
+        "m2_all": 0.0654099472930819,
+        "m2_nonoverlap": 0.06460817738341595,
+        "mean_net_signal_return": -0.0025674801519821014,
+        "n_nonoverlap": 201507,
+        "per_side": {
+          "long": {
+            "m2": 0.06639251346632798,
+            "mean_net_return": -0.0025638082344630556,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.06442738111983584,
+            "mean_net_return": -0.002571152069501147,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.06084153095808878,
+            "mean_net_return": -0.002573460101725366,
+            "n": 24194
+          },
+          "ADAUSDT": {
+            "m2": 0.061426081182037025,
+            "mean_net_return": -0.002591292607870305,
+            "n": 24094
+          },
+          "AGTUSDT": {
+            "m2": 0.08914999383755803,
+            "mean_net_return": -0.00264297170412465,
+            "n": 24341
+          },
+          "AKEUSDT": {
+            "m2": 0.1686852291172431,
+            "mean_net_return": -0.002579636814220878,
+            "n": 24027
+          },
+          "ARIAUSDT": {
+            "m2": 0.09927310488058151,
+            "mean_net_return": -0.00252017685715997,
+            "n": 24075
+          },
+          "BARDUSDT": {
+            "m2": 0.06076590795813258,
+            "mean_net_return": -0.002510642799820386,
+            "n": 24076
+          },
+          "BNBUSDT": {
+            "m2": 0.00782608695652174,
+            "mean_net_return": -0.0025553377472315505,
+            "n": 24150
+          },
+          "BTCUSDT": {
+            "m2": 0.008537090758392043,
+            "mean_net_return": -0.002586005992268854,
+            "n": 24130
+          },
+          "DOGEUSDT": {
+            "m2": 0.0337036884060964,
+            "mean_net_return": -0.0025724445691486554,
+            "n": 24211
+          },
+          "ENAUSDT": {
+            "m2": 0.10824360976411605,
+            "mean_net_return": -0.0025315109613475474,
+            "n": 24334
+          },
+          "ETHUSDT": {
+            "m2": 0.01793218223424173,
+            "mean_net_return": -0.0025758484682581496,
+            "n": 24035
+          },
+          "HYPEUSDT": {
+            "m2": 0.04336213012812487,
+            "mean_net_return": -0.0025575310164096523,
+            "n": 23961
+          },
+          "JCTUSDT": {
+            "m2": 0.11632906159570071,
+            "mean_net_return": -0.0025833910041253415,
+            "n": 24190
+          },
+          "LINKUSDT": {
+            "m2": 0.03699121613262402,
+            "mean_net_return": -0.002566251095319063,
+            "n": 24249
+          },
+          "NEARUSDT": {
+            "m2": 0.09453972988648604,
+            "mean_net_return": -0.0025785800657535138,
+            "n": 24138
+          },
+          "SOLUSDT": {
+            "m2": 0.024254881808838644,
+            "mean_net_return": -0.0025816488375653176,
+            "n": 24325
+          },
+          "SUIUSDT": {
+            "m2": 0.060877056241539156,
+            "mean_net_return": -0.0025622213668375915,
+            "n": 24377
+          },
+          "UNIUSDT": {
+            "m2": 0.09428097803564028,
+            "mean_net_return": -0.002549330269737363,
+            "n": 24130
+          },
+          "XRPUSDT": {
+            "m2": 0.030146389876767845,
+            "mean_net_return": -0.0025970741293750385,
+            "n": 24182
+          },
+          "ZECUSDT": {
+            "m2": 0.09116444297575282,
+            "mean_net_return": -0.002533632995021046,
+            "n": 24209
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.06471642392334002,
+          0.06611037736465093
+        ],
+        "wilson95_nonoverlap": [
+          0.06354310010744531,
+          0.06568985465713699
+        ]
+      }
+    },
+    "reverse_pressure": {
+      "portfolio_base_cost": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 176906,
+        "final_equity": 1.1178283516515875e-17,
+        "hourly_sharpe_dev_only": -400.31681488859454,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0021980203692211,
+        "mean_net_return_on_notional": -0.0017651670101849555,
+        "monthly_nav_samples": {
+          "2026-07": 0.001454675618472768,
+          "2026-08": 9.813112867756702e-10,
+          "2026-09": 3.818181317402696e-16,
+          "2026-10": 1.1374016353582093e-17
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.11034108509603971,
+        "portfolio_trade_positive_net_rate": 0.18886866471459418,
+        "profit_factor": 0.1911735026291835,
+        "total_compounded_return": -1.0
+      },
+      "portfolio_stress_slippage": {
+        "cagr_dev_only": -1.0,
+        "completed_positions": 192442,
+        "final_equity": 2.993845937485988e-27,
+        "hourly_sharpe_dev_only": -436.9527469783793,
+        "initial_equity": 1.0,
+        "max_drawdown": 1.0,
+        "max_gross_to_nav": 1.0018503973609376,
+        "mean_net_return_on_notional": -0.0025387029609921733,
+        "monthly_nav_samples": {
+          "2026-07": 3.6799352886601984e-05,
+          "2026-08": 1.0561263508506208e-14,
+          "2026-09": 7.675686599478754e-25,
+          "2026-10": 3.0731806129977115e-27
+        },
+        "open_at_end": 0,
+        "portfolio_m2": 0.08443063364546201,
+        "portfolio_trade_positive_net_rate": 0.12599120774051403,
+        "profit_factor": 0.09384166983056194,
+        "total_compounded_return": -1.0
+      },
+      "signals": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.4255194155075833,
+        "m1_direction_at_8m_nonoverlap": 0.42351977078039604,
+        "m2_all": 0.09103734165170407,
+        "m2_nonoverlap": 0.09006656093951738,
+        "mean_net_signal_return": -0.0017594851479231718,
+        "n_nonoverlap": 169619,
+        "per_side": {
+          "long": {
+            "m2": 0.09179443474519473,
+            "mean_net_return": -0.0017550733907643994,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.09028024855821343,
+            "mean_net_return": -0.001763896905081945,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.08750199776250599,
+            "mean_net_return": -0.0017511356870406247,
+            "n": 12514
+          },
+          "ADAUSDT": {
+            "m2": 0.06661842158163471,
+            "mean_net_return": -0.0017480353343681321,
+            "n": 24873
+          },
+          "AGTUSDT": {
+            "m2": 0.1177242478207892,
+            "mean_net_return": -0.0017725138441287837,
+            "n": 42676
+          },
+          "AKEUSDT": {
+            "m2": 0.21613448018538156,
+            "mean_net_return": -0.0018164168463748755,
+            "n": 25461
+          },
+          "ARIAUSDT": {
+            "m2": 0.12121488924411966,
+            "mean_net_return": -0.0017323956351602862,
+            "n": 43790
+          },
+          "BARDUSDT": {
+            "m2": 0.07204164907837343,
+            "mean_net_return": -0.001747815369829964,
+            "n": 56856
+          },
+          "BNBUSDT": {
+            "m2": 0.007306012764528048,
+            "mean_net_return": -0.0017856230746657838,
+            "n": 23816
+          },
+          "BTCUSDT": {
+            "m2": 0.005068665251483776,
+            "mean_net_return": -0.0017894158602291502,
+            "n": 23083
+          },
+          "DOGEUSDT": {
+            "m2": 0.03473781534803857,
+            "mean_net_return": -0.001751319855290271,
+            "n": 15142
+          },
+          "ENAUSDT": {
+            "m2": 0.14278790816017448,
+            "mean_net_return": -0.0017602035801905548,
+            "n": 16507
+          },
+          "ETHUSDT": {
+            "m2": 0.01525563496426608,
+            "mean_net_return": -0.0017895631245581098,
+            "n": 14552
+          },
+          "HYPEUSDT": {
+            "m2": 0.06641927503495751,
+            "mean_net_return": -0.0017444417682508876,
+            "n": 18594
+          },
+          "JCTUSDT": {
+            "m2": 0.14791522123497683,
+            "mean_net_return": -0.0017494645572829082,
+            "n": 44681
+          },
+          "LINKUSDT": {
+            "m2": 0.048941092721124756,
+            "mean_net_return": -0.0017422453442572396,
+            "n": 16857
+          },
+          "NEARUSDT": {
+            "m2": 0.10691847560287424,
+            "mean_net_return": -0.0017474412628681205,
+            "n": 26581
+          },
+          "SOLUSDT": {
+            "m2": 0.0312522765352954,
+            "mean_net_return": -0.0017722508997000742,
+            "n": 13727
+          },
+          "SUIUSDT": {
+            "m2": 0.07303877366997295,
+            "mean_net_return": -0.0017788544566799125,
+            "n": 14417
+          },
+          "UNIUSDT": {
+            "m2": 0.12177066022057713,
+            "mean_net_return": -0.0017388794794680853,
+            "n": 19857
+          },
+          "XRPUSDT": {
+            "m2": 0.04321643641516117,
+            "mean_net_return": -0.0017639793777631677,
+            "n": 14115
+          },
+          "ZECUSDT": {
+            "m2": 0.12460043055646161,
+            "mean_net_return": -0.0017479782201525007,
+            "n": 15329
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.09022969237559468,
+          0.09185149034748967
+        ],
+        "wilson95_nonoverlap": [
+          0.08871345107909179,
+          0.09143823837506235
+        ]
+      },
+      "signals_stress_slippage": {
+        "actionable_coverage": 0.19984291289106423,
+        "eligible_symbol_minutes": 2419040,
+        "issued": 483428,
+        "m1_direction_at_8m": 0.3493819141630191,
+        "m1_direction_at_8m_nonoverlap": 0.3457631515337315,
+        "m2_all": 0.06976840398156499,
+        "m2_nonoverlap": 0.06878946344454336,
+        "mean_net_signal_return": -0.0025358407216467932,
+        "n_nonoverlap": 169619,
+        "per_side": {
+          "long": {
+            "m2": 0.07045516602265488,
+            "mean_net_return": -0.002531795610457677,
+            "n": 241714
+          },
+          "short": {
+            "m2": 0.06908164194047511,
+            "mean_net_return": -0.002539885832835911,
+            "n": 241714
+          }
+        },
+        "per_symbol": {
+          "1000PEPEUSDT": {
+            "m2": 0.06488732619466198,
+            "mean_net_return": -0.002549465075332328,
+            "n": 12514
+          },
+          "ADAUSDT": {
+            "m2": 0.048807944357335264,
+            "mean_net_return": -0.0025397256235142806,
+            "n": 24873
+          },
+          "AGTUSDT": {
+            "m2": 0.08923048083231792,
+            "mean_net_return": -0.0025648500569135308,
+            "n": 42676
+          },
+          "AKEUSDT": {
+            "m2": 0.16947488315462864,
+            "mean_net_return": -0.0025572846723888537,
+            "n": 25461
+          },
+          "ARIAUSDT": {
+            "m2": 0.09458780543503083,
+            "mean_net_return": -0.0024958034295849466,
+            "n": 43790
+          },
+          "BARDUSDT": {
+            "m2": 0.0558955958913747,
+            "mean_net_return": -0.00249260817223302,
+            "n": 56856
+          },
+          "BNBUSDT": {
+            "m2": 0.0056264696002687265,
+            "mean_net_return": -0.0025699907345140423,
+            "n": 23816
+          },
+          "BTCUSDT": {
+            "m2": 0.0038123294199194214,
+            "mean_net_return": -0.002582653401882062,
+            "n": 23083
+          },
+          "DOGEUSDT": {
+            "m2": 0.02529388455950337,
+            "mean_net_return": -0.0025560533983385943,
+            "n": 15142
+          },
+          "ENAUSDT": {
+            "m2": 0.11098321924032228,
+            "mean_net_return": -0.00253307929334016,
+            "n": 16507
+          },
+          "ETHUSDT": {
+            "m2": 0.011476085761407366,
+            "mean_net_return": -0.00258545719081677,
+            "n": 14552
+          },
+          "HYPEUSDT": {
+            "m2": 0.04856405292029687,
+            "mean_net_return": -0.002541913978544936,
+            "n": 18594
+          },
+          "JCTUSDT": {
+            "m2": 0.11595532776795506,
+            "mean_net_return": -0.0024961168125286247,
+            "n": 44681
+          },
+          "LINKUSDT": {
+            "m2": 0.03500029661268316,
+            "mean_net_return": -0.0025383340525268424,
+            "n": 16857
+          },
+          "NEARUSDT": {
+            "m2": 0.08175012226778526,
+            "mean_net_return": -0.0025247909555238366,
+            "n": 26581
+          },
+          "SOLUSDT": {
+            "m2": 0.0239673635900051,
+            "mean_net_return": -0.002572942935237754,
+            "n": 13727
+          },
+          "SUIUSDT": {
+            "m2": 0.05320108205590622,
+            "mean_net_return": -0.002572885240182212,
+            "n": 14417
+          },
+          "UNIUSDT": {
+            "m2": 0.09195749609709422,
+            "mean_net_return": -0.00252781689665228,
+            "n": 19857
+          },
+          "XRPUSDT": {
+            "m2": 0.033864682961388594,
+            "mean_net_return": -0.0025487722553870105,
+            "n": 14115
+          },
+          "ZECUSDT": {
+            "m2": 0.09185204514319265,
+            "mean_net_return": -0.002544376879753062,
+            "n": 15329
+          }
+        },
+        "scorable": 483428,
+        "unscorable": 0,
+        "wilson95_all": [
+          0.06905368070471071,
+          0.07048996469367994
+        ],
+        "wilson95_nonoverlap": [
+          0.06759473382234611,
+          0.0700037243693055
+        ]
+      }
+    }
+  },
+  "stress_slippage_per_side": 0.0008,
+  "study": "three_minute_quote_volume_weighted_close_location_cross_sectional_momentum",
+  "target_pct": 0.0045,
+  "trial_count_in_this_hypothesis": 1,
+  "trial_id": "crypto_pressure_20261120_01",
+  "universe": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "ZECUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
+    "AKEUSDT",
+    "HYPEUSDT",
+    "BARDUSDT",
+    "BNBUSDT",
+    "1000PEPEUSDT",
+    "NEARUSDT",
+    "DOGEUSDT",
+    "ENAUSDT",
+    "UNIUSDT",
+    "AGTUSDT",
+    "SUIUSDT",
+    "JCTUSDT",
+    "ADAUSDT",
+    "ARIAUSDT",
+    "LINKUSDT"
+  ],
+  "universe_file": "/Users/user/CODE/Coin_Trade/chart_predictor/data/universe_collect.json",
+  "validation_opened": false
+}
