@@ -4,7 +4,7 @@
 
 공급자 공식 공개 페이지와 약관만 확인했다. 계정 생성, 인증키 신청, 체험판 등록, 샘플 데이터 다운로드, 업체 문의, 구매, 성과 백테스트는 하지 않았다. 이전 승인 범위는 공개 샘플 범위·가격 조회까지이며 계정 생성·구매 승인은 포함하지 않는다.
 
-**현재 판정:** 미국은 Norgate가 데이터 적격성 확인을 위한 구체적 후보로 좁혀졌다. 한국은 KRX OPEN API가 일봉 연구 자료 후보로 남는다. 어느 시장도 현재 연구용 복제 데이터의 권리·내용·계보가 완전히 검증되지 않았으므로 전략 성과 백테스트는 아직 열지 않는다.
+**현재 판정:** 미국은 Norgate와 Databento를 데이터 적격성 후보로 비교한다. Databento 공개 샘플은 500개 종목 CSV가 안내되지만 상폐/PIT 표본인지와 로컬+Linux 장기 보관 권리는 미확인이라 현재 사용은 NO-GO다. 한국 KRX도 상폐/PIT 완전성, 총수익 조정, 로컬+Linux 보관 권리가 확인되지 않아 NO-GO다. 어느 시장도 적격 데이터가 검증되지 않았으므로 전략 성과 백테스트는 열지 않는다.
 
 ## 한국 — KRX OPEN API
 
@@ -29,6 +29,22 @@
 - EODHD는 OHLC 원시값과 split/dividend-adjusted close를 구분하고, 과거 조정값이 새 기업행위나 수정으로 다시 계산될 수 있으며 과거 빈티지는 제공하지 않는다고 밝힌다. 연구 재현에는 받은 응답의 날짜·심볼·필드·해시를 보존해야 한다. [EODHD 조정·수정 정책](https://eodhd.com/help/methodology)
 - 개인 요금제는 본인만의 사적 리서치·백테스트·페이퍼 트레이딩을 허용하지만, 원자료·차트·결과를 타인에게 제공하거나 조직/사업을 위해 쓰는 것은 허용하지 않는다고 안내한다. 본인 소유 Linux 서버의 장기 보관·복제와 다른 에이전트에 원자료를 전달할 권리는 별도로 확인되지 않았다. 공개 대시보드/텔레그램 배포 및 Git 저장소에 원자료를 올리는 용도로 사용하면 안 된다. [EODHD 개인 사용 범위](https://eodhd.com/help/personal-use), [상업 이용 범위](https://eodhd.com/help/commercial)
 - **결정:** EODHD는 개인 전용 S&P 주식 연구의 가장 낮은 표시 가격 후보로 추가한다. 그러나 sample/권리/PIT/상폐/조정/보관을 실제 검증하지 않았으므로 현재는 문서상 후보일 뿐이며, Norgate보다 적격하다고 판정하지 않는다.
+
+## 추가 공개 샘플·저장권 확인 — 2026-11-19
+
+### 한국 — KRX
+
+- 공식 API 카탈로그는 유가증권·코스닥·ETF 일별매매정보를 2010-01-04부터 제공한다고 안내한다. 이는 서비스 시작일 안내이지 상장폐지 종목의 전체 생애나 당시 투자 가능 유니버스가 복구된다는 보증이 아니다. [KRX 서비스 목록](https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd)
+- API 샘플 테스트는 인증키가 필요하며, 회원가입·키 승인·API별 활용 신청 절차가 있다. 인증 없는 KRX 화면에서 일부 상장폐지 현황·시세는 조회할 수 있지만, 화면 범위로 PIT 유니버스·조정 OHLC·ETF 분배금 포함 총수익을 검증할 수 없다. [주식 API 상세](https://openapi.krx.co.kr/contents/OPP/USES/service/OPPUSES002_S2.cmd?BO_ID=JvJFzlAENzZlPBDNGAWC), [ETF API 상세](https://openapi.krx.co.kr/contents/OPP/USES/service/OPPUSES003_S2.cmd?BO_ID=nrEpCLaZpoLCTzPUMxuF)
+- 공개 약관만으로는 로컬 Mac과 본인 소유 Linux 서버의 장기 저장·복제 및 계약 종료 후 보관 권리를 확정할 수 없다. [KRX API 약관](https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO002.jsp), [KRX 웹사이트 약관](https://data.krx.co.kr/contents/MDC/INFO/informationController/MDCINFO003.cmd)
+- **판정: NO-GO.** 이번 확인은 문서 열람뿐이다. 가입, 키 발급, API 호출, 화면 다운로드, 문의 또는 구매를 하지 않았다.
+
+### 미국 — Databento
+
+- 공식 Security Master 페이지는 미국 주식·ETF 500종목의 CSV 표본을 안내한다. 공개 표본 설명만으로 상장폐지 종목이나 과거 PIT 레코드 포함 여부는 증명되지 않는다. 표본을 내려받거나 열지 않았다. [Security Master 샘플 안내](https://databento.com/security-master)
+- Security Master 명세는 PIT 상장·폐지일 및 ETF 분류를, Corporate Actions 명세는 2018-05-01 이후 PIT 이벤트를 설명한다. 미국 주식·ETF 가격 자료는 2018년 이후, 과거 데이터 시작 가격은 USD 0.40/GB로 안내되지만 실제 시세·참조데이터 견적은 별도 요청 구성에 달려 있다. [Security Master 명세](https://databento.com/docs/datasets/security-master), [Corporate Actions 명세](https://databento.com/docs/datasets/corporate-actions), [미국 주식 가격 안내](https://databento.com/equities), [청구 안내](https://databento.com/docs/portal/billing)
+- 공개 가격·약관은 개인용 라이선스만으로 동일한 원자료를 Mac과 Linux 서버에 영구 보관·복제할 수 있다고 명확히 허가하지 않는다. 제3자 데이터셋별 별도 약관도 적용된다. [Databento 이용약관](https://databento.com/legal/terms-of-use), [가격·라이선스](https://databento.com/pricing)
+- **판정: 지속 보관 백테스트는 NO-GO.** 공개 샘플은 적격성 검토 대상일 뿐이고 PIT/상폐 표본이나 두 장치 보관권을 증명하지 않는다. 포털/API 인증, 계정 생성, 표본 다운로드, 연락, 구매는 하지 않았다.
 
 ## 다음 단계와 진입 기준
 
