@@ -81,6 +81,22 @@ def test_mirrored_fair_direction_barriers_cannot_both_win_on_one_path():
         assert sum(wins) <= 1
 
 
+def test_sha_fair_direction_is_balanced_and_independent_on_fixed_anchors():
+    future = np.random.default_rng(20261120).normal(size=20_000)
+    sides = np.empty(future.size, dtype=float)
+    i = 0
+    for symbol_i in range(20):
+        symbol = f"SYNTH{symbol_i:02d}"
+        for anchor_i in range(1_000):
+            side = matched_baseline_sides(
+                99, 100, symbol=symbol, timeframe_minutes=5,
+                anchor_ms=anchor_i * 5 * MINUTE_MS, seed=20261117)["random"]
+            sides[i] = 1.0 if side == "long" else -1.0
+            i += 1
+    assert abs(float(sides.mean())) < 0.03
+    assert abs(float(np.corrcoef(sides, future)[0, 1])) < 0.03
+
+
 def test_closed_4h_regime_only_appears_after_200_closed_bars():
     count = 201 * 240
     ts = np.arange(count, dtype=np.int64) * MINUTE_MS
