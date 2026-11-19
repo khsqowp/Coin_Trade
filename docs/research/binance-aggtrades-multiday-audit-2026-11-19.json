@@ -1,0 +1,5381 @@
+{
+  "attribution": "Source: Binance Vision historical data. Derived summary is subject to CC BY-NC-SA 4.0; no raw archives are included.",
+  "classification": "historical_source_integrity_only_no_strategy_or_signal_test",
+  "daily_reconciliation": {
+    "base_volume_match_count": 49,
+    "base_volume_unresolved": [
+      {
+        "difference": -18.0,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-01-01"
+      },
+      {
+        "difference": -0.47900008686701767,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -2.792011276818812,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -19.0,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -34.0,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -291.0,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -105.0,
+        "symbol": "TRXUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -11.0,
+        "symbol": "AVAXUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -2390.5000017657876,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -91.5999981239438,
+        "symbol": "APTUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -5.625000451182132,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -18.925996989011765,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -11.189996629953384,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -349.9000401496887,
+        "symbol": "XRPUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -61117.0,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -2.0,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -57.126000000629574,
+        "symbol": "LTCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -4334.300000753254,
+        "symbol": "DOTUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -152.41999987140298,
+        "symbol": "ETCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -36480.99999883026,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -450.0,
+        "symbol": "UNIUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -912.0,
+        "symbol": "NEARUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -0.0010008954268414527,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": 1.011974461376667,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -0.049996182322502136,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -391.0,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -513.0,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -148.0,
+        "symbol": "XLMUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -44.1999988630414,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -15.0,
+        "symbol": "NEARUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -279.8000005185604,
+        "symbol": "APTUSDT",
+        "utc_date": "2025-10-01"
+      }
+    ],
+    "quote_volume_match_count": 49,
+    "quote_volume_unresolved": [
+      {
+        "difference": -3442.319939851761,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-01-01"
+      },
+      {
+        "difference": -39736.8318195343,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -5109.775447845459,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -2403.5399475097656,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -23.460003316402435,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -49.035253047943115,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -24.87134988605976,
+        "symbol": "TRXUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -207.86700689792633,
+        "symbol": "AVAXUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -6748.381499752402,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -485.3393688648939,
+        "symbol": "APTUSDT",
+        "utc_date": "2025-04-01"
+      },
+      {
+        "difference": -601796.9639797211,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -46318.92459487915,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -1664.064898967743,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -770.0028431415558,
+        "symbol": "XRPUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -33970.73950576782,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -0.3204777240753174,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -4797.831400871277,
+        "symbol": "LTCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -14516.52659778297,
+        "symbol": "DOTUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -2457.1973799169064,
+        "symbol": "ETCUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -82123.0072004348,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -3209.3940036594868,
+        "symbol": "UNIUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -1866.9719994813204,
+        "symbol": "NEARUSDT",
+        "utc_date": "2025-07-01"
+      },
+      {
+        "difference": -114.31634902954102,
+        "symbol": "BTCUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": 4490.160274505615,
+        "symbol": "ETHUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -10.954780578613281,
+        "symbol": "SOLUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -324.21720492839813,
+        "symbol": "ADAUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -119.43666505813599,
+        "symbol": "DOGEUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -57.17832016944885,
+        "symbol": "XLMUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -99.84780089557171,
+        "symbol": "FILUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -42.180000722408295,
+        "symbol": "NEARUSDT",
+        "utc_date": "2025-10-01"
+      },
+      {
+        "difference": -1294.8864204883575,
+        "symbol": "APTUSDT",
+        "utc_date": "2025-10-01"
+      }
+    ]
+  },
+  "files": {
+    "publisher_checksum_failures": 0
+  },
+  "integrity_totals": {
+    "agg_malformed_rows": 0,
+    "agg_timestamps_outside_utc_day": 0,
+    "agg_trade_id_missing_values_between_rows": 0,
+    "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+    "kline_malformed_rows": 0,
+    "kline_timestamps_outside_utc_day": 0
+  },
+  "minute_comparison": {
+    "aggTrades_only_minutes_total": 0,
+    "both_source_minutes_total": 115200,
+    "expected_minutes_per_archive": 1440,
+    "kline_only_minutes_total": 0,
+    "mismatches_by_metric": {
+      "base": {
+        "compared_minutes": 115200,
+        "count": 4317,
+        "rate": 0.037473958333333335
+      },
+      "close": {
+        "compared_minutes": 115200,
+        "count": 0,
+        "rate": 0.0
+      },
+      "high": {
+        "compared_minutes": 115200,
+        "count": 35,
+        "rate": 0.00030381944444444445
+      },
+      "low": {
+        "compared_minutes": 115200,
+        "count": 76,
+        "rate": 0.0006597222222222222
+      },
+      "open": {
+        "compared_minutes": 115200,
+        "count": 1344,
+        "rate": 0.011666666666666667
+      },
+      "quote": {
+        "compared_minutes": 115200,
+        "count": 4321,
+        "rate": 0.037508680555555556
+      },
+      "taker_base": {
+        "compared_minutes": 115200,
+        "count": 2112,
+        "rate": 0.018333333333333333
+      },
+      "taker_quote": {
+        "compared_minutes": 115200,
+        "count": 2112,
+        "rate": 0.018333333333333333
+      },
+      "underlying_trade_count": {
+        "compared_minutes": 115200,
+        "count": 20308,
+        "rate": 0.17628472222222222
+      }
+    }
+  },
+  "rows": [
+    {
+      "archives": {
+        "aggTrades_sha256": "b0e75563f195609cc12369dca095f3dcb26ed84fc4e1234c9b91a807a5d51202",
+        "kline_sha256": "0904f4a99249d72991ff1c5aad335508bcaeeb8bc5500131d2489363b9c242fc",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 91236.65999957189,
+        "agg_quote_price_times_qty": 8572615379.775538,
+        "base_difference_agg_minus_kline": -4.2808824218809605e-07,
+        "base_match": true,
+        "kline_base": 91236.65999999997,
+        "kline_quote": 8572615379.77511,
+        "quote_difference_agg_minus_kline": 0.00042819976806640625,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2496851421,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 10.689000000001101,
+        "close": 0.0,
+        "high": 0.40000000000873115,
+        "low": 0.0,
+        "open": 1.0999999999912689,
+        "quote": 1007758.9199999906,
+        "taker_base": 2.3040000000000873,
+        "taker_quote": 216138.24000000302,
+        "underlying_trade_count": 23.0
+      },
+      "minute_mismatch_count": {
+        "base": 117,
+        "close": 0,
+        "high": 1,
+        "low": 0,
+        "open": 34,
+        "quote": 117,
+        "taker_base": 43,
+        "taker_quote": 43,
+        "underlying_trade_count": 341
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 726611,
+        "klines": 1440
+      },
+      "symbol": "BTCUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "7f682c4cc8a362e7a11c7adcd9e1b4e5f30debad5eb796407c6d785c95a4ae6c",
+        "kline_sha256": "dff6b1db386f5b7f47521d47e66b9ce067887830f41bce3498aa40a3a53c475c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 1271279.8400046763,
+        "agg_quote_price_times_qty": 4251757543.558905,
+        "base_difference_agg_minus_kline": 4.677567631006241e-06,
+        "base_match": true,
+        "kline_base": 1271279.8399999987,
+        "kline_quote": 4251757543.559005,
+        "quote_difference_agg_minus_kline": -9.965896606445312e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 1953844547,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 21.635999999998603,
+        "close": 0.0,
+        "high": 0.010000000000218279,
+        "low": 0.03000000000020009,
+        "open": 0.04999999999972715,
+        "quote": 72046.14912000485,
+        "taker_base": 21.63600000000099,
+        "taker_quote": 72046.14912000252,
+        "underlying_trade_count": 43.0
+      },
+      "minute_mismatch_count": {
+        "base": 121,
+        "close": 0,
+        "high": 1,
+        "low": 2,
+        "open": 38,
+        "quote": 121,
+        "taker_base": 57,
+        "taker_quote": 57,
+        "underlying_trade_count": 301
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 816837,
+        "klines": 1440
+      },
+      "symbol": "ETHUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "885607a95e2c8a04a4c4c2bc2d13be1e706f5b53edf86971aa49780249ddb25b",
+        "kline_sha256": "49f2f74bc298701d2225dc5e4bf47b366449c8e2391cd603356eb188dea87b4c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 386029.6300003268,
+        "agg_quote_price_times_qty": 272686873.5598099,
+        "base_difference_agg_minus_kline": 3.2671960070729256e-07,
+        "base_match": true,
+        "kline_base": 386029.63000000006,
+        "kline_quote": 272686873.5598001,
+        "quote_difference_agg_minus_kline": 9.834766387939453e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 644350858,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 19.780000000000058,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.010000000000104592,
+        "quote": 14023.624400000088,
+        "taker_base": 1.0700000000000145,
+        "taker_quote": 754.7459000000053,
+        "underlying_trade_count": 33.0
+      },
+      "minute_mismatch_count": {
+        "base": 46,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 12,
+        "quote": 47,
+        "taker_base": 24,
+        "taker_quote": 24,
+        "underlying_trade_count": 111
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 211766,
+        "klines": 1440
+      },
+      "symbol": "BNBUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "6b76f3ec65d21ff4ed5e68c696d9544c4273db778f86fb5acc9698e47180fbbf",
+        "kline_sha256": "8cbee6f05cf5803741953a5d210962e10022a6a9fd3b404b0542cfda494a254f",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 7977728.0,
+        "agg_quote_price_times_qty": 1525018095.5100615,
+        "base_difference_agg_minus_kline": -18.0,
+        "base_match": false,
+        "kline_base": 7977746.0,
+        "kline_quote": 1525021537.8300014,
+        "quote_difference_agg_minus_kline": -3442.319939851761,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 834187053,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 119.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.010000000000019327,
+        "quote": 22812.300000000396,
+        "taker_base": 119.0,
+        "taker_quote": 22812.300000000105,
+        "underlying_trade_count": 10.0
+      },
+      "minute_mismatch_count": {
+        "base": 53,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 13,
+        "quote": 53,
+        "taker_base": 28,
+        "taker_quote": 28,
+        "underlying_trade_count": 143
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 218134,
+        "klines": 1440
+      },
+      "symbol": "SOLUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "67e18b5280b7dd136ea3e9691960dcd61b119ac638ffc5bde4d7d6b94d8918e2",
+        "kline_sha256": "3be3baa7edab32c845572a2b140e6213172ccc6ec38b129a85a0ada12c773a63",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 1343826102.4001734,
+        "agg_quote_price_times_qty": 2990765627.630763,
+        "base_difference_agg_minus_kline": 0.00017380714416503906,
+        "base_match": true,
+        "kline_base": 1343826102.3999996,
+        "kline_quote": 2990765627.6307626,
+        "quote_difference_agg_minus_kline": 4.76837158203125e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 516371952,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 10864.900000000722,
+        "close": 0.0,
+        "high": 9.999999999976694e-05,
+        "low": 0.00010000000000021103,
+        "open": 0.00010000000000021103,
+        "quote": 23482.308370001614,
+        "taker_base": 8950.300000000047,
+        "taker_quote": 19065.034029999515,
+        "underlying_trade_count": 29.0
+      },
+      "minute_mismatch_count": {
+        "base": 231,
+        "close": 0,
+        "high": 1,
+        "low": 3,
+        "open": 80,
+        "quote": 232,
+        "taker_base": 118,
+        "taker_quote": 118,
+        "underlying_trade_count": 621
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 735821,
+        "klines": 1440
+      },
+      "symbol": "XRPUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "0d8b18e2ded97032a9aa29574baeb208e808d64ffc0995d14eb01085cf102c17",
+        "kline_sha256": "f7fcef2d66874fcb8690675a18a7fd6e79e9f270c0f3bb600090969b55ac3fe3",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 556240493.0,
+        "agg_quote_price_times_qty": 492570106.5395991,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 556240493.0,
+        "kline_quote": 492570106.5395996,
+        "quote_difference_agg_minus_kline": -4.76837158203125e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 462048748,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1764.0,
+        "close": 0.0,
+        "high": 9.999999999998899e-05,
+        "low": 9.999999999998899e-05,
+        "open": 0.00010000000000010001,
+        "quote": 1544.0292000001064,
+        "taker_base": 1764.0,
+        "taker_quote": 1544.0292000001064,
+        "underlying_trade_count": 9.0
+      },
+      "minute_mismatch_count": {
+        "base": 41,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 9,
+        "quote": 41,
+        "taker_base": 24,
+        "taker_quote": 24,
+        "underlying_trade_count": 118
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 232098,
+        "klines": 1440
+      },
+      "symbol": "ADAUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "cae076c20de9bf6efd3ce2b8c5b1f9bbeeb6f2f02b00e48acea77196a0a49f15",
+        "kline_sha256": "d19ba15ca532affa8e662fc2f04ebbd63022714ca8f06f8f27a2ff29d60801db",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 3054929290.0,
+        "agg_quote_price_times_qty": 975517769.185085,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 3054929290.0,
+        "kline_quote": 975517769.1851097,
+        "quote_difference_agg_minus_kline": -2.467632293701172e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 817670345,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 17500.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 1.0000000000010001e-05,
+        "open": 3.0000000000030003e-05,
+        "quote": 5506.550000001676,
+        "taker_base": 17500.0,
+        "taker_quote": 5506.550000000512,
+        "underlying_trade_count": 11.0
+      },
+      "minute_mismatch_count": {
+        "base": 119,
+        "close": 0,
+        "high": 0,
+        "low": 5,
+        "open": 37,
+        "quote": 119,
+        "taker_base": 67,
+        "taker_quote": 67,
+        "underlying_trade_count": 320
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 349470,
+        "klines": 1440
+      },
+      "symbol": "DOGEUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "ff57411bfd62ef3f7e5a7144074da50763b8bcca906771e294f313754e94c7ea",
+        "kline_sha256": "b0d76b27b2b963ad26f223da0f0a234ccc98b53da52cefc0fef03b8359e661b5",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 316030253.0,
+        "agg_quote_price_times_qty": 80565761.97996007,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 316030253.0,
+        "kline_quote": 80565761.97996,
+        "quote_difference_agg_minus_kline": 7.450580596923828e-08,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 192778651,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 7000.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0,
+        "quote": 1776.6000000000058,
+        "taker_base": 362.0,
+        "taker_quote": 92.23398000004818,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 12,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "quote": 12,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 41
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 74160,
+        "klines": 1440
+      },
+      "symbol": "TRXUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "0a64d7d25291146243cb8e5a89a0d0d4f25ddfa886746a73fd942bcd8339e95e",
+        "kline_sha256": "7b5b459f7fa160721278bbf997d720c75c23f36e54b2457ff556eec72644cab9",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 2091902.2879998921,
+        "agg_quote_price_times_qty": 219313462.48374724,
+        "base_difference_agg_minus_kline": -1.1082738637924194e-07,
+        "base_match": true,
+        "kline_base": 2091902.288000003,
+        "kline_quote": 219313462.48375037,
+        "quote_difference_agg_minus_kline": -3.129243850708008e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 350931332,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 7.488000000000056,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.010000000000005116,
+        "quote": 770.7398400000093,
+        "taker_base": 3.314000000000007,
+        "taker_quote": 347.27405999999974,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 8,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 3,
+        "quote": 8,
+        "taker_base": 4,
+        "taker_quote": 4,
+        "underlying_trade_count": 51
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 118698,
+        "klines": 1440
+      },
+      "symbol": "LTCUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "65100ec2b0a2150ddc2745ccf361feaea2a372ab457ebf4df68fce9134e18090",
+        "kline_sha256": "0af7376397cb4bedbfcaba0f44c2667114e57fe8b402f2b8027c92173980bb48",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 188120.9780000251,
+        "agg_quote_price_times_qty": 83207319.43381925,
+        "base_difference_agg_minus_kline": 2.500019036233425e-08,
+        "base_match": true,
+        "kline_base": 188120.9780000001,
+        "kline_quote": 83207319.43381995,
+        "quote_difference_agg_minus_kline": -7.003545761108398e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 430080256,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 2.7890000000000086,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.009999999999990905,
+        "quote": 1221.8051200000064,
+        "taker_base": 1.245000000000001,
+        "taker_quote": 560.2500000000009,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 6,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 3,
+        "quote": 6,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 46
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 136536,
+        "klines": 1440
+      },
+      "symbol": "BCHUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "f2f8f65d9104e28f618149e5915ae934930dbf1a51a91076eeea67a0f9f88768",
+        "kline_sha256": "789796fcc93d70b0f4d55a1f6cf8a15d0f3f63b32fa0508636d0a628de35cdf9",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 18453742.14000055,
+        "agg_quote_price_times_qty": 380456009.52839744,
+        "base_difference_agg_minus_kline": 5.476176738739014e-07,
+        "base_match": true,
+        "kline_base": 18453742.14,
+        "kline_quote": 380456009.5284002,
+        "quote_difference_agg_minus_kline": -2.7418136596679688e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 433915196,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 307.10000000000036,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0010000000000012221,
+        "quote": 6151.520099999994,
+        "taker_base": 211.64000000000487,
+        "taker_quote": 4492.693920000107,
+        "underlying_trade_count": 9.0
+      },
+      "minute_mismatch_count": {
+        "base": 44,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 12,
+        "quote": 44,
+        "taker_base": 32,
+        "taker_quote": 32,
+        "underlying_trade_count": 107
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 248486,
+        "klines": 1440
+      },
+      "symbol": "LINKUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "bcafcb48d9d22024998cb745fafce4338a0d6bc17d76872852e9dbd6057d854a",
+        "kline_sha256": "f52cf87e9e30041b4d1cb11d3419dd657873480e854b77b5a6ee2004297cdb37",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 25994477.300000552,
+        "agg_quote_price_times_qty": 177489648.47590035,
+        "base_difference_agg_minus_kline": 5.550682544708252e-07,
+        "base_match": true,
+        "kline_base": 25994477.299999997,
+        "kline_quote": 177489648.4759002,
+        "quote_difference_agg_minus_kline": 1.4901161193847656e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 361689118,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 510.900000000016,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.001000000000000334,
+        "open": 0.001000000000000334,
+        "quote": 3555.353100000182,
+        "taker_base": 266.40000000000146,
+        "taker_quote": 1744.920000000042,
+        "underlying_trade_count": 8.0
+      },
+      "minute_mismatch_count": {
+        "base": 18,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 7,
+        "quote": 18,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 49
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 109059,
+        "klines": 1440
+      },
+      "symbol": "DOTUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "c42d644ac2874901e8579c11339dcc79e9dab58d5d0b510ff94be78ce33736fd",
+        "kline_sha256": "0ca8e89d301bad6a2ad1e240eab0497e2c69b02644c8868471468a61e0653d0d",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 6011399.0,
+        "agg_quote_price_times_qty": 218733237.18699887,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 6011399.0,
+        "kline_quote": 218733237.18699986,
+        "quote_difference_agg_minus_kline": -9.834766387939453e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 439047635,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 103.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0009999999999976694,
+        "open": 0.0020000000000024443,
+        "quote": 3766.900000000016,
+        "taker_base": 100.0,
+        "taker_quote": 3766.9000000000087,
+        "underlying_trade_count": 6.0
+      },
+      "minute_mismatch_count": {
+        "base": 14,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 4,
+        "quote": 14,
+        "taker_base": 8,
+        "taker_quote": 8,
+        "underlying_trade_count": 31
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 223895,
+        "klines": 1440
+      },
+      "symbol": "AVAXUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "62e8c82280beee8d8259ff7f3e3bcffbc46d9af2add3bb717a2ddd53cdbdd8ec",
+        "kline_sha256": "478fcc6cb90b682b96cfbfb89906f2c5c7bbc7d06e1c0e1249c5a487c4a36edc",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 3002389748.0,
+        "agg_quote_price_times_qty": 1189115131.3180053,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 3002389748.0,
+        "kline_quote": 1189115131.3179693,
+        "quote_difference_agg_minus_kline": 3.600120544433594e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 296299628,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 38003.0,
+        "close": 0.0,
+        "high": 1.0000000000010001e-05,
+        "low": 1.0000000000010001e-05,
+        "open": 5.0000000000050004e-05,
+        "quote": 15834.623300001957,
+        "taker_base": 38003.0,
+        "taker_quote": 13110.274939999945,
+        "underlying_trade_count": 17.0
+      },
+      "minute_mismatch_count": {
+        "base": 106,
+        "close": 0,
+        "high": 1,
+        "low": 2,
+        "open": 46,
+        "quote": 106,
+        "taker_base": 50,
+        "taker_quote": 50,
+        "underlying_trade_count": 423
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1480739,
+        "klines": 1440
+      },
+      "symbol": "XLMUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "6c54b6551c32b7a0278cb2b6e1247e2a8f173726ff0114563a2a20c5801b4a1c",
+        "kline_sha256": "a0fab2bcd9f66555e6915d338536de839c75d0b8924af4d9f0f93b764d1b8895",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 3636726.700000278,
+        "agg_quote_price_times_qty": 91956758.70743795,
+        "base_difference_agg_minus_kline": 2.798624336719513e-07,
+        "base_match": true,
+        "kline_base": 3636726.6999999983,
+        "kline_quote": 91956758.70744008,
+        "quote_difference_agg_minus_kline": -2.130866050720215e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 471668887,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1.7462298274040222e-10,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0,
+        "quote": 3.259629011154175e-09,
+        "taker_base": 2.1827872842550278e-11,
+        "taker_quote": 9.313225746154785e-10,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 0,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "quote": 0,
+        "taker_base": 0,
+        "taker_quote": 0,
+        "underlying_trade_count": 55
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 126057,
+        "klines": 1440
+      },
+      "symbol": "ETCUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "ca76b81ea304fc0b7984837f41735b217a0307628488e4fb45cbb94c9333f56f",
+        "kline_sha256": "8c2bd6f3492403668cdf7b02152203cd8041e249e1134823b606d97b5b30d935",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 29494074.899999443,
+        "agg_quote_price_times_qty": 148148644.30400053,
+        "base_difference_agg_minus_kline": -5.62518835067749e-07,
+        "base_match": true,
+        "kline_base": 29494074.900000006,
+        "kline_quote": 148148644.30400023,
+        "quote_difference_agg_minus_kline": 2.980232238769531e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 306364435,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1214.600000000013,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.001000000000000334,
+        "open": 0.001000000000000334,
+        "quote": 6270.9798000001465,
+        "taker_base": 728.5,
+        "taker_quote": 3547.0665000000154,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 2,
+        "quote": 10,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 16
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 80399,
+        "klines": 1440
+      },
+      "symbol": "FILUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "ed66a2ae444338c048ca8b67e8f7c505d1c109103616a2dcd71e33ed63ddb2a9",
+        "kline_sha256": "6bfd0792bc1c1c4f861ffd266ca0f9296eb70e80ab42ff4b7bf4b7f352b6ea2c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 7629582.0,
+        "agg_quote_price_times_qty": 101805311.59299904,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 7629582.0,
+        "kline_quote": 101805311.59300013,
+        "quote_difference_agg_minus_kline": -1.087784767150879e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 246454851,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 24.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999994458,
+        "quote": 316.2239999999874,
+        "taker_base": 24.0,
+        "taker_quote": 316.2239999999874,
+        "underlying_trade_count": 2.0
+      },
+      "minute_mismatch_count": {
+        "base": 2,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 2,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 5
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 106182,
+        "klines": 1440
+      },
+      "symbol": "UNIUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "f6fff43282da7b6e47219953f3ad75e8a93da5ba1f77f3133403c76b0649ef61",
+        "kline_sha256": "c5c256f0a20f5ba46b2b620c6d52ae20af5a6182c0a010e8fa750027e2e50049",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 668566.6999990236,
+        "agg_quote_price_times_qty": 209904607.44499916,
+        "base_difference_agg_minus_kline": -9.777722880244255e-07,
+        "base_match": true,
+        "kline_base": 668566.7000000014,
+        "kline_quote": 209904607.44499978,
+        "quote_difference_agg_minus_kline": -6.258487701416016e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 251284749,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 9.100000000001273,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.01999999999998181,
+        "quote": 2864.0430000000633,
+        "taker_base": 3.4000000000000625,
+        "taker_quote": 1052.3680000000168,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 12,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 12,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 36
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 245676,
+        "klines": 1440
+      },
+      "symbol": "AAVEUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "306fb982019c16f3ce38aa65bf51f3828f73ede1713cc73471b1b996af38a55c",
+        "kline_sha256": "02099c63aa6c00ec5532ee720aad0c21e2837ef1b18defa1c094c64a24c4982c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 22697701.0,
+        "agg_quote_price_times_qty": 115421833.17300038,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 22697701.0,
+        "kline_quote": 115421833.17300002,
+        "quote_difference_agg_minus_kline": 3.5762786865234375e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 291510512,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 131.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.001000000000000334,
+        "quote": 650.5460000000458,
+        "taker_base": 131.0,
+        "taker_quote": 650.5459999999985,
+        "underlying_trade_count": 4.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 10,
+        "taker_base": 8,
+        "taker_quote": 8,
+        "underlying_trade_count": 24
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 73998,
+        "klines": 1440
+      },
+      "symbol": "NEARUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "2e168859451ec510e5e2d4b6ada9386ffab5c03d3365a04defe69273ef805923",
+        "kline_sha256": "f9875738cd1dc5a68666f10e76a921d7934aeae5b6efc8b4b29658c8b4fda8a7",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 16188188.699975802,
+        "agg_quote_price_times_qty": 140867564.11707273,
+        "base_difference_agg_minus_kline": -2.423301339149475e-05,
+        "base_match": true,
+        "kline_base": 16188188.700000035,
+        "kline_quote": 140867564.11707005,
+        "quote_difference_agg_minus_kline": 2.682209014892578e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 262525084,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 183.9000000000069,
+        "close": 0.0,
+        "high": 9.999999999976694e-05,
+        "low": 9.999999999976694e-05,
+        "open": 0.00019999999999953388,
+        "quote": 1633.013610000009,
+        "taker_base": 183.90000000001055,
+        "taker_quote": 1633.013610000009,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 18,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 6,
+        "quote": 18,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 30
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 321265,
+        "klines": 1440
+      },
+      "symbol": "APTUSDT",
+      "utc_date": "2025-01-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "936fac7033ca1963b64b890ff428cf4d6aa1cd521c46cb0ac8d13f50530b67e2",
+        "kline_sha256": "bcf134d45ad2b4fb001bfe2d9b20926dfb44da469eefc19d8f9da526ff3324ef",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 197262.69699991294,
+        "agg_quote_price_times_qty": 16592790646.961788,
+        "base_difference_agg_minus_kline": -0.47900008686701767,
+        "base_match": false,
+        "kline_base": 197263.1759999998,
+        "kline_quote": 16592830383.793608,
+        "quote_difference_agg_minus_kline": -39736.8318195343,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2655196647,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 3.286000000038257,
+        "close": 0.0,
+        "high": 0.10000000000582077,
+        "low": 0.9000000000087311,
+        "open": 1.1999999999970896,
+        "quote": 272713.3550004363,
+        "taker_base": 3.2860000000016214,
+        "taker_quote": 272713.3549999967,
+        "underlying_trade_count": 57.0
+      },
+      "minute_mismatch_count": {
+        "base": 205,
+        "close": 0,
+        "high": 2,
+        "low": 4,
+        "open": 77,
+        "quote": 205,
+        "taker_base": 113,
+        "taker_quote": 113,
+        "underlying_trade_count": 523
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1369926,
+        "klines": 1440
+      },
+      "symbol": "BTCUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "7a92c9c7840ed372895856da19132375fad8a31f2e50b00ab7006be77bbc3815",
+        "kline_sha256": "35da75cc20b3088e2d5f669239184d7b53284c94cf92e302b69539e3c8b4de51",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 4671741.810988719,
+        "agg_quote_price_times_qty": 8777527896.573921,
+        "base_difference_agg_minus_kline": -2.792011276818812,
+        "base_match": false,
+        "kline_base": 4671744.602999995,
+        "kline_quote": 8777533006.34937,
+        "quote_difference_agg_minus_kline": -5109.775447845459,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2122862514,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 52.02500000001692,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.1899999999998272,
+        "quote": 99706.95300001372,
+        "taker_base": 44.78900000003614,
+        "taker_quote": 83532.3807800021,
+        "underlying_trade_count": 62.0
+      },
+      "minute_mismatch_count": {
+        "base": 247,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 87,
+        "quote": 247,
+        "taker_base": 92,
+        "taker_quote": 92,
+        "underlying_trade_count": 527
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1332202,
+        "klines": 1440
+      },
+      "symbol": "ETHUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "bb9a169db601bfa6ceb8da137065fbce4feaa3c1e47dd1b456b9b71dc55b00ef",
+        "kline_sha256": "9ee01e4c5a1d1748dae129a8a7ada75c4b1ee515b5edd8a39f33c591702dd125",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 1408845.7100011504,
+        "agg_quote_price_times_qty": 862087297.916687,
+        "base_difference_agg_minus_kline": 1.1473894119262695e-06,
+        "base_match": true,
+        "kline_base": 1408845.710000003,
+        "kline_quote": 862087297.9167001,
+        "quote_difference_agg_minus_kline": -1.3113021850585938e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 679903672,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 33.98999999999978,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.010000000000104592,
+        "open": 0.01999999999998181,
+        "quote": 20935.80060000019,
+        "taker_base": 33.99000000000024,
+        "taker_quote": 20935.80059999996,
+        "underlying_trade_count": 15.0
+      },
+      "minute_mismatch_count": {
+        "base": 43,
+        "close": 0,
+        "high": 0,
+        "low": 2,
+        "open": 10,
+        "quote": 44,
+        "taker_base": 22,
+        "taker_quote": 22,
+        "underlying_trade_count": 212
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 345752,
+        "klines": 1440
+      },
+      "symbol": "BNBUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "b5c84d2413daadff598e6fcd1b0dd69b63a868cf6c9f09dd03ab18e4927471f1",
+        "kline_sha256": "cb8926ba4c837dcbb1ec7de7eddd5b6efdf1e232f52280c2d6ad0007025035ee",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 21006812.0,
+        "agg_quote_price_times_qty": 2670479996.35505,
+        "base_difference_agg_minus_kline": -19.0,
+        "base_match": false,
+        "kline_base": 21006831.0,
+        "kline_quote": 2670482399.8949976,
+        "quote_difference_agg_minus_kline": -2403.5399475097656,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 880180177,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 402.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.010000000000005116,
+        "open": 0.010000000000005116,
+        "quote": 50197.74000000302,
+        "taker_base": 297.0,
+        "taker_quote": 37983.3300000038,
+        "underlying_trade_count": 18.0
+      },
+      "minute_mismatch_count": {
+        "base": 66,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 19,
+        "quote": 66,
+        "taker_base": 28,
+        "taker_quote": 28,
+        "underlying_trade_count": 214
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 306614,
+        "klines": 1440
+      },
+      "symbol": "SOLUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "5a4b9126ebfc09edd631696cd21f622e16d5602eba4f8ac8b546e7c620687680",
+        "kline_sha256": "f2efa88a107abf199f6113d96544e78f6be7372170d42023437766e1bd9d55c8",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 905047184.8998985,
+        "agg_quote_price_times_qty": 1932700968.092976,
+        "base_difference_agg_minus_kline": -0.00010192394256591797,
+        "base_match": true,
+        "kline_base": 905047184.9000005,
+        "kline_quote": 1932700968.0929806,
+        "quote_difference_agg_minus_kline": -4.5299530029296875e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 588534936,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 7526.300000000221,
+        "close": 0.0,
+        "high": 0.00010000000000021103,
+        "low": 0.00019999999999997797,
+        "open": 0.00019999999999997797,
+        "quote": 16047.008799999836,
+        "taker_base": 7526.29999999993,
+        "taker_quote": 16047.008800000884,
+        "underlying_trade_count": 45.0
+      },
+      "minute_mismatch_count": {
+        "base": 164,
+        "close": 0,
+        "high": 3,
+        "low": 4,
+        "open": 55,
+        "quote": 164,
+        "taker_base": 122,
+        "taker_quote": 122,
+        "underlying_trade_count": 528
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 503117,
+        "klines": 1440
+      },
+      "symbol": "XRPUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "6a2ec13e02f27f2403280b84a91537b2492906a430c19450c55a70ff997f0c43",
+        "kline_sha256": "2b12ec428b9f19b8724b144e0b2a3f9708016c94dbd040802ad60f36bc284c84",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 689154893.0,
+        "agg_quote_price_times_qty": 466192907.7678978,
+        "base_difference_agg_minus_kline": -34.0,
+        "base_match": false,
+        "kline_base": 689154927.0,
+        "kline_quote": 466192931.2279011,
+        "quote_difference_agg_minus_kline": -23.460003316402435,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 494614386,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 56346.0,
+        "close": 0.0,
+        "high": 9.999999999998899e-05,
+        "low": 9.999999999998899e-05,
+        "open": 0.00010000000000010001,
+        "quote": 38016.64620000002,
+        "taker_base": 56346.0,
+        "taker_quote": 38016.64620000002,
+        "underlying_trade_count": 24.0
+      },
+      "minute_mismatch_count": {
+        "base": 85,
+        "close": 0,
+        "high": 1,
+        "low": 2,
+        "open": 21,
+        "quote": 85,
+        "taker_base": 52,
+        "taker_quote": 52,
+        "underlying_trade_count": 203
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 208260,
+        "klines": 1440
+      },
+      "symbol": "ADAUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "793c45cc60dbf16a8fdd64d09c7c05753d09f856f482918c91ccb4a4ed85473a",
+        "kline_sha256": "b0b33aa10a472ada1b53e6550bec8686a9b2bc84ade2ec31a96fd543a015b6d6",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 4872325472.0,
+        "agg_quote_price_times_qty": 834123282.657856,
+        "base_difference_agg_minus_kline": -291.0,
+        "base_match": false,
+        "kline_base": 4872325763.0,
+        "kline_quote": 834123331.693109,
+        "quote_difference_agg_minus_kline": -49.035253047943115,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 875258575,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 28902.0,
+        "close": 0.0,
+        "high": 1.0000000000010001e-05,
+        "low": 1.0000000000010001e-05,
+        "open": 1.0000000000010001e-05,
+        "quote": 4994.843640000006,
+        "taker_base": 28902.0,
+        "taker_quote": 4994.843640000006,
+        "underlying_trade_count": 17.0
+      },
+      "minute_mismatch_count": {
+        "base": 109,
+        "close": 0,
+        "high": 2,
+        "low": 4,
+        "open": 32,
+        "quote": 109,
+        "taker_base": 37,
+        "taker_quote": 37,
+        "underlying_trade_count": 320
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 345515,
+        "klines": 1440
+      },
+      "symbol": "DOGEUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "ad294940f81fb92e2677ad3a7c9fbc346d28541da5c96e219f91e49ccf3f276e",
+        "kline_sha256": "0c49c98884724cc5aedbf0debc73b47fec2fe22679b8640e28becb8ea5819a49",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 378989882.0,
+        "agg_quote_price_times_qty": 89238836.48147005,
+        "base_difference_agg_minus_kline": -105.0,
+        "base_match": false,
+        "kline_base": 378989987.0,
+        "kline_quote": 89238861.35281993,
+        "quote_difference_agg_minus_kline": -24.87134988605976,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 204863336,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 217.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0,
+        "quote": 51.27710000001389,
+        "taker_base": 217.0,
+        "taker_quote": 51.27709999999843,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 3,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "quote": 3,
+        "taker_base": 3,
+        "taker_quote": 3,
+        "underlying_trade_count": 47
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 90137,
+        "klines": 1440
+      },
+      "symbol": "TRXUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3aa66c44a787b5d50dc9ffafba7dcc100fe563933f96475ea15eaef6d17f25d6",
+        "kline_sha256": "730545e8841528f017cfcbd4a38bdd0328429dec003d60fab722438a09a65890",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 2141491.728999965,
+        "agg_quote_price_times_qty": 181079667.50429854,
+        "base_difference_agg_minus_kline": -3.585591912269592e-08,
+        "base_match": true,
+        "kline_base": 2141491.7290000007,
+        "kline_quote": 181079667.50430015,
+        "quote_difference_agg_minus_kline": -1.6093254089355469e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 374248245,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 32.67200000000048,
+        "close": 0.0,
+        "high": 0.009999999999990905,
+        "low": 0.009999999999990905,
+        "open": 0.010000000000005116,
+        "quote": 2756.5366400000057,
+        "taker_base": 32.67200000000025,
+        "taker_quote": 2756.5366400000057,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 30,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 9,
+        "quote": 30,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 110
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 110320,
+        "klines": 1440
+      },
+      "symbol": "LTCUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "599ee06c474d16c651997824037671a507604b1cbdac9d91b2fef29d6de1da89",
+        "kline_sha256": "26d7f5c5efe40a0e625fa9cc5aa0c8a2e3c09dfb96bb9c3c33c8573e1f62ab14",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 426575.61800002144,
+        "agg_quote_price_times_qty": 132617849.30390154,
+        "base_difference_agg_minus_kline": 2.1420419216156006e-08,
+        "base_match": true,
+        "kline_base": 426575.618,
+        "kline_quote": 132617849.30389999,
+        "quote_difference_agg_minus_kline": 1.5497207641601562e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 453061899,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1.1700000000000728,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.009999999999990905,
+        "quote": 367.21619999999166,
+        "taker_base": 9.822542779147625e-11,
+        "taker_quote": 1.0710209608078003e-08,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 8,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 8,
+        "taker_base": 0,
+        "taker_quote": 0,
+        "underlying_trade_count": 51
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 175199,
+        "klines": 1440
+      },
+      "symbol": "BCHUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3e3581a25ece434c659105a5a3e8ec827c8595498ac9de9535633c9c5530db2e",
+        "kline_sha256": "3c797f0f0872ac37cc857c82d2ee90e22e5835c3de11fec69f15af0c6569197e",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 15807571.0299996,
+        "agg_quote_price_times_qty": 220888135.52019042,
+        "base_difference_agg_minus_kline": -4.172325134277344e-07,
+        "base_match": true,
+        "kline_base": 15807571.030000018,
+        "kline_quote": 220888135.52019015,
+        "quote_difference_agg_minus_kline": 2.682209014892578e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 465286861,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 389.8700000000026,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0010000000000012221,
+        "quote": 5353.3049700000265,
+        "taker_base": 188.99000000000524,
+        "taker_quote": 2635.0875700000906,
+        "underlying_trade_count": 12.0
+      },
+      "minute_mismatch_count": {
+        "base": 67,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 21,
+        "quote": 67,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 88
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 168069,
+        "klines": 1440
+      },
+      "symbol": "LINKUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "c3ab9a68c836333774940dc5e8db1f147c13a382a357fbf9553a480afad2963e",
+        "kline_sha256": "229c0a664b39994eda40482cfbb1c3c2570a27ae1a65895706e4359bbda6eec5",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 25621770.399996832,
+        "agg_quote_price_times_qty": 106881713.98550062,
+        "base_difference_agg_minus_kline": -3.1441450119018555e-06,
+        "base_match": true,
+        "kline_base": 25621770.399999976,
+        "kline_quote": 106881713.98550013,
+        "quote_difference_agg_minus_kline": 4.917383193969727e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 373318452,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 4772.1,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.001000000000000334,
+        "quote": 20052.3642,
+        "taker_base": 4772.1,
+        "taker_quote": 20052.3642,
+        "underlying_trade_count": 27.0
+      },
+      "minute_mismatch_count": {
+        "base": 18,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 5,
+        "quote": 18,
+        "taker_base": 12,
+        "taker_quote": 12,
+        "underlying_trade_count": 31
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 87408,
+        "klines": 1440
+      },
+      "symbol": "DOTUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "e5d8f419f212cb881efcd4660e2231b3f2a7f77b5072cd3e9f9ae97ed5dfaef5",
+        "kline_sha256": "0738460b4008fd9d3f72e2de4ac9d714fa4eac081ff1c6d7aa9b016752ecd259",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 11577827.0,
+        "agg_quote_price_times_qty": 225002383.836993,
+        "base_difference_agg_minus_kline": -11.0,
+        "base_match": false,
+        "kline_base": 11577838.0,
+        "kline_quote": 225002591.7039999,
+        "quote_difference_agg_minus_kline": -207.86700689792633,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 469230286,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 440.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0020000000000024443,
+        "quote": 8609.920000000013,
+        "taker_base": 440.0,
+        "taker_quote": 8609.920000000013,
+        "underlying_trade_count": 9.0
+      },
+      "minute_mismatch_count": {
+        "base": 11,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 3,
+        "quote": 11,
+        "taker_base": 7,
+        "taker_quote": 7,
+        "underlying_trade_count": 36
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 189469,
+        "klines": 1440
+      },
+      "symbol": "AVAXUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "b13a96e540d9e506786d6155869c23763de19dc581734d0591d8d64dc3e7c91e",
+        "kline_sha256": "0817129ec64a00aa4f05e39d9ad9401e481decb097a48f469ffebb233e78ea1b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 246614576.0,
+        "agg_quote_price_times_qty": 66946356.33423095,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 246614576.0,
+        "kline_quote": 66946356.334230006,
+        "quote_difference_agg_minus_kline": 9.462237358093262e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 335256999,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 4809.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 3.999999999998449e-05,
+        "quote": 1316.0790300000008,
+        "taker_base": 4809.0,
+        "taker_quote": 1316.0790299999999,
+        "underlying_trade_count": 9.0
+      },
+      "minute_mismatch_count": {
+        "base": 16,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 7,
+        "quote": 16,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 45
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 149009,
+        "klines": 1440
+      },
+      "symbol": "XLMUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "60d0fb14ad2624af205736efbbf561310520f38b14987fc73627ab0c640bc300",
+        "kline_sha256": "3091ac13e2ecc7462114f619decbc70940cd04ba3b2122be84786a714659d7ec",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 2845304.169999982,
+        "agg_quote_price_times_qty": 48223895.73139999,
+        "base_difference_agg_minus_kline": -2.0954757928848267e-08,
+        "base_match": true,
+        "kline_base": 2845304.170000003,
+        "kline_quote": 48223895.73139992,
+        "quote_difference_agg_minus_kline": 6.705522537231445e-08,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 487852002,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 109.43000000000029,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0010000000000012221,
+        "quote": 1844.1143600000069,
+        "taker_base": 1.0913936421275139e-11,
+        "taker_quote": 1.7462298274040222e-10,
+        "underlying_trade_count": 2.0
+      },
+      "minute_mismatch_count": {
+        "base": 2,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 2,
+        "taker_base": 0,
+        "taker_quote": 0,
+        "underlying_trade_count": 15
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 70751,
+        "klines": 1440
+      },
+      "symbol": "ETCUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "0e8ae66f2967b2b1a0b8202d205d2f3a98d1f1b30f31a01877f4b2b0f0b0a4d7",
+        "kline_sha256": "1fbdcdd7b736a5a4479cfd6a99990754e874dfdc110bb3b5ffb8c736e5d3d5c3",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 37579548.599998176,
+        "agg_quote_price_times_qty": 107981151.6271,
+        "base_difference_agg_minus_kline": -2390.5000017657876,
+        "base_match": false,
+        "kline_base": 37581939.09999994,
+        "kline_quote": 107987900.00859976,
+        "quote_difference_agg_minus_kline": -6748.381499752402,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 315380696,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 2390.499999999971,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.001000000000000334,
+        "quote": 6748.381499999552,
+        "taker_base": 14.400000000000546,
+        "taker_quote": 41.054400000000896,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 9,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 9,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 17
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 70597,
+        "klines": 1440
+      },
+      "symbol": "FILUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "51893902465024aa936eae7f6bd5a3e5717dbd1094efc4258a14be18fa3feb22",
+        "kline_sha256": "66370d970132b31f8e106d1874e6336d41ca6bb141c7c6ca992c84a3e9041d09",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 7424440.0,
+        "agg_quote_price_times_qty": 45826613.84200024,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 7424440.0,
+        "kline_quote": 45826613.84200006,
+        "quote_difference_agg_minus_kline": 1.7881393432617188e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 258260259,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1113.0,
+        "close": 0.0,
+        "high": 0.0009999999999994458,
+        "low": 0.0,
+        "open": 0.001000000000000334,
+        "quote": 7008.561000000045,
+        "taker_base": 91.0,
+        "taker_quote": 561.378999999999,
+        "underlying_trade_count": 15.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 1,
+        "low": 0,
+        "open": 5,
+        "quote": 10,
+        "taker_base": 4,
+        "taker_quote": 4,
+        "underlying_trade_count": 25
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 59632,
+        "klines": 1440
+      },
+      "symbol": "UNIUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "11eed33b58e844c117b37720ad59f391118e09e82f0dab6e18e4fa2cf94f00c5",
+        "kline_sha256": "24c7d1a851c18a478cfe301d014addf007a8ff1721866a23c469e500ece50b4a",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 951562.8999994117,
+        "agg_quote_price_times_qty": 158160415.49999762,
+        "base_difference_agg_minus_kline": -5.885958671569824e-07,
+        "base_match": true,
+        "kline_base": 951562.9000000003,
+        "kline_quote": 158160415.5,
+        "quote_difference_agg_minus_kline": -2.384185791015625e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 283643295,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 8.899999999999864,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.010000000000019327,
+        "quote": 1464.9400000000605,
+        "taker_base": 0.09999999999979536,
+        "taker_quote": 16.96800000005169,
+        "underlying_trade_count": 4.0
+      },
+      "minute_mismatch_count": {
+        "base": 14,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 5,
+        "quote": 14,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 48
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 183939,
+        "klines": 1440
+      },
+      "symbol": "AAVEUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "2a5d3ebb54102b0c5fed2a5ac39771934f9b7a908ee521d4797c89bc482b3ff9",
+        "kline_sha256": "46995a3f4fadfbdf9332f86b24e80278fb9bbcc1297091ece6d76aa1c499dadc",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 35903981.0,
+        "agg_quote_price_times_qty": 94031210.2659983,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 35903981.0,
+        "kline_quote": 94031210.26599993,
+        "quote_difference_agg_minus_kline": -1.6242265701293945e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 300058924,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 134.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.001000000000000334,
+        "quote": 354.832000000004,
+        "taker_base": 134.0,
+        "taker_quote": 354.83200000000215,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 14,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 14,
+        "taker_base": 4,
+        "taker_quote": 4,
+        "underlying_trade_count": 46
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 70084,
+        "klines": 1440
+      },
+      "symbol": "NEARUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "31bb94ec817675249d451785f573c6ba9cc252878e02221f0dc87b0d7256fd79",
+        "kline_sha256": "5a0952a2d13d0532e0974c6ca473b6c394fa59b778be8bbad5cea089a5e0728f",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 10384198.600001868,
+        "agg_quote_price_times_qty": 55614928.14079112,
+        "base_difference_agg_minus_kline": -91.5999981239438,
+        "base_match": false,
+        "kline_base": 10384290.199999992,
+        "kline_quote": 55615413.48015998,
+        "quote_difference_agg_minus_kline": -485.3393688648939,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 302268310,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 70.2999999999995,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.00010000000000065512,
+        "open": 0.000700000000000145,
+        "quote": 372.51970000000165,
+        "taker_base": 44.90000000000009,
+        "taker_quote": 237.86673000000155,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 4,
+        "quote": 10,
+        "taker_base": 1,
+        "taker_quote": 1,
+        "underlying_trade_count": 12
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 175479,
+        "klines": 1440
+      },
+      "symbol": "APTUSDT",
+      "utc_date": "2025-04-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "72146acd2aa13a1da52c398f560e73f765b7a9d4659bfbae1219801f4b86265f",
+        "kline_sha256": "bbcb87ea275a2b8850bdbcaccf8f12b94faa042870e8eeeefab045b1db00c959",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 120428.77599954873,
+        "agg_quote_price_times_qty": 12798364964.134125,
+        "base_difference_agg_minus_kline": -5.625000451182132,
+        "base_match": false,
+        "kline_base": 120434.40099999991,
+        "kline_quote": 12798966761.098104,
+        "quote_difference_agg_minus_kline": -601796.9639797211,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2775366834,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 3.9769999999999186,
+        "close": 0.0,
+        "high": 1.6000000000058208,
+        "low": 0.10000000000582077,
+        "open": 1.6000000000058208,
+        "quote": 427044.6922000069,
+        "taker_base": 3.976999999999986,
+        "taker_quote": 427044.69219999714,
+        "underlying_trade_count": 23.0
+      },
+      "minute_mismatch_count": {
+        "base": 162,
+        "close": 0,
+        "high": 1,
+        "low": 3,
+        "open": 49,
+        "quote": 162,
+        "taker_base": 78,
+        "taker_quote": 78,
+        "underlying_trade_count": 394
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 788464,
+        "klines": 1440
+      },
+      "symbol": "BTCUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "e6518af7b58c39545bc998fc884c5ad8869cc35ba7f31b0363a93013b24ef92e",
+        "kline_sha256": "37e3c8784f172eb54631c299b6cdd68ccd38e59a87a1fa7e6900b98e249fbf04",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 4506157.104003013,
+        "agg_quote_price_times_qty": 10982463147.301332,
+        "base_difference_agg_minus_kline": -18.925996989011765,
+        "base_match": false,
+        "kline_base": 4506176.030000002,
+        "kline_quote": 10982509466.225927,
+        "quote_difference_agg_minus_kline": -46318.92459487915,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2281722167,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 69.73900000000867,
+        "close": 0.0,
+        "high": 0.01999999999998181,
+        "low": 0.11999999999989086,
+        "open": 0.13000000000010914,
+        "quote": 168239.75838004798,
+        "taker_base": 51.61300000000392,
+        "taker_quote": 125703.97763001174,
+        "underlying_trade_count": 62.0
+      },
+      "minute_mismatch_count": {
+        "base": 177,
+        "close": 0,
+        "high": 3,
+        "low": 3,
+        "open": 65,
+        "quote": 177,
+        "taker_base": 102,
+        "taker_quote": 102,
+        "underlying_trade_count": 385
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1058755,
+        "klines": 1440
+      },
+      "symbol": "ETHUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "8bedcac30bb9f199ee81430a35dc2779800cce148bd5a0f0673d7ea065dd019f",
+        "kline_sha256": "3c9d4efcd7b7453fb8fcf14eabda3ea3c05eca931750602ed81243c5f7629dbb",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 291724.16000010254,
+        "agg_quote_price_times_qty": 189716681.85949886,
+        "base_difference_agg_minus_kline": 1.026783138513565e-07,
+        "base_match": true,
+        "kline_base": 291724.15999999986,
+        "kline_quote": 189716681.8595002,
+        "quote_difference_agg_minus_kline": -1.341104507446289e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 701522203,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 3.670000000000641,
+        "close": 0.0,
+        "high": 0.009999999999990905,
+        "low": 0.0,
+        "open": 0.009999999999990905,
+        "quote": 2409.9055000002845,
+        "taker_base": 3.669999999999991,
+        "taker_quote": 2409.9055000000226,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 22,
+        "close": 0,
+        "high": 1,
+        "low": 0,
+        "open": 9,
+        "quote": 22,
+        "taker_base": 8,
+        "taker_quote": 8,
+        "underlying_trade_count": 87
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 130104,
+        "klines": 1440
+      },
+      "symbol": "BNBUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "48c80f9f21fa72ddef029c772988794c3d8081a5ca4af445758bc2150a002228",
+        "kline_sha256": "b95d3e519b435ab253be9cd6e01a96563dc061ecc16c0db556a4105d617e337d",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 21960452.220003355,
+        "agg_quote_price_times_qty": 3271664828.7935405,
+        "base_difference_agg_minus_kline": -11.189996629953384,
+        "base_match": false,
+        "kline_base": 21960463.409999985,
+        "kline_quote": 3271666492.8584394,
+        "quote_difference_agg_minus_kline": -1664.064898967743,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 920644658,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 975.830000000009,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.020000000000010232,
+        "quote": 146218.36720000394,
+        "taker_base": 340.69000000000597,
+        "taker_quote": 50640.16160000069,
+        "underlying_trade_count": 61.0
+      },
+      "minute_mismatch_count": {
+        "base": 151,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 39,
+        "quote": 151,
+        "taker_base": 65,
+        "taker_quote": 65,
+        "underlying_trade_count": 339
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 407998,
+        "klines": 1440
+      },
+      "symbol": "SOLUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "2959e2afe6a624e916742984b2fed10d5042899fcc7fc62a9ad4e23f6982992f",
+        "kline_sha256": "20f81cb80a0a77f34f27f67449ae405a4b075641b2fff39e215f6afeaff44141",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 607054111.59996,
+        "agg_quote_price_times_qty": 1334362764.9985478,
+        "base_difference_agg_minus_kline": -349.9000401496887,
+        "base_match": false,
+        "kline_base": 607054461.5000001,
+        "kline_quote": 1334363535.001391,
+        "quote_difference_agg_minus_kline": -770.0028431415558,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 626437649,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 24448.40000000014,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 9.999999999976694e-05,
+        "open": 0.00010000000000021103,
+        "quote": 54691.0708000001,
+        "taker_base": 24448.400000000285,
+        "taker_quote": 54691.070800000045,
+        "underlying_trade_count": 112.0
+      },
+      "minute_mismatch_count": {
+        "base": 115,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 26,
+        "quote": 115,
+        "taker_base": 60,
+        "taker_quote": 60,
+        "underlying_trade_count": 254
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 356827,
+        "klines": 1440
+      },
+      "symbol": "XRPUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "4bc0df1c151dbb0d4854ade6e4bfd920b08c38196f063d6f341a8532d009ff20",
+        "kline_sha256": "d6a703f93894bccf81961ca68359dab75d8f8d8f8cd376953e7d78d3b6ab72fa",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 697724601.0,
+        "agg_quote_price_times_qty": 386169553.9871935,
+        "base_difference_agg_minus_kline": -61117.0,
+        "base_match": false,
+        "kline_base": 697785718.0,
+        "kline_quote": 386203524.7266993,
+        "quote_difference_agg_minus_kline": -33970.73950576782,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 512466541,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 43471.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 9.999999999998899e-05,
+        "quote": 24009.033299998962,
+        "taker_base": 43471.0,
+        "taker_quote": 24009.03329999908,
+        "underlying_trade_count": 20.0
+      },
+      "minute_mismatch_count": {
+        "base": 39,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 3,
+        "quote": 39,
+        "taker_base": 26,
+        "taker_quote": 26,
+        "underlying_trade_count": 72
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 161971,
+        "klines": 1440
+      },
+      "symbol": "ADAUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "8f99d5ed38d9acc3b9d10e269075cf06e453cee56a3908ed42fa35f72049d1d6",
+        "kline_sha256": "52ecf2ff2d329e21ba07ea5e354e370bf62d2d8328f017869d30d3527fb5a602",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 4511431770.0,
+        "agg_quote_price_times_qty": 724512364.6315612,
+        "base_difference_agg_minus_kline": -2.0,
+        "base_match": false,
+        "kline_base": 4511431772.0,
+        "kline_quote": 724512364.9520389,
+        "quote_difference_agg_minus_kline": -0.3204777240753174,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 910062031,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 50375.0,
+        "close": 0.0,
+        "high": 9.999999999982245e-06,
+        "low": 1.0000000000010001e-05,
+        "open": 1.0000000000010001e-05,
+        "quote": 7958.242500000022,
+        "taker_base": 11596.0,
+        "taker_quote": 1858.259000000311,
+        "underlying_trade_count": 18.0
+      },
+      "minute_mismatch_count": {
+        "base": 126,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 32,
+        "quote": 126,
+        "taker_base": 39,
+        "taker_quote": 39,
+        "underlying_trade_count": 173
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 224260,
+        "klines": 1440
+      },
+      "symbol": "DOGEUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "31249ce0fbc475f55ed3bba8ec73e38c191ccf33ee74b56426cf3c3bcbfed7bb",
+        "kline_sha256": "870a9085023a47982ac084ff5f52d1d39311ba8f3decb199af4dcd41c8be231f",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 185406799.0,
+        "agg_quote_price_times_qty": 51677798.60206043,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 185406799.0,
+        "kline_quote": 51677798.602060035,
+        "quote_difference_agg_minus_kline": 3.948807716369629e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 214065719,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 6647.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 1.0000000000010001e-05,
+        "quote": 1858.368260000003,
+        "taker_base": 2915.0,
+        "taker_quote": 810.9821500000253,
+        "underlying_trade_count": 199.0
+      },
+      "minute_mismatch_count": {
+        "base": 8,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 8,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 41
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 58291,
+        "klines": 1440
+      },
+      "symbol": "TRXUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "e121cff9cefab53b43d5f9b6a85404c5e999d7e18e44fb4e265fa24dbfa5dff4",
+        "kline_sha256": "7b8e064767d5b03a3bb5a05c7e8515f47286780f79d22f297e93d8d8cf138177",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 1786305.3029999996,
+        "agg_quote_price_times_qty": 151438468.62313887,
+        "base_difference_agg_minus_kline": -57.126000000629574,
+        "base_match": false,
+        "kline_base": 1786362.4290000002,
+        "kline_quote": 151443266.45453975,
+        "quote_difference_agg_minus_kline": -4797.831400871277,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 384765394,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 53.125999999999294,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.010000000000005116,
+        "quote": 4457.271400000027,
+        "taker_base": 34.62400000000014,
+        "taker_quote": 2890.4115200000015,
+        "underlying_trade_count": 12.0
+      },
+      "minute_mismatch_count": {
+        "base": 16,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 16,
+        "taker_base": 3,
+        "taker_quote": 3,
+        "underlying_trade_count": 28
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 73763,
+        "klines": 1440
+      },
+      "symbol": "LTCUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "e342c55b8e54fce6d905ac7c416467149c0c99c58a08776ed74ba15f766e638a",
+        "kline_sha256": "c4a1df190cf2e3d47ad068bf3f1827ec23cd88c8677ec6338df29380bb8f74c6",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 795285.9659997983,
+        "agg_quote_price_times_qty": 410683207.4547879,
+        "base_difference_agg_minus_kline": -2.0139850676059723e-07,
+        "base_match": true,
+        "kline_base": 795285.9659999997,
+        "kline_quote": 410683207.4548005,
+        "quote_difference_agg_minus_kline": -1.2576580047607422e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 474371112,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 5.463000000000079,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.020000000000038654,
+        "quote": 2844.4202100001858,
+        "taker_base": 1.0210000000000719,
+        "taker_quote": 516.6260000000475,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 46,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 16,
+        "quote": 46,
+        "taker_base": 16,
+        "taker_quote": 16,
+        "underlying_trade_count": 125
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 367492,
+        "klines": 1440
+      },
+      "symbol": "BCHUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "585f8631a30b3592a190ac5ae9f2c82d9d2538c958a473dc569b57b85209b967",
+        "kline_sha256": "c70f68b21a1fd8965c9ab9f3fa87b9f5c75002265cf218bb05f4aa3dabdb7353",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 13233220.179998942,
+        "agg_quote_price_times_qty": 173065716.0777826,
+        "base_difference_agg_minus_kline": -1.0356307029724121e-06,
+        "base_match": true,
+        "kline_base": 13233220.179999977,
+        "kline_quote": 173065716.07778016,
+        "quote_difference_agg_minus_kline": 2.4437904357910156e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 481788598,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 167.0500000000011,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999994458,
+        "quote": 2217.087600000028,
+        "taker_base": 167.05000000000018,
+        "taker_quote": 2217.087600000006,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 2,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 2,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 22
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 96093,
+        "klines": 1440
+      },
+      "symbol": "LINKUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "dad247195e5705c42b8713828a9a3965abed37eff4f93059ee7b4bfadb57eddd",
+        "kline_sha256": "9ebba6d865778347a963e18baf53de268e92ab7bdfc515526863e827f19f5d14",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 33259147.099999253,
+        "agg_quote_price_times_qty": 110705301.5790022,
+        "base_difference_agg_minus_kline": -4334.300000753254,
+        "base_match": false,
+        "kline_base": 33263481.400000006,
+        "kline_quote": 110719818.10559998,
+        "quote_difference_agg_minus_kline": -14516.52659778297,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 381356298,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 2897.3000000000757,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999998899,
+        "quote": 9630.62520000001,
+        "taker_base": 2897.30000000001,
+        "taker_quote": 9630.62519999998,
+        "underlying_trade_count": 16.0
+      },
+      "minute_mismatch_count": {
+        "base": 11,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 11,
+        "taker_base": 9,
+        "taker_quote": 9,
+        "underlying_trade_count": 23
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 86538,
+        "klines": 1440
+      },
+      "symbol": "DOTUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "da84521ca46a5c46627d6170ee16d5f0b557416678a169dac78154ba54396d59",
+        "kline_sha256": "8ebb4506acd97a922ab66517b367d5437abe55ee104e4368eec76f98ddc3e051",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 10263215.0,
+        "agg_quote_price_times_qty": 178693624.86899978,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 10263215.0,
+        "kline_quote": 178693624.86900008,
+        "quote_difference_agg_minus_kline": -2.980232238769531e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 488390818,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 150.0,
+        "close": 0.0,
+        "high": 0.0010000000000012221,
+        "low": 0.0,
+        "open": 0.0010000000000012221,
+        "quote": 2662.350000000035,
+        "taker_base": 150.0,
+        "taker_quote": 2662.3499999999913,
+        "underlying_trade_count": 11.0
+      },
+      "minute_mismatch_count": {
+        "base": 28,
+        "close": 0,
+        "high": 1,
+        "low": 0,
+        "open": 8,
+        "quote": 28,
+        "taker_base": 14,
+        "taker_quote": 14,
+        "underlying_trade_count": 51
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 125691,
+        "klines": 1440
+      },
+      "symbol": "AVAXUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "b0ac30195b5c8e0d8e6a2c0ecddbca16d1b7b30f5d2689b217fe4ec605b00c93",
+        "kline_sha256": "4eb2ce06d6364f2b981dd01b69ae4a882abbabf7c195898cb1345eb45d3e6b7b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 314362827.0,
+        "agg_quote_price_times_qty": 72504614.73965894,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 314362827.0,
+        "kline_quote": 72504614.73966008,
+        "quote_difference_agg_minus_kline": -1.1473894119262695e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 348399456,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1927.0,
+        "close": 0.0,
+        "high": 1.0000000000010001e-05,
+        "low": 9.999999999982245e-06,
+        "open": 1.0000000000010001e-05,
+        "quote": 432.9969000000274,
+        "taker_base": 931.0,
+        "taker_quote": 217.6398700000209,
+        "underlying_trade_count": 6.0
+      },
+      "minute_mismatch_count": {
+        "base": 12,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 5,
+        "quote": 12,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 25
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 111679,
+        "klines": 1440
+      },
+      "symbol": "XLMUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "1ca4729347c6a4c05da50ac7f76c0d4e41234ade345296a49bfab34d6e6a63c9",
+        "kline_sha256": "9b6efe8a2ee06e322cad7079002bd47743e0467e4e7f2e9469188856490890e0",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 3011050.3200001353,
+        "agg_quote_price_times_qty": 48706974.77512009,
+        "base_difference_agg_minus_kline": -152.41999987140298,
+        "base_match": false,
+        "kline_base": 3011202.7400000067,
+        "kline_quote": 48709431.972500004,
+        "quote_difference_agg_minus_kline": -2457.1973799169064,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 497015623,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 90.45999999999913,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999994458,
+        "quote": 1466.0852200000081,
+        "taker_base": 62.100000000000136,
+        "taker_quote": 998.8163999999961,
+        "underlying_trade_count": 4.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 10,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 11
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 63937,
+        "klines": 1440
+      },
+      "symbol": "ETCUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "2a330973bcce0b682b89c4f8d17a4736fd7a58eb7bf0da9ad738b775cde3d5b9",
+        "kline_sha256": "02a91ad1d063969cb7e806e75aa428f3e892d1bfab77d68a2dbda38bbed4bc9c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 44935038.900001116,
+        "agg_quote_price_times_qty": 100727500.42679945,
+        "base_difference_agg_minus_kline": -36480.99999883026,
+        "base_match": false,
+        "kline_base": 44971519.89999995,
+        "kline_quote": 100809623.43399988,
+        "quote_difference_agg_minus_kline": -82123.0072004348,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 322323641,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 35768.29999999999,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999998899,
+        "quote": 80514.44330000003,
+        "taker_base": 712.7000000000044,
+        "taker_quote": 1608.5639000000083,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 10,
+        "taker_base": 7,
+        "taker_quote": 7,
+        "underlying_trade_count": 13
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 49227,
+        "klines": 1440
+      },
+      "symbol": "FILUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "7b287c52855cb4e2e2e608bafdc83abe9025d6523015cb88253fc742f0dc322c",
+        "kline_sha256": "d97004766e85e77cfde19a01b1f889368681f27c488b5a36b69d9c5c85ed2e16",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 29956817.0,
+        "agg_quote_price_times_qty": 206212708.78099623,
+        "base_difference_agg_minus_kline": -450.0,
+        "base_match": false,
+        "kline_base": 29957267.0,
+        "kline_quote": 206215918.1749999,
+        "quote_difference_agg_minus_kline": -3209.3940036594868,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 269772009,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1259.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0009999999999994458,
+        "open": 0.001000000000000334,
+        "quote": 8746.27300000003,
+        "taker_base": 270.0,
+        "taker_quote": 1868.591999999997,
+        "underlying_trade_count": 16.0
+      },
+      "minute_mismatch_count": {
+        "base": 20,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 3,
+        "quote": 20,
+        "taker_base": 4,
+        "taker_quote": 4,
+        "underlying_trade_count": 32
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 102902,
+        "klines": 1440
+      },
+      "symbol": "UNIUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "d4b9b1da375c329ec7171ac212d36cf505c4b785eacf2317e931aeb7ebe5c3d6",
+        "kline_sha256": "0f7d507a38e8b85b9d3dad880be8ddc951cb8d4d31ceaa1b0b96813227672a0b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 864220.0999994919,
+        "agg_quote_price_times_qty": 231363892.0879993,
+        "base_difference_agg_minus_kline": -5.073379725217819e-07,
+        "base_match": true,
+        "kline_base": 864220.0999999993,
+        "kline_quote": 231363892.08799973,
+        "quote_difference_agg_minus_kline": -4.172325134277344e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 305878493,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 3.500000000027285,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.029999999999972715,
+        "quote": 929.4250000044703,
+        "taker_base": 3.5000000000004547,
+        "taker_quote": 929.4249999998719,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 3,
+        "quote": 10,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 34
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 175952,
+        "klines": 1440
+      },
+      "symbol": "AAVEUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3f1b1bfd8f36ed983f46e9e4b7afe2e343d430b84b70ac7cba7bbf7f3f35bcb3",
+        "kline_sha256": "a6a4ec09416e0372b4154ad3032f4b19b9532192381512989bde630b39fb401b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 42546282.0,
+        "agg_quote_price_times_qty": 88685138.37300044,
+        "base_difference_agg_minus_kline": -912.0,
+        "base_match": false,
+        "kline_base": 42547194.0,
+        "kline_quote": 88687005.34499992,
+        "quote_difference_agg_minus_kline": -1866.9719994813204,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 306488832,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 1090.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0,
+        "quote": 2330.420000000042,
+        "taker_base": 478.0,
+        "taker_quote": 999.4980000000069,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 11,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "quote": 11,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 62
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 54945,
+        "klines": 1440
+      },
+      "symbol": "NEARUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "05a17bd51641f206560abd02cef09b5b61b2de24dc7b9845d30e6e5de6042ab6",
+        "kline_sha256": "41c484a6f1e3ed63700ba48883033b55315738c0ba26634617b75d358a441d2a",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 26886511.799998976,
+        "agg_quote_price_times_qty": 125952251.68388973,
+        "base_difference_agg_minus_kline": -1.0281801223754883e-06,
+        "base_match": true,
+        "kline_base": 26886511.800000004,
+        "kline_quote": 125952251.68389,
+        "quote_difference_agg_minus_kline": -2.682209014892578e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 325494438,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 116.60000000000218,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 9.999999999976694e-05,
+        "open": 0.00039999999999995595,
+        "quote": 546.0961000000243,
+        "taker_base": 116.59999999999991,
+        "taker_quote": 546.096099999997,
+        "underlying_trade_count": 12.0
+      },
+      "minute_mismatch_count": {
+        "base": 12,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 4,
+        "quote": 12,
+        "taker_base": 4,
+        "taker_quote": 4,
+        "underlying_trade_count": 31
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 249272,
+        "klines": 1440
+      },
+      "symbol": "APTUSDT",
+      "utc_date": "2025-07-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3241c97aeabf43e34a6cdd8866e8ab6bccd352d59d9e5f1ad1f5e117b72dded7",
+        "kline_sha256": "ae55679f02f530e78831ce63449ab693c18219dda9522b5874338133505993be",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 172989.42799910455,
+        "agg_quote_price_times_qty": 20130425029.366444,
+        "base_difference_agg_minus_kline": -0.0010008954268414527,
+        "base_match": false,
+        "kline_base": 172989.42899999997,
+        "kline_quote": 20130425143.682793,
+        "quote_difference_agg_minus_kline": -114.31634902954102,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2869241290,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 17.452000000000083,
+        "close": 0.0,
+        "high": 0.10000000000582077,
+        "low": 0.10000000000582077,
+        "open": 0.5,
+        "quote": 2001201.6427999958,
+        "taker_base": 7.184000000000168,
+        "taker_quote": 840920.2464000061,
+        "underlying_trade_count": 83.0
+      },
+      "minute_mismatch_count": {
+        "base": 242,
+        "close": 0,
+        "high": 6,
+        "low": 4,
+        "open": 87,
+        "quote": 243,
+        "taker_base": 98,
+        "taker_quote": 98,
+        "underlying_trade_count": 1425
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1368367,
+        "klines": 1440
+      },
+      "symbol": "BTCUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "90b89ddac47403346bbf7ec2e7d3d2fc0ea85cb5d6a4635e75c16dcd1d7d9d9d",
+        "kline_sha256": "30e35cbd94b61bb16f0cc6fef1bd5c407f4e779fca97eb78e04231967f8d50e4",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 4436506.36897446,
+        "agg_quote_price_times_qty": 18930024032.842335,
+        "base_difference_agg_minus_kline": 1.011974461376667,
+        "base_match": false,
+        "kline_base": 4436505.356999999,
+        "kline_quote": 18930019542.68206,
+        "quote_difference_agg_minus_kline": 4490.160274505615,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 2474628735,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 134.01699999955235,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.11999999999989086,
+        "open": 0.11999999999989086,
+        "quote": 573037.9296204746,
+        "taker_base": 59.43800000000056,
+        "taker_quote": 257622.7177799996,
+        "underlying_trade_count": 63.0
+      },
+      "minute_mismatch_count": {
+        "base": 228,
+        "close": 0,
+        "high": 0,
+        "low": 7,
+        "open": 88,
+        "quote": 228,
+        "taker_base": 118,
+        "taker_quote": 118,
+        "underlying_trade_count": 1425
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 1758102,
+        "klines": 1440
+      },
+      "symbol": "ETHUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "017cefa40400ff37c100b7b205c547412ab4891a3de2bad5827013290e7857e2",
+        "kline_sha256": "3dbefd59252f96bf57645dc8f714dadecdbc681cc9684b1c290c1677bf6be878",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 816777.3400015658,
+        "agg_quote_price_times_qty": 833790603.3422983,
+        "base_difference_agg_minus_kline": 1.566251739859581e-06,
+        "base_match": true,
+        "kline_base": 816777.3399999995,
+        "kline_quote": 833790603.3423,
+        "quote_difference_agg_minus_kline": -1.7881393432617188e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 731544354,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 29.75999999999749,
+        "close": 0.0,
+        "high": 0.009999999999990905,
+        "low": 0.009999999999990905,
+        "open": 0.009999999999990905,
+        "quote": 30265.919999999693,
+        "taker_base": 13.840000000000032,
+        "taker_quote": 14006.633600000001,
+        "underlying_trade_count": 41.0
+      },
+      "minute_mismatch_count": {
+        "base": 58,
+        "close": 0,
+        "high": 1,
+        "low": 2,
+        "open": 19,
+        "quote": 58,
+        "taker_base": 42,
+        "taker_quote": 42,
+        "underlying_trade_count": 1429
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 407040,
+        "klines": 1440
+      },
+      "symbol": "BNBUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "49410c1a32ef8dde0c87cfce440bb1fc8fa2d8c5f8f16d1ed646c191ff85dbf7",
+        "kline_sha256": "5f4e197868ef2188fa665d9a66f3ee83476a7f74470cf9efadcf82ecc89760e2",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 24943731.080003817,
+        "agg_quote_price_times_qty": 5376982111.009816,
+        "base_difference_agg_minus_kline": -0.049996182322502136,
+        "base_match": false,
+        "kline_base": 24943731.13,
+        "kline_quote": 5376982121.964597,
+        "quote_difference_agg_minus_kline": -10.954780578613281,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 969365325,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 924.2500000000036,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.010000000000019327,
+        "quote": 202410.74999999907,
+        "taker_base": 560.5300000000025,
+        "taker_quote": 121988.14389999956,
+        "underlying_trade_count": 42.0
+      },
+      "minute_mismatch_count": {
+        "base": 168,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 49,
+        "quote": 168,
+        "taker_base": 67,
+        "taker_quote": 67,
+        "underlying_trade_count": 1430
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 505170,
+        "klines": 1440
+      },
+      "symbol": "SOLUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "1b0007f3cab83f4287682f2af4446163ed5dc7f80eca13ac1b932a9b8903eba7",
+        "kline_sha256": "9e16a4fa1ffa883da404a339429da35515370258f2ebee3616bdf4d6b60e9e59",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 515482774.60018635,
+        "agg_quote_price_times_qty": 1499705688.1217883,
+        "base_difference_agg_minus_kline": 0.00018537044525146484,
+        "base_match": true,
+        "kline_base": 515482774.600001,
+        "kline_quote": 1499705688.121763,
+        "quote_difference_agg_minus_kline": 2.5272369384765625e-05,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 672948227,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 9068.900000000023,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.00010000000000021103,
+        "open": 0.00010000000000021103,
+        "quote": 26474.83977000136,
+        "taker_base": 6853.700000000041,
+        "taker_quote": 19592.672190000245,
+        "underlying_trade_count": 38.0
+      },
+      "minute_mismatch_count": {
+        "base": 91,
+        "close": 0,
+        "high": 0,
+        "low": 2,
+        "open": 27,
+        "quote": 91,
+        "taker_base": 55,
+        "taker_quote": 55,
+        "underlying_trade_count": 1434
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 333421,
+        "klines": 1440
+      },
+      "symbol": "XRPUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "16bd743e5db9e5c2ec1e2d8491a2a55ad3784e8901fff5a314bfbb84d32b1a95",
+        "kline_sha256": "1af234afcee6c2b4bed639b48887a99839e4544ba3feda0ed13d2edc0ad9aaa1",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 493224644.0,
+        "agg_quote_price_times_qty": 408233278.0385948,
+        "base_difference_agg_minus_kline": -391.0,
+        "base_match": false,
+        "kline_base": 493225035.0,
+        "kline_quote": 408233602.2557997,
+        "quote_difference_agg_minus_kline": -324.21720492839813,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 532971763,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 23231.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.00010000000000010001,
+        "quote": 19541.917199999967,
+        "taker_base": 20087.0,
+        "taker_quote": 16824.871200000052,
+        "underlying_trade_count": 27.0
+      },
+      "minute_mismatch_count": {
+        "base": 66,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 16,
+        "quote": 66,
+        "taker_base": 30,
+        "taker_quote": 30,
+        "underlying_trade_count": 952
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 155110,
+        "klines": 1440
+      },
+      "symbol": "ADAUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "8cb66080ebbca56d350072e9bf992f3bd216d639f0969b5f5fcebd27ba38f92e",
+        "kline_sha256": "1a9a22bd5476f504f64499afa58f60fcfe4a394f659a47799dc230fccd107e9b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 6550163123.0,
+        "agg_quote_price_times_qty": 1580050611.965154,
+        "base_difference_agg_minus_kline": -513.0,
+        "base_match": false,
+        "kline_base": 6550163636.0,
+        "kline_quote": 1580050731.401819,
+        "quote_difference_agg_minus_kline": -119.43666505813599,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 952410198,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 200000.0,
+        "close": 0.0,
+        "high": 1.0000000000010001e-05,
+        "low": 1.0000000000010001e-05,
+        "open": 2.0000000000020002e-05,
+        "quote": 46796.000000000175,
+        "taker_base": 200000.0,
+        "taker_quote": 46796.00000000012,
+        "underlying_trade_count": 37.0
+      },
+      "minute_mismatch_count": {
+        "base": 110,
+        "close": 0,
+        "high": 2,
+        "low": 1,
+        "open": 38,
+        "quote": 110,
+        "taker_base": 71,
+        "taker_quote": 71,
+        "underlying_trade_count": 1435
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 326532,
+        "klines": 1440
+      },
+      "symbol": "DOGEUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "a0db92981606a27ca6c4b890c4f3a0497c19185fb903382b49fbb3c9ee67f853",
+        "kline_sha256": "dbf914709aeeabdbf14d8ad7a739aa3b3cfcce44299dba6bd370d93e0f4d4814",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 278587312.0,
+        "agg_quote_price_times_qty": 94085909.2394601,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 278587312.0,
+        "kline_quote": 94085909.2394601,
+        "quote_difference_agg_minus_kline": 0.0,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 223255368,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 5135.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 1.0000000000010001e-05,
+        "quote": 1739.9947500000017,
+        "taker_base": 5135.0,
+        "taker_quote": 1739.9947500000017,
+        "underlying_trade_count": 13.0
+      },
+      "minute_mismatch_count": {
+        "base": 14,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 1,
+        "quote": 14,
+        "taker_base": 12,
+        "taker_quote": 12,
+        "underlying_trade_count": 164
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 84689,
+        "klines": 1440
+      },
+      "symbol": "TRXUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "090ce1a36274c6fcf86a166e08a9f4b86abc3b4d98904ba15a32bd3e233a02e5",
+        "kline_sha256": "fbb640dcb9c663b028f8f82b6b050687ddb8bf296451ab982693f1b0775cd082",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 2987667.927000016,
+        "agg_quote_price_times_qty": 329437977.3376651,
+        "base_difference_agg_minus_kline": 2.0489096641540527e-08,
+        "base_match": true,
+        "kline_base": 2987667.9269999955,
+        "kline_quote": 329437977.3376604,
+        "quote_difference_agg_minus_kline": 4.708766937255859e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 397537600,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 0.5040000000335567,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.010000000000005116,
+        "quote": 55.520640002097934,
+        "taker_base": 2.1827872842550278e-11,
+        "taker_quote": 1.862645149230957e-09,
+        "underlying_trade_count": 7.0
+      },
+      "minute_mismatch_count": {
+        "base": 4,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 4,
+        "taker_base": 0,
+        "taker_quote": 0,
+        "underlying_trade_count": 235
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 107320,
+        "klines": 1440
+      },
+      "symbol": "LTCUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "316c55dfd5da6b26a05025f768da86c5d794df78c4fdf181e5816975f603478f",
+        "kline_sha256": "b5c98d14706cb09e9ae6ac639952050b38ceb701f61ff3bff05ece4558d0052c",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 333153.68000002764,
+        "agg_quote_price_times_qty": 194569267.3482499,
+        "base_difference_agg_minus_kline": 2.782326191663742e-08,
+        "base_match": true,
+        "kline_base": 333153.6799999998,
+        "kline_quote": 194569267.3482502,
+        "quote_difference_agg_minus_kline": -2.980232238769531e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 494017233,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 6.1840000000000686,
+        "close": 0.0,
+        "high": 0.01999999999998181,
+        "low": 0.0,
+        "open": 0.01999999999998181,
+        "quote": 3607.683760000029,
+        "taker_base": 1.2430000000049404,
+        "taker_quote": 735.9678699999931,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 16,
+        "close": 0,
+        "high": 1,
+        "low": 0,
+        "open": 6,
+        "quote": 16,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 79
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 207028,
+        "klines": 1440
+      },
+      "symbol": "BCHUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "5fcfefb59403b3f3d249c179a3307e061a4e6c01ad43d4c8c880cbfc28eb1253",
+        "kline_sha256": "de54c779cf39f38a31daba22fd9b04fbc3366df67a3e9a9ea80e6ac7e265cb61",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 20835367.860001385,
+        "agg_quote_price_times_qty": 458164151.6356958,
+        "base_difference_agg_minus_kline": 1.4007091522216797e-06,
+        "base_match": true,
+        "kline_base": 20835367.859999985,
+        "kline_quote": 458164151.6356906,
+        "quote_difference_agg_minus_kline": 5.185604095458984e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 506004463,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 447.56999999999243,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0010000000000012221,
+        "open": 0.0019999999999988916,
+        "quote": 9974.545019999961,
+        "taker_base": 447.5700000000006,
+        "taker_quote": 9974.54502000002,
+        "underlying_trade_count": 20.0
+      },
+      "minute_mismatch_count": {
+        "base": 49,
+        "close": 0,
+        "high": 0,
+        "low": 3,
+        "open": 17,
+        "quote": 49,
+        "taker_base": 32,
+        "taker_quote": 32,
+        "underlying_trade_count": 370
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 196457,
+        "klines": 1440
+      },
+      "symbol": "LINKUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "e5538b1a5ce12933bc8471b92a0adf9b45f8586913915b65acd4a2c3fecb6265",
+        "kline_sha256": "101505638b0022f6ddd1d781379ac1d3aa167eb19783726ef215fe3ae5a1d02b",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 38553919.199998744,
+        "agg_quote_price_times_qty": 155675822.04420057,
+        "base_difference_agg_minus_kline": -1.2740492820739746e-06,
+        "base_match": true,
+        "kline_base": 38553919.20000002,
+        "kline_quote": 155675822.04420012,
+        "quote_difference_agg_minus_kline": 4.470348358154297e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 389853345,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 3125.900000000005,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999994458,
+        "quote": 12688.02810000001,
+        "taker_base": 3125.899999999998,
+        "taker_quote": 12688.028100000018,
+        "underlying_trade_count": 19.0
+      },
+      "minute_mismatch_count": {
+        "base": 6,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 6,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 257
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 78602,
+        "klines": 1440
+      },
+      "symbol": "DOTUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "6f9300567708aaf5ab1e501ee1d2a88ce0c1c63320baa0b7d4ddb3d93f4560d4",
+        "kline_sha256": "2471ff49db77adf9a3b6c1c95d55ddd6edc64d35ed36028fcd90f2ab3b75323d",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 16989184.0,
+        "agg_quote_price_times_qty": 517579903.5350002,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 16989184.0,
+        "kline_quote": 517579903.5350006,
+        "quote_difference_agg_minus_kline": -4.172325134277344e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 512144915,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 411.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0020000000000024443,
+        "quote": 12342.330000000075,
+        "taker_base": 270.0,
+        "taker_quote": 8258.48999999999,
+        "underlying_trade_count": 32.0
+      },
+      "minute_mismatch_count": {
+        "base": 57,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 21,
+        "quote": 57,
+        "taker_base": 36,
+        "taker_quote": 36,
+        "underlying_trade_count": 695
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 245019,
+        "klines": 1440
+      },
+      "symbol": "AVAXUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "459306d656958a338764650370d6e3d06594fd56ef957adfa53904241aa5b74e",
+        "kline_sha256": "7bafe7caf54069a6b1b76fe0925d66ff227c45fdeefb77b34e4f31fa157fcf37",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 351915691.0,
+        "agg_quote_price_times_qty": 134956002.50982988,
+        "base_difference_agg_minus_kline": -148.0,
+        "base_match": false,
+        "kline_base": 351915839.0,
+        "kline_quote": 134956059.68815005,
+        "quote_difference_agg_minus_kline": -57.17832016944885,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 379513262,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 6300.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 1.0000000000010001e-05,
+        "quote": 2436.9660000001313,
+        "taker_base": 6300.0,
+        "taker_quote": 2436.966000000015,
+        "underlying_trade_count": 11.0
+      },
+      "minute_mismatch_count": {
+        "base": 18,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 4,
+        "quote": 18,
+        "taker_base": 15,
+        "taker_quote": 15,
+        "underlying_trade_count": 82
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 202207,
+        "klines": 1440
+      },
+      "symbol": "XLMUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "1104f5e9ad5e0b28a1518d045fc1795e739af67082f6bfe5c87c9338e4fb8f14",
+        "kline_sha256": "0e33bf4a38b7fcebfbf30eca0f0b8b629a396976c7bc46ccbe45889b6d6b7ab9",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 6470066.800000073,
+        "agg_quote_price_times_qty": 122654651.03932123,
+        "base_difference_agg_minus_kline": 8.195638656616211e-08,
+        "base_match": true,
+        "kline_base": 6470066.799999991,
+        "kline_quote": 122654651.03931999,
+        "quote_difference_agg_minus_kline": 1.2367963790893555e-06,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 510811057,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 101.10000000004948,
+        "close": 0.0,
+        "high": 0.0019999999999988916,
+        "low": 0.0010000000000012221,
+        "open": 0.0019999999999988916,
+        "quote": 1906.1394000018481,
+        "taker_base": 101.1000000000131,
+        "taker_quote": 1906.139400002081,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 32,
+        "close": 0,
+        "high": 1,
+        "low": 1,
+        "open": 6,
+        "quote": 32,
+        "taker_base": 10,
+        "taker_quote": 10,
+        "underlying_trade_count": 42
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 104078,
+        "klines": 1440
+      },
+      "symbol": "ETCUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3ef2234c9ae6426f140cde9ea93aaa473f10af51e81f73129676973e8b48a671",
+        "kline_sha256": "79bb672437887f17f991ae427144d7f3b006c8dce0c50a9ddf21977907d403e2",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 47817972.70000113,
+        "agg_quote_price_times_qty": 107301142.26919888,
+        "base_difference_agg_minus_kline": -44.1999988630414,
+        "base_match": false,
+        "kline_base": 47818016.89999999,
+        "kline_quote": 107301242.11699978,
+        "quote_difference_agg_minus_kline": -99.84780089557171,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 329088582,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 44.1999999997206,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0,
+        "quote": 99.84780000150204,
+        "taker_base": 20.100000000000364,
+        "taker_quote": 45.42600000000675,
+        "underlying_trade_count": 6.0
+      },
+      "minute_mismatch_count": {
+        "base": 3,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "quote": 3,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 316
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 62765,
+        "klines": 1440
+      },
+      "symbol": "FILUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "3f0ca4d171486c892001cdd7d50bcd34bbd50128f01d4b533a8855c2a64fe034",
+        "kline_sha256": "56c2d07e9ec2e584e2f77f5b453b020e4563490486e9ff55fd08b6af8ccdd2c0",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 14417161.0,
+        "agg_quote_price_times_qty": 113391719.1860002,
+        "base_difference_agg_minus_kline": 0.0,
+        "base_match": true,
+        "kline_base": 14417161.0,
+        "kline_quote": 113391719.18600003,
+        "quote_difference_agg_minus_kline": 1.6391277313232422e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 283713107,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 166.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.001000000000000334,
+        "open": 0.001000000000000334,
+        "quote": 1266.4140000000043,
+        "taker_base": 166.0,
+        "taker_quote": 1266.4140000000007,
+        "underlying_trade_count": 5.0
+      },
+      "minute_mismatch_count": {
+        "base": 10,
+        "close": 0,
+        "high": 0,
+        "low": 2,
+        "open": 3,
+        "quote": 10,
+        "taker_base": 2,
+        "taker_quote": 2,
+        "underlying_trade_count": 20
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 70310,
+        "klines": 1440
+      },
+      "symbol": "UNIUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "57d3ac3c83f2db335fdd0c68da90a1c0853ce1d44fc219033e6600289af37d8a",
+        "kline_sha256": "a62f4d9a4725cd6d82c34c7cb4376855ae34ea76b307f9f9a3f040ef11c88dc9",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 574773.3999997535,
+        "agg_quote_price_times_qty": 161752422.6120004,
+        "base_difference_agg_minus_kline": -2.461019903421402e-07,
+        "base_match": true,
+        "kline_base": 574773.3999999996,
+        "kline_quote": 161752422.61200005,
+        "quote_difference_agg_minus_kline": 3.5762786865234375e-07,
+        "quote_match": true
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 326891476,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 6.199999999999989,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.009999999999990905,
+        "open": 0.009999999999990905,
+        "quote": 1779.4000000000087,
+        "taker_base": 6.199999999999989,
+        "taker_quote": 1779.4000000000015,
+        "underlying_trade_count": 6.0
+      },
+      "minute_mismatch_count": {
+        "base": 14,
+        "close": 0,
+        "high": 0,
+        "low": 1,
+        "open": 6,
+        "quote": 14,
+        "taker_base": 8,
+        "taker_quote": 8,
+        "underlying_trade_count": 71
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 145357,
+        "klines": 1440
+      },
+      "symbol": "AAVEUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "93f8110050c90921ac699ed61d6d9880cdd44a8196777ef8c6e5106ddc237976",
+        "kline_sha256": "5ad7ea7dbe5e66dea65997611dd77f0c42e2ff1ba2953e0a251730f4c56057c1",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 68989216.0,
+        "agg_quote_price_times_qty": 191014976.83699915,
+        "base_difference_agg_minus_kline": -15.0,
+        "base_match": false,
+        "kline_base": 68989231.0,
+        "kline_quote": 191015019.01699987,
+        "quote_difference_agg_minus_kline": -42.180000722408295,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 313583908,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 4850.0,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 0.0009999999999998899,
+        "quote": 12823.399999999994,
+        "taker_base": 4850.0,
+        "taker_quote": 12823.400000000001,
+        "underlying_trade_count": 17.0
+      },
+      "minute_mismatch_count": {
+        "base": 11,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 2,
+        "quote": 11,
+        "taker_base": 5,
+        "taker_quote": 5,
+        "underlying_trade_count": 161
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 89005,
+        "klines": 1440
+      },
+      "symbol": "NEARUSDT",
+      "utc_date": "2025-10-01"
+    },
+    {
+      "archives": {
+        "aggTrades_sha256": "2cc6d0e5e34535f905a3b7e95f507891a104cf6df8a544e8627573ed55f3cd9d",
+        "kline_sha256": "a988583171e3f70aa0ff52664996fdfe2d554c84f3e27cf802c2b75387b9630d",
+        "publisher_checksums_passed": true
+      },
+      "daily_totals": {
+        "agg_base": 34151153.29999952,
+        "agg_quote_price_times_qty": 156790068.3734094,
+        "base_difference_agg_minus_kline": -279.8000005185604,
+        "base_match": false,
+        "kline_base": 34151433.10000004,
+        "kline_quote": 156791363.25982988,
+        "quote_difference_agg_minus_kline": -1294.8864204883575,
+        "quote_match": false
+      },
+      "integrity": {
+        "agg_malformed_rows": 0,
+        "agg_timestamps_outside_utc_day": 0,
+        "agg_trade_id_last": 346255242,
+        "agg_trade_id_missing_values_between_rows": 0,
+        "duplicate_or_nonmonotonic_agg_trade_ids": 0,
+        "kline_malformed_rows": 0,
+        "kline_timestamps_outside_utc_day": 0
+      },
+      "minute_max_absolute_difference": {
+        "base": 279.7999999999938,
+        "close": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "open": 9.999999999976694e-05,
+        "quote": 1294.886419999988,
+        "taker_base": 38.500000000029104,
+        "taker_quote": 171.69845000019995,
+        "underlying_trade_count": 3.0
+      },
+      "minute_mismatch_count": {
+        "base": 13,
+        "close": 0,
+        "high": 0,
+        "low": 0,
+        "open": 3,
+        "quote": 13,
+        "taker_base": 6,
+        "taker_quote": 6,
+        "underlying_trade_count": 117
+      },
+      "minutes": {
+        "aggTrades": 1440,
+        "aggTrades_only": 0,
+        "both": 1440,
+        "expected": 1440,
+        "kline_only": 0,
+        "klines": 1440
+      },
+      "row_counts": {
+        "aggTrades": 274424,
+        "klines": 1440
+      },
+      "symbol": "APTUSDT",
+      "utc_date": "2025-10-01"
+    }
+  ],
+  "sample": {
+    "checksum_sidecars": 160,
+    "symbol_days": 80,
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT",
+      "SOLUSDT",
+      "XRPUSDT",
+      "ADAUSDT",
+      "DOGEUSDT",
+      "TRXUSDT",
+      "LTCUSDT",
+      "BCHUSDT",
+      "LINKUSDT",
+      "DOTUSDT",
+      "AVAXUSDT",
+      "XLMUSDT",
+      "ETCUSDT",
+      "FILUSDT",
+      "UNIUSDT",
+      "AAVEUSDT",
+      "NEARUSDT",
+      "APTUSDT"
+    ],
+    "utc_dates": [
+      "2025-01-01",
+      "2025-04-01",
+      "2025-07-01",
+      "2025-10-01"
+    ],
+    "zip_archives": 160
+  }
+}
