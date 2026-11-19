@@ -467,7 +467,6 @@ def simulate_portfolio(
             pd.to_datetime(time, unit="ms", utc=True).strftime("%Y-%m"): nav
             for time, nav in zip(sample_times, nav_samples)
         },
-        "completed_trade_records": completed,
     }
 
 
@@ -490,14 +489,14 @@ def run(db_path: Path, universe_path: Path) -> dict[str, Any]:
     strategy_results: dict[str, Any] = {}
     for name in ("pressure_momentum", "reverse_pressure", "random"):
         signals = build_signals(minutes, name)
-        outcomes, report = score_signals(signals, minutes, BASE_SLIPPAGE)
+        _, report = score_signals(signals, minutes, BASE_SLIPPAGE)
         portfolio = simulate_portfolio(signals, minutes, BASE_SLIPPAGE)
-        stress_outcomes, stress_report = score_signals(signals, minutes, STRESS_SLIPPAGE)
+        _, stress_report = score_signals(signals, minutes, STRESS_SLIPPAGE)
         stress_portfolio = simulate_portfolio(signals, minutes, STRESS_SLIPPAGE)
         delayed = [Signal(item.time_ms + MINUTE_MS, item.symbol, item.side, item.pressure)
                    for item in signals
                    if item.time_ms + (HORIZON_BARS + 1) * MINUTE_MS < DEV_CUTOFF_MS]
-        delayed_outcomes, delayed_report = score_signals(delayed, minutes, BASE_SLIPPAGE)
+        _, delayed_report = score_signals(delayed, minutes, BASE_SLIPPAGE)
         strategy_results[name] = {
             "signals": report,
             "portfolio_base_cost": portfolio,
@@ -505,25 +504,7 @@ def run(db_path: Path, universe_path: Path) -> dict[str, Any]:
             "portfolio_stress_slippage": stress_portfolio,
         }
         if name == "pressure_momentum":
-            strategy_results[name]["signal_outcomes_base_cost"] = [
-                {"time_ms": signal.time_ms, "symbol": signal.symbol,
-                 "side_name": "long" if signal.side == 1 else "short",
-                 "pressure": signal.pressure, "status": outcome["status"],
-                 "reason": outcome.get("reason"), "net_return": outcome.get("net_return"),
-                 "horizon_close_return": outcome.get("horizon_close_return")}
-                for signal, outcome in zip(signals, outcomes)
-            ]
             strategy_results[name]["signals_one_minute_extra_delay"] = delayed_report
-            strategy_results[name]["signal_outcomes_stress_slippage"] = [
-                {**outcome, "time_ms": signal.time_ms, "symbol": signal.symbol,
-                 "side_name": "long" if signal.side == 1 else "short", "pressure": signal.pressure}
-                for signal, outcome in zip(signals, stress_outcomes)
-            ]
-            strategy_results[name]["signal_outcomes_one_minute_extra_delay"] = [
-                {**outcome, "time_ms": signal.time_ms, "symbol": signal.symbol,
-                 "side_name": "long" if signal.side == 1 else "short", "pressure": signal.pressure}
-                for signal, outcome in zip(delayed, delayed_outcomes)
-            ]
     return {
         "study": "three_minute_quote_volume_weighted_close_location_cross_sectional_momentum",
         "trial_id": "crypto_pressure_20261120_01", "trial_count_in_this_hypothesis": 1,
