@@ -66,3 +66,24 @@
 - **국장·미장 5분 볼린저밴드 BB-01:** 현재 상장 종목의 60세션 스크린이며 거래비용이 왕복 0.37~0.40%로 추정 gross 움직임보다 컸다. 32셀×2 체결 가정×3 필터에서 순수익 양수 셀이 0개였고, 무작위 진입 대조와 구별되는 엣지도 확인되지 않았다. 표본이 짧고 생존편향이 있어 새 검증으로 승격하지 않지만, 같은 규칙·짧은 구간의 재실행은 중복이므로 하지 않는다. 근거: `docs/archive/salvage_2026-11-15/linuxserver_research/linuxserver_research/stock_loop/bb/report.md`.
 
 **통합 판정:** 현재 보유 자료에서는 국장·미장 어느 쪽도 사용자가 고정한 순비용 CAGR ≥20%, MDD ≤30%, Sharpe ≥1.0, OOS 왕복 거래 ≥200 기준을 생존편향을 통제한 데이터로 충족했다고 입증하지 못했다. 다음 주식 전략 연구의 선행조건은 전략 아이디어가 아니라 과거 시점 유니버스·상폐 종목·기업행동·보관권을 입증할 수 있는 데이터다. 그 게이트가 닫히기 전에는 현재 생존자 자료로 후보를 추가 선별하지 않는다.
+
+## Addendum — 공급자 기간·권리·공개 저장소 재확인 (2026-11-19)
+
+### Norgate: 장기 데이터는 적합 후보, 체험판은 OOS에 부적합
+
+- 공식 가격표상 US Platinum은 6개월 USD 346.50, 12개월 USD 630이며 상장폐지 종목과 과거 지수 구성원 접근을 포함한다. 이는 공개 게시 가격이지 별도 견적이나 구매 승인이 아니다. [US 패키지·가격](https://norgatedata.com/stockmarketpackages.php)
+- 무료 체험은 3주지만 과거 2년 이력으로 제한된다. 이 기간은 이미 결과가 열린 US-18 holdout(2024-11-12~2026-11-11)과 대부분 겹쳐 신규 전략의 블라인드 과거 OOS가 아니다. [체험판 범위](https://norgatedata.com/data-package-faq.php)
+- Norgate의 S&P 500 과거 구성원 기록은 1957-03부터 제공된다고 안내되지만, 2000-03 전 구성 변경은 월말 기준 합성 재구성이다. US Platinum 상폐 종목 데이터는 1990년부터 안내되며, 상폐 후 OTC에서 계속 거래되는 종목과 완전히 거래 불가가 된 종목의 범위 구분을 적용해야 한다. [구성원·상폐 범위](https://norgatedata.com/data-content-tables.php)
+- Norgate Data Updater는 Windows 전용이다. EULA는 개인 연구 목적일 때 다른 OS·서버 처리 환경에서 데이터 처리하는 것을 허용하지만, 원자료를 공개/공유 환경에 두는 것은 금지한다. [설치 FAQ](https://norgatedata.com/ndu-faq.php), [EULA](https://norgatedata.com/subscribe/eula.php)
+- GitHub API로 확인한 `khsqowp/Coin_Trade` 저장소 visibility는 **public**이다. EULA는 백테스트·통계·개발된 전략을 Derived Data 예시로 정의하지만, 공개 GitHub 게시 권한은 명시적으로 확인되지 않았다. 원자료와 복원 가능한 변환본은 공개 저장소에 넣지 않는다. 상세 파생 결과의 공개 범위도 공급자 서면 확인 전까지 미확정으로 둔다.
+- 구독 종료 시 원자료·추출 Content·백업은 삭제 대상이며 Derived Data는 보유할 수 있다. 파일 경로와 Git 관리에서 이 두 범주를 분리해야 한다. 계정이나 체험판은 만들지 않았다.
+
+### KRX: 공개 일봉 API는 부분 해법, 적격 유니버스는 미확인
+
+- KRX OPEN API 서비스 목록은 유가증권·코스닥 주식 및 ETF의 일별 정보를 2010-01-04부터, 코넥스는 2013-07-01부터 제공한다고 안내한다. API 문구는 상장폐지 종목의 완전 포함이나 과거 시점 투자 가능 유니버스 복원을 보증하지 않는다. [서비스 목록](https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd)
+- KRX Data Marketplace에는 상장폐지 종목의 OHLCV·거래대금·시가총액 조회 화면이 있다. 화면 존재만으로 전체 상폐 이력 일괄 취득, 기업행동 조정, Mac+Linux 장기 저장권을 입증하지 않는다. 데이터 상품의 기간·샘플·가격은 로그인 뒤 확인하며, 결제 및 용도 심사 뒤 제공하는 절차다. [상폐종목 시세 화면](https://data.krx.co.kr/contents/MDC/STAT/issue/MDCSTAT239.jsp), [구매 안내](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp)
+- 코스콤 DataMall은 국내 수정주가(CA 반영)와 ETF 분배금 상품을 목록에 표시하지만, 공식 DataMall은 운영 잠정 중단을 공지한다. 현재 활성 견적/표본 경로로 간주하지 않는다. [DataMall](https://datamall.koscom.co.kr/kor/main.do), [중단 안내](https://datamall.koscom.co.kr/indexKor.jsp)
+
+### 실행 판정
+
+계정·인증키·체험판·구매 승인은 기존 공개 사양·샘플 범위·가격 조회 허가에 포함되지 않으므로 진행하지 않았다. Norgate 체험은 기술 적합성 확인에는 쓸 수 있지만 새 OOS 성과 검증에는 부적합하다. 유료 Norgate 자료는 미국 장기 PIT/상폐 연구의 가장 명확한 후보이나, 공개 GitHub에 게시할 파생 결과의 범위와 구독 종료 시 삭제 절차를 구매 전에 확정해야 한다. 한국은 일괄 상폐·기업행동 이력과 개인용 로컬·서버 보관권을 확인하기 전까지 NO-GO다.
