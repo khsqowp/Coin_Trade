@@ -46,6 +46,41 @@ def test_baselines_are_deterministic_and_zero_momentum_uses_hash_fallback():
                                   anchor_ms=123456)["momentum"] == "long"
 
 
+def test_mirrored_fair_direction_barriers_cannot_both_win_on_one_path():
+    rng = np.random.default_rng(20261119)
+    for _ in range(250):
+        count = 12
+        opens = np.empty(count, dtype=float)
+        highs = np.empty(count, dtype=float)
+        lows = np.empty(count, dtype=float)
+        closes = np.empty(count, dtype=float)
+        opens[0] = closes[0] = 100.0
+        highs[0], lows[0] = 100.1, 99.9
+        for i, move in enumerate(rng.normal(0.0, 0.015, count - 1), start=1):
+            opens[i] = closes[i - 1]
+            closes[i] = opens[i] * np.exp(move)
+            wick_up, wick_down = np.abs(rng.normal(0.0, 0.003, 2))
+            highs[i] = max(opens[i], closes[i]) * np.exp(wick_up)
+            lows[i] = min(opens[i], closes[i]) * np.exp(-wick_down)
+
+        path = Bars(np.arange(count, dtype=np.int64) * MINUTE_MS,
+                    opens.copy(), highs.copy(), lows.copy(), closes.copy(),
+                    np.ones(count))
+        wins = []
+        for side, stop in (("long", 99.0), ("short", 101.0)):
+            outcome = evaluate_divergence_event(
+                minute_open_ms=path.open_ms, minute_opens=path.open,
+                minute_highs=path.high, minute_lows=path.low,
+                minute_closes=path.close, native_bars=path,
+                native_tf_minutes=1, signal_index=0, side=side,
+                pivot_stop=stop, atr_at_signal=1.0, stop_buffer_atr=0.0,
+                target_r=1.0, horizon_bars=10, entry_mode="next_open",
+                fee_per_side=0.0, slippage_per_side=0.0)
+            assert outcome["status"] != "unresolved"
+            wins.append(bool(outcome["target_first"]))
+        assert sum(wins) <= 1
+
+
 def test_closed_4h_regime_only_appears_after_200_closed_bars():
     count = 201 * 240
     ts = np.arange(count, dtype=np.int64) * MINUTE_MS
