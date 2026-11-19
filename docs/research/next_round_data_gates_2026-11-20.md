@@ -33,6 +33,7 @@ The official archive documentation describes historical market-data archives and
 
 ## Evidence and limitations
 
+- Official provider comparison and prioritized source-acquisition gates: `docs/research/market_data_vendor_gate_2026-11-20.md`.
 - Repository records: `docs/research/research_round_2026-11-20.md`, trials 78 and 98-100, `docs/kr-us-equity-trader/SPEC.md`, and `docs/chart_predictor/SPEC.md`.
 - Four agents examined the above repository records and data inventories without editing files or computing strategy performance. Their findings are documented in the current Codex run; this note records the integrated decision, not an independent data audit.
 - Binance Vision terms: https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md

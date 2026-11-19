@@ -1,0 +1,40 @@
+# Market data vendor gate — 2026-11-20
+
+## Decision objective
+
+The sole investment objective is to maximize long-run, after-cost compounded wealth across market regimes. A claim that a strategy works in every regime is not a valid premise; the research must measure performance in rising, falling, and sideways regimes and test whether portfolio construction survives their transitions. CAGR, Sharpe, drawdown, benchmark-relative wealth, and uncertainty are evidence and constraints, not substitutes for compounded wealth. The crypto target-first M2 >=80% requirement remains a separate signal-quality gate; it cannot establish profitability by itself.
+
+This is a source diligence record, not a purchase decision or a strategy result. No account was created, no vendor was contacted, and no paid data was acquired.
+
+## Findings from official provider materials
+
+| Market | Candidate/source | Verified from provider material | Still unverified / gate |
+|---|---|---|---|
+| Korea | KRX Data Marketplace | KRX exposes a delisted-stock price-trend product with dates, ticker/name, market, OHLC, volume/value, market cap, delisting date and reason. Its purchase guide describes product specifications, periods, fields, samples and prices through product detail/login. KRX also lists licensed index data with constituent and corporate-action information. | No product sample, complete PIT universe history, adjusted total-return contract, or price quote was obtained. KRX terms prohibit unauthorized automated collection and restrict reuse; automated scraping is not an acceptable substitute. The index constituent product may not cover the full stock/ETF universe. OpenDART can supply timestamped filings/fundamentals, but is not a price, corporate-action, or delisted-security database. |
+| United States | CRSP US Stock Databases | Morningstar/CRSP describes daily/monthly prices and corporate actions for more than 36,000 active and inactive securities, permanent PERMNO/PERMCO identifiers, and over 100 years of history. | Subscription/sample/quote and exact ETF coverage, point-in-time universe fields, delivery terms, and permitted use remain to be confirmed. This is the strongest identified research-integrity candidate, not yet an approved or affordable source. |
+| United States | Nasdaq Data Link Sharadar SEP | Provider documentation describes adjusted/unadjusted end-of-day prices and corporate actions for over 20,000 US companies since 1998, including active and delisted tickers and delisting reasons. | The source page does not establish point-in-time index/universe membership or complete ETF history. Quote, sample, and usage terms remain unverified. Treat as a fallback candidate only after those fields are confirmed. |
+| Crypto historical | Binance Vision | Published terms allow personal, non-commercial, non-production historical backtesting subject to their conditions; they prohibit live proprietary execution and commercial signal distribution. | Do not use Vision-derived history, features, models, or signals to drive live/manual trading signals absent separate written permission or an independently licensed source. Archive presence alone does not prove complete coverage or causal publication times. |
+| Crypto derivatives | Kaiko | Official data dictionary describes historical/live derivatives data including funding and open interest, with coverage and granularities documented by product. Public pricing lists derivatives tiers from USD 1,000/month. | Exact symbol-by-symbol history, effective-time semantics, redistribution/derived-signal rights, and a quote for the required scope are not established. Listed base price is not authorization to purchase. |
+| Crypto derivatives | CoinAPI | Official FAQ says Binance USD-M funding history begins 2021-01-01 and the provider describes historical futures/OI products. Its dedicated open-interest metric venue list does not confirm Binance Futures coverage. Its usage policy generally describes internal trading/quant use, subject to the governing agreement. | A unified, correctly timestamped Binance USD-M funding+OI route is not verified. Do not assume the funding product and OI product share symbols, time coverage, publication semantics, or license. No price or contract was confirmed. |
+
+## Official references
+
+- KRX, [delisted-stock price trends](https://data.krx.co.kr/contents/MDC/STAT/issue/MDCSTAT239.jsp), [data purchase guide](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA001.jsp), [terms of use](https://data.krx.co.kr/contents/MDC/INFO/informationController/MDCINFO003.cmd), [data receipt methods and usage restrictions](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA003.jsp), [index licensing/data products](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA005.jsp).
+- Financial Supervisory Service, [OpenDART API](https://opendart.fss.or.kr/intro/main.do).
+- Morningstar, [CRSP US Stock Databases](https://indexes.morningstar.com/research-data-products/crsp-us-stock-databases).
+- Nasdaq Data Link, [Sharadar SEP documentation](https://data.nasdaq.com/databases/SEP/documentation?anchor=sample-data).
+- Binance, [Vision dataset terms](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md); unresolved provenance reports are [issue #509](https://github.com/binance/binance-public-data/issues/509), which is community evidence, not a Binance guarantee.
+- Kaiko, [data dictionary](https://docs.kaiko.com/explore-our-data/data-dictionary), [derivatives products/pricing](https://www.kaiko.com/products/derivatives-risk-indicators), [pricing and contracts](https://www.kaiko.com/about-kaiko/pricing-and-contracts).
+- CoinAPI, [market-data FAQ](https://www.coinapi.io/products/market-data-api/faq), [usage policy](https://www.coinapi.io/usage-policy).
+
+## Research path and decision gates
+
+1. **US stocks/ETFs:** obtain the already-authorized sample/quote information for CRSP first. In parallel, ask whether Sharadar can provide dated universe membership and ETF/delisted coverage. No backtest until identifiers, active/inactive history, corporate actions/total-return handling, timestamp availability, costs, benchmark/cash series, and research-use rights are documented.
+2. **Korean stocks/ETFs:** use KRX's official product catalog/sample/quote route, not scraping. Verify daily PIT universe and delist/merger history, adjusted prices/corporate actions, ETFs, historical data coverage, and research rights. OpenDART can supplement timestamped filings but cannot close the market-data gate.
+3. **Crypto research:** continue only within Binance Vision's permitted historical non-production scope, while auditing per-symbol coverage, checksums, funding timestamps, and metric effective-time semantics. Exclude any metric whose availability time is unresolved. Keep this history isolated from future live/manual signals.
+4. **Live/manual crypto signals:** require a separately authorized source and a documented rights basis. Kaiko is technically promising but its public starting price is not a recommendation. CoinAPI is not yet proven to provide the required Binance USD-M funding+OI combination.
+5. **After source gates pass:** preregister the hypothesis, universe, signal time, entry/exit, costs, benchmark, regime labels, and stop rules before measuring outcomes. Compare net compounded wealth to appropriate passive benchmarks and cash; report drawdown, Sharpe, uncertainty, turnover, and regime breakdown. Preserve the sealed test set.
+
+## Interpretation
+
+The next useful action is to resolve sample/quote and field-coverage questions, not to launch another parameter search on survivor-only or causally ambiguous inputs. This does not mean strategy research is exhausted: it means current candidate results cannot answer the wealth-maximization objective reliably. No strategy is approved by this source audit, and no performance figures were calculated here.
