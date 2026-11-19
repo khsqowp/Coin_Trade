@@ -77,3 +77,9 @@ Verification: `chart_predictor/tests` — 217 passed, one non-fatal Joblib CPU-d
 2. Do not reopen either rejected crypto candidate by changing parameters. Choose a distinct, evidence-based hypothesis, or acquire the specific historical funding/order-flow data required by a separately preregistered hypothesis.
 3. For KR/US PEAD, establish data rights and point-in-time histories (including delisted names, as-reported earnings, and timestamped consensus) before any performance test. Mark unavailable data as `NOT_EVALUABLE`, not a strategy rejection.
 4. Keep validation/sealed windows untouched until a candidate's rules are frozen; never claim all-regime success from these short development screens.
+
+### Data-gate decision after four independent reviews
+
+- The KR-equity, US-equity/ETF, crypto-hypothesis, and crypto-red-team reviews found no justified new performance test that passes current data-eligibility gates. KR/US remain `NOT_EVALUABLE` pending point-in-time universes, delisted instruments, corporate-action provenance, lawful usage, and defensible cost/benchmark histories. Crypto OI/funding reversal remains a hypothesis only until aligned historical coverage and timestamp availability are verified. The broad 45-symbol cross-sectional screen at trial 78 means a relabelled momentum variant is not a new mechanism.
+- Binance Vision's current terms distinguish permitted personal, non-production historical backtesting from live proprietary execution and commercial signal use. Research data and any future live/manual signal source must remain separate unless separate written rights are established. Historical USD-M metrics also have unresolved timestamp/provenance questions; no assumed timestamp shift is allowed.
+- No strategy outcomes or validation/sealed data were calculated or opened in this review. The integrated data-gate decision and next steps are recorded in [`next_round_data_gates_2026-11-20.md`](next_round_data_gates_2026-11-20.md).
