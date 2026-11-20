@@ -1,6 +1,7 @@
 """Frozen configurations for independent PAPER forward-test profiles."""
 from dataclasses import dataclass
 import os
+from .plugin_jbb import signals as _jbb_signal_function
 
 SYMBOLS = ("BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "XRPUSDT")
 BOOKS = ("combined", "long_only", "short_only")
@@ -18,6 +19,10 @@ class Profile:
     fee: float
     slippage: float
     backtest: dict
+    kind: str = "bbstc"
+    books: tuple = BOOKS
+    initial_history_days: int = 0
+    signal_function: object = None
 
     @property
     def db_path(self):
@@ -45,7 +50,18 @@ L5_12H = Profile(
     dict(train_return_pct=114.0, train_trades=174, test_return_pct=48.8,
          test_trades=78, walk_forward_return_pct=-10.2, plateau="FRAGILE"),
 )
-PROFILES = {p.name: p for p in (L5_4H, L5_12H)}
+JBB_1H = Profile(
+    "jbb_1h", "1h", 3_600_000,
+    dict(bb_len=25, bb_k=2.5, conv=9, base=26, span_b=52, disp=26),
+    dict(n_adds=0, add_spacing_pct=0, add_size_mult=1.0, atr_mult=None,
+         sl_pct=None, tp_pct=None, max_hold_bars=0, bb_mid_exit=False, opp_exit=False),
+    10000.0, 1000.0, .0004, .0002,
+    dict(train_return_pct=35.6, train_trades=1414, test_return_pct=13.8,
+         test_trades=885, test_days=1.9 * 365.25, null_pctl=100, plateau="ROBUST"),
+    kind="plugin", books=("long_only",), initial_history_days=60,
+    signal_function=_jbb_signal_function,
+)
+PROFILES = {p.name: p for p in (L5_4H, L5_12H, JBB_1H)}
 
 
 def get_profile(name=None):

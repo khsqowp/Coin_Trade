@@ -14,7 +14,9 @@ def once(db_path=None, profile=None):
     e.initialize_forward_start(now)
     for symbol in SYMBOLS:
         old=e.db.execute('SELECT MAX(ts) FROM candles WHERE symbol=?',(symbol,)).fetchone()[0]
-        start=int(old)+profile.interval_ms if old is not None else int(datetime(2022,1,1,tzinfo=timezone.utc).timestamp()*1000)
+        start=int(old)+profile.interval_ms if old is not None else (
+            now-profile.initial_history_days*86_400_000 if profile.initial_history_days else
+            int(datetime(2022,1,1,tzinfo=timezone.utc).timestamp()*1000))
         # Check and repair historical holes from the first missing interval.
         existing=e.frame(symbol)
         if len(existing) and gaps(existing,profile.interval_ms): start=gaps(existing,profile.interval_ms)[0][0]

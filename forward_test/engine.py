@@ -56,19 +56,50 @@ class Engine:
             now=int(time.time()*1000); d=d[[int(x.timestamp()*1000)+self.config.interval_ms<=now for x in d.index]]
             idx_ns=d.index.as_unit('ns').asi8
             if len(d)>1 and np.any(np.diff(idx_ns)!=self.config.interval_ms*1_000_000): raise ValueError(f"candle gap for {symbol}; repair required")
-            sig=signal_frame(d,self.config.signal); ts=idx_ns//1_000_000
+            sig=(self.config.signal_function(d,**self.config.signal) if self.config.kind=='plugin'
+                 else signal_frame(d,self.config.signal)); ts=idx_ns//1_000_000
             previous=self.db.execute('SELECT MAX(ts) FROM signals WHERE symbol=?',(symbol,)).fetchone()[0]
             todo=np.flatnonzero((ts>=(previous+1 if previous is not None else start)) & (ts>=start))
             if not len(todo): continue
             for i in todo:
                 row=d.iloc[i]; s=sig.iloc[i]; candle_ts=int(ts[i]); rp=(ref_prices or {}).get(symbol,float(row.close))
-                self.db.execute('INSERT OR IGNORE INTO signals VALUES(?,?,?,?,?,?,?,?,?,?,?)',(candle_ts,symbol,int(s.long),int(s.short),int(s.bb_long),int(s.stoch_long),int(s.stc_long),int(s.bb_short),int(s.stoch_short),int(s.stc_short),rp))
-                for book in BOOKS: self._step(book,symbol,d,sig,int(i),candle_ts)
+                if self.config.kind=='plugin':
+                    self.db.execute('INSERT OR IGNORE INTO signals VALUES(?,?,?,?,?,?,?,?,?,?,?)',(candle_ts,symbol,int(s.long_entry),0,int(s.long_entry),0,0,0,0,0,rp))
+                    for book in self.config.books: self._step_plugin(book,symbol,d,sig,int(i),candle_ts)
+                else:
+                    self.db.execute('INSERT OR IGNORE INTO signals VALUES(?,?,?,?,?,?,?,?,?,?,?)',(candle_ts,symbol,int(s.long),int(s.short),int(s.bb_long),int(s.stoch_long),int(s.stc_long),int(s.bb_short),int(s.stoch_short),int(s.stc_short),rp))
+                    for book in BOOKS: self._step(book,symbol,d,sig,int(i),candle_ts)
                 newest=candle_ts; total+=1
         now=time.time(); old=self.db.execute('SELECT last_run,bars_processed FROM heartbeat WHERE id=1').fetchone()
         self.db.execute('UPDATE heartbeat SET last_run=?,last_candle=COALESCE(?,last_candle),bars_processed=?,last_error=NULL WHERE id=1',(now,newest,int(old['bars_processed'])+total))
         self.db.execute('INSERT INTO runs VALUES(?,1,?,NULL)',(now,total)); self.db.commit(); self.write_status()
         return total
+
+    def _step_plugin(self,book,symbol,d,sig,i,ts):
+        """Long-only plugin fills: close-confirmed signals execute at the next open."""
+        if i == 0:
+            return
+        start=int(self.db.execute("SELECT value FROM meta WHERE key='forward_start_ts'").fetchone()[0])
+        prev_ts=int(d.index[i-1].timestamp()*1000)
+        pos=self.db.execute('SELECT * FROM open_positions WHERE book=? AND symbol=?',(book,symbol)).fetchone()
+        previous=sig.iloc[i-1]
+        if pos and bool(previous.long_exit):
+            open_px=float(d.iloc[i].open)
+            exit_px=open_px*(1-self.config.slippage)
+            qty=float(pos['qty']); avg=float(pos['avg']); cost=float(pos['entry_cost'])
+            net=(exit_px-avg)*qty-cost-exit_px*qty*self.config.fee
+            self.db.execute('INSERT OR IGNORE INTO trades(book,symbol,entry_ts,exit_ts,side,entry_px,exit_px,adds,reason,net_pnl,pct,bars) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
+                (book,symbol,int(pos['entry_ts']),ts,'long',avg,exit_px,0,'signal',net,net/self.config.capital*100,i-int(pos['entry_i'])))
+            self.db.execute('DELETE FROM open_positions WHERE book=? AND symbol=?',(book,symbol))
+            return
+        if not pos and prev_ts>=start and bool(previous.long_entry):
+            fill=float(d.iloc[i].open)*(1+self.config.slippage); qty=self.config.base_notional/fill
+            cost=self.config.base_notional*self.config.fee
+            self.db.execute('INSERT INTO open_positions VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
+                (book,symbol,'long',ts,i,qty,fill,0,fill,cost,float('nan'),0.0))
+        if not pos:
+            realized=float(self.db.execute('SELECT COALESCE(SUM(net_pnl),0) FROM trades WHERE book=? AND symbol=?',(book,symbol)).fetchone()[0])
+            self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,self.config.capital+realized))
 
     def _step(self,book,symbol,d,sig,i,ts):
         row=self.db.execute('SELECT * FROM open_positions WHERE book=? AND symbol=?',(book,symbol)).fetchone()
