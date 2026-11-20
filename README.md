@@ -170,6 +170,8 @@ docker run --rm --entrypoint python coin-trade -u -m app.futures_momentum_rotati
 
 ## 안전 수칙 & 주의사항
 
+L5 4h 공개 데이터 페이퍼 전진 검증은 [`../docs/FORWARD_TEST.md`](../docs/FORWARD_TEST.md)를 참고하세요.
+
 - ⚠️ **이 코드는 투자 자문이 아니며, 개인 학습·실험 목적의 자동매매 봇입니다.** 실제 손실이 발생할 수 있습니다.
 - 🔴 **펀딩비 차익거래(`paper_funding_arb.py`)만 실제 자금을 사용합니다.** 나머지는 전부 모의투자(KIS 가상계좌) 또는 완전 페이퍼(무실주문) 모드입니다.
 - API 키에는 **출금(Withdraw) 권한을 절대 부여하지 마세요.** 매매(Trade)/조회(Read) 권한만 필요합니다.

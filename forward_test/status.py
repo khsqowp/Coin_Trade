@@ -1,0 +1,51 @@
+"""Human and JSON status report for the PAPER-only forward test."""
+import argparse, json, sqlite3, time
+from datetime import datetime, timezone
+from .config import *
+
+def status_data(db,book=None,since=None,trades_n=None):
+    db.row_factory=sqlite3.Row
+    meta=db.execute("SELECT value FROM meta WHERE key='forward_start_ts'").fetchone(); start=int(meta[0]) if meta else None
+    hb=db.execute('SELECT * FROM heartbeat WHERE id=1').fetchone()
+    last=hb['last_run'] if hb else 0; age=time.time()-last if last else None
+    result={'forward_start':datetime.fromtimestamp(start/1000,timezone.utc).isoformat() if start else None,'elapsed_days':max(0,(time.time()*1000-start)/86400000) if start else 0,'bars_processed':hb['bars_processed'] if hb else 0,'last_candle_time':datetime.fromtimestamp(hb['last_candle']/1000,timezone.utc).isoformat() if hb and hb['last_candle'] else None,'last_run_time':datetime.fromtimestamp(last,timezone.utc).isoformat() if last else None,'health':'STALE' if age is None or age>18000 else 'HEALTHY','books':{}}
+    books=[book] if book else BOOKS
+    for b in books:
+        clause=' AND exit_ts>=?' if since else ''; args=[b]+([int(pd_timestamp(since))] if since else [])
+        ts=db.execute('SELECT * FROM trades WHERE book=?'+clause+' ORDER BY exit_ts DESC',args).fetchall()
+        if trades_n: ts=ts[:trades_n]
+        pnl=sum(t['net_pnl'] for t in ts); wins=sum(t['net_pnl']>0 for t in ts); profits=sum(max(0,t['net_pnl']) for t in ts); losses=sum(min(0,t['net_pnl']) for t in ts)
+        opens=db.execute('SELECT * FROM open_positions WHERE book=? ORDER BY symbol',(b,)).fetchall()
+        positions=[]; floating=0.0
+        for p in opens:
+            latest=db.execute('SELECT close,ts FROM candles WHERE symbol=? ORDER BY ts DESC LIMIT 1',(p['symbol'],)).fetchone()
+            px=latest['close'] if latest else p['avg']; direction=1 if p['side']=='long' else -1
+            upnl=(px-p['avg'])*p['qty']*direction-p['entry_cost']; floating+=upnl
+            positions.append({'symbol':p['symbol'],'side':p['side'],'avg':p['avg'],'adds':p['adds'],'unrealized_pct':upnl/(p['avg']*p['qty'])*100,'bars_held':max(0,(latest['ts']-p['entry_ts'])//INTERVAL_MS) if latest else 0})
+        syms={}
+        for s in SYMBOLS:
+            q=[t for t in ts if t['symbol']==s]; syms[s]={'closed':len(q),'net_pnl':sum(t['net_pnl'] for t in q)}
+        eq=db.execute('SELECT ts,SUM(equity-?) FROM equity_snapshots WHERE book=? GROUP BY ts ORDER BY ts',(CAPITAL,b)).fetchall(); peak=CAPITAL*len(SYMBOLS); dd=0
+        for r in eq:
+            v=CAPITAL*len(SYMBOLS)+r[1]; peak=max(peak,v); dd=min(dd,(v-peak)/peak*100)
+        result['books'][b]={'open_positions':positions,'closed_trades':len(ts),'win_rate_pct':wins/len(ts)*100 if ts else 0,'profit_factor':profits/abs(losses) if losses else None,'total_return_pct':(pnl+floating)/CAPITAL*100,'max_drawdown_pct':dd,'average_hold_bars':sum(t['bars'] for t in ts)/len(ts) if ts else 0,'by_symbol':syms}
+    count=db.execute('SELECT COUNT(*) FROM trades WHERE book=\'combined\'').fetchone()[0]; days=result['elapsed_days']; expected=BACKTEST_TRADES/BACKTEST_DAYS*days
+    verdict='INSUFFICIENT DATA' if count<30 or days<90 else ('NEGATIVE' if result['books'].get('combined',{}).get('total_return_pct',0)<0 else ('UNDERPERFORMING' if count<expected*.5 else 'ON TRACK'))
+    result['progress']={'trades':count,'minimum_trades':30,'days':days,'minimum_days':90,'expected_trades_at_backtest_rate':expected,'backtest_reference':{'test_trades':BACKTEST_TRADES,'test_days_approx':BACKTEST_DAYS,'summed_return_pct':BACKTEST_RETURN},'verdict':verdict,'rules':'INSUFFICIENT DATA until both 30 trades and 90 days; then NEGATIVE if combined net return < 0; UNDERPERFORMING if trades < 50% of the 255/693.98-day expectation; otherwise ON TRACK.'}
+    return result
+def pd_timestamp(x):
+    from datetime import datetime
+    return int(datetime.fromisoformat(x).replace(tzinfo=timezone.utc).timestamp()*1000)
+def main():
+    p=argparse.ArgumentParser(); p.add_argument('--json',action='store_true'); p.add_argument('--book',choices=BOOKS); p.add_argument('--since'); p.add_argument('--trades',type=int); p.add_argument('--db',default='/app/data/forward.db'); a=p.parse_args()
+    from .engine import Engine
+    db=Engine(a.db).db; data=status_data(db,a.book,a.since,a.trades)
+    if a.json: print(json.dumps(data,indent=2,allow_nan=False));return
+    print(f"Forward start: {data['forward_start']} | elapsed {data['elapsed_days']:.1f} days | bars {data['bars_processed']} | last candle {data['last_candle_time']} | last run {data['last_run_time']} | {data['health']}")
+    for b,v in data['books'].items():
+        print(f"\n{b}: open={len(v['open_positions'])} closed={v['closed_trades']} win={v['win_rate_pct']:.1f}% PF={v['profit_factor']} return={v['total_return_pct']:.2f}% maxDD={v['max_drawdown_pct']:.2f}% avg_hold={v['average_hold_bars']:.1f} bars")
+        for o in v['open_positions']: print(f"  {o['symbol']} {o['side']} avg={o['avg']:.6g} adds={o['adds']} unrealized={o['unrealized_pct']:.2f}% held={o['bars_held']}")
+        print('  SYMBOL  CLOSED  NET_PNL')
+        for s,x in v['by_symbol'].items(): print(f"  {s:<8} {x['closed']:>6} {x['net_pnl']:>9.2f}")
+    x=data['progress']; print(f"\nPROGRESS: trades {x['trades']}/30 | days {x['days']:.1f}/90 | expected at historical rate {x['expected_trades_at_backtest_rate']:.1f} | verdict: {x['verdict']}\n{x['rules']}")
+if __name__=='__main__':main()

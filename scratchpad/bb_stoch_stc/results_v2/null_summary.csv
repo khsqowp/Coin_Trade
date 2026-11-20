@@ -1,0 +1,5 @@
+variant,repetitions,strategy_test_return,test_trades,null_p50,null_p90,percentile,fragile,verdict,gates
+A3_unconstrained,200,-18.914297830788662,766,-10.125556908771259,-1.3262817550014003,10.5,True,NO EDGE,beats_p90=False; not_fragile=False; at_least_30_trades=True
+A3_with_stop,200,-18.914297830788662,766,-10.125556908771259,-1.3262817550014003,10.5,True,NO EDGE,beats_p90=False; not_fragile=False; at_least_30_trades=True
+part_b,200,-8.171419979388723,38,18.825420834365325,24.130439268228812,0.0,True,NO EDGE,beats_p90=False; not_fragile=False; at_least_30_trades=True
+strict_53870,200,3.182110684965052,242,-0.7382658596710007,23.6224460544224,61.0,False,NO EDGE,beats_p90=False; not_fragile=True; at_least_30_trades=True

@@ -4,6 +4,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY app app
+COPY forward_test forward_test
 # non-root user can't write a numba jit cache next to site-packages; point it at /tmp instead
 ENV NUMBA_CACHE_DIR=/tmp/numba_cache
 # 모의투자 상태 파일(볼륨 마운트)을 non-root 유저가 쓸 수 있도록 미리 소유권을 넘긴다

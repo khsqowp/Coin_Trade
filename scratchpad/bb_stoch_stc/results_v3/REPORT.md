@@ -1,0 +1,1664 @@
+# V3 research results
+
+## Headline by cohort, timeframe, variant
+
+| cohort | timeframe | variant | train_return | test_return | test_trades | null_percentile | verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| L2 | 15m | combined | 9.789202817700096 | -21.868477374852937 | 1232 | 11.5 | no edge |
+| L2 | 15m | long_only | 1.8258529243448538 | -4.846098502715829 | 220 | 100.0 | no edge |
+| L2 | 15m | short_only | 6.795445106216335 | 7.591641114195379 | 45 | 100.0 | no edge |
+| L2 | 15m | unconstrained | 1.8258529243448538 | -4.846098502715829 | 220 | 100.0 | no edge |
+| L2 | 15m | with_stop | 9.789202817700096 | -21.868477374852937 | 1232 | 11.5 | no edge |
+| L2 | 1h | combined | 24.185428665648885 | 1.0733344080552953 | 73 | 66.0 | no edge |
+| L2 | 1h | long_only | 19.45799200800004 | -2.3890963418370137 | 51 | 100.0 | no edge |
+| L2 | 1h | short_only | 14.01295289241028 | -0.5826273367862655 | 144 | 0.0 | no edge |
+| L2 | 1h | unconstrained | 19.45799200800004 | -2.3890963418370137 | 51 | 100.0 | no edge |
+| L2 | 1h | with_stop | 24.185428665648885 | 1.0733344080552953 | 73 | 66.0 | no edge |
+| L2 | 4h | combined | 21.087152550632304 | 16.251094556059435 | 131 | 87.0 | no edge |
+| L2 | 4h | long_only | 30.793674060525042 | 7.4520736331577035 | 103 | 100.0 | no edge |
+| L2 | 4h | short_only | 27.874276704423487 | 0.0665403301110592 | 89 | 0.0 | no edge |
+| L2 | 4h | unconstrained | 30.793674060525042 | 7.4520736331577035 | 103 | 100.0 | no edge |
+| L2 | 4h | with_stop | 21.087152550632304 | 16.251094556059435 | 131 | 87.0 | no edge |
+| L5 | 15m | combined | 10.725831958774084 | -0.9442427126107102 | 270 | 24.5 | no edge |
+| L5 | 15m | long_only | 6.244634200186877 | -5.540429069111887 | 44 | 0.0 | no edge |
+| L5 | 15m | short_only | 8.369526773199036 | -0.8431734296267226 | 272 | 100.0 | no edge |
+| L5 | 15m | unconstrained | 8.369526773199036 | -0.8431734296267226 | 272 | 100.0 | no edge |
+| L5 | 15m | with_stop | 5.073206406093938 | -7.764110822126315 | 491 | 26.0 | no edge |
+| L5 | 1h | combined | 16.22805883337241 | 1.7101120820080091 | 31 | 88.0 | no edge |
+| L5 | 1h | long_only | 31.614682925991566 | -4.968370158226738 | 165 | 0.0 | no edge |
+| L5 | 1h | short_only | 11.289990257863426 | 34.41351527483771 | 80 | 0.0 | no edge |
+| L5 | 1h | unconstrained | 31.614682925991566 | -4.968370158226738 | 165 | 0.0 | no edge |
+| L5 | 1h | with_stop | 16.22805883337241 | 1.7101120820080091 | 31 | 88.0 | no edge |
+| L5 | 4h | combined | 15.40833851151381 | 20.562181917714586 | 255 | 99.0 | no edge |
+| L5 | 4h | long_only | 34.55255340394907 | -0.6941497592197619 | 197 | 100.0 | no edge |
+| L5 | 4h | short_only | 8.517123298520396 | 3.802384320000006 | 15 | 0.0 | no edge |
+| L5 | 4h | unconstrained | 34.55255340394907 | -0.6941497592197619 | 197 | 100.0 | no edge |
+| L5 | 4h | with_stop | 15.40833851151381 | 20.562181917714586 | 255 | 99.0 | no edge |
+| M | 15m | combined | 19.562268789576507 | -3.6592244665340563 | 110 | 20.0 | no edge |
+| M | 15m | long_only | 12.473633114649811 | -2.354959425851516 | 53 | 100.0 | no edge |
+| M | 15m | short_only | 1.9521903124949662 | 27.727549969735346 | 57 | 100.0 | no edge |
+| M | 15m | unconstrained | 12.473633114649811 | -2.354959425851516 | 53 | 100.0 | no edge |
+| M | 15m | with_stop | 10.48108205702892 | 0.24557060166917943 | 147 | 83.5 | no edge |
+| M | 1h | combined | 35.48005245304203 | -6.178744521278929 | 731 | 92.5 | no edge |
+| M | 1h | long_only | 11.922546600000024 | 1.2781196269802275 | 44 | 100.0 | no edge |
+| M | 1h | short_only | 20.79274010400003 | -0.3144099796022013 | 106 | 0.0 | no edge |
+| M | 1h | unconstrained | 35.48005245304203 | -6.178744521278929 | 731 | 92.5 | no edge |
+| M | 1h | with_stop | 35.48005245304203 | -6.178744521278929 | 731 | 92.5 | no edge |
+| M | 4h | combined | 8.590006336000018 | -3.0689499796835946 | 46 | 48.0 | no edge |
+| M | 4h | long_only | 16.06391838839843 | 0.0 | 0 | nan | INELIGIBLE (zero test trades) |
+| M | 4h | short_only | 4.949229154006073 | 0.0 | 0 | nan | INELIGIBLE (zero test trades) |
+| M | 4h | unconstrained | 16.06391838839843 | 0.0 | 0 | nan | INELIGIBLE (zero test trades) |
+| M | 4h | with_stop | 7.677856688000032 | 0.27727049600001863 | 92 | 88.5 | no edge |
+
+## Per-symbol test results
+
+| cohort | timeframe | variant | symbol | test_trades | test_return |
+| --- | --- | --- | --- | --- | --- |
+| L2 | 15m | unconstrained | BTCUSDT | 119 | -3.212315453498349 |
+| L2 | 15m | unconstrained | ETHUSDT | 101 | -1.6337830492174805 |
+| L2 | 15m | with_stop | BTCUSDT | 630 | -13.87371798638416 |
+| L2 | 15m | with_stop | ETHUSDT | 602 | -7.994759388468776 |
+| L2 | 15m | long_only | BTCUSDT | 119 | -3.212315453498349 |
+| L2 | 15m | long_only | ETHUSDT | 101 | -1.6337830492174805 |
+| L2 | 15m | short_only | BTCUSDT | 27 | 4.705044293005145 |
+| L2 | 15m | short_only | ETHUSDT | 18 | 2.886596821190234 |
+| L2 | 15m | combined | BTCUSDT | 630 | -13.87371798638416 |
+| L2 | 15m | combined | ETHUSDT | 602 | -7.994759388468776 |
+| L2 | 1h | unconstrained | BTCUSDT | 30 | 0.22852475696053368 |
+| L2 | 1h | unconstrained | ETHUSDT | 21 | -2.6176210987975472 |
+| L2 | 1h | with_stop | BTCUSDT | 27 | -0.6747235995723813 |
+| L2 | 1h | with_stop | ETHUSDT | 46 | 1.7480580076276766 |
+| L2 | 1h | long_only | BTCUSDT | 30 | 0.22852475696053368 |
+| L2 | 1h | long_only | ETHUSDT | 21 | -2.6176210987975472 |
+| L2 | 1h | short_only | BTCUSDT | 78 | 1.7586091640132255 |
+| L2 | 1h | short_only | ETHUSDT | 66 | -2.341236500799491 |
+| L2 | 1h | combined | BTCUSDT | 27 | -0.6747235995723813 |
+| L2 | 1h | combined | ETHUSDT | 46 | 1.7480580076276766 |
+| L2 | 4h | unconstrained | BTCUSDT | 44 | 4.221118695690876 |
+| L2 | 4h | unconstrained | ETHUSDT | 59 | 3.2309549374668274 |
+| L2 | 4h | with_stop | BTCUSDT | 44 | 4.256212726281722 |
+| L2 | 4h | with_stop | ETHUSDT | 87 | 11.994881829777714 |
+| L2 | 4h | long_only | BTCUSDT | 44 | 4.221118695690876 |
+| L2 | 4h | long_only | ETHUSDT | 59 | 3.2309549374668274 |
+| L2 | 4h | short_only | BTCUSDT | 43 | 2.04415332477312 |
+| L2 | 4h | short_only | ETHUSDT | 46 | -1.9776129946620609 |
+| L2 | 4h | combined | BTCUSDT | 44 | 4.256212726281722 |
+| L2 | 4h | combined | ETHUSDT | 87 | 11.994881829777714 |
+| L5 | 15m | unconstrained | BTCUSDT | 53 | 0.778471734858651 |
+| L5 | 15m | unconstrained | ETHUSDT | 40 | -0.2024235711155991 |
+| L5 | 15m | unconstrained | BNBUSDT | 78 | -1.4193133147117103 |
+| L5 | 15m | unconstrained | SOLUSDT | 49 | -0.5149038103718705 |
+| L5 | 15m | unconstrained | XRPUSDT | 52 | 0.5149955317138064 |
+| L5 | 15m | with_stop | BTCUSDT | 100 | -0.6534748827118154 |
+| L5 | 15m | with_stop | ETHUSDT | 76 | -1.430240437825846 |
+| L5 | 15m | with_stop | BNBUSDT | 118 | 0.21316895580250242 |
+| L5 | 15m | with_stop | SOLUSDT | 88 | -2.250729749452785 |
+| L5 | 15m | with_stop | XRPUSDT | 109 | -3.6428347079383707 |
+| L5 | 15m | long_only | BTCUSDT | 11 | 2.0886889760000016 |
+| L5 | 15m | long_only | ETHUSDT | 9 | 1.7089273440000046 |
+| L5 | 15m | long_only | BNBUSDT | 11 | 2.0886889760000074 |
+| L5 | 15m | long_only | SOLUSDT | 3 | -6.579796907034879 |
+| L5 | 15m | long_only | XRPUSDT | 10 | -4.846937458077022 |
+| L5 | 15m | short_only | BTCUSDT | 53 | 0.778471734858651 |
+| L5 | 15m | short_only | ETHUSDT | 40 | -0.2024235711155991 |
+| L5 | 15m | short_only | BNBUSDT | 78 | -1.4193133147117103 |
+| L5 | 15m | short_only | SOLUSDT | 49 | -0.5149038103718705 |
+| L5 | 15m | short_only | XRPUSDT | 52 | 0.5149955317138064 |
+| L5 | 15m | combined | BTCUSDT | 53 | 1.416530897989459 |
+| L5 | 15m | combined | ETHUSDT | 40 | 0.36532424775039074 |
+| L5 | 15m | combined | BNBUSDT | 67 | 0.2815133053949648 |
+| L5 | 15m | combined | SOLUSDT | 45 | -1.1462392290459231 |
+| L5 | 15m | combined | XRPUSDT | 65 | -1.8613719346996016 |
+| L5 | 1h | unconstrained | BTCUSDT | 32 | -2.467214335024891 |
+| L5 | 1h | unconstrained | ETHUSDT | 20 | 1.3878985258784244 |
+| L5 | 1h | unconstrained | BNBUSDT | 24 | 1.7364468432227613 |
+| L5 | 1h | unconstrained | SOLUSDT | 38 | -1.6129377222502375 |
+| L5 | 1h | unconstrained | XRPUSDT | 51 | -4.012563470052795 |
+| L5 | 1h | with_stop | BTCUSDT | 4 | -1.0648008818187966 |
+| L5 | 1h | with_stop | ETHUSDT | 4 | 0.9498808800000043 |
+| L5 | 1h | with_stop | BNBUSDT | 0 | 0.0 |
+| L5 | 1h | with_stop | SOLUSDT | 7 | -1.765464822700671 |
+| L5 | 1h | with_stop | XRPUSDT | 16 | 3.5904969065274726 |
+| L5 | 1h | long_only | BTCUSDT | 32 | -2.467214335024891 |
+| L5 | 1h | long_only | ETHUSDT | 20 | 1.3878985258784244 |
+| L5 | 1h | long_only | BNBUSDT | 24 | 1.7364468432227613 |
+| L5 | 1h | long_only | SOLUSDT | 38 | -1.6129377222502375 |
+| L5 | 1h | long_only | XRPUSDT | 51 | -4.012563470052795 |
+| L5 | 1h | short_only | BTCUSDT | 14 | 5.880867559425443 |
+| L5 | 1h | short_only | ETHUSDT | 15 | 5.592524418942169 |
+| L5 | 1h | short_only | BNBUSDT | 9 | 3.4857151980483487 |
+| L5 | 1h | short_only | SOLUSDT | 17 | 7.664188878782749 |
+| L5 | 1h | short_only | XRPUSDT | 25 | 11.790219219638997 |
+| L5 | 1h | combined | BTCUSDT | 4 | -1.0648008818187966 |
+| L5 | 1h | combined | ETHUSDT | 4 | 0.9498808800000043 |
+| L5 | 1h | combined | BNBUSDT | 0 | 0.0 |
+| L5 | 1h | combined | SOLUSDT | 7 | -1.765464822700671 |
+| L5 | 1h | combined | XRPUSDT | 16 | 3.5904969065274726 |
+| L5 | 4h | unconstrained | BTCUSDT | 40 | 0.1342431091989261 |
+| L5 | 4h | unconstrained | ETHUSDT | 35 | -2.039738662687487 |
+| L5 | 4h | unconstrained | BNBUSDT | 29 | 1.4485594196660856 |
+| L5 | 4h | unconstrained | SOLUSDT | 47 | 0.4684213391588318 |
+| L5 | 4h | unconstrained | XRPUSDT | 46 | -0.7056349645561183 |
+| L5 | 4h | with_stop | BTCUSDT | 49 | 6.0058040257904235 |
+| L5 | 4h | with_stop | ETHUSDT | 49 | 3.2401176703029195 |
+| L5 | 4h | with_stop | BNBUSDT | 45 | 6.354483313903135 |
+| L5 | 4h | with_stop | SOLUSDT | 56 | 1.8484926914185893 |
+| L5 | 4h | with_stop | XRPUSDT | 56 | 3.113284216299519 |
+| L5 | 4h | long_only | BTCUSDT | 40 | 0.1342431091989261 |
+| L5 | 4h | long_only | ETHUSDT | 35 | -2.039738662687487 |
+| L5 | 4h | long_only | BNBUSDT | 29 | 1.4485594196660856 |
+| L5 | 4h | long_only | SOLUSDT | 47 | 0.4684213391588318 |
+| L5 | 4h | long_only | XRPUSDT | 46 | -0.7056349645561183 |
+| L5 | 4h | short_only | BTCUSDT | 3 | 0.7604768640000004 |
+| L5 | 4h | short_only | ETHUSDT | 3 | 0.7604768640000024 |
+| L5 | 4h | short_only | BNBUSDT | 3 | 0.9505960800000021 |
+| L5 | 4h | short_only | SOLUSDT | 6 | 1.3308345120000016 |
+| L5 | 4h | short_only | XRPUSDT | 0 | 0.0 |
+| L5 | 4h | combined | BTCUSDT | 49 | 6.0058040257904235 |
+| L5 | 4h | combined | ETHUSDT | 49 | 3.2401176703029195 |
+| L5 | 4h | combined | BNBUSDT | 45 | 6.354483313903135 |
+| L5 | 4h | combined | SOLUSDT | 56 | 1.8484926914185893 |
+| L5 | 4h | combined | XRPUSDT | 56 | 3.113284216299519 |
+| M | 15m | unconstrained | PEPEUSDT | 7 | 3.427905880000003 |
+| M | 15m | unconstrained | PUMPUSDT | 5 | 1.0879833233859997 |
+| M | 15m | unconstrained | BEATUSDT | 2 | 0.9794016800000012 |
+| M | 15m | unconstrained | PENGUUSDT | 6 | -1.9027086227234817 |
+| M | 15m | unconstrained | TRUMPUSDT | 4 | 1.9588033600000012 |
+| M | 15m | unconstrained | BONKUSDT | 7 | -3.348963149550487 |
+| M | 15m | unconstrained | SHIBUSDT | 3 | -7.69676910912408 |
+| M | 15m | unconstrained | WIFUSDT | 6 | -3.2267237078394793 |
+| M | 15m | unconstrained | BOMEUSDT | 13 | 6.366110920000007 |
+| M | 15m | with_stop | PEPEUSDT | 19 | -0.24521217173603047 |
+| M | 15m | with_stop | PUMPUSDT | 6 | 0.20696614275011535 |
+| M | 15m | with_stop | BEATUSDT | 7 | -0.7959796354822644 |
+| M | 15m | with_stop | PENGUUSDT | 11 | 0.8206394532521845 |
+| M | 15m | with_stop | TRUMPUSDT | 9 | 0.8093683119168108 |
+| M | 15m | with_stop | BONKUSDT | 18 | -1.6773227013121044 |
+| M | 15m | with_stop | SHIBUSDT | 40 | -0.9544968584569227 |
+| M | 15m | with_stop | WIFUSDT | 21 | 0.6161807132164313 |
+| M | 15m | with_stop | BOMEUSDT | 16 | 1.4654273475209594 |
+| M | 15m | long_only | PEPEUSDT | 7 | 3.427905880000003 |
+| M | 15m | long_only | PUMPUSDT | 5 | 1.0879833233859997 |
+| M | 15m | long_only | BEATUSDT | 2 | 0.9794016800000012 |
+| M | 15m | long_only | PENGUUSDT | 6 | -1.9027086227234817 |
+| M | 15m | long_only | TRUMPUSDT | 4 | 1.9588033600000012 |
+| M | 15m | long_only | BONKUSDT | 7 | -3.348963149550487 |
+| M | 15m | long_only | SHIBUSDT | 3 | -7.69676910912408 |
+| M | 15m | long_only | WIFUSDT | 6 | -3.2267237078394793 |
+| M | 15m | long_only | BOMEUSDT | 13 | 6.366110920000007 |
+| M | 15m | short_only | PEPEUSDT | 6 | 2.9417954400000066 |
+| M | 15m | short_only | PUMPUSDT | 3 | 1.2513910097353071 |
+| M | 15m | short_only | BEATUSDT | 2 | 0.980598480000001 |
+| M | 15m | short_only | PENGUUSDT | 6 | 2.941795440000003 |
+| M | 15m | short_only | TRUMPUSDT | 4 | 1.9611969600000032 |
+| M | 15m | short_only | BONKUSDT | 9 | 4.412693160000006 |
+| M | 15m | short_only | SHIBUSDT | 10 | 4.902992400000008 |
+| M | 15m | short_only | WIFUSDT | 9 | 4.412693160000007 |
+| M | 15m | short_only | BOMEUSDT | 8 | 3.9223939200000038 |
+| M | 15m | combined | PEPEUSDT | 20 | -5.666384887261532 |
+| M | 15m | combined | PUMPUSDT | 3 | -0.060014623513480636 |
+| M | 15m | combined | BEATUSDT | 3 | 0.5701192480000026 |
+| M | 15m | combined | PENGUUSDT | 6 | 0.9491525816844611 |
+| M | 15m | combined | TRUMPUSDT | 3 | 0.2963524831581038 |
+| M | 15m | combined | BONKUSDT | 18 | -1.9090836012193184 |
+| M | 15m | combined | SHIBUSDT | 27 | -1.2372817438533001 |
+| M | 15m | combined | WIFUSDT | 18 | 1.6873123732201931 |
+| M | 15m | combined | BOMEUSDT | 12 | 1.7106037032508143 |
+| M | 1h | unconstrained | PEPEUSDT | 116 | -2.1005895876205694 |
+| M | 1h | unconstrained | PUMPUSDT | 49 | 0.8077889040000106 |
+| M | 1h | unconstrained | BEATUSDT | 48 | -1.381631271999991 |
+| M | 1h | unconstrained | PENGUUSDT | 66 | 1.038984936000022 |
+| M | 1h | unconstrained | TRUMPUSDT | 52 | -0.17787878252180095 |
+| M | 1h | unconstrained | BONKUSDT | 79 | 0.5105585040000138 |
+| M | 1h | unconstrained | SHIBUSDT | 153 | -0.6531025390985314 |
+| M | 1h | unconstrained | WIFUSDT | 83 | -1.3745553240380979 |
+| M | 1h | unconstrained | BOMEUSDT | 85 | -2.8483193599999854 |
+| M | 1h | with_stop | PEPEUSDT | 116 | -2.1005895876205694 |
+| M | 1h | with_stop | PUMPUSDT | 49 | 0.8077889040000106 |
+| M | 1h | with_stop | BEATUSDT | 48 | -1.381631271999991 |
+| M | 1h | with_stop | PENGUUSDT | 66 | 1.038984936000022 |
+| M | 1h | with_stop | TRUMPUSDT | 52 | -0.17787878252180095 |
+| M | 1h | with_stop | BONKUSDT | 79 | 0.5105585040000138 |
+| M | 1h | with_stop | SHIBUSDT | 153 | -0.6531025390985314 |
+| M | 1h | with_stop | WIFUSDT | 83 | -1.3745553240380979 |
+| M | 1h | with_stop | BOMEUSDT | 85 | -2.8483193599999854 |
+| M | 1h | long_only | PEPEUSDT | 3 | -2.741491726403462 |
+| M | 1h | long_only | PUMPUSDT | 4 | 1.9588033600000012 |
+| M | 1h | long_only | BEATUSDT | 2 | 0.9794016800000012 |
+| M | 1h | long_only | PENGUUSDT | 5 | 2.4485042000000012 |
+| M | 1h | long_only | TRUMPUSDT | 4 | 1.9588033600000005 |
+| M | 1h | long_only | BONKUSDT | 4 | -2.8914927017869365 |
+| M | 1h | long_only | SHIBUSDT | 7 | -4.508759909751433 |
+| M | 1h | long_only | WIFUSDT | 8 | 0.6464454849220502 |
+| M | 1h | long_only | BOMEUSDT | 7 | 3.427905880000004 |
+| M | 1h | short_only | PEPEUSDT | 10 | 0.9005920800000041 |
+| M | 1h | short_only | PUMPUSDT | 4 | -0.24012321600000086 |
+| M | 1h | short_only | BEATUSDT | 5 | -0.5503040399999981 |
+| M | 1h | short_only | PENGUUSDT | 8 | 0.020053608000000053 |
+| M | 1h | short_only | TRUMPUSDT | 7 | -0.6703656479999978 |
+| M | 1h | short_only | BONKUSDT | 13 | -0.5302504319999959 |
+| M | 1h | short_only | SHIBUSDT | 32 | -2.376031003602223 |
+| M | 1h | short_only | WIFUSDT | 12 | 1.2808305120000034 |
+| M | 1h | short_only | BOMEUSDT | 15 | 1.8511881600000069 |
+| M | 1h | combined | PEPEUSDT | 116 | -2.1005895876205694 |
+| M | 1h | combined | PUMPUSDT | 49 | 0.8077889040000106 |
+| M | 1h | combined | BEATUSDT | 48 | -1.381631271999991 |
+| M | 1h | combined | PENGUUSDT | 66 | 1.038984936000022 |
+| M | 1h | combined | TRUMPUSDT | 52 | -0.17787878252180095 |
+| M | 1h | combined | BONKUSDT | 79 | 0.5105585040000138 |
+| M | 1h | combined | SHIBUSDT | 153 | -0.6531025390985314 |
+| M | 1h | combined | WIFUSDT | 83 | -1.3745553240380979 |
+| M | 1h | combined | BOMEUSDT | 85 | -2.8483193599999854 |
+| M | 4h | unconstrained | PEPEUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | PUMPUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | BEATUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | PENGUUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | TRUMPUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | BONKUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | SHIBUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | WIFUSDT | 0 | 0.0 |
+| M | 4h | unconstrained | BOMEUSDT | 0 | 0.0 |
+| M | 4h | with_stop | PEPEUSDT | 10 | 0.09916481600000279 |
+| M | 4h | with_stop | PUMPUSDT | 5 | 0.8497008720000022 |
+| M | 4h | with_stop | BEATUSDT | 7 | -1.3699377040000025 |
+| M | 4h | with_stop | PENGUUSDT | 4 | -0.4401184319999998 |
+| M | 4h | with_stop | TRUMPUSDT | 8 | -1.6793953280000022 |
+| M | 4h | with_stop | BONKUSDT | 16 | -0.959993663999997 |
+| M | 4h | with_stop | SHIBUSDT | 19 | 4.508741176000005 |
+| M | 4h | with_stop | WIFUSDT | 15 | 0.14934562400000614 |
+| M | 4h | with_stop | BOMEUSDT | 8 | -0.8802368639999959 |
+| M | 4h | long_only | PEPEUSDT | 0 | 0.0 |
+| M | 4h | long_only | PUMPUSDT | 0 | 0.0 |
+| M | 4h | long_only | BEATUSDT | 0 | 0.0 |
+| M | 4h | long_only | PENGUUSDT | 0 | 0.0 |
+| M | 4h | long_only | TRUMPUSDT | 0 | 0.0 |
+| M | 4h | long_only | BONKUSDT | 0 | 0.0 |
+| M | 4h | long_only | SHIBUSDT | 0 | 0.0 |
+| M | 4h | long_only | WIFUSDT | 0 | 0.0 |
+| M | 4h | long_only | BOMEUSDT | 0 | 0.0 |
+| M | 4h | short_only | PEPEUSDT | 0 | 0.0 |
+| M | 4h | short_only | PUMPUSDT | 0 | 0.0 |
+| M | 4h | short_only | BEATUSDT | 0 | 0.0 |
+| M | 4h | short_only | PENGUUSDT | 0 | 0.0 |
+| M | 4h | short_only | TRUMPUSDT | 0 | 0.0 |
+| M | 4h | short_only | BONKUSDT | 0 | 0.0 |
+| M | 4h | short_only | SHIBUSDT | 0 | 0.0 |
+| M | 4h | short_only | WIFUSDT | 0 | 0.0 |
+| M | 4h | short_only | BOMEUSDT | 0 | 0.0 |
+| M | 4h | combined | PEPEUSDT | 6 | 2.9388034400000045 |
+| M | 4h | combined | PUMPUSDT | 3 | -4.941229164727499 |
+| M | 4h | combined | BEATUSDT | 5 | 2.449701000000004 |
+| M | 4h | combined | PENGUUSDT | 4 | 1.959401760000003 |
+| M | 4h | combined | TRUMPUSDT | 6 | 0.8260596787164178 |
+| M | 4h | combined | BONKUSDT | 1 | -8.447592343702533 |
+| M | 4h | combined | SHIBUSDT | 14 | 6.86119736000001 |
+| M | 4h | combined | WIFUSDT | 1 | -7.654095149970007 |
+| M | 4h | combined | BOMEUSDT | 6 | 2.9388034400000045 |
+
+## Frozen cross-cohort evaluation
+
+| source_cohort | target_cohort | timeframe | variant | symbol | short_history_whole | split | trades | total_return | pf | mdd |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| L5 | M | 15m | unconstrained | PEPEUSDT | False | full | 93 | 2.284774709338229 | 1.2589567884343296 | -1.671834673908918 |
+| L5 | M | 15m | unconstrained | PEPEUSDT | False | train | 59 | 1.9292127551936453 | 1.3489004522606503 | -1.671834673908918 |
+| L5 | M | 15m | unconstrained | PEPEUSDT | False | test | 34 | 0.3555619541445836 | 1.1079557895318002 | -1.0008174281046287 |
+| L5 | M | 15m | unconstrained | PUMPUSDT | False | full | 34 | -2.5413473759999885 | 0.5448269060845206 | -2.79759048830066 |
+| L5 | M | 15m | unconstrained | PUMPUSDT | False | train | 22 | -1.320677687999993 | 0.6129302693450855 | -1.950160215719736 |
+| L5 | M | 15m | unconstrained | PUMPUSDT | False | test | 12 | -1.2206696879999959 | 0.4378073352464897 | -1.770977393225113 |
+| L5 | M | 15m | unconstrained | BEATUSDT | False | full | 43 | 0.6706256880000141 | 1.1441365027774926 | -1.69807146616069 |
+| L5 | M | 15m | unconstrained | BEATUSDT | False | train | 28 | 0.8206376880000107 | 1.2939639019507359 | -0.7843338751431143 |
+| L5 | M | 15m | unconstrained | BEATUSDT | False | test | 15 | -0.15001199999999631 | 0.9193954040176275 | -1.0149803715834582 |
+| L5 | M | 15m | unconstrained | PENGUUSDT | False | full | 53 | -1.3385410659203396 | 0.804649534125631 | -2.1402625275510276 |
+| L5 | M | 15m | unconstrained | PENGUUSDT | False | train | 34 | -0.7352256672518702 | 0.8308850539456906 | -2.0593439820349873 |
+| L5 | M | 15m | unconstrained | PENGUUSDT | False | test | 19 | -0.6033153986684694 | 0.7591081741477261 | -1.8210604295168673 |
+| L5 | M | 15m | unconstrained | TRUMPUSDT | False | full | 34 | 1.0320119223763904 | 1.4108140572486554 | -0.7792051384047116 |
+| L5 | M | 15m | unconstrained | TRUMPUSDT | False | train | 21 | 0.8310321491975057 | 1.577608332134165 | -0.6428976085697968 |
+| L5 | M | 15m | unconstrained | TRUMPUSDT | False | test | 13 | 0.20097977317888477 | 1.1872422553030915 | -0.7856649360302047 |
+| L5 | M | 15m | unconstrained | BONKUSDT | False | full | 80 | -4.074485875459774 | 0.6454215290832722 | -4.9780719569830145 |
+| L5 | M | 15m | unconstrained | BONKUSDT | False | train | 53 | -3.8609366576627773 | 0.5416631868149556 | -4.395929195971682 |
+| L5 | M | 15m | unconstrained | BONKUSDT | False | test | 27 | -0.21354921779699648 | 0.9303781219671535 | -1.1538885941620782 |
+| L5 | M | 15m | unconstrained | SHIBUSDT | False | full | 142 | -4.15640187003384 | 0.7461324242609912 | -5.901207389525613 |
+| L5 | M | 15m | unconstrained | SHIBUSDT | False | train | 87 | -3.401529431489117 | 0.6816620255143068 | -3.7474891310087353 |
+| L5 | M | 15m | unconstrained | SHIBUSDT | False | test | 55 | -0.7548724385447241 | 0.8672645732682052 | -2.5625412208899805 |
+| L5 | M | 15m | unconstrained | WIFUSDT | False | full | 68 | -5.295212380981391 | 0.526744491549174 | -5.7173926929385015 |
+| L5 | M | 15m | unconstrained | WIFUSDT | False | train | 37 | -3.9721898879999844 | 0.4179070018261955 | -3.9870746640825385 |
+| L5 | M | 15m | unconstrained | WIFUSDT | False | test | 31 | -1.3230224929814063 | 0.6968971991657866 | -1.8631857394277191 |
+| L5 | M | 15m | unconstrained | BOMEUSDT | False | full | 63 | -1.7104278457211015 | 0.7934043972434722 | -3.9787517369153322 |
+| L5 | M | 15m | unconstrained | BOMEUSDT | False | train | 37 | -2.8044210914869407 | 0.5354186433202943 | -3.638247631232022 |
+| L5 | M | 15m | unconstrained | BOMEUSDT | False | test | 26 | 1.0939932457658392 | 1.4878099487499832 | -0.8094548567391816 |
+| L5 | M | 15m | with_stop | PEPEUSDT | False | full | 150 | -0.2374378343906173 | 0.9873906204975076 | -4.607635409770739 |
+| L5 | M | 15m | with_stop | PEPEUSDT | False | train | 97 | 0.745506838710351 | 1.0611879197620488 | -4.607635409770739 |
+| L5 | M | 15m | with_stop | PEPEUSDT | False | test | 53 | -0.9829446731009679 | 0.8521079523109325 | -2.43010774450233 |
+| L5 | M | 15m | with_stop | PUMPUSDT | False | full | 58 | 0.6027137972662595 | 1.0877540236761614 | -1.9929697820581045 |
+| L5 | M | 15m | with_stop | PUMPUSDT | False | train | 37 | 0.8504181020224229 | 1.2147371098548632 | -1.9929697820581045 |
+| L5 | M | 15m | with_stop | PUMPUSDT | False | test | 21 | -0.2477043047561635 | 0.9148180308813295 | -1.6003101672379263 |
+| L5 | M | 15m | with_stop | BEATUSDT | False | full | 70 | 1.4027328558055694 | 1.1518244669397617 | -2.8909357410248733 |
+| L5 | M | 15m | with_stop | BEATUSDT | False | train | 45 | 2.122988678089275 | 1.4164384136442851 | -2.8909357410248733 |
+| L5 | M | 15m | with_stop | BEATUSDT | False | test | 25 | -0.7202558222837057 | 0.8260759843928887 | -1.8502079271335035 |
+| L5 | M | 15m | with_stop | PENGUUSDT | False | full | 125 | -3.499607887029203 | 0.8154315947113641 | -8.815184423185856 |
+| L5 | M | 15m | with_stop | PENGUUSDT | False | train | 87 | -2.520030955428854 | 0.8161581615930084 | -8.815184423185856 |
+| L5 | M | 15m | with_stop | PENGUUSDT | False | test | 38 | -0.9795769316003498 | 0.8135357879830343 | -2.681675091905162 |
+| L5 | M | 15m | with_stop | TRUMPUSDT | False | full | 76 | -3.546812143253722 | 0.6568940349911894 | -4.402003976538356 |
+| L5 | M | 15m | with_stop | TRUMPUSDT | False | train | 45 | -3.1459995262926275 | 0.5649122644802222 | -3.9379826848028308 |
+| L5 | M | 15m | with_stop | TRUMPUSDT | False | test | 31 | -0.4008126169610951 | 0.8709820451642784 | -1.1155088560375057 |
+| L5 | M | 15m | with_stop | BONKUSDT | False | full | 169 | -11.265052480562963 | 0.6254780901724326 | -18.00312427416639 |
+| L5 | M | 15m | with_stop | BONKUSDT | False | train | 108 | -9.601849163175117 | 0.5514894644689085 | -10.685481130261014 |
+| L5 | M | 15m | with_stop | BONKUSDT | False | test | 61 | -1.6632033173878444 | 0.8081697972929591 | -8.035337178325443 |
+| L5 | M | 15m | with_stop | SHIBUSDT | False | full | 231 | -10.888853068169507 | 0.6547260489021491 | -13.893738935562109 |
+| L5 | M | 15m | with_stop | SHIBUSDT | False | train | 127 | -5.189885044924669 | 0.6930474108943173 | -8.438626392639494 |
+| L5 | M | 15m | with_stop | SHIBUSDT | False | test | 104 | -5.698968023244837 | 0.610435561601582 | -8.238720806159366 |
+| L5 | M | 15m | with_stop | WIFUSDT | False | full | 155 | -0.4819666416570979 | 0.9765977965365571 | -3.7968756946390307 |
+| L5 | M | 15m | with_stop | WIFUSDT | False | train | 93 | 1.7300257196593862 | 1.1557549789530455 | -3.0297232709791158 |
+| L5 | M | 15m | with_stop | WIFUSDT | False | test | 62 | -2.2119923613164834 | 0.7668536821851559 | -2.8076314555733206 |
+| L5 | M | 15m | with_stop | BOMEUSDT | False | full | 139 | -6.661303110975648 | 0.6891146606538961 | -11.032887369555244 |
+| L5 | M | 15m | with_stop | BOMEUSDT | False | train | 73 | -8.406659247672648 | 0.4501021179687908 | -8.894594856004893 |
+| L5 | M | 15m | with_stop | BOMEUSDT | False | test | 66 | 1.7453561366969985 | 1.2842966580469113 | -2.593403606020913 |
+| L5 | M | 15m | long_only | PEPEUSDT | False | full | 21 | 3.9874971360000044 | inf | -3.1728368895952057 |
+| L5 | M | 15m | long_only | PEPEUSDT | False | train | 12 | 2.278569792000002 | inf | -3.1728368895952057 |
+| L5 | M | 15m | long_only | PEPEUSDT | False | test | 9 | 1.7089273440000021 | inf | -2.7830203071970874 |
+| L5 | M | 15m | long_only | PUMPUSDT | False | full | 8 | 1.5190465280000014 | inf | -4.5337319239193405 |
+| L5 | M | 15m | long_only | PUMPUSDT | False | train | 6 | -0.8331478649079299 | 0.5326094887232236 | -2.3891450387458715 |
+| L5 | M | 15m | long_only | PUMPUSDT | False | test | 2 | 0.37976163199999957 | inf | -0.4742986237646793 |
+| L5 | M | 15m | long_only | BEATUSDT | False | full | 9 | 1.7089273440000023 | inf | -1.3712085548820323 |
+| L5 | M | 15m | long_only | BEATUSDT | False | train | 4 | 0.7595232640000023 | inf | -1.3712085548820323 |
+| L5 | M | 15m | long_only | BEATUSDT | False | test | 5 | 0.9494040800000004 | inf | -0.667207793416892 |
+| L5 | M | 15m | long_only | PENGUUSDT | False | full | 24 | -4.296425351073207 | 0.5040879501118273 | -8.327822258010203 |
+| L5 | M | 15m | long_only | PENGUUSDT | False | train | 24 | -3.8551942962772494 | 0.5311381814964345 | -8.096004499980227 |
+| L5 | M | 15m | long_only | PENGUUSDT | False | test | 4 | 0.759523264000002 | inf | -3.4771775087185217 |
+| L5 | M | 15m | long_only | TRUMPUSDT | False | full | 12 | 2.2785697920000048 | inf | -0.9517736152381279 |
+| L5 | M | 15m | long_only | TRUMPUSDT | False | train | 8 | 1.5190465280000023 | inf | -0.7500615702617575 |
+| L5 | M | 15m | long_only | TRUMPUSDT | False | test | 4 | 0.759523264000002 | inf | -0.9661920255331986 |
+| L5 | M | 15m | long_only | BONKUSDT | False | full | 25 | -1.5479540742953577 | 0.7464487588667772 | -6.762640559023112 |
+| L5 | M | 15m | long_only | BONKUSDT | False | train | 16 | 3.038093056000006 | inf | -6.762640559023112 |
+| L5 | M | 15m | long_only | BONKUSDT | False | test | 9 | -4.586047130295364 | 0.24881625295559248 | -6.314626995345216 |
+| L5 | M | 15m | long_only | SHIBUSDT | False | full | 17 | -1.9367317654898717 | 0.6106934746478471 | -7.858671474723826 |
+| L5 | M | 15m | long_only | SHIBUSDT | False | train | 9 | 1.7089273440000066 | inf | -7.858671474723826 |
+| L5 | M | 15m | long_only | SHIBUSDT | False | test | 8 | -3.6456591094898787 | 0.267178395158433 | -5.006447875574451 |
+| L5 | M | 15m | long_only | WIFUSDT | False | full | 25 | 1.1403023206598522 | 1.332686839325375 | -7.068542775553817 |
+| L5 | M | 15m | long_only | WIFUSDT | False | train | 13 | 2.4684506080000026 | inf | -7.068542775553817 |
+| L5 | M | 15m | long_only | WIFUSDT | False | test | 12 | -1.3281482873401498 | 0.6125085007150408 | -3.7170986367914813 |
+| L5 | M | 15m | long_only | BOMEUSDT | False | full | 26 | 4.943957659042666 | inf | -6.072575940487654 |
+| L5 | M | 15m | long_only | BOMEUSDT | False | train | 11 | 2.0886889760000047 | inf | -6.072575940487654 |
+| L5 | M | 15m | long_only | BOMEUSDT | False | test | 15 | 2.8552686830426603 | inf | -3.843590387903591 |
+| L5 | M | 15m | short_only | PEPEUSDT | False | full | 93 | 2.284774709338229 | 1.2589567884343296 | -1.671834673908918 |
+| L5 | M | 15m | short_only | PEPEUSDT | False | train | 59 | 1.9292127551936453 | 1.3489004522606503 | -1.671834673908918 |
+| L5 | M | 15m | short_only | PEPEUSDT | False | test | 34 | 0.3555619541445836 | 1.1079557895318002 | -1.0008174281046287 |
+| L5 | M | 15m | short_only | PUMPUSDT | False | full | 34 | -2.5413473759999885 | 0.5448269060845206 | -2.79759048830066 |
+| L5 | M | 15m | short_only | PUMPUSDT | False | train | 22 | -1.320677687999993 | 0.6129302693450855 | -1.950160215719736 |
+| L5 | M | 15m | short_only | PUMPUSDT | False | test | 12 | -1.2206696879999959 | 0.4378073352464897 | -1.770977393225113 |
+| L5 | M | 15m | short_only | BEATUSDT | False | full | 43 | 0.6706256880000141 | 1.1441365027774926 | -1.69807146616069 |
+| L5 | M | 15m | short_only | BEATUSDT | False | train | 28 | 0.8206376880000107 | 1.2939639019507359 | -0.7843338751431143 |
+| L5 | M | 15m | short_only | BEATUSDT | False | test | 15 | -0.15001199999999631 | 0.9193954040176275 | -1.0149803715834582 |
+| L5 | M | 15m | short_only | PENGUUSDT | False | full | 53 | -1.3385410659203396 | 0.804649534125631 | -2.1402625275510276 |
+| L5 | M | 15m | short_only | PENGUUSDT | False | train | 34 | -0.7352256672518702 | 0.8308850539456906 | -2.0593439820349873 |
+| L5 | M | 15m | short_only | PENGUUSDT | False | test | 19 | -0.6033153986684694 | 0.7591081741477261 | -1.8210604295168673 |
+| L5 | M | 15m | short_only | TRUMPUSDT | False | full | 34 | 1.0320119223763904 | 1.4108140572486554 | -0.7792051384047116 |
+| L5 | M | 15m | short_only | TRUMPUSDT | False | train | 21 | 0.8310321491975057 | 1.577608332134165 | -0.6428976085697968 |
+| L5 | M | 15m | short_only | TRUMPUSDT | False | test | 13 | 0.20097977317888477 | 1.1872422553030915 | -0.7856649360302047 |
+| L5 | M | 15m | short_only | BONKUSDT | False | full | 80 | -4.074485875459774 | 0.6454215290832722 | -4.9780719569830145 |
+| L5 | M | 15m | short_only | BONKUSDT | False | train | 53 | -3.8609366576627773 | 0.5416631868149556 | -4.395929195971682 |
+| L5 | M | 15m | short_only | BONKUSDT | False | test | 27 | -0.21354921779699648 | 0.9303781219671535 | -1.1538885941620782 |
+| L5 | M | 15m | short_only | SHIBUSDT | False | full | 142 | -4.15640187003384 | 0.7461324242609912 | -5.901207389525613 |
+| L5 | M | 15m | short_only | SHIBUSDT | False | train | 87 | -3.401529431489117 | 0.6816620255143068 | -3.7474891310087353 |
+| L5 | M | 15m | short_only | SHIBUSDT | False | test | 55 | -0.7548724385447241 | 0.8672645732682052 | -2.5625412208899805 |
+| L5 | M | 15m | short_only | WIFUSDT | False | full | 68 | -5.295212380981391 | 0.526744491549174 | -5.7173926929385015 |
+| L5 | M | 15m | short_only | WIFUSDT | False | train | 37 | -3.9721898879999844 | 0.4179070018261955 | -3.9870746640825385 |
+| L5 | M | 15m | short_only | WIFUSDT | False | test | 31 | -1.3230224929814063 | 0.6968971991657866 | -1.8631857394277191 |
+| L5 | M | 15m | short_only | BOMEUSDT | False | full | 63 | -1.7104278457211015 | 0.7934043972434722 | -3.9787517369153322 |
+| L5 | M | 15m | short_only | BOMEUSDT | False | train | 37 | -2.8044210914869407 | 0.5354186433202943 | -3.638247631232022 |
+| L5 | M | 15m | short_only | BOMEUSDT | False | test | 26 | 1.0939932457658392 | 1.4878099487499832 | -0.8094548567391816 |
+| L5 | M | 15m | combined | PEPEUSDT | False | full | 88 | 3.8529396697992144 | 1.5333976151161484 | -1.8725928887693768 |
+| L5 | M | 15m | combined | PEPEUSDT | False | train | 50 | 2.919652960416965 | 1.7515545805076909 | -1.8725928887693768 |
+| L5 | M | 15m | combined | PEPEUSDT | False | test | 38 | 0.9332867093822494 | 1.279546594031899 | -1.3755106715537746 |
+| L5 | M | 15m | combined | PUMPUSDT | False | full | 34 | -0.5520254586441486 | 0.882547041506673 | -2.1962143206864213 |
+| L5 | M | 15m | combined | PUMPUSDT | False | train | 21 | -0.2423689712348614 | 0.9095703906272011 | -2.0813845113907385 |
+| L5 | M | 15m | combined | PUMPUSDT | False | test | 13 | -0.3096564874092876 | 0.8466876954393371 | -1.88739345323849 |
+| L5 | M | 15m | combined | BEATUSDT | False | full | 38 | 0.8908225385803621 | 1.1655726793130496 | -3.702954567933856 |
+| L5 | M | 15m | combined | BEATUSDT | False | train | 19 | 1.120466875929293 | 1.5309943921049205 | -2.304301771788438 |
+| L5 | M | 15m | combined | BEATUSDT | False | test | 19 | -0.2296443373489321 | 0.9297749808872531 | -3.4401582328571925 |
+| L5 | M | 15m | combined | PENGUUSDT | False | full | 77 | -2.8332308293635595 | 0.7748821939590653 | -5.907788628925798 |
+| L5 | M | 15m | combined | PENGUUSDT | False | train | 52 | -2.3088125748115393 | 0.7493420768666135 | -5.139162619498774 |
+| L5 | M | 15m | combined | PENGUUSDT | False | test | 25 | -0.5244182545520217 | 0.8445955262557416 | -2.4015952599033943 |
+| L5 | M | 15m | combined | TRUMPUSDT | False | full | 39 | 1.0194895882961623 | 1.3270353630496605 | -2.3406588509067143 |
+| L5 | M | 15m | combined | TRUMPUSDT | False | train | 25 | -0.2069055994433898 | 0.9275549694870243 | -2.3406588509067143 |
+| L5 | M | 15m | combined | TRUMPUSDT | False | test | 14 | 1.226395187739552 | 5.692858079478972 | -0.3262399532359346 |
+| L5 | M | 15m | combined | BONKUSDT | False | full | 96 | -2.198374724494084 | 0.8469327123546045 | -5.618648575476386 |
+| L5 | M | 15m | combined | BONKUSDT | False | train | 59 | -3.7698269969479976 | 0.6601274208122463 | -5.618648575476386 |
+| L5 | M | 15m | combined | BONKUSDT | False | test | 37 | 1.5714522724539124 | 1.4805278535260262 | -2.005051587572969 |
+| L5 | M | 15m | combined | SHIBUSDT | False | full | 144 | 3.6535121485020925 | 1.3213158213778335 | -3.0297002547961682 |
+| L5 | M | 15m | combined | SHIBUSDT | False | train | 85 | 1.264878811400675 | 1.1698289369733543 | -3.0297002547961682 |
+| L5 | M | 15m | combined | SHIBUSDT | False | test | 59 | 2.388633337101418 | 1.6089549140829191 | -2.0288195008861583 |
+| L5 | M | 15m | combined | WIFUSDT | False | full | 85 | 1.3067359478610647 | 1.1333924605911463 | -3.502307401183181 |
+| L5 | M | 15m | combined | WIFUSDT | False | train | 48 | 0.057631778503198346 | 1.0089630364445332 | -3.502307401183181 |
+| L5 | M | 15m | combined | WIFUSDT | False | test | 37 | 1.2491041693578668 | 1.3710684692009967 | -1.5266434729824074 |
+| L5 | M | 15m | combined | BOMEUSDT | False | full | 88 | -4.46623246079151 | 0.6732618688061855 | -6.4520487875825 |
+| L5 | M | 15m | combined | BOMEUSDT | False | train | 47 | -3.992093913700675 | 0.5332742987056232 | -4.706201207650032 |
+| L5 | M | 15m | combined | BOMEUSDT | False | test | 41 | -0.4741385470908359 | 0.9073177887166698 | -2.663138492814539 |
+| L5 | M | 1h | unconstrained | PEPEUSDT | False | full | 30 | 3.048627411193578 | 1.4873368274984287 | -2.961068654587334 |
+| L5 | M | 1h | unconstrained | PEPEUSDT | False | train | 14 | 2.763390229054968 | 2.0533946567403825 | -1.343698734574581 |
+| L5 | M | 1h | unconstrained | PEPEUSDT | False | test | 16 | 0.2852371821386097 | 1.0785264767710134 | -1.7280093142469926 |
+| L5 | M | 1h | unconstrained | PUMPUSDT | False | full | 26 | 5.582350059232039 | 2.50667865769052 | -2.2050198995926373 |
+| L5 | M | 1h | unconstrained | PUMPUSDT | False | train | 13 | 3.629583156345808 | 3.9024371632490666 | -1.353587039652506 |
+| L5 | M | 1h | unconstrained | PUMPUSDT | False | test | 13 | 1.9527669028862298 | 1.7955732561311222 | -2.2846526383624255 |
+| L5 | M | 1h | unconstrained | BEATUSDT | False | full | 18 | 1.8517507616683946 | 1.3094781168058904 | -3.963447630512181 |
+| L5 | M | 1h | unconstrained | BEATUSDT | False | train | 10 | 0.8522724190513139 | 1.2397367073068872 | -3.963447630512181 |
+| L5 | M | 1h | unconstrained | BEATUSDT | False | test | 8 | 0.9994783426170807 | 1.4115742912774756 | -2.720515616854813 |
+| L5 | M | 1h | unconstrained | PENGUUSDT | False | full | 58 | -0.5155021861820359 | 0.9691618609552426 | -3.501159465057209 |
+| L5 | M | 1h | unconstrained | PENGUUSDT | False | train | 36 | 0.670210531974618 | 1.0649098923364497 | -2.9335260781443844 |
+| L5 | M | 1h | unconstrained | PENGUUSDT | False | test | 22 | -1.1857127181566538 | 0.8144755388782082 | -2.2734793418971453 |
+| L5 | M | 1h | unconstrained | TRUMPUSDT | False | full | 23 | -1.1062376620882912 | 0.7899358744787608 | -3.2053850631203202 |
+| L5 | M | 1h | unconstrained | TRUMPUSDT | False | train | 10 | -0.7205929819977663 | 0.7310614444369623 | -2.165866391444488 |
+| L5 | M | 1h | unconstrained | TRUMPUSDT | False | test | 13 | -0.38564468009052416 | 0.8509178987541892 | -2.6417905227683 |
+| L5 | M | 1h | unconstrained | BONKUSDT | False | full | 58 | -7.6682049973862725 | 0.6181168252481828 | -8.675206963277024 |
+| L5 | M | 1h | unconstrained | BONKUSDT | False | train | 33 | -3.8295684370336187 | 0.6850824463938994 | -5.629738969179775 |
+| L5 | M | 1h | unconstrained | BONKUSDT | False | test | 25 | -3.838636560352654 | 0.515288970817461 | -4.869402926832162 |
+| L5 | M | 1h | unconstrained | SHIBUSDT | False | full | 61 | 2.46682764173265 | 1.2268471006565134 | -2.500230859222068 |
+| L5 | M | 1h | unconstrained | SHIBUSDT | False | train | 27 | 1.1380757415543485 | 1.201279904286221 | -2.500230859222068 |
+| L5 | M | 1h | unconstrained | SHIBUSDT | False | test | 34 | 1.3287519001783017 | 1.2545398261484277 | -2.048459307479795 |
+| L5 | M | 1h | unconstrained | WIFUSDT | False | full | 58 | 0.8919726408977616 | 1.0589739042642756 | -4.44851993027477 |
+| L5 | M | 1h | unconstrained | WIFUSDT | False | train | 41 | 0.1015745273469463 | 1.0084156034409566 | -3.5408178676710906 |
+| L5 | M | 1h | unconstrained | WIFUSDT | False | test | 17 | 0.7903981135508156 | 1.258715612436244 | -2.049503908994066 |
+| L5 | M | 1h | unconstrained | BOMEUSDT | False | full | 47 | 5.652740010669839 | 1.623720199022814 | -2.7696201121095725 |
+| L5 | M | 1h | unconstrained | BOMEUSDT | False | train | 23 | 4.3794398394089145 | 2.1099906754820608 | -1.648715158391519 |
+| L5 | M | 1h | unconstrained | BOMEUSDT | False | test | 24 | 1.2733001712609235 | 1.2488145058907736 | -1.7383200373097991 |
+| L5 | M | 1h | with_stop | PEPEUSDT | False | full | 24 | 4.55429766371917 | 3.6565094538240164 | -1.9976682047227654 |
+| L5 | M | 1h | with_stop | PEPEUSDT | False | train | 15 | 1.704893423719158 | 1.9944597020858257 | -1.9976682047227654 |
+| L5 | M | 1h | with_stop | PEPEUSDT | False | test | 9 | 2.8494042400000126 | inf | -1.644849022221893 |
+| L5 | M | 1h | with_stop | PUMPUSDT | False | full | 8 | -0.45113827294047437 | 0.8080803010443749 | -3.1333211963149807 |
+| L5 | M | 1h | with_stop | PUMPUSDT | False | train | 4 | 0.9494040800000035 | inf | -0.16128093350620476 |
+| L5 | M | 1h | with_stop | PUMPUSDT | False | test | 4 | -1.4005423529404784 | 0.40419227790410733 | -3.1630126098083187 |
+| L5 | M | 1h | with_stop | BEATUSDT | False | full | 16 | 5.509166064000014 | inf | -2.536048020537966 |
+| L5 | M | 1h | with_stop | BEATUSDT | False | train | 10 | 3.989165936000009 | inf | -2.536048020537966 |
+| L5 | M | 1h | with_stop | BEATUSDT | False | test | 6 | 1.520000128000004 | inf | -0.4392608191827226 |
+| L5 | M | 1h | with_stop | PENGUUSDT | False | full | 33 | 1.9648034270273518 | 1.337425077655246 | -4.154738383152477 |
+| L5 | M | 1h | with_stop | PENGUUSDT | False | train | 22 | 5.044744056558467 | 6.979261777583347 | -1.5502729627103362 |
+| L5 | M | 1h | with_stop | PENGUUSDT | False | test | 11 | -3.0799406295311162 | 0.38144183786195035 | -4.36242318153806 |
+| L5 | M | 1h | with_stop | TRUMPUSDT | False | full | 7 | 1.2546307016040132 | 3.754471977620158 | -0.901605122975371 |
+| L5 | M | 1h | with_stop | TRUMPUSDT | False | train | 5 | 1.5202385280000061 | inf | -0.901605122975371 |
+| L5 | M | 1h | with_stop | TRUMPUSDT | False | test | 2 | -0.2656078263959929 | 0.41687277865190253 | -0.6498583614614108 |
+| L5 | M | 1h | with_stop | BONKUSDT | False | full | 36 | -2.9296965648609854 | 0.7489124606916413 | -8.126550613605705 |
+| L5 | M | 1h | with_stop | BONKUSDT | False | train | 22 | -5.339788952515339 | 0.48049439421843715 | -8.126550613605705 |
+| L5 | M | 1h | with_stop | BONKUSDT | False | test | 14 | 2.410092387654354 | 2.734589308925017 | -1.4851127660219918 |
+| L5 | M | 1h | with_stop | SHIBUSDT | False | full | 26 | -0.5779245101867378 | 0.9178925915636937 | -4.934950145945061 |
+| L5 | M | 1h | with_stop | SHIBUSDT | False | train | 15 | -2.9378703904679333 | 0.5237276050556589 | -4.934950145945061 |
+| L5 | M | 1h | with_stop | SHIBUSDT | False | test | 11 | 2.3599458802811957 | 3.712040336250268 | -1.434863705337832 |
+| L5 | M | 1h | with_stop | WIFUSDT | False | full | 39 | -0.18310739893241296 | 0.9794739310214304 | -4.826980942609408 |
+| L5 | M | 1h | with_stop | WIFUSDT | False | train | 25 | -0.5024546188257744 | 0.9164061805616498 | -4.235067430693446 |
+| L5 | M | 1h | with_stop | WIFUSDT | False | test | 14 | 0.31934721989336096 | 1.109739161183173 | -2.7843500901040343 |
+| L5 | M | 1h | with_stop | BOMEUSDT | False | full | 28 | 1.4790922464499243 | 1.266511004571275 | -3.518040653217373 |
+| L5 | M | 1h | with_stop | BOMEUSDT | False | train | 16 | 1.991248365779166 | 1.8372237858951483 | -2.7156019624604397 |
+| L5 | M | 1h | with_stop | BOMEUSDT | False | test | 12 | -0.5121561193292417 | 0.8385099719077234 | -2.411256160836456 |
+| L5 | M | 1h | long_only | PEPEUSDT | False | full | 30 | 3.048627411193578 | 1.4873368274984287 | -2.961068654587334 |
+| L5 | M | 1h | long_only | PEPEUSDT | False | train | 14 | 2.763390229054968 | 2.0533946567403825 | -1.343698734574581 |
+| L5 | M | 1h | long_only | PEPEUSDT | False | test | 16 | 0.2852371821386097 | 1.0785264767710134 | -1.7280093142469926 |
+| L5 | M | 1h | long_only | PUMPUSDT | False | full | 26 | 5.582350059232039 | 2.50667865769052 | -2.2050198995926373 |
+| L5 | M | 1h | long_only | PUMPUSDT | False | train | 13 | 3.629583156345808 | 3.9024371632490666 | -1.353587039652506 |
+| L5 | M | 1h | long_only | PUMPUSDT | False | test | 13 | 1.9527669028862298 | 1.7955732561311222 | -2.2846526383624255 |
+| L5 | M | 1h | long_only | BEATUSDT | False | full | 18 | 1.8517507616683946 | 1.3094781168058904 | -3.963447630512181 |
+| L5 | M | 1h | long_only | BEATUSDT | False | train | 10 | 0.8522724190513139 | 1.2397367073068872 | -3.963447630512181 |
+| L5 | M | 1h | long_only | BEATUSDT | False | test | 8 | 0.9994783426170807 | 1.4115742912774756 | -2.720515616854813 |
+| L5 | M | 1h | long_only | PENGUUSDT | False | full | 58 | -0.5155021861820359 | 0.9691618609552426 | -3.501159465057209 |
+| L5 | M | 1h | long_only | PENGUUSDT | False | train | 36 | 0.670210531974618 | 1.0649098923364497 | -2.9335260781443844 |
+| L5 | M | 1h | long_only | PENGUUSDT | False | test | 22 | -1.1857127181566538 | 0.8144755388782082 | -2.2734793418971453 |
+| L5 | M | 1h | long_only | TRUMPUSDT | False | full | 23 | -1.1062376620882912 | 0.7899358744787608 | -3.2053850631203202 |
+| L5 | M | 1h | long_only | TRUMPUSDT | False | train | 10 | -0.7205929819977663 | 0.7310614444369623 | -2.165866391444488 |
+| L5 | M | 1h | long_only | TRUMPUSDT | False | test | 13 | -0.38564468009052416 | 0.8509178987541892 | -2.6417905227683 |
+| L5 | M | 1h | long_only | BONKUSDT | False | full | 58 | -7.6682049973862725 | 0.6181168252481828 | -8.675206963277024 |
+| L5 | M | 1h | long_only | BONKUSDT | False | train | 33 | -3.8295684370336187 | 0.6850824463938994 | -5.629738969179775 |
+| L5 | M | 1h | long_only | BONKUSDT | False | test | 25 | -3.838636560352654 | 0.515288970817461 | -4.869402926832162 |
+| L5 | M | 1h | long_only | SHIBUSDT | False | full | 61 | 2.46682764173265 | 1.2268471006565134 | -2.500230859222068 |
+| L5 | M | 1h | long_only | SHIBUSDT | False | train | 27 | 1.1380757415543485 | 1.201279904286221 | -2.500230859222068 |
+| L5 | M | 1h | long_only | SHIBUSDT | False | test | 34 | 1.3287519001783017 | 1.2545398261484277 | -2.048459307479795 |
+| L5 | M | 1h | long_only | WIFUSDT | False | full | 58 | 0.8919726408977616 | 1.0589739042642756 | -4.44851993027477 |
+| L5 | M | 1h | long_only | WIFUSDT | False | train | 41 | 0.1015745273469463 | 1.0084156034409566 | -3.5408178676710906 |
+| L5 | M | 1h | long_only | WIFUSDT | False | test | 17 | 0.7903981135508156 | 1.258715612436244 | -2.049503908994066 |
+| L5 | M | 1h | long_only | BOMEUSDT | False | full | 47 | 5.652740010669839 | 1.623720199022814 | -2.7696201121095725 |
+| L5 | M | 1h | long_only | BOMEUSDT | False | train | 23 | 4.3794398394089145 | 2.1099906754820608 | -1.648715158391519 |
+| L5 | M | 1h | long_only | BOMEUSDT | False | test | 24 | 1.2733001712609235 | 1.2488145058907736 | -1.7383200373097991 |
+| L5 | M | 1h | short_only | PEPEUSDT | False | full | 14 | -41.64524879528303 | 0.1327364518394434 | -407.72884182461786 |
+| L5 | M | 1h | short_only | PEPEUSDT | False | train | 14 | -142.97627310014397 | 0.04267749015181736 | -407.72884182461786 |
+| L5 | M | 1h | short_only | PEPEUSDT | False | test | 17 | 6.657146603318936 | 6.605351513326279 | -7.745680913930288 |
+| L5 | M | 1h | short_only | PUMPUSDT | False | full | 30 | 11.387383498978101 | 5.0219707472136115 | -20.091880154345482 |
+| L5 | M | 1h | short_only | PUMPUSDT | False | train | 26 | 12.285556412336492 | inf | -4.351917506824048 |
+| L5 | M | 1h | short_only | PUMPUSDT | False | test | 4 | -1.36039674102192 | 0.5195142152289942 | -22.61617061913985 |
+| L5 | M | 1h | short_only | BEATUSDT | False | full | 25 | 12.257481000000011 | inf | -447.93719362721936 |
+| L5 | M | 1h | short_only | BEATUSDT | False | train | 17 | -82.6225213631172 | 0.086714061787633 | -447.93719362721936 |
+| L5 | M | 1h | short_only | BEATUSDT | False | test | 10 | 4.902992400000007 | inf | -24.323532370085868 |
+| L5 | M | 1h | short_only | PENGUUSDT | False | full | 35 | 16.81464727359897 | inf | -39.75800603760709 |
+| L5 | M | 1h | short_only | PENGUUSDT | False | train | 23 | 11.276882520000015 | inf | -39.75800603760709 |
+| L5 | M | 1h | short_only | PENGUUSDT | False | test | 12 | 5.537764753598951 | inf | -8.298251814862596 |
+| L5 | M | 1h | short_only | TRUMPUSDT | False | full | 44 | 21.573166560000026 | inf | -13.018027364202837 |
+| L5 | M | 1h | short_only | TRUMPUSDT | False | train | 32 | 15.68957568000002 | inf | -5.253777718087526 |
+| L5 | M | 1h | short_only | TRUMPUSDT | False | test | 12 | 5.88359088000001 | inf | -14.95787001494989 |
+| L5 | M | 1h | short_only | BONKUSDT | False | full | 32 | 15.689575680000017 | inf | -29.721371166447756 |
+| L5 | M | 1h | short_only | BONKUSDT | False | train | 18 | -0.12846322632875057 | 0.984821591214187 | -29.721371166447756 |
+| L5 | M | 1h | short_only | BONKUSDT | False | test | 16 | 7.844787840000008 | inf | -6.121632346431727 |
+| L5 | M | 1h | short_only | SHIBUSDT | False | full | 18 | 8.453397210776165 | inf | -116.78558849669739 |
+| L5 | M | 1h | short_only | SHIBUSDT | False | train | 10 | -6.118998981736611 | 0.41899184866149886 | -116.78558849669739 |
+| L5 | M | 1h | short_only | SHIBUSDT | False | test | 26 | 12.37579113077617 | inf | -14.891867569986573 |
+| L5 | M | 1h | short_only | WIFUSDT | False | full | 57 | 27.947056680000042 | inf | -19.717246606372843 |
+| L5 | M | 1h | short_only | WIFUSDT | False | train | 39 | 18.67415705382913 | inf | -19.717246606372843 |
+| L5 | M | 1h | short_only | WIFUSDT | False | test | 19 | 9.315685560000016 | inf | -9.533585119373894 |
+| L5 | M | 1h | short_only | BOMEUSDT | False | full | 55 | 24.384571645134457 | 12.658404825763487 | -22.690569522571348 |
+| L5 | M | 1h | short_only | BOMEUSDT | False | train | 32 | 15.689575680000011 | inf | -14.393300073471426 |
+| L5 | M | 1h | short_only | BOMEUSDT | False | test | 23 | 8.694995965134448 | 5.15712789197772 | -25.894749764619508 |
+| L5 | M | 1h | combined | PEPEUSDT | False | full | 24 | 4.55429766371917 | 3.6565094538240164 | -1.9976682047227654 |
+| L5 | M | 1h | combined | PEPEUSDT | False | train | 15 | 1.704893423719158 | 1.9944597020858257 | -1.9976682047227654 |
+| L5 | M | 1h | combined | PEPEUSDT | False | test | 9 | 2.8494042400000126 | inf | -1.644849022221893 |
+| L5 | M | 1h | combined | PUMPUSDT | False | full | 8 | -0.45113827294047437 | 0.8080803010443749 | -3.1333211963149807 |
+| L5 | M | 1h | combined | PUMPUSDT | False | train | 4 | 0.9494040800000035 | inf | -0.16128093350620476 |
+| L5 | M | 1h | combined | PUMPUSDT | False | test | 4 | -1.4005423529404784 | 0.40419227790410733 | -3.1630126098083187 |
+| L5 | M | 1h | combined | BEATUSDT | False | full | 16 | 5.509166064000014 | inf | -2.536048020537966 |
+| L5 | M | 1h | combined | BEATUSDT | False | train | 10 | 3.989165936000009 | inf | -2.536048020537966 |
+| L5 | M | 1h | combined | BEATUSDT | False | test | 6 | 1.520000128000004 | inf | -0.4392608191827226 |
+| L5 | M | 1h | combined | PENGUUSDT | False | full | 33 | 1.9648034270273518 | 1.337425077655246 | -4.154738383152477 |
+| L5 | M | 1h | combined | PENGUUSDT | False | train | 22 | 5.044744056558467 | 6.979261777583347 | -1.5502729627103362 |
+| L5 | M | 1h | combined | PENGUUSDT | False | test | 11 | -3.0799406295311162 | 0.38144183786195035 | -4.36242318153806 |
+| L5 | M | 1h | combined | TRUMPUSDT | False | full | 7 | 1.2546307016040132 | 3.754471977620158 | -0.901605122975371 |
+| L5 | M | 1h | combined | TRUMPUSDT | False | train | 5 | 1.5202385280000061 | inf | -0.901605122975371 |
+| L5 | M | 1h | combined | TRUMPUSDT | False | test | 2 | -0.2656078263959929 | 0.41687277865190253 | -0.6498583614614108 |
+| L5 | M | 1h | combined | BONKUSDT | False | full | 36 | -2.9296965648609854 | 0.7489124606916413 | -8.126550613605705 |
+| L5 | M | 1h | combined | BONKUSDT | False | train | 22 | -5.339788952515339 | 0.48049439421843715 | -8.126550613605705 |
+| L5 | M | 1h | combined | BONKUSDT | False | test | 14 | 2.410092387654354 | 2.734589308925017 | -1.4851127660219918 |
+| L5 | M | 1h | combined | SHIBUSDT | False | full | 26 | -0.5779245101867378 | 0.9178925915636937 | -4.934950145945061 |
+| L5 | M | 1h | combined | SHIBUSDT | False | train | 15 | -2.9378703904679333 | 0.5237276050556589 | -4.934950145945061 |
+| L5 | M | 1h | combined | SHIBUSDT | False | test | 11 | 2.3599458802811957 | 3.712040336250268 | -1.434863705337832 |
+| L5 | M | 1h | combined | WIFUSDT | False | full | 39 | -0.18310739893241296 | 0.9794739310214304 | -4.826980942609408 |
+| L5 | M | 1h | combined | WIFUSDT | False | train | 25 | -0.5024546188257744 | 0.9164061805616498 | -4.235067430693446 |
+| L5 | M | 1h | combined | WIFUSDT | False | test | 14 | 0.31934721989336096 | 1.109739161183173 | -2.7843500901040343 |
+| L5 | M | 1h | combined | BOMEUSDT | False | full | 28 | 1.4790922464499243 | 1.266511004571275 | -3.518040653217373 |
+| L5 | M | 1h | combined | BOMEUSDT | False | train | 16 | 1.991248365779166 | 1.8372237858951483 | -2.7156019624604397 |
+| L5 | M | 1h | combined | BOMEUSDT | False | test | 12 | -0.5121561193292417 | 0.8385099719077234 | -2.411256160836456 |
+| L5 | M | 4h | unconstrained | PEPEUSDT | False | full | 80 | -0.488583717398851 | 0.9601520288260726 | -4.778198494976118 |
+| L5 | M | 4h | unconstrained | PEPEUSDT | False | train | 46 | 1.4500258324759443 | 1.2434838721742005 | -1.8168728118531892 |
+| L5 | M | 4h | unconstrained | PEPEUSDT | False | test | 34 | -1.9386095498747955 | 0.6925705625061095 | -3.5119876341224696 |
+| L5 | M | 4h | unconstrained | PUMPUSDT | False | full | 32 | 2.1612988257219063 | 1.6849602170977092 | -1.328713611433367 |
+| L5 | M | 4h | unconstrained | PUMPUSDT | False | train | 18 | 0.4892470404076581 | 1.2073990071969714 | -1.328713611433367 |
+| L5 | M | 4h | unconstrained | PUMPUSDT | False | test | 14 | 1.6720517853142487 | 3.09951564176786 | -0.7127841102089333 |
+| L5 | M | 4h | unconstrained | BEATUSDT | False | full | 33 | 0.6549945918700351 | 1.135007310475883 | -3.199808267796244 |
+| L5 | M | 4h | unconstrained | BEATUSDT | False | train | 25 | 1.020616261370482 | 1.3049672199372038 | -1.8372527753728378 |
+| L5 | M | 4h | unconstrained | BEATUSDT | False | test | 8 | -0.36562166950044694 | 0.7570469304326137 | -2.5147685508633733 |
+| L5 | M | 4h | unconstrained | PENGUUSDT | False | full | 57 | 3.4539403971283806 | 1.57183493100318 | -8.043638678792416 |
+| L5 | M | 4h | unconstrained | PENGUUSDT | False | train | 43 | 2.48637000814013 | 1.5257595488474018 | -8.043638678792416 |
+| L5 | M | 4h | unconstrained | PENGUUSDT | False | test | 13 | 0.7776895729882497 | 1.5932036057390015 | -1.1317417318301284 |
+| L5 | M | 4h | unconstrained | TRUMPUSDT | False | full | 48 | -5.561352521728981 | 0.4975239712765084 | -5.649088963688282 |
+| L5 | M | 4h | unconstrained | TRUMPUSDT | False | train | 32 | -2.4099478302987207 | 0.6232952619375155 | -4.193129475800633 |
+| L5 | M | 4h | unconstrained | TRUMPUSDT | False | test | 16 | -3.1514046914302605 | 0.3252462035531773 | -3.2391411333895483 |
+| L5 | M | 4h | unconstrained | BONKUSDT | False | full | 97 | 3.2161658666525588 | 1.272916804514775 | -2.1713289140668635 |
+| L5 | M | 4h | unconstrained | BONKUSDT | False | train | 47 | 4.981248752274187 | 2.564646169801996 | -1.61454820240233 |
+| L5 | M | 4h | unconstrained | BONKUSDT | False | test | 50 | -1.7650828856216272 | 0.7947767098738379 | -2.279085596416942 |
+| L5 | M | 4h | unconstrained | SHIBUSDT | False | full | 132 | -2.4117421219592927 | 0.8842188605927156 | -4.509515494530369 |
+| L5 | M | 4h | unconstrained | SHIBUSDT | False | train | 82 | 1.5435074519052439 | 1.138078137045937 | -4.509515494530369 |
+| L5 | M | 4h | unconstrained | SHIBUSDT | False | test | 49 | -3.522369817795358 | 0.6179142625367274 | -4.089392552097704 |
+| L5 | M | 4h | unconstrained | WIFUSDT | False | full | 100 | 0.8029573691742231 | 1.0543741256192014 | -11.350170795744111 |
+| L5 | M | 4h | unconstrained | WIFUSDT | False | train | 63 | 1.5667204118066536 | 1.180355543916238 | -11.350170795744111 |
+| L5 | M | 4h | unconstrained | WIFUSDT | False | test | 37 | -0.7637630426324309 | 0.8743898772273353 | -1.9376973418361068 |
+| L5 | M | 4h | unconstrained | BOMEUSDT | False | full | 79 | -3.573949053783873 | 0.7612081722161018 | -5.87269412258559 |
+| L5 | M | 4h | unconstrained | BOMEUSDT | False | train | 38 | -1.2220703317380446 | 0.8233618200212198 | -3.666930433617408 |
+| L5 | M | 4h | unconstrained | BOMEUSDT | False | test | 41 | -2.351878722045828 | 0.7077795576279989 | -2.8651817849773575 |
+| L5 | M | 4h | with_stop | PEPEUSDT | False | full | 99 | 3.353190733551744 | 1.1304005372798411 | -10.501493413670818 |
+| L5 | M | 4h | with_stop | PEPEUSDT | False | train | 62 | 3.0343398999463567 | 1.1814363296174741 | -7.253836639794703 |
+| L5 | M | 4h | with_stop | PEPEUSDT | False | test | 37 | 0.3188508336053873 | 1.035465093181649 | -9.228343088937915 |
+| L5 | M | 4h | with_stop | PUMPUSDT | False | full | 49 | -9.342778605301758 | 0.5912533076128662 | -14.860168783639732 |
+| L5 | M | 4h | with_stop | PUMPUSDT | False | train | 29 | -10.561518094852815 | 0.4192727197621832 | -12.141473553000683 |
+| L5 | M | 4h | with_stop | PUMPUSDT | False | test | 20 | 1.2187394895510564 | 1.2609482157086491 | -5.645363120984221 |
+| L5 | M | 4h | with_stop | BEATUSDT | False | full | 62 | -1.6352818725369658 | 0.9006385186440413 | -12.420163971758576 |
+| L5 | M | 4h | with_stop | BEATUSDT | False | train | 32 | -1.2448859942257156 | 0.8561618199462925 | -10.561361699978917 |
+| L5 | M | 4h | with_stop | BEATUSDT | False | test | 30 | -0.3903958783112494 | 0.949969374731992 | -12.274532534280706 |
+| L5 | M | 4h | with_stop | PENGUUSDT | False | full | 64 | 10.090882396370036 | 2.363024756346917 | -7.275071438631807 |
+| L5 | M | 4h | with_stop | PENGUUSDT | False | train | 46 | 4.539109956003682 | 1.6131197450125259 | -7.275071438631807 |
+| L5 | M | 4h | with_stop | PENGUUSDT | False | test | 17 | 5.361891624366353 | inf | -1.5489066680449308 |
+| L5 | M | 4h | with_stop | TRUMPUSDT | False | full | 48 | -4.7131246029925356 | 0.7355170557812485 | -10.085220229255773 |
+| L5 | M | 4h | with_stop | TRUMPUSDT | False | train | 30 | -1.6880837201418222 | 0.8350692237666675 | -8.076852245440715 |
+| L5 | M | 4h | with_stop | TRUMPUSDT | False | test | 18 | -3.0250408828507154 | 0.6011833322422121 | -7.871331923834951 |
+| L5 | M | 4h | with_stop | BONKUSDT | False | full | 100 | 7.608171696949233 | 1.3331403450725816 | -11.589144608427352 |
+| L5 | M | 4h | with_stop | BONKUSDT | False | train | 54 | 4.589703912467664 | 1.372507144292851 | -10.81896039875395 |
+| L5 | M | 4h | with_stop | BONKUSDT | False | test | 46 | 3.0184677844815706 | 1.2870187890329357 | -5.223205604286308 |
+| L5 | M | 4h | with_stop | SHIBUSDT | False | full | 155 | 1.2795234423312143 | 1.0312037577466509 | -11.367308025253738 |
+| L5 | M | 4h | with_stop | SHIBUSDT | False | train | 97 | 1.1555130522360533 | 1.046819440257545 | -8.2630581499431 |
+| L5 | M | 4h | with_stop | SHIBUSDT | False | test | 57 | -0.4456320579048377 | 0.972702862061199 | -9.273310274006722 |
+| L5 | M | 4h | with_stop | WIFUSDT | False | full | 101 | 20.22215329090286 | 3.239268231819962 | -7.166122458255112 |
+| L5 | M | 4h | with_stop | WIFUSDT | False | train | 66 | 11.673151864509418 | 2.9476700774154923 | -7.166122458255112 |
+| L5 | M | 4h | with_stop | WIFUSDT | False | test | 35 | 8.549001426393447 | 3.8146673636775383 | -3.43708658202549 |
+| L5 | M | 4h | with_stop | BOMEUSDT | False | full | 88 | 1.6457160025476436 | 1.06911593629639 | -10.30398573201879 |
+| L5 | M | 4h | with_stop | BOMEUSDT | False | train | 57 | 5.756849565514749 | 1.5343759519823277 | -6.920062018391775 |
+| L5 | M | 4h | with_stop | BOMEUSDT | False | test | 31 | -4.1111335629671055 | 0.6846786258034037 | -7.073099972804588 |
+| L5 | M | 4h | long_only | PEPEUSDT | False | full | 80 | -0.488583717398851 | 0.9601520288260726 | -4.778198494976118 |
+| L5 | M | 4h | long_only | PEPEUSDT | False | train | 46 | 1.4500258324759443 | 1.2434838721742005 | -1.8168728118531892 |
+| L5 | M | 4h | long_only | PEPEUSDT | False | test | 34 | -1.9386095498747955 | 0.6925705625061095 | -3.5119876341224696 |
+| L5 | M | 4h | long_only | PUMPUSDT | False | full | 32 | 2.1612988257219063 | 1.6849602170977092 | -1.328713611433367 |
+| L5 | M | 4h | long_only | PUMPUSDT | False | train | 18 | 0.4892470404076581 | 1.2073990071969714 | -1.328713611433367 |
+| L5 | M | 4h | long_only | PUMPUSDT | False | test | 14 | 1.6720517853142487 | 3.09951564176786 | -0.7127841102089333 |
+| L5 | M | 4h | long_only | BEATUSDT | False | full | 33 | 0.6549945918700351 | 1.135007310475883 | -3.199808267796244 |
+| L5 | M | 4h | long_only | BEATUSDT | False | train | 25 | 1.020616261370482 | 1.3049672199372038 | -1.8372527753728378 |
+| L5 | M | 4h | long_only | BEATUSDT | False | test | 8 | -0.36562166950044694 | 0.7570469304326137 | -2.5147685508633733 |
+| L5 | M | 4h | long_only | PENGUUSDT | False | full | 57 | 3.4539403971283806 | 1.57183493100318 | -8.043638678792416 |
+| L5 | M | 4h | long_only | PENGUUSDT | False | train | 43 | 2.48637000814013 | 1.5257595488474018 | -8.043638678792416 |
+| L5 | M | 4h | long_only | PENGUUSDT | False | test | 13 | 0.7776895729882497 | 1.5932036057390015 | -1.1317417318301284 |
+| L5 | M | 4h | long_only | TRUMPUSDT | False | full | 48 | -5.561352521728981 | 0.4975239712765084 | -5.649088963688282 |
+| L5 | M | 4h | long_only | TRUMPUSDT | False | train | 32 | -2.4099478302987207 | 0.6232952619375155 | -4.193129475800633 |
+| L5 | M | 4h | long_only | TRUMPUSDT | False | test | 16 | -3.1514046914302605 | 0.3252462035531773 | -3.2391411333895483 |
+| L5 | M | 4h | long_only | BONKUSDT | False | full | 97 | 3.2161658666525588 | 1.272916804514775 | -2.1713289140668635 |
+| L5 | M | 4h | long_only | BONKUSDT | False | train | 47 | 4.981248752274187 | 2.564646169801996 | -1.61454820240233 |
+| L5 | M | 4h | long_only | BONKUSDT | False | test | 50 | -1.7650828856216272 | 0.7947767098738379 | -2.279085596416942 |
+| L5 | M | 4h | long_only | SHIBUSDT | False | full | 132 | -2.4117421219592927 | 0.8842188605927156 | -4.509515494530369 |
+| L5 | M | 4h | long_only | SHIBUSDT | False | train | 82 | 1.5435074519052439 | 1.138078137045937 | -4.509515494530369 |
+| L5 | M | 4h | long_only | SHIBUSDT | False | test | 49 | -3.522369817795358 | 0.6179142625367274 | -4.089392552097704 |
+| L5 | M | 4h | long_only | WIFUSDT | False | full | 100 | 0.8029573691742231 | 1.0543741256192014 | -11.350170795744111 |
+| L5 | M | 4h | long_only | WIFUSDT | False | train | 63 | 1.5667204118066536 | 1.180355543916238 | -11.350170795744111 |
+| L5 | M | 4h | long_only | WIFUSDT | False | test | 37 | -0.7637630426324309 | 0.8743898772273353 | -1.9376973418361068 |
+| L5 | M | 4h | long_only | BOMEUSDT | False | full | 79 | -3.573949053783873 | 0.7612081722161018 | -5.87269412258559 |
+| L5 | M | 4h | long_only | BOMEUSDT | False | train | 38 | -1.2220703317380446 | 0.8233618200212198 | -3.666930433617408 |
+| L5 | M | 4h | long_only | BOMEUSDT | False | test | 41 | -2.351878722045828 | 0.7077795576279989 | -2.8651817849773575 |
+| L5 | M | 4h | short_only | PEPEUSDT | False | full | 5 | -0.6703656479999958 | 0.5864395584298484 | -1.638278364835878 |
+| L5 | M | 4h | short_only | PEPEUSDT | False | train | 3 | -1.2407232959999979 | 0.23457582337193927 | -1.638278364835878 |
+| L5 | M | 4h | short_only | PEPEUSDT | False | test | 2 | 0.5703576480000022 | inf | -0.18646470800471435 |
+| L5 | M | 4h | short_only | PUMPUSDT | False | full | 1 | 0.38023843200000207 | inf | -0.21625266074235694 |
+| L5 | M | 4h | short_only | PUMPUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| L5 | M | 4h | short_only | PUMPUSDT | False | test | 1 | 0.38023843200000207 | inf | -0.21625266074235694 |
+| L5 | M | 4h | short_only | BEATUSDT | False | full | 3 | -0.43024243199999807 | 0.4691516467438794 | -0.7976583275711892 |
+| L5 | M | 4h | short_only | BEATUSDT | False | train | 2 | -0.6203616479999998 | 0.23457582337193886 | -0.7976583275711892 |
+| L5 | M | 4h | short_only | BEATUSDT | False | test | 1 | 0.19011921600000178 | inf | -0.07663599612576945 |
+| L5 | M | 4h | short_only | PENGUUSDT | False | full | 2 | 0.5703576480000035 | inf | -0.298633545436187 |
+| L5 | M | 4h | short_only | PENGUUSDT | False | train | 1 | 0.38023843200000246 | inf | -0.298633545436187 |
+| L5 | M | 4h | short_only | PENGUUSDT | False | test | 1 | 0.19011921600000115 | inf | -0.1191182617475897 |
+| L5 | M | 4h | short_only | TRUMPUSDT | False | full | 1 | -2.4314425919999954 | 0.0 | -5.056390216237978 |
+| L5 | M | 4h | short_only | TRUMPUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| L5 | M | 4h | short_only | TRUMPUSDT | False | test | 1 | -2.4314425919999954 | 0.0 | -5.056390216237978 |
+| L5 | M | 4h | short_only | BONKUSDT | False | full | 3 | 0.7604768640000009 | inf | -0.7607506641334476 |
+| L5 | M | 4h | short_only | BONKUSDT | False | train | 1 | 0.19011921599999929 | inf | -0.7607506641334476 |
+| L5 | M | 4h | short_only | BONKUSDT | False | test | 2 | 0.5703576480000015 | inf | -0.0558442558943716 |
+| L5 | M | 4h | short_only | SHIBUSDT | False | full | 13 | -4.6326587520000055 | 0.3648957252452373 | -6.74676736836987 |
+| L5 | M | 4h | short_only | SHIBUSDT | False | train | 7 | -3.532050672000005 | 0.27367179393392776 | -5.0296979180588615 |
+| L5 | M | 4h | short_only | SHIBUSDT | False | test | 6 | -1.1006080800000009 | 0.5473435878678563 | -2.8229306118775077 |
+| L5 | M | 4h | short_only | WIFUSDT | False | full | 6 | 1.1407152960000022 | inf | -0.06876959760124009 |
+| L5 | M | 4h | short_only | WIFUSDT | False | train | 6 | 1.1407152960000022 | inf | -0.06876959760124009 |
+| L5 | M | 4h | short_only | WIFUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| L5 | M | 4h | short_only | BOMEUSDT | False | full | 5 | -1.6709657279999977 | 0.312767764495919 | -2.959701824276126 |
+| L5 | M | 4h | short_only | BOMEUSDT | False | train | 4 | -1.861084943999999 | 0.23457582337193905 | -2.959701824276126 |
+| L5 | M | 4h | short_only | BOMEUSDT | False | test | 1 | 0.19011921600000128 | inf | -0.0429081506338116 |
+| L5 | M | 4h | combined | PEPEUSDT | False | full | 99 | 3.353190733551744 | 1.1304005372798411 | -10.501493413670818 |
+| L5 | M | 4h | combined | PEPEUSDT | False | train | 62 | 3.0343398999463567 | 1.1814363296174741 | -7.253836639794703 |
+| L5 | M | 4h | combined | PEPEUSDT | False | test | 37 | 0.3188508336053873 | 1.035465093181649 | -9.228343088937915 |
+| L5 | M | 4h | combined | PUMPUSDT | False | full | 49 | -9.342778605301758 | 0.5912533076128662 | -14.860168783639732 |
+| L5 | M | 4h | combined | PUMPUSDT | False | train | 29 | -10.561518094852815 | 0.4192727197621832 | -12.141473553000683 |
+| L5 | M | 4h | combined | PUMPUSDT | False | test | 20 | 1.2187394895510564 | 1.2609482157086491 | -5.645363120984221 |
+| L5 | M | 4h | combined | BEATUSDT | False | full | 62 | -1.6352818725369658 | 0.9006385186440413 | -12.420163971758576 |
+| L5 | M | 4h | combined | BEATUSDT | False | train | 32 | -1.2448859942257156 | 0.8561618199462925 | -10.561361699978917 |
+| L5 | M | 4h | combined | BEATUSDT | False | test | 30 | -0.3903958783112494 | 0.949969374731992 | -12.274532534280706 |
+| L5 | M | 4h | combined | PENGUUSDT | False | full | 64 | 10.090882396370036 | 2.363024756346917 | -7.275071438631807 |
+| L5 | M | 4h | combined | PENGUUSDT | False | train | 46 | 4.539109956003682 | 1.6131197450125259 | -7.275071438631807 |
+| L5 | M | 4h | combined | PENGUUSDT | False | test | 17 | 5.361891624366353 | inf | -1.5489066680449308 |
+| L5 | M | 4h | combined | TRUMPUSDT | False | full | 48 | -4.7131246029925356 | 0.7355170557812485 | -10.085220229255773 |
+| L5 | M | 4h | combined | TRUMPUSDT | False | train | 30 | -1.6880837201418222 | 0.8350692237666675 | -8.076852245440715 |
+| L5 | M | 4h | combined | TRUMPUSDT | False | test | 18 | -3.0250408828507154 | 0.6011833322422121 | -7.871331923834951 |
+| L5 | M | 4h | combined | BONKUSDT | False | full | 100 | 7.608171696949233 | 1.3331403450725816 | -11.589144608427352 |
+| L5 | M | 4h | combined | BONKUSDT | False | train | 54 | 4.589703912467664 | 1.372507144292851 | -10.81896039875395 |
+| L5 | M | 4h | combined | BONKUSDT | False | test | 46 | 3.0184677844815706 | 1.2870187890329357 | -5.223205604286308 |
+| L5 | M | 4h | combined | SHIBUSDT | False | full | 155 | 1.2795234423312143 | 1.0312037577466509 | -11.367308025253738 |
+| L5 | M | 4h | combined | SHIBUSDT | False | train | 97 | 1.1555130522360533 | 1.046819440257545 | -8.2630581499431 |
+| L5 | M | 4h | combined | SHIBUSDT | False | test | 57 | -0.4456320579048377 | 0.972702862061199 | -9.273310274006722 |
+| L5 | M | 4h | combined | WIFUSDT | False | full | 101 | 20.22215329090286 | 3.239268231819962 | -7.166122458255112 |
+| L5 | M | 4h | combined | WIFUSDT | False | train | 66 | 11.673151864509418 | 2.9476700774154923 | -7.166122458255112 |
+| L5 | M | 4h | combined | WIFUSDT | False | test | 35 | 8.549001426393447 | 3.8146673636775383 | -3.43708658202549 |
+| L5 | M | 4h | combined | BOMEUSDT | False | full | 88 | 1.6457160025476436 | 1.06911593629639 | -10.30398573201879 |
+| L5 | M | 4h | combined | BOMEUSDT | False | train | 57 | 5.756849565514749 | 1.5343759519823277 | -6.920062018391775 |
+| L5 | M | 4h | combined | BOMEUSDT | False | test | 31 | -4.1111335629671055 | 0.6846786258034037 | -7.073099972804588 |
+| M | L5 | 15m | unconstrained | BTCUSDT | False | full | 17 | 6.148746453248755 | 4.645933481979078 | -5.738513385344275 |
+| M | L5 | 15m | unconstrained | BTCUSDT | False | train | 5 | 2.448504200000003 | inf | -5.738513385344275 |
+| M | L5 | 15m | unconstrained | BTCUSDT | False | test | 12 | 3.7002422532487524 | 3.1940792688606163 | -2.818512888782203 |
+| M | L5 | 15m | unconstrained | ETHUSDT | False | full | 11 | 5.386709240000012 | inf | -7.0272053417929765 |
+| M | L5 | 15m | unconstrained | ETHUSDT | False | train | 5 | 2.4485042000000035 | inf | -7.0272053417929765 |
+| M | L5 | 15m | unconstrained | ETHUSDT | False | test | 6 | 2.9382050400000095 | inf | -2.7674957984299935 |
+| M | L5 | 15m | unconstrained | BNBUSDT | False | full | 23 | 8.308802009367142 | 4.371235284828556 | -4.372493040999021 |
+| M | L5 | 15m | unconstrained | BNBUSDT | False | train | 14 | 6.855811760000006 | inf | -4.372493040999021 |
+| M | L5 | 15m | unconstrained | BNBUSDT | False | test | 9 | 1.4529902493671354 | 1.5895401035740198 | -3.1174379988882706 |
+| M | L5 | 15m | unconstrained | SOLUSDT | False | full | 19 | 5.7015221878091475 | 2.8314654628047546 | -3.9144887418816525 |
+| M | L5 | 15m | unconstrained | SOLUSDT | False | train | 9 | 4.407307560000005 | inf | -3.9144887418816525 |
+| M | L5 | 15m | unconstrained | SOLUSDT | False | test | 10 | 1.294214627809144 | 1.4157327314023778 | -3.709638017723585 |
+| M | L5 | 15m | unconstrained | XRPUSDT | False | full | 16 | 1.8819242838916315 | 1.3444484055182426 | -5.602236129788114 |
+| M | L5 | 15m | unconstrained | XRPUSDT | False | train | 9 | 4.407307560000005 | inf | -2.739812985675028 |
+| M | L5 | 15m | unconstrained | XRPUSDT | False | test | 7 | -2.5253832761083737 | 0.5377793622072973 | -5.8415982765608145 |
+| M | L5 | 15m | with_stop | BTCUSDT | False | full | 70 | 0.18440161841007052 | 1.0537861752171742 | -0.9667824131258287 |
+| M | L5 | 15m | with_stop | BTCUSDT | False | train | 36 | 0.5421738696012701 | 1.2981279135536987 | -0.9667824131258287 |
+| M | L5 | 15m | with_stop | BTCUSDT | False | test | 34 | -0.3577722511911995 | 0.777757133168624 | -0.7219975423433972 |
+| M | L5 | 15m | with_stop | ETHUSDT | False | full | 45 | -0.7518165648673545 | 0.8010212936086374 | -1.3228792084748058 |
+| M | L5 | 15m | with_stop | ETHUSDT | False | train | 21 | -0.8422312963352732 | 0.5754144041667288 | -1.3228792084748058 |
+| M | L5 | 15m | with_stop | ETHUSDT | False | test | 24 | 0.09041473146791858 | 1.0503781237410421 | -0.6899093282260382 |
+| M | L5 | 15m | with_stop | BNBUSDT | False | full | 63 | -0.4706575122801983 | 0.8645393000541512 | -0.9818475964236505 |
+| M | L5 | 15m | with_stop | BNBUSDT | False | train | 37 | -0.7194854183298277 | 0.7093612977459469 | -0.7989085641001471 |
+| M | L5 | 15m | with_stop | BNBUSDT | False | test | 26 | 0.24882790604962932 | 1.2490862402075515 | -0.6845314930044527 |
+| M | L5 | 15m | with_stop | SOLUSDT | False | full | 57 | -2.455531601321883 | 0.6241101984394206 | -3.071451339617124 |
+| M | L5 | 15m | with_stop | SOLUSDT | False | train | 28 | -1.6415809646968225 | 0.5373437308479412 | -1.9910351525616532 |
+| M | L5 | 15m | with_stop | SOLUSDT | False | test | 29 | -0.8139506366250606 | 0.7272665738737427 | -1.4298703749203012 |
+| M | L5 | 15m | with_stop | XRPUSDT | False | full | 63 | 0.3895348822499466 | 1.0897278219074864 | -2.0218426964682448 |
+| M | L5 | 15m | with_stop | XRPUSDT | False | train | 31 | 0.5234178589891227 | 1.3175012926570115 | -0.6179566085060307 |
+| M | L5 | 15m | with_stop | XRPUSDT | False | test | 32 | -0.13388297673917604 | 0.9502800361649758 | -1.9173619004532885 |
+| M | L5 | 15m | long_only | BTCUSDT | False | full | 17 | 6.148746453248755 | 4.645933481979078 | -5.738513385344275 |
+| M | L5 | 15m | long_only | BTCUSDT | False | train | 5 | 2.448504200000003 | inf | -5.738513385344275 |
+| M | L5 | 15m | long_only | BTCUSDT | False | test | 12 | 3.7002422532487524 | 3.1940792688606163 | -2.818512888782203 |
+| M | L5 | 15m | long_only | ETHUSDT | False | full | 11 | 5.386709240000012 | inf | -7.0272053417929765 |
+| M | L5 | 15m | long_only | ETHUSDT | False | train | 5 | 2.4485042000000035 | inf | -7.0272053417929765 |
+| M | L5 | 15m | long_only | ETHUSDT | False | test | 6 | 2.9382050400000095 | inf | -2.7674957984299935 |
+| M | L5 | 15m | long_only | BNBUSDT | False | full | 23 | 8.308802009367142 | 4.371235284828556 | -4.372493040999021 |
+| M | L5 | 15m | long_only | BNBUSDT | False | train | 14 | 6.855811760000006 | inf | -4.372493040999021 |
+| M | L5 | 15m | long_only | BNBUSDT | False | test | 9 | 1.4529902493671354 | 1.5895401035740198 | -3.1174379988882706 |
+| M | L5 | 15m | long_only | SOLUSDT | False | full | 19 | 5.7015221878091475 | 2.8314654628047546 | -3.9144887418816525 |
+| M | L5 | 15m | long_only | SOLUSDT | False | train | 9 | 4.407307560000005 | inf | -3.9144887418816525 |
+| M | L5 | 15m | long_only | SOLUSDT | False | test | 10 | 1.294214627809144 | 1.4157327314023778 | -3.709638017723585 |
+| M | L5 | 15m | long_only | XRPUSDT | False | full | 16 | 1.8819242838916315 | 1.3444484055182426 | -5.602236129788114 |
+| M | L5 | 15m | long_only | XRPUSDT | False | train | 9 | 4.407307560000005 | inf | -2.739812985675028 |
+| M | L5 | 15m | long_only | XRPUSDT | False | test | 7 | -2.5253832761083737 | 0.5377793622072973 | -5.8415982765608145 |
+| M | L5 | 15m | short_only | BTCUSDT | False | full | 6 | -23.95535755888068 | 0.09283560330149365 | -61.33158736732726 |
+| M | L5 | 15m | short_only | BTCUSDT | False | train | 6 | -45.600671250468054 | 0.05101739068330256 | -48.8919080906631 |
+| M | L5 | 15m | short_only | BTCUSDT | False | test | 9 | 3.68433859700514 | 16.476816693927077 | -5.048975502647484 |
+| M | L5 | 15m | short_only | ETHUSDT | False | full | 7 | 3.4320946800000036 | inf | -19.94064645952115 |
+| M | L5 | 15m | short_only | ETHUSDT | False | train | 4 | -7.204370794024487 | 0.16955068510238505 | -9.926483123015487 |
+| M | L5 | 15m | short_only | ETHUSDT | False | test | 4 | 1.9611969600000014 | inf | -20.25989876720069 |
+| M | L5 | 15m | short_only | BNBUSDT | False | full | 11 | -12.63529975667495 | 0.279559284119575 | -52.529442524704464 |
+| M | L5 | 15m | short_only | BNBUSDT | False | train | 11 | -19.499145029072206 | 0.2009247105607512 | -26.448911507215538 |
+| M | L5 | 15m | short_only | BNBUSDT | False | test | 4 | 1.2263922083336458 | 6.015805983167939 | -13.080347894947606 |
+| M | L5 | 15m | short_only | SOLUSDT | False | full | 10 | 4.902992400000006 | inf | -25.729564672173684 |
+| M | L5 | 15m | short_only | SOLUSDT | False | train | 6 | -16.450365917237537 | 0.12969601538698988 | -21.983616474474488 |
+| M | L5 | 15m | short_only | SOLUSDT | False | test | 12 | 5.883590880000009 | inf | -4.628379582403325 |
+| M | L5 | 15m | short_only | XRPUSDT | False | full | 29 | 13.725675516464413 | 5078.5590278994205 | -5.2236474164715325 |
+| M | L5 | 15m | short_only | XRPUSDT | False | train | 16 | 7.844787840000015 | inf | -5.2236474164715325 |
+| M | L5 | 15m | short_only | XRPUSDT | False | test | 13 | 5.880887676464399 | 2176.5252976711786 | -3.0878057129444443 |
+| M | L5 | 15m | combined | BTCUSDT | False | full | 55 | 0.4301910947684135 | 1.1328801128774868 | -1.5067475658172393 |
+| M | L5 | 15m | combined | BTCUSDT | False | train | 34 | 0.38985166615629047 | 1.1711641573877072 | -1.5067475658172393 |
+| M | L5 | 15m | combined | BTCUSDT | False | test | 21 | 0.04033942861212287 | 1.0420294338068503 | -0.4943588523453851 |
+| M | L5 | 15m | combined | ETHUSDT | False | full | 36 | -3.132421343588152 | 0.4270767347772985 | -3.7875452142006556 |
+| M | L5 | 15m | combined | ETHUSDT | False | train | 20 | -0.43449452244795933 | 0.789442605147677 | -1.1956046447382265 |
+| M | L5 | 15m | combined | ETHUSDT | False | test | 16 | -2.697926821140193 | 0.20739934815132602 | -2.8718059197072763 |
+| M | L5 | 15m | combined | BNBUSDT | False | full | 55 | 0.35814655849417776 | 1.11474417887332 | -1.4105170114293222 |
+| M | L5 | 15m | combined | BNBUSDT | False | train | 36 | -0.27770514339038044 | 0.8910817635973727 | -1.4105170114293222 |
+| M | L5 | 15m | combined | BNBUSDT | False | test | 19 | 0.6358517018845586 | 2.1124163561377483 | -0.36199078553937275 |
+| M | L5 | 15m | combined | SOLUSDT | False | full | 41 | -2.4499139208814635 | 0.5255202009330961 | -2.7139759311327105 |
+| M | L5 | 15m | combined | SOLUSDT | False | train | 22 | -1.3246216725670479 | 0.5950764510876085 | -1.8579457884634938 |
+| M | L5 | 15m | combined | SOLUSDT | False | test | 19 | -1.125292248314416 | 0.40526177753067316 | -1.3468011587351818 |
+| M | L5 | 15m | combined | XRPUSDT | False | full | 42 | 1.1457448564691208 | 1.423959226263819 | -1.9018288741283564 |
+| M | L5 | 15m | combined | XRPUSDT | False | train | 17 | 1.3426372072282784 | 3.6874938219760414 | -0.8347356462960933 |
+| M | L5 | 15m | combined | XRPUSDT | False | test | 25 | -0.19689235075915767 | 0.9106213443151089 | -1.9271282017481624 |
+| M | L5 | 1h | unconstrained | BTCUSDT | False | full | 292 | 0.1183082326393253 | 1.003985394646965 | -3.8575067132612153 |
+| M | L5 | 1h | unconstrained | BTCUSDT | False | train | 160 | 1.434507659189744 | 1.0913684298409971 | -2.9015931625221034 |
+| M | L5 | 1h | unconstrained | BTCUSDT | False | test | 132 | -1.3161994265504193 | 0.9058862275784378 | -3.241539817373896 |
+| M | L5 | 1h | unconstrained | ETHUSDT | False | full | 292 | -1.378103056329373 | 0.9582923722775054 | -3.777199011081145 |
+| M | L5 | 1h | unconstrained | ETHUSDT | False | train | 173 | -1.049069376832782 | 0.9461780155400532 | -2.871715543529672 |
+| M | L5 | 1h | unconstrained | ETHUSDT | False | test | 119 | -0.3290336794965916 | 0.975718012398699 | -3.1485883623733835 |
+| M | L5 | 1h | unconstrained | BNBUSDT | False | full | 296 | -5.782124446688893 | 0.8313391250314424 | -7.781312745594482 |
+| M | L5 | 1h | unconstrained | BNBUSDT | False | train | 155 | -6.287974569202806 | 0.6906138743751279 | -7.3169634160379315 |
+| M | L5 | 1h | unconstrained | BNBUSDT | False | test | 141 | 0.5058501225139128 | 1.0362395448155213 | -2.8770358579952333 |
+| M | L5 | 1h | unconstrained | SOLUSDT | False | full | 353 | -3.1364791264965044 | 0.9266283369920562 | -6.243604491298356 |
+| M | L5 | 1h | unconstrained | SOLUSDT | False | train | 230 | 1.7122102879519572 | 1.0667536205212378 | -3.2322165100156055 |
+| M | L5 | 1h | unconstrained | SOLUSDT | False | test | 123 | -4.8486894144484625 | 0.7164198564030493 | -5.7565057718111055 |
+| M | L5 | 1h | unconstrained | XRPUSDT | False | full | 302 | -1.8232435706968482 | 0.9475202453855636 | -3.8122354657500366 |
+| M | L5 | 1h | unconstrained | XRPUSDT | False | train | 157 | 1.0593951155831394 | 1.0633386977441495 | -1.8752459229052794 |
+| M | L5 | 1h | unconstrained | XRPUSDT | False | test | 145 | -2.8826386862799875 | 0.8399953814546401 | -3.834646904214071 |
+| M | L5 | 1h | with_stop | BTCUSDT | False | full | 292 | 0.1183082326393253 | 1.003985394646965 | -3.8575067132612153 |
+| M | L5 | 1h | with_stop | BTCUSDT | False | train | 160 | 1.434507659189744 | 1.0913684298409971 | -2.9015931625221034 |
+| M | L5 | 1h | with_stop | BTCUSDT | False | test | 132 | -1.3161994265504193 | 0.9058862275784378 | -3.241539817373896 |
+| M | L5 | 1h | with_stop | ETHUSDT | False | full | 292 | -1.378103056329373 | 0.9582923722775054 | -3.777199011081145 |
+| M | L5 | 1h | with_stop | ETHUSDT | False | train | 173 | -1.049069376832782 | 0.9461780155400532 | -2.871715543529672 |
+| M | L5 | 1h | with_stop | ETHUSDT | False | test | 119 | -0.3290336794965916 | 0.975718012398699 | -3.1485883623733835 |
+| M | L5 | 1h | with_stop | BNBUSDT | False | full | 296 | -5.782124446688893 | 0.8313391250314424 | -7.781312745594482 |
+| M | L5 | 1h | with_stop | BNBUSDT | False | train | 155 | -6.287974569202806 | 0.6906138743751279 | -7.3169634160379315 |
+| M | L5 | 1h | with_stop | BNBUSDT | False | test | 141 | 0.5058501225139128 | 1.0362395448155213 | -2.8770358579952333 |
+| M | L5 | 1h | with_stop | SOLUSDT | False | full | 353 | -3.1364791264965044 | 0.9266283369920562 | -6.243604491298356 |
+| M | L5 | 1h | with_stop | SOLUSDT | False | train | 230 | 1.7122102879519572 | 1.0667536205212378 | -3.2322165100156055 |
+| M | L5 | 1h | with_stop | SOLUSDT | False | test | 123 | -4.8486894144484625 | 0.7164198564030493 | -5.7565057718111055 |
+| M | L5 | 1h | with_stop | XRPUSDT | False | full | 302 | -1.8232435706968482 | 0.9475202453855636 | -3.8122354657500366 |
+| M | L5 | 1h | with_stop | XRPUSDT | False | train | 157 | 1.0593951155831394 | 1.0633386977441495 | -1.8752459229052794 |
+| M | L5 | 1h | with_stop | XRPUSDT | False | test | 145 | -2.8826386862799875 | 0.8399953814546401 | -3.834646904214071 |
+| M | L5 | 1h | long_only | BTCUSDT | False | full | 9 | -0.12702333890771852 | 0.9685945718007095 | -4.455273701740858 |
+| M | L5 | 1h | long_only | BTCUSDT | False | train | 3 | 1.469102519999999 | inf | -0.6496987359264392 |
+| M | L5 | 1h | long_only | BTCUSDT | False | test | 6 | -1.5961258589077172 | 0.6053716073754439 | -4.519102801526791 |
+| M | L5 | 1h | long_only | ETHUSDT | False | full | 8 | -1.8700765378716449 | 0.6470209996236815 | -6.101907555122165 |
+| M | L5 | 1h | long_only | ETHUSDT | False | train | 5 | 2.448504200000001 | inf | -1.3333019474856231 |
+| M | L5 | 1h | long_only | ETHUSDT | False | test | 3 | -4.318580737871647 | 0.1848631427496236 | -6.249402667110298 |
+| M | L5 | 1h | long_only | BNBUSDT | False | full | 17 | 8.324914280000014 | inf | -5.534721394788841 |
+| M | L5 | 1h | long_only | BNBUSDT | False | train | 6 | 2.9382050400000055 | inf | -5.534721394788841 |
+| M | L5 | 1h | long_only | BNBUSDT | False | test | 11 | 5.386709240000008 | inf | -2.7726209407815694 |
+| M | L5 | 1h | long_only | SOLUSDT | False | full | 11 | 0.6460268261193175 | 1.1519712129755397 | -5.076053959353195 |
+| M | L5 | 1h | long_only | SOLUSDT | False | train | 6 | 2.9382050400000055 | inf | -2.494699188089981 |
+| M | L5 | 1h | long_only | SOLUSDT | False | test | 5 | -2.2921782138806877 | 0.4607884851902156 | -5.222301744259648 |
+| M | L5 | 1h | long_only | XRPUSDT | False | full | 9 | -2.7633948876652643 | 0.5863801492736125 | -6.647208872792882 |
+| M | L5 | 1h | long_only | XRPUSDT | False | train | 5 | 2.4485042000000017 | inf | -2.148780727046437 |
+| M | L5 | 1h | long_only | XRPUSDT | False | test | 4 | -5.211899087665265 | 0.21989255597760496 | -6.807657128841868 |
+| M | L5 | 1h | short_only | BTCUSDT | False | full | 54 | -0.6254536756650806 | 0.8842037562315649 | -2.3517643658592355 |
+| M | L5 | 1h | short_only | BTCUSDT | False | train | 25 | -1.4691038132946188 | 0.5641024334552729 | -2.0653001334655277 |
+| M | L5 | 1h | short_only | BTCUSDT | False | test | 29 | 0.8436501376295382 | 1.4153797054987447 | -1.0138055458878077 |
+| M | L5 | 1h | short_only | ETHUSDT | False | full | 48 | 0.32515184688387877 | 1.0620208123308046 | -2.116515739175737 |
+| M | L5 | 1h | short_only | ETHUSDT | False | train | 27 | -1.2678814850621176 | 0.677346942827635 | -2.07608316902997 |
+| M | L5 | 1h | short_only | ETHUSDT | False | test | 21 | 1.5930333319459964 | 2.2132088650552952 | -0.8324960151747594 |
+| M | L5 | 1h | short_only | BNBUSDT | False | full | 73 | -1.9987775893311581 | 0.7742537471270107 | -3.0637667337280505 |
+| M | L5 | 1h | short_only | BNBUSDT | False | train | 39 | -2.2976163677716768 | 0.5983021207825199 | -2.7745552251829357 |
+| M | L5 | 1h | short_only | BNBUSDT | False | test | 34 | 0.29883877844051904 | 1.0953438262584683 | -1.517571699099165 |
+| M | L5 | 1h | short_only | SOLUSDT | False | full | 69 | 2.31689546644449 | 1.3500525444719083 | -1.3815884104408758 |
+| M | L5 | 1h | short_only | SOLUSDT | False | train | 46 | 2.741883456000021 | 1.73663576314441 | -1.059604033450113 |
+| M | L5 | 1h | short_only | SOLUSDT | False | test | 23 | -0.42498798955553196 | 0.8532772505457413 | -1.419203317450588 |
+| M | L5 | 1h | short_only | XRPUSDT | False | full | 59 | 0.5339683940774106 | 1.0863880164001662 | -2.8207760375913304 |
+| M | L5 | 1h | short_only | XRPUSDT | False | train | 32 | -1.097150157922599 | 0.726381545455636 | -2.474421327557088 |
+| M | L5 | 1h | short_only | XRPUSDT | False | test | 27 | 1.631118552000009 | 1.7512293409859574 | -1.12507305711219 |
+| M | L5 | 1h | combined | BTCUSDT | False | full | 292 | 0.1183082326393253 | 1.003985394646965 | -3.8575067132612153 |
+| M | L5 | 1h | combined | BTCUSDT | False | train | 160 | 1.434507659189744 | 1.0913684298409971 | -2.9015931625221034 |
+| M | L5 | 1h | combined | BTCUSDT | False | test | 132 | -1.3161994265504193 | 0.9058862275784378 | -3.241539817373896 |
+| M | L5 | 1h | combined | ETHUSDT | False | full | 292 | -1.378103056329373 | 0.9582923722775054 | -3.777199011081145 |
+| M | L5 | 1h | combined | ETHUSDT | False | train | 173 | -1.049069376832782 | 0.9461780155400532 | -2.871715543529672 |
+| M | L5 | 1h | combined | ETHUSDT | False | test | 119 | -0.3290336794965916 | 0.975718012398699 | -3.1485883623733835 |
+| M | L5 | 1h | combined | BNBUSDT | False | full | 296 | -5.782124446688893 | 0.8313391250314424 | -7.781312745594482 |
+| M | L5 | 1h | combined | BNBUSDT | False | train | 155 | -6.287974569202806 | 0.6906138743751279 | -7.3169634160379315 |
+| M | L5 | 1h | combined | BNBUSDT | False | test | 141 | 0.5058501225139128 | 1.0362395448155213 | -2.8770358579952333 |
+| M | L5 | 1h | combined | SOLUSDT | False | full | 353 | -3.1364791264965044 | 0.9266283369920562 | -6.243604491298356 |
+| M | L5 | 1h | combined | SOLUSDT | False | train | 230 | 1.7122102879519572 | 1.0667536205212378 | -3.2322165100156055 |
+| M | L5 | 1h | combined | SOLUSDT | False | test | 123 | -4.8486894144484625 | 0.7164198564030493 | -5.7565057718111055 |
+| M | L5 | 1h | combined | XRPUSDT | False | full | 302 | -1.8232435706968482 | 0.9475202453855636 | -3.8122354657500366 |
+| M | L5 | 1h | combined | XRPUSDT | False | train | 157 | 1.0593951155831394 | 1.0633386977441495 | -1.8752459229052794 |
+| M | L5 | 1h | combined | XRPUSDT | False | test | 145 | -2.8826386862799875 | 0.8399953814546401 | -3.834646904214071 |
+| M | L5 | 4h | unconstrained | BTCUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | BTCUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | BTCUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | ETHUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | ETHUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | ETHUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | BNBUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | BNBUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | BNBUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | SOLUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | SOLUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | SOLUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | XRPUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | XRPUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | unconstrained | XRPUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | with_stop | BTCUSDT | False | full | 24 | 0.06097456486259204 | 1.0151294850449868 | -2.5103352537983974 |
+| M | L5 | 4h | with_stop | BTCUSDT | False | train | 12 | -0.8811016266068424 | 0.6447689085323394 | -2.5103352537983974 |
+| M | L5 | 4h | with_stop | BTCUSDT | False | test | 12 | 0.9420761914694341 | 1.6078619483653322 | -1.0003790700850808 |
+| M | L5 | 4h | with_stop | ETHUSDT | False | full | 41 | -2.7548247357718365 | 0.682663562678048 | -4.5100859313840935 |
+| M | L5 | 4h | with_stop | ETHUSDT | False | train | 25 | -2.595298335771838 | 0.5349229456996928 | -3.4245505425001954 |
+| M | L5 | 4h | with_stop | ETHUSDT | False | test | 16 | -0.15952639999999915 | 0.9485518772999634 | -1.833308846845557 |
+| M | L5 | 4h | with_stop | BNBUSDT | False | full | 33 | -1.6501112993604363 | 0.7432104762895746 | -2.523955577125653 |
+| M | L5 | 4h | with_stop | BNBUSDT | False | train | 17 | -2.0695825519999946 | 0.48647902054879266 | -2.523955577125653 |
+| M | L5 | 4h | with_stop | BNBUSDT | False | test | 16 | 0.41947125263955876 | 1.175089882891445 | -1.4040420683417831 |
+| M | L5 | 4h | with_stop | SOLUSDT | False | full | 39 | 1.8436882917641284 | 1.2832164907165189 | -2.183486990871707 |
+| M | L5 | 4h | with_stop | SOLUSDT | False | train | 24 | -0.23940799999999257 | 0.9485244198829337 | -1.7401384001124096 |
+| M | L5 | 4h | with_stop | SOLUSDT | False | test | 15 | 2.0830962917641207 | 2.120597717635558 | -1.016076775856063 |
+| M | L5 | 4h | with_stop | XRPUSDT | False | full | 24 | -1.8412033279999958 | 0.6506855018646364 | -2.3663831803976763 |
+| M | L5 | 4h | with_stop | XRPUSDT | False | train | 12 | -1.320966495999999 | 0.5267500184224667 | -2.315411264110433 |
+| M | L5 | 4h | with_stop | XRPUSDT | False | test | 12 | -0.5202368319999966 | 0.7901965094113211 | -1.3864499182021275 |
+| M | L5 | 4h | long_only | BTCUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | BTCUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | BTCUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | ETHUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | ETHUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | ETHUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | BNBUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | BNBUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | BNBUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | SOLUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | SOLUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | SOLUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | XRPUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | XRPUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | long_only | XRPUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BTCUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BTCUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BTCUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | ETHUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | ETHUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | ETHUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BNBUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BNBUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | BNBUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | SOLUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | SOLUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | SOLUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | XRPUSDT | False | full | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | XRPUSDT | False | train | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | short_only | XRPUSDT | False | test | 0 | 0.0 | 0.0 | 0.0 |
+| M | L5 | 4h | combined | BTCUSDT | False | full | 11 | 2.218420735609431 | 1.8274659599733192 | -14.718601610746532 |
+| M | L5 | 4h | combined | BTCUSDT | False | train | 11 | -5.464724114268997 | 0.47272697630094096 | -10.488180894032457 |
+| M | L5 | 4h | combined | BTCUSDT | False | test | 10 | 4.900000400000006 | inf | -0.8109207969576746 |
+| M | L5 | 4h | combined | ETHUSDT | False | full | 19 | 9.31209516000001 | inf | -6.0159129618481755 |
+| M | L5 | 4h | combined | ETHUSDT | False | train | 7 | 3.430897880000008 | inf | -6.0159129618481755 |
+| M | L5 | 4h | combined | ETHUSDT | False | test | 12 | 5.881197280000004 | inf | -1.7034338192580738 |
+| M | L5 | 4h | combined | BNBUSDT | False | full | 12 | 5.294024813881114 | 55.64899875827178 | -12.438606931814178 |
+| M | L5 | 4h | combined | BNBUSDT | False | train | 4 | 1.9594017600000009 | inf | -5.709696229865335 |
+| M | L5 | 4h | combined | BNBUSDT | False | test | 8 | 3.3346230538811117 | 35.42254570719617 | -12.676977129318608 |
+| M | L5 | 4h | combined | SOLUSDT | False | full | 16 | 7.8388038400000095 | inf | -9.48418455059882 |
+| M | L5 | 4h | combined | SOLUSDT | False | train | 5 | 0.6241191461179832 | 1.4669874744311469 | -9.48418455059882 |
+| M | L5 | 4h | combined | SOLUSDT | False | test | 11 | 5.387906040000008 | inf | -2.6585489470016466 |
+| M | L5 | 4h | combined | XRPUSDT | False | full | 15 | 7.349701400000015 | inf | -5.854038414233745 |
+| M | L5 | 4h | combined | XRPUSDT | False | train | 6 | 2.9405986400000064 | inf | -5.78166976748564 |
+| M | L5 | 4h | combined | XRPUSDT | False | test | 9 | 4.409102760000007 | inf | -6.0237170187043025 |
+| L2 | M | 15m | unconstrained | PEPEUSDT | False | full | 202 | -0.018901616991696246 | 0.9991377208579063 | -4.045152614120761 |
+| L2 | M | 15m | unconstrained | PEPEUSDT | False | train | 113 | 0.4772720156235716 | 1.0351292555198972 | -3.368520875181327 |
+| L2 | M | 15m | unconstrained | PEPEUSDT | False | test | 89 | -0.4961736326152679 | 0.9404665129053008 | -2.5136131509760826 |
+| L2 | M | 15m | unconstrained | PUMPUSDT | False | full | 67 | 1.7569528405228674 | 1.2561090767247347 | -2.7698124024493525 |
+| L2 | M | 15m | unconstrained | PUMPUSDT | False | train | 47 | 1.5684083623950418 | 1.3361297471809517 | -2.616149975628253 |
+| L2 | M | 15m | unconstrained | PUMPUSDT | False | test | 20 | 0.1885444781278263 | 1.085932732457366 | -1.7652879215276336 |
+| L2 | M | 15m | unconstrained | BEATUSDT | False | full | 78 | -1.6566590882570424 | 0.8637543803487724 | -4.7514483447801465 |
+| L2 | M | 15m | unconstrained | BEATUSDT | False | train | 45 | -1.5600804110965771 | 0.7967712176759887 | -4.7514483447801465 |
+| L2 | M | 15m | unconstrained | BEATUSDT | False | test | 33 | -0.09657867716046546 | 0.9784561234265451 | -2.6839255207936 |
+| L2 | M | 15m | unconstrained | PENGUUSDT | False | full | 134 | 0.9200026432014943 | 1.0609522112325762 | -5.984742112899847 |
+| L2 | M | 15m | unconstrained | PENGUUSDT | False | train | 92 | 0.692816522426565 | 1.0611297533511996 | -4.524535853048522 |
+| L2 | M | 15m | unconstrained | PENGUUSDT | False | test | 42 | 0.22718612077492883 | 1.0604170987751251 | -2.1673525615488023 |
+| L2 | M | 15m | unconstrained | TRUMPUSDT | False | full | 125 | -1.8745614674087394 | 0.8665159260494135 | -5.342222029696423 |
+| L2 | M | 15m | unconstrained | TRUMPUSDT | False | train | 82 | -4.123997949491939 | 0.6447565048537542 | -5.342222029696423 |
+| L2 | M | 15m | unconstrained | TRUMPUSDT | False | test | 43 | 2.2494364820832002 | 1.9240204439207562 | -1.180259214547685 |
+| L2 | M | 15m | unconstrained | BONKUSDT | False | full | 207 | -9.588174154839164 | 0.6963877877361512 | -11.564062848915126 |
+| L2 | M | 15m | unconstrained | BONKUSDT | False | train | 132 | -5.907218552244044 | 0.7114882160394159 | -7.822603399138103 |
+| L2 | M | 15m | unconstrained | BONKUSDT | False | test | 75 | -3.6809556025951187 | 0.6685477975150127 | -4.025354243470337 |
+| L2 | M | 15m | unconstrained | SHIBUSDT | False | full | 316 | -1.0714350113889926 | 0.9631338816842524 | -6.981332320687347 |
+| L2 | M | 15m | unconstrained | SHIBUSDT | False | train | 173 | 1.4467847778105158 | 1.0945763573020013 | -4.264489191619957 |
+| L2 | M | 15m | unconstrained | SHIBUSDT | False | test | 143 | -2.518219789199508 | 0.8170607506308945 | -5.476858749407184 |
+| L2 | M | 15m | unconstrained | WIFUSDT | False | full | 191 | -0.5130489924486197 | 0.9786021423699361 | -5.302277037577426 |
+| L2 | M | 15m | unconstrained | WIFUSDT | False | train | 124 | -0.8626974995405755 | 0.9489253080883057 | -5.162050477389628 |
+| L2 | M | 15m | unconstrained | WIFUSDT | False | test | 67 | 0.3496485070919567 | 1.0493452887557966 | -1.9595180488883275 |
+| L2 | M | 15m | unconstrained | BOMEUSDT | False | full | 193 | -9.366211574899307 | 0.6923080238641602 | -11.072374644030223 |
+| L2 | M | 15m | unconstrained | BOMEUSDT | False | train | 113 | -7.123041805646468 | 0.6377233420625131 | -8.14880931916814 |
+| L2 | M | 15m | unconstrained | BOMEUSDT | False | test | 80 | -2.243169769252839 | 0.7918816238302555 | -5.021261940319464 |
+| L2 | M | 15m | with_stop | PEPEUSDT | False | full | 1474 | -20.1994058189264 | 0.8793820215425634 | -23.30704732713187 |
+| L2 | M | 15m | with_stop | PEPEUSDT | False | train | 951 | -12.197549095458513 | 0.8907118238838014 | -17.471397155723302 |
+| L2 | M | 15m | with_stop | PEPEUSDT | False | test | 523 | -8.00185672346789 | 0.856743671212478 | -9.961912956026534 |
+| L2 | M | 15m | with_stop | PUMPUSDT | False | full | 557 | 0.011369102041330733 | 1.0001851366948449 | -7.540785217905046 |
+| L2 | M | 15m | with_stop | PUMPUSDT | False | train | 337 | 1.8528151695838708 | 1.052260199708601 | -5.193312318045428 |
+| L2 | M | 15m | with_stop | PUMPUSDT | False | test | 220 | -1.8414460675425368 | 0.9290539272985416 | -5.520832419658706 |
+| L2 | M | 15m | with_stop | BEATUSDT | False | full | 607 | -10.13970961849389 | 0.868100628174385 | -13.674292996082006 |
+| L2 | M | 15m | with_stop | BEATUSDT | False | train | 395 | -3.4198778595183748 | 0.929421579863427 | -7.536758482396139 |
+| L2 | M | 15m | with_stop | BEATUSDT | False | test | 212 | -6.719831758975517 | 0.7635492140741643 | -9.681689031546295 |
+| L2 | M | 15m | with_stop | PENGUUSDT | False | full | 895 | -0.6367398536209646 | 0.9935420194377719 | -4.914891335232197 |
+| L2 | M | 15m | with_stop | PENGUUSDT | False | train | 599 | 0.16960848741945853 | 1.0024914795609878 | -3.901901323102272 |
+| L2 | M | 15m | with_stop | PENGUUSDT | False | test | 296 | -0.8063483410404224 | 0.9735813666190459 | -4.114559785005918 |
+| L2 | M | 15m | with_stop | TRUMPUSDT | False | full | 675 | -11.298625702865223 | 0.8358860035175074 | -17.885199624341965 |
+| L2 | M | 15m | with_stop | TRUMPUSDT | False | train | 404 | -15.751282188325186 | 0.6641633149781879 | -15.954652047080199 |
+| L2 | M | 15m | with_stop | TRUMPUSDT | False | test | 271 | 4.47921856791479 | 1.2043622869106265 | -2.4975802521001977 |
+| L2 | M | 15m | with_stop | BONKUSDT | False | full | 1415 | -23.413857772957527 | 0.8603562574998236 | -25.48668986653066 |
+| L2 | M | 15m | with_stop | BONKUSDT | False | train | 934 | -18.35704544018992 | 0.8426390362693126 | -20.72495525150072 |
+| L2 | M | 15m | with_stop | BONKUSDT | False | test | 481 | -5.182448255313064 | 0.8984089786797298 | -6.490463587172377 |
+| L2 | M | 15m | with_stop | SHIBUSDT | False | full | 2017 | -43.29920015716199 | 0.7976656644523764 | -46.855840187006486 |
+| L2 | M | 15m | with_stop | SHIBUSDT | False | train | 1188 | -23.4908871918859 | 0.8183603056012636 | -24.477002479687208 |
+| L2 | M | 15m | with_stop | SHIBUSDT | False | test | 829 | -19.93775482576142 | 0.7645279949351361 | -23.525541275656696 |
+| L2 | M | 15m | with_stop | WIFUSDT | False | full | 1286 | -7.32561272872429 | 0.9499755365862184 | -11.877076898205342 |
+| L2 | M | 15m | with_stop | WIFUSDT | False | train | 821 | -0.39442248767724547 | 0.9958020518985424 | -6.912327695356686 |
+| L2 | M | 15m | with_stop | WIFUSDT | False | test | 465 | -6.9311902410470445 | 0.8679385599349976 | -8.606339213052868 |
+| L2 | M | 15m | with_stop | BOMEUSDT | False | full | 1285 | -25.283981906331437 | 0.8393761098069723 | -30.81397735951118 |
+| L2 | M | 15m | with_stop | BOMEUSDT | False | train | 803 | -25.69813379400164 | 0.7568535138366514 | -26.381348860628133 |
+| L2 | M | 15m | with_stop | BOMEUSDT | False | test | 482 | 0.4141518876702054 | 1.008007396413247 | -6.360777772914027 |
+| L2 | M | 15m | long_only | PEPEUSDT | False | full | 202 | -0.018901616991696246 | 0.9991377208579063 | -4.045152614120761 |
+| L2 | M | 15m | long_only | PEPEUSDT | False | train | 113 | 0.4772720156235716 | 1.0351292555198972 | -3.368520875181327 |
+| L2 | M | 15m | long_only | PEPEUSDT | False | test | 89 | -0.4961736326152679 | 0.9404665129053008 | -2.5136131509760826 |
+| L2 | M | 15m | long_only | PUMPUSDT | False | full | 67 | 1.7569528405228674 | 1.2561090767247347 | -2.7698124024493525 |
+| L2 | M | 15m | long_only | PUMPUSDT | False | train | 47 | 1.5684083623950418 | 1.3361297471809517 | -2.616149975628253 |
+| L2 | M | 15m | long_only | PUMPUSDT | False | test | 20 | 0.1885444781278263 | 1.085932732457366 | -1.7652879215276336 |
+| L2 | M | 15m | long_only | BEATUSDT | False | full | 78 | -1.6566590882570424 | 0.8637543803487724 | -4.7514483447801465 |
+| L2 | M | 15m | long_only | BEATUSDT | False | train | 45 | -1.5600804110965771 | 0.7967712176759887 | -4.7514483447801465 |
+| L2 | M | 15m | long_only | BEATUSDT | False | test | 33 | -0.09657867716046546 | 0.9784561234265451 | -2.6839255207936 |
+| L2 | M | 15m | long_only | PENGUUSDT | False | full | 134 | 0.9200026432014943 | 1.0609522112325762 | -5.984742112899847 |
+| L2 | M | 15m | long_only | PENGUUSDT | False | train | 92 | 0.692816522426565 | 1.0611297533511996 | -4.524535853048522 |
+| L2 | M | 15m | long_only | PENGUUSDT | False | test | 42 | 0.22718612077492883 | 1.0604170987751251 | -2.1673525615488023 |
+| L2 | M | 15m | long_only | TRUMPUSDT | False | full | 125 | -1.8745614674087394 | 0.8665159260494135 | -5.342222029696423 |
+| L2 | M | 15m | long_only | TRUMPUSDT | False | train | 82 | -4.123997949491939 | 0.6447565048537542 | -5.342222029696423 |
+| L2 | M | 15m | long_only | TRUMPUSDT | False | test | 43 | 2.2494364820832002 | 1.9240204439207562 | -1.180259214547685 |
+| L2 | M | 15m | long_only | BONKUSDT | False | full | 207 | -9.588174154839164 | 0.6963877877361512 | -11.564062848915126 |
+| L2 | M | 15m | long_only | BONKUSDT | False | train | 132 | -5.907218552244044 | 0.7114882160394159 | -7.822603399138103 |
+| L2 | M | 15m | long_only | BONKUSDT | False | test | 75 | -3.6809556025951187 | 0.6685477975150127 | -4.025354243470337 |
+| L2 | M | 15m | long_only | SHIBUSDT | False | full | 316 | -1.0714350113889926 | 0.9631338816842524 | -6.981332320687347 |
+| L2 | M | 15m | long_only | SHIBUSDT | False | train | 173 | 1.4467847778105158 | 1.0945763573020013 | -4.264489191619957 |
+| L2 | M | 15m | long_only | SHIBUSDT | False | test | 143 | -2.518219789199508 | 0.8170607506308945 | -5.476858749407184 |
+| L2 | M | 15m | long_only | WIFUSDT | False | full | 191 | -0.5130489924486197 | 0.9786021423699361 | -5.302277037577426 |
+| L2 | M | 15m | long_only | WIFUSDT | False | train | 124 | -0.8626974995405755 | 0.9489253080883057 | -5.162050477389628 |
+| L2 | M | 15m | long_only | WIFUSDT | False | test | 67 | 0.3496485070919567 | 1.0493452887557966 | -1.9595180488883275 |
+| L2 | M | 15m | long_only | BOMEUSDT | False | full | 193 | -9.366211574899307 | 0.6923080238641602 | -11.072374644030223 |
+| L2 | M | 15m | long_only | BOMEUSDT | False | train | 113 | -7.123041805646468 | 0.6377233420625131 | -8.14880931916814 |
+| L2 | M | 15m | long_only | BOMEUSDT | False | test | 80 | -2.243169769252839 | 0.7918816238302555 | -5.021261940319464 |
+| L2 | M | 15m | short_only | PEPEUSDT | False | full | 23 | -42.078481650698706 | 0.0904133787120744 | -402.9511769579939 |
+| L2 | M | 15m | short_only | PEPEUSDT | False | train | 23 | -140.33886885541241 | 0.0289411817265349 | -402.9511769579939 |
+| L2 | M | 15m | short_only | PEPEUSDT | False | test | 55 | 10.456556880000019 | inf | -7.76025665263046 |
+| L2 | M | 15m | short_only | PUMPUSDT | False | full | 30 | -4.751391632384772 | 0.5371201582852151 | -39.90843856541903 |
+| L2 | M | 15m | short_only | PUMPUSDT | False | train | 22 | 4.182622752000002 | inf | -9.085489654016225 |
+| L2 | M | 15m | short_only | PUMPUSDT | False | test | 8 | -8.934014384384776 | 0.12964969337919033 | -41.55409403451711 |
+| L2 | M | 15m | short_only | BEATUSDT | False | full | 35 | 6.654172560000015 | inf | -631.0721384351069 |
+| L2 | M | 15m | short_only | BEATUSDT | False | train | 17 | -121.48561198976948 | 0.024427592146206115 | -631.0721384351069 |
+| L2 | M | 15m | short_only | BEATUSDT | False | test | 32 | 6.083814912000014 | inf | -8.644755785940585 |
+| L2 | M | 15m | short_only | PENGUUSDT | False | full | 48 | 9.125722368000018 | inf | -60.1781163397634 |
+| L2 | M | 15m | short_only | PENGUUSDT | False | train | 26 | 4.9430996160000085 | inf | -60.1781163397634 |
+| L2 | M | 15m | short_only | PENGUUSDT | False | test | 22 | 4.182622752000007 | inf | -8.415817075320854 |
+| L2 | M | 15m | short_only | TRUMPUSDT | False | full | 72 | 13.688583552000019 | inf | -14.162520306440326 |
+| L2 | M | 15m | short_only | TRUMPUSDT | False | train | 51 | 9.414272152155434 | 103.67652946647806 | -5.669397289587993 |
+| L2 | M | 15m | short_only | TRUMPUSDT | False | test | 21 | 3.9925035360000076 | inf | -15.48711899818311 |
+| L2 | M | 15m | short_only | BONKUSDT | False | full | 65 | 12.357749040000025 | inf | -51.2644931472521 |
+| L2 | M | 15m | short_only | BONKUSDT | False | train | 27 | -2.9608414719918534 | 0.6253968192538607 | -51.2644931472521 |
+| L2 | M | 15m | short_only | BONKUSDT | False | test | 39 | 7.414649424000013 | inf | -6.693161640373031 |
+| L2 | M | 15m | short_only | SHIBUSDT | False | full | 84 | 15.974006993433715 | inf | -51.58602299224548 |
+| L2 | M | 15m | short_only | SHIBUSDT | False | train | 58 | 0.7137669569172339 | 1.070509232206077 | -51.58602299224548 |
+| L2 | M | 15m | short_only | SHIBUSDT | False | test | 66 | 12.551861105433716 | inf | -13.159636209861306 |
+| L2 | M | 15m | short_only | WIFUSDT | False | full | 94 | 17.871206304000037 | inf | -11.122452430879646 |
+| L2 | M | 15m | short_only | WIFUSDT | False | train | 60 | 11.407152960000024 | inf | -11.122452430879646 |
+| L2 | M | 15m | short_only | WIFUSDT | False | test | 34 | 6.464053344000013 | inf | -9.828493330667484 |
+| L2 | M | 15m | short_only | BOMEUSDT | False | full | 106 | 20.15263689600005 | inf | -17.631199790728243 |
+| L2 | M | 15m | short_only | BOMEUSDT | False | train | 57 | 10.738042734398132 | inf | -17.631199790728243 |
+| L2 | M | 15m | short_only | BOMEUSDT | False | test | 49 | 9.315841584000022 | inf | -4.9939095829498426 |
+| L2 | M | 15m | combined | PEPEUSDT | False | full | 1474 | -20.1994058189264 | 0.8793820215425634 | -23.30704732713187 |
+| L2 | M | 15m | combined | PEPEUSDT | False | train | 951 | -12.197549095458513 | 0.8907118238838014 | -17.471397155723302 |
+| L2 | M | 15m | combined | PEPEUSDT | False | test | 523 | -8.00185672346789 | 0.856743671212478 | -9.961912956026534 |
+| L2 | M | 15m | combined | PUMPUSDT | False | full | 557 | 0.011369102041330733 | 1.0001851366948449 | -7.540785217905046 |
+| L2 | M | 15m | combined | PUMPUSDT | False | train | 337 | 1.8528151695838708 | 1.052260199708601 | -5.193312318045428 |
+| L2 | M | 15m | combined | PUMPUSDT | False | test | 220 | -1.8414460675425368 | 0.9290539272985416 | -5.520832419658706 |
+| L2 | M | 15m | combined | BEATUSDT | False | full | 607 | -10.13970961849389 | 0.868100628174385 | -13.674292996082006 |
+| L2 | M | 15m | combined | BEATUSDT | False | train | 395 | -3.4198778595183748 | 0.929421579863427 | -7.536758482396139 |
+| L2 | M | 15m | combined | BEATUSDT | False | test | 212 | -6.719831758975517 | 0.7635492140741643 | -9.681689031546295 |
+| L2 | M | 15m | combined | PENGUUSDT | False | full | 895 | -0.6367398536209646 | 0.9935420194377719 | -4.914891335232197 |
+| L2 | M | 15m | combined | PENGUUSDT | False | train | 599 | 0.16960848741945853 | 1.0024914795609878 | -3.901901323102272 |
+| L2 | M | 15m | combined | PENGUUSDT | False | test | 296 | -0.8063483410404224 | 0.9735813666190459 | -4.114559785005918 |
+| L2 | M | 15m | combined | TRUMPUSDT | False | full | 675 | -11.298625702865223 | 0.8358860035175074 | -17.885199624341965 |
+| L2 | M | 15m | combined | TRUMPUSDT | False | train | 404 | -15.751282188325186 | 0.6641633149781879 | -15.954652047080199 |
+| L2 | M | 15m | combined | TRUMPUSDT | False | test | 271 | 4.47921856791479 | 1.2043622869106265 | -2.4975802521001977 |
+| L2 | M | 15m | combined | BONKUSDT | False | full | 1415 | -23.413857772957527 | 0.8603562574998236 | -25.48668986653066 |
+| L2 | M | 15m | combined | BONKUSDT | False | train | 934 | -18.35704544018992 | 0.8426390362693126 | -20.72495525150072 |
+| L2 | M | 15m | combined | BONKUSDT | False | test | 481 | -5.182448255313064 | 0.8984089786797298 | -6.490463587172377 |
+| L2 | M | 15m | combined | SHIBUSDT | False | full | 2017 | -43.29920015716199 | 0.7976656644523764 | -46.855840187006486 |
+| L2 | M | 15m | combined | SHIBUSDT | False | train | 1188 | -23.4908871918859 | 0.8183603056012636 | -24.477002479687208 |
+| L2 | M | 15m | combined | SHIBUSDT | False | test | 829 | -19.93775482576142 | 0.7645279949351361 | -23.525541275656696 |
+| L2 | M | 15m | combined | WIFUSDT | False | full | 1286 | -7.32561272872429 | 0.9499755365862184 | -11.877076898205342 |
+| L2 | M | 15m | combined | WIFUSDT | False | train | 821 | -0.39442248767724547 | 0.9958020518985424 | -6.912327695356686 |
+| L2 | M | 15m | combined | WIFUSDT | False | test | 465 | -6.9311902410470445 | 0.8679385599349976 | -8.606339213052868 |
+| L2 | M | 15m | combined | BOMEUSDT | False | full | 1285 | -25.283981906331437 | 0.8393761098069723 | -30.81397735951118 |
+| L2 | M | 15m | combined | BOMEUSDT | False | train | 803 | -25.69813379400164 | 0.7568535138366514 | -26.381348860628133 |
+| L2 | M | 15m | combined | BOMEUSDT | False | test | 482 | 0.4141518876702054 | 1.008007396413247 | -6.360777772914027 |
+| L2 | M | 1h | unconstrained | PEPEUSDT | False | full | 34 | 9.099766418057484 | 6.933755902977486 | -2.182344882566587 |
+| L2 | M | 1h | unconstrained | PEPEUSDT | False | train | 18 | 5.316662848000014 | inf | -1.7018523844801121 |
+| L2 | M | 1h | unconstrained | PEPEUSDT | False | test | 16 | 3.7831035700574707 | 3.4668779514887444 | -2.2946676166626436 |
+| L2 | M | 1h | unconstrained | PUMPUSDT | False | full | 30 | 0.3892271198548996 | 1.0534236301529885 | -6.510202260347506 |
+| L2 | M | 1h | unconstrained | PUMPUSDT | False | train | 15 | 1.1791777120000115 | 1.4855464901368143 | -2.3708399957979154 |
+| L2 | M | 1h | unconstrained | PUMPUSDT | False | test | 15 | -0.7899505921451123 | 0.8373622001610759 | -6.3573950491517675 |
+| L2 | M | 1h | unconstrained | BEATUSDT | False | full | 26 | -1.2094872639999898 | 0.8339910120066313 | -6.627620049062171 |
+| L2 | M | 1h | unconstrained | BEATUSDT | False | train | 14 | -4.057699503999997 | 0.4430577251285227 | -6.627620049062171 |
+| L2 | M | 1h | unconstrained | BEATUSDT | False | test | 12 | 2.848212240000007 | inf | -0.4171096333779367 |
+| L2 | M | 1h | unconstrained | PENGUUSDT | False | full | 65 | -10.206584407227211 | 0.6069355174669847 | -15.831811339171983 |
+| L2 | M | 1h | unconstrained | PENGUUSDT | False | train | 43 | -2.620935031227218 | 0.810405570843118 | -7.925990622076197 |
+| L2 | M | 1h | unconstrained | PENGUUSDT | False | test | 22 | -7.585649375999995 | 0.37529595540298366 | -9.768103184899383 |
+| L2 | M | 1h | unconstrained | TRUMPUSDT | False | full | 24 | 4.921540554555303 | 4.207454050274858 | -1.611751129999383 |
+| L2 | M | 1h | unconstrained | TRUMPUSDT | False | train | 10 | 1.3585578699717016 | 2.0452265825544798 | -1.611751129999383 |
+| L2 | M | 1h | unconstrained | TRUMPUSDT | False | test | 14 | 3.562982684583602 | 16.185302304422038 | -1.2829918677576264 |
+| L2 | M | 1h | unconstrained | BONKUSDT | False | full | 65 | -6.058424977565722 | 0.7361062326258515 | -10.67004088531482 |
+| L2 | M | 1h | unconstrained | BONKUSDT | False | train | 38 | -7.333286509605168 | 0.5690664146857891 | -9.59356406928316 |
+| L2 | M | 1h | unconstrained | BONKUSDT | False | test | 27 | 1.2748615320394447 | 1.2146011343109384 | -4.673614850803174 |
+| L2 | M | 1h | unconstrained | SHIBUSDT | False | full | 65 | -1.2081946972933906 | 0.920760497871203 | -7.253552329652785 |
+| L2 | M | 1h | unconstrained | SHIBUSDT | False | train | 28 | -5.147562903538118 | 0.49840303374991335 | -6.207865986603851 |
+| L2 | M | 1h | unconstrained | SHIBUSDT | False | test | 37 | 3.939368206244726 | 1.7902395955617367 | -3.8599343683775658 |
+| L2 | M | 1h | unconstrained | WIFUSDT | False | full | 66 | 5.31414309031998 | 1.4414563557674038 | -5.012625365088129 |
+| L2 | M | 1h | unconstrained | WIFUSDT | False | train | 49 | 1.4614879866805395 | 1.1289555464471444 | -5.012625365088129 |
+| L2 | M | 1h | unconstrained | WIFUSDT | False | test | 17 | 3.85265510363944 | 6.4687579514420985 | -1.5181607468753477 |
+| L2 | M | 1h | unconstrained | BOMEUSDT | False | full | 52 | 8.722385985965351 | 2.3893135134994647 | -4.054546834984478 |
+| L2 | M | 1h | unconstrained | BOMEUSDT | False | train | 26 | 8.54463672000002 | inf | -1.7694191581653183 |
+| L2 | M | 1h | unconstrained | BOMEUSDT | False | test | 26 | 0.17774926596533228 | 1.0283121450504022 | -4.390053297474886 |
+| L2 | M | 1h | with_stop | PEPEUSDT | False | full | 191 | 13.980374023496688 | 1.1505716861443966 | -12.895018287605062 |
+| L2 | M | 1h | with_stop | PEPEUSDT | False | train | 102 | 7.6889805308813255 | 1.138224204352812 | -12.895018287605062 |
+| L2 | M | 1h | with_stop | PEPEUSDT | False | test | 89 | 6.291393492615362 | 1.1690246558349395 | -10.87809537239341 |
+| L2 | M | 1h | with_stop | PUMPUSDT | False | full | 86 | 1.869933956864903 | 1.0370654993865316 | -14.846504531418375 |
+| L2 | M | 1h | with_stop | PUMPUSDT | False | train | 49 | 1.951515836214604 | 1.0684541485191366 | -11.162447357369318 |
+| L2 | M | 1h | with_stop | PUMPUSDT | False | test | 37 | -0.5291661124612123 | 0.9758824063253249 | -7.964677716186879 |
+| L2 | M | 1h | with_stop | BEATUSDT | False | full | 93 | -11.49854941433775 | 0.8573097085981172 | -26.602883263420324 |
+| L2 | M | 1h | with_stop | BEATUSDT | False | train | 59 | -15.836342232880371 | 0.7421120539452939 | -26.602883263420324 |
+| L2 | M | 1h | with_stop | BEATUSDT | False | test | 34 | 4.337792818542621 | 1.2262080224202219 | -9.021587342297844 |
+| L2 | M | 1h | with_stop | PENGUUSDT | False | full | 149 | -21.185336392552433 | 0.8007037065138716 | -25.234110268380878 |
+| L2 | M | 1h | with_stop | PENGUUSDT | False | train | 97 | -18.459989432956842 | 0.7661179353454617 | -25.234110268380878 |
+| L2 | M | 1h | with_stop | PENGUUSDT | False | test | 52 | -2.7253469595955915 | 0.9004333295735141 | -11.703942634722303 |
+| L2 | M | 1h | with_stop | TRUMPUSDT | False | full | 73 | -7.37288058217887 | 0.8060888924553801 | -11.388887135661466 |
+| L2 | M | 1h | with_stop | TRUMPUSDT | False | train | 43 | -0.675935602582023 | 0.9690089386949098 | -10.116589778092438 |
+| L2 | M | 1h | with_stop | TRUMPUSDT | False | test | 30 | -6.696944979596848 | 0.5868964309287592 | -11.313941558600854 |
+| L2 | M | 1h | with_stop | BONKUSDT | False | full | 178 | -9.940898805098007 | 0.9072900007705761 | -18.791528275303925 |
+| L2 | M | 1h | with_stop | BONKUSDT | False | train | 107 | -8.768121274097386 | 0.8835883564586239 | -16.83118012146929 |
+| L2 | M | 1h | with_stop | BONKUSDT | False | test | 71 | -1.1727775310006179 | 0.9632424715381397 | -7.876750017439023 |
+| L2 | M | 1h | with_stop | SHIBUSDT | False | full | 238 | -10.046426971771174 | 0.9168466970454927 | -32.88509182451218 |
+| L2 | M | 1h | with_stop | SHIBUSDT | False | train | 143 | -26.89269059953166 | 0.7194267802115453 | -32.88509182451218 |
+| L2 | M | 1h | with_stop | SHIBUSDT | False | test | 95 | 16.846263627760496 | 1.6746862146686083 | -3.53347053171608 |
+| L2 | M | 1h | with_stop | WIFUSDT | False | full | 184 | -18.688429015840587 | 0.8367272200352591 | -27.008196776254373 |
+| L2 | M | 1h | with_stop | WIFUSDT | False | train | 122 | -14.077910787284061 | 0.8273500401449603 | -27.008196776254373 |
+| L2 | M | 1h | with_stop | WIFUSDT | False | test | 62 | -4.610518228556519 | 0.8599528960483206 | -11.535054565415358 |
+| L2 | M | 1h | with_stop | BOMEUSDT | False | full | 183 | 13.144218296940135 | 1.1421165200276218 | -13.04314228158015 |
+| L2 | M | 1h | with_stop | BOMEUSDT | False | train | 110 | 3.9361831544570167 | 1.065209443918335 | -13.04314228158015 |
+| L2 | M | 1h | with_stop | BOMEUSDT | False | test | 73 | 9.208035142483116 | 1.2866148462222444 | -7.700303663202323 |
+| L2 | M | 1h | long_only | PEPEUSDT | False | full | 34 | 9.099766418057484 | 6.933755902977486 | -2.182344882566587 |
+| L2 | M | 1h | long_only | PEPEUSDT | False | train | 18 | 5.316662848000014 | inf | -1.7018523844801121 |
+| L2 | M | 1h | long_only | PEPEUSDT | False | test | 16 | 3.7831035700574707 | 3.4668779514887444 | -2.2946676166626436 |
+| L2 | M | 1h | long_only | PUMPUSDT | False | full | 30 | 0.3892271198548996 | 1.0534236301529885 | -6.510202260347506 |
+| L2 | M | 1h | long_only | PUMPUSDT | False | train | 15 | 1.1791777120000115 | 1.4855464901368143 | -2.3708399957979154 |
+| L2 | M | 1h | long_only | PUMPUSDT | False | test | 15 | -0.7899505921451123 | 0.8373622001610759 | -6.3573950491517675 |
+| L2 | M | 1h | long_only | BEATUSDT | False | full | 26 | -1.2094872639999898 | 0.8339910120066313 | -6.627620049062171 |
+| L2 | M | 1h | long_only | BEATUSDT | False | train | 14 | -4.057699503999997 | 0.4430577251285227 | -6.627620049062171 |
+| L2 | M | 1h | long_only | BEATUSDT | False | test | 12 | 2.848212240000007 | inf | -0.4171096333779367 |
+| L2 | M | 1h | long_only | PENGUUSDT | False | full | 65 | -10.206584407227211 | 0.6069355174669847 | -15.831811339171983 |
+| L2 | M | 1h | long_only | PENGUUSDT | False | train | 43 | -2.620935031227218 | 0.810405570843118 | -7.925990622076197 |
+| L2 | M | 1h | long_only | PENGUUSDT | False | test | 22 | -7.585649375999995 | 0.37529595540298366 | -9.768103184899383 |
+| L2 | M | 1h | long_only | TRUMPUSDT | False | full | 24 | 4.921540554555303 | 4.207454050274858 | -1.611751129999383 |
+| L2 | M | 1h | long_only | TRUMPUSDT | False | train | 10 | 1.3585578699717016 | 2.0452265825544798 | -1.611751129999383 |
+| L2 | M | 1h | long_only | TRUMPUSDT | False | test | 14 | 3.562982684583602 | 16.185302304422038 | -1.2829918677576264 |
+| L2 | M | 1h | long_only | BONKUSDT | False | full | 65 | -6.058424977565722 | 0.7361062326258515 | -10.67004088531482 |
+| L2 | M | 1h | long_only | BONKUSDT | False | train | 38 | -7.333286509605168 | 0.5690664146857891 | -9.59356406928316 |
+| L2 | M | 1h | long_only | BONKUSDT | False | test | 27 | 1.2748615320394447 | 1.2146011343109384 | -4.673614850803174 |
+| L2 | M | 1h | long_only | SHIBUSDT | False | full | 65 | -1.2081946972933906 | 0.920760497871203 | -7.253552329652785 |
+| L2 | M | 1h | long_only | SHIBUSDT | False | train | 28 | -5.147562903538118 | 0.49840303374991335 | -6.207865986603851 |
+| L2 | M | 1h | long_only | SHIBUSDT | False | test | 37 | 3.939368206244726 | 1.7902395955617367 | -3.8599343683775658 |
+| L2 | M | 1h | long_only | WIFUSDT | False | full | 66 | 5.31414309031998 | 1.4414563557674038 | -5.012625365088129 |
+| L2 | M | 1h | long_only | WIFUSDT | False | train | 49 | 1.4614879866805395 | 1.1289555464471444 | -5.012625365088129 |
+| L2 | M | 1h | long_only | WIFUSDT | False | test | 17 | 3.85265510363944 | 6.4687579514420985 | -1.5181607468753477 |
+| L2 | M | 1h | long_only | BOMEUSDT | False | full | 52 | 8.722385985965351 | 2.3893135134994647 | -4.054546834984478 |
+| L2 | M | 1h | long_only | BOMEUSDT | False | train | 26 | 8.54463672000002 | inf | -1.7694191581653183 |
+| L2 | M | 1h | long_only | BOMEUSDT | False | test | 26 | 0.17774926596533228 | 1.0283121450504022 | -4.390053297474886 |
+| L2 | M | 1h | short_only | PEPEUSDT | False | full | 115 | 5.529390376224722 | 1.4220170060384911 | -4.891154714856227 |
+| L2 | M | 1h | short_only | PEPEUSDT | False | train | 64 | 3.0341146707804976 | 1.3985668556615953 | -4.891154714856227 |
+| L2 | M | 1h | short_only | PEPEUSDT | False | test | 51 | 2.4952757054442216 | 1.4545351199961785 | -3.3130507692523596 |
+| L2 | M | 1h | short_only | PUMPUSDT | False | full | 39 | -4.278515160645583 | 0.5544073557807394 | -6.2702601030959375 |
+| L2 | M | 1h | short_only | PUMPUSDT | False | train | 29 | -1.8002150029633204 | 0.7083707190198696 | -4.351917506824048 |
+| L2 | M | 1h | short_only | PUMPUSDT | False | test | 10 | -2.4783001576822623 | 0.27723092625356033 | -3.481130539808746 |
+| L2 | M | 1h | short_only | BEATUSDT | False | full | 67 | -12.13813068308875 | 0.48028065822520194 | -17.754477456882928 |
+| L2 | M | 1h | short_only | BEATUSDT | False | train | 44 | -12.992813661896282 | 0.3512424269246647 | -15.179484495869563 |
+| L2 | M | 1h | short_only | BEATUSDT | False | test | 23 | 0.8546829788075296 | 1.2568204465994999 | -4.502439053335657 |
+| L2 | M | 1h | short_only | PENGUUSDT | False | full | 65 | -1.5001531410749407 | 0.870789686419383 | -4.801130501237494 |
+| L2 | M | 1h | short_only | PENGUUSDT | False | train | 37 | -1.4675844817697787 | 0.8006346115989835 | -4.801130501237494 |
+| L2 | M | 1h | short_only | PENGUUSDT | False | test | 28 | -0.03256865930516063 | 0.9923347758576057 | -3.2249858588903626 |
+| L2 | M | 1h | short_only | TRUMPUSDT | False | full | 43 | 2.7484083329349858 | 1.5888875624192522 | -4.647257811776702 |
+| L2 | M | 1h | short_only | TRUMPUSDT | False | train | 29 | 5.054320060387784 | 64.35585617083767 | -2.213722157071265 |
+| L2 | M | 1h | short_only | TRUMPUSDT | False | test | 14 | -2.305911727452799 | 0.49733166463847917 | -4.8793982513913 |
+| L2 | M | 1h | short_only | BONKUSDT | False | full | 89 | -4.120846985615921 | 0.7713227218090908 | -7.9424261241832275 |
+| L2 | M | 1h | short_only | BONKUSDT | False | train | 62 | -4.782796798584272 | 0.6739520013085882 | -7.9424261241832275 |
+| L2 | M | 1h | short_only | BONKUSDT | False | test | 27 | 0.6619498129683518 | 1.1975165111992383 | -2.869141172037501 |
+| L2 | M | 1h | short_only | SHIBUSDT | False | full | 169 | -20.246399752094234 | 0.533732356727076 | -25.092318908533095 |
+| L2 | M | 1h | short_only | SHIBUSDT | False | train | 97 | -20.46184389135812 | 0.3818503951498807 | -23.263099536359487 |
+| L2 | M | 1h | short_only | SHIBUSDT | False | test | 72 | 0.21544413926388728 | 1.020875350532138 | -4.4598384214621 |
+| L2 | M | 1h | short_only | WIFUSDT | False | full | 99 | -10.205210796471373 | 0.5984635457160913 | -17.043090546086265 |
+| L2 | M | 1h | short_only | WIFUSDT | False | train | 59 | -13.978640929097732 | 0.3796646212495544 | -15.535755344728727 |
+| L2 | M | 1h | short_only | WIFUSDT | False | test | 40 | 3.773430132626354 | 2.309583407044574 | -4.578055132944893 |
+| L2 | M | 1h | short_only | BOMEUSDT | False | full | 107 | -3.673763466366673 | 0.8115467766143422 | -7.654325366545289 |
+| L2 | M | 1h | short_only | BOMEUSDT | False | train | 53 | -1.3330796144858321 | 0.854603924917233 | -5.007737781274056 |
+| L2 | M | 1h | short_only | BOMEUSDT | False | test | 54 | -2.3406838518808386 | 0.7733145540442822 | -5.7020015025023065 |
+| L2 | M | 1h | combined | PEPEUSDT | False | full | 191 | 13.980374023496688 | 1.1505716861443966 | -12.895018287605062 |
+| L2 | M | 1h | combined | PEPEUSDT | False | train | 102 | 7.6889805308813255 | 1.138224204352812 | -12.895018287605062 |
+| L2 | M | 1h | combined | PEPEUSDT | False | test | 89 | 6.291393492615362 | 1.1690246558349395 | -10.87809537239341 |
+| L2 | M | 1h | combined | PUMPUSDT | False | full | 86 | 1.869933956864903 | 1.0370654993865316 | -14.846504531418375 |
+| L2 | M | 1h | combined | PUMPUSDT | False | train | 49 | 1.951515836214604 | 1.0684541485191366 | -11.162447357369318 |
+| L2 | M | 1h | combined | PUMPUSDT | False | test | 37 | -0.5291661124612123 | 0.9758824063253249 | -7.964677716186879 |
+| L2 | M | 1h | combined | BEATUSDT | False | full | 93 | -11.49854941433775 | 0.8573097085981172 | -26.602883263420324 |
+| L2 | M | 1h | combined | BEATUSDT | False | train | 59 | -15.836342232880371 | 0.7421120539452939 | -26.602883263420324 |
+| L2 | M | 1h | combined | BEATUSDT | False | test | 34 | 4.337792818542621 | 1.2262080224202219 | -9.021587342297844 |
+| L2 | M | 1h | combined | PENGUUSDT | False | full | 149 | -21.185336392552433 | 0.8007037065138716 | -25.234110268380878 |
+| L2 | M | 1h | combined | PENGUUSDT | False | train | 97 | -18.459989432956842 | 0.7661179353454617 | -25.234110268380878 |
+| L2 | M | 1h | combined | PENGUUSDT | False | test | 52 | -2.7253469595955915 | 0.9004333295735141 | -11.703942634722303 |
+| L2 | M | 1h | combined | TRUMPUSDT | False | full | 73 | -7.37288058217887 | 0.8060888924553801 | -11.388887135661466 |
+| L2 | M | 1h | combined | TRUMPUSDT | False | train | 43 | -0.675935602582023 | 0.9690089386949098 | -10.116589778092438 |
+| L2 | M | 1h | combined | TRUMPUSDT | False | test | 30 | -6.696944979596848 | 0.5868964309287592 | -11.313941558600854 |
+| L2 | M | 1h | combined | BONKUSDT | False | full | 178 | -9.940898805098007 | 0.9072900007705761 | -18.791528275303925 |
+| L2 | M | 1h | combined | BONKUSDT | False | train | 107 | -8.768121274097386 | 0.8835883564586239 | -16.83118012146929 |
+| L2 | M | 1h | combined | BONKUSDT | False | test | 71 | -1.1727775310006179 | 0.9632424715381397 | -7.876750017439023 |
+| L2 | M | 1h | combined | SHIBUSDT | False | full | 238 | -10.046426971771174 | 0.9168466970454927 | -32.88509182451218 |
+| L2 | M | 1h | combined | SHIBUSDT | False | train | 143 | -26.89269059953166 | 0.7194267802115453 | -32.88509182451218 |
+| L2 | M | 1h | combined | SHIBUSDT | False | test | 95 | 16.846263627760496 | 1.6746862146686083 | -3.53347053171608 |
+| L2 | M | 1h | combined | WIFUSDT | False | full | 184 | -18.688429015840587 | 0.8367272200352591 | -27.008196776254373 |
+| L2 | M | 1h | combined | WIFUSDT | False | train | 122 | -14.077910787284061 | 0.8273500401449603 | -27.008196776254373 |
+| L2 | M | 1h | combined | WIFUSDT | False | test | 62 | -4.610518228556519 | 0.8599528960483206 | -11.535054565415358 |
+| L2 | M | 1h | combined | BOMEUSDT | False | full | 183 | 13.144218296940135 | 1.1421165200276218 | -13.04314228158015 |
+| L2 | M | 1h | combined | BOMEUSDT | False | train | 110 | 3.9361831544570167 | 1.065209443918335 | -13.04314228158015 |
+| L2 | M | 1h | combined | BOMEUSDT | False | test | 73 | 9.208035142483116 | 1.2866148462222444 | -7.700303663202323 |
+| L2 | M | 4h | unconstrained | PEPEUSDT | False | full | 135 | 8.239018359586241 | 1.0831726028713926 | -23.615011819780396 |
+| L2 | M | 4h | unconstrained | PEPEUSDT | False | train | 93 | 11.464371850470227 | 1.1687898447437335 | -15.727991894072035 |
+| L2 | M | 4h | unconstrained | PEPEUSDT | False | test | 42 | 1.0763053088650691 | 1.040105810777639 | -20.020154922196458 |
+| L2 | M | 4h | unconstrained | PUMPUSDT | False | full | 48 | -10.380663294226364 | 0.7749636289014633 | -20.03525757284232 |
+| L2 | M | 4h | unconstrained | PUMPUSDT | False | train | 31 | -2.6377657579079363 | 0.9011073853249152 | -16.5571785534368 |
+| L2 | M | 4h | unconstrained | PUMPUSDT | False | test | 17 | -8.19267448626965 | 0.5789082384482537 | -12.000003573892393 |
+| L2 | M | 4h | unconstrained | BEATUSDT | False | full | 40 | 2.4828056741052458 | 1.0757515201087213 | -20.20267546646663 |
+| L2 | M | 4h | unconstrained | BEATUSDT | False | train | 29 | 18.2787787817743 | 3.111989600469417 | -7.983197023540743 |
+| L2 | M | 4h | unconstrained | BEATUSDT | False | test | 11 | -15.795973107669061 | 0.34513300220686843 | -23.747911464369608 |
+| L2 | M | 4h | unconstrained | PENGUUSDT | False | full | 83 | -5.538092133029402 | 0.9248360639178496 | -19.595320018651403 |
+| L2 | M | 4h | unconstrained | PENGUUSDT | False | train | 55 | -11.632133033815657 | 0.7950583895939911 | -19.595320018651403 |
+| L2 | M | 4h | unconstrained | PENGUUSDT | False | test | 30 | 4.406320862892614 | 1.2307056475382894 | -10.737140431576437 |
+| L2 | M | 4h | unconstrained | TRUMPUSDT | False | full | 65 | -24.75638681102833 | 0.5879066035472543 | -33.36320792307116 |
+| L2 | M | 4h | unconstrained | TRUMPUSDT | False | train | 42 | -15.441551539016254 | 0.59847740635548 | -33.36320792307116 |
+| L2 | M | 4h | unconstrained | TRUMPUSDT | False | test | 23 | -9.314835272012084 | 0.5691009117245515 | -14.14946376263131 |
+| L2 | M | 4h | unconstrained | BONKUSDT | False | full | 117 | -13.733770471138989 | 0.8725594529634287 | -27.550100537933503 |
+| L2 | M | 4h | unconstrained | BONKUSDT | False | train | 72 | -14.134096570386223 | 0.8074312488061415 | -27.550100537933503 |
+| L2 | M | 4h | unconstrained | BONKUSDT | False | test | 45 | -1.439443995921894 | 0.9585641553844882 | -10.994926561736307 |
+| L2 | M | 4h | unconstrained | SHIBUSDT | False | full | 186 | -33.065173964817966 | 0.7765319964618762 | -40.16805025884068 |
+| L2 | M | 4h | unconstrained | SHIBUSDT | False | train | 114 | -21.03184849162128 | 0.7777092284825917 | -37.91775491839522 |
+| L2 | M | 4h | unconstrained | SHIBUSDT | False | test | 72 | -11.318171369368518 | 0.7829473003234994 | -18.17069299481384 |
+| L2 | M | 4h | unconstrained | WIFUSDT | False | full | 108 | -5.031186616353476 | 0.9454305939244374 | -24.99828896336501 |
+| L2 | M | 4h | unconstrained | WIFUSDT | False | train | 70 | 4.7300570535239155 | 1.0875384614136414 | -24.99828896336501 |
+| L2 | M | 4h | unconstrained | WIFUSDT | False | test | 38 | -9.76124366987739 | 0.7442282990907275 | -15.62518989655154 |
+| L2 | M | 4h | unconstrained | BOMEUSDT | False | full | 110 | -21.51564558713262 | 0.7955845328297289 | -33.48125229289601 |
+| L2 | M | 4h | unconstrained | BOMEUSDT | False | train | 70 | -12.571037250277364 | 0.8107858045304731 | -29.842870990719927 |
+| L2 | M | 4h | unconstrained | BOMEUSDT | False | test | 40 | -8.944608336855259 | 0.7695660171545663 | -12.393766658850545 |
+| L2 | M | 4h | with_stop | PEPEUSDT | False | full | 217 | -6.610504279689984 | 0.9617378252125672 | -28.520916352529557 |
+| L2 | M | 4h | with_stop | PEPEUSDT | False | train | 149 | -5.430726721929063 | 0.9563989149079207 | -28.520916352529557 |
+| L2 | M | 4h | with_stop | PEPEUSDT | False | test | 68 | -3.002619464131676 | 0.9381741250891814 | -20.23379447469787 |
+| L2 | M | 4h | with_stop | PUMPUSDT | False | full | 79 | 6.82776177454558 | 1.1266101218716342 | -12.729526378767957 |
+| L2 | M | 4h | with_stop | PUMPUSDT | False | train | 45 | 7.792009109305146 | 1.288261578406597 | -12.729526378767957 |
+| L2 | M | 4h | with_stop | PUMPUSDT | False | test | 34 | -1.4140242847107805 | 0.947427044693456 | -11.743675118167646 |
+| L2 | M | 4h | with_stop | BEATUSDT | False | full | 83 | -54.86947200483282 | 0.5109897683962634 | -57.28429237343846 |
+| L2 | M | 4h | with_stop | BEATUSDT | False | train | 62 | -14.413569865374281 | 0.763578907231552 | -41.93252068008762 |
+| L2 | M | 4h | with_stop | BEATUSDT | False | test | 21 | -40.45590213945853 | 0.21045468173783458 | -42.20873730490649 |
+| L2 | M | 4h | with_stop | PENGUUSDT | False | full | 136 | 11.582245875569551 | 1.1207352534165202 | -21.614526183947376 |
+| L2 | M | 4h | with_stop | PENGUUSDT | False | train | 89 | 7.618540210988183 | 1.1188110856375635 | -21.614526183947376 |
+| L2 | M | 4h | with_stop | PENGUUSDT | False | test | 49 | 2.2759856266877234 | 1.0669698774814191 | -14.066750646571238 |
+| L2 | M | 4h | with_stop | TRUMPUSDT | False | full | 88 | -10.535626212700638 | 0.8424681670982705 | -22.790147287116177 |
+| L2 | M | 4h | with_stop | TRUMPUSDT | False | train | 56 | -1.3339265213548739 | 0.9662716701548489 | -16.624641367058615 |
+| L2 | M | 4h | with_stop | TRUMPUSDT | False | test | 32 | -9.201699691345762 | 0.6633139182945746 | -15.492478251119044 |
+| L2 | M | 4h | with_stop | BONKUSDT | False | full | 203 | 24.195719739241067 | 1.1687607325476201 | -18.52968263223541 |
+| L2 | M | 4h | with_stop | BONKUSDT | False | train | 131 | 15.079579330985766 | 1.153708970083244 | -18.52968263223541 |
+| L2 | M | 4h | with_stop | BONKUSDT | False | test | 72 | 7.2763703130861765 | 1.1594337022552434 | -12.02022842800069 |
+| L2 | M | 4h | with_stop | SHIBUSDT | False | full | 278 | -27.602377800508336 | 0.8716307864947918 | -64.1138794362892 |
+| L2 | M | 4h | with_stop | SHIBUSDT | False | train | 164 | -42.621960284043034 | 0.7198445279305525 | -64.1138794362892 |
+| L2 | M | 4h | with_stop | SHIBUSDT | False | test | 114 | 16.932170220959346 | 1.2776951662480616 | -6.836143772022423 |
+| L2 | M | 4h | with_stop | WIFUSDT | False | full | 194 | 14.793485311220675 | 1.1098473190126987 | -22.853367195711378 |
+| L2 | M | 4h | with_stop | WIFUSDT | False | train | 138 | 17.941622222220555 | 1.1943260620024616 | -22.853367195711378 |
+| L2 | M | 4h | with_stop | WIFUSDT | False | test | 56 | -3.1481369109998742 | 0.9256563605465759 | -12.56941145698019 |
+| L2 | M | 4h | with_stop | BOMEUSDT | False | full | 193 | 47.095397951703625 | 1.4255332277726114 | -13.628818245997826 |
+| L2 | M | 4h | with_stop | BOMEUSDT | False | train | 133 | 41.46438016590977 | 1.5943815611458971 | -13.628818245997826 |
+| L2 | M | 4h | with_stop | BOMEUSDT | False | test | 60 | 5.631017785793858 | 1.1376329364455837 | -11.258349206671594 |
+| L2 | M | 4h | long_only | PEPEUSDT | False | full | 135 | 8.239018359586241 | 1.0831726028713926 | -23.615011819780396 |
+| L2 | M | 4h | long_only | PEPEUSDT | False | train | 93 | 11.464371850470227 | 1.1687898447437335 | -15.727991894072035 |
+| L2 | M | 4h | long_only | PEPEUSDT | False | test | 42 | 1.0763053088650691 | 1.040105810777639 | -20.020154922196458 |
+| L2 | M | 4h | long_only | PUMPUSDT | False | full | 48 | -10.380663294226364 | 0.7749636289014633 | -20.03525757284232 |
+| L2 | M | 4h | long_only | PUMPUSDT | False | train | 31 | -2.6377657579079363 | 0.9011073853249152 | -16.5571785534368 |
+| L2 | M | 4h | long_only | PUMPUSDT | False | test | 17 | -8.19267448626965 | 0.5789082384482537 | -12.000003573892393 |
+| L2 | M | 4h | long_only | BEATUSDT | False | full | 40 | 2.4828056741052458 | 1.0757515201087213 | -20.20267546646663 |
+| L2 | M | 4h | long_only | BEATUSDT | False | train | 29 | 18.2787787817743 | 3.111989600469417 | -7.983197023540743 |
+| L2 | M | 4h | long_only | BEATUSDT | False | test | 11 | -15.795973107669061 | 0.34513300220686843 | -23.747911464369608 |
+| L2 | M | 4h | long_only | PENGUUSDT | False | full | 83 | -5.538092133029402 | 0.9248360639178496 | -19.595320018651403 |
+| L2 | M | 4h | long_only | PENGUUSDT | False | train | 55 | -11.632133033815657 | 0.7950583895939911 | -19.595320018651403 |
+| L2 | M | 4h | long_only | PENGUUSDT | False | test | 30 | 4.406320862892614 | 1.2307056475382894 | -10.737140431576437 |
+| L2 | M | 4h | long_only | TRUMPUSDT | False | full | 65 | -24.75638681102833 | 0.5879066035472543 | -33.36320792307116 |
+| L2 | M | 4h | long_only | TRUMPUSDT | False | train | 42 | -15.441551539016254 | 0.59847740635548 | -33.36320792307116 |
+| L2 | M | 4h | long_only | TRUMPUSDT | False | test | 23 | -9.314835272012084 | 0.5691009117245515 | -14.14946376263131 |
+| L2 | M | 4h | long_only | BONKUSDT | False | full | 117 | -13.733770471138989 | 0.8725594529634287 | -27.550100537933503 |
+| L2 | M | 4h | long_only | BONKUSDT | False | train | 72 | -14.134096570386223 | 0.8074312488061415 | -27.550100537933503 |
+| L2 | M | 4h | long_only | BONKUSDT | False | test | 45 | -1.439443995921894 | 0.9585641553844882 | -10.994926561736307 |
+| L2 | M | 4h | long_only | SHIBUSDT | False | full | 186 | -33.065173964817966 | 0.7765319964618762 | -40.16805025884068 |
+| L2 | M | 4h | long_only | SHIBUSDT | False | train | 114 | -21.03184849162128 | 0.7777092284825917 | -37.91775491839522 |
+| L2 | M | 4h | long_only | SHIBUSDT | False | test | 72 | -11.318171369368518 | 0.7829473003234994 | -18.17069299481384 |
+| L2 | M | 4h | long_only | WIFUSDT | False | full | 108 | -5.031186616353476 | 0.9454305939244374 | -24.99828896336501 |
+| L2 | M | 4h | long_only | WIFUSDT | False | train | 70 | 4.7300570535239155 | 1.0875384614136414 | -24.99828896336501 |
+| L2 | M | 4h | long_only | WIFUSDT | False | test | 38 | -9.76124366987739 | 0.7442282990907275 | -15.62518989655154 |
+| L2 | M | 4h | long_only | BOMEUSDT | False | full | 110 | -21.51564558713262 | 0.7955845328297289 | -33.48125229289601 |
+| L2 | M | 4h | long_only | BOMEUSDT | False | train | 70 | -12.571037250277364 | 0.8107858045304731 | -29.842870990719927 |
+| L2 | M | 4h | long_only | BOMEUSDT | False | test | 40 | -8.944608336855259 | 0.7695660171545663 | -12.393766658850545 |
+| L2 | M | 4h | short_only | PEPEUSDT | False | full | 89 | 8.629458162052947 | 2.239808112220188 | -3.6107747502955734 |
+| L2 | M | 4h | short_only | PEPEUSDT | False | train | 62 | 9.310280115360266 | 5.882791345204896 | -3.6107747502955734 |
+| L2 | M | 4h | short_only | PEPEUSDT | False | test | 27 | -0.6808219533073202 | 0.8652788479756292 | -3.1092983908430325 |
+| L2 | M | 4h | short_only | PUMPUSDT | False | full | 32 | 3.3948191492718083 | 2.4704096892682315 | -2.924116616131078 |
+| L2 | M | 4h | short_only | PUMPUSDT | False | train | 16 | 1.8377927505564697 | 2.8124269483338806 | -2.7587539722559966 |
+| L2 | M | 4h | short_only | PUMPUSDT | False | test | 16 | 1.5570263987153392 | 2.2025581454968215 | -2.890102490331781 |
+| L2 | M | 4h | short_only | BEATUSDT | False | full | 43 | -14.722343575098165 | 0.3291826562361606 | -40.13023561182403 |
+| L2 | M | 4h | short_only | BEATUSDT | False | train | 29 | -16.364272929364567 | 0.22507569170422176 | -40.13023561182403 |
+| L2 | M | 4h | short_only | BEATUSDT | False | test | 14 | 1.6419293542664 | 2.9791331649034225 | -9.078750065326513 |
+| L2 | M | 4h | short_only | PENGUUSDT | False | full | 47 | 4.273184068386101 | 2.0442619534486557 | -5.9081551267479275 |
+| L2 | M | 4h | short_only | PENGUUSDT | False | train | 25 | 2.8757095342793537 | 2.7044760230981555 | -5.9081551267479275 |
+| L2 | M | 4h | short_only | PENGUUSDT | False | test | 22 | 1.3974745341067478 | 1.5810922897416209 | -2.591930272149762 |
+| L2 | M | 4h | short_only | TRUMPUSDT | False | full | 30 | 4.1887522900060725 | 4.691878080165751 | -1.9248275473606042 |
+| L2 | M | 4h | short_only | TRUMPUSDT | False | train | 17 | 1.7172024820060665 | 2.5135061143745094 | -1.9248275473606042 |
+| L2 | M | 4h | short_only | TRUMPUSDT | False | test | 13 | 2.4715498080000056 | inf | -1.91518393349932 |
+| L2 | M | 4h | short_only | BONKUSDT | False | full | 71 | 2.246754759839926 | 1.2217767258793997 | -10.329070792010684 |
+| L2 | M | 4h | short_only | BONKUSDT | False | train | 48 | -2.1259872081600855 | 0.7901442156860848 | -10.329070792010684 |
+| L2 | M | 4h | short_only | BONKUSDT | False | test | 23 | 4.372741968000011 | inf | -1.4514291996098243 |
+| L2 | M | 4h | short_only | SHIBUSDT | False | full | 101 | 4.241364693808065 | 1.3263227827451145 | -7.399832899911751 |
+| L2 | M | 4h | short_only | SHIBUSDT | False | train | 62 | 4.068360086037199 | 1.6184500835587239 | -5.718087275614098 |
+| L2 | M | 4h | short_only | SHIBUSDT | False | test | 39 | 0.17300460777086554 | 1.0269513855109513 | -7.081696038649318 |
+| L2 | M | 4h | short_only | WIFUSDT | False | full | 77 | 8.586016550588193 | 2.513507948933956 | -7.8800717120222785 |
+| L2 | M | 4h | short_only | WIFUSDT | False | train | 60 | 6.757071783125893 | 2.515051438196917 | -7.8800717120222785 |
+| L2 | M | 4h | short_only | WIFUSDT | False | test | 17 | 1.8289447674623003 | 2.507832668511173 | -1.7069465497362684 |
+| L2 | M | 4h | short_only | BOMEUSDT | False | full | 65 | 2.4897193647568874 | 1.279196849425937 | -10.748271209616934 |
+| L2 | M | 4h | short_only | BOMEUSDT | False | train | 44 | 2.1901277048375953 | 1.3907620746952687 | -10.748271209616934 |
+| L2 | M | 4h | short_only | BOMEUSDT | False | test | 21 | 0.2995916599192916 | 1.0904380298802527 | -3.0275589449771623 |
+| L2 | M | 4h | combined | PEPEUSDT | False | full | 217 | -6.610504279689984 | 0.9617378252125672 | -28.520916352529557 |
+| L2 | M | 4h | combined | PEPEUSDT | False | train | 149 | -5.430726721929063 | 0.9563989149079207 | -28.520916352529557 |
+| L2 | M | 4h | combined | PEPEUSDT | False | test | 68 | -3.002619464131676 | 0.9381741250891814 | -20.23379447469787 |
+| L2 | M | 4h | combined | PUMPUSDT | False | full | 79 | 6.82776177454558 | 1.1266101218716342 | -12.729526378767957 |
+| L2 | M | 4h | combined | PUMPUSDT | False | train | 45 | 7.792009109305146 | 1.288261578406597 | -12.729526378767957 |
+| L2 | M | 4h | combined | PUMPUSDT | False | test | 34 | -1.4140242847107805 | 0.947427044693456 | -11.743675118167646 |
+| L2 | M | 4h | combined | BEATUSDT | False | full | 83 | -54.86947200483282 | 0.5109897683962634 | -57.28429237343846 |
+| L2 | M | 4h | combined | BEATUSDT | False | train | 62 | -14.413569865374281 | 0.763578907231552 | -41.93252068008762 |
+| L2 | M | 4h | combined | BEATUSDT | False | test | 21 | -40.45590213945853 | 0.21045468173783458 | -42.20873730490649 |
+| L2 | M | 4h | combined | PENGUUSDT | False | full | 136 | 11.582245875569551 | 1.1207352534165202 | -21.614526183947376 |
+| L2 | M | 4h | combined | PENGUUSDT | False | train | 89 | 7.618540210988183 | 1.1188110856375635 | -21.614526183947376 |
+| L2 | M | 4h | combined | PENGUUSDT | False | test | 49 | 2.2759856266877234 | 1.0669698774814191 | -14.066750646571238 |
+| L2 | M | 4h | combined | TRUMPUSDT | False | full | 88 | -10.535626212700638 | 0.8424681670982705 | -22.790147287116177 |
+| L2 | M | 4h | combined | TRUMPUSDT | False | train | 56 | -1.3339265213548739 | 0.9662716701548489 | -16.624641367058615 |
+| L2 | M | 4h | combined | TRUMPUSDT | False | test | 32 | -9.201699691345762 | 0.6633139182945746 | -15.492478251119044 |
+| L2 | M | 4h | combined | BONKUSDT | False | full | 203 | 24.195719739241067 | 1.1687607325476201 | -18.52968263223541 |
+| L2 | M | 4h | combined | BONKUSDT | False | train | 131 | 15.079579330985766 | 1.153708970083244 | -18.52968263223541 |
+| L2 | M | 4h | combined | BONKUSDT | False | test | 72 | 7.2763703130861765 | 1.1594337022552434 | -12.02022842800069 |
+| L2 | M | 4h | combined | SHIBUSDT | False | full | 278 | -27.602377800508336 | 0.8716307864947918 | -64.1138794362892 |
+| L2 | M | 4h | combined | SHIBUSDT | False | train | 164 | -42.621960284043034 | 0.7198445279305525 | -64.1138794362892 |
+| L2 | M | 4h | combined | SHIBUSDT | False | test | 114 | 16.932170220959346 | 1.2776951662480616 | -6.836143772022423 |
+| L2 | M | 4h | combined | WIFUSDT | False | full | 194 | 14.793485311220675 | 1.1098473190126987 | -22.853367195711378 |
+| L2 | M | 4h | combined | WIFUSDT | False | train | 138 | 17.941622222220555 | 1.1943260620024616 | -22.853367195711378 |
+| L2 | M | 4h | combined | WIFUSDT | False | test | 56 | -3.1481369109998742 | 0.9256563605465759 | -12.56941145698019 |
+| L2 | M | 4h | combined | BOMEUSDT | False | full | 193 | 47.095397951703625 | 1.4255332277726114 | -13.628818245997826 |
+| L2 | M | 4h | combined | BOMEUSDT | False | train | 133 | 41.46438016590977 | 1.5943815611458971 | -13.628818245997826 |
+| L2 | M | 4h | combined | BOMEUSDT | False | test | 60 | 5.631017785793858 | 1.1376329364455837 | -11.258349206671594 |
+
+## Walk-forward summaries
+
+| cohort | timeframe | side | windows | windows_selected | test_trades | total_test_return | mean_test_return | positive_windows_pct |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| L2 | 15m | combined | 15 | 3 | 38 | -2.5615675922085215 | -0.1707711728139014 | 13.333333333333334 |
+| L2 | 15m | long | 15 | 5 | 210 | -8.50590129773198 | -0.5670600865154654 | 20.0 |
+| L2 | 15m | short | 15 | 7 | 108 | -6.649933439228776 | -0.4433288959485851 | 20.0 |
+| L2 | 1h | combined | 15 | 4 | 89 | -7.029916432991458 | -0.46866109553276386 | 0.0 |
+| L2 | 1h | long | 15 | 10 | 112 | -4.661098763017973 | -0.3107399175345315 | 46.666666666666664 |
+| L2 | 1h | short | 15 | 1 | 7 | -0.3561999445132949 | -0.023746662967552994 | 0.0 |
+| L2 | 4h | combined | 15 | 4 | 66 | 9.391442427450793 | 0.6260961618300528 | 20.0 |
+| L2 | 4h | long | 15 | 8 | 56 | -9.928309468030047 | -0.6618872978686698 | 13.333333333333334 |
+| L2 | 4h | short | 15 | 1 | 4 | 0.7604768640000009 | 0.05069845760000006 | 6.666666666666667 |
+| L5 | 15m | combined | 15 | 2 | 30 | 1.9609180693251562 | 0.13072787128834376 | 13.333333333333334 |
+| L5 | 15m | long | 15 | 6 | 256 | 46.009539068331506 | 3.067302604555434 | 40.0 |
+| L5 | 15m | short | 15 | 7 | 78 | -3.0622146462176145 | -0.2041476430811743 | 0.0 |
+| L5 | 1h | combined | 15 | 3 | 31 | 2.228980968015212 | 0.1485987312010141 | 13.333333333333334 |
+| L5 | 1h | long | 15 | 10 | 178 | 7.343932930308522 | 0.48959552868723494 | 46.666666666666664 |
+| L5 | 1h | short | 15 | 2 | 29 | -4.249933173086037 | -0.28332887820573577 | 0.0 |
+| L5 | 4h | combined | 15 | 4 | 24 | -3.5427190650732596 | -0.23618127100488395 | 13.333333333333334 |
+| L5 | 4h | long | 15 | 9 | 183 | 19.864279488855463 | 1.3242852992570309 | 33.33333333333333 |
+| L5 | 4h | short | 15 | 2 | 21 | -7.048235976738087 | -0.4698823984492058 | 6.666666666666667 |
+| M | 15m | combined | 3 | 1 | 6 | -0.8744846591709009 | -0.2914948863903003 | 0.0 |
+| M | 15m | long | 3 | 2 | 87 | 6.776854196466944 | 2.258951398822315 | 66.66666666666666 |
+| M | 15m | short | 3 | 0 | 0 | 0.0 | 0.0 | 0.0 |
+| M | 1h | combined | 3 | 1 | 4 | 1.1847669996277834 | 0.3949223332092611 | 33.33333333333333 |
+| M | 1h | long | 3 | 2 | 101 | 3.713995035164098 | 1.2379983450546994 | 66.66666666666666 |
+| M | 1h | short | 3 | 0 | 0 | 0.0 | 0.0 | 0.0 |
+| M | 4h | combined | 3 | 0 | 0 | 0.0 | 0.0 | 0.0 |
+| M | 4h | long | 3 | 1 | 6 | -2.9583074239999902 | -0.9861024746666635 | 0.0 |
+| M | 4h | short | 3 | 2 | 27 | 1.701176160000013 | 0.5670587200000043 | 33.33333333333333 |
+
+## Plateau verdicts
+
+| cohort | timeframe | variant | neighbors | robust_neighbor_pct | verdict |
+| --- | --- | --- | --- | --- | --- |
+| L2 | 15m | unconstrained | 15 | 0.0 | FRAGILE |
+| L2 | 15m | with_stop | 13 | 0.0 | FRAGILE |
+| L2 | 15m | long_only | 15 | 0.0 | FRAGILE |
+| L2 | 15m | short_only | 15 | 0.0 | FRAGILE |
+| L2 | 15m | combined | 14 | 0.0 | FRAGILE |
+| L2 | 1h | unconstrained | 14 | 21.428571428571427 | FRAGILE |
+| L2 | 1h | with_stop | 16 | 56.25 | FRAGILE |
+| L2 | 1h | long_only | 14 | 21.428571428571427 | FRAGILE |
+| L2 | 1h | short_only | 16 | 0.0 | FRAGILE |
+| L2 | 1h | combined | 16 | 56.25 | FRAGILE |
+| L2 | 4h | unconstrained | 11 | 63.63636363636363 | FRAGILE |
+| L2 | 4h | with_stop | 14 | 0.0 | FRAGILE |
+| L2 | 4h | long_only | 11 | 63.63636363636363 | FRAGILE |
+| L2 | 4h | short_only | 14 | 0.0 | FRAGILE |
+| L2 | 4h | combined | 14 | 0.0 | FRAGILE |
+| L5 | 15m | unconstrained | 15 | 26.666666666666668 | FRAGILE |
+| L5 | 15m | with_stop | 14 | 0.0 | FRAGILE |
+| L5 | 15m | long_only | 14 | 14.285714285714286 | FRAGILE |
+| L5 | 15m | short_only | 15 | 26.666666666666668 | FRAGILE |
+| L5 | 15m | combined | 15 | 0.0 | FRAGILE |
+| L5 | 1h | unconstrained | 14 | 7.142857142857143 | FRAGILE |
+| L5 | 1h | with_stop | 15 | 6.666666666666667 | FRAGILE |
+| L5 | 1h | long_only | 14 | 7.142857142857143 | FRAGILE |
+| L5 | 1h | short_only | 13 | 0.0 | FRAGILE |
+| L5 | 1h | combined | 15 | 6.666666666666667 | FRAGILE |
+| L5 | 4h | unconstrained | 14 | 0.0 | FRAGILE |
+| L5 | 4h | with_stop | 15 | 0.0 | FRAGILE |
+| L5 | 4h | long_only | 14 | 0.0 | FRAGILE |
+| L5 | 4h | short_only | 13 | 7.6923076923076925 | FRAGILE |
+| L5 | 4h | combined | 15 | 0.0 | FRAGILE |
+| M | 15m | unconstrained | 12 | 0.0 | FRAGILE |
+| M | 15m | with_stop | 15 | 6.666666666666667 | FRAGILE |
+| M | 15m | long_only | 12 | 0.0 | FRAGILE |
+| M | 15m | short_only | 14 | 0.0 | FRAGILE |
+| M | 15m | combined | 14 | 0.0 | FRAGILE |
+| M | 1h | unconstrained | 16 | 0.0 | FRAGILE |
+| M | 1h | with_stop | 15 | 0.0 | FRAGILE |
+| M | 1h | long_only | 14 | 0.0 | FRAGILE |
+| M | 1h | short_only | 16 | 0.0 | FRAGILE |
+| M | 1h | combined | 16 | 0.0 | FRAGILE |
+| M | 4h | unconstrained | 12 | 0.0 | FRAGILE |
+| M | 4h | with_stop | 15 | 0.0 | FRAGILE |
+| M | 4h | long_only | 12 | 0.0 | FRAGILE |
+| M | 4h | short_only | 12 | 0.0 | FRAGILE |
+| M | 4h | combined | 15 | 0.0 | FRAGILE |
+
+## Data first dates and gaps
+
+| symbol | first_date |
+| --- | --- |
+| BEATUSDT | 2025-11-12T12:00:00+00:00 |
+| PEPEUSDT | 2023-05-05T16:00:00+00:00 |
+| PUMPUSDT | 2025-09-11T12:00:00+00:00 |
+| PENGUUSDT | 2024-12-17T12:00:00+00:00 |
+| TRUMPUSDT | 2025-01-19T08:00:00+00:00 |
+| BONKUSDT | 2023-12-15T08:00:00+00:00 |
+| SHIBUSDT | 2021-05-10T08:00:00+00:00 |
+| WIFUSDT | 2024-03-05T12:00:00+00:00 |
+| BOMEUSDT | 2024-03-16T12:00:00+00:00 |
+
+| symbol | timeframe | bars | gaps | gap_details |
+| --- | --- | --- | --- | --- |
+| BEATUSDT | 15m | 35759 | 0 | [] |
+| BEATUSDT | 1h | 8940 | 0 | [] |
+| BEATUSDT | 4h | 2235 | 0 | [] |
+| PEPEUSDT | 15m | 124248 | 0 | [] |
+| PEPEUSDT | 1h | 31062 | 0 | [] |
+| PEPEUSDT | 4h | 7766 | 0 | [] |
+| PUMPUSDT | 15m | 41710 | 0 | [] |
+| PUMPUSDT | 1h | 10428 | 0 | [] |
+| PUMPUSDT | 4h | 2607 | 0 | [] |
+| PENGUUSDT | 15m | 67432 | 0 | [] |
+| PENGUUSDT | 1h | 16858 | 0 | [] |
+| PENGUUSDT | 4h | 4215 | 0 | [] |
+| TRUMPUSDT | 15m | 64286 | 0 | [] |
+| TRUMPUSDT | 1h | 16072 | 0 | [] |
+| TRUMPUSDT | 4h | 4018 | 0 | [] |
+| BONKUSDT | 15m | 102784 | 0 | [] |
+| BONKUSDT | 1h | 25696 | 0 | [] |
+| BONKUSDT | 4h | 6424 | 0 | [] |
+| SHIBUSDT | 15m | 193845 | 3 | [["2021-08-13 01:45:00+00:00", "2021-08-13 06:30:00+00:00", 18], ["2021-09-29 06:45:00+00:00", "2021-09-29 09:00:00+00:00", 8], ["2023-03-24 12:30:00+00:00", "2023-03-24 14:00:00+00:00", 5]] |
+| SHIBUSDT | 1h | 48462 | 3 | [["2021-08-13 01:00:00+00:00", "2021-08-13 06:00:00+00:00", 4], ["2021-09-29 06:00:00+00:00", "2021-09-29 09:00:00+00:00", 2], ["2023-03-24 12:00:00+00:00", "2023-03-24 14:00:00+00:00", 1]] |
+| SHIBUSDT | 4h | 12118 | 0 | [] |
+| WIFUSDT | 15m | 94984 | 0 | [] |
+| WIFUSDT | 1h | 23746 | 0 | [] |
+| WIFUSDT | 4h | 5937 | 0 | [] |
+| BOMEUSDT | 15m | 93934 | 0 | [] |
+| BOMEUSDT | 1h | 23484 | 0 | [] |
+| BOMEUSDT | 4h | 5871 | 0 | [] |
+| BTCUSDT | 15m | 171163 | 1 | nan |
+| BTCUSDT | 1h | 42791 | 1 | nan |
+| BTCUSDT | 4h | 10698 | 0 | nan |
+| ETHUSDT | 15m | 171163 | 1 | nan |
+| ETHUSDT | 1h | 42791 | 1 | nan |
+| ETHUSDT | 4h | 10698 | 0 | nan |
+| SOLUSDT | 15m | 171163 | 1 | nan |
+| SOLUSDT | 1h | 42791 | 1 | nan |
+| SOLUSDT | 4h | 10698 | 0 | nan |
+| XRPUSDT | 15m | 171163 | 1 | nan |
+| XRPUSDT | 1h | 42791 | 1 | nan |
+| XRPUSDT | 4h | 10698 | 0 | nan |
+| TRXUSDT | 15m | 171163 | 1 | nan |
+| TRXUSDT | 1h | 42791 | 1 | nan |
+| TRXUSDT | 4h | 10698 | 0 | nan |
+| DOGEUSDT | 15m | 171163 | 1 | nan |
+| DOGEUSDT | 1h | 42791 | 1 | nan |
+| DOGEUSDT | 4h | 10698 | 0 | nan |
+| BNBUSDT | 15m | 171163 | 1 | nan |
+| BNBUSDT | 1h | 42791 | 1 | nan |
+| BNBUSDT | 4h | 10698 | 0 | nan |
+| ADAUSDT | 15m | 171163 | 1 | nan |
+| ADAUSDT | 1h | 42791 | 1 | nan |
+| ADAUSDT | 4h | 10698 | 0 | nan |
+| AVAXUSDT | 15m | 171163 | 1 | nan |
+| AVAXUSDT | 1h | 42791 | 1 | nan |
+| AVAXUSDT | 4h | 10698 | 0 | nan |
+| LINKUSDT | 15m | 171163 | 1 | nan |
+| LINKUSDT | 1h | 42791 | 1 | nan |
+| LINKUSDT | 4h | 10698 | 0 | nan |
+| LTCUSDT | 15m | 171163 | 1 | nan |
+| LTCUSDT | 1h | 42791 | 1 | nan |
+| LTCUSDT | 4h | 10698 | 0 | nan |
+| DOTUSDT | 15m | 171163 | 1 | nan |
+| DOTUSDT | 1h | 42791 | 1 | nan |
+| DOTUSDT | 4h | 10698 | 0 | nan |
+
+## Stage timings
+
+| cohort | timeframe | seconds |
+| --- | --- | --- |
+| L2 | 15m | 124.37509937491268 |
+| L2 | 1h | 34.69638608407695 |
+| L2 | 4h | 10.131823749979958 |
+| L5 | 15m | 307.0196640000213 |
+| L5 | 1h | 83.05690324993338 |
+| L5 | 4h | 26.22915937495418 |
+| M | 15m | 281.25194887502585 |
+| M | 1h | 87.97855308302678 |
+| M | 4h | 29.79903066693805 |
+| STAGE | wf | 289.1 |
+| STAGE | null | 175.6 |
+| STAGE | cross | 61.1 |
+| STAGE | partb | 292.3 |
+| STAGE | report | 0.1 |
+
+## Deviations
+
+- WF requires >=15 pooled train trades per window; M series under eight months skipped.
+- WF candidate reduction: WF deterministic reduction: first real-data run evaluated 64 signal configs and 12 management settings per window; 3/99 windows took 54.2 seconds (projected 28.9 minutes WF alone). Restarted with an evenly spaced 8-config signal subset (re-ranked to top 5 inside every train window) and 3 management settings; all 99 rolling windows retained. The original partial WF rows were discarded because they used different search breadth. No tune output changed.
+ The 8x3 completed rerun was repeated once after correcting pooled-PF scoring to use trade details; final WF elapsed 289.1 seconds.
+- Earlier identical unconstrained/with_stop selection is labelled by actual stop constraint: with_stop only selects explicit stop-enabled management; unconstrained may also select a stop-enabled configuration.
+- Mechanical verdict is COUNTS only when test return > null p90, plateau is not FRAGILE, and test trades >=30; all other measured outcomes are labelled no edge.
+- Part B stage status is recorded in its output files.
+
+## Reproduction
+
+`.venv/bin/python run_v3.py --stage all --max-minutes 35`
+`.venv/bin/python -m pytest -q`
+
+
+## Part B results by scope
+
+### partb_L5_1h
+
+| cohort | timeframe | variant | strategy_test_return | test_trades | null_reps | null_percentile | null_p50 | null_p90 | verdict | verdict_gates |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| L5 | 1h | winner | -33.85333472830825 | 167 | 200 | 14.499999999999998 | -11.887165433912545 | 19.096693090728227 | no edge | beats_p90=False; not_fragile=False; at_least_30_trades=True |
+| L5 | 1h | long_only | -24.786087561988516 | 50 | 200 | 0.0 | -19.221746455994783 | -19.221746455994783 | no edge | beats_p90=False; not_fragile=False; at_least_30_trades=True |
+| L5 | 1h | short_only | -3.2103474155692524 | 114 | 200 | 0.0 | 16.56359967953952 | 16.56359967953952 | no edge | beats_p90=False; not_fragile=False; at_least_30_trades=True |
+
+Plateau:
+| axis | config | management | score | ratio | robust_neighbor_pct | verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| signal | {"filters": ["F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -7.687455191176137 | -1.3434147930645388 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc", "F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -1.454543997852399 | -0.25418761804570444 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 5.722324356455724 | 1.0 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -32.63225479129435 | -5.702622353883138 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_regime", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -0.17549810537791471 | -0.030669024411369473 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 2.9745865640626774 | 0.5198213835444078 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 5.48691802269326 | 0.9588617633153061 | 26.666666666666668 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 0.4283590559547118 | 0.07485752803778979 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 2.7208279385774277 | 0.47547600749123664 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": 2, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 6} | 3.3470796545340646 | 0.5849161015764526 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 4} | 1.6935595274187931 | 0.2959565767201188 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -0.7906540753216937 | -0.13817009069569883 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 96, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -0.40661581054409623 | -0.0710578053977955 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 0, "sl_pct": 8, "tp_pct": 6} | 2.1359551708669438 | 0.37326705684854 | 26.666666666666668 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 2.3098135453815756 | 0.4036495314663045 | 26.666666666666668 | FRAGILE |
+
+Part B WF:
+| side | windows | test_trades | test_return | positive_series_pct |
+| --- | --- | --- | --- | --- |
+| combined | 15 | 182 | 5.539830799400372 | 49.333333333333336 |
+| long | 12 | 218 | 14.67000502580706 | 43.333333333333336 |
+| short | 13 | 168 | -1.396780102111665 | 35.38461538461539 |
+
+### partb_L5_4h
+
+| cohort | timeframe | variant | strategy_test_return | test_trades | null_reps | null_percentile | null_p50 | null_p90 | verdict | verdict_gates |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| L5 | 4h | winner | 17.794338007782784 | 48 | 200 | 99.0 | -4.420834628368736 | 8.214185432324285 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=True |
+| L5 | 4h | long_only | -17.776395635551953 | 29 | 200 | 0.0 | -2.458893339999991 | -2.458893339999991 | no edge | beats_p90=False; not_fragile=False; at_least_30_trades=False |
+| L5 | 4h | short_only | 6.237777517164828 | 12 | 200 | 100.0 | -5.733266831999999 | -5.733266831999999 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=False |
+
+Plateau:
+| axis | config | management | score | ratio | robust_neighbor_pct | verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| signal | {"filters": ["F_bb", "F_stc", "F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | -1.8077260290531214 | -0.33537867416193223 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | -6.785257854627457 | -1.2588360993638834 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 5.390104286059315 | 1.0 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_stc"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | -15.146183888971063 | -2.80999830154388 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_regime", "F_stc", "F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 5.363997122713584 | 0.9951564641498211 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 1.0916558834941075 | 0.20252964053358102 | 30.76923076923077 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | -2.819660934332741 | -0.5231180668666031 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 3, "tp_pct": 6} | 4.428228679359433 | 0.8215478670444973 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 2.0403288511271507 | 0.37853235166602456 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 4} | 3.6540870994618624 | 0.6779251208390538 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 0.4342817530678353 | 0.08057019493872113 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 24, "n_adds": 0, "sl_pct": 5, "tp_pct": 6} | 2.057928355167147 | 0.3817975025992847 | 30.76923076923077 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_stc", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 0.5634246337420212 | 0.10452944949492599 | 30.76923076923077 | FRAGILE |
+
+Part B WF:
+| side | windows | test_trades | test_return | positive_series_pct |
+| --- | --- | --- | --- | --- |
+| combined | 15 | 188 | 17.82732988891645 | 42.66666666666667 |
+| long | 12 | 99 | 11.669188453942784 | 53.333333333333336 |
+| short | 9 | 116 | -14.482120004911975 | 33.33333333333333 |
+
+### partb_M_1h
+
+| cohort | timeframe | variant | strategy_test_return | test_trades | null_reps | null_percentile | null_p50 | null_p90 | verdict | verdict_gates |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| M | 1h | winner | 5.068565216000011 | 7 | 200 | 100.0 | -7.898098836226802 | -7.071551650086376 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=False |
+| M | 1h | long_only | 3.7027279040000107 | 5 | 200 | 100.0 | -7.427272394211092 | -7.427272394211092 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=False |
+| M | 1h | short_only | 14.782385585718501 | 242 | 200 | 100.0 | 4.151151449272161 | 4.151151449272161 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=True |
+
+Plateau:
+| axis | config | management | score | ratio | robust_neighbor_pct | verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| signal | {"filters": ["F_bb", "F_regime", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 1.8800349716020786 | 0.6462061770142304 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | -4.474001998213772 | -1.5378052913324611 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_regime", "F_stc", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 2.909342309738827 | 1.0 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_regime", "F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 0.3862721946668167 | 0.13276959310487343 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_stoch"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | -1.0272035882568493 | -0.35307072145424573 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | -7.077528065276043 | -2.432690041864271 | 42.857142857142854 | FRAGILE |
+| signal | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 0.9723624010796446 | 0.3342206923622315 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 3, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 2.2957603539189972 | 0.7890994284976691 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 2} | 1.5189908076298695 | 0.5221079700883428 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 6} | 0.9332575295612641 | 0.3207795543471277 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 24, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 2.652639532265808 | 0.9117660453313714 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 96, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 1.799196924605762 | 0.6184204995689478 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 0, "sl_pct": null, "tp_pct": 4} | 0.2397833709145929 | 0.0824184112374588 | 42.857142857142854 | FRAGILE |
+| management | {"filters": ["F_stoch", "F_regime"], "trigger": "T3", "trigger_param": {"level": 10}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": 4, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 4} | 1.2079899455398089 | 0.415210661700462 | 42.857142857142854 | FRAGILE |
+
+Part B WF:
+Part B walk-forward produced no windows.
+
+### partb_M_4h
+
+| cohort | timeframe | variant | strategy_test_return | test_trades | null_reps | null_percentile | null_p50 | null_p90 | verdict | verdict_gates |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| M | 4h | winner | 5.858180253059663 | 48 | 200 | 93.0 | -11.311955740214731 | 2.400499425577056 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=True |
+| M | 4h | long_only | 4.252170256737383 | 33 | 200 | 100.0 | -17.99650411613827 | -17.99650411613827 | no edge | beats_p90=True; not_fragile=False; at_least_30_trades=True |
+| M | 4h | short_only | 4.472049981810673 | 19 | 200 | 0.0 | 11.300717791835575 | 11.300717791835575 | no edge | beats_p90=False; not_fragile=False; at_least_30_trades=False |
+
+Plateau:
+| axis | config | management | score | ratio | robust_neighbor_pct | verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| signal | {"filters": ["F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -4.258617895449727 | -1.020570953134123 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 1.5992030798183516 | 0.38324645495176174 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stc", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 4.172779836984113 | 1.0 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stoch", "F_vol"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 1.6420129426058958 | 0.3935057699551828 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_regime", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 1.0686130475702182 | 0.2560914041279879 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 25}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 2.3986527360616785 | 0.5748332837505538 | 46.666666666666664 | FRAGILE |
+| signal | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 8} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -16.02084966250968 | -3.8393709441638757 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 5, "tp_pct": 6} | 2.3347953060917144 | 0.5595299530059064 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": 2, "max_hold_bars": 48, "n_adds": 2, "sl_pct": null, "tp_pct": 6} | 3.27103127675919 | 0.7838974028218406 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 4} | 2.196465401847548 | 0.5263794131623892 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 24, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 3.685872672322129 | 0.8833134783804223 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 96, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 3.2428207390643036 | 0.7771367926777705 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 2, "atr_mult": null, "max_hold_bars": 48, "n_adds": 0, "sl_pct": 8, "tp_pct": 6} | 0.8197822287736932 | 0.19645949721761327 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 0, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | -0.80654801242003 | -0.19328793847963102 | 46.666666666666664 | FRAGILE |
+| management | {"filters": ["F_bb", "F_stoch"], "trigger": "T3", "trigger_param": {"level": 40}, "window": 3} | {"add_size_mult": 1.5, "add_spacing_pct": 4, "atr_mult": null, "max_hold_bars": 48, "n_adds": 2, "sl_pct": 8, "tp_pct": 6} | 0.0 | 0.0 | 46.666666666666664 | FRAGILE |
+
+Part B WF:
+Part B walk-forward produced no windows.
+
+## WF runtime reduction
+
+WF deterministic reduction: first real-data run evaluated 64 signal configs and 12 management settings per window; 3/99 windows took 54.2 seconds (projected 28.9 minutes WF alone). Restarted with an evenly spaced 8-config signal subset (re-ranked to top 5 inside every train window) and 3 management settings; all 99 rolling windows retained. The original partial WF rows were discarded because they used different search breadth. No tune output changed.
+ The 8x3 completed rerun was repeated once after correcting pooled-PF scoring to use trade details; final WF elapsed 289.1 seconds.
