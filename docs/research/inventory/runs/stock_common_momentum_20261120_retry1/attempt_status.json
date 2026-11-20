@@ -1,0 +1,9 @@
+{
+  "run_id": "stock_common_momentum_20261120_retry1",
+  "status": "completed_but_incomplete_benchmark_matrix",
+  "reason": "The fixed strategy cells completed, but the benchmark was emitted only under base costs. The preregistration requires both base and stress benchmark comparisons.",
+  "strategy_parameters_changed": false,
+  "strategy_metrics_recomputed_in_canonical_run": true,
+  "canonical_complete_run": "stock_common_momentum_20261120_retry2",
+  "preserve_this_attempt": true
+}

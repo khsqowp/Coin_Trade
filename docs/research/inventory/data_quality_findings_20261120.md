@@ -28,7 +28,7 @@ and explicit approval, plus a verified restorable copy for user data.
 
 ## Market and artifact inventory
 
-The generated snapshot files in this directory list paths relative to their repository, Git tracking hints, byte sizes, and conservative market/type hints. The 97-entry Coin_Trade experiment registry maps to 49 crypto and 48 stock studies; the stock rows split into KR-only 4, US-only 5, KR+US 19, and market unspecified 20 based on registry text. These are hints, not a verified strategy leaderboard. Older inventory snapshots are retained; no source artifacts were deleted.
+The initial snapshot's 97-entry Coin_Trade experiment registry mapped to 49 crypto and 48 stock studies; that was the count at the time of the original inventory, not the current count. After the append-only stock replay rows and final documentation refresh, the latest snapshot `market_artifacts_20261120T040453Z.csv` records 11,334 entries, 102 registry rows, and 26 registered worktrees. Its paired registry crosswalk is `research_registry_20261120T040453Z.csv`. The labels remain conservative metadata hints, not a verified strategy leaderboard. Older inventory snapshots are retained; no source artifacts were deleted.
 
 The tick archive contains 1,209 JSONL files (~39.9 decimal GB): 343 each for `crypto_perp`, `crypto_spot`, and `crypto_funding`; 148 `kr`; 32 `opening-scan-kr`. The dated directory range is 2026-10-18 through 2026-11-11. No US tick file was found in this archive scan. November data is not confirmed to be current; no file was deleted, and the absent NAS mount prevents backup verification.
 
@@ -56,6 +56,13 @@ validated historical claim. The KR all-symbol common window ends earlier than
 the newest individual CSV because at least one file is stale.
 
 Existing research documentation says these are current-survivor cohorts, not point-in-time membership, and that corporate-action provenance is not fully established. Therefore historical stock results may be used for exploratory comparison, but cannot be promoted as validated OOS evidence until the universe and price-history limitations are addressed.
+
+The 2026-11-20 common-panel momentum replay is now documented in v1 and
+inverse-excluded v2 reports. V1 retains the original 92-file cache including
+KR `114800` and US `SH`; v2 excludes only those issuer-confirmed inverse ETFs
+and uses 91 symbols per market. Both results are exploratory and fail the MDD
+gate; see `stock_common_momentum_results_20261120.md` and
+`stock_common_momentum_results_20261120_v2.md`. No source cache was changed.
 
 ## Transaction-cost source audit
 

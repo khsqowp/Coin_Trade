@@ -1,0 +1,2033 @@
+{
+  "schema_version": 1,
+  "status": "exploratory_historical_exposed",
+  "run_id": "stock_common_momentum_20261120_retry2",
+  "git_sha": "6c660ae4ebcdc2f8bb2a55650aabed3a6a408d8b",
+  "started_at": "2026-11-20T03:52:35.982050+00:00",
+  "finished_at": "2026-11-20T03:52:38.732005+00:00",
+  "command_argv": [
+    "/opt/anaconda3/bin/python3",
+    "scripts/research/common_stock_momentum_probe.py",
+    "--prereg",
+    "docs/research/inventory/PREREG_STOCK_COMMON_MOMENTUM_EXPLORATORY_20261120.md",
+    "--output-dir",
+    "docs/research/inventory/runs/stock_common_momentum_20261120_retry2"
+  ],
+  "preregistration": "docs/research/inventory/PREREG_STOCK_COMMON_MOMENTUM_EXPLORATORY_20261120.md",
+  "preregistration_sha256": "73be51d90fab11ee7b8ce077df9437f75215c92fb531d8c4487d11dc6eb905b0",
+  "code": "scripts/research/common_stock_momentum_probe.py",
+  "code_sha256": "fd5e656449c419268f3923321dfbfa8573c33e476d32eb25d1fe644cf8649059",
+  "input_fingerprint_sha256": "aad579829fa979271f697a7da563de2348c6e1bca9e9d6296c4a849590706c72",
+  "cache_root": "/Users/user/CODE/Coin_Trade/.kis-cache-local",
+  "markets": {
+    "KR": {
+      "symbols": [
+        "000270",
+        "000660",
+        "000720",
+        "000810",
+        "001270",
+        "001510",
+        "003230",
+        "003540",
+        "003670",
+        "003690",
+        "005180",
+        "005380",
+        "005490",
+        "005930",
+        "005940",
+        "006400",
+        "006800",
+        "007660",
+        "009150",
+        "010130",
+        "010950",
+        "011170",
+        "011200",
+        "011790",
+        "012330",
+        "015760",
+        "017670",
+        "018260",
+        "022100",
+        "024110",
+        "028260",
+        "029780",
+        "030200",
+        "032830",
+        "034730",
+        "035420",
+        "035720",
+        "036570",
+        "041830",
+        "042700",
+        "047810",
+        "051900",
+        "051910",
+        "055550",
+        "058470",
+        "068270",
+        "069500",
+        "082640",
+        "086790",
+        "090430",
+        "091160",
+        "091170",
+        "091180",
+        "096770",
+        "097950",
+        "102110",
+        "102970",
+        "105560",
+        "114260",
+        "114800",
+        "117460",
+        "117680",
+        "117700",
+        "132030",
+        "133690",
+        "139230",
+        "139260",
+        "140700",
+        "140710",
+        "143860",
+        "148070",
+        "153130",
+        "157490",
+        "161890",
+        "207940",
+        "214150",
+        "214450",
+        "228790",
+        "229200",
+        "244580",
+        "259960",
+        "261240",
+        "298040",
+        "305720",
+        "307950",
+        "316140",
+        "323410",
+        "352820",
+        "360750",
+        "373220",
+        "402340",
+        "449450"
+      ],
+      "dates": {
+        "start": "2023-01-05T00:00:00+00:00",
+        "end": "2026-08-06T00:00:00+00:00"
+      },
+      "sessions": 832,
+      "files": [
+        {
+          "path": ".kis-cache-local/KR_000270.csv",
+          "sha256": "d547beeebac4bda011b64da08b7276f9fe12cff41ffac9844860eadb2c7b0e25",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_000660.csv",
+          "sha256": "ea3b0c2f6d4605d82d4a62dfd691f081949aa081c757ea6207fb0c403ad62eda",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_000720.csv",
+          "sha256": "dac13c1ae3c3d59bd1a060340b348fe28f83369bb31971853aa96746f402fb74",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_000810.csv",
+          "sha256": "2dd3cb8893d63260aebd624a223d558e336d437bb128ccca380143fb08cd51cd",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_001270.csv",
+          "sha256": "85a438a5fbea55f1cbeca8c860f5f49e39c6f0b7ca0e30232c5724e186ae78ad",
+          "rows": 4000,
+          "eligible_rows": 3903,
+          "zero_or_invalid_rows": 97
+        },
+        {
+          "path": ".kis-cache-local/KR_001510.csv",
+          "sha256": "361a718396adbefff464fa6d381de3cdc2fb7e6bb28cf09713a2b6f367e39515",
+          "rows": 4000,
+          "eligible_rows": 3985,
+          "zero_or_invalid_rows": 15
+        },
+        {
+          "path": ".kis-cache-local/KR_003230.csv",
+          "sha256": "8d58defe42631e028a2be8c35dcddabc32803effceab781855fe63ca4d680c84",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_003540.csv",
+          "sha256": "60138c9bc8473a3b187e0105a0f78b3df401c6324ef5ad6a00b05ff636db1009",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_003670.csv",
+          "sha256": "dcdfa77aa036ecadfff386a3378bf2fc3909edbc0eabb9b7f552feb50ec2d679",
+          "rows": 4000,
+          "eligible_rows": 3989,
+          "zero_or_invalid_rows": 11
+        },
+        {
+          "path": ".kis-cache-local/KR_003690.csv",
+          "sha256": "37316622652dc9a853e78300b6092a50613e29dd65d5d769fc886b8eff517bb6",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_005180.csv",
+          "sha256": "d6ca6f5e2862b364248bf230d26d2b89bf7937782117c3e24643d018fbb5fe1a",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_005380.csv",
+          "sha256": "bb053f35142945b2ddfa84b6c40dcb944f4c434e22ebb63ae7ae332caf682dcd",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_005490.csv",
+          "sha256": "7c98f338365b9664046f50587bd08c6fa45743b8f49c9f14d91c71e3121cdaf3",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_005930.csv",
+          "sha256": "6e8e9687b743233b40ad3b720262b37418727af29c553a7a2a7937b9df29788d",
+          "rows": 4000,
+          "eligible_rows": 3997,
+          "zero_or_invalid_rows": 3
+        },
+        {
+          "path": ".kis-cache-local/KR_005940.csv",
+          "sha256": "a42b51dba678178b8ec92853bb12125e4491009b43f8c78b450717642756326e",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_006400.csv",
+          "sha256": "0f9caf43295b4ce3c9f09eedee9f0744789d31b135734ba4e315f7d9de922717",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_006800.csv",
+          "sha256": "43899f5a50e5f8072ebda2f913c5bb85b40962e456ef479723a625241c4a87e6",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_007660.csv",
+          "sha256": "18ca75dbc0b3b1e226c7ba3a7e08c51e3fb01d3339107f2043da5871d84bb92b",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_009150.csv",
+          "sha256": "f42221e44efccddefaf0ee555d24edfa36b8e00afb0864b9eb00e8cc3ba1c75c",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_010130.csv",
+          "sha256": "2c8d266813a3458d94d181969f6e3d0bd42274fc0df6584af721d4bc9a355717",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_010950.csv",
+          "sha256": "aa441985e1c6828ebf744f7dbd04f74749bfc66122ecd6143f69bc6facebe720",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_011170.csv",
+          "sha256": "d5e149fed15addfad9d23b2eb904f2f98640ab9570cc22d56bfcd3752f3cc477",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_011200.csv",
+          "sha256": "6ee614f7c6034038defa65a7805c3253b38a1eee19447e69750a3942a7322ab1",
+          "rows": 4000,
+          "eligible_rows": 3976,
+          "zero_or_invalid_rows": 24
+        },
+        {
+          "path": ".kis-cache-local/KR_011790.csv",
+          "sha256": "235e6273bfd9bc7aa1bda390b7a72620217eacd01bc4c416c3a8f00c40f55b08",
+          "rows": 4000,
+          "eligible_rows": 3989,
+          "zero_or_invalid_rows": 11
+        },
+        {
+          "path": ".kis-cache-local/KR_012330.csv",
+          "sha256": "4055b6c2b02879a8fe7c04f86597dd038532d687eac07b7f0f86fd51a407cc8c",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_015760.csv",
+          "sha256": "c535f8f72dc0846f4b6cb98e2de02685ef7957b6034d59d831109b56136ee0ed",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_017670.csv",
+          "sha256": "4017467c56965348d9ab1453ba12d795e7232313d9da0967e394ba115ad950df",
+          "rows": 4000,
+          "eligible_rows": 3976,
+          "zero_or_invalid_rows": 24
+        },
+        {
+          "path": ".kis-cache-local/KR_018260.csv",
+          "sha256": "4f69ff2835bb8b3074df874448e21217d67953a1c104a2c950e6aafb639f3c48",
+          "rows": 2943,
+          "eligible_rows": 2943,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_022100.csv",
+          "sha256": "dcc05a7e0cccf996e7580899cc659717e515cb74e04f817a290cb13f131fe5d9",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_024110.csv",
+          "sha256": "9a533bd3de26535c5dbd3476b369c7cbffe0e20fa55d353f66ef7e1b36849311",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_028260.csv",
+          "sha256": "e3d5d2b282520d3aba24eb18f2d49d3760be0b35158986cad2c4216f2d504c6e",
+          "rows": 2919,
+          "eligible_rows": 2919,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_029780.csv",
+          "sha256": "5f262ddd11bc6c444d600ede843aa183acd3a50dda9dd05a100dfc1ae0df4b02",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_030200.csv",
+          "sha256": "58eebde801c93bcec5a0489495edf86ec286b12934ca3563cb55cfed466a57d2",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_032830.csv",
+          "sha256": "872d5bb99678c03d8c1b6eba067e7b103746b37e437b864320b41104e2a8cc8e",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_034730.csv",
+          "sha256": "806e380e2aafd9afabdddb21885a6ec57d7d4a139e24672e6a8da4977b8be82f",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_035420.csv",
+          "sha256": "0b713c1c8475d81b3e3b90e90fbed5453740a5ce5acba7f6c7c5d2bcb5b37546",
+          "rows": 4000,
+          "eligible_rows": 3976,
+          "zero_or_invalid_rows": 24
+        },
+        {
+          "path": ".kis-cache-local/KR_035720.csv",
+          "sha256": "64dd13da8bd27bf5e5c3ea917cf7cc54b19f808058077d3e86e549a2ea78bc5b",
+          "rows": 4000,
+          "eligible_rows": 3996,
+          "zero_or_invalid_rows": 4
+        },
+        {
+          "path": ".kis-cache-local/KR_036570.csv",
+          "sha256": "8efb3c7212f5d447f86352be1fbc4c5d34e9e605421ca8642ca16f3cb75e24ec",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_041830.csv",
+          "sha256": "e873db23feaac7261f97dffb21dfcc2bc2bc249109c571fe98f2cf92939ad5dc",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_042700.csv",
+          "sha256": "11b9de35736a490db92bbdc2a269425bf36d7fa005664df2e559aed0eb845a4b",
+          "rows": 4000,
+          "eligible_rows": 3980,
+          "zero_or_invalid_rows": 20
+        },
+        {
+          "path": ".kis-cache-local/KR_047810.csv",
+          "sha256": "84fa598e51107db2c165e03e72af74bd4493f479f3d0086069a0267c62b6ecad",
+          "rows": 3778,
+          "eligible_rows": 3773,
+          "zero_or_invalid_rows": 5
+        },
+        {
+          "path": ".kis-cache-local/KR_051900.csv",
+          "sha256": "03432fc8e30ec4fd66b62ba947a406473feb335d8060f55acbd7b4bf1f964683",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_051910.csv",
+          "sha256": "eeccb9794b1491fe8a5cead7afae2b5373fdc55981a742d38e55c997b5b71def",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_055550.csv",
+          "sha256": "4c88fe26bcdcc526daa17627f5f2bee16ba7124732c0a58041241fd35521a2e9",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_058470.csv",
+          "sha256": "5746f031b87ba321b20399433aa6f03dd883c2c057162c0f824b52188b3f800a",
+          "rows": 4000,
+          "eligible_rows": 3989,
+          "zero_or_invalid_rows": 11
+        },
+        {
+          "path": ".kis-cache-local/KR_068270.csv",
+          "sha256": "5964f70bc394fd7562c0f96366668d258c13f2be62f9d60eee730b7bdebd5ffa",
+          "rows": 4000,
+          "eligible_rows": 3986,
+          "zero_or_invalid_rows": 14
+        },
+        {
+          "path": ".kis-cache-local/KR_069500.csv",
+          "sha256": "9d153d152add78f0b2da6c12cd521c098b0e5c08d20ee8159ad886bc2456c6e4",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_082640.csv",
+          "sha256": "94cd4c431b5637c70e209b0cd6c33dd1b541156ae4131590672ba3930c7304f9",
+          "rows": 4000,
+          "eligible_rows": 3985,
+          "zero_or_invalid_rows": 15
+        },
+        {
+          "path": ".kis-cache-local/KR_086790.csv",
+          "sha256": "995a44e593749cabb2bfc398430beb8a91d9ee31b5c849f8684b0ef522933f92",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_090430.csv",
+          "sha256": "3f4684f73027f6d7846cae457058ce57387c2c8b5ebd2681307f15d60387b8e6",
+          "rows": 4000,
+          "eligible_rows": 3990,
+          "zero_or_invalid_rows": 10
+        },
+        {
+          "path": ".kis-cache-local/KR_091160.csv",
+          "sha256": "07d9b7ed99049328107032672a7b92bbe7a583ec2bd372d08302c9523558c2cf",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_091170.csv",
+          "sha256": "67f04110962a6022759dada2f60a6cc7d27e97ce56a2e5467651e9d3b17b585d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_091180.csv",
+          "sha256": "7235a30586bafa3acb21bfe3ac69c38551d6424a14192b62e6012e97d54b3939",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_096770.csv",
+          "sha256": "d125b1742c9f35ad33d7835f3a33a72c20fa865338d5c003c5d1b523a2bec99d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_097950.csv",
+          "sha256": "53762184ba7d86b1b47180444f377348b4bf98a7e428a7b013a92c5c71ee0ced",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_102110.csv",
+          "sha256": "df24faab4e6f2f6ac2bdb05d4c108ea2ac570430ea2c443a2c75f5d4a202c7de",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_102970.csv",
+          "sha256": "907bdb271660379273b1174f7a74576a68a811220c3e6b93c2c17eab1b42a566",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_105560.csv",
+          "sha256": "797bfc12129e054c6763a22760fce988392ac0ecccb54e041ed8f553ca27ec2b",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_114260.csv",
+          "sha256": "50dace1ed0dd1ba563928700ea01436342fe79f256ae81e693d2ecbf3f3f17c8",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_114800.csv",
+          "sha256": "6e1dffa54270a00eb3fcaecf31c8fa205159149a4647ef6a7fbd7824212eaa18",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_117460.csv",
+          "sha256": "f06ae100968e8bb630bc852004178ed3327521358a785c656a29ca0845bbd1ca",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_117680.csv",
+          "sha256": "da4a2c91d09789319e556eaf9d46410829e18ea59cf7d59c6d498c1de75a24a7",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_117700.csv",
+          "sha256": "477ee69cdd70ced73c329ced8cf4b5a9c5c94a2863d221f20ea81f00be582e39",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_132030.csv",
+          "sha256": "be4e69882586957385f44d97f21d2ad38c3c58e2a95f818baa13a40f5e295592",
+          "rows": 3964,
+          "eligible_rows": 3964,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_133690.csv",
+          "sha256": "d373ae989830c93d4c1bfe6b9a3af4cbc7fae8fae6a64b1780310a101a780844",
+          "rows": 3953,
+          "eligible_rows": 3946,
+          "zero_or_invalid_rows": 7
+        },
+        {
+          "path": ".kis-cache-local/KR_139230.csv",
+          "sha256": "58ecf0ae75696fab0ab38aafc3304d4d2587439f25a22f00c4880396a54b7b37",
+          "rows": 3836,
+          "eligible_rows": 3798,
+          "zero_or_invalid_rows": 38
+        },
+        {
+          "path": ".kis-cache-local/KR_139260.csv",
+          "sha256": "486bb9e9c343269957051c306d751dcd2056a562a2d700326494efdda68cfbef",
+          "rows": 3836,
+          "eligible_rows": 3834,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/KR_140700.csv",
+          "sha256": "a9cd0b6f16aed7656dd6991b238719629264377f41c8211f88819dc1c36d437e",
+          "rows": 3822,
+          "eligible_rows": 3821,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/KR_140710.csv",
+          "sha256": "db16ee8ec65a87fb09c914027532c07596ccc1ef5a45c42e3485283cb827c3b0",
+          "rows": 3822,
+          "eligible_rows": 3821,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/KR_143860.csv",
+          "sha256": "bd074873207cfa391ba649b736c3c59d9a54dc8064b2402564cbc0ccaf0d2795",
+          "rows": 3766,
+          "eligible_rows": 3766,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_148070.csv",
+          "sha256": "85fa9a5de462e9b4201387b3d54e7097f985f844f2c7d2c90a0b03d7866bb65d",
+          "rows": 3702,
+          "eligible_rows": 3698,
+          "zero_or_invalid_rows": 4
+        },
+        {
+          "path": ".kis-cache-local/KR_153130.csv",
+          "sha256": "fd08bbe00597d2cec9b895eb16722a94b129310409c108e68c27c1b6ab90d31b",
+          "rows": 3616,
+          "eligible_rows": 3616,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_157490.csv",
+          "sha256": "178798023ea967707cf25a101e5a562e0e8b44e7c55b5e68a7acd085c931f789",
+          "rows": 3559,
+          "eligible_rows": 3545,
+          "zero_or_invalid_rows": 14
+        },
+        {
+          "path": ".kis-cache-local/KR_161890.csv",
+          "sha256": "03b29f6ab54d65afa6e1f8d27ea108e7fa237d17d793e5d339a54f0956eb2aee",
+          "rows": 3452,
+          "eligible_rows": 3452,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_207940.csv",
+          "sha256": "a634cbbc61b2c80400bb69ad459a4f9b88620ade28934c86b9b5fdc6187a6119",
+          "rows": 2453,
+          "eligible_rows": 2418,
+          "zero_or_invalid_rows": 35
+        },
+        {
+          "path": ".kis-cache-local/KR_214150.csv",
+          "sha256": "41e2d498d15e53d857ec9e38a6081a6de5246d2d5b333ec6f6233d4fb7cea6f0",
+          "rows": 2849,
+          "eligible_rows": 2782,
+          "zero_or_invalid_rows": 67
+        },
+        {
+          "path": ".kis-cache-local/KR_214450.csv",
+          "sha256": "d73fa9b0b4332f17c6c1062be2ec4afe94bf8dc4118a28b3e34faf33efd4250d",
+          "rows": 2772,
+          "eligible_rows": 2772,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_228790.csv",
+          "sha256": "46c8d355c78ccc0b97417996f07485495fa45028a8a2200ae4e6f874f2eaf318",
+          "rows": 2722,
+          "eligible_rows": 2722,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_229200.csv",
+          "sha256": "546cb71312575a9542098a2239e359cc335da41da8633d1ea9318c154739d31e",
+          "rows": 2726,
+          "eligible_rows": 2726,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_244580.csv",
+          "sha256": "27cad7fcb0a15c473ac883ca6a37e9fad9bcf3abe86b9e17785120ffa400d131",
+          "rows": 2576,
+          "eligible_rows": 2576,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_259960.csv",
+          "sha256": "1bc633121a24604965f68f607f2282503f0b878c0d2d25fe80366e3d6c015022",
+          "rows": 1285,
+          "eligible_rows": 1285,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_261240.csv",
+          "sha256": "c870391da4f6b98a6d79261a997ccaa67c30002a2372e4d18be46e49489e3d9a",
+          "rows": 2420,
+          "eligible_rows": 2420,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_298040.csv",
+          "sha256": "c65888f0e994dbfba94b4fc2966e526a57725e287c39d84553d36866a09c95b5",
+          "rows": 2044,
+          "eligible_rows": 2044,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_305720.csv",
+          "sha256": "b173a34a41077df74a3841ca7385e137ded362715893a0fcc2f2e788b8b23f1e",
+          "rows": 2002,
+          "eligible_rows": 2002,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_307950.csv",
+          "sha256": "84fdb23d4ef1796d2e73051f3c77603d547742c554a76df1f5c99bb22de0fc20",
+          "rows": 1873,
+          "eligible_rows": 1873,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_316140.csv",
+          "sha256": "771bd86ce390c0acefad4f3f54cc6b045a797bac066afe9bf43160fc074a7d88",
+          "rows": 1903,
+          "eligible_rows": 1903,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_323410.csv",
+          "sha256": "9d07744c1b016dbba2d68af04a732e1cbc9b82672c67eeb6eb5ad61609f92fa7",
+          "rows": 1287,
+          "eligible_rows": 1287,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_352820.csv",
+          "sha256": "567d8e936e3d2c6c9ad94c83c559577f4d83b7eeb966bb55a413e9bbabbd3cee",
+          "rows": 1490,
+          "eligible_rows": 1490,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_360750.csv",
+          "sha256": "fbedd549c6e54101631adb8c3db087de4c30895cce8423acdb07be0eb88b7681",
+          "rows": 1534,
+          "eligible_rows": 1534,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_373220.csv",
+          "sha256": "e282d74a149ecd1d3c4dfac342cf6bcdbaef51c2c1d9521fb8bfadda9ef12c74",
+          "rows": 1170,
+          "eligible_rows": 1170,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_402340.csv",
+          "sha256": "4dca6b9f41909383a613ab4211db52ed35dcd6a51c270a4d9568ba7921babd23",
+          "rows": 1212,
+          "eligible_rows": 1212,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/KR_449450.csv",
+          "sha256": "e99299a289f45ab3e17b3ac7ff30adbc0dd846998bc177311caa04f15c851509",
+          "rows": 939,
+          "eligible_rows": 939,
+          "zero_or_invalid_rows": 0
+        }
+      ]
+    },
+    "US": {
+      "symbols": [
+        "AAON",
+        "AAPL",
+        "ADBE",
+        "AMAT",
+        "AMD",
+        "AMZN",
+        "APO",
+        "BAC",
+        "BIL",
+        "BKNG",
+        "CASY",
+        "CIEN",
+        "COST",
+        "CSCO",
+        "CVNA",
+        "DBC",
+        "DELL",
+        "DIS",
+        "EEM",
+        "EFA",
+        "FICO",
+        "FIX",
+        "GE",
+        "GLD",
+        "GLW",
+        "GOLD",
+        "GOOGL",
+        "GRC",
+        "HBAN",
+        "HD",
+        "HOOD",
+        "IBB",
+        "IBKR",
+        "IBM",
+        "IEF",
+        "INTC",
+        "ITA",
+        "IWM",
+        "JNJ",
+        "JPM",
+        "KEY",
+        "KKR",
+        "KMI",
+        "KO",
+        "KRE",
+        "LRCX",
+        "MA",
+        "META",
+        "MSFT",
+        "MTUM",
+        "NFLX",
+        "NTRS",
+        "NUE",
+        "NVDA",
+        "PEP",
+        "PG",
+        "QCOM",
+        "QQQ",
+        "QUAL",
+        "RCL",
+        "RF",
+        "SAIA",
+        "SH",
+        "SHY",
+        "SMH",
+        "SOXX",
+        "SPY",
+        "T",
+        "TIP",
+        "TLT",
+        "TSLA",
+        "UNH",
+        "USMV",
+        "UUP",
+        "V",
+        "VLUE",
+        "VNQ",
+        "XBI",
+        "XHB",
+        "XLB",
+        "XLC",
+        "XLE",
+        "XLF",
+        "XLI",
+        "XLK",
+        "XLP",
+        "XLRE",
+        "XLU",
+        "XLV",
+        "XLY",
+        "XME",
+        "XOM"
+      ],
+      "dates": {
+        "start": "2021-07-29T00:00:00+00:00",
+        "end": "2026-11-12T00:00:00+00:00"
+      },
+      "sessions": 1187,
+      "files": [
+        {
+          "path": ".kis-cache-local/US_AAON.csv",
+          "sha256": "153fe692dda048a95092bef3040136a7595aad399730732e86114ca0a5c424b7",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_AAPL.csv",
+          "sha256": "2681e7c6f9e1600c3a7bf2ef432b985db6311b3826c0fdeef5eb30c71dbd0e29",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_ADBE.csv",
+          "sha256": "2f67dac8389d1d17b63c511dc8564b6c3365cef1e52c0e8bf312b66d0b5d4703",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_AMAT.csv",
+          "sha256": "76efbbb964db4b2caa76f01a1f2a6aa49c4e243fd1bdd7a0dfaa640dbae02701",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_AMD.csv",
+          "sha256": "bf0db9c3a3d18d779ba606b71bdbea2d30c0c8c014931372f2ccae3f178d420e",
+          "rows": 2984,
+          "eligible_rows": 2984,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_AMZN.csv",
+          "sha256": "07641b28ba8a52ba5ce9daa5bbdfccb76dbb8d7aa413a881224196e56939455d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_APO.csv",
+          "sha256": "a8f70f90409539b5d8d5492a7205ef4e3bd7b150d31dae2d3760de382cea4281",
+          "rows": 3930,
+          "eligible_rows": 3928,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_BAC.csv",
+          "sha256": "7fcb838ca12f775515ff248b8115d0389790f606e80e6a871c96506423978989",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_BIL.csv",
+          "sha256": "2fd4b0b229aeac0961814bb2d5cfc1c0c7c52ccab1f1a2cf1e4c06aa6c86218c",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_BKNG.csv",
+          "sha256": "8ed46981e8a73a0fd0626118bc35eb2cb0950c256611325dd253781c07a62a1c",
+          "rows": 2191,
+          "eligible_rows": 2191,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_CASY.csv",
+          "sha256": "ebc08aa92c47a9aaf17a899f33a2219d4b28fe335e146ec1672bc52a597c3f51",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_CIEN.csv",
+          "sha256": "aafd7320c934bd3d2bd3428d7c778081f578ee0d666e3a40acbef14ac5288df0",
+          "rows": 3240,
+          "eligible_rows": 3239,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_COST.csv",
+          "sha256": "a150da674ba8b58066390e542ebc7465d3aeb0e534de057a7456ed7937aef34c",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_CSCO.csv",
+          "sha256": "4a678ae4d82a353fd74d9744580fac6f71f47143c23f0667e01ecc85d0d98c3e",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_CVNA.csv",
+          "sha256": "ccb42e19c3abf97a475fa0dcc508b5eb9142b111b5fc48daebd13e4fac236343",
+          "rows": 2400,
+          "eligible_rows": 2400,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_DBC.csv",
+          "sha256": "6705edcb3b607485e88f4f992b7876cd2258145dca1b3a894896bb1c2164fe59",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_DELL.csv",
+          "sha256": "3024cfcca9ab56342168eff42acb9672a914966029319bde4748966f978ba628",
+          "rows": 1980,
+          "eligible_rows": 1978,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_DIS.csv",
+          "sha256": "6357208e658ad940645be031a45308b243c1b411056281c5389bb4b4710aa589",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_EEM.csv",
+          "sha256": "5ee6619368ccedddb9ddf64ef1a89074814f9732e6dfcd23d1e76e29f2191cef",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_EFA.csv",
+          "sha256": "01f488df0e1482151461d509ada1bab27fa30abd4025a603dd37c390562e04e2",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_FICO.csv",
+          "sha256": "7b34cda06e10666928fcd2086d505369b6d11584059ba27846ea776237a771b2",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_FIX.csv",
+          "sha256": "fc403812c14189436c2b6f032c3e7c865f8d04d0f6f4c8d8c7f89ac3a38a0552",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_GE.csv",
+          "sha256": "0da144bf69b7819c7cad306f3fbbffdd3c18b3cfd0109fc82aca8dee18006e1f",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_GLD.csv",
+          "sha256": "e265bdd8220ceaf0ffa05cb491c889229eec963f5847b38c7e897ae06287e8d8",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_GLW.csv",
+          "sha256": "16c180b34ec6aeb26ac53663170113d4cd02e68ceb49b302f82e4d53d6f6e691",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_GOLD.csv",
+          "sha256": "908e725bae91b041c1e3e0ee49aac89cfbdc82b6c7999ba8a5626afaa0ba981e",
+          "rows": 1856,
+          "eligible_rows": 1836,
+          "zero_or_invalid_rows": 20
+        },
+        {
+          "path": ".kis-cache-local/US_GOOGL.csv",
+          "sha256": "acc0f8a57e96e4c99587b4e49de3070099e117d3c27ee0e29e6584d1e8d8537a",
+          "rows": 3173,
+          "eligible_rows": 3173,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_GRC.csv",
+          "sha256": "8712ffbeec72b67e00d48db94e1d978a223fd92f6e117ff32edc34b56e586eda",
+          "rows": 2388,
+          "eligible_rows": 2386,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_HBAN.csv",
+          "sha256": "3240970e0a52aedd2e836214f499902d3eb34e91549b9a6b774577c7fabf8ec5",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_HD.csv",
+          "sha256": "0ae4b4b45f2df60a254dc32a99b0295d56010afc50b380543d9abb6c2ad0866e",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_HOOD.csv",
+          "sha256": "a8ed125bc4b198c9b237348b0c9213c4600e7643a7ac5cf958339e1b486a357c",
+          "rows": 1330,
+          "eligible_rows": 1330,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_IBB.csv",
+          "sha256": "6cad47735bacfec17d74b40e941cd28475c1cdd718c686cdab1050ec698440f0",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_IBKR.csv",
+          "sha256": "6b5f64fc6cb4bd14a832e10c6f7ddff355de5bb81da535696f751f8d33a5708c",
+          "rows": 4000,
+          "eligible_rows": 3975,
+          "zero_or_invalid_rows": 25
+        },
+        {
+          "path": ".kis-cache-local/US_IBM.csv",
+          "sha256": "a1c3adc749f58ef3d8c9cd012035c507fddf85b4bafba0ad0c8ea7b73ad0e06e",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_IEF.csv",
+          "sha256": "26e2ba8f5d1c9e2b29d60e34d7a8e55364720662420f5ef4099f6deb75ded335",
+          "rows": 2334,
+          "eligible_rows": 2334,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_INTC.csv",
+          "sha256": "d37a700594f6ba44a8b4ee687e60314400a01b0dc4f8355a2968c13fcf1bbaf0",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_ITA.csv",
+          "sha256": "2085f7444991bdba437ea3e79892aa2dc594690e67c728722f162793b08366c8",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_IWM.csv",
+          "sha256": "0fa0b95301d6cfe5c81db139831bf692bcaa9cb53b12003ef57d65ce98253e70",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_JNJ.csv",
+          "sha256": "a08bda4c74b327d567ab33519f51175e0e56fef2a4f4f4ee29bbd0630caa230c",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_JPM.csv",
+          "sha256": "2d701cd0fe93a1f6a7ad43901d88b6a42246aab3726fb053135b4f88981289f7",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_KEY.csv",
+          "sha256": "a99bb62014951db1ed4f6723452f2a3f072feb8258a4820b7c607a56c38f27e8",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_KKR.csv",
+          "sha256": "f9ab7e2e4fed8c2b4ccd04f129a563f63f87e00fed49d8d988d0c6df3fb22a39",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_KMI.csv",
+          "sha256": "422551511ca3eefcdd8c479cc0943ec312387d6f58c8df5c1113617c2803b171",
+          "rows": 3962,
+          "eligible_rows": 3960,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_KO.csv",
+          "sha256": "9af7e6185afb536f2f17c9ceb5320687aa6e2829f2de6a746f78343bb53b142c",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_KRE.csv",
+          "sha256": "4af018137fb3432798a1bfb27e9a7850fdd2038d1d896c39779b1ae652191542",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_LRCX.csv",
+          "sha256": "22cf4f3e90b67d23cec7081fe5c9d490b3d236a5d1bbde8998e2463855435ad5",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_MA.csv",
+          "sha256": "00ee90924276ab1503d48341a744d2359637f86ea105a80000dc83b7f11bf99b",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_META.csv",
+          "sha256": "fc83e4d6a78c61b99cd2ce79b213feb687d112f663df1652a55546b62f05c583",
+          "rows": 3643,
+          "eligible_rows": 3643,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_MSFT.csv",
+          "sha256": "624915a71f5094147d3dd94e1db7dd10b95e2205622dd510be00947c772afc6b",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_MTUM.csv",
+          "sha256": "d904e25d9f935d34e9fe55bf3afe271fac882ba3bffa2cdfc22165265e13bf14",
+          "rows": 3413,
+          "eligible_rows": 3411,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_NFLX.csv",
+          "sha256": "61b3c47e3778f67905eb071eb0dbca869fdbb8af0b42f32eaaecf369b39f3723",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_NTRS.csv",
+          "sha256": "3bad308998b8f5a67f7b0ac34a3ebc1fed3951cf95cc8b33bad6f96cd2b576d0",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_NUE.csv",
+          "sha256": "802455ced1fa89f671be3d56352a02d15f9f1b39c5387b3d427e383134689c4d",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_NVDA.csv",
+          "sha256": "2a6880bcfeb4181a51c7012e8141dabadfc6366fb12d812ff839b0ee7a38d430",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_PEP.csv",
+          "sha256": "74943e938b4d6c73d9c8bda8b26e3b1f6149d86279d4ae072a6c05e8ee010e04",
+          "rows": 2236,
+          "eligible_rows": 2236,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_PG.csv",
+          "sha256": "83139579c7db12a386bc5f352c13e6e333a7e4f30bfdcb002966060efebbe530",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_QCOM.csv",
+          "sha256": "44d31ab5ced7001c3a014b650a362ca27212382023b60170a1ebb6f88d68063d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_QQQ.csv",
+          "sha256": "2c727333216b2244b2de1ebcd5d026e7086a2390d60eaa818dbd1004b8d70a68",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_QUAL.csv",
+          "sha256": "a5128bc62c2b709397932ee987f9fbb3b2a5b5e29f4551c7c68eba298f07b37a",
+          "rows": 3350,
+          "eligible_rows": 3349,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_RCL.csv",
+          "sha256": "c082f02afd91aaa483eb2fbfa6dee8e12ebd4b93f183cecb23301a25962afad0",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_RF.csv",
+          "sha256": "a1e18eb22b778f71ef6b529cb51c6708f48f1df864835980bd4bcb3d540144f8",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_SAIA.csv",
+          "sha256": "b04bc9ca74ff25bdd8e3e48039ed409a6608ad80b4d20a8b99e8511156a3299d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_SH.csv",
+          "sha256": "1ffb760877d3c0c591ae227f6077a73be5dc8c4422fd43fb07a23b5dd87725f5",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_SHY.csv",
+          "sha256": "762a22fe08ab41ae1c1e9d24bace887acf66f638cb453d0eba92d367ff1ee0db",
+          "rows": 2334,
+          "eligible_rows": 2334,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_SMH.csv",
+          "sha256": "0d637a9aaa0b5f6fde9ccaa69128cdefa9920da73f95c4e1ab4a4a77590cedee",
+          "rows": 1740,
+          "eligible_rows": 1740,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_SOXX.csv",
+          "sha256": "39545fb482bdde46f6b336a76dd2ee57f03cffa687980d0d2d5b91f695cdffb6",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_SPY.csv",
+          "sha256": "eef768b386afebfc3b4d0c26fca51293c82b3bd095a889b476a147e5c51d891a",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_T.csv",
+          "sha256": "ee43139e592738151fd77adbf1fbbc9aad6c18ec4848b319e401cad29b4cebdc",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_TIP.csv",
+          "sha256": "b53da715e2d8ab1839fb36f91d09655f2fa4d45d6c23be7440cc9dbdaed87f32",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_TLT.csv",
+          "sha256": "4f86faa5dbb33626e0f0f73d42e99d29eba41d63f22c1ea54b97d96a5652f3cb",
+          "rows": 2712,
+          "eligible_rows": 2712,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_TSLA.csv",
+          "sha256": "b5c82390d34c126c9101cea555431c40c9082222411ef38a82ee10d387e229e5",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_UNH.csv",
+          "sha256": "1c90649e47bc7a068d89b2f9ad8d905278c91873aa3d174ce31f6dabdc82ff25",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_USMV.csv",
+          "sha256": "6d6bf405af2bb53c00b812aa4bbb08e9d5228a4171624262855509c1baed2773",
+          "rows": 3787,
+          "eligible_rows": 3779,
+          "zero_or_invalid_rows": 8
+        },
+        {
+          "path": ".kis-cache-local/US_UUP.csv",
+          "sha256": "be6130af3c6d592890675e8510bc6d8c019c292aa430e3bca1afe91bc0b77d96",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_V.csv",
+          "sha256": "92aedf68f614d0629ed7ddc58d8a80eb907fd14a872698863b4b2df9656e24e2",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_VLUE.csv",
+          "sha256": "a68180ab2ea874f1d3d29a37609f7a023410bc96aae0547ca5604244cb6b39e2",
+          "rows": 3413,
+          "eligible_rows": 3354,
+          "zero_or_invalid_rows": 59
+        },
+        {
+          "path": ".kis-cache-local/US_VNQ.csv",
+          "sha256": "1eaa29f9628336af68730fb6f847fd64f3eeb888e8374561d74cec43e77b625e",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XBI.csv",
+          "sha256": "2e4adf82fcbb9bf7008943b82a35d3fe15de1f393131cf5e4d5f6d65582a4b2f",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XHB.csv",
+          "sha256": "8019d9e56dd0c41402d40007605f295ce4fb59d4daeb9894101bcc39665481de",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_XLB.csv",
+          "sha256": "d109beed850b32636e6336f8e2a93a1fd7a9501a82cab54468421c6e2cee6d26",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_XLC.csv",
+          "sha256": "5b34b8a29ffd4f2b838a84ba8274f5e1fb2be3ce7cab809b336568243559febf",
+          "rows": 2113,
+          "eligible_rows": 2112,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XLE.csv",
+          "sha256": "764a5b617a4e6be79b5978935defb5e0d0f89343874768c7ca8211f290b4ebed",
+          "rows": 4000,
+          "eligible_rows": 3997,
+          "zero_or_invalid_rows": 3
+        },
+        {
+          "path": ".kis-cache-local/US_XLF.csv",
+          "sha256": "e8249f85d86f025cdf140a775a93e8602873f23965b2eed8191203dd959cdb50",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        },
+        {
+          "path": ".kis-cache-local/US_XLI.csv",
+          "sha256": "decca31b2408bf27d828a29e06eac2407834a2cc90065b940f8222c35ac53d98",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XLK.csv",
+          "sha256": "1d76d9f2acaf5c84ad7635d6657c32fd476bd24df447ae8ba9a652f8610ad4a6",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_XLP.csv",
+          "sha256": "f174adfdccd0204d169ce8716984fc6cfb11b02cf732d7c1f79d195e5151f32c",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_XLRE.csv",
+          "sha256": "0bd5107dd860ef9e7f1547d7a0c0ddf65ab886eaf7a156ddd9879e201cfccf4e",
+          "rows": 2794,
+          "eligible_rows": 2783,
+          "zero_or_invalid_rows": 11
+        },
+        {
+          "path": ".kis-cache-local/US_XLU.csv",
+          "sha256": "984f9c10d925a6304ee7446afe7de49177ab2fe8103342dcdad5eeb8b81acdb5",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XLV.csv",
+          "sha256": "7a08338f2e626a82391cedd6738ea84c20353c5530a453f903ad665cf284cf58",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_XLY.csv",
+          "sha256": "2a4706a01a0f811c5602840d573deff35af5611b0eb90c849b7e83f7eecc57b4",
+          "rows": 4000,
+          "eligible_rows": 3999,
+          "zero_or_invalid_rows": 1
+        },
+        {
+          "path": ".kis-cache-local/US_XME.csv",
+          "sha256": "fbf1637510e6784cfa47118ffc922125328de2d945a4d4cd7f6ca1f8252f1b1d",
+          "rows": 4000,
+          "eligible_rows": 4000,
+          "zero_or_invalid_rows": 0
+        },
+        {
+          "path": ".kis-cache-local/US_XOM.csv",
+          "sha256": "b4edae640060f4b925896426c8603495fd4d8426699d077d2b1e2f69a74cddb3",
+          "rows": 4000,
+          "eligible_rows": 3998,
+          "zero_or_invalid_rows": 2
+        }
+      ]
+    }
+  },
+  "candidate_count": 16,
+  "results": {
+    "KR|mom60|monthly|sma200=0|base": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.6655111084775314,
+      "mdd": 0.4694853908377684,
+      "sharpe": 1.4411266352725762,
+      "annual_returns": {
+        "2023": 0.5699168042760208,
+        "2024": 0.10083933857586613,
+        "2025": 1.1562774736287396,
+        "2026": 0.47474916815252954
+      },
+      "ending_nav": 5.495704647342313,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.00065,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 97.66536964980544,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 51.44148974378553,
+      "completed_round_trips": 183,
+      "rebalance_events": 40,
+      "liquidation_cost": 0.016289741956978618,
+      "scenario": "base"
+    },
+    "KR|equal_weight_buy_hold|base": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.40927362463275974,
+      "mdd": 0.35717213489279853,
+      "sharpe": 1.282511104480057,
+      "annual_returns": {
+        "2023": 0.22146528279535294,
+        "2024": 0.0686429919253364,
+        "2025": 0.801205155667883,
+        "2026": 0.3378399649418531
+      },
+      "ending_nav": 3.145437908203186,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": true,
+      "cost": {
+        "fee": 0.00065,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 100.0,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 2.076527610328979,
+      "completed_round_trips": 92,
+      "rebalance_events": 1,
+      "liquidation_cost": 0.008765991473899601,
+      "scenario": "base"
+    },
+    "KR|mom60|monthly|sma200=0|stress": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.6560067254813322,
+      "mdd": 0.46959954168158646,
+      "sharpe": 1.427252376104872,
+      "annual_returns": {
+        "2023": 0.5642515863537221,
+        "2024": 0.09438263767378618,
+        "2025": 1.143807383516604,
+        "2026": 0.4691287241455977
+      },
+      "ending_nav": 5.391646508196117,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.00115,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 97.66536964980544,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 50.80800964245304,
+      "completed_round_trips": 183,
+      "rebalance_events": 40,
+      "liquidation_cost": 0.018694493528558676,
+      "scenario": "stress"
+    },
+    "KR|equal_weight_buy_hold|stress": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.40885143478084585,
+      "mdd": 0.3571721348927983,
+      "sharpe": 1.2814754928758,
+      "annual_returns": {
+        "2023": 0.22085555620283337,
+        "2024": 0.06864299192533663,
+        "2025": 0.8012051556678841,
+        "2026": 0.33716918075254054
+      },
+      "ending_nav": 3.1422914652628546,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": true,
+      "cost": {
+        "fee": 0.00115,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 100.0,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 2.075491056837075,
+      "completed_round_trips": 92,
+      "rebalance_events": 1,
+      "liquidation_cost": 0.010337930396022004,
+      "scenario": "stress"
+    },
+    "KR|mom60|monthly|sma200=1|base": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.33843352978452046,
+      "mdd": 0.4694853908377682,
+      "sharpe": 0.9715147028754266,
+      "annual_returns": {
+        "2023": 0.029108873679527303,
+        "2024": 0.041990179774730185,
+        "2025": 0.6742543714180838,
+        "2026": 0.4747491681525313
+      },
+      "ending_nav": 2.647674241916331,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.00065,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 59.66277561608301,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 21.430083861639865,
+      "completed_round_trips": 123,
+      "rebalance_events": 40,
+      "liquidation_cost": 0.00784793451515146,
+      "scenario": "base"
+    },
+    "KR|mom60|monthly|sma200=1|stress": {
+      "start": "2023-04-04T00:00:00+00:00",
+      "end": "2026-08-06T00:00:00+00:00",
+      "cagr": 0.33333007221092115,
+      "mdd": 0.46959954168158624,
+      "sharpe": 0.9612966733509494,
+      "annual_returns": {
+        "2023": 0.02859516685894148,
+        "2024": 0.03684222251357472,
+        "2025": 0.6684209399744567,
+        "2026": 0.4691287241455926
+      },
+      "ending_nav": 2.614102639818457,
+      "market": "KR",
+      "lookback_sessions": 60,
+      "cadence": "monthly",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.00115,
+        "slippage": 0.0005,
+        "sell_tax": 0.002
+      },
+      "exposure_mean_pct": 59.66277561608301,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 21.26281910480261,
+      "completed_round_trips": 123,
+      "rebalance_events": 40,
+      "liquidation_cost": 0.00906389630862957,
+      "scenario": "stress"
+    },
+    "US|mom126|daily|sma200=0|base": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.3044224254146448,
+      "mdd": 0.33735733541104496,
+      "sharpe": 1.0355080018995557,
+      "annual_returns": {
+        "2022": -0.14764860111356348,
+        "2023": 0.6234269021624013,
+        "2024": 0.5380054110417314,
+        "2025": 0.128394711676048,
+        "2026": 0.4877757337865456
+      },
+      "ending_nav": 3.5727924928718577,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0008,
+        "slippage": 0.001,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 100.0,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 156.5444288079126,
+      "completed_round_trips": 841,
+      "rebalance_events": 1060,
+      "liquidation_cost": 0.006442623208945446,
+      "scenario": "base"
+    },
+    "US|equal_weight_buy_hold|base": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.18342293873070759,
+      "mdd": 0.22538965330622185,
+      "sharpe": 0.8998319618895896,
+      "annual_returns": {
+        "2022": -0.11365641845344288,
+        "2023": 0.3020602359063298,
+        "2024": 0.31523587643797524,
+        "2025": 0.3023535813433311,
+        "2026": 0.13363329005029634
+      },
+      "ending_nav": 2.240981784556593,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": false,
+      "buy_hold_baseline": true,
+      "cost": {
+        "fee": 0.0008,
+        "slippage": 0.001,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 100.0,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 1.6216130299106144,
+      "completed_round_trips": 92,
+      "rebalance_events": 1,
+      "liquidation_cost": 0.00404104108615695,
+      "scenario": "base"
+    },
+    "US|mom126|daily|sma200=0|stress": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.10562000313143449,
+      "mdd": 0.3822507283665022,
+      "sharpe": 0.4984958965853915,
+      "annual_returns": {
+        "2022": -0.31022324480399466,
+        "2023": 0.35919114586968615,
+        "2024": 0.2725829606062924,
+        "2025": 0.030297354833944246,
+        "2026": 0.3161116485173141
+      },
+      "ending_nav": 1.6178211675657765,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0036,
+        "slippage": 0.0025,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 100.0,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 96.95606534611052,
+      "completed_round_trips": 841,
+      "rebalance_events": 1060,
+      "liquidation_cost": 0.009929277716220177,
+      "scenario": "stress"
+    },
+    "US|equal_weight_buy_hold|stress": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.18130067461663102,
+      "mdd": 0.22538965330622196,
+      "sharpe": 0.891273720320582,
+      "annual_returns": {
+        "2022": -0.1174445880197389,
+        "2023": 0.30206023590632824,
+        "2024": 0.3152358764379781,
+        "2025": 0.302353581343332,
+        "2026": 0.1287498767591566
+      },
+      "ending_nav": 2.22179164808852,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": false,
+      "buy_hold_baseline": true,
+      "cost": {
+        "fee": 0.0036,
+        "slippage": 0.0025,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 99.99999999999997,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 1.6146823709019509,
+      "completed_round_trips": 92,
+      "rebalance_events": 1,
+      "liquidation_cost": 0.013636109320193147,
+      "scenario": "stress"
+    },
+    "US|mom126|daily|sma200=1|base": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.19529009912802353,
+      "mdd": 0.3373573354110452,
+      "sharpe": 0.8292324953536777,
+      "annual_returns": {
+        "2022": -0.06465829332280948,
+        "2023": 0.3771932460877685,
+        "2024": 0.5380054110417327,
+        "2025": -0.20248236178497214,
+        "2026": 0.48777573378654626
+      },
+      "ending_nav": 2.350719528767468,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0008,
+        "slippage": 0.001,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 73.0188679245283,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 109.7574329409308,
+      "completed_round_trips": 641,
+      "rebalance_events": 1060,
+      "liquidation_cost": 0.0042389252171723514,
+      "scenario": "base"
+    },
+    "US|mom126|daily|sma200=1|stress": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.05387579019492805,
+      "mdd": 0.3822507283665023,
+      "sharpe": 0.3496475373906649,
+      "annual_returns": {
+        "2022": -0.09089012041265643,
+        "2023": 0.12521055955671057,
+        "2024": 0.2725829606062935,
+        "2025": -0.2494790461166233,
+        "2026": 0.31611164851731455
+      },
+      "ending_nav": 1.2858545184176455,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "daily",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0036,
+        "slippage": 0.0025,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 73.0188679245283,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 77.8873422309234,
+      "completed_round_trips": 641,
+      "rebalance_events": 1060,
+      "liquidation_cost": 0.007891852864823056,
+      "scenario": "stress"
+    },
+    "US|mom126|monthly|sma200=0|base": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.3273205160633046,
+      "mdd": 0.4256209056367801,
+      "sharpe": 1.0529484253102634,
+      "annual_returns": {
+        "2022": -0.14506089829637459,
+        "2023": 0.8585538857894006,
+        "2024": 0.4098518159409763,
+        "2025": 0.2539484688016673,
+        "2026": 0.38246795135051936
+      },
+      "ending_nav": 3.8834575971244036,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0008,
+        "slippage": 0.001,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 99.81132075471699,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 39.317112437078436,
+      "completed_round_trips": 188,
+      "rebalance_events": 52,
+      "liquidation_cost": 0.007002828766603812,
+      "scenario": "base"
+    },
+    "US|mom126|monthly|sma200=0|stress": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.28095994340692476,
+      "mdd": 0.43632394375244354,
+      "sharpe": 0.9432688923701181,
+      "annual_returns": {
+        "2022": -0.17954160847186262,
+        "2023": 0.7890256501701196,
+        "2024": 0.35544829691707625,
+        "2025": 0.23687700491619612,
+        "2026": 0.3309338898809282
+      },
+      "ending_nav": 3.2752094928521585,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "monthly",
+      "sma200_gate": false,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0036,
+        "slippage": 0.0025,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 99.81132075471699,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 35.21505612652198,
+      "completed_round_trips": 188,
+      "rebalance_events": 52,
+      "liquidation_cost": 0.020101396424588146,
+      "scenario": "stress"
+    },
+    "US|mom126|monthly|sma200=1|base": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.1871692909500524,
+      "mdd": 0.42562090563678023,
+      "sharpe": 0.7765638238087093,
+      "annual_returns": {
+        "2022": -0.06634764314732944,
+        "2023": 0.3824143847019146,
+        "2024": 0.40985181594097675,
+        "2025": -0.09628161345141806,
+        "2026": 0.3835193167907467
+      },
+      "ending_nav": 2.2751773500029917,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "monthly",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0008,
+        "slippage": 0.001,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 71.60377358490567,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 24.727491726412854,
+      "completed_round_trips": 145,
+      "rebalance_events": 52,
+      "liquidation_cost": 0.004102704097380668,
+      "scenario": "base"
+    },
+    "US|mom126|monthly|sma200=1|stress": {
+      "start": "2022-01-27T00:00:00+00:00",
+      "end": "2026-11-12T00:00:00+00:00",
+      "cagr": 0.15516662948244297,
+      "mdd": 0.4363239437524433,
+      "sharpe": 0.6775848743696161,
+      "annual_returns": {
+        "2022": -0.07033800706191673,
+        "2023": 0.3279553454095807,
+        "2024": 0.3554482969170776,
+        "2025": -0.1053386304995716,
+        "2026": 0.33321865605386725
+      },
+      "ending_nav": 1.9959587954821052,
+      "market": "US",
+      "lookback_sessions": 126,
+      "cadence": "monthly",
+      "sma200_gate": true,
+      "buy_hold_baseline": false,
+      "cost": {
+        "fee": 0.0036,
+        "slippage": 0.0025,
+        "sell_tax": 0.0
+      },
+      "exposure_mean_pct": 71.60377358490567,
+      "cash_final_pct": 100.0,
+      "one_way_turnover_initial_nav": 22.912872285290256,
+      "completed_round_trips": 145,
+      "rebalance_events": 52,
+      "liquidation_cost": 0.012250074104478155,
+      "scenario": "stress"
+    }
+  },
+  "warnings": [
+    "current-survivor cohort; not point-in-time",
+    "corporate-action provenance unresolved",
+    "all source prices were previously inspected; no sealed/OOS claim",
+    "costs are legacy scenarios; execution friction may be understated"
+  ]
+}

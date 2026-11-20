@@ -1,0 +1,10 @@
+{
+  "run_id": "stock_common_momentum_20261120",
+  "status": "failed_before_artifact_write",
+  "preregistration": "docs/research/inventory/PREREG_STOCK_COMMON_MOMENTUM_EXPLORATORY_20261120.md",
+  "failure": "The candidate loop completed in memory, but artifact serialization stopped before writing summary or ledgers because a relative preregistration path was incorrectly passed to Path.relative_to(ROOT).",
+  "metrics_emitted": false,
+  "source_data_modified": false,
+  "strategy_or_parameter_changed": false,
+  "retry_policy": "Retry the same frozen candidate family with a path-resolution-only code correction; use a distinct output directory and record the new code hash. Treat both attempts as one fixed comparison family and do not tune from the unobserved in-memory result."
+}
