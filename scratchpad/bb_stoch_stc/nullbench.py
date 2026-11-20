@@ -65,7 +65,12 @@ def _one_rep(rep):
         desired_long = int(np.floor(exact_long + .5))
         dirs = np.array([1] * desired_long + [-1] * (n-desired_long), dtype=int)
         rng.shuffle(dirs)
-        candidates = np.sort(rng.permutation(np.arange(start + 1, min(stop, len(df)))))
+        # Randomize the candidate set itself. Sorting a full permutation was a
+        # no-op: it always restored every bar to chronological order, so the
+        # first n feasible entries were identical in every repetition.
+        available = np.arange(start + 1, min(stop, len(df)))
+        sample_size = min(len(available), max(n * 20, n))
+        candidates = np.sort(rng.choice(available, size=sample_size, replace=False))
         local = df.iloc[start:stop].reset_index(drop=True)
         mid = np.asarray(counts[key].get('bb_mid', np.zeros(len(df))), float)[start:stop]
         av = np.asarray(counts[key].get('atr', np.full(len(df), np.nan)), float)[start:stop]

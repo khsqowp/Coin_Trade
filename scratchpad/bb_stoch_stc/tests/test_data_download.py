@@ -55,6 +55,38 @@ def test_futures_earliest_uses_zero_start_and_paginates(monkeypatch):
     assert result.volume.iloc[0] == 12.5
 
 
+def test_spot_daily_pagination_uses_one_day_step(monkeypatch):
+    calls = []
+    first = 1_700_006_400_000
+
+    def fake_fetch(url):
+        q = parse_qs(urlparse(url).query)
+        calls.append((q['interval'][0], int(q['startTime'][0])))
+        if len(calls) == 1:
+            return [_row(first, first + data.MS['1d'] - 1, 100)]
+        return []
+
+    monkeypatch.setattr(data, '_fetch_json', fake_fetch)
+    monkeypatch.setattr(data.time, 'sleep', lambda *_: None)
+    from datetime import datetime, timezone
+    monkeypatch.setattr(data, 'datetime', type('Clock', (), {
+        'now': staticmethod(lambda tz: datetime.fromtimestamp((first + 3 * data.MS['1d']) / 1000, tz=timezone.utc)),
+        'fromtimestamp': datetime.fromtimestamp,
+    }))
+    result = data.download('ABCUSDT', '1d', start='2023-11-15', end='2024-01-01', sleep=0)
+
+    assert calls == [('1d', data._ms('2023-11-15')), ('1d', first + data.MS['1d'])]
+    assert len(result) == 1
+    assert result.index[0] == pd.to_datetime(first, unit='ms', utc=True)
+
+
+def test_daily_gap_check_accepts_consecutive_candles():
+    index = pd.date_range('2024-01-01', periods=3, freq='D', tz='UTC', name='open_time')
+    frame = pd.DataFrame(index=index)
+
+    assert data.check_data(frame, '1d') == []
+
+
 def test_report_only_emits_first_date_summary(tmp_path, monkeypatch):
     monkeypatch.setattr(data, 'BASE', tmp_path)
     outdir = tmp_path / 'data'

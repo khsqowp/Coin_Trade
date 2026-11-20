@@ -14,8 +14,8 @@ import pandas as pd
 
 BASE=Path(__file__).resolve().parent
 SYMBOLS=['BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','TRXUSDT','DOGEUSDT']
-TFS=['1h','4h','15m']
-MS={'15m':900_000,'1h':3_600_000,'4h':14_400_000}
+TFS=['1h','4h','15m','8h','12h','1d']
+MS={'15m':900_000,'1h':3_600_000,'4h':14_400_000,'8h':28_800_000,'12h':43_200_000,'1d':86_400_000}
 SPOT_URL='https://api.binance.com/api/v3/klines'
 FUTURES_URL='https://fapi.binance.com/fapi/v1/klines'
 URL=SPOT_URL
