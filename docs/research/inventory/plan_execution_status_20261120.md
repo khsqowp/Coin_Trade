@@ -117,3 +117,24 @@ confirm data availability before acquisition; use exposed history only for
 development, then test prospectively without tuning. Core count remains zero;
 Phase 9 remains blocked. Details and source links are in
 `phase8_source_rounds_20261120.md`.
+
+### Phase 8 continuation: Round E source follow-up and panel
+
+Four roles reviewed the 2023 BTC candle-boundary paper, the 2026 hourly
+BTC/ETH session-momentum/reversal paper, and whether Binance OI timing is now
+resolvable. The candle-boundary mechanism duplicates an already exposed local
+probe (registry row 23) and the source portfolio simulation does not define
+target-first barriers. The session paper searched 300 cutoff/strategy
+combinations, reports no significant SPA superiority, and has no M2
+boundaries; its BTC result does not hold up in the chronological evaluation.
+A custom 12-hour session-sign M2 adaptation was judged conceptually distinct
+by Blue only, while Red, Data/Methods, and Judge did not advance it. No new
+strategy was scored.
+
+Official Binance USDⓈ-M documentation confirms historical OI statistics are
+period-end timestamped, latest-month-only via REST, and may omit no-trade
+periods. This does not establish the first time an archived OI value was
+available; prior archive/REST offset results conflict. No additional OI audit
+or scoring is warranted from this documentation alone. OI remains ineligible,
+Core count remains zero, and Phase 9 is not run. Detailed record:
+`phase8_source_rounds_20261120.md`, Round E.
