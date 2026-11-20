@@ -2,7 +2,7 @@
 
 ## Decision
 
-**Structural sample: PASS. OI feature timing/provenance: UNRESOLVED. No strategy scoring authorized by this audit.** The small fixed sample passed archive checksums, ZIP/CSV structure, row count, and 5-minute-grid checks. A separate, preregistered one-day OI archive/REST comparison matched at the same timestamp, not at +5 minutes. That establishes a current one-day data correspondence only; it does not establish historical observation time or publication latency.
+**Structural sample: PASS for the fixed sample. OI feature timing/provenance: UNRESOLVED. No strategy scoring authorized.** The preregistered one-day OI archive/REST comparison matched at the same timestamp, but the follow-up in [`usdm_oi_timestamp_followup_20261120.md`](usdm_oi_timestamp_followup_20261120.md) found exact `T+5m` matches in 96 other symbol-days. These results conflict; neither a global same-time mapping nor a global +5-minute shift is justified. Neither comparison establishes historical first-availability or publication latency.
 
 ## Fixed sample and integrity results
 
