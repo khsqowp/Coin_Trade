@@ -1,0 +1,1083 @@
+{
+  "status": "EXPLORATORY_DEVELOPMENT_ONLY",
+  "strategy_verdict": "REJECT_FIXED_SPECIFICATION",
+  "numeric_screen_gates": {
+    "all_issued_m2_80pct": false,
+    "per_symbol_nonoverlap_n_200": true,
+    "per_symbol_nonoverlap_at_least_20_symbols": true,
+    "coverage_10pct": true,
+    "positive_net_base_and_stress": false,
+    "wilson_lower_above_stronger_same_event_baseline": false
+  },
+  "trial_count": 1,
+  "data_exposed": true,
+  "core_eligible": false,
+  "phase9_eligible": false,
+  "window": {
+    "start": "2023-03-23T15:00:00Z",
+    "end_exclusive": "2025-03-01T00:00:00Z"
+  },
+  "cohort": {
+    "key": "2023-03..2026-05",
+    "symbols": 36,
+    "target_symbols": [
+      "AAVEUSDT",
+      "ADAUSDT",
+      "ALGOUSDT",
+      "APTUSDT",
+      "ARBUSDT",
+      "ATOMUSDT",
+      "AVAXUSDT",
+      "BCHUSDT",
+      "BNBUSDT",
+      "CRVUSDT",
+      "DOGEUSDT",
+      "DOTUSDT",
+      "ETCUSDT",
+      "FILUSDT",
+      "HBARUSDT",
+      "ICPUSDT",
+      "IMXUSDT",
+      "INJUSDT",
+      "LDOUSDT",
+      "LINKUSDT",
+      "LTCUSDT",
+      "NEARUSDT",
+      "OPUSDT",
+      "QNTUSDT",
+      "SOLUSDT",
+      "STXUSDT",
+      "THETAUSDT",
+      "TRXUSDT",
+      "UNIUSDT",
+      "VETUSDT",
+      "XLMUSDT",
+      "XMRUSDT",
+      "XRPUSDT",
+      "ZECUSDT"
+    ]
+  },
+  "horizon_hours": 10,
+  "barrier_basis": "contract kline OHLC; mark archives used in integrity audit only",
+  "base_fee_round_trip": 0.001,
+  "stress_fee_round_trip": 0.003,
+  "slippage": "not measured or modeled",
+  "timestamp_audit": {
+    "cohort": "2023-03..2025-02",
+    "symbols": 36,
+    "months": 24,
+    "symbol_months_expected": 864,
+    "checked": 864,
+    "missing": 0,
+    "malformed": 0,
+    "candle_mark_timestamp_mismatches": 0,
+    "mark_hours_outside_kline_window": 2,
+    "duplicate_or_incomplete_hour_sets": 0,
+    "funding_integrity_failures": 0,
+    "failure_examples": [],
+    "status": "PASS",
+    "limitations": [
+      "raw archive timestamps only; does not validate price accuracy or strategy fills",
+      "funding timestamps are checked against the interval carried in adjacent archive rows"
+    ]
+  },
+  "sha256_audit": {
+    "audit_rows": 2592,
+    "checked": 2592,
+    "missing": 0,
+    "sha256_mismatches": 0,
+    "malformed_rows": 0,
+    "mismatch_refs": [],
+    "status": "PASS",
+    "note": "hash equality proves file identity only, not source authenticity or time-series correctness"
+  },
+  "invalid_candidate_events_due_to_gap": 0,
+  "all_issued": {
+    "signals": 201648,
+    "m2_hits": 92723,
+    "m2_rate": 0.45982603348409107,
+    "m2_wilson_95": [
+      0.45765154154837534,
+      0.46200205604444095
+    ],
+    "m1_direction_accuracy": 0.31131972546219155,
+    "exit_reasons": {
+      "TARGET": 92723,
+      "STOP": 97916,
+      "STOP_GAP": 2,
+      "TIMEOUT": 11007,
+      "DATA_GAP": 0
+    },
+    "mean_gross_return": -0.0002744424844962064,
+    "mean_net_base": -0.0012949484469654598,
+    "mean_net_stress": -0.003294948446965459,
+    "mean_net_base_r": -0.13540900999225858,
+    "mean_net_stress_r": -0.35042193241446284,
+    "mean_funding_cost": 2.050596246925335e-05,
+    "symbols": 34,
+    "eligible_opportunities": 577218,
+    "coverage": 0.34934461503279524,
+    "per_symbol_nonoverlap": {
+      "signals": 47877,
+      "m2_hits": 21973,
+      "m2_rate": 0.45894688472544226,
+      "m2_wilson_95": [
+        0.454486750883809,
+        0.46341360591378805
+      ],
+      "m1_direction_accuracy": 0.31098439751864154,
+      "exit_reasons": {
+        "TARGET": 21973,
+        "STOP": 23266,
+        "STOP_GAP": 1,
+        "TIMEOUT": 2637,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.000308223704457788,
+      "mean_net_base": -0.0013282054184331838,
+      "mean_net_stress": -0.0033282054184331834,
+      "mean_net_base_r": -0.130128375716228,
+      "mean_net_stress_r": -0.33112005341042633,
+      "mean_funding_cost": 1.9981713975395286e-05,
+      "symbols": 34
+    },
+    "market_time_nonoverlap": {
+      "signals": 1663,
+      "m2_hits": 786,
+      "m2_rate": 0.4726398075766687,
+      "m2_wilson_95": [
+        0.44873544384011865,
+        0.4966702817503744
+      ],
+      "m1_direction_accuracy": 0.3156945279615153,
+      "exit_reasons": {
+        "TARGET": 786,
+        "STOP": 789,
+        "STOP_GAP": 0,
+        "TIMEOUT": 88,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": 0.00022005920480522276,
+      "mean_net_base": -0.000799880199885096,
+      "mean_net_stress": -0.0027998801998850957,
+      "mean_net_base_r": -0.09883860565175212,
+      "mean_net_stress_r": -0.2932418251521375,
+      "mean_funding_cost": 1.99394046903187e-05,
+      "symbols": 30
+    },
+    "per_symbol_nonoverlap_symbols": 34,
+    "market_time_nonoverlap_symbols": 30,
+    "baseline_long_m2": 0.4527592636673808,
+    "baseline_long_m2_wilson_95": [
+      0.4505876129328877,
+      0.45493271426982423
+    ],
+    "baseline_short_m2": 0.4845572482742204,
+    "baseline_short_m2_wilson_95": [
+      0.4823762707599106,
+      0.48673881415602943
+    ],
+    "baseline_long_net_base": -0.0014160016154147403,
+    "baseline_short_net_base": -0.0007863944171342538,
+    "baseline_stronger_m2_rate_report_only": 0.4845572482742204
+  },
+  "by_symbol": {
+    "AAVEUSDT": {
+      "signals": 5357,
+      "m2_hits": 2472,
+      "m2_rate": 0.4614523053948105,
+      "m2_wilson_95": [
+        0.44813525176839203,
+        0.4748246038489659
+      ],
+      "m1_direction_accuracy": 0.31640843755833487,
+      "exit_reasons": {
+        "TARGET": 2472,
+        "STOP": 2584,
+        "STOP_GAP": 0,
+        "TIMEOUT": 301,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00020127165354519815,
+      "mean_net_base": -0.00121952490909868,
+      "mean_net_stress": -0.0032195249090986792,
+      "mean_net_base_r": -0.10881459404546054,
+      "mean_net_stress_r": -0.28411579679146887,
+      "mean_funding_cost": 1.8253255553481425e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3155445602874477
+    },
+    "ADAUSDT": {
+      "signals": 5750,
+      "m2_hits": 2602,
+      "m2_rate": 0.4525217391304348,
+      "m2_wilson_95": [
+        0.4396924701045069,
+        0.4654144043362242
+      ],
+      "m1_direction_accuracy": 0.31356521739130433,
+      "exit_reasons": {
+        "TARGET": 2602,
+        "STOP": 2829,
+        "STOP_GAP": 0,
+        "TIMEOUT": 319,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.000269539353233069,
+      "mean_net_base": -0.001287812005406982,
+      "mean_net_stress": -0.003287812005406982,
+      "mean_net_base_r": -0.14560566691719806,
+      "mean_net_stress_r": -0.35782530099228665,
+      "mean_funding_cost": 1.8272652173913046e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3386935265359015
+    },
+    "ALGOUSDT": {
+      "signals": 5491,
+      "m2_hits": 2513,
+      "m2_rate": 0.45765798579493716,
+      "m2_wilson_95": [
+        0.4445147673890469,
+        0.4708604070386791
+      ],
+      "m1_direction_accuracy": 0.32252777271899474,
+      "exit_reasons": {
+        "TARGET": 2513,
+        "STOP": 2695,
+        "STOP_GAP": 0,
+        "TIMEOUT": 283,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0002824271346755403,
+      "mean_net_base": -0.0013012807551454003,
+      "mean_net_stress": -0.0033012807551454,
+      "mean_net_base_r": -0.1270240480340037,
+      "mean_net_stress_r": -0.3119408838067244,
+      "mean_funding_cost": 1.885362046985977e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.32343759203628436
+    },
+    "APTUSDT": {
+      "signals": 5427,
+      "m2_hits": 2509,
+      "m2_rate": 0.4623180394324673,
+      "m2_wilson_95": [
+        0.44908453971671886,
+        0.47560484716720336
+      ],
+      "m1_direction_accuracy": 0.30385111479638843,
+      "exit_reasons": {
+        "TARGET": 2509,
+        "STOP": 2635,
+        "STOP_GAP": 0,
+        "TIMEOUT": 283,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0003211185449916422,
+      "mean_net_base": -0.0013444400706964519,
+      "mean_net_stress": -0.0033444400706964515,
+      "mean_net_base_r": -0.1040253164754037,
+      "mean_net_stress_r": -0.26321656390181464,
+      "mean_funding_cost": 2.3321525704809287e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3196677858278848
+    },
+    "ARBUSDT": {
+      "signals": 4333,
+      "m2_hits": 1965,
+      "m2_rate": 0.453496422801754,
+      "m2_wilson_95": [
+        0.4387210868557156,
+        0.4683541420115193
+      ],
+      "m1_direction_accuracy": 0.3191783983383337,
+      "exit_reasons": {
+        "TARGET": 1965,
+        "STOP": 2143,
+        "STOP_GAP": 0,
+        "TIMEOUT": 225,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0004695778230824601,
+      "mean_net_base": -0.0014943322149587584,
+      "mean_net_stress": -0.003494332214958758,
+      "mean_net_base_r": -0.1300492026740418,
+      "mean_net_stress_r": -0.3043469337021354,
+      "mean_funding_cost": 2.4754391876298176e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.25522766095305416
+    },
+    "ATOMUSDT": {
+      "signals": 5996,
+      "m2_hits": 2757,
+      "m2_rate": 0.4598065376917945,
+      "m2_wilson_95": [
+        0.44722150962854307,
+        0.47244303429179907
+      ],
+      "m1_direction_accuracy": 0.3188792528352235,
+      "exit_reasons": {
+        "TARGET": 2757,
+        "STOP": 2941,
+        "STOP_GAP": 0,
+        "TIMEOUT": 298,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0002993072502992457,
+      "mean_net_base": -0.0013168143833879717,
+      "mean_net_stress": -0.0033168143833879715,
+      "mean_net_base_r": -0.1397049573786358,
+      "mean_net_stress_r": -0.35573294154680496,
+      "mean_funding_cost": 1.7507133088725818e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.35318371914943747
+    },
+    "AVAXUSDT": {
+      "signals": 5142,
+      "m2_hits": 2356,
+      "m2_rate": 0.45818747569039286,
+      "m2_wilson_95": [
+        0.4446052721191237,
+        0.47183210679333387
+      ],
+      "m1_direction_accuracy": 0.31835861532477633,
+      "exit_reasons": {
+        "TARGET": 2356,
+        "STOP": 2493,
+        "STOP_GAP": 0,
+        "TIMEOUT": 293,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0004468006650211424,
+      "mean_net_base": -0.0014666411978877315,
+      "mean_net_stress": -0.0034666411978877304,
+      "mean_net_base_r": -0.12397240197663283,
+      "mean_net_stress_r": -0.31379871930233777,
+      "mean_funding_cost": 1.9840532866588873e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3028803675561053
+    },
+    "BCHUSDT": {
+      "signals": 6307,
+      "m2_hits": 2872,
+      "m2_rate": 0.4553670524813699,
+      "m2_wilson_95": [
+        0.44310743544351905,
+        0.4676810063714639
+      ],
+      "m1_direction_accuracy": 0.30410654827968925,
+      "exit_reasons": {
+        "TARGET": 2872,
+        "STOP": 3055,
+        "STOP_GAP": 0,
+        "TIMEOUT": 380,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0004045344405156809,
+      "mean_net_base": -0.0014217106209501189,
+      "mean_net_stress": -0.0034217106209501187,
+      "mean_net_base_r": -0.13843111444232364,
+      "mean_net_stress_r": -0.3545539309952998,
+      "mean_funding_cost": 1.7176180434437925e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3715026211933793
+    },
+    "BNBUSDT": {
+      "signals": 8313,
+      "m2_hits": 3856,
+      "m2_rate": 0.4638517983880669,
+      "m2_wilson_95": [
+        0.45315079832280103,
+        0.4745861913774668
+      ],
+      "m1_direction_accuracy": 0.3063875857091303,
+      "exit_reasons": {
+        "TARGET": 3856,
+        "STOP": 4040,
+        "STOP_GAP": 0,
+        "TIMEOUT": 417,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.000199066261760567,
+      "mean_net_base": -0.0012115058347185847,
+      "mean_net_stress": -0.0032115058347185845,
+      "mean_net_base_r": -0.19309822968241785,
+      "mean_net_stress_r": -0.5318472164514969,
+      "mean_funding_cost": 1.2439572958017564e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.48966248453790423
+    },
+    "CRVUSDT": {
+      "signals": 5584,
+      "m2_hits": 2543,
+      "m2_rate": 0.4554083094555874,
+      "m2_wilson_95": [
+        0.4423813686941709,
+        0.4684965608838271
+      ],
+      "m1_direction_accuracy": 0.2922636103151863,
+      "exit_reasons": {
+        "TARGET": 2543,
+        "STOP": 2684,
+        "STOP_GAP": 0,
+        "TIMEOUT": 357,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00038014228634933,
+      "mean_net_base": -0.0013976230993865799,
+      "mean_net_stress": -0.0033976230993865786,
+      "mean_net_base_r": -0.1031405765368106,
+      "mean_net_stress_r": -0.25209709543462183,
+      "mean_funding_cost": 1.7480813037249283e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.32891559168286505
+    },
+    "DOGEUSDT": {
+      "signals": 5677,
+      "m2_hits": 2498,
+      "m2_rate": 0.4400211379249604,
+      "m2_wilson_95": [
+        0.4271534725956519,
+        0.452969920226268
+      ],
+      "m1_direction_accuracy": 0.3050907169279549,
+      "exit_reasons": {
+        "TARGET": 2498,
+        "STOP": 2810,
+        "STOP_GAP": 1,
+        "TIMEOUT": 368,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0005271972391705818,
+      "mean_net_base": -0.0015443483418656674,
+      "mean_net_stress": -0.0035443483418656665,
+      "mean_net_base_r": -0.16810871294863475,
+      "mean_net_stress_r": -0.39054274706964887,
+      "mean_funding_cost": 1.7151102695085433e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.33439359132944574
+    },
+    "DOTUSDT": {
+      "signals": 5781,
+      "m2_hits": 2668,
+      "m2_rate": 0.4615118491610448,
+      "m2_wilson_95": [
+        0.44869096949743464,
+        0.4743838454015172
+      ],
+      "m1_direction_accuracy": 0.31620826846566336,
+      "exit_reasons": {
+        "TARGET": 2668,
+        "STOP": 2786,
+        "STOP_GAP": 0,
+        "TIMEOUT": 327,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00020789197940495273,
+      "mean_net_base": -0.0012260846623317822,
+      "mean_net_stress": -0.003226084662331782,
+      "mean_net_base_r": -0.1337153540600748,
+      "mean_net_stress_r": -0.35529881154885157,
+      "mean_funding_cost": 1.8192682926829272e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3405195264180951
+    },
+    "ETCUSDT": {
+      "signals": 5920,
+      "m2_hits": 2749,
+      "m2_rate": 0.4643581081081081,
+      "m2_wilson_95": [
+        0.4516810115772307,
+        0.47708143033930056
+      ],
+      "m1_direction_accuracy": 0.29679054054054055,
+      "exit_reasons": {
+        "TARGET": 2749,
+        "STOP": 2804,
+        "STOP_GAP": 0,
+        "TIMEOUT": 367,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00010992545235590352,
+      "mean_net_base": -0.0011323099320856335,
+      "mean_net_stress": -0.003132309932085633,
+      "mean_net_base_r": -0.1320033482381768,
+      "mean_net_stress_r": -0.36687014496553455,
+      "mean_funding_cost": 2.238447972972973e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.34870707427696296
+    },
+    "FILUSDT": {
+      "signals": 5374,
+      "m2_hits": 2486,
+      "m2_rate": 0.462597692593971,
+      "m2_wilson_95": [
+        0.44929851225645884,
+        0.4759503067951622
+      ],
+      "m1_direction_accuracy": 0.30424264979531074,
+      "exit_reasons": {
+        "TARGET": 2486,
+        "STOP": 2586,
+        "STOP_GAP": 0,
+        "TIMEOUT": 302,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00015421462023820713,
+      "mean_net_base": -0.0011753258818682781,
+      "mean_net_stress": -0.0031753258818682777,
+      "mean_net_base_r": -0.11266772798616294,
+      "mean_net_stress_r": -0.2959468510691748,
+      "mean_funding_cost": 2.1111261630070712e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3165459150615539
+    },
+    "HBARUSDT": {
+      "signals": 5815,
+      "m2_hits": 2692,
+      "m2_rate": 0.46294067067927774,
+      "m2_wilson_95": [
+        0.4501535053595593,
+        0.4757767673501993
+      ],
+      "m1_direction_accuracy": 0.3129836629406707,
+      "exit_reasons": {
+        "TARGET": 2692,
+        "STOP": 2792,
+        "STOP_GAP": 1,
+        "TIMEOUT": 330,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -9.806772867297583e-05,
+      "mean_net_base": -0.0011201830855087458,
+      "mean_net_stress": -0.003120183085508746,
+      "mean_net_base_r": -0.11210392430135276,
+      "mean_net_stress_r": -0.29830611199550816,
+      "mean_funding_cost": 2.2115356835769565e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3425222359663074
+    },
+    "ICPUSDT": {
+      "signals": 5266,
+      "m2_hits": 2471,
+      "m2_rate": 0.4692366122293961,
+      "m2_wilson_95": [
+        0.4557850434947044,
+        0.48273303099922804
+      ],
+      "m1_direction_accuracy": 0.3085833649829092,
+      "exit_reasons": {
+        "TARGET": 2471,
+        "STOP": 2544,
+        "STOP_GAP": 0,
+        "TIMEOUT": 251,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0001519580959376447,
+      "mean_net_base": -0.0011711494100280363,
+      "mean_net_stress": -0.003171149410028036,
+      "mean_net_base_r": -0.09711806015352223,
+      "mean_net_stress_r": -0.25962666614169366,
+      "mean_funding_cost": 1.9191314090391187e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.31018436708487956
+    },
+    "IMXUSDT": {
+      "signals": 5122,
+      "m2_hits": 2293,
+      "m2_rate": 0.4476766887934401,
+      "m2_wilson_95": [
+        0.4341031399624873,
+        0.4613286629315262
+      ],
+      "m1_direction_accuracy": 0.32584927762592736,
+      "exit_reasons": {
+        "TARGET": 2293,
+        "STOP": 2566,
+        "STOP_GAP": 0,
+        "TIMEOUT": 263,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0006539929743987976,
+      "mean_net_base": -0.001679987755734214,
+      "mean_net_stress": -0.0036799877557342135,
+      "mean_net_base_r": -0.12773023686543064,
+      "mean_net_stress_r": -0.27402705363370805,
+      "mean_funding_cost": 2.599478133541585e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.30170230311598045
+    },
+    "INJUSDT": {
+      "signals": 5164,
+      "m2_hits": 2421,
+      "m2_rate": 0.46882261812548415,
+      "m2_wilson_95": [
+        0.45524017794152377,
+        0.48245140904584477
+      ],
+      "m1_direction_accuracy": 0.3177769171185128,
+      "exit_reasons": {
+        "TARGET": 2421,
+        "STOP": 2535,
+        "STOP_GAP": 0,
+        "TIMEOUT": 208,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00021298908004382822,
+      "mean_net_base": -0.0012389427245054865,
+      "mean_net_stress": -0.003238942724505486,
+      "mean_net_base_r": -0.08709052824303849,
+      "mean_net_stress_r": -0.21868681317510774,
+      "mean_funding_cost": 2.5953644461657627e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.30417623844024266
+    },
+    "LDOUSDT": {
+      "signals": 4909,
+      "m2_hits": 2283,
+      "m2_rate": 0.4650641678549603,
+      "m2_wilson_95": [
+        0.4511441948616084,
+        0.47903877503981895
+      ],
+      "m1_direction_accuracy": 0.31045019352210224,
+      "exit_reasons": {
+        "TARGET": 2283,
+        "STOP": 2349,
+        "STOP_GAP": 0,
+        "TIMEOUT": 277,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00012640058860347887,
+      "mean_net_base": -0.001152400513231713,
+      "mean_net_stress": -0.0031524005132317124,
+      "mean_net_base_r": -0.08745584051128913,
+      "mean_net_stress_r": -0.22975828417136973,
+      "mean_funding_cost": 2.5999924628233855e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.28915591682865055
+    },
+    "LINKUSDT": {
+      "signals": 5440,
+      "m2_hits": 2465,
+      "m2_rate": 0.453125,
+      "m2_wilson_95": [
+        0.43993447566153765,
+        0.46638167923425866
+      ],
+      "m1_direction_accuracy": 0.2983455882352941,
+      "exit_reasons": {
+        "TARGET": 2465,
+        "STOP": 2651,
+        "STOP_GAP": 0,
+        "TIMEOUT": 324,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00030267659362966077,
+      "mean_net_base": -0.0013224815678943666,
+      "mean_net_stress": -0.003322481567894366,
+      "mean_net_base_r": -0.13153653089584177,
+      "mean_net_stress_r": -0.32363084731991165,
+      "mean_funding_cost": 1.9804974264705883e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.32043352771396594
+    },
+    "LTCUSDT": {
+      "signals": 6894,
+      "m2_hits": 3135,
+      "m2_rate": 0.4547432550043516,
+      "m2_wilson_95": [
+        0.44301742321364246,
+        0.46651949442570795
+      ],
+      "m1_direction_accuracy": 0.3066434580794894,
+      "exit_reasons": {
+        "TARGET": 3135,
+        "STOP": 3360,
+        "STOP_GAP": 0,
+        "TIMEOUT": 399,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0002718078820625475,
+      "mean_net_base": -0.0012916697111893243,
+      "mean_net_stress": -0.0032916697111893246,
+      "mean_net_base_r": -0.15622433235475944,
+      "mean_net_stress_r": -0.400577009243084,
+      "mean_funding_cost": 1.9861829126776908e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.40607881251104433
+    },
+    "NEARUSDT": {
+      "signals": 5002,
+      "m2_hits": 2249,
+      "m2_rate": 0.44962015193922433,
+      "m2_wilson_95": [
+        0.43587829969809716,
+        0.46343932668978777
+      ],
+      "m1_direction_accuracy": 0.3158736505397841,
+      "exit_reasons": {
+        "TARGET": 2249,
+        "STOP": 2471,
+        "STOP_GAP": 0,
+        "TIMEOUT": 282,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0005453922792048779,
+      "mean_net_base": -0.0015706991804443824,
+      "mean_net_stress": -0.0035706991804443818,
+      "mean_net_base_r": -0.12439825745579962,
+      "mean_net_stress_r": -0.2801066796159221,
+      "mean_funding_cost": 2.5306901239504196e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.2946339164752312
+    },
+    "OPUSDT": {
+      "signals": 4806,
+      "m2_hits": 2182,
+      "m2_rate": 0.4540158135663754,
+      "m2_wilson_95": [
+        0.43998203372159533,
+        0.4681230454615402
+      ],
+      "m1_direction_accuracy": 0.30586766541822724,
+      "exit_reasons": {
+        "TARGET": 2182,
+        "STOP": 2375,
+        "STOP_GAP": 0,
+        "TIMEOUT": 249,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0006382843441263226,
+      "mean_net_base": -0.001666247413206639,
+      "mean_net_stress": -0.0036662474132066387,
+      "mean_net_base_r": -0.11682873738753065,
+      "mean_net_stress_r": -0.266623340371172,
+      "mean_funding_cost": 2.796306908031627e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.2830888849620074
+    },
+    "QNTUSDT": {
+      "signals": 6719,
+      "m2_hits": 3137,
+      "m2_rate": 0.4668849531180235,
+      "m2_wilson_95": [
+        0.45497807271621893,
+        0.4788296776634753
+      ],
+      "m1_direction_accuracy": 0.31463015329662153,
+      "exit_reasons": {
+        "TARGET": 3137,
+        "STOP": 3222,
+        "STOP_GAP": 0,
+        "TIMEOUT": 360,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00015887677604958144,
+      "mean_net_base": -0.0011805658488282687,
+      "mean_net_stress": -0.003180565848828268,
+      "mean_net_base_r": -0.1245454202754186,
+      "mean_net_stress_r": -0.3410739867676743,
+      "mean_funding_cost": 2.1689072778687304e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3957707486599517
+    },
+    "SOLUSDT": {
+      "signals": 4878,
+      "m2_hits": 2228,
+      "m2_rate": 0.45674456744567443,
+      "m2_wilson_95": [
+        0.44280539163227867,
+        0.47075181755616907
+      ],
+      "m1_direction_accuracy": 0.3077080770807708,
+      "exit_reasons": {
+        "TARGET": 2228,
+        "STOP": 2414,
+        "STOP_GAP": 0,
+        "TIMEOUT": 236,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0003352997593608716,
+      "mean_net_base": -0.0013514359483727618,
+      "mean_net_stress": -0.003351435948372762,
+      "mean_net_base_r": -0.12571106541698052,
+      "mean_net_stress_r": -0.2972747265018989,
+      "mean_funding_cost": 1.613618901189012e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.287329916946457
+    },
+    "STXUSDT": {
+      "signals": 4870,
+      "m2_hits": 2222,
+      "m2_rate": 0.4562628336755647,
+      "m2_wilson_95": [
+        0.4423138102015699,
+        0.47028080256963045
+      ],
+      "m1_direction_accuracy": 0.3154004106776181,
+      "exit_reasons": {
+        "TARGET": 2222,
+        "STOP": 2361,
+        "STOP_GAP": 0,
+        "TIMEOUT": 287,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0006781863941524684,
+      "mean_net_base": -0.0017062212545220785,
+      "mean_net_stress": -0.0037062212545220775,
+      "mean_net_base_r": -0.10293636056166981,
+      "mean_net_stress_r": -0.24538208062401096,
+      "mean_funding_cost": 2.8034860369609856e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.286858691170407
+    },
+    "THETAUSDT": {
+      "signals": 5252,
+      "m2_hits": 2364,
+      "m2_rate": 0.4501142421934501,
+      "m2_wilson_95": [
+        0.4367005829629925,
+        0.46360082374694733
+      ],
+      "m1_direction_accuracy": 0.31264280274181266,
+      "exit_reasons": {
+        "TARGET": 2364,
+        "STOP": 2602,
+        "STOP_GAP": 0,
+        "TIMEOUT": 286,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00043769940154411426,
+      "mean_net_base": -0.0014583408752684099,
+      "mean_net_stress": -0.003458340875268409,
+      "mean_net_base_r": -0.13773648967119334,
+      "mean_net_stress_r": -0.3134191501868202,
+      "mean_funding_cost": 2.0641473724295507e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3093597219767921
+    },
+    "TRXUSDT": {
+      "signals": 10264,
+      "m2_hits": 4797,
+      "m2_rate": 0.46736165237724087,
+      "m2_wilson_95": [
+        0.45772332322570497,
+        0.4770244031891365
+      ],
+      "m1_direction_accuracy": 0.3323265783320343,
+      "exit_reasons": {
+        "TARGET": 4797,
+        "STOP": 4994,
+        "STOP_GAP": 0,
+        "TIMEOUT": 473,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00013567264371849098,
+      "mean_net_base": -0.0011536535848720374,
+      "mean_net_stress": -0.003153653584872037,
+      "mean_net_base_r": -0.26092334023124203,
+      "mean_net_stress_r": -0.7351539972392955,
+      "mean_funding_cost": 1.7980941153546377e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.6045826706720857
+    },
+    "UNIUSDT": {
+      "signals": 5564,
+      "m2_hits": 2579,
+      "m2_rate": 0.4635154565061107,
+      "m2_wilson_95": [
+        0.45044229092469074,
+        0.4766389661472387
+      ],
+      "m1_direction_accuracy": 0.3037383177570093,
+      "exit_reasons": {
+        "TARGET": 2579,
+        "STOP": 2704,
+        "STOP_GAP": 0,
+        "TIMEOUT": 281,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.000334947652435198,
+      "mean_net_base": -0.0013539921797536738,
+      "mean_net_stress": -0.0033539921797536743,
+      "mean_net_base_r": -0.11813414147456423,
+      "mean_net_stress_r": -0.3058769526857166,
+      "mean_funding_cost": 1.904452731847592e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3277375272427402
+    },
+    "VETUSDT": {
+      "signals": 5550,
+      "m2_hits": 2553,
+      "m2_rate": 0.46,
+      "m2_wilson_95": [
+        0.44691991808038395,
+        0.47313541599926784
+      ],
+      "m1_direction_accuracy": 0.3190990990990991,
+      "exit_reasons": {
+        "TARGET": 2553,
+        "STOP": 2706,
+        "STOP_GAP": 0,
+        "TIMEOUT": 291,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.00038475147747014043,
+      "mean_net_base": -0.0014055286630557263,
+      "mean_net_stress": -0.0034055286630557255,
+      "mean_net_base_r": -0.12966049835066715,
+      "mean_net_stress_r": -0.32681936742367007,
+      "mean_funding_cost": 2.0777185585585586e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.32691288213465275
+    },
+    "XLMUSDT": {
+      "signals": 7229,
+      "m2_hits": 3328,
+      "m2_rate": 0.4603679623737723,
+      "m2_wilson_95": [
+        0.4489022988383483,
+        0.47187572411952994
+      ],
+      "m1_direction_accuracy": 0.3142896666205561,
+      "exit_reasons": {
+        "TARGET": 3328,
+        "STOP": 3508,
+        "STOP_GAP": 0,
+        "TIMEOUT": 393,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -7.258916813122228e-05,
+      "mean_net_base": -0.001089854374937143,
+      "mean_net_stress": -0.003089854374937143,
+      "mean_net_base_r": -0.15675936456608375,
+      "mean_net_stress_r": -0.41904553336246525,
+      "mean_funding_cost": 1.72652068059206e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.425811391883136
+    },
+    "XMRUSDT": {
+      "signals": 8771,
+      "m2_hits": 4234,
+      "m2_rate": 0.48272716907992247,
+      "m2_wilson_95": [
+        0.4722793640625923,
+        0.4931900975314498
+      ],
+      "m1_direction_accuracy": 0.31273514992589213,
+      "exit_reasons": {
+        "TARGET": 4234,
+        "STOP": 4130,
+        "STOP_GAP": 0,
+        "TIMEOUT": 407,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": 0.00017903171364731368,
+      "mean_net_base": -0.0008443383798425963,
+      "mean_net_stress": -0.0028443383798425967,
+      "mean_net_base_r": -0.11901040633540419,
+      "mean_net_stress_r": -0.374638283948805,
+      "mean_funding_cost": 2.3370093489909934e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.5166401602167638
+    },
+    "XRPUSDT": {
+      "signals": 7440,
+      "m2_hits": 3438,
+      "m2_rate": 0.4620967741935484,
+      "m2_wilson_95": [
+        0.45079053876240166,
+        0.47344213020025067
+      ],
+      "m1_direction_accuracy": 0.29663978494623655,
+      "exit_reasons": {
+        "TARGET": 3438,
+        "STOP": 3473,
+        "STOP_GAP": 0,
+        "TIMEOUT": 529,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": 1.942442554370986e-05,
+      "mean_net_base": -0.0010016633620906989,
+      "mean_net_stress": -0.0030016633620906985,
+      "mean_net_base_r": -0.13233325771514126,
+      "mean_net_stress_r": -0.3843309784568669,
+      "mean_funding_cost": 2.10877876344086e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.43823997172645346
+    },
+    "ZECUSDT": {
+      "signals": 6241,
+      "m2_hits": 2806,
+      "m2_rate": 0.4496074347059766,
+      "m2_wilson_95": [
+        0.43730051822520977,
+        0.4619763482656838
+      ],
+      "m1_direction_accuracy": 0.3084441595898093,
+      "exit_reasons": {
+        "TARGET": 2806,
+        "STOP": 3074,
+        "STOP_GAP": 0,
+        "TIMEOUT": 361,
+        "DATA_GAP": 0
+      },
+      "mean_gross_return": -0.0004849269797409172,
+      "mean_net_base": -0.001507027183233947,
+      "mean_net_stress": -0.003507027183233947,
+      "mean_net_base_r": -0.13640778852021007,
+      "mean_net_stress_r": -0.31904497103464435,
+      "mean_funding_cost": 2.210020349302996e-05,
+      "symbols": 1,
+      "eligible_opportunities": 16977,
+      "coverage": 0.3676150085409672
+    }
+  },
+  "prereg_sha256": "24fc0056c5666acc92d454d06fbdefcf9f2d079bfaf42d5917f2e62054ecd647",
+  "runner_sha256": "e6d10ddcffb043a798fe312cc24852edaae573898febc55549ffd288354144ea",
+  "git_sha_at_run": "74338bb3c291dba23d5d6a43f33fa0aedda3c101",
+  "input_archive_rows": 2592,
+  "input_fingerprint_sha256": "499446f254a8c49e2053393102fd7f8fc0931fd766b82f91e5aa5bb1811fbd35",
+  "reproduction_command": "scripts/research/lead_lag_1h_m2_probe.py --archive-root /private/tmp/cointrade-50_50-data --audit-json /private/tmp/cointrade-50_50-data/audit.json --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --output-dir docs/research/inventory/runs/lead_lag_1h_m2_round_k_20261120_v2",
+  "limitations": [
+    "Exposed development history; not sealed OOS, validation, or Core evidence.",
+    "36-symbol cohort is not a point-in-time universe and may have survivorship bias.",
+    "Legacy fee proxies do not include measured spread/slippage.",
+    "Hourly OHLC cannot identify intrabar event order; stop-first is conservative.",
+    "Signals across altcoins share market shocks; market-time clusters are separately reported."
+  ]
+}

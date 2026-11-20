@@ -1,0 +1,7 @@
+{
+  "status": "SUPERSEDED_INVALID_REPORTING_ATTEMPT",
+  "reason": "The strategy score was produced, but per-symbol eligible-opportunity denominators omitted the ATR warmup exclusion. The run is retained for provenance only and must not be used as the canonical report.",
+  "superseded_by": "../lead_lag_1h_m2_round_k_20261120_v2/summary.json",
+  "strategy_rule_changed": false,
+  "performance_tuning_occurred": false
+}

@@ -198,3 +198,25 @@ Next gates are a frozen >=20-symbol universe and cost/execution/barrier rule,
 independent forward data eligibility, then one fixed evaluation. Core remains
 zero; Phase 9 remains blocked. Details:
 `phase8_source_round_i_lead_lag_panel_20261120.md`.
+
+### Phase 8 continuation: Round J source scan, panel, and fixed test
+
+Four independent source lanes (SNS/research, TradingView/Pine, communities,
+GitHub/skills/papers) found no source-complete, non-duplicate candidate. A
+four-role panel allowed one fixed exposed-development falsification screen of
+BTC/ETH consensus and lagging-alt continuation, with no tuning or promotion.
+The preregistered 1h test used the 36-symbol archived cohort (BTC/ETH leaders,
+34 target alts), contract OHLC barriers, timestamped funding, and frozen 10/30
+bp fee proxies. Raw timestamp/mark/funding audit passed 864/864 symbol-months;
+archive hash verification passed 2,592/2,592 files. The canonical ledger has
+201,648 issued signals, 92,723 target-first hits (45.98%; 95% Wilson
+45.77–46.20%), 34.93% coverage, and per-symbol non-overlap N=47,877 across 34
+symbols. Mean net return was −0.1295% base / −0.3295% stress; the stronger
+same-event always-short control was 48.46% M2. The fixed rule is REJECTED.
+M1 direction-at-expiry was 31.13%. This exposed development history cannot
+qualify as validation or Core; Phase 9 remains blocked. The first run is
+preserved but marked superseded because its per-symbol coverage denominator
+omitted ATR warm-up hours. Canonical results, exact rule, source findings, and
+reproduction command are recorded in `phase8_source_round_j_20261120.md`,
+`PREREG_LEAD_LAG_1H_M2_ROUNDK_20261120.md`, and
+`runs/lead_lag_1h_m2_round_k_20261120_v2/`.

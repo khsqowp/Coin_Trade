@@ -26,3 +26,8 @@ and an aggregate Markdown report. Very large untracked trees are aggregated rath
 than enumerated. It deliberately does not hash data files because they may be large
 or actively written; use a separate quiescence and preservation check before any
 content-level deduplication or deletion decision.
+
+The Phase 8 Round J source scan and its one fixed development-only lead-lag
+screen are recorded in `phase8_source_round_j_20261120.md` and
+`runs/lead_lag_1h_m2_round_k_20261120_v2/report.md`. The earlier incomplete
+reporting attempt is retained with an explicit superseded status.
