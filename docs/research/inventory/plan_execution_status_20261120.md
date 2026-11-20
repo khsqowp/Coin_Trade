@@ -24,6 +24,24 @@ it does not mean a profitable strategy was found.
 
 The four-source review's OI-stop-hunt lead remains unscored. A preregistered 268-file sample across the 36-symbol cohort passed checksums and structural 5-minute-grid checks; two nulls occurred in the taker-ratio field, not OI. A separate BTCUSDT 2026-11-19 archive/REST comparison matched both OI fields exactly at the same timestamp for 288 rows; the preregistered +5-minute timing screen failed. Current files for 2026-06-24/25 have start-of-day labels, conflicting with public Issue #491's earlier observations. Historical observation time and first-availability remain unresolved, so OI is still ineligible for strategy scoring. See `usdm_metrics_sample_audit_20261120.md`; no raw samples were added to Git.
 
+### Phase 8 continuation: source panel and UTC calendar candidate
+
+This continuation supersedes the Phase 8 table row's wording that the prior
+cross-asset screen was the final screen. Four-source scouting (SNS,
+TradingView/Pine, public communities, GitHub) found no directly eligible
+recipe. A four-role panel approved one fixed UTC weekday-hour candidate for a
+single exploratory M2 run after data gates. The run independently checked
+3,024 monthly ZIP hashes and 36 daily mark-price recovery overlays; it excluded
+IMXUSDT for one funding interval inconsistency. M2 was 37.36% (14,724/39,410),
+below the 80% gate and frozen short baseline 37.70%; coverage was 38.50% across
+35 symbols. Modeled base/stress net means were -11.424/-31.424 bp, and fees-only
+means were also negative. The final panel rejected this fixed rule; no retuning
+or Phase 9 combination follows. The 2026-06..09 data are source-audited, not
+sealed or live-forward evidence. Funding notional basis and six period-end
+exits limit precision of the modeled funding mean. See
+`phase8_calendar_candidate_panel_20261120.md` and
+`runs/weekday_hour_m2_20261120/report.md`.
+
 ## Robustness result in one view
 
 - The 36 lookback/cadence/gate/cost cells had **0/36** meet the simultaneous
@@ -60,3 +78,21 @@ The four-source review's OI-stop-hunt lead remains unscored. A preregistered 268
 - Crypto funding-tail exploratory result: `runs/funding_tail_reversal_20261120_v3/report.md` and its event ledger; the two invalid earlier attempts are retained with explicit status markers.
 - Additional source-inspired crypto screen: `runs/hourly_return_reversal_screen_20261120/report.md`; frozen H1/H4 prior-hour contrarian rule rejected after base/stress costs. It does not measure M2 and all periods were previously exposed.
 - Final source inventory: see the snapshot names in this directory's `README.md`.
+
+### Phase 8 continuation: four-source panel and basis follow-up
+
+Four independent scouts screened public SNS, TradingView/Pine, communities, and
+GitHub/skills. The only conditional lead was a BTC 1h negative-funding + RSI
+30 up-cross with ATR trailing exit. Four reviewers (Blue, Red, Data/Methods,
+Judge) unanimously rejected it for the frozen M2 pipeline: it has no fixed TP
+or expiry, is BTC-only, and source-reported trades are not a local independent
+ledger. A second four-source screen on perp/spot basis convergence found no
+eligible M2 candidate: published examples lack exits, rely on BTC/ETH or a
+two-leg spread, or lack verified source/license/universe evidence. The local
+historical input root contains perp klines, mark-price klines, and funding but
+no spot OHLCV. No scoring or data download occurred. Full source-by-source
+findings and the debate are in
+`phase8_source_rounds_20261120.md`. Next research gate: establish historical
+OI field availability timing before considering an OI-shock hypothesis; the
+previous OI source/timestamp audit remains unresolved. Validated-core count is
+still zero; Phase 9 remains blocked.

@@ -1,0 +1,37 @@
+{
+  "baseline_sha256": "2a093b34abe5a8c8fa05dd7f2ab94caf0b84ab555b5d622e0464164f2438bf55",
+  "checks": {
+    "ledger_rows": 39410,
+    "market_time_nonoverlap_events": 821,
+    "monetary_formula_errors": 0,
+    "same_symbol_overlaps": 0,
+    "summary_crosscheck_errors": 0
+  },
+  "ledger_sha256": "9a23957fe2f5309bedb973748982777eb5163b0dc2a0dbcaf1698ffbf042ee5e",
+  "problems": [],
+  "recomputed": {
+    "coverage_pct": 38.495726495726494,
+    "exit_reasons": {
+      "STOP": 15317,
+      "TARGET": 14724,
+      "TIMEOUT": 9369
+    },
+    "funding_cost_mean": 2.95766683582847e-06,
+    "gross_mean": -0.00013944206700099903,
+    "m1_direction_accuracy": 0.4959147424511545,
+    "m2_hits": 14724,
+    "m2_rate": 0.37361075869068766,
+    "m2_wilson_95": [
+      0.3688471578265189,
+      0.37839899653759645
+    ],
+    "market_time_nonoverlap_events": 821,
+    "net_mean_base": -0.0011423997338368276,
+    "net_mean_stress": -0.003142399733836828,
+    "signals": 39410,
+    "symbol_overlap_errors": [],
+    "symbols": 35
+  },
+  "status": "PASS",
+  "summary_sha256": "a82d1cbf35135eff735471b57d019534167926d7634f89aaee3b4b37cdc44605"
+}

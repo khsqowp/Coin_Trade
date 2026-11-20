@@ -1,0 +1,45 @@
+{
+  "run_id": "weekday_hour_m2_20261120",
+  "status": "EXPLORATORY_COMPLETE_REJECTED",
+  "git_head_at_execution": "d2cb51673e2e2d60afe3441a826b91b679ef1afd",
+  "python": "3.13.5",
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "preregistration": "docs/research/inventory/PREREG_UTC_WEEKDAY_HOUR_SIGN_M2_20261120.md",
+  "preregistration_sha256": "241818e26d7ba9d204a8869a9ee2e2afd385d45abc4e1715a23159fc9e4e08d0",
+  "runner": "scripts/research/weekday_hour_m2_probe.py",
+  "runner_sha256": "f4d5b1a9dfe3f2347fbb705583e5d548734994880251371bfd329073f06ce496",
+  "independent_verifier": "scripts/research/verify_weekday_hour_m2_ledger.py",
+  "independent_verifier_sha256": "8df81392b660a15f39cf03de211c6574ec517299eb2f225cbb89cfc63ef3bed6",
+  "archive_root": "/private/tmp/cointrade-50_50-data",
+  "archive_audit": "/private/tmp/cointrade-50_50-data/audit.json",
+  "coverage_manifest": "docs/research/inventory/usdm_archive_coverage_20261120.json",
+  "recovery_manifest": "/private/tmp/cointrade-50_50-data/mark_gap_recovery.jsonl",
+  "archive_fingerprint_sha256": "5dc0bf2d060d2e40f64dc67ee8e950022c853e4225c75854cb36ea4ddab801e6",
+  "archive_zip_hashes_checked": 3024,
+  "daily_mark_recovery_overlays_checked": 36,
+  "funding_exclusion": "IMXUSDT excluded across the run due funding interval inconsistency in 2026-06",
+  "development_interval_utc": ["2025-06-01T00:00:00Z", "2026-06-01T00:00:00Z"],
+  "score_interval_utc": ["2026-06-01T00:00:00Z", "2026-10-01T00:00:00Z"],
+  "commands": [
+    "/opt/anaconda3/bin/python3 scripts/research/weekday_hour_m2_probe.py --stage audit --audit-json /private/tmp/cointrade-50_50-data/audit.json --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --recovery-manifest /private/tmp/cointrade-50_50-data/mark_gap_recovery.jsonl --archive-root /private/tmp/cointrade-50_50-data --output docs/research/inventory/runs/weekday_hour_m2_20261120",
+    "/opt/anaconda3/bin/python3 scripts/research/weekday_hour_m2_probe.py --stage baseline --audit-json /private/tmp/cointrade-50_50-data/audit.json --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --recovery-manifest /private/tmp/cointrade-50_50-data/mark_gap_recovery.jsonl --archive-root /private/tmp/cointrade-50_50-data --output docs/research/inventory/runs/weekday_hour_m2_20261120",
+    "/opt/anaconda3/bin/python3 scripts/research/weekday_hour_m2_probe.py --stage score --audit-json /private/tmp/cointrade-50_50-data/audit.json --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --recovery-manifest /private/tmp/cointrade-50_50-data/mark_gap_recovery.jsonl --archive-root /private/tmp/cointrade-50_50-data --output docs/research/inventory/runs/weekday_hour_m2_20261120",
+    "/opt/anaconda3/bin/python3 scripts/research/verify_weekday_hour_m2_ledger.py docs/research/inventory/runs/weekday_hour_m2_20261120/event_ledger.csv docs/research/inventory/runs/weekday_hour_m2_20261120/summary.json docs/research/inventory/runs/weekday_hour_m2_20261120/baseline.json"
+  ],
+  "primary_result": "M2=0.37361075869068766; baseline=0.37701091093631056; base_net=-0.0011423997338368276; stress_net=-0.003142399733836828",
+  "independent_ledger_audit": {
+    "status": "PASS",
+    "ledger_sha256": "9a23957fe2f5309bedb973748982777eb5163b0dc2a0dbcaf1698ffbf042ee5e",
+    "same_symbol_overlaps": 0,
+    "market_time_nonoverlap_events": 821,
+    "monetary_formula_errors": 0,
+    "summary_crosscheck_errors": 0
+  },
+  "limitations": [
+    "The score interval was source-audited and is not sealed or live-forward evidence.",
+    "Six events exit at 2026-10-01 00:00 UTC, but input funding archives end in September.",
+    "Funding-rate notional basis is an entry-notional approximation.",
+    "Spread and slippage are unmeasured; point-in-time listing/delisting universe is unresolved."
+  ]
+}

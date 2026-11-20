@@ -1,0 +1,355 @@
+{
+  "archive_fingerprint_sha256": "5dc0bf2d060d2e40f64dc67ee8e950022c853e4225c75854cb36ea4ddab801e6",
+  "baseline_path": "/Users/user/Desktop/CODE/trading_bot/docs/research/inventory/runs/weekday_hour_m2_20261120/baseline.json",
+  "baseline_sha256": "2a093b34abe5a8c8fa05dd7f2ab94caf0b84ab555b5d622e0464164f2438bf55",
+  "by_symbol": {
+    "AAVEUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1131,
+      "raw_directional_forecasts": 2662,
+      "suppressed_open_position": 1531
+    },
+    "ADAUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1129,
+      "raw_directional_forecasts": 2770,
+      "suppressed_open_position": 1641
+    },
+    "ALGOUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1142,
+      "raw_directional_forecasts": 2777,
+      "suppressed_open_position": 1635
+    },
+    "APTUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1152,
+      "raw_directional_forecasts": 2701,
+      "suppressed_open_position": 1549
+    },
+    "ARBUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1163,
+      "raw_directional_forecasts": 2816,
+      "suppressed_open_position": 1653
+    },
+    "ATOMUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1145,
+      "raw_directional_forecasts": 2803,
+      "suppressed_open_position": 1658
+    },
+    "AVAXUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1131,
+      "raw_directional_forecasts": 2737,
+      "suppressed_open_position": 1606
+    },
+    "BCHUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1089,
+      "raw_directional_forecasts": 2632,
+      "suppressed_open_position": 1543
+    },
+    "BNBUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1113,
+      "raw_directional_forecasts": 2600,
+      "suppressed_open_position": 1487
+    },
+    "BTCUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1125,
+      "raw_directional_forecasts": 2594,
+      "suppressed_open_position": 1469
+    },
+    "CRVUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1135,
+      "raw_directional_forecasts": 2768,
+      "suppressed_open_position": 1633
+    },
+    "DOGEUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1127,
+      "raw_directional_forecasts": 2687,
+      "suppressed_open_position": 1560
+    },
+    "DOTUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1112,
+      "raw_directional_forecasts": 2777,
+      "suppressed_open_position": 1665
+    },
+    "ETCUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1122,
+      "raw_directional_forecasts": 2720,
+      "suppressed_open_position": 1598
+    },
+    "ETHUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1100,
+      "raw_directional_forecasts": 2617,
+      "suppressed_open_position": 1517
+    },
+    "FILUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1110,
+      "raw_directional_forecasts": 2729,
+      "suppressed_open_position": 1619
+    },
+    "HBARUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1140,
+      "raw_directional_forecasts": 2718,
+      "suppressed_open_position": 1578
+    },
+    "ICPUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1124,
+      "raw_directional_forecasts": 2734,
+      "suppressed_open_position": 1610
+    },
+    "INJUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1122,
+      "raw_directional_forecasts": 2757,
+      "suppressed_open_position": 1635
+    },
+    "LDOUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1140,
+      "raw_directional_forecasts": 2766,
+      "suppressed_open_position": 1626
+    },
+    "LINKUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1117,
+      "raw_directional_forecasts": 2709,
+      "suppressed_open_position": 1592
+    },
+    "LTCUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1105,
+      "raw_directional_forecasts": 2737,
+      "suppressed_open_position": 1632
+    },
+    "NEARUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1117,
+      "raw_directional_forecasts": 2780,
+      "suppressed_open_position": 1663
+    },
+    "OPUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1119,
+      "raw_directional_forecasts": 2753,
+      "suppressed_open_position": 1634
+    },
+    "QNTUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1111,
+      "raw_directional_forecasts": 2652,
+      "suppressed_open_position": 1541
+    },
+    "SOLUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1125,
+      "raw_directional_forecasts": 2728,
+      "suppressed_open_position": 1603
+    },
+    "STXUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1111,
+      "raw_directional_forecasts": 2728,
+      "suppressed_open_position": 1617
+    },
+    "THETAUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1150,
+      "raw_directional_forecasts": 2766,
+      "suppressed_open_position": 1616
+    },
+    "TRXUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1137,
+      "raw_directional_forecasts": 2717,
+      "suppressed_open_position": 1580
+    },
+    "UNIUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1139,
+      "raw_directional_forecasts": 2729,
+      "suppressed_open_position": 1590
+    },
+    "VETUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1125,
+      "raw_directional_forecasts": 2701,
+      "suppressed_open_position": 1576
+    },
+    "XLMUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1139,
+      "raw_directional_forecasts": 2660,
+      "suppressed_open_position": 1521
+    },
+    "XMRUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1134,
+      "raw_directional_forecasts": 2727,
+      "suppressed_open_position": 1593
+    },
+    "XRPUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1128,
+      "raw_directional_forecasts": 2721,
+      "suppressed_open_position": 1593
+    },
+    "ZECUSDT": {
+      "eligible_anchors": 2925,
+      "issued_entries": 1101,
+      "raw_directional_forecasts": 2647,
+      "suppressed_open_position": 1546
+    }
+  },
+  "candidate": "UTC weekday-hour prior-52 sign majority",
+  "core_eligible": false,
+  "full_preflight": {
+    "archive_fingerprint_sha256": "5dc0bf2d060d2e40f64dc67ee8e950022c853e4225c75854cb36ea4ddab801e6",
+    "archive_hash_audit": {
+      "audit_rows": 3024,
+      "checked": 3024,
+      "malformed_rows": 0,
+      "mismatch_refs": [],
+      "missing": 0,
+      "note": "hash equality proves file identity only, not source authenticity or time-series correctness",
+      "sha256_mismatches": 0,
+      "status": "PASS"
+    },
+    "archive_rows": 3024,
+    "audit_metadata_sha256": "b4b226cf78192e4cfea06465a40aa7e409ad0b94f0cca79e050c6d580081e182",
+    "coverage_metadata_sha256": "8937a10c2f98015c389db3f6da7b56a5be55ac6f1a76fb71cfde6c07e7782a03",
+    "excluded_symbols": [
+      "IMXUSDT"
+    ],
+    "funding_integrity_exclusions": [
+      {
+        "issue": "funding timestamps disagree with adjacent declared intervals",
+        "month": "2026-06",
+        "symbol": "IMXUSDT"
+      }
+    ],
+    "hourly_contract_rows_checked": 736128,
+    "input_months": [
+      "2024-06",
+      "2026-09"
+    ],
+    "limitations": [
+      "manifest hash equality is not proof of exchange-source truth",
+      "price archive validation does not establish executable fills",
+      "spread/slippage are unmeasured; selected universe has survivorship risk"
+    ],
+    "mark_gaps_after_read_only_overlay": 0,
+    "preregistration_sha256": "241818e26d7ba9d204a8869a9ee2e2afd385d45abc4e1715a23159fc9e4e08d0",
+    "recovery_checks": 36,
+    "recovery_fingerprint_sha256": "7043672ede388957b776e6da6ed2a0c3813fb409ff29f1c19537f3f95e91a2eb",
+    "recovery_manifest_sha256": "b9b8e38c7f1bf95591e2aa48cfd4e2a1e149d0066ef51593a6a98c4095a9290c",
+    "status": "PASS",
+    "symbol_count_input": 36,
+    "symbol_count_scored": 35,
+    "symbols": [
+      "AAVEUSDT",
+      "ADAUSDT",
+      "ALGOUSDT",
+      "APTUSDT",
+      "ARBUSDT",
+      "ATOMUSDT",
+      "AVAXUSDT",
+      "BCHUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "CRVUSDT",
+      "DOGEUSDT",
+      "DOTUSDT",
+      "ETCUSDT",
+      "ETHUSDT",
+      "FILUSDT",
+      "HBARUSDT",
+      "ICPUSDT",
+      "IMXUSDT",
+      "INJUSDT",
+      "LDOUSDT",
+      "LINKUSDT",
+      "LTCUSDT",
+      "NEARUSDT",
+      "OPUSDT",
+      "QNTUSDT",
+      "SOLUSDT",
+      "STXUSDT",
+      "THETAUSDT",
+      "TRXUSDT",
+      "UNIUSDT",
+      "VETUSDT",
+      "XLMUSDT",
+      "XMRUSDT",
+      "XRPUSDT",
+      "ZECUSDT"
+    ]
+  },
+  "git_head": "d2cb51673e2e2d60afe3441a826b91b679ef1afd",
+  "metric": {
+    "baseline_net_mean_base": -0.0011232930538793882,
+    "baseline_net_mean_stress": -0.0031232930538793884,
+    "coverage_pct": 38.495726495726494,
+    "eligible_anchors": 102375,
+    "exit_reasons": {
+      "STOP": 15317,
+      "TARGET": 14724,
+      "TIMEOUT": 9369
+    },
+    "frozen_baseline_m2": 0.37701091093631056,
+    "frozen_baseline_side": "short",
+    "funding_cost_mean": 2.9576668358284695e-06,
+    "gross_mean": -0.00013944206700099905,
+    "m1_direction_accuracy": 0.4959147424511545,
+    "m2_hits": 14724,
+    "m2_rate": 0.37361075869068766,
+    "m2_wilson_95": [
+      0.3688471578265189,
+      0.37839899653759645
+    ],
+    "m2_wilson_lower_above_baseline": false,
+    "market_time_nonoverlap_events": 821,
+    "net_mean_base": -0.0011423997338368276,
+    "net_mean_stress": -0.003142399733836828,
+    "nonoverlap_symbol_events": 39410,
+    "signals": 39410,
+    "symbols": 35,
+    "weekly_block_bootstrap": {
+      "block_weeks": 2,
+      "ci95": [
+        0.36527916786139486,
+        0.379117418808287
+      ],
+      "draws": 2000,
+      "prng": "PCG64",
+      "seed": 20261120,
+      "valid_draws": 2000
+    }
+  },
+  "non_promotion_reasons": [
+    "window was source-audited, not sealed or live-forward",
+    "spread/slippage unmeasured",
+    "point-in-time universe survivorship unresolved",
+    "candidate-family multiplicity and independent red-team replay remain"
+  ],
+  "preregistration_sha256": "241818e26d7ba9d204a8869a9ee2e2afd385d45abc4e1715a23159fc9e4e08d0",
+  "runner_sha256": "f4d5b1a9dfe3f2347fbb705583e5d548734994880251371bfd329073f06ce496",
+  "score_interval": [
+    "2026-06-01T00:00:00Z",
+    "2026-10-01T00:00:00Z"
+  ],
+  "status": "EXPLORATORY_COMPLETE"
+}

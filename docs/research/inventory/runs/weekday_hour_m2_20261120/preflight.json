@@ -1,0 +1,82 @@
+{
+  "archive_fingerprint_sha256": "5dc0bf2d060d2e40f64dc67ee8e950022c853e4225c75854cb36ea4ddab801e6",
+  "archive_hash_audit": {
+    "audit_rows": 3024,
+    "checked": 3024,
+    "malformed_rows": 0,
+    "mismatch_refs": [],
+    "missing": 0,
+    "note": "hash equality proves file identity only, not source authenticity or time-series correctness",
+    "sha256_mismatches": 0,
+    "status": "PASS"
+  },
+  "archive_rows": 3024,
+  "audit_metadata_sha256": "b4b226cf78192e4cfea06465a40aa7e409ad0b94f0cca79e050c6d580081e182",
+  "coverage_metadata_sha256": "8937a10c2f98015c389db3f6da7b56a5be55ac6f1a76fb71cfde6c07e7782a03",
+  "excluded_symbols": [
+    "IMXUSDT"
+  ],
+  "funding_integrity_exclusions": [
+    {
+      "issue": "funding timestamps disagree with adjacent declared intervals",
+      "month": "2026-06",
+      "symbol": "IMXUSDT"
+    }
+  ],
+  "hourly_contract_rows_checked": 736128,
+  "input_months": [
+    "2024-06",
+    "2026-09"
+  ],
+  "limitations": [
+    "manifest hash equality is not proof of exchange-source truth",
+    "price archive validation does not establish executable fills",
+    "spread/slippage are unmeasured; selected universe has survivorship risk"
+  ],
+  "mark_gaps_after_read_only_overlay": 0,
+  "preregistration_sha256": "241818e26d7ba9d204a8869a9ee2e2afd385d45abc4e1715a23159fc9e4e08d0",
+  "recovery_checks": 36,
+  "recovery_fingerprint_sha256": "7043672ede388957b776e6da6ed2a0c3813fb409ff29f1c19537f3f95e91a2eb",
+  "recovery_manifest_sha256": "b9b8e38c7f1bf95591e2aa48cfd4e2a1e149d0066ef51593a6a98c4095a9290c",
+  "status": "PASS",
+  "symbol_count_input": 36,
+  "symbol_count_scored": 35,
+  "symbols": [
+    "AAVEUSDT",
+    "ADAUSDT",
+    "ALGOUSDT",
+    "APTUSDT",
+    "ARBUSDT",
+    "ATOMUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "CRVUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HBARUSDT",
+    "ICPUSDT",
+    "IMXUSDT",
+    "INJUSDT",
+    "LDOUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "NEARUSDT",
+    "OPUSDT",
+    "QNTUSDT",
+    "SOLUSDT",
+    "STXUSDT",
+    "THETAUSDT",
+    "TRXUSDT",
+    "UNIUSDT",
+    "VETUSDT",
+    "XLMUSDT",
+    "XMRUSDT",
+    "XRPUSDT",
+    "ZECUSDT"
+  ]
+}

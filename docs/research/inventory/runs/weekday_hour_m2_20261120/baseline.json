@@ -1,0 +1,52 @@
+{
+  "archive_fingerprint_sha256": "5dc0bf2d060d2e40f64dc67ee8e950022c853e4225c75854cb36ea4ddab801e6",
+  "baseline_development_m2": {
+    "always_long": 0.3647315047982032,
+    "always_short": 0.3859065541414279
+  },
+  "candidate_development_metrics": {
+    "coverage_pct": 38.35103345894713,
+    "eligible_anchors": 306495,
+    "exit_reasons": {
+      "STOP": 44325,
+      "TARGET": 44889,
+      "TIMEOUT": 28330
+    },
+    "funding_cost_mean": 5.407744504185667e-06,
+    "gross_mean": 7.256182855297705e-05,
+    "m1_direction_accuracy": 0.5003998502688355,
+    "m2_hits": 44889,
+    "m2_rate": 0.38189103654801604,
+    "m2_wilson_95": [
+      0.3791174643473557,
+      0.3846723283412069
+    ],
+    "market_time_nonoverlap_events": 2462,
+    "net_mean_base": -0.0009328459159512089,
+    "net_mean_stress": -0.0029328459159512084,
+    "nonoverlap_symbol_events": 117544,
+    "signals": 117544,
+    "symbols": 35,
+    "weekly_block_bootstrap": {
+      "block_weeks": 2,
+      "ci95": [
+        0.3752300598540168,
+        0.38810487169288077
+      ],
+      "draws": 2000,
+      "prng": "PCG64",
+      "seed": 20261120,
+      "valid_draws": 2000
+    }
+  },
+  "development_interval": [
+    "2025-06-01T00:00:00Z",
+    "2026-06-01T00:00:00Z"
+  ],
+  "frozen_baseline_side": "short",
+  "git_head": "d2cb51673e2e2d60afe3441a826b91b679ef1afd",
+  "note": "Exposed development data; baseline-selection only, not an OOS result.",
+  "preregistration_sha256": "241818e26d7ba9d204a8869a9ee2e2afd385d45abc4e1715a23159fc9e4e08d0",
+  "runner_sha256": "f4d5b1a9dfe3f2347fbb705583e5d548734994880251371bfd329073f06ce496",
+  "status": "FROZEN"
+}
