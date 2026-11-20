@@ -1,0 +1,4 @@
+parquet/
+*.parquet
+*.tmp
+work/
