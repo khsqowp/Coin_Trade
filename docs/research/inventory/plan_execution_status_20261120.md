@@ -153,3 +153,29 @@ covers six symbols, while the NAS aggregate-trade mirror is short and has
 missing hours; neither establishes the Core gates. No strategy score or new
 backtest was generated. Core count remains zero; Phase 9 is not run. See
 `phase8_source_rounds_20261120.md`, Round G.
+
+### Phase 8 continuation: Round H source rescan and meta-label panel
+
+The current worktree and canonical Coin_Trade checkout were rechecked before
+continuing. Canonical `main` is clean at `489c538`; that commit changes one
+status-document line and confirms the already-pushed `7bbe07c` backup. The
+active research branch remains a separate clean checkout at `76f1858` before
+this record; neither tree was merged or overwritten.
+
+Four independent lanes (SNS, TradingView/custom indicators, public communities,
+GitHub/skills/papers) returned zero complete, non-duplicate, source-defined
+M2 candidates. The closest method-inspired idea—CUSUM event sampling, a
+primary direction model, triple-barrier labels, and a secondary meta-label
+filter—was reviewed by Blue, Red, Data/Methods, and Judge in two rounds. All
+four final votes were HOLD: the proposal is a method pipeline rather than a
+fixed alpha strategy, and its 1m data are six-symbol, exposed OHLCV without
+verified minute mark/funding inputs. Panel disagreement was limited to
+whether a future exposed-data run may diagnose pipeline mechanics; nobody
+approved performance scoring, Core promotion, or Phase 9.
+
+No strategy score or backtest was generated. Next gates are a complete frozen
+strategy specification, event-overlap purge/embargo, outcome-blind coverage
+denominator, equal-acceptance random-filter control, and a separately
+verified eligible/unexposed dataset before any scoring. Details:
+`phase8_source_round_h_meta_label_panel_20261120.md`. Core count remains zero;
+Phase 9 remains blocked.
