@@ -345,3 +345,19 @@ partial-month, and funding-step issues. Results are in
 source-defined M2 candidates; the Blue/Red/Data-Methods/Judge panel ruled
 **HOLD / NO SCORE / NO CORE / NO PHASE 9**. No outcomes were scored. See
 `phase8_source_round_p_4lane_panel_20261121.md`.
+
+### Phase 8 continuation: Round Q source scan and panel
+
+Four independent lanes searched academic/SNS, TradingView/Pine, public
+communities, and GitHub/open-source strategies after the Round N result and
+registry #118. They found five near-leads but zero eligible candidates: the
+quarter-hour paper lacks M2 barriers and its precise opening-window inputs
+and local data availability remain unverified;
+liquidation-surge anecdotes lack numeric rules and local liquidation events;
+Kalman indicators lack fixed trade exits; NEDL pair trading is daily with
+mean-reversion exit; and SOL volume-profile POC repeats the #9 family without
+fixed entry/invalidation/expiry. The Blue/Red/Data-Methods/Judge panel voted
+4/4 **HOLD / NO TEST**. No outcomes, scores, or backtests were generated.
+Round Q is bounded, not proof of universal source exhaustion. Core count
+remains zero; Phase 9 remains blocked. Details and source links:
+`phase8_source_round_q_4lane_panel_20261121.md`; registry #119.
