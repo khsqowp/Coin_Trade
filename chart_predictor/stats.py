@@ -48,6 +48,52 @@ def _m2_summary(frame):
             "exit_reasons": {str(key): int(value) for key, value in reasons.items()}}
 
 
+def _execution_summary(frame):
+    """Summarize realized, cost-adjusted trade outcomes separately from M2.
+
+    Returns are per executed signal at the suggested leverage, not a portfolio
+    equity curve: predictions can overlap and share capital/time exposure.
+    """
+    empty = {"actionable_issued": 0, "executed_n": 0, "unscorable": 0,
+             "skipped_before_entry": 0, "other_not_executed": 0,
+             "target_exit_rate": None, "positive_net_rate": None,
+             "mean_net_return": None, "median_net_return": None,
+             "exit_reasons": {}, "portfolio_compounding": False}
+    if "side" not in frame:
+        return empty
+    issued = frame[frame.side.isin(["long", "short"])]
+    unscorable = int((issued.status != "SCORED").sum()) if "status" in issued else len(issued)
+    reasons = (issued.exit_reason if "exit_reason" in issued else
+               pd.Series(index=issued.index, dtype="object"))
+    values = (pd.to_numeric(issued.net_return, errors="coerce") if "net_return" in issued else
+              pd.Series(index=issued.index, dtype="float64"))
+    executed_mask = (
+        (issued.status == "SCORED") & values.notna() &
+        reasons.isin(["TARGET", "INVALIDATION", "LIQUIDATION", "HORIZON"])
+        if "status" in issued else pd.Series(False, index=issued.index)
+    )
+    executed_values = values[executed_mask]
+    executed_reasons = reasons[executed_mask]
+    scored_not_executed = (
+        issued[(issued.status == "SCORED") & ~executed_mask]
+        if "status" in issued else issued.iloc[0:0]
+    )
+    all_reasons = reasons.dropna().value_counts().to_dict()
+    n = len(executed_values)
+    return {"actionable_issued": len(issued), "executed_n": n,
+            "unscorable": unscorable,
+            "skipped_before_entry": int((reasons == "TARGET_MISSED_BEFORE_ENTRY").sum()),
+            "other_not_executed": len(scored_not_executed) - int(
+                (reasons.loc[scored_not_executed.index] == "TARGET_MISSED_BEFORE_ENTRY").sum()
+            ),
+            "target_exit_rate": float((executed_reasons == "TARGET").mean()) if n else None,
+            "positive_net_rate": float((executed_values > 0).mean()) if n else None,
+            "mean_net_return": float(executed_values.mean()) if n else None,
+            "median_net_return": float(executed_values.median()) if n else None,
+            "exit_reasons": {str(key): int(value) for key, value in all_reasons.items()},
+            "portfolio_compounding": False}
+
+
 def _nonoverlap_m2(frame):
     """Summarize M2 on a greedy, per-symbol non-overlapping forecast sample.
 
@@ -126,11 +172,13 @@ def _nonoverlap_m2(frame):
 
 
 def report(scores, thresholds=(.5, .6, .7, .8, .9)):
-    """Build M1/M2, confidence, symbol/timeframe, day-cluster and baseline tables."""
+    """Build forecast, execution, confidence, cluster and baseline summaries."""
     frame = pd.DataFrame(scores)
     result = {"overall": _summary(frame), "m2_overall": _m2_summary(frame),
+              "execution_overall": _execution_summary(frame),
               "m2_nonoverlap": _nonoverlap_m2(frame),
               "m2_per_symbol": {}, "m2_per_timeframe": {},
+              "execution_per_symbol": {}, "execution_per_timeframe": {},
               "m4": {}, "per_symbol": {}, "per_timeframe": {},
               "clustered_by_anchor_day": {}, "baselines": {}}
     for threshold in thresholds:
@@ -144,6 +192,9 @@ def report(scores, thresholds=(.5, .6, .7, .8, .9)):
     for key, target in (("symbol", "m2_per_symbol"), ("timeframe", "m2_per_timeframe")):
         if key in frame:
             result[target] = {str(name): _m2_summary(group) for name, group in frame.groupby(key)}
+    for key, target in (("symbol", "execution_per_symbol"), ("timeframe", "execution_per_timeframe")):
+        if key in frame:
+            result[target] = {str(name): _execution_summary(group) for name, group in frame.groupby(key)}
     if "anchor_time" in frame:
         frame["anchor_day"] = pd.to_datetime(frame.anchor_time, utc=True).dt.date.astype(str)
         result["clustered_by_anchor_day"] = {day: _summary(group) for day, group in frame.groupby("anchor_day")}

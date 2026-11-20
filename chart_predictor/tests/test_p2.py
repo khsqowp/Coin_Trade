@@ -164,6 +164,32 @@ def test_m2_coverage_includes_unscorable_actionable_signals():
     assert result["coverage"] == pytest.approx(.5)
 
 
+def test_report_separates_signal_target_hits_from_executable_net_returns():
+    data = [
+        {"status": "SCORED", "side": "long", "m2_hit": True,
+         "m2_exit_reason": "TARGET", "exit_reason": "TARGET", "net_return": .02},
+        {"status": "SCORED", "side": "short", "m2_hit": False,
+         "m2_exit_reason": "INVALIDATION", "exit_reason": "INVALIDATION", "net_return": -.03},
+        {"status": "SCORED", "side": "long", "m2_hit": True,
+         "m2_exit_reason": "TARGET", "exit_reason": "TARGET_MISSED_BEFORE_ENTRY", "net_return": 0.0},
+        {"status": "UNSCORABLE", "side": "short"},
+    ]
+    for row in data:
+        row.update(m1_hit=False, confidence=.5)
+    result = report(data)
+    assert result["m2_overall"]["target_first_rate"] == pytest.approx(2 / 3)
+    execution = result["execution_overall"]
+    assert execution["actionable_issued"] == 4
+    assert execution["executed_n"] == 2
+    assert execution["skipped_before_entry"] == 1
+    assert execution["unscorable"] == 1
+    assert execution["other_not_executed"] == 0
+    assert execution["target_exit_rate"] == pytest.approx(.5)
+    assert execution["mean_net_return"] == pytest.approx(-.005)
+    assert execution["positive_net_rate"] == pytest.approx(.5)
+    assert execution["portfolio_compounding"] is False
+
+
 def test_m2_report_adds_conservative_nonoverlap_sample_across_timeframes():
     rows = [
         {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET",
