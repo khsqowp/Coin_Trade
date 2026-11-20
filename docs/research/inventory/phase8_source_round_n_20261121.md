@@ -1,8 +1,7 @@
 # Phase 8 — Round N four-source scan, data correction, and pre-score panel
 
-Status: **one frozen historical diagnostic is registered; price outcomes are
-not yet scored.** No candidate in this report is a Core. Phase 9 remains
-blocked.
+Status: **the one frozen historical diagnostic was scored once and rejected.**
+No candidate in this report is a Core. Phase 9 remains blocked.
 
 ## Data correction discovered during continuation
 
@@ -79,18 +78,31 @@ checks; it does not calculate signals, barriers, or outcomes.
 - Costs: legacy 10 bp / 30 bp round-trip fee proxies plus realized funding if
   a settlement falls in the holding interval. These do not include measured
   spread or slippage.
-- Synthetic unit tests pass 11/11 after review corrections (bootstrap seed,
+- Synthetic unit tests pass 13/13 after review corrections (bootstrap seed,
   complete-calendar block sampling, per-symbol outcome fields, funding timestamp
   jitter, and live-manifest append handling). The 2026-11-21 read-only preflight
   passed: 416/416 target hashes and byte sizes match, 280/280 price files have
   exact minute grids, and 34 funding series pass timestamp/interval checks.
   The manifest had 13,648 rows in that snapshot; its whole-file SHA-256 was
-  `69ddfb9...96997`, unchanged during this audit. Target-file fingerprint:
-  `7a1f9dd...b3095c`. No backtest result exists in this report.
-- If the diagnostic is run, all primary thresholds are applied as registered.
-  A failed rule is rejected without tuning. A passing historical diagnostic
-  still requires a separate red-team review, robust sequential evidence, and
-  forward paper observations before any Core decision.
+  `69ddfb9...96997`, unchanged during this audit. Target-data fingerprint:
+  `7a1f9dd...b3095c`.
+- The diagnostic produced 165,929 accepted non-overlapping-within-symbol
+  signals across 34 symbols at each horizon. H10 M2 was 47.98% (79,608/165,929;
+  Wilson 47.74–48.22%; 7-day block-bootstrap 47.69–48.29%). H20 M2 was 49.17%
+  (81,588/165,929; Wilson 48.93–49.41%; block-bootstrap 48.85–49.51%). M1
+  direction accuracy was 50.00% / 49.97%. Coverage was 2.757%, below the 10%
+  gate. Mean per-event net return was -0.102% at the 10 bp fee proxy and
+  -0.302% at the 30 bp proxy for both horizons. H10 momentum-control M2 was
+  48.06%; the candidate Wilson lower bound does not exceed it. The H10 80% M2
+  and positive-net gates also fail. H20 is secondary and cannot rescue it.
+- Verdict: **REJECT_FIXED_CANDIDATE**. The score was independently recounted
+  from all 331,858 event-ledger rows; event counts, target hits, and mean base
+  net returns match `summary.json`. No parameter change, outcome-driven rerun,
+  or follow-up candidate was performed. A first execution exposed a return
+  unpacking defect before saving results; the completed score then saved all
+  numerical artifacts but hit a report-rendering key error. `report.md` was
+  regenerated from the saved summary only, without re-reading market data or
+  rescoring. No result is an untouched OOS or execution claim.
 
 ## Limits and source links
 
@@ -98,4 +110,4 @@ No Pine, GitHub, or community code was installed or executed. No external
 performance claim was used as a local score. This is a bounded source screen,
 not proof that all strategies have been searched. There is no BBO, validated
 point-in-time OI, or liquidation feed in this archive; no claim of actual
-fills, live execution, or 80% accuracy is supported before the registered run.
+fills, live execution, or 80% accuracy is supported by this historical diagnostic.

@@ -13,6 +13,7 @@ from scripts.research.mark_deviation_m2_probe import (
     _funding_minute_indices,
     _manifest_snapshot,
     _per_symbol_metrics,
+    _report,
     _rolling_z,
     _wilson,
     barrier_outcome,
@@ -174,6 +175,28 @@ class MarkDeviationProbeTests(unittest.TestCase):
             self.assertEqual(before[0], after[0])
             self.assertNotEqual(before[2], after[2])
             self.assertEqual(after[1], 2)
+
+    def test_report_uses_selected_manifest_fingerprint(self):
+        empty_horizon = {
+            "role": "primary", "signals": 0, "symbols": 0, "m2_rate": None,
+            "m2_target_first_hits": 0, "m2_wilson_95": [None, None],
+            "m2_7day_block_bootstrap_95": [None, None], "m1_direction_accuracy": None,
+            "momentum_baseline_m2": None, "coverage": 0.0,
+            "mean_net_base_fee_proxy": None, "mean_net_stress_fee_proxy": None,
+            "fixed_primary_pass": False,
+        }
+        summary = {
+            "trial_id": "mark-deviation-m2-20261121-v1",
+            "data_audit": {"data_fingerprint_sha256": "data", "target_manifest_sha256": "target",
+                           "manifest_sha256_after": "whole", "manifest_rows": 2},
+            "interval_utc": "interval", "prereg_sha256": "prereg", "runner_sha256": "runner",
+            "horizons": {"10": empty_horizon, "20": {**empty_horizon, "role": "secondary"}},
+            "command": "original scoring command",
+        }
+        report = _report(summary)
+        self.assertIn("Selected-target manifest SHA-256: `target`", report)
+        self.assertIn("Whole-manifest snapshot SHA-256: `whole`", report)
+        self.assertIn("Scoring command (completed once; do not rerun)", report)
 
 
 if __name__ == "__main__":

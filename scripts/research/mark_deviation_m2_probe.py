@@ -632,7 +632,8 @@ def _write_csv(path: Path, rows: list[dict]) -> None:
         return
     fields = list(dict.fromkeys(key for row in rows for key in row))
     with path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore",
+                                lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -645,24 +646,27 @@ def _report(summary: dict) -> str:
         "",
         f"- Trial: `{summary['trial_id']}`",
         f"- Data fingerprint: `{summary['data_audit']['data_fingerprint_sha256']}`",
-        f"- Manifest SHA-256: `{summary['data_audit']['manifest_sha256']}`",
+        f"- Selected-target manifest SHA-256: `{summary['data_audit']['target_manifest_sha256']}`",
+        f"- Whole-manifest snapshot SHA-256: `{summary['data_audit']['manifest_sha256_after']}` (rows={summary['data_audit']['manifest_rows']}; unrelated appends are outside the frozen input set)",
         f"- Scoring interval: `{summary['interval_utc']}`",
         f"- Scoring symbols: {len(SYMBOLS)} fixed symbols; the full list is in the preregistration.",
         f"- Preregistration SHA-256: `{summary['prereg_sha256']}`",
         f"- Runner SHA-256: `{summary['runner_sha256']}`",
         "",
-        "| Horizon | Signals | Symbols | M2 target-first | Wilson 95% | Momentum M2 | Coverage | Net base fee proxy | Net stress fee proxy | Frozen gates |",
-        "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
+        "| Horizon | Signals | Symbols | M2 target-first | Wilson 95% | 7d block M2 95% | M1 direction | Momentum M2 | Coverage | Net base fee proxy | Net stress fee proxy | Frozen gates |",
+        "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
     ]
     for horizon in HORIZONS:
         row = summary["horizons"][str(horizon)]
         rate = "n/a" if row["m2_rate"] is None else f"{row['m2_rate']:.2%} ({row['m2_target_first_hits']}/{row['signals']})"
         wilson = row["m2_wilson_95"]
         wilson_text = "n/a" if wilson[0] is None else f"{wilson[0]:.2%}–{wilson[1]:.2%}"
+        block = row["m2_7day_block_bootstrap_95"]
+        block_text = "n/a" if block[0] is None else f"{block[0]:.2%}–{block[1]:.2%}"
         fmt = lambda value: "n/a" if value is None else f"{value:.3%}"
         lines.append(
             f"| {horizon}m ({row['role']}) | {row['signals']} | {row['symbols']} | {rate} | {wilson_text} | "
-            f"{fmt(row['momentum_baseline_m2'])} | {row['coverage']:.3%} | "
+            f"{block_text} | {fmt(row['m1_direction_accuracy'])} | {fmt(row['momentum_baseline_m2'])} | {row['coverage']:.3%} | "
             f"{fmt(row['mean_net_base_fee_proxy'])} | {fmt(row['mean_net_stress_fee_proxy'])} | "
             f"{'PASS' if row['fixed_primary_pass'] else 'FAIL'} |"
         )
@@ -675,11 +679,13 @@ def _report(summary: dict) -> str:
         "",
         "## Audit limits",
         "",
+        "The fixed primary H=10 gates fail: M2 >=80%, coverage >=10%, Wilson lower bound above the same-event momentum baseline, and positive mean net return under both fee proxies. Sample and symbol-count gates pass. H=20 is secondary and also fails the 80% and positive-net criteria.",
+        "",
         "All 416 frozen files matched the current local data manifest by byte size and SHA-256; the minute-grid and funding timestamp checks passed. This does not reconstruct original ZIP response bodies or independently validate publisher hashes for those downloads. The test interval is historical and market-period overlap exists with earlier hourly research. The score is therefore exploratory only.",
         "",
         "## Reproduction",
         "",
-        f"`{summary['command']}`",
+        f"Scoring command (completed once; do not rerun): `{summary['command']}`",
         "",
     ]
     return "\n".join(lines)
@@ -757,13 +763,29 @@ def run(root: Path, out_dir: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--root", type=Path, required=True,
+    parser.add_argument("--root", type=Path,
                         help="Read-only root containing MANIFEST.csv and binance/")
     parser.add_argument("--out-dir", type=Path, required=True,
                         help="New, empty output directory inside the research checkout")
     parser.add_argument("--audit-only", action="store_true",
                         help="Verify inputs without reading price outcomes")
+    parser.add_argument("--render-report-only", action="store_true",
+                        help="Render report.md from an existing summary.json without reading market data")
     args = parser.parse_args()
+    if args.render_report_only:
+        summary_path = args.out_dir / "summary.json"
+        if not summary_path.is_file():
+            raise SystemExit(f"existing summary is missing: {summary_path}")
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        if summary.get("trial_id") != "mark-deviation-m2-20261121-v1":
+            raise SystemExit("summary trial_id does not match the frozen diagnostic")
+        (args.out_dir / "report.md").write_text(_report(summary), encoding="utf-8")
+        print(json.dumps({"status": "REPORT_RENDERED_FROM_EXISTING_SUMMARY",
+                          "trial_id": summary["trial_id"],
+                          "scoring_rerun": False}, sort_keys=True))
+        return 0
+    if args.root is None:
+        parser.error("--root is required unless --render-report-only is selected")
     if args.audit_only:
         print(json.dumps(audit_inputs(args.root), indent=2, sort_keys=True))
         return 0
