@@ -1,0 +1,6 @@
+{
+  "status": "superseded_incomplete_daily_audit_trail",
+  "reason": "Combined metrics and corrected fold IDs are present, but the per-session NAV/return path for the selected walk-forward rules is not emitted. V5 adds the daily walk-forward ledger for independent replay.",
+  "preserve_original_outputs": true,
+  "canonical_replacement": "../stock_momentum_robustness_20261120_v5/"
+}

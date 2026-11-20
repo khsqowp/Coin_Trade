@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "completed_exploratory_robustness_diagnostic",
+  "started_at": "2026-11-20T04:13:55.761346+00:00",
+  "preregistration": "docs/research/inventory/PREREG_STOCK_MOMENTUM_ROBUSTNESS_20261120.md",
+  "preregistration_sha256": "5b607d9ca8637e654895fae1d240e9d3c5cf0c960d377c184c5c45dfdb18d646",
+  "code": "scripts/research/stock_momentum_robustness.py",
+  "code_sha256": "39f883faa92976650429ad08ecc7629e55b7fb5038338de4c507a81ab957e0f7",
+  "source_run_id": "stock_common_momentum_20261120_inverse_excluded",
+  "source_run_summary_sha256": "6933ec5a72a43d5cafcba70ac421cb661ff4a2127448afed9817fa267179c54f",
+  "input_fingerprint_sha256": "ca7c95576d94a52560a74334a6e9c0658c3692e6c54c1d4085d8ebb89a756ca3",
+  "seed": 20261120,
+  "paths_per_method_per_cell": 1000,
+  "parameter_cells": 36,
+  "walk_forward_folds_cost_cells": 74,
+  "path_resampling_cells": 12,
+  "walk_forward_train_sessions": 504,
+  "walk_forward_test_horizon_calendar_months": 6,
+  "path_block_sessions": 20,
+  "limitations": [
+    "source cache and strategy family already exposed; no untouched OOS",
+    "current-survivor universe and corporate-action provenance unresolved",
+    "daily return path permutation is not trade-level permutation",
+    "legacy fee/slippage scenarios do not establish account-specific fills"
+  ],
+  "finished_at": "2026-11-20T04:13:55.761716+00:00"
+}

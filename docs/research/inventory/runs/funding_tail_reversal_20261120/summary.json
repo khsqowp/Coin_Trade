@@ -1,0 +1,353 @@
+{
+  "data_fingerprint": "2f117008f28237455e9b6e518ff6f8cfd668e5b847e9807c3f25f415da837a32",
+  "timestamp_audit": {
+    "cohort": "2023-03..2026-05",
+    "symbols": 36,
+    "months": 39,
+    "symbol_months_expected": 1404,
+    "checked": 1404,
+    "missing": 0,
+    "malformed": 0,
+    "candle_mark_timestamp_mismatches": 0,
+    "mark_hours_outside_kline_window": 2,
+    "duplicate_or_incomplete_hour_sets": 0,
+    "funding_integrity_failures": 0,
+    "failure_examples": [],
+    "status": "PASS",
+    "limitations": [
+      "raw archive timestamps only; does not validate price accuracy or strategy fills",
+      "funding timestamps are checked against the interval carried in adjacent archive rows"
+    ]
+  },
+  "hash_audit": {
+    "audit_rows": 4212,
+    "checked": 4212,
+    "missing": 0,
+    "sha256_mismatches": 0,
+    "malformed_rows": 0,
+    "mismatch_refs": [],
+    "status": "PASS",
+    "note": "hash equality proves file identity only, not source authenticity or time-series correctness"
+  },
+  "causal_future_mutation": [
+    {
+      "symbol": "AAVEUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 360
+    },
+    {
+      "symbol": "ADAUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 391
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 358
+    },
+    {
+      "symbol": "APTUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 425
+    },
+    {
+      "symbol": "ARBUSDT",
+      "status": "PASS",
+      "cut_index": 1748,
+      "prefix_signals": 424
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 334
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 456
+    },
+    {
+      "symbol": "BCHUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 340
+    },
+    {
+      "symbol": "BNBUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 393
+    },
+    {
+      "symbol": "BTCUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 404
+    },
+    {
+      "symbol": "CRVUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 305
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 429
+    },
+    {
+      "symbol": "DOTUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 396
+    },
+    {
+      "symbol": "ETCUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 402
+    },
+    {
+      "symbol": "ETHUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 383
+    },
+    {
+      "symbol": "FILUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 414
+    },
+    {
+      "symbol": "HBARUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 350
+    },
+    {
+      "symbol": "ICPUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 418
+    },
+    {
+      "symbol": "IMXUSDT",
+      "status": "PASS",
+      "cut_index": 3226,
+      "prefix_signals": 742
+    },
+    {
+      "symbol": "INJUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 409
+    },
+    {
+      "symbol": "LDOUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 382
+    },
+    {
+      "symbol": "LINKUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 368
+    },
+    {
+      "symbol": "LTCUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 408
+    },
+    {
+      "symbol": "NEARUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 388
+    },
+    {
+      "symbol": "OPUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 383
+    },
+    {
+      "symbol": "QNTUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 375
+    },
+    {
+      "symbol": "SOLUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 422
+    },
+    {
+      "symbol": "STXUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 381
+    },
+    {
+      "symbol": "THETAUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 408
+    },
+    {
+      "symbol": "TRXUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 275
+    },
+    {
+      "symbol": "UNIUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 435
+    },
+    {
+      "symbol": "VETUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 386
+    },
+    {
+      "symbol": "XLMUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 380
+    },
+    {
+      "symbol": "XMRUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 351
+    },
+    {
+      "symbol": "XRPUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 370
+    },
+    {
+      "symbol": "ZECUSDT",
+      "status": "PASS",
+      "cut_index": 1782,
+      "prefix_signals": 381
+    }
+  ],
+  "opportunities": {
+    "development": 77951,
+    "validation": 27158,
+    "sealed": 23495
+  },
+  "results": {
+    "development": {
+      "signals": 17314,
+      "m2_hits": 4020,
+      "m2_rate": 0.2321820492087328,
+      "m2_wilson_95": [
+        0.2259527110145554,
+        0.23853020262960614
+      ],
+      "m1_scored": 17314,
+      "m1_direction_accuracy": 0.5142081552500867,
+      "coverage_pct": 22.21138920603969,
+      "symbols": 36,
+      "nonoverlap_symbol_n": 10747,
+      "nonoverlap_market_n": 1049,
+      "mean_net_base": -0.0005672974312041473,
+      "mean_net_stress": -0.002567297431204147,
+      "mean_r_base": -0.08506323922482273,
+      "mean_r_stress": -0.25197622060391345,
+      "exit_reasons": {
+        "STOP": 9723,
+        "TARGET": 4020,
+        "TIMEOUT": 3571
+      }
+    },
+    "validation": {
+      "signals": 3932,
+      "m2_hits": 949,
+      "m2_rate": 0.241353001017294,
+      "m2_wilson_95": [
+        0.22823478274687822,
+        0.2549761084231507
+      ],
+      "m1_scored": 3932,
+      "m1_direction_accuracy": 0.5228891149542217,
+      "coverage_pct": 14.478238456440092,
+      "symbols": 36,
+      "nonoverlap_symbol_n": 2671,
+      "nonoverlap_market_n": 374,
+      "mean_net_base": 0.00038381505821117657,
+      "mean_net_stress": -0.0016161849417888228,
+      "mean_r_base": -0.03073824782496163,
+      "mean_r_stress": -0.19134167860647786,
+      "exit_reasons": {
+        "STOP": 2098,
+        "TARGET": 949,
+        "TIMEOUT": 885
+      }
+    },
+    "sealed": {
+      "signals": 3293,
+      "m2_hits": 832,
+      "m2_rate": 0.252657151533556,
+      "m2_wilson_95": [
+        0.23810969761106499,
+        0.2677810101020362
+      ],
+      "m1_scored": 3293,
+      "m1_direction_accuracy": 0.49407834801093226,
+      "coverage_pct": 14.015748031496063,
+      "symbols": 36,
+      "nonoverlap_symbol_n": 2389,
+      "nonoverlap_market_n": 321,
+      "mean_net_base": -0.0005481405335637896,
+      "mean_net_stress": -0.0025481405335637895,
+      "mean_r_base": -0.07001685492930766,
+      "mean_r_stress": -0.2529000411731959,
+      "exit_reasons": {
+        "STOP": 1830,
+        "TARGET": 832,
+        "TIMEOUT": 631
+      }
+    },
+    "validation_plus_previously_exposed_sealed": {
+      "signals": 7225,
+      "m2_hits": 1781,
+      "m2_rate": 0.24650519031141868,
+      "m2_wilson_95": [
+        0.23670400812097014,
+        0.2565757904655135
+      ],
+      "m1_scored": 7225,
+      "m1_direction_accuracy": 0.509757785467128,
+      "coverage_pct": 14.263715870728289,
+      "symbols": 36,
+      "nonoverlap_symbol_n": 5060,
+      "nonoverlap_market_n": 695,
+      "mean_net_base": -4.095030700888759e-05,
+      "mean_net_stress": -0.0020409503070088868,
+      "mean_r_base": -0.04864059428788364,
+      "mean_r_stress": -0.21939865963515645,
+      "exit_reasons": {
+        "STOP": 3928,
+        "TARGET": 1781,
+        "TIMEOUT": 1516
+      }
+    }
+  }
+}

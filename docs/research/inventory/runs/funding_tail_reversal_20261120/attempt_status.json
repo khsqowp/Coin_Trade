@@ -1,0 +1,6 @@
+{
+  "status": "SUPERSEDED_INVALID_IMPLEMENTATION",
+  "reason": "The initial candidate code used Wilder-smoothed ATR(14), while the preregistration required a simple 14-bar rolling mean true range. Retain this run and ledger for audit; do not use its metrics for the primary verdict.",
+  "superseded_by": "../funding_tail_reversal_20261120_v3/",
+  "primary_result": false
+}

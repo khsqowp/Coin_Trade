@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "run_id": "funding-tail-20261120T044052Z",
+  "market": "crypto",
+  "status": "complete",
+  "frozen_at": "2026-11-20T04:36:01.336697Z",
+  "run_started_at": "2026-11-20T04:40:52.742057Z",
+  "preregistration_sha256": "10f2bb461ec647f12708472b62bad25047da5188a26f9750acccb08704828618",
+  "code_sha": "6824c2c0d5cc6b1d5ef1d2976e00431818b24380",
+  "code_files": [
+    {
+      "ref": "scripts/research/funding_tail_reversal_probe.py",
+      "sha256": "673a14bf0b5f6578209a46b4ed1ceab320d300b06561c6e5b70a44a5644a1787"
+    },
+    {
+      "ref": "scripts/research/long_history_setup_m2_probe.py",
+      "sha256": "996584febfc07dee2272684c959def48f13bdf1635f40fad29ac869ffff78a62"
+    },
+    {
+      "ref": "chart_predictor/indicators.py",
+      "sha256": "adfcfd70e16693b8523e8fa4af693ae3ec22d7afd3b5e11bb7ff6a2c227f59b3"
+    }
+  ],
+  "inputs": [
+    {
+      "role": "audited historical Binance USD-M 1h candles/funding",
+      "ref": "/private/tmp/cointrade-50_50-data",
+      "sha256": "2f117008f28237455e9b6e518ff6f8cfd668e5b847e9807c3f25f415da837a32"
+    }
+  ],
+  "period": {
+    "start": "2023-03-23T15:00:00Z",
+    "end": "2026-06-01T00:00:00Z"
+  },
+  "splits": {
+    "development": {
+      "start": "2023-03-23T15:00:00Z",
+      "end": "2025-03-01T00:00:00Z",
+      "reused_for_tuning": false,
+      "previously_exposed": false
+    },
+    "validation": {
+      "start": "2025-03-01T00:00:00Z",
+      "end": "2025-11-01T00:00:00Z",
+      "reused_for_tuning": false,
+      "previously_exposed": true
+    },
+    "sealed": {
+      "start": "2025-11-01T00:00:00Z",
+      "end": "2026-06-01T00:00:00Z",
+      "reused_for_tuning": false,
+      "previously_exposed": true
+    }
+  },
+  "cost_scenarios": {
+    "base": {
+      "fee_round_trip": 0.001,
+      "slippage": "not modeled"
+    },
+    "stress": {
+      "fee_round_trip": 0.003,
+      "slippage": "not modeled"
+    }
+  },
+  "execution": {
+    "fill_rule": "first hourly open strictly after funding calc_time",
+    "same_bar_rule": "stop first; target gap credited at target; timeout fails M2",
+    "funding_rule": "archived signed funding after entry through exit"
+  },
+  "counts": {
+    "oos_issued_signals": 7225,
+    "oos_nonoverlap_signals": 5060
+  },
+  "metrics": {
+    "m2_target_first_rate": 0.24650519031141868,
+    "m2_wilson_95_low": 0.23670400812097014,
+    "m2_wilson_95_high": 0.2565757904655135,
+    "m1_direction_accuracy": 0.509757785467128,
+    "net_expectancy": -0.0020409503070088868
+  },
+  "note": "Exploratory only: source periods were previously exposed; no promotion possible."
+}

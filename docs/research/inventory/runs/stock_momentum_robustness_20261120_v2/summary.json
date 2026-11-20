@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "completed_exploratory_robustness_diagnostic",
+  "started_at": "2026-11-20T04:15:46.010082+00:00",
+  "preregistration": "docs/research/inventory/PREREG_STOCK_MOMENTUM_ROBUSTNESS_20261120.md",
+  "preregistration_sha256": "fe45688b356b1d5961d69607c56a013a6deadc342736cabf5de8ad1211d36e02",
+  "code": "scripts/research/stock_momentum_robustness.py",
+  "code_sha256": "56e7744f37cf7ae089eaf66c4a05b627131430db3f1eaae2c728d32f5f7e5a4f",
+  "source_run_id": "stock_common_momentum_20261120_inverse_excluded",
+  "source_run_summary_sha256": "6933ec5a72a43d5cafcba70ac421cb661ff4a2127448afed9817fa267179c54f",
+  "input_fingerprint_sha256": "ca7c95576d94a52560a74334a6e9c0658c3692e6c54c1d4085d8ebb89a756ca3",
+  "seed": 20261120,
+  "paths_per_method_per_cell": 1000,
+  "parameter_cells": 36,
+  "walk_forward_folds_cost_cells": 14,
+  "path_resampling_cells": 12,
+  "walk_forward_train_sessions": 504,
+  "walk_forward_test_horizon_calendar_months": 6,
+  "path_block_sessions": 20,
+  "limitations": [
+    "source cache and strategy family already exposed; no untouched OOS",
+    "current-survivor universe and corporate-action provenance unresolved",
+    "daily return path permutation is not trade-level permutation",
+    "legacy fee/slippage scenarios do not establish account-specific fills"
+  ],
+  "supersedes_attempt": "stock_momentum_robustness_20261120: initial diagnostic emitted overlapping monthly-start six-month test windows; excluded from canonical inference",
+  "finished_at": "2026-11-20T04:15:46.010658+00:00"
+}

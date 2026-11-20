@@ -28,7 +28,7 @@ and explicit approval, plus a verified restorable copy for user data.
 
 ## Market and artifact inventory
 
-The initial snapshot's 97-entry Coin_Trade experiment registry mapped to 49 crypto and 48 stock studies; that was the count at the time of the original inventory, not the current count. After the append-only stock replay rows and final documentation refresh, the latest snapshot `market_artifacts_20261120T040453Z.csv` records 11,334 entries, 102 registry rows, and 26 registered worktrees. Its paired registry crosswalk is `research_registry_20261120T040453Z.csv`. The labels remain conservative metadata hints, not a verified strategy leaderboard. Older inventory snapshots are retained; no source artifacts were deleted.
+The initial snapshot's 97-entry Coin_Trade experiment registry mapped to 49 crypto and 48 stock studies; that was the count at the time of the original inventory, not the current count. After the append-only robustness and funding-tail trial rows and final plan/diagnostic artifacts, the latest snapshot `market_artifacts_20261120T044737Z.csv` records 11,398 entries, 105 registry rows, and 26 registered worktrees. Its paired registry crosswalk is `research_registry_20261120T044737Z.csv`. The labels remain conservative metadata hints, not a verified strategy leaderboard. Older inventory snapshots are retained; no source artifacts were deleted.
 
 The tick archive contains 1,209 JSONL files (~39.9 decimal GB): 343 each for `crypto_perp`, `crypto_spot`, and `crypto_funding`; 148 `kr`; 32 `opening-scan-kr`. The dated directory range is 2026-10-18 through 2026-11-11. No US tick file was found in this archive scan. November data is not confirmed to be current; no file was deleted, and the absent NAS mount prevents backup verification.
 

@@ -1,0 +1,6 @@
+{
+  "status": "SUPERSEDED_INVALID_IMPLEMENTATION",
+  "reason": "This benchmark-diagnostic rerun retained the same Wilder-smoothed ATR(14) mismatch identified in the first attempt. It is not the preregistration-compliant primary result.",
+  "superseded_by": "../funding_tail_reversal_20261120_v3/",
+  "primary_result": false
+}

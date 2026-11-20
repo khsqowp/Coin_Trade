@@ -7,6 +7,9 @@ fixed USD-M M2 re-evaluation are recorded under
 The fixed common-panel stock momentum replay is separately reported in
 [`inventory/stock_common_momentum_results_20261120.md`](inventory/stock_common_momentum_results_20261120.md);
 it is exploratory only because the cache is exposed and not point-in-time.
+The bounded funding-tail reversal trial is documented in
+[`inventory/runs/funding_tail_reversal_20261120_v3/report.md`](inventory/runs/funding_tail_reversal_20261120_v3/report.md);
+it was rejected and its evaluation dates were already exposed by prior research.
 
 This directory accumulated ~100 one-off result files from two separate
 sprints (2026-11-07 "oracle" equity-factor work, 2026-11-15 "agent loop"
@@ -161,6 +164,11 @@ The 2026-11-20 exploratory common-panel stock momentum replays are recorded in
 (original 92-file sensitivity) and
 [`inventory/stock_common_momentum_results_20261120_v2.md`](inventory/stock_common_momentum_results_20261120_v2.md)
 (91-symbol inverse-excluded core cohort). Neither is valid OOS evidence.
+The full phase-by-phase disposition, including the single distinct Phase 8
+candidate tested and why no unvalidated Phase 9 mix was run, is in
+[`inventory/plan_execution_status_20261120.md`](inventory/plan_execution_status_20261120.md).
+The fixed-candidate robustness diagnostic is in
+[`inventory/runs/stock_momentum_robustness_20261120_v5/report.md`](inventory/runs/stock_momentum_robustness_20261120_v5/report.md).
 Regenerate metadata snapshots with `scripts/research/inventory_market_artifacts.py`;
 the command does not inspect data contents, hash files, or alter source artifacts.
 

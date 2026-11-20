@@ -115,12 +115,16 @@ def _daily_metrics(dates: pd.DatetimeIndex, nav: np.ndarray, returns: np.ndarray
 
 def simulate(symbols: list[str], dates: pd.DatetimeIndex, close: np.ndarray,
              market: str, lookback: int, cadence: str, gate: bool,
-             cost: dict, baseline: bool = False) -> tuple[dict, list[dict], list[dict], list[dict]]:
+             cost: dict, baseline: bool = False,
+             start_index: int | None = None) -> tuple[dict, list[dict], list[dict], list[dict]]:
     name_to_col = {symbol: i for i, symbol in enumerate(symbols)}
     benchmark = "069500" if market == "KR" else "SPY"
     benchmark_col = name_to_col[benchmark]
     start = lookback + 1
-    if start + 2 >= len(dates):
+    first_trade_index = start if start_index is None else start_index
+    if first_trade_index < start or first_trade_index >= len(dates):
+        raise ValueError(f"invalid first trade index={first_trade_index} for lookback={lookback}")
+    if first_trade_index + 2 >= len(dates):
         raise ValueError(f"not enough sessions for {market} lookback={lookback}")
     month_periods = dates.tz_localize(None).to_period("M") if dates.tz is not None else dates.to_period("M")
     month = pd.Series(np.arange(len(dates)), index=dates).groupby(month_periods).last().to_numpy()
@@ -128,7 +132,7 @@ def simulate(symbols: list[str], dates: pd.DatetimeIndex, close: np.ndarray,
     rebalance = set(range(start, len(dates))) if cadence == "daily" else {
         int(i + 1) for i in month_ends if start <= i + 1 < len(dates)
     }
-    nav_dates = [dates[start - 1]]
+    nav_dates = [dates[first_trade_index - 1]]
     nav_values = [1.0]
     nav_returns: list[float] = []
     cash = 1.0
@@ -139,11 +143,11 @@ def simulate(symbols: list[str], dates: pd.DatetimeIndex, close: np.ndarray,
     open_dates: dict[str, str] = {}
     cumulative_turnover = 0.0
     exposure_values = []
-    for i in range(start, len(dates)):
+    for i in range(first_trade_index, len(dates)):
         prices = close[i]
         nav_before_trade = cash + float(np.dot(shares, prices))
         target_weights = np.zeros(len(symbols), dtype=float)
-        should_trade = i == start if baseline else i in rebalance
+        should_trade = i == first_trade_index if baseline else i in rebalance
         signal_idx = i - 1
         if should_trade:
             if baseline:

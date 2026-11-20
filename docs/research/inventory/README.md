@@ -5,10 +5,10 @@ Source files remain in their original locations. No inventory command deletes, m
 or edits source data.
 
 Each inventory is a dated snapshot. The latest complete run is
-`market_artifacts_20261120T040453Z.csv` with paired summary
-`market_artifacts_20261120T040453Z.md`, worktree list
-`git_worktrees_20261120T040453Z.csv`, and 102-row registry crosswalk
-`research_registry_20261120T040453Z.csv`. It records 11,334 entries and 26
+`market_artifacts_20261120T044737Z.csv` with paired summary
+`market_artifacts_20261120T044737Z.md`, worktree list
+`git_worktrees_20261120T044737Z.csv`, and 105-row registry crosswalk
+`research_registry_20261120T044737Z.csv`. It records 11,398 entries and 26
 registered worktrees. Paths, sizes, Git tracking status, and any
 date hints derived from paths describe the observed state at generation time.
 The scanner does not calculate content hashes, and its snapshot does not prove

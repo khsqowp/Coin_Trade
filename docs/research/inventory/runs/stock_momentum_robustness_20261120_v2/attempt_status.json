@@ -1,0 +1,6 @@
+{
+  "status": "superseded_incomplete_aggregate",
+  "reason": "Walk-forward folds were non-overlapping, but this version did not emit the combined pseudo-OOS return path needed to reconcile total return and raw closed-position counts across folds.",
+  "preserve_original_outputs": true,
+  "canonical_replacement": "../stock_momentum_robustness_20261120_v3/"
+}

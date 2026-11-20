@@ -1,0 +1,6 @@
+{
+  "status": "superseded_reporting_defect",
+  "reason": "The combined pseudo-OOS paths were numerically produced, but fold IDs incremented once per cost case, so the report doubled the count of KR folds. V4 corrects fold identifiers and fold-count reporting; prior output is retained.",
+  "preserve_original_outputs": true,
+  "canonical_replacement": "../stock_momentum_robustness_20261120_v4/"
+}

@@ -1,0 +1,6 @@
+{
+  "status": "superseded_diagnostic_not_for_inference",
+  "reason": "The initial implementation generated a six-month test window at every monthly boundary, causing overlapping walk-forward tests. The preregistered design requires non-overlapping six-month tests.",
+  "preserve_original_outputs": true,
+  "canonical_replacement": "../stock_momentum_robustness_20261120_v2/"
+}

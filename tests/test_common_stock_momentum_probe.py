@@ -40,3 +40,15 @@ def test_future_mutation_does_not_change_prior_nav():
     mutated = simulate(*args, mutated_close, "KR", 2, "daily", False, costs)[1]
     assert [row["nav"] for row in original if row["date"] <= dates[cutoff - 1].isoformat()] == [
         row["nav"] for row in mutated if row["date"] <= dates[cutoff - 1].isoformat()]
+
+
+def test_explicit_start_index_keeps_training_history_flat():
+    dates = pd.date_range("2024-01-01", periods=30, freq="B", tz="UTC")
+    close = np.column_stack((np.arange(10, 40), np.arange(40, 70), np.arange(70, 100))).astype(float)
+    metrics, daily, events, _ = simulate(
+        ["069500", "AAA", "BBB"], dates, close, "KR", 3, "daily", False,
+        {"fee": 0.0, "slippage": 0.0, "sell_tax": 0.0}, start_index=12)
+    assert daily[0]["date"] == dates[11].isoformat()
+    assert events[0]["date"] == dates[12].isoformat()
+    assert all(pd.Timestamp(event["date"]) >= dates[12] for event in events)
+    assert metrics["start"] == dates[11].isoformat()
