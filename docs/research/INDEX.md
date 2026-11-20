@@ -72,6 +72,8 @@ Verdict counts: BLOCKED=6, INELIGIBLE_FOR_STRATEGY_SCORING_PENDING_TIMING_PROVEN
 | 113 | 2026-11-20 | phase8_round_j_lead_lag_screen | [BTC/ETH-consensus lagging-alt 1h target-first screen](docs/research/inventory/runs/lead_lag_1h_m2_round_k_20261120_v2/report.md) | REJECT | REJECT: M2 45.98% (Wilson 45.77-46.20%), N_nonoverlap 47877/34 symbols, coverage 34.93%, net -0.1295%/-0.3295%; always-short M2 48.46% |
 | 114 | 2026-11-20 | phase8_source_round_l | [Four-lane public strategy source scan](docs/research/inventory/phase8_source_round_l_20261120.md) | REJECT | 0 eligible candidates; 0 strategies scored; no download/install/execute |
 | 115 | 2026-11-20 | phase8_source_round_m | [Mechanism-specific crypto perpetual source review](docs/research/inventory/phase8_source_round_m_20261120.md) | REJECT | 0 eligible M2 candidates; 0 backtests or performance estimates |
+| 116 | 2026-11-21 | phase8_source_round_n | [Four-source scan and minute-data eligibility correction](docs/research/inventory/phase8_source_round_n_20261121.md) | CONDITIONAL | Data corrected; boundary/funding candidates rejected; one custom mark-deviation diagnostic preregistered, not yet scored |
+| 117 | 2026-11-21 | mark_deviation_m2_preregistration | [Contract–mark deviation M2 preregistration](docs/research/inventory/PREREG_MARK_DEVIATION_M2_20261120.md) | PREREGISTERED | One 34-symbol historical diagnostic; H10 primary, H20 secondary; not sealed OOS |
 
 ## stock (53)
 
