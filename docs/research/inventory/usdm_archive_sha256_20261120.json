@@ -1,0 +1,10 @@
+{
+  "audit_rows": 6911,
+  "checked": 6911,
+  "missing": 0,
+  "sha256_mismatches": 0,
+  "malformed_rows": 0,
+  "mismatch_refs": [],
+  "status": "PASS",
+  "note": "hash equality proves file identity only, not source authenticity or time-series correctness"
+}

@@ -1,0 +1,334 @@
+{
+  "required_kinds": [
+    "funding",
+    "klines_1h",
+    "mark_price_1h"
+  ],
+  "archive_month_ranges": {
+    "funding": [
+      "2021-12",
+      "2026-09"
+    ],
+    "klines_1h": [
+      "2021-12",
+      "2026-09"
+    ],
+    "mark_price_1h": [
+      "2021-12",
+      "2026-09"
+    ]
+  },
+  "symbols_with_valid_rows": 45,
+  "symbols_with_at_least_36_clean_consecutive_months": 37,
+  "clean_month_run_distribution": {
+    "21": 1,
+    "23": 1,
+    "26": 2,
+    "28": 1,
+    "29": 1,
+    "31": 1,
+    "35": 1,
+    "37": 1,
+    "39": 36
+  },
+  "cohorts_by_exact_run": {
+    "2023-03..2026-05": [
+      "AAVEUSDT",
+      "ADAUSDT",
+      "ALGOUSDT",
+      "APTUSDT",
+      "ARBUSDT",
+      "ATOMUSDT",
+      "AVAXUSDT",
+      "BCHUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "CRVUSDT",
+      "DOGEUSDT",
+      "DOTUSDT",
+      "ETCUSDT",
+      "ETHUSDT",
+      "FILUSDT",
+      "HBARUSDT",
+      "ICPUSDT",
+      "IMXUSDT",
+      "INJUSDT",
+      "LDOUSDT",
+      "LINKUSDT",
+      "LTCUSDT",
+      "NEARUSDT",
+      "OPUSDT",
+      "QNTUSDT",
+      "SOLUSDT",
+      "STXUSDT",
+      "THETAUSDT",
+      "TRXUSDT",
+      "UNIUSDT",
+      "VETUSDT",
+      "XLMUSDT",
+      "XMRUSDT",
+      "XRPUSDT",
+      "ZECUSDT"
+    ],
+    "2023-05..2026-05": [
+      "SUIUSDT"
+    ],
+    "2023-07..2026-05": [
+      "WLDUSDT"
+    ],
+    "2023-11..2026-05": [
+      "CAKEUSDT"
+    ],
+    "2024-01..2026-05": [
+      "ONDOUSDT"
+    ],
+    "2024-02..2026-05": [
+      "JUPUSDT"
+    ],
+    "2024-04..2026-05": [
+      "ENAUSDT",
+      "TAOUSDT"
+    ],
+    "2024-07..2026-05": [
+      "RENDERUSDT"
+    ],
+    "2024-09..2026-05": [
+      "POLUSDT"
+    ]
+  },
+  "symbols": {
+    "AAVEUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ADAUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ALGOUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "APTUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ARBUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ATOMUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "AVAXUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "BCHUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "BNBUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "BTCUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "CAKEUSDT": {
+      "clean_consecutive_months": 31,
+      "start_month": "2023-11",
+      "end_month": "2026-05"
+    },
+    "CRVUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "DOGEUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "DOTUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ENAUSDT": {
+      "clean_consecutive_months": 26,
+      "start_month": "2024-04",
+      "end_month": "2026-05"
+    },
+    "ETCUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ETHUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "FILUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "HBARUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ICPUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "IMXUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "INJUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "JUPUSDT": {
+      "clean_consecutive_months": 28,
+      "start_month": "2024-02",
+      "end_month": "2026-05"
+    },
+    "LDOUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "LINKUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "LTCUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "NEARUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ONDOUSDT": {
+      "clean_consecutive_months": 29,
+      "start_month": "2024-01",
+      "end_month": "2026-05"
+    },
+    "OPUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "POLUSDT": {
+      "clean_consecutive_months": 21,
+      "start_month": "2024-09",
+      "end_month": "2026-05"
+    },
+    "QNTUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "RENDERUSDT": {
+      "clean_consecutive_months": 23,
+      "start_month": "2024-07",
+      "end_month": "2026-05"
+    },
+    "SOLUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "STXUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "SUIUSDT": {
+      "clean_consecutive_months": 37,
+      "start_month": "2023-05",
+      "end_month": "2026-05"
+    },
+    "TAOUSDT": {
+      "clean_consecutive_months": 26,
+      "start_month": "2024-04",
+      "end_month": "2026-05"
+    },
+    "THETAUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "TRXUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "UNIUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "VETUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "WLDUSDT": {
+      "clean_consecutive_months": 35,
+      "start_month": "2023-07",
+      "end_month": "2026-05"
+    },
+    "XLMUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "XMRUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "XRPUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    },
+    "ZECUSDT": {
+      "clean_consecutive_months": 39,
+      "start_month": "2023-03",
+      "end_month": "2026-05"
+    }
+  },
+  "funding_interval_disagreement_archives": 9,
+  "unresolved_mark_gap_archives": 0,
+  "malformed_archive_rows": 0,
+  "limitations": [
+    "metadata audit only; does not hash/reopen source archives",
+    "continuous monthly status does not prove intra-month timestamps are causally usable",
+    "current-symbol cohort may contain survivorship bias"
+  ]
+}

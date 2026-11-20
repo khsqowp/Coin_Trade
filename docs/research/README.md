@@ -1,5 +1,10 @@
 # docs/research — start here
 
+The 2026-11-20 source inventory, data-quality gates, run contract, and first
+fixed USD-M M2 re-evaluation are recorded under
+[`inventory/`](inventory/README.md). The run disposition is documented in
+[`inventory/usdm_1h_setup_m2_results_20261120.md`](inventory/usdm_1h_setup_m2_results_20261120.md).
+
 This directory accumulated ~100 one-off result files from two separate
 sprints (2026-11-07 "oracle" equity-factor work, 2026-11-15 "agent loop"
 equity+coin work) with no central index. If you are looking for "did we
@@ -141,6 +146,15 @@ someone to find later by accident.
   user reopens this.
 
 ## Conventions
+
+The 2026-11-20 read-only inventory and current data-quality blockers are in
+[`inventory/data_quality_findings_20261120.md`](inventory/data_quality_findings_20261120.md).
+The frozen first-pass market comparison rules are in
+[`inventory/comparable_evaluation_protocol_v1.md`](inventory/comparable_evaluation_protocol_v1.md),
+and current registry mapping limitations are in
+[`inventory/registry_reconciliation_20261120.md`](inventory/registry_reconciliation_20261120.md).
+Regenerate metadata snapshots with `scripts/research/inventory_market_artifacts.py`;
+the command does not inspect data contents, hash files, or alter source artifacts.
 
 - Never retroactively edit a past registry row's `verdict` or
   `headline_metric` after you've seen a later, better result — append a new

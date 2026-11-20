@@ -1,0 +1,19 @@
+{
+  "cohort": "2023-03..2026-05",
+  "symbols": 36,
+  "months": 39,
+  "symbol_months_expected": 1404,
+  "checked": 1404,
+  "missing": 0,
+  "malformed": 0,
+  "candle_mark_timestamp_mismatches": 0,
+  "mark_hours_outside_kline_window": 2,
+  "duplicate_or_incomplete_hour_sets": 0,
+  "funding_integrity_failures": 0,
+  "failure_examples": [],
+  "status": "PASS",
+  "limitations": [
+    "raw archive timestamps only; does not validate price accuracy or strategy fills",
+    "funding timestamps are checked against the interval carried in adjacent archive rows"
+  ]
+}

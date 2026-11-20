@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "run_id": "usdm1h-m2-20261120T030250Z-2f117008f2",
+  "market": "crypto",
+  "status": "complete",
+  "frozen_at": "2026-11-20T02:51:17.011209Z",
+  "run_started_at": "2026-11-20T03:02:50.908438Z",
+  "preregistration_sha256": "dd4aa55e2a761c84737a68dec6493a1a0ee00c1cd41865a193c2ae8b70ef3bab",
+  "code_sha": "069cbc611fb27541d48680bfeedc71a148e86137",
+  "code_files": [
+    {
+      "ref": "scripts/research/long_history_setup_m2_probe.py",
+      "sha256": "996584febfc07dee2272684c959def48f13bdf1635f40fad29ac869ffff78a62"
+    },
+    {
+      "ref": "chart_predictor/setups.py",
+      "sha256": "7dc34ec75ddb12356d84fbc0719acc157df9cdd6b833b5d1aedfe1461d25122c"
+    },
+    {
+      "ref": "chart_predictor/indicators.py",
+      "sha256": "adfcfd70e16693b8523e8fa4af693ae3ec22d7afd3b5e11bb7ff6a2c227f59b3"
+    },
+    {
+      "ref": "chart_predictor/scorer.py",
+      "sha256": "6ec972d0d4804f817844e1a6d9acd3af58df9ddcdad72fe35f720fe970635d80"
+    }
+  ],
+  "inputs": [
+    {
+      "role": "verified Binance USD-M 1h klines/mark/funding",
+      "ref": "/private/tmp/cointrade-50_50-data",
+      "sha256": "2f117008f28237455e9b6e518ff6f8cfd668e5b847e9807c3f25f415da837a32"
+    }
+  ],
+  "period": {
+    "start": "2023-03-23T15:00:00Z",
+    "end": "2026-06-01T00:00:00Z"
+  },
+  "splits": {
+    "development": {
+      "start": "2023-03-23T15:00:00Z",
+      "end": "2025-03-01T00:00:00Z",
+      "reused_for_tuning": false
+    },
+    "validation": {
+      "start": "2025-03-01T00:00:00Z",
+      "end": "2025-11-01T00:00:00Z",
+      "reused_for_tuning": false
+    },
+    "sealed": {
+      "start": "2025-11-01T00:00:00Z",
+      "end": "2026-06-01T00:00:00Z",
+      "reused_for_tuning": false
+    }
+  },
+  "cost_scenarios": {
+    "base": {
+      "fee_round_trip": 0.001,
+      "slippage": "not modeled"
+    },
+    "stress": {
+      "fee_round_trip": 0.003,
+      "slippage": "not modeled"
+    }
+  },
+  "execution": {
+    "fill_rule": "next 1h open; unit notional; no leverage",
+    "same_bar_rule": "stop first; target-first event path; timeout is M2 failure",
+    "funding_rule": "signed archived funding after entry through exit, timestamp-aligned"
+  },
+  "counts": {
+    "oos_issued_signals": 1239954,
+    "oos_nonoverlap_signals": 555827
+  },
+  "metrics": {
+    "m2_target_first_rate": 0.20646653020999167,
+    "m2_wilson_95_low": 0.20575499279442586,
+    "m2_wilson_95_high": 0.20717988639180743,
+    "m1_direction_accuracy": 0.3287388080525568,
+    "net_expectancy": -0.003022728769883866
+  },
+  "note": "study-wide descriptive aggregate across all setup/horizon cells; not a candidate-level pass metric; see summary.json"
+}
