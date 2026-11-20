@@ -1,0 +1,16 @@
+{
+ "T_days": 1351,
+ "K_rows": 132,
+ "K_nonconstant": 132,
+ "B": 2000,
+ "mean_block": 10,
+ "seed": 20261120,
+ "family_rc_p": 0.6445,
+ "family_spa_p": 0.0535,
+ "best_row": "btc-macd-15-41-12|1d",
+ "best_row_mean_daily_pct": 0.059436631343497054,
+ "N_trials": 858,
+ "N_note": "sum of n_candidates_tested (grid points) over 132 DONE rows + INELIGIBLE rows (rows with implemented plugin); NO_PLUGIN excluded; TIMEOUT row has no count",
+ "var_sr_across_rows": 0.004692521104129428,
+ "sr0": 0.21998124031763933
+}
