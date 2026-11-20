@@ -47,3 +47,9 @@ Round O's four-role HOLD decision on cross-cryptocurrency return prediction is
 recorded in
 [`phase8_source_round_o_cross_crypto_predictability_panel_20261121.md`](phase8_source_round_o_cross_crypto_predictability_panel_20261121.md).
 It did not score outcomes or approve an M2 candidate.
+
+The read-only `um_bookDepth` schema and official daily-to-monthly parity audit
+is recorded in
+[`phase8_bookdepth_archive_audit_20261121.md`](phase8_bookdepth_archive_audit_20261121.md).
+It found only BTC/ETH coverage plus confirmed stale-band and incomplete-day
+samples; no strategy score was run.

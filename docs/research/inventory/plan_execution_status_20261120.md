@@ -274,3 +274,21 @@ study or reject it. That return-forecast study cannot satisfy M2 or qualify as
 Core. A distinct M2 specification requires independent justification for its
 barriers and forward-only validation. Details:
 `phase8_source_round_o_cross_crypto_predictability_panel_20261121.md`.
+
+### Phase 8 continuation: USD-M bookDepth archive eligibility
+
+The NAS archive contains 47 monthly Parquet files each for BTCUSDT and ETHUSDT
+(2023-01 through 2026-11), with columns `timestamp, percentage, depth,
+notional`. Eight official Binance daily ZIPs were checked against their
+publisher checksums and the corresponding NAS monthly rows; keys and all
+numeric values matched exactly. The sampled `+0.2%/+1%/+2%` ask-band
+`notional/depth` distinct counts dropped from 2,880 each on 2026-09-02 to
+BTC 6/242/2,164 and ETH 5/367/1,406 on 2026-09-04. Both October monthly files
+have only 30 dates: Oct 8 is missing (official daily ZIPs return 404), Oct 7
+has 339/2,880 timestamps, and Oct 9 has 2,389/2,880 for both symbols. These
+observations match the issue-reported failure modes; a checksum-valid archive
+can still be stale or incomplete. Since this depth archive covers only two
+symbols and is not raw L2/BBO, it cannot support the fixed >=20-symbol M2
+strategy gate or establish executable fills. Keep depth features excluded;
+Phase 9 and Core remain blocked. Full evidence and hashes:
+`phase8_bookdepth_archive_audit_20261121.md`.
