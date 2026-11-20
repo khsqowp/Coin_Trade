@@ -1,0 +1,1 @@
+{"id":"example-sma-cross","mechanical_spec_complete":true,"entry_long":"fast SMA crosses above slow SMA","entry_short":"fast SMA crosses below slow SMA","exit":"opposite SMA cross","timeframes":["4h"]}
