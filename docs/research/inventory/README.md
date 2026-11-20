@@ -74,3 +74,8 @@ price rows; overall status remains FAIL because of known timestamp gaps,
 partial files, and funding anomalies. Four-lane source scouting and the
 adversarial panel disposition are recorded in
 `phase8_source_round_p_4lane_panel_20261121.md`.
+
+Round Q repeated a bounded four-lane source search after the rejected Round N
+minute diagnostic and convened a Blue/Red/Data-Methods/Judge panel. Both
+stages returned zero eligible candidates; no outcomes were scored. The record
+is `phase8_source_round_q_4lane_panel_20261121.md` and registry entry #119.
