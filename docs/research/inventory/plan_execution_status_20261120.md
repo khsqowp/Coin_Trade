@@ -16,7 +16,7 @@ it does not mean a profitable strategy was found.
 | 5 — evaluation pipeline | Complete for the new comparable runners | Run-contract validator, common KR/US NAV runner, robustness runner, and tests are present. Legacy runners are not all wired to the contract; the contract's structural validity is not market-data validation. |
 | 6 — comparable existing-candidate evaluation | Complete for the declared batches | Fixed USD-M 1h M2 batch: 76 cells, sealed best 38.46% (10/26), 23 non-overlap signals, zero 80% cells. KR/US v1 and inverse-excluded v2 each have 16 cells. No stock momentum variant passes the 30% MDD cap; full results are in the linked reports. |
 | 7 — robustness/red-team | Complete for the fixed stock candidate family; crypto promotion not triggered | 36 stock parameter-neighborhood cells; 7 non-overlapping 6-month pseudo-OOS folds / 14 cost rows; 1,000 daily-return permutations and 1,000 20-session block-bootstrap paths for each of 12 stock cells. Independent recomputation of the 6 aggregate walk-forward cells and all 12 resampling cells matched. These are not untouched OOS or trade-level permutations. No stock cell clears the hard gates, so no candidate is promoted. |
-| 8 — limited new strategy search | **Three crypto exploratory candidates rejected; cross-asset v4 is final screen, rejected before M2** | Independent read-only KR/US reviewer found no materially distinct cache-testable equity candidate. The four-source scout and four-role panel found no immediately eligible candidate; OI lead remains timing-ineligible. Prior-hour return contrarian screen: H1 M1 51.39%, gross +0.603 bp, net -9.396/-29.396 bp; H4 M1 50.50%, gross -1.119 bp, net -11.109/-31.109 bp. Cross-asset proxy uses BTC/ETH/XRP/LTC one-hour equal-weight leader return, fades it on 32 targets, H1/H4. Final v4 has 1,118,560 event rows; M1 49.87–51.62%; H1 base/stress opportunity net -8.95/-28.95 bp development, -10.18/-30.18 bp exposed validation, -9.93/-29.93 bp prior-exposed evaluation; H4 -11.38/-31.38, -9.67/-29.67, -13.03/-33.03 bp. Funding endpoint-exclusive base results are also negative (-8.96 to -13.04 bp). Coverage is 99.994–100%; market-wide non-overlap counts are 1,271–16,998, not independent events. Non-circular synchronized 7-day bootstrap intervals remain below zero. M2 was not measured. All dates were previously exposed; no core qualifies. Four-role final panel voted 4/4 to reject this fixed proxy for M2 progression, while limiting the conclusion to the proxy. A distinct asymmetric positive-shock follow-up was suggested for genuinely new forward data only; it is not registered or tested. v2's H4 block length was 28 days and lacked coverage, and v3 used circular block joins; all are preserved as superseded. Canonical artifacts: `runs/cross_asset_seesaw_screen_20261120_v4/`; frozen rule: `PREREG_CROSS_ASSET_SEESAW_SCREEN_20261120.md`.
+| 8 — limited new strategy search | **Existing exploratory candidates rejected; later source screens produced no eligible candidate** | Independent read-only KR/US reviewer found no materially distinct cache-testable equity candidate. The four-source scout and four-role panel found no immediately eligible candidate; OI lead remains timing-ineligible. Prior-hour return contrarian screen: H1 M1 51.39%, gross +0.603 bp, net -9.396/-29.396 bp; H4 M1 50.50%, gross -1.119 bp, net -11.109/-31.109 bp. Cross-asset proxy uses BTC/ETH/XRP/LTC one-hour equal-weight leader return, fades it on 32 targets, H1/H4. Final v4 has 1,118,560 event rows; M1 49.87–51.62%; H1 base/stress opportunity net -8.95/-28.95 bp development, -10.18/-30.18 bp exposed validation, -9.93/-29.93 bp prior-exposed evaluation; H4 -11.38/-31.38, -9.67/-29.67, -13.03/-33.03 bp. Funding endpoint-exclusive base results are also negative (-8.96 to -13.04 bp). Coverage is 99.994–100%; market-wide non-overlap counts are 1,271–16,998, not independent events. Non-circular synchronized 7-day bootstrap intervals remain below zero. M2 was not measured. All dates were previously exposed; no core qualifies. Four-role final panel voted 4/4 to reject this fixed proxy for M2 progression, while limiting the conclusion to the proxy. A distinct asymmetric positive-shock follow-up was suggested for genuinely new forward data only; it is not registered or tested. v2's H4 block length was 28 days and lacked coverage, and v3 used circular block joins; all are preserved as superseded. Canonical artifacts: `runs/cross_asset_seesaw_screen_20261120_v4/`; frozen rule: `PREREG_CROSS_ASSET_SEESAW_SCREEN_20261120.md`.
 | 9 — combination/portfolio | **Not run: prerequisite absent** | The protocol allows only individually validated core strategies into a combined portfolio. Current validated-core count is zero. Combining rejected or exposed exploratory candidates would be an invalid portfolio claim. |
 | 10 — final record/backup | Complete for this continuation | Prior batch commit `7bbe07cb72dba8cbf941202b2467c58ad97d9a71` remains on `origin/main`. Cross-asset correction commit `07fd2b5059825a9af3b4253aac95ca233faa0a42` is pushed to `origin/research/bat-harmonic-validation-20261120`; `git ls-remote` matched, and v2/v3/v4 ledgers are tracked by LFS (v2/v3 identical; v4 includes endpoint sensitivity). Changed-scope tests: 20 pass, all 1,118,560 v4 ledger rows, 4,212 source hashes, source-manifest digest, code digest, and `git diff --check` were verified. This snapshot update is included in a follow-on documentation commit on the same branch. No Oracle deployment or orders are in scope. |
 
@@ -92,7 +92,28 @@ two-leg spread, or lack verified source/license/universe evidence. The local
 historical input root contains perp klines, mark-price klines, and funding but
 no spot OHLCV. No scoring or data download occurred. Full source-by-source
 findings and the debate are in
-`phase8_source_rounds_20261120.md`. Next research gate: establish historical
-OI field availability timing before considering an OI-shock hypothesis; the
-previous OI source/timestamp audit remains unresolved. Validated-core count is
-still zero; Phase 9 remains blocked.
+`phase8_source_rounds_20261120.md`. The prior OI timing audit already ran but
+did not establish historical first availability. Do not repeat it without new
+authoritative evidence. Validated-core count is still zero; Phase 9 remains
+blocked.
+
+### Phase 8 continuation: 1m/3m source screen and debate
+
+Four source scouts (SNS/research, TradingView/Pine, communities, GitHub/skills)
+found zero eligible strategies for scoring. The closest novel lead was a
+published 15-minute-boundary/10-second direction effect, but its reported
+direction accuracy is not M2 target-first success; its reported gross mean is
+below cited taker cost, it provides no TP/SL/expiry rule, and local data are
+hourly. The positioning/OI lead remains ineligible because historical first
+availability and a stable complete rule are unproven. Pine/community/GitHub
+leads were incomplete, overlapping, or framework-only. A second four-role
+panel (Blue, Red, Data/Methods, Judge) unanimously held all candidates from
+scoring. A further four-researcher, local-data-constrained hypothesis round
+also produced zero defensible, source-grounded candidates. This is a bounded
+search, not proof all public strategies or all custom hypotheses were
+exhausted. Do not repeat OI provenance work without new authoritative
+evidence. Next: require a distinct, complete preregisterable mechanism and
+confirm data availability before acquisition; use exposed history only for
+development, then test prospectively without tuning. Core count remains zero;
+Phase 9 remains blocked. Details and source links are in
+`phase8_source_rounds_20261120.md`.
