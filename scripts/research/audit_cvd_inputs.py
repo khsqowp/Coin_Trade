@@ -49,8 +49,11 @@ def validate_kline_rows(rows: list[dict[str, str]], symbol: str, month: str,
         first_open_ms = int(rows[0]["open_time"])
     except (KeyError, TypeError, ValueError) as exc:
         raise ValueError("invalid first candle timestamp") from exc
+    approved_partial_symbol_month = symbol == "ARBUSDT" and month == "2023-03"
+    if allow_partial_start and not approved_partial_symbol_month:
+        raise ValueError("partial-month start exception is restricted to ARBUSDT 2023-03")
     if (first_open_ms < start_ms or first_open_ms >= end_ms or first_open_ms % HOUR_MS
-            or (first_open_ms != start_ms and not allow_partial_start)):
+            or (first_open_ms != start_ms and not (allow_partial_start and approved_partial_symbol_month))):
         raise ValueError("invalid or unapproved partial-month start")
     expected_from_first = (end_ms - first_open_ms) // HOUR_MS
     if len(rows) != expected_from_first:
@@ -101,6 +104,8 @@ def validate_funding_rows(rows: list[dict[str, str]], symbol: str, month: str, *
     month_start_ms, month_end_ms, _ = _month_bounds(month)
     start_ms = month_start_ms if expected_start_ms is None else expected_start_ms
     end_ms = month_end_ms - 1 if expected_end_ms is None else expected_end_ms
+    if allow_partial_start and not (symbol == "ARBUSDT" and month == "2023-03"):
+        raise ValueError("partial funding-boundary exception is restricted to ARBUSDT 2023-03")
     if not rows:
         raise ValueError("empty funding archive")
     times, intervals, rates = [], [], []
@@ -115,8 +120,8 @@ def validate_funding_rows(rows: list[dict[str, str]], symbol: str, month: str, *
         rate = _finite(row, "last_funding_rate", line)
         if not month_start_ms <= stamp < month_end_ms:
             raise ValueError(f"funding timestamp outside {month} at row {line}")
-        if interval <= 0:
-            raise ValueError(f"non-positive funding interval at row {line}")
+        if interval not in {1, 4, 8}:
+            raise ValueError(f"unsupported funding interval at row {line}; expected 1h, 4h, or 8h")
         times.append(stamp)
         intervals.append(interval)
         rates.append(rate)
@@ -218,7 +223,8 @@ def audit_inputs(root: Path, manifest_path: Path, symbols: list[str], start_mont
                     parsed, member = _read_zip_csv(path)
                     if kind == "klines_1h":
                         validated = validate_kline_rows(
-                            parsed, symbol, month_text, allow_partial_start=(month_text == months[0]))
+                            parsed, symbol, month_text,
+                            allow_partial_start=(symbol == "ARBUSDT" and month_text == months[0]))
                         kline_bounds[(symbol, month_text)] = (
                             int(parsed[0]["open_time"]), int(parsed[-1]["close_time"]))
                     else:
@@ -226,7 +232,7 @@ def audit_inputs(root: Path, manifest_path: Path, symbols: list[str], start_mont
                         validated = validator(
                             parsed, symbol, month_text, expected_start_ms=first_open,
                             expected_end_ms=last_close,
-                            allow_partial_start=(month_text == months[0]
+                            allow_partial_start=(symbol == "ARBUSDT" and month_text == months[0]
                                                  and first_open > _month_bounds(month_text)[0]))
                     row.update({"status": "PASS", "sha256": observed_hash,
                                 "archive_bytes": path.stat().st_size, "csv_member": member, **validated})

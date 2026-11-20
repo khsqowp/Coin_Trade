@@ -46,6 +46,8 @@ def test_partial_first_month_is_allowed_only_as_contiguous_left_truncation():
     assert result["leading_unobserved_hours"] == 31 * 24 - 201
     with pytest.raises(ValueError, match="expected 744"):
         validate_kline_rows(rows, "ARBUSDT", "2023-03")
+    with pytest.raises(ValueError, match="restricted to ARBUSDT 2023-03"):
+        validate_kline_rows(rows, "BTCUSDT", "2023-03", allow_partial_start=True)
 
 
 @pytest.mark.parametrize("mutate,reason", [
@@ -97,3 +99,14 @@ def test_partial_listing_can_start_with_pre_first_hourly_candle_settlement():
         rows, "ARBUSDT", "2023-03", expected_start_ms=partial_kline_start,
         allow_partial_start=True)
     assert result["boundary_checked"] is True
+    with pytest.raises(ValueError, match="restricted to ARBUSDT 2023-03"):
+        validate_funding_rows(
+            rows, "BTCUSDT", "2023-03", expected_start_ms=partial_kline_start,
+            allow_partial_start=True)
+
+
+def test_unsupported_positive_funding_interval_fails_closed():
+    rows = _funding_rows()
+    rows[10] = {**rows[10], "funding_interval_hours": "2"}
+    with pytest.raises(ValueError, match="unsupported funding interval"):
+        validate_funding_rows(rows, "BTCUSDT", "2023-03")
