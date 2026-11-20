@@ -1,0 +1,246 @@
+{
+  "m2": "NOT_MEASURED",
+  "targets": [
+    "AAVEUSDT",
+    "ADAUSDT",
+    "ALGOUSDT",
+    "APTUSDT",
+    "ARBUSDT",
+    "ATOMUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "CRVUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETCUSDT",
+    "FILUSDT",
+    "HBARUSDT",
+    "ICPUSDT",
+    "IMXUSDT",
+    "INJUSDT",
+    "LDOUSDT",
+    "LINKUSDT",
+    "NEARUSDT",
+    "OPUSDT",
+    "QNTUSDT",
+    "SOLUSDT",
+    "STXUSDT",
+    "THETAUSDT",
+    "TRXUSDT",
+    "UNIUSDT",
+    "VETUSDT",
+    "XLMUSDT",
+    "XMRUSDT",
+    "ZECUSDT"
+  ],
+  "cells": {
+    "1": {
+      "development": {
+        "signals": 543936,
+        "symbols": 32,
+        "mean_gross": 0.00010370202388274132,
+        "synchronized_gross_95ci": [
+          -7.81621335055952e-06,
+          0.00021482197315137662
+        ],
+        "mean_net_base": -0.0008952194628362851,
+        "synchronized_net_base_95ci": [
+          -0.0010065052886765174,
+          -0.0007836313654247614
+        ],
+        "mean_net_stress": -0.0028952194628362854,
+        "synchronized_net_stress_95ci": [
+          -0.0030065052886765167,
+          -0.002783631365424761
+        ],
+        "mean_momentum_net_base": -0.0011047805371637164,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0012163686345752394,
+          -0.0009934947113234833
+        ],
+        "mean_momentum_net_stress": -0.003104780537163716,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003216368634575238,
+          -0.0029934947113234825
+        ],
+        "m1_direction_accuracy": 0.516191243087422,
+        "nonoverlap_per_symbol": 543936
+      },
+      "validation_exposed": {
+        "signals": 188160,
+        "symbols": 32,
+        "mean_gross": -1.851493187576391e-05,
+        "synchronized_gross_95ci": [
+          -0.0001741412760543607,
+          0.00013193611748233384
+        ],
+        "mean_net_base": -0.0010181339578111386,
+        "synchronized_net_base_95ci": [
+          -0.0011733791099744703,
+          -0.0008683163153779982
+        ],
+        "mean_net_stress": -0.0030181339578111382,
+        "synchronized_net_stress_95ci": [
+          -0.0031733791099744697,
+          -0.0028683163153779977
+        ],
+        "mean_momentum_net_base": -0.0009818660421888623,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0011316836846220026,
+          -0.0008266208900255306
+        ],
+        "mean_momentum_net_stress": -0.0029818660421888615,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003131683684622001,
+          -0.0028266208900255296
+        ],
+        "m1_direction_accuracy": 0.5032100340136054,
+        "nonoverlap_per_symbol": 188160
+      },
+      "evaluation_previously_exposed": {
+        "signals": 162784,
+        "symbols": 32,
+        "mean_gross": 5.637967202497518e-06,
+        "synchronized_gross_95ci": [
+          -0.00016512667027188176,
+          0.000186733890679889
+        ],
+        "mean_net_base": -0.0009934918696365043,
+        "synchronized_net_base_95ci": [
+          -0.0011642194764337286,
+          -0.000812055619286996
+        ],
+        "mean_net_stress": -0.0029934918696365043,
+        "synchronized_net_stress_95ci": [
+          -0.0031642194764337278,
+          -0.0028120556192869953
+        ],
+        "mean_momentum_net_base": -0.0010065081303634968,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0011879443807130045,
+          -0.0008357805235662724
+        ],
+        "mean_momentum_net_stress": -0.0030065081303634962,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0031879443807130044,
+          -0.002835780523566272
+        ],
+        "m1_direction_accuracy": 0.5008416060546491,
+        "nonoverlap_per_symbol": 162784
+      }
+    },
+    "4": {
+      "development": {
+        "signals": 135968,
+        "symbols": 32,
+        "mean_gross": -0.00014343938150082643,
+        "synchronized_gross_95ci": [
+          -0.0005923071951503398,
+          0.0002621557846097209
+        ],
+        "mean_net_base": -0.0011381990125904952,
+        "synchronized_net_base_95ci": [
+          -0.001585973467157357,
+          -0.0007331432380474529
+        ],
+        "mean_net_stress": -0.0031381990125904946,
+        "synchronized_net_stress_95ci": [
+          -0.0035859734671573563,
+          -0.0027331432380474524
+        ],
+        "mean_momentum_net_base": -0.0008618009874095061,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0012668567619525484,
+          -0.0004140265328426444
+        ],
+        "mean_momentum_net_stress": -0.002861800987409505,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0032668567619525478,
+          -0.0024140265328426434
+        ],
+        "m1_direction_accuracy": 0.5050673687926571,
+        "nonoverlap_per_symbol": 135968
+      },
+      "validation_exposed": {
+        "signals": 47040,
+        "symbols": 32,
+        "mean_gross": 3.1144988919282975e-05,
+        "synchronized_gross_95ci": [
+          -0.0005677129018629549,
+          0.0007192461094021506
+        ],
+        "mean_net_base": -0.000966512325706568,
+        "synchronized_net_base_95ci": [
+          -0.0015621063073941199,
+          -0.0002797364887961918
+        ],
+        "mean_net_stress": -0.0029665123257065678,
+        "synchronized_net_stress_95ci": [
+          -0.00356210630739412,
+          -0.002279736488796191
+        ],
+        "mean_momentum_net_base": -0.0010334876742934332,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0017202635112038096,
+          -0.0004378936926058814
+        ],
+        "mean_momentum_net_stress": -0.0030334876742934332,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003720263511203808,
+          -0.002437893692605881
+        ],
+        "m1_direction_accuracy": 0.4986607142857143,
+        "nonoverlap_per_symbol": 47040
+      },
+      "evaluation_previously_exposed": {
+        "signals": 40672,
+        "symbols": 32,
+        "mean_gross": -0.00030670286988734706,
+        "synchronized_gross_95ci": [
+          -0.0010535547028774725,
+          0.0005595620857599404
+        ],
+        "mean_net_base": -0.0013029613909829418,
+        "synchronized_net_base_95ci": [
+          -0.00204873351568481,
+          -0.0004365909170491179
+        ],
+        "mean_net_stress": -0.0033029613909829414,
+        "synchronized_net_stress_95ci": [
+          -0.004048733515684809,
+          -0.002436590917049117
+        ],
+        "mean_momentum_net_base": -0.0006970386090170595,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0015634090829508833,
+          4.873351568480865e-05
+        ],
+        "mean_momentum_net_stress": -0.0026970386090170596,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0035634090829508823,
+          -0.0019512664843151903
+        ],
+        "m1_direction_accuracy": 0.5038601494885917,
+        "nonoverlap_per_symbol": 40672
+      }
+    }
+  },
+  "symbols_total": 36,
+  "target_symbols": 32,
+  "leaders": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "XRPUSDT",
+    "LTCUSDT"
+  ],
+  "period_start_ms": 1679583600000,
+  "period_end_exclusive_ms": 1780272000000,
+  "data_fingerprint": "cfef7ec135d24a933b8b037bf2c44a2ccbf06f06cf2fc01f140b60f4ced7735e",
+  "source_manifest_sha256": "cfef7ec135d24a933b8b037bf2c44a2ccbf06f06cf2fc01f140b60f4ced7735e",
+  "code_sha256": "bc16e8f017526c2bbc1a01729c4a238285431341b9d54456bca2d7aafcfff402",
+  "command": "/opt/anaconda3/bin/python3 scripts/research/cross_asset_seesaw_screen.py --archive-root /private/tmp/cointrade-50_50-data --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --output-dir docs/research/inventory/runs/cross_asset_seesaw_screen_20261120_v2",
+  "preregistration_sha256": "8c72966e0633f67e06c952f8955cae4465b9d0b718ce580a50e2e807a7ab8319",
+  "exposure_warning": "all historical periods exposed; exploratory rejection/debug only",
+  "causal_mutation": "PASS"
+}

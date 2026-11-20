@@ -1,5 +1,28 @@
 # Phase 8 external strategy research and panel review
 
+## Cross-asset lead-lag follow-up (2026-11-20)
+
+Two primary-study leads point in opposite directions: Jia et al. (2023) report
+negative cross-coin predictability (the “seesaw” effect), while Guo et al.
+(2024) report positive Binance cross-cryptocurrency return predictability.
+These are research hypotheses, not evidence that a simplified hourly rule is
+tradable. A fixed, equal-weight BTC/ETH/XRP/LTC one-hour leader-basket fade was
+therefore preregistered and tested on the verified 36-symbol 1h archive (32
+targets, H=1 and H=4). The recorded run emitted 1,118,560 signals, but average
+gross returns were small and every base/stress net mean was negative; all
+synchronized 7-day block-bootstrap net intervals were below zero. M2 was not
+measured because neither source defines a stop/target barrier for this rule.
+Decision: reject this simple proxy before M2 design; do not generalize that
+decision to every cross-asset model or to the paper results. All history was
+previously exposed, and fee proxies omit spread/slippage.
+
+- Frozen rule: `inventory/PREREG_CROSS_ASSET_SEESAW_SCREEN_20261120.md`.
+- Canonical run: `inventory/runs/cross_asset_seesaw_screen_20261120_v2/`.
+- Earlier generated run output is retained as an intermediate; v2 contains the
+  detailed run metadata and source manifest.
+- Sources: [Jia et al. (2023)](https://doi.org/10.1016/j.jempfin.2023.101428),
+  [Guo et al. (2024)](https://www.sciencedirect.com/science/article/pii/S0165188924000551).
+
 Date: 2026-11-20
 Scope: public SNS, TradingView indicators, public trading communities, and GitHub/agent skills. Historical research only; no orders, deployment, or live signals.
 
