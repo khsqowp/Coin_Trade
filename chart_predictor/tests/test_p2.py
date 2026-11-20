@@ -108,6 +108,57 @@ def test_trade_exits_at_target_and_charges_costs():
     assert result["net_return"] == pytest.approx(.08 - 2 * (.0005 + .0002) * 2)
 
 
+@pytest.mark.parametrize("side,field,value,entry_open,expected", [
+    ("long", "h", 104.5, 100, "TARGET_MISSED_BEFORE_ENTRY"),
+    ("long", "l", 98.5, 98, "INVALIDATION_BEFORE_ENTRY"),
+    ("short", "l", 95.5, 100, "TARGET_MISSED_BEFORE_ENTRY"),
+    ("short", "h", 101.5, 102, "INVALIDATION_BEFORE_ENTRY"),
+])
+def test_m2_does_not_score_barriers_touched_before_delayed_entry(
+        side, field, value, entry_open, expected):
+    frame = frames()
+    frame.loc[30, field] = value
+    frame.loc[31, "o"] = entry_open
+    pred = prediction(frame, "up" if side == "long" else "down", side,
+                      99 if side == "long" else 101)
+    result = score_prediction(pred, frame, entry_delay_candles=2)
+    assert result["m2_exit_reason"] == expected
+    assert result["m2_hit"] is False
+
+
+def test_m2_rejects_entry_open_beyond_target_but_scores_executable_entry():
+    missed = frames()
+    missed.loc[30, "o"] = 105
+    result = score_prediction(prediction(missed, "up", "long", 99), missed)
+    assert result["m2_exit_reason"] == "TARGET_MISSED_BEFORE_ENTRY"
+
+    executable = frames()
+    executable.loc[30, ["o", "h"]] = [101, 104.5]
+    result = score_prediction(prediction(executable, "up", "long", 99), executable)
+    assert result["m2_exit_reason"] == "TARGET"
+    assert result["m2_hit"] is True
+
+    legacy_entry = frames()
+    legacy_entry.loc[30, ["o", "h"]] = [105, 105]
+    result = score_prediction(prediction(legacy_entry, "up", "long", 99), legacy_entry,
+                              entry_delay_candles=0)
+    assert result["m2_exit_reason"] == "TARGET"
+
+
+def test_m2_stats_keep_all_issued_actionable_signals_and_report_non_executable():
+    data = [
+        {"status": "SCORED", "side": "long", "m2_hit": True, "m2_exit_reason": "TARGET", "m1_hit": True, "confidence": .8},
+        {"status": "SCORED", "side": "short", "m2_hit": False, "m2_exit_reason": "TIMEOUT", "m1_hit": False, "confidence": .8},
+        {"status": "SCORED", "side": "long", "m2_hit": False, "m1_hit": False,
+         "m2_exit_reason": "TARGET_MISSED_BEFORE_ENTRY", "confidence": .8},
+    ]
+    result = report(data)["m2_overall"]
+    assert result["n"] == 3 and result["issued_actionable_n"] == 3
+    assert result["executable_n"] == 2
+    assert result["non_executable_n"] == 1
+    assert result["target_first_rate"] == pytest.approx(1 / 3)
+
+
 def test_scorer_liquidation_fees_and_unscorable():
     frame = frames()
     frame.loc[30, ["h", "l"]] = [100.1, 50.0]
@@ -246,7 +297,7 @@ def test_cli_ingest_score_report_roundtrip(tmp_path, monkeypatch, capsys):
     cli.main()
     report_data = json.loads(capsys.readouterr().out)
     assert report_data["overall"]["n"] == 1 and "success" not in report_data
-    assert report_data["scoring_version"] == "target-first-v2"
+    assert report_data["scoring_version"] == "target-first-v3"
     assert report_data["stale_score_count"] == 0
 
 

@@ -25,7 +25,7 @@ WIDTH = {"1m": 60_000, "5m": 300_000, "30m": 1_800_000, "60m": 3_600_000}
 COLS = "t_open_ms,o,h,l,c,v,quote_v,trades"
 BASELINES = ("momentum", "random", "flat", "always_up", "always_down")
 FLAT_MULT = 0.25
-BASELINE_VERSION = "p3a-flat025-v3"
+BASELINE_VERSION = "p3a-flat025-v4-target-first-v3"
 
 
 def _readonly(path):

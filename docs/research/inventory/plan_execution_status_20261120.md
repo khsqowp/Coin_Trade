@@ -292,3 +292,34 @@ symbols and is not raw L2/BBO, it cannot support the fixed >=20-symbol M2
 strategy gate or establish executable fills. Keep depth features excluded;
 Phase 9 and Core remain blocked. Full evidence and hashes:
 `phase8_bookdepth_archive_audit_20261121.md`.
+
+### Phase 8 continuation: expanded minute archive and M2 scorer correction
+
+The full NAS timestamp-grid audit covers 2024-09..2026-10. It found a
+32-symbol cohort with monthly spot/perpetual/mark/funding files; 2024-10..2026-10
+has complete aligned spot/perpetual minute grids, while mark-price data has a
+shared missing UTC day (2026-06-29) and funding first-availability remains
+unresolved. The 2024-09 POL listing is partial. This check only read timestamps,
+did not inspect outcomes, and did not score strategies. Its inline one-off
+implementation is not yet reproducible; before scoring, replace it with a
+committed read-only audit that emits per-file results and hashes. Details:
+`phase8_full_minute_archive_timestamp_audit_20261121.md`.
+
+Code review also found that `target-first-v2` anchored M2 barriers to the
+forecast anchor even though modeled trades enter at the next candle open. New
+`target-first-v3` semantics align M2 with delayed executable entry, record
+pre-entry target/stop touches as non-executable and conservatively count them
+as failures in the full issued-actionable M2 denominator, while preserving old
+score rows. P3a run identity was advanced to isolate outputs under the new scorer version.
+No existing prediction database was re-scored and no performance result was
+generated. Targeted tests have not yet run because the current default Python
+has neither pytest nor NumPy/Pandas installed; use the repository-supported
+environment or provision dependencies before treating the patch as verified.
+The focused scorer, P3a, and archive-audit test set passed 43 tests. The full
+`chart_predictor/tests` collection had 219 passes and one unrelated failure:
+`setup_backtest._code_fingerprint()` requires a missing checkout-local
+`.claude/skills/backtest-expert/scripts/evaluate_backtest.py`; the installed
+skill exists under `~/.codex/skills`, but this task did not rewrite that
+separate dependency. `git diff --check` passed. The NAS audit JSON is committed
+alongside its script/report; it is a FAIL result, not a clean-data approval.
+Core count remains zero and Phase 9 remains blocked.

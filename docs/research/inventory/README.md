@@ -53,3 +53,12 @@ is recorded in
 [`phase8_bookdepth_archive_audit_20261121.md`](phase8_bookdepth_archive_audit_20261121.md).
 It found only BTC/ETH coverage plus confirmed stale-band and incomplete-day
 samples; no strategy score was run.
+
+The full 2024-09..2026-10 Binance minute-archive timestamp-grid audit is
+recorded in `phase8_full_minute_archive_timestamp_audit_20261121.md`. It
+isolates a 32-symbol aligned spot/perpetual cohort, a shared missing mark-price
+day, and unresolved funding timestamp semantics. No strategy was scored. The
+rerunnable audit and its per-file JSON output are
+`scripts/research/audit_crypto_minute_archive.py` and
+`crypto_minute_archive_timestamp_audit_20261121.json`; the current full-union
+status is FAIL due to documented gaps and partial listings.
