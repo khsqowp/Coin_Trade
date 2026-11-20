@@ -16,6 +16,7 @@ from scripts.research.mark_deviation_m2_probe import (
     _rolling_z,
     _wilson,
     barrier_outcome,
+    score_symbol,
     signal_events,
 )
 
@@ -74,6 +75,13 @@ class MarkDeviationProbeTests(unittest.TestCase):
         self.assertTrue(all(event["side"] == -1 for event in events))
         self.assertTrue(all(b["entry_ms"] - a["entry_ms"] >= 20 * 60_000
                             for a, b in zip(events, events[1:])))
+
+    def test_score_symbol_returns_event_and_trigger_counts(self):
+        n = 160
+        values = np.full(n, 100.0)
+        data = self._data(values, values + 1, values - 1, values, start=SCORE_START)
+        rows, accepted, raw, suppressed, invalid = score_symbol(data, "BTCUSDT")
+        self.assertEqual((rows, accepted, raw, suppressed, invalid), ([], 0, 0, 0, 0))
 
     def test_stop_first_when_both_barriers_touch_same_bar(self):
         data = self._data([100] * 12, [101, 103] + [101] * 10,

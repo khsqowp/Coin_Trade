@@ -697,7 +697,7 @@ def run(root: Path, out_dir: Path) -> dict:
     symbol_audits: dict[str, dict] = {}
     for symbol in SYMBOLS:
         data = load_symbol(root, symbol)
-        rows, raw, skipped, invalid_count = score_symbol(data, symbol)
+        rows, accepted_events, raw, skipped, invalid_count = score_symbol(data, symbol)
         all_rows.extend(rows)
         triggers += raw
         suppressed += skipped
@@ -712,7 +712,7 @@ def run(root: Path, out_dir: Path) -> dict:
                                  "raw_triggers": raw,
                                  "lockout_suppressed": skipped,
                                  "invalid_triggers": invalid_count,
-                                 "accepted_events": len(rows) // len(HORIZONS)}
+                                 "accepted_events": accepted_events}
     current_state = hashlib.sha256()
     for path in sorted(_target_paths(root), key=lambda item: item.relative_to(root).as_posix()):
         current_state.update((path.relative_to(root).as_posix() + "\t"
