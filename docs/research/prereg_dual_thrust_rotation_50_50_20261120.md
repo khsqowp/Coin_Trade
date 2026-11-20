@@ -1,7 +1,7 @@
 # Preregistration — fixed 50:50 Dual Thrust + 14/3/8 portfolio diagnostic
 
 Date: 2026-11-20  
-Status: registered before downloading or reading archive OHLC/funding values for this reconstruction.  
+Status: registered before downloading or reading archive OHLC/funding values for this reconstruction; accounting amendment recorded before outcome access.
 Classification: `EXPLORATORY_POST_SELECTION_DIAGNOSTIC`; not independent OOS, not strategy approval, and not a forward result.
 
 ## Objective
@@ -23,7 +23,7 @@ The investment objective remains maximum long-run after-cost compounded wealth a
 
 ### Rotation sleeve
 
-- Use `app/rs_risk_engine.py` unchanged for the position/accounting rules unless a concrete parity defect is found before outcome access. Record source hash and exact configuration.
+- Use `app/rs_risk_engine.py` for the frozen position/accounting rules, with `terminal_liquidation=True`. A pre-outcome synthetic audit found that the engine otherwise leaves the final held position marked-to-market without charging the specified closing fee. This amendment changes only terminal realization: at the last eligible close, realize PnL and charge the configured cost on remaining gross notional. The default remains `False` for legacy callers. Record source hash and exact configuration. No historical outcome values had been downloaded or read when this correction was made.
 - Config: `lookback=14`, `rebal=3`, `K=8`, `lev=1.0`, `deploy=1.0`, `cost=0.001` per traded notional, `funding=True`, no volatility target, no drawdown ladder, no kill switch, no minimum-notional filter, starting NAV 1.0.
 - At each scheduled rebalance, rank eligible symbols by trailing 14-day return; hold top 8 long and bottom 8 short, equal gross notional per side, dollar-neutral. Preserve unchanged-name quantities as the existing engine specifies.
 - Use hourly OHLC extremes for intraday adverse-equity/liquidation diagnostics and exact funding-time rows; missing hourly data remain missing and may not be forward-filled.
@@ -51,8 +51,8 @@ The investment objective remains maximum long-run after-cost compounded wealth a
 1. Reconstruct the exact 45-symbol list from source; assert 45 unique names and verify the frozen SHA-256 above.
 2. Create a manifest for each requested ZIP and checksum sidecar. Download only within the frozen period plus the minimum indicator warm-up; do not inspect post-window price or funding values.
 3. Verify ZIP CRC and SHA-256; parse schema, UTC timestamp units, unique/monotonic rows, 1h continuity, daily aggregation, funding-event timestamps/rates/mark prices, and coverage. Report all holes; never fill them silently.
-4. Add synthetic tests for no lookahead at signal-to-next-open entry, exact-time funding exclusion, exits after 20 sessions, deterministic score ties, same-symbol non-overlap, fee/funding ledger reconciliation, blend identity, exclusive end boundary, and deliberate future-row mutation invariance.
-5. Run the baseline and candidate once. No threshold, universe, cost, start-date, or weight changes after outcomes are read. Any necessary engine correction must be logged before outcome computation and invalidate this registration if it alters a frozen rule.
+4. Add synthetic tests for terminal liquidation cost (including legacy-default invariance), no lookahead at signal-to-next-open entry, exact-time funding exclusion, exits after 20 sessions, deterministic score ties, same-symbol non-overlap, fee/funding ledger reconciliation, blend identity, exclusive end boundary, and deliberate future-row mutation invariance.
+5. Run the baseline and candidate once. No threshold, universe, cost, start-date, or weight changes after outcomes are read. The terminal-realization correction above is the only accounting amendment; any further change to a frozen rule requires a new preregistration before outcomes are read.
 
 ## Decision language
 

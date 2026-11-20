@@ -70,7 +70,8 @@ def _targets(dclose, i, lookback, K):
     return side
 
 
-def simulate(P: dict, cfg: Cfg, d0: int = 0, d1: int | None = None) -> dict:
+def simulate(P: dict, cfg: Cfg, d0: int = 0, d1: int | None = None,
+             terminal_liquidation: bool = False) -> dict:
     H, L, C, F = P["H"], P["L"], P["C"], P["F"]
     nd, _, n = C.shape
     min_per = np.full(n, cfg.min_notional)
@@ -185,6 +186,16 @@ def simulate(P: dict, cfg: Cfg, d0: int = 0, d1: int | None = None) -> dict:
             W -= cost_paid
             if due:
                 last_reb = i
+    # Research comparisons must include the cost of flattening any position at
+    # the final observable close. Keep the legacy default unchanged for callers
+    # that intentionally model a continuing portfolio.
+    if terminal_liquidation and eq_close and not halted and np.any(q != 0):
+        px = np.where(np.isfinite(C[d1 - 1, -1, :]), C[d1 - 1, -1, :], e)
+        close_cost = np.abs(q * px).sum() * cfg.cost
+        W += np.sum(q * (px - e)) - close_cost
+        q[:] = 0.0
+        e[:] = 0.0
+        eq_close[-1] = W
     return _metrics(days, eq_close, eq_worst, buf, cfg, liq_day, halted)
 
 
