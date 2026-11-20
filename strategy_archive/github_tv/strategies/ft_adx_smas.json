@@ -1,0 +1,23 @@
+{
+  "id": "ft_adx_smas",
+  "name": "AdxSmas (ADX gated SMA3/6 cross)",
+  "family": "trend_following",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/AdxSmas.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 1h",
+  "indicators": "ADX(14), SMA(3), SMA(6)",
+  "entry_long": "ADX>25 AND SMA3 crosses above SMA6",
+  "entry_short": null,
+  "exit": "ADX<25 AND SMA6 crosses above SMA3 (i.e. short SMA cross below long)",
+  "stop_loss": "fixed -25%",
+  "take_profit": "minimal_roi {0:10%}",
+  "position_sizing": "n/a",
+  "filters": "ADX>25 on entry",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Exit requires ADX<25 AND cross, so may hold long through whipsaws; ROI/stop do the rest. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

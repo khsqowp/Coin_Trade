@@ -1,0 +1,23 @@
+{
+  "id": "tv_continuous_grid",
+  "name": "Continuous Market Grid bot",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/GoJr2kE4-Continuous-Market-Grid-bot/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "pointalgo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "fixed grid lines between upper/lower limits (20 lines)",
+  "entry_long": "limit buy at each grid price when low <= price",
+  "entry_short": null,
+  "exit": "sell at price + gridStep",
+  "stop_loss": "optional SL price",
+  "take_profit": "one grid step",
+  "position_sizing": "0.1 base per grid",
+  "filters": "range",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Merged conceptually with tv_3commas_grid (different implementation). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

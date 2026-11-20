@@ -1,0 +1,23 @@
+{
+  "id": "ft_reinforced_avg",
+  "name": "ReinforcedAverageStrategy (EMA8/21 + resampled SMA50 filter)",
+  "family": "multi_timeframe",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/ReinforcedAverageStrategy.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 4h",
+  "indicators": "EMA8, EMA21, BB(20,2), SMA(50) on resampled (higher) timeframe",
+  "entry_long": "EMA8 crosses above EMA21 AND close>resampled SMA50 AND volume>0",
+  "entry_short": null,
+  "exit": "EMA21 crosses above EMA8 AND volume>0",
+  "stop_loss": "fixed -20%",
+  "take_profit": "minimal_roi {0:50%}",
+  "position_sizing": "n/a",
+  "filters": "higher-TF SMA50",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Resample interval variable in source; lookahead check needed. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

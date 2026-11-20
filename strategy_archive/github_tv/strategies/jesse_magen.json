@@ -1,0 +1,23 @@
+{
+  "id": "jesse_magen",
+  "name": "MAGen generic MA-cross + ADX gate (ATR stop/TP, long+short)",
+  "family": "trend_following",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/MAGen/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "Jesse community",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "configurable",
+  "indicators": "slow MA (type 11, period 20), fast MA (type 11, period 5), ADX(8), ATR(32)",
+  "entry_long": "fast MA crosses above slow MA AND ADX>13",
+  "entry_short": "fast MA crosses below slow MA AND ADX>13",
+  "exit": "long exit: fast<slow AND ADX<15; short mirror",
+  "stop_loss": "2x ATR",
+  "take_profit": "5x ATR",
+  "position_sizing": "risk 3% via risk_to_qty",
+  "filters": "ADX entry/exit levels",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "MA type index 11 maps to a specific jesse ma type; confirm mapping in jesse docs before porting. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 3
+}

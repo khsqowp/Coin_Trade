@@ -1,0 +1,23 @@
+{
+  "id": "ft_cofibit",
+  "name": "CofiBit (5-EMA channel + fast stoch cross)",
+  "family": "scalping",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/CofiBitStrategy.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "STOCHF(5,3,0,3,0), EMA(5) of high/close/low, ADX(14); buy_fastx=25, buy_adx=25, sell_fastx=75",
+  "entry_long": "open<EMA5(low) AND fastk crosses above fastd AND fastk<25 AND fastd<25 AND ADX>25",
+  "entry_short": null,
+  "exit": "open>=EMA5(high) OR fastk crosses above 75 OR fastd crosses above 75",
+  "stop_loss": "fixed -25%",
+  "take_profit": "minimal_roi {0:10%,20m:7%,30m:6%,40m:5%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Also base of Scalp/SmoothScalp. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 2
+}

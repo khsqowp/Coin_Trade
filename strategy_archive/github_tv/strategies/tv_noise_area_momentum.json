@@ -1,0 +1,23 @@
+{
+  "id": "tv_noise_area_momentum",
+  "name": "$$$ INTRADAY MOMENTUM DIGGA $$$ v1.0 - Noise Area Breakout",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/jiwqijwC-INTRADAY-MOMENTUM-DIGGA-Noise-Area-Breakout/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "PINEDIGGA",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "US index futures / intraday",
+  "indicators": "Noise-area bands from 14-day average of intraday |move| from open; bandMult 1.0; check every 30 min; session 09:30-16:00 NY",
+  "entry_long": "price exits upper noise band at check time",
+  "entry_short": "price exits lower band",
+  "exit": "flat at close / reversion to band (see source)",
+  "stop_loss": "trailing band",
+  "take_profit": "none",
+  "position_sizing": "fixed size",
+  "filters": "session",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Equity index futures style. Needs intraday data. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

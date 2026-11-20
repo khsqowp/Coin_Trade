@@ -1,0 +1,23 @@
+{
+  "id": "pk_double_ema",
+  "name": "Double EMA 9/21 crossover with EMA200 trend",
+  "family": "trend_following",
+  "source_url": "https://github.com/paulcpk/freqtrade-strategies-that-work/blob/main/DoubleEMACrossoverWithTrend.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "paulcpk",
+  "license": "MIT (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 1h",
+  "indicators": "EMA9, EMA21, EMA200",
+  "entry_long": "EMA9 crosses above EMA21 AND low>EMA200",
+  "entry_short": null,
+  "exit": "EMA9 crosses below EMA21 OR low<EMA200",
+  "stop_loss": "fixed -20%",
+  "take_profit": "minimal_roi in file (commented-out alt table); see source",
+  "position_sizing": "n/a",
+  "filters": "low>EMA200",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": " Repo claims strategies 'that work' - claim not verified by me; uses old buy/sell column names.",
+  "backtest_ready_priority": 2
+}

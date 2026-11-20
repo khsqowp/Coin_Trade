@@ -1,0 +1,23 @@
+{
+  "id": "tv_bb_power_squeeze",
+  "name": "BB Power Oscillator + Squeeze Release",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/M6uONKNI-Power-Surge-BB-Momentum-Squeeze-Release/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "BB Power Oscillator (bb_length 14, mult 1, threshold 50); Squeeze (BB 20,2 vs KC 1.5); ATR(30)*1.4; release window 10 bars",
+  "entry_long": "BB power crosses threshold (50) within 10 bars after squeeze release (bullish)",
+  "entry_short": "mirror",
+  "exit": "RR 1.5; break-even at 0.75R then ATR trail 1.5x; max 50 bars",
+  "stop_loss": "ATR(30)*1.4",
+  "take_profit": "1.5R",
+  "position_sizing": "1% risk",
+  "filters": "recent squeeze release",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Oscillator definition (bull/bear power) in source; partially read. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

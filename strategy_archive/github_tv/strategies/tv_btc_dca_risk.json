@@ -1,0 +1,23 @@
+{
+  "id": "tv_btc_dca_risk",
+  "name": "BTC DCA Risk Strategy",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/rGv72PnR-BTC-DCA-Risk-Metric-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "nakphanan",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "risk metric thresholds (buy L1 0.20, L2 0.10, L3 0.00 / sell 1.00, 1.50...) of an external risk metric",
+  "entry_long": "buy tiered $10/$15/$20 when risk metric below thresholds",
+  "entry_short": null,
+  "exit": "sell tiers when metric above 1.0/1.5",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "tiered fixed $",
+  "filters": "risk metric (what metric? see source)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Underlying risk metric identity not captured; could need external data. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

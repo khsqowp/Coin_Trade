@@ -1,0 +1,33 @@
+{
+  "id": "btc-08utc-short-reversal",
+  "name": "BTC 12-hour session allocation: short daytime / reversal nighttime (08 UTC)",
+  "family": "intraday_session_allocation",
+  "source_url": "https://www.mdpi.com/1911-8074/19/9/692",
+  "source_type": "peer_reviewed_paper",
+  "author": "Authors of session strategy study",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTCUSD"
+  ],
+  "timeframes": [
+    "hourly; two 12-hour sessions"
+  ],
+  "indicators": {
+    "daytime session": "[08:00,20:00) UTC",
+    "nighttime session": "[20:00,08:00) UTC",
+    "position choices": "cash (0), fixed long (+1), fixed short (-1), lagged momentum, lagged reversal"
+  },
+  "entry_long": "Daytime leg: Always hold -1 during session. Nighttime leg: Use negative sign of previous return from the same session.",
+  "entry_short": "Daytime leg: Always hold -1 during session. Nighttime leg: Use negative sign of previous return from the same session.",
+  "exit": "Position is set for each session; close/recompute at session boundary.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Unit notional per active session leg in the paper framework.",
+  "filters": "Rule is selected independently for each 12-hour session; momentum and reversal use previous return for that same session.",
+  "claimed_performance": null,
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "This is one of the paper’s 25 non-redundant combinations, not a lookback-parameter variant. The paper evaluates many cutoff hours and reports full-sample selected combinations, creating selection risk. Costs omit venue fees, slippage, funding and taxes.",
+  "backtest_ready_priority": 2
+}

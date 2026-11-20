@@ -1,0 +1,23 @@
+{
+  "id": "jst_dual_thrust",
+  "name": "Dual Thrust intraday opening breakout (flat EOD)",
+  "family": "breakout",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/Dual%20Thrust%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "intraday futures (histdata-style minute data)",
+  "indicators": "range = max(HH-LC, HC-LL) over rg days; upper = open + param*range; lower = open - (1-param)*range",
+  "entry_long": "price crosses above upper at/after open",
+  "entry_short": "price crosses below lower",
+  "exit": "clear all positions at end of day",
+  "stop_loss": "none (explicitly no stop)",
+  "take_profit": "none",
+  "position_sizing": "fixed",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "param default and rg set in main(); merged with jesse_dual_thrust conceptually (different params/impl). Needs minute data. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 2
+}

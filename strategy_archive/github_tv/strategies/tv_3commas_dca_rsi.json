@@ -1,0 +1,23 @@
+{
+  "id": "tv_3commas_dca_rsi",
+  "name": "3Commas DCA Strategy Backtesting [The Quant Science]",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/z15GLfMe-3Commas-DCA-Strategy-Backtesting-The-Quant-Science/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "thequantscience",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "RSI(14) based base order + safety orders (3Commas bot emulation)",
+  "entry_long": "RSI condition -> base order 100000 USDT notional",
+  "entry_short": "short option",
+  "exit": "TP % from avg; safety orders on drops",
+  "stop_loss": "stop options",
+  "take_profit": "TP %",
+  "position_sizing": "base order + safety order scaling",
+  "filters": "date range",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Parameters of safety orders not captured. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

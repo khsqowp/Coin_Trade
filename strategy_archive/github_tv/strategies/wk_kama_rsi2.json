@@ -1,0 +1,23 @@
+{
+  "id": "wk_kama_rsi2",
+  "name": "KamaRsi2 (RSI2 + KAMA 5/200 trend + CCI5 + SAR)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/werkkrew/freqtrade-strategies/blob/main/strategies/archived/KamaRsi2.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "werkkrew",
+  "license": "unknown (no LICENSE file found in repo via GitHub API 404)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 5m",
+  "indicators": "KAMA(5), KAMA(200), CCI(5), RSI(2) on ohlc4, SAR",
+  "entry_long": "buy_price>KAMA200 AND close<KAMA5 AND RSI2<trigger AND CCI5<trigger (method rsi2) and/or buy_price>SAR (trend)",
+  "entry_short": null,
+  "exit": "see source (sell params)",
+  "stop_loss": "-100%",
+  "take_profit": "roi {0:100%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Triggers via buy_params dict in file. Archived strategy; author flagged them archived. Unlicensed - paraphrased only.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ft_quickie",
+  "name": "Quickie (ADX30 TEMA<BB mid, below SMA200)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/Quickie.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "MACD, TEMA(9), SMA200 (also mislabeled sma_50 using 200), ADX, Bollinger(20,2)",
+  "entry_long": "ADX>30 AND TEMA<BB_mid AND TEMA>TEMA[-1] AND SMA200>close",
+  "entry_short": null,
+  "exit": "ADX>70 AND TEMA>BB_mid AND TEMA<TEMA[-1]",
+  "stop_loss": "fixed -25%",
+  "take_profit": "minimal_roi {0:15%... see source: 10m:15%,15m:6%,30m:3%,100m:1%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Note source bug: sma_50 uses timeperiod 200. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ft_volatility_system",
+  "name": "VolatilitySystem (Wilder 2xATR close-to-close breakout)",
+  "family": "volatility",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/futures/VolatilitySystem.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "freqtrade-strategies (file says based on a TradingView script; not opened by me)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 1h",
+  "indicators": "ATR(14)*2.0 on resampled TF; close change",
+  "entry_long": "Long if close_change > ATR[-1]",
+  "entry_short": "Short if close_change*-1 > ATR[-1]",
+  "exit": "reverse on opposite signal",
+  "stop_loss": "stoploss -100% (reversal only)",
+  "take_profit": "roi disabled",
+  "position_sizing": "position adjustment enabled in file",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Stop-and-reverse; resample lookahead check. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 2
+}

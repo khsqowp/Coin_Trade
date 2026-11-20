@@ -1,0 +1,23 @@
+{
+  "id": "tv_orb_15m_fade_or_breakout",
+  "name": "EP001 - 15m Opening Range Audit (Fade vs Breakout)",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/bTnJjVXu-EP001-15m-Opening-Range-Audit-Fade-vs-Breakout/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "CodeTheTruth",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "futures intraday",
+  "indicators": "15m opening range (NY), daily ATR14[1] minimum range 25%, candle pattern (inverted hammer / engulf)",
+  "entry_long": "Breakout mode: close beyond OR high -> long; Fade mode: reject beyond OR with reversal candle",
+  "entry_short": "mirror",
+  "exit": "RR 2.0 (breakout mode)",
+  "stop_loss": "opposite OR edge / 2 ticks offset",
+  "take_profit": "2R",
+  "position_sizing": "default",
+  "filters": "min OR size filter",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Futures-style tick offsets. Title 'Audit (Fade vs Breakout)' - author compares both modes; no performance claim captured. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

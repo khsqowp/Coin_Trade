@@ -1,0 +1,32 @@
+{
+  "id": "btc-spot-long-perp-short-carry",
+  "name": "BTC long spot / short perpetual funding carry",
+  "family": "carry_basis",
+  "source_url": "https://www.andrew.cmu.edu/user/azj/files/CarryTrade.v1.0.pdf",
+  "source_type": "working_paper",
+  "author": "Authors of the cited carry-trade study",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC spot and BTC perpetual futures"
+  ],
+  "timeframes": [
+    "funding interval / continuous"
+  ],
+  "indicators": {
+    "hedge ratio": "equal BTC notional long spot and short perpetual",
+    "carry": "perpetual funding and basis"
+  },
+  "entry_long": "Buy 1 BTC spot and short equal-notional BTC perpetual when expected funding is positive",
+  "entry_short": "Short leg only as hedge; no standalone directional entry",
+  "exit": "Maintain matched notional; exit when carry turns unattractive or hedge constraint binds (exit threshold not specified)",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Dollar-neutral equal-notional legs",
+  "filters": "Check funding sign, margin and venue counterparty",
+  "claimed_performance": "Paper highlights positive carry historically; funding and basis are variable and hedge imperfect.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Source describes trade construction, not entry/exit thresholds. Liquidation on short leg and basis risk remain.",
+  "backtest_ready_priority": 2
+}

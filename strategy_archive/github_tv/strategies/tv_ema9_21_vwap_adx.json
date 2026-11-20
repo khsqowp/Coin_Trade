@@ -1,0 +1,23 @@
+{
+  "id": "tv_ema9_21_vwap_adx",
+  "name": "EMA9/21 VWAP ADX Signals",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/8mQMofKy-EMA9-21-VWAP-ADX-Signals/",
+  "source_type": "tradingview_pine_study",
+  "author": "wonderfulRiceafb80",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "EMA9, EMA21, session VWAP(hlc3), DMI(14) ADX>=20, 15m EMA50 filter (security with lookahead_on on [1] prior values), ATR14 stop x1.5, R=2",
+  "entry_long": "EMA9 > EMA21, price > VWAP, ADX>=20, 15m close>15m EMA50, time 9:45-15:00 ET",
+  "entry_short": "mirror",
+  "exit": "TP 2R",
+  "stop_loss": "1.5 x ATR",
+  "take_profit": "2R",
+  "position_sizing": "n/a",
+  "filters": "time window, HTF 15m",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Uses request.security lookahead_on but references [1] values (valid pattern). Intraday only. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

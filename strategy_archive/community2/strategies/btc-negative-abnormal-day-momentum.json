@@ -1,0 +1,31 @@
+{
+  "id": "btc-negative-abnormal-day-momentum",
+  "name": "BTC continuation trade after negative abnormal return day",
+  "family": "intraday_momentum",
+  "source_url": "https://link.springer.com/article/10.1007/s11408-020-00357-1",
+  "source_type": "peer_reviewed_paper",
+  "author": "Caporale and Plastun",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTCUSD"
+  ],
+  "timeframes": [
+    "intraday, next day"
+  ],
+  "indicators": {
+    "abnormal day": "paper-defined abnormal return threshold; exact cutoff is sample-specific"
+  },
+  "entry_long": "Short at next day start after negative abnormal return",
+  "entry_short": "No long counterpart specified",
+  "exit": "Close at 11:00 same day",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Trigger only after negative abnormal-return day",
+  "claimed_performance": "Paper reports a short-lived pattern; timing estimated from historical data.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Timezone and abnormal-return cutoff require appendix verification.",
+  "backtest_ready_priority": 2
+}

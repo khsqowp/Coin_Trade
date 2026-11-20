@@ -1,0 +1,34 @@
+{
+  "id": "crypto-high-funding-carry-basket",
+  "name": "High-funding short basket hedged with low-funding major",
+  "family": "cross_sectional_carry",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Hyperliquid basket; catalog default BTC/ETH/SOL but candidate basket not defined"
+  ],
+  "timeframes": [
+    "4h"
+  ],
+  "indicators": [
+    "funding rates",
+    "open interest",
+    "long-short ratio",
+    "regime"
+  ],
+  "entry_long": "Short highest positive-funding perps and hedge broad BTC beta with long low-funding major",
+  "entry_short": "Long low-funding major as hedge",
+  "exit": "Rebalance/exit rule not stated",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Beta-hedged, exact ratio unspecified",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Catalog says short crowded high-funding perps and hedge with low-funding major; selection count and thresholds missing.",
+  "backtest_ready_priority": 3
+}

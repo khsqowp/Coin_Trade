@@ -1,0 +1,23 @@
+{
+  "id": "jesse_donchian",
+  "name": "Donchian breakout long-only with SMA200 filter",
+  "family": "breakout",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/Donchian/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "gabrielweich (jesse-strategies)",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, higher TF (results files show 6h)",
+  "indicators": "Donchian channel (default jesse period 20) computed on candles[:-1] (excludes current bar); SMA(200)",
+  "entry_long": "close > previous-bar Donchian upperband AND close > SMA200",
+  "entry_short": null,
+  "exit": "liquidate when close < Donchian lowerband (computed on candles[:-1])",
+  "stop_loss": "none (exit only)",
+  "take_profit": "none",
+  "position_sizing": "full balance via size_to_qty (all-in)",
+  "filters": "close>SMA200",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "All-in sizing; 'lowerband' exit period equals entry period (20) unlike Turtle 10. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 1
+}

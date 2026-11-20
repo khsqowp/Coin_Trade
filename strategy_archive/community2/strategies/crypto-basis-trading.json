@@ -1,0 +1,34 @@
+{
+  "id": "crypto-basis-trading",
+  "name": "Crypto spot-futures basis convergence",
+  "family": "carry_basis",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Crypto spot and dated/perpetual futures"
+  ],
+  "timeframes": [
+    "4h/1d"
+  ],
+  "indicators": [
+    "spot-futures basis",
+    "funding",
+    "open interest",
+    "DTE"
+  ],
+  "entry_long": "Buy cheaper spot/futures leg and short richer leg when basis offers convergence carry",
+  "entry_short": "Opposite hedge leg to equalize underlying exposure",
+  "exit": "Hold for basis convergence; exact threshold and exit absent",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Equal notional hedge intended",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Catalog describes mechanism only; no numeric opening threshold, contract selection, or exit trigger.",
+  "backtest_ready_priority": 3
+}

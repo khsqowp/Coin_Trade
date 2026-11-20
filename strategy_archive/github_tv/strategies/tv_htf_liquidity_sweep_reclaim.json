@@ -1,0 +1,23 @@
+{
+  "id": "tv_htf_liquidity_sweep_reclaim",
+  "name": "HTF Liquidity Sweep Reclaim Pyramid",
+  "family": "market_structure_smc",
+  "source_url": "https://www.tradingview.com/script/L3bsZVys-HTF-Liquidity-Sweep-Reclaim-Pyramid/",
+  "source_type": "tradingview_pine_study",
+  "author": "TaninWiselyWealth",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "range len 3, wait 30, MS len 5, displacement 0.5 ATR, trend len 20, chop <= 61.8, RVOL >=1.2, cooldown 5, pyramid max 3",
+  "entry_long": "sweep of prior low then reclaim of market-structure high (or CISD level) with HTF EMA trend and RVOL>=1.2",
+  "entry_short": "mirror",
+  "exit": "n/a",
+  "stop_loss": "pyramid ticks",
+  "take_profit": "none",
+  "position_sizing": "pyramid up to 3",
+  "filters": "chop index, RVOL",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Lookahead from pivots; check. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

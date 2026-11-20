@@ -1,0 +1,34 @@
+{
+  "id": "upbit-low-volatility-top5",
+  "name": "Upbit Low Volatility Top 5 monthly rotation",
+  "family": "cross_sectional_low_volatility",
+  "source_url": "https://datalab-static.upbit.com/rule_books/UBSI002_Methodology_v1.0.pdf",
+  "source_type": "exchange_index_methodology",
+  "author": "Upbit Index Laboratory",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "Upbit KRW/BTC spot market eligible assets"
+  ],
+  "timeframes": [
+    "daily signal; monthly rebalance"
+  ],
+  "indicators": {
+    "daily return": "close_t / close_t-1 - 1",
+    "volatility": "30-day standard deviation of daily returns",
+    "universe": "UTHI Top 30, exclude value-stable assets and investor-protection flagged assets",
+    "selection": "five lowest 30-day vol"
+  },
+  "entry_long": "At review choose five eligible assets with lowest 30-day return volatility; equal weight",
+  "entry_short": "None; long-only index",
+  "exit": "Reconstitute monthly on second weekday; rebalance at 00:00 UTC",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Equal weight across 5 assets",
+  "filters": "Exclude stable-value assets, non-listed or flagged assets",
+  "claimed_performance": "Methodology specifies index process; it is not a realized investor performance claim.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Confirm the document version and exact monthly review calendar implementation.",
+  "backtest_ready_priority": 1
+}

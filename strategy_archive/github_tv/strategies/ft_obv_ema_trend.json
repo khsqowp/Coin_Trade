@@ -1,0 +1,23 @@
+{
+  "id": "ft_obv_ema_trend",
+  "name": "TrendFollowingStrategy (EMA20 cross + OBV direction)",
+  "family": "trend_following",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/futures/TrendFollowingStrategy.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "freqtrade-strategies",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "EMA(20) via ewm span=20; OBV",
+  "entry_long": "Long: close crosses above EMA20 (close>EMA & close[-1]<=EMA[-1]) AND OBV>OBV[-1]",
+  "entry_short": "Short: mirror cross below AND OBV<OBV[-1]",
+  "exit": "exit_long: close crosses below EMA AND OBV rising(!); exit_short mirror (source ordering)",
+  "stop_loss": "fixed -26.5%",
+  "take_profit": "minimal_roi {0:15%,30m:10%,60m:5%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Exit uses OBV opposite to entry - check intent. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "jesse_simple_bollinger",
+  "name": "SimpleBollinger upper-band breakout in Ichimoku uptrend",
+  "family": "trend_following",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/SimpleBollinger/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "gabrielweich (jesse-strategies)",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "1h",
+  "indicators": "Bollinger Bands on hl2 (jesse defaults 20,2); Ichimoku default cloud",
+  "entry_long": "close > BB upperband AND close > cloud span_a AND span_b",
+  "entry_short": null,
+  "exit": "close < BB middleband (docstring says best result; code uses bb[1]=middle)",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "all-in",
+  "filters": "Ichimoku cloud",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "bb tuple order in jesse is (upper,middle,lower). Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 2
+}

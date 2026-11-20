@@ -1,0 +1,33 @@
+{
+  "id": "btc-ema-5-30",
+  "name": "BTC EMA 5/30 crossover",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "fast EMA": 5,
+    "slow EMA": 30,
+    "input": "close"
+  },
+  "entry_long": "EMA(5) crosses above EMA(30)",
+  "entry_short": "EMA(5) crosses below EMA(30)",
+  "exit": "Close/reverse on opposite cross",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": "Source-reported historical backtest; not independently validated.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Signal confirmation and execution price are not fully specified.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,31 @@
+{
+  "id": "btc-positive-abnormal-day-intraday-fade",
+  "name": "BTC contrarian intraday trade after positive abnormal return day",
+  "family": "intraday_mean_reversion",
+  "source_url": "https://link.springer.com/article/10.1007/s11408-020-00357-1",
+  "source_type": "peer_reviewed_paper",
+  "author": "Caporale and Plastun",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTCUSD"
+  ],
+  "timeframes": [
+    "intraday, daily session"
+  ],
+  "indicators": {
+    "abnormal day": "paper-defined abnormal return threshold; exact cutoff is sample-specific"
+  },
+  "entry_long": "After a positive abnormal return day, short at next day start",
+  "entry_short": "Long side not specified",
+  "exit": "Close at 16:00 same day",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Trigger only after positive abnormal-return day",
+  "claimed_performance": "Paper studies market anomaly; sample timing and threshold dependence apply.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Calendar timezone and abnormal-return threshold need exact appendix extraction; 16:00 market clock is source-defined, timezone not resolved here.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,23 @@
+{
+  "id": "tv_st_ema200_btc1h",
+  "name": "BTCUSD Supertrend + EMA Trend Filter (1H)",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/NgSIfKQx-Bitcoin-SuperFlip-Supertrend-EMA-Trend-Following-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "BTCUSD 1H (per title)",
+  "indicators": "Supertrend(ATR10, factor 1.8); EMA200; optional ADX(14,14)>20",
+  "entry_long": "Supertrend flips bullish (direction change) AND close>EMA200 [AND ADX>20 if enabled]",
+  "entry_short": "Supertrend flips bearish AND close<EMA200",
+  "exit": "opposite flip closes position",
+  "stop_loss": "optional 4% (off by default)",
+  "take_profit": "optional 8% (off by default)",
+  "position_sizing": "default",
+  "filters": "EMA200 trend; optional ADX",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Claimed for BTCUSD 1H. Very simple; solid baseline for flip-based trend. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

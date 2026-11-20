@@ -1,0 +1,33 @@
+{
+  "id": "crypto-carry-with-tail-hedge",
+  "name": "Crypto carry with tail-risk hedge",
+  "family": "carry_basis",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Carry leg paired with protective option structure"
+  ],
+  "timeframes": [
+    "4h/1d"
+  ],
+  "indicators": [
+    "basis",
+    "funding",
+    "options tail hedge"
+  ],
+  "entry_long": "Hold a carry trade while buying downside tail protection; exact structure and triggers not supplied",
+  "entry_short": "Short futures/perpetual against spot as carry leg",
+  "exit": "No exact expiry, rebalance, or unwind rule on index page",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "The index names the hedge concept but full options structure is absent; do not infer strike or tenor.",
+  "backtest_ready_priority": 3
+}

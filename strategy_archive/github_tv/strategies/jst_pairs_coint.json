@@ -1,0 +1,23 @@
+{
+  "id": "jst_pairs_coint",
+  "name": "Engle-Granger cointegration pair trading (z-score)",
+  "family": "pairs_statarb",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/Pair%20trading%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities (e.g. stock vs ETF)",
+  "indicators": "OLS hedge ratio via Engle-Granger two-step; residual z-score",
+  "entry_long": "residual z-score beyond +/- threshold: long underpriced leg, short overpriced",
+  "entry_short": "(simultaneous opposite legs)",
+  "exit": "exit at mean reversion; abandon if cointegration breaks (retest)",
+  "stop_loss": "none stated",
+  "take_profit": "none",
+  "position_sizing": "20000 capital split",
+  "filters": "cointegration test must pass",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Thresholds in code; needs shorting both legs; free data (Yahoo) but equities. Crypto version: pick pairs w/ rolling ADF. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 2
+}

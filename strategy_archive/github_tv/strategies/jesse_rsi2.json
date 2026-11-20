@@ -1,0 +1,23 @@
+{
+  "id": "jesse_rsi2",
+  "name": "Connors RSI(2) with SMA200 trend and SMA5 exit (long+short)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/RSI2/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "FengkieJ",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities-style; crypto test",
+  "indicators": "RSI(2); SMA(5); SMA(200); thresholds 10/90",
+  "entry_long": "price>SMA200 AND RSI(2)<=10",
+  "entry_short": "price<SMA200 AND RSI(2)>=90",
+  "exit": "long exit price>SMA5; short exit price<SMA5",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "all-in",
+  "filters": "SMA200",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Faithful Connors RSI2. Reference: StockCharts ChartSchool. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 1
+}

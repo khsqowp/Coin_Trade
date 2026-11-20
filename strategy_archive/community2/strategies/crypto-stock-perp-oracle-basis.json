@@ -1,0 +1,34 @@
+{
+  "id": "crypto-stock-perp-oracle-basis",
+  "name": "Equity-index perp versus cash-market open basis reversal",
+  "family": "cross_market_basis",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "On-chain equity-index perps and referenced cash/oracle market"
+  ],
+  "timeframes": [
+    "15m"
+  ],
+  "indicators": [
+    "perp basis",
+    "funding",
+    "US market calendar",
+    "15m price bars"
+  ],
+  "entry_long": "Trade against on-chain perpetual drift accumulated while NYSE is closed, anticipating reversion toward oracle/cash reference when market opens",
+  "entry_short": "Mirror short/long according to signed perp premium",
+  "exit": "Close as cash-market arbitrage anchor returns at NYSE open",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not stated",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Catalog mechanism only; index page does not specify premium threshold, listed instruments, or entry/close timing precisely.",
+  "backtest_ready_priority": 3
+}

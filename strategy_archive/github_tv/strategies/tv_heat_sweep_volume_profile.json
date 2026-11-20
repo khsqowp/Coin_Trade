@@ -1,0 +1,23 @@
+{
+  "id": "tv_heat_sweep_volume_profile",
+  "name": "Heat Sweep | Volume Heatmap Liquidity Strategy",
+  "family": "market_structure_smc",
+  "source_url": "https://www.tradingview.com/script/FjletcWZ-Heat-Sweep-Volume-Heatmap-Liquidity-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "volume heatmap profile (100 bars, 30 rows), min heat 0.25, band 2.5 sigma, swing len 3, relative volume >=1.0",
+  "entry_long": "liquidity sweep of high-heat level then reclaim OR POC reclaim -> long",
+  "entry_short": "mirror",
+  "exit": "target/stop by ATR",
+  "stop_loss": "ATR",
+  "take_profit": "RR",
+  "position_sizing": "default",
+  "filters": "VWAP location filter optional",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Volume-profile build is heavy; pivot (swing len 3) lookahead. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

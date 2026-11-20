@@ -1,0 +1,23 @@
+{
+  "id": "jst_london_breakout",
+  "name": "London Breakout (Tokyo last-hour range, 30m confirm)",
+  "family": "breakout",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/London%20Breakout%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "FX 1-minute",
+  "indicators": "threshold = high/low of last hour before London open (EST 02:00-03:00); open_minutes=30; risky_stop=0.01 (target/stop 50bp, 200bp max)",
+  "entry_long": "price breaks above range high during first 30 min of London open",
+  "entry_short": "breaks below low",
+  "exit": "target/stop 50 bps; flat at end of London session",
+  "stop_loss": "~50bp",
+  "take_profit": "~50bp",
+  "position_sizing": "fixed",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Time-zone/DST handling is manual in source (histdata is EST without DST). FX data not crypto; crypto analogue would use Asia/EU session. Needs minute data. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 2
+}

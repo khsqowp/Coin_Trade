@@ -1,0 +1,32 @@
+{
+  "id": "btc-keltner-35-break",
+  "name": "BTC Keltner channel breakout (35-period)",
+  "family": "volatility_breakout",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "center": "35-period moving average",
+    "band": "center ± 2 × volatility"
+  },
+  "entry_long": "Close above center + 2×volatility",
+  "entry_short": "No short rule specified",
+  "exit": "Exit when price returns to center",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Long only",
+  "claimed_performance": "Source reports historical backtest; calculation details/costs unclear.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Volatility measure and smoothing are unspecified; article states 35-period average plus/minus 2 volatility.",
+  "backtest_ready_priority": 2
+}

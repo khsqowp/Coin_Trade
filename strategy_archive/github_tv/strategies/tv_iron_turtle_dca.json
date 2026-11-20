@@ -1,0 +1,23 @@
+{
+  "id": "tv_iron_turtle_dca",
+  "name": "AlphaVault - Iron Turtle 1D v2.00",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/jVO15KW9-AlphaVault-Iron-Turtle-1D-v2-00/",
+  "source_type": "tradingview_pine_study",
+  "author": "NeuralKinetiq",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "SMA200 daily, EMA20 weekly regime confirm 2 bars; buy tranche $100 every 7 bars in bull regime",
+  "entry_long": "bull regime (close>SMA200D & close>EMA20W, confirmed 2 bars): DCA 100 USD every 7 days",
+  "entry_short": null,
+  "exit": "bear regime: stop buying / reduce",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "fixed tranche",
+  "filters": "regime",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Regime uses weekly EMA via security() - check lookahead_off. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

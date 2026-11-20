@@ -1,0 +1,23 @@
+{
+  "id": "tv_rolling_z_reversion",
+  "name": "Rolling Z Score Reversion Map [Pineify]",
+  "family": "mean_reversion",
+  "source_url": "https://www.tradingview.com/script/XaCB6ar0-Rolling-Z-Score-Reversion-Map-Pineify/",
+  "source_type": "tradingview_pine_study",
+  "author": "Pineify",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "rolling z-score (length 100), entry |z|>=2.0, invalidation |z|>3.5, watch 40 bars, ATR rank 200, slope 20",
+  "entry_long": "z <= -2.0 (watch), then confirmation; exit at mean cross",
+  "entry_short": "z >= +2.0",
+  "exit": "exit when z crosses 0",
+  "stop_loss": "z beyond 3.5 invalidates",
+  "take_profit": "mean (z=0)",
+  "position_sizing": "n/a",
+  "filters": "trend slope filter (maxContinuation 0.55)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Confirmation condition truncated. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

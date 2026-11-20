@@ -1,0 +1,23 @@
+{
+  "id": "jst_heikin_ashi",
+  "name": "Heikin-Ashi momentum with stop-loss limit on stacked entries",
+  "family": "trend_following",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/Heikin-Ashi%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities",
+  "indicators": "Heikin-Ashi OHLC; stls=3 caps number of stacked longs",
+  "entry_long": "HA candle patterns (see code: bullish no-lower-wick candle after bearish etc.)",
+  "entry_short": "symmetrical short",
+  "exit": "opposite pattern",
+  "stop_loss": "stacked-position cap (stls=3)",
+  "take_profit": "none",
+  "position_sizing": "unit positions, capital0 10000",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Rule detail per quantiacs article referenced in code; verify. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 3
+}

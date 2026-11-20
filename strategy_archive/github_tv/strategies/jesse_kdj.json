@@ -1,0 +1,23 @@
+{
+  "id": "jesse_kdj",
+  "name": "KDJ J>K,D long (1D) with ATR trailing",
+  "family": "momentum",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/KDJstrategy/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "matty5690 (example-strategies)",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "1D, BTC-USDT",
+  "indicators": "KDJ default params (jesse ta.kdj); ATR(14)",
+  "entry_long": "J > K and J > D (source writes `J > (K and D)` which evaluates to J > D - ambiguity)",
+  "entry_short": null,
+  "exit": "close if J<K,D... (source: J<(K and D)), or if profitable and J declining",
+  "stop_loss": "2x ATR stop (labelled trailing, set once at entry)",
+  "take_profit": "none",
+  "position_sizing": "risk 5% of capital via risk_to_qty",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Source Python uses `a > (b and c)`, which is NOT a double comparison. Decide intended semantics before testing. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 3
+}

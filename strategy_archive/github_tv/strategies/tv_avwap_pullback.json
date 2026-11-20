@@ -1,0 +1,23 @@
+{
+  "id": "tv_avwap_pullback",
+  "name": "AVWAP Pullback Glow [Strategy]",
+  "family": "mean_reversion",
+  "source_url": "https://www.tradingview.com/script/Bvb4nAAT-GlowVwap-Anchored-VWAP-Pullback-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Anchored VWAP (daily/other anchor) with sigma bands; pullback within 0.5 sigma; ATR",
+  "entry_long": "trend in direction + low within pullZ=0.5 sigma of VWAP -> long",
+  "entry_short": "mirror",
+  "exit": "target 2R; breakeven at 1R; flat at new anchor",
+  "stop_loss": "beyond VWAP by 1.0 sigma (min 0.75xATR, skip if >3xATR)",
+  "take_profit": "2R",
+  "position_sizing": "0.5% risk, max trades per anchor 2",
+  "filters": "anchor mode",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Anchored VWAP series recomputed per anchor; check intraday data access (volume). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

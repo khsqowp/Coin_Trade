@@ -1,0 +1,23 @@
+{
+  "id": "tv_trend_safety_switch",
+  "name": "Trend Safety Switch",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/522xf0n5-Trend-Safety-Switch/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "KivancOzbilgic",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Supertrend(ATR10 x3 on hl2); risk-off votes: VIX percentile(252)>=80, close<MA200, drawdown from 252-high >15%; riskVotes=2",
+  "entry_long": "Supertrend up-flip (long/ re-enter)",
+  "entry_short": null,
+  "exit": "on down-flip: keep 30% in healthy regime else exit; risk-off when >=2 of 3 warnings",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "scale in/out (pyramiding 10)",
+  "filters": "VIX (CBOE:VIX external symbol)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Needs VIX data (free). Partial sizing logic not captured. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

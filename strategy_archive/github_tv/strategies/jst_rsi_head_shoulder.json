@@ -1,0 +1,23 @@
+{
+  "id": "jst_rsi_head_shoulder",
+  "name": "RSI pattern recognition (head-shoulder in RSI), exit +4 RSI or 5 days",
+  "family": "candlestick_pattern",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/RSI%20Pattern%20Recognition%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities",
+  "indicators": "RSI (Wilder smoothed); head/shoulder node search with delta tolerances; entry_rsi; exit_days 5; exit_rsi +4",
+  "entry_long": "inverse head-and-shoulders formation on RSI",
+  "entry_short": "H&S top on RSI",
+  "exit": "exit after 5 days or RSI +4 from entry",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "fixed",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Author states the exit is a lazy placeholder. Pattern thresholds in code. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 3
+}

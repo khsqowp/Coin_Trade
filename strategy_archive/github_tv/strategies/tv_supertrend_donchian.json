@@ -1,0 +1,23 @@
+{
+  "id": "tv_supertrend_donchian",
+  "name": "Supertrend Donchian Breakout",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/FDeprmix-TrendLock-Multi-Timeframe-Supertrend-Donchian-Breakout/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Supertrend(ATR10, factor 3.0); HTF Supertrend (240m) via request.security lookahead_off; Donchian(20) on prior bar [1]; volume SMA20 x1.5; ATR14",
+  "entry_long": "Supertrend up AND (HTF ST up if enabled) AND close > Donchian lower[1] (sic - source tests close>lower channel, likely meant upper) AND volume > 1.5*SMA20(volume)",
+  "entry_short": "short disabled by default (mirror)",
+  "exit": "exit on Supertrend flip (enabled) or stop/target",
+  "stop_loss": "2.0 x ATR14",
+  "take_profit": "3.0 x ATR14",
+  "position_sizing": "strategy default",
+  "filters": "HTF ST agreement; volume spike",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Possible logic bug: long uses `close > lower_channel` while upper_channel is computed; verify. Slippage=2 set. Entry on close of signal bar. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

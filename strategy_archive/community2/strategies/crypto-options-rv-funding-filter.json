@@ -1,0 +1,35 @@
+{
+  "id": "crypto-options-rv-funding-filter",
+  "name": "Crypto options relative-value with funding filter",
+  "family": "options_relative_value",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC/ETH options and perpetuals"
+  ],
+  "timeframes": [
+    "4h"
+  ],
+  "indicators": [
+    "implied volatility",
+    "DVOL",
+    "funding rate",
+    "open interest",
+    "realized volatility"
+  ],
+  "entry_long": "Enter relative-value options position only when volatility mispricing and funding filter align; exact structure/threshold absent",
+  "entry_short": "Depends on relative-value spread direction",
+  "exit": "No exit or expiry management rule on catalog page",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Catalog provides strategy title and input list only; not enough to determine a trade without the playbook.",
+  "backtest_ready_priority": 3
+}

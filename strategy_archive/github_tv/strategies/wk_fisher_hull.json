@@ -1,0 +1,23 @@
+{
+  "id": "wk_fisher_hull",
+  "name": "FisherHull (HMA14 falling + CCI + Fisher RSI)",
+  "family": "oscillator_combo",
+  "source_url": "https://github.com/werkkrew/freqtrade-strategies/blob/main/strategies/archived/FisherHull.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "werkkrew",
+  "license": "unknown (no LICENSE file found in repo via GitHub API 404)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 1m",
+  "indicators": "HMA(14), CCI(14), RSI(14) Fisher",
+  "entry_long": "HMA falling AND CCI<=-50 AND fisher_rsi<-0.5",
+  "entry_short": null,
+  "exit": "HMA rising AND CCI>=100 AND fisher_rsi>0.5",
+  "stop_loss": "-27.7%",
+  "take_profit": "roi {0:100000%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Contrarian on HMA slope; 1m. Archived strategy; author flagged them archived. Unlicensed - paraphrased only.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crypto-funding-conditioned-vol-selling",
+  "name": "Funding-conditioned options volatility selling",
+  "family": "options_carry",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC, ETH, SOL unless a specific playbook changes universe"
+  ],
+  "timeframes": [
+    "4h or 1d as catalog-pinned per strategy"
+  ],
+  "indicators": [
+    "funding rate",
+    "DVOL",
+    "30-day realized volatility"
+  ],
+  "entry_long": "Sell BTC/ETH options only if funding >= 0.03% per 8h and DVOL exceeds trailing 30-day realized volatility by a minimum threshold",
+  "entry_short": "Short volatility exposure; precise options structure not given",
+  "exit": "Catalog page directs readers to separate playbooks for full rules.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Catalog default prompt asks 1% equity risk/trade; not a definitive strategy sizing rule.",
+  "filters": "No explicit close/expiry management rule on index page",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Funding gate is explicit; IV-RV threshold and option structure are not.",
+  "backtest_ready_priority": 3
+}

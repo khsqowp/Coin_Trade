@@ -1,0 +1,23 @@
+{
+  "id": "tv_fib_ote_pullback",
+  "name": "Fib OTE Pullback Strategy [Evidence-Gated]",
+  "family": "market_structure_smc",
+  "source_url": "https://www.tradingview.com/script/XsajQlvh-Fib-OTE-Sniper-Supertrend-Pullback-Strategy-with-Fib-Zones/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Supertrend(10,3.0) trend; swing legs >=2 ATR; OTE zone 0.382-0.786 of leg; stop buffer 0.5 ATR; min RR 1 to T1",
+  "entry_long": "in uptrend: price enters 38.2-78.6% retrace zone and shows evidence gate -> long",
+  "entry_short": "mirror",
+  "exit": "targets T1.. at prior swing",
+  "stop_loss": "beyond pullback extreme + 0.5 ATR",
+  "take_profit": "swing T1 (RR>=1)",
+  "position_sizing": "1% risk",
+  "filters": "evidence gate",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Evidence-gating details not captured; swing detection uses pivots (lookahead of right bars!). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

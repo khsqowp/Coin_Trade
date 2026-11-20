@@ -1,0 +1,82 @@
+id,name,family,source_url,evidence_quality,mechanical_spec_complete,priority
+btc-08utc-cash-cash,BTC 12-hour session allocation: cash daytime / cash nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-cash-long,BTC 12-hour session allocation: cash daytime / long nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-cash-short,BTC 12-hour session allocation: cash daytime / short nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-long-cash,BTC 12-hour session allocation: long daytime / cash nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-long-long,BTC 12-hour session allocation: long daytime / long nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-long-momentum,BTC 12-hour session allocation: long daytime / momentum nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-long-reversal,BTC 12-hour session allocation: long daytime / reversal nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-long-short,BTC 12-hour session allocation: long daytime / short nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-momentum-long,BTC 12-hour session allocation: momentum daytime / long nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-momentum-reversal,BTC 12-hour session allocation: momentum daytime / reversal nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-momentum-short,BTC 12-hour session allocation: momentum daytime / short nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-reversal-long,BTC 12-hour session allocation: reversal daytime / long nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-reversal-momentum,BTC 12-hour session allocation: reversal daytime / momentum nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-reversal-short,BTC 12-hour session allocation: reversal daytime / short nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-short-cash,BTC 12-hour session allocation: short daytime / cash nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-short-long,BTC 12-hour session allocation: short daytime / long nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-short-momentum,BTC 12-hour session allocation: short daytime / momentum nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-short-reversal,BTC 12-hour session allocation: short daytime / reversal nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-08utc-short-short,BTC 12-hour session allocation: short daytime / short nighttime (08 UTC),intraday_session_allocation,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-12h-momentum-momentum-08,BTC 12-hour momentum in both sessions (08 UTC),intraday_momentum,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-12h-reversal-reversal-08,BTC 12-hour reversal in both sessions (08 UTC),intraday_reversal,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-adx-di-24-9,BTC directional movement with ADX gate,trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-bollinger-37-16,BTC Bollinger upper-band breakout and midline exit,volatility_breakout,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-day-momentum-night-cash-08,"BTC daytime momentum, nighttime cash (08 UTC)",intraday_momentum,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-day-reversal-night-cash-08,"BTC daytime reversal, nighttime cash (08 UTC)",intraday_reversal,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-donchian-37-6,BTC Donchian breakout 37/6,trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-ema-5-30,BTC EMA 5/30 crossover,trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-keltner-35-break,BTC Keltner channel breakout (35-period),volatility_breakout,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,false,2
+btc-macd-15-41-12,"BTC MACD (15,41,12) crossover",trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-negative-abnormal-day-momentum,BTC continuation trade after negative abnormal return day,intraday_momentum,https://link.springer.com/article/10.1007/s11408-020-00357-1,peer_reviewed,false,2
+btc-night-momentum-day-cash-08,"BTC nighttime momentum, daytime cash (08 UTC)",intraday_momentum,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-night-reversal-day-cash-08,"BTC nighttime reversal, daytime cash (08 UTC)",intraday_reversal,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+btc-parabolic-sar,BTC Parabolic SAR flip,trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,false,3
+btc-positive-abnormal-day-intraday-fade,BTC contrarian intraday trade after positive abnormal return day,intraday_mean_reversion,https://link.springer.com/article/10.1007/s11408-020-00357-1,peer_reviewed,false,2
+btc-roc-36-9pct,BTC ROC threshold trend rule,time_series_momentum,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+btc-sma-1-136,BTC SMA crossover 1/136,trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,3
+btc-spot-long-perp-short-carry,BTC long spot / short perpetual funding carry,carry_basis,https://www.andrew.cmu.edu/user/azj/files/CarryTrade.v1.0.pdf,peer_reviewed,false,2
+btc-supertrend-3-32,"BTC Supertrend reversal (3, 3.2)",trend,https://sleepwelltrade.com/backtest/bitcoin/,backtest_shown,true,2
+commodity-futures-roll-momentum-double-sort,Commodity futures roll-yield and momentum double-sort,cross_sectional_carry_momentum,https://alphaarchitect.com/improving-commodity-strategies-with-momentum-and-term-structure/,peer_reviewed,true,2
+connors-rsi2-trend-pullback,Connors RSI(2) trend pullback,mean_reversion,https://chartschool.stockcharts.com/table-of-contents/trading-strategies-and-models/trading-strategies/rsi-2,anecdote,false,2
+crypto-15m-previous-candle-contrarian,Crypto 15-minute prior-candle sign reversal,intraday_mean_reversion,https://arxiv.org/abs/2608.21888,peer_reviewed,true,1
+crypto-basis-trading,Crypto spot-futures basis convergence,carry_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-carry-with-tail-hedge,Crypto carry with tail-risk hedge,carry_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-cash-carry-arb,Crypto dated-futures cash-and-carry,carry_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-crowded-long-funding-fade,Crowded-long funding fade basket,funding_contrarian,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-crowded-short-funding-fade,Crowded-short funding fade basket,funding_contrarian,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-funding-conditioned-vol-selling,Funding-conditioned options volatility selling,options_carry,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-funding-filtered-momentum,Funding-filtered crypto momentum,momentum_funding_filter,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-funding-flush-reversal,Funding flush reversal,funding_mean_reversion,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-funding-vs-basis-rotation,Funding vs basis rotation,carry_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-funding-window-timing,Funding window timing,event_driven_carry,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-high-funding-carry-basket,High-funding short basket hedged with low-funding major,cross_sectional_carry,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-hl-cex-funding-divergence,Hyperliquid versus CEX funding spread arbitrage,cross_venue_carry,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-options-rv-funding-filter,Crypto options relative-value with funding filter,options_relative_value,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-pairs-funding-differential,Cointegrated pair with funding differential gate,pairs_trading,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-pure-momentum-bottom2-top2,Crypto cross-sectional long-short 24-hour lagged return rank,cross_sectional_momentum,https://cesare-fracassi.github.io/files/pdf/Research/Fracassi_Lee_Kogan_2025.pdf.pdf,backtest_shown,true,2
+crypto-stock-perp-oracle-basis,Equity-index perp versus cash-market open basis reversal,cross_market_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-synthetic-perp-funding-basis,Synthetic-perp skew funding and oracle-lag basis harvest,defi_arbitrage,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-trend-aware-carry,Trend-aware spot-perpetual carry,carry_basis,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+crypto-weekend-gated-7d-momentum,"Crypto 7-day momentum, weekend-only exposure",seasonality_momentum,https://acr-journal.com/article/the-weekend-effect-in-crypto-momentum-does-momentum-change-when-markets-never-sleep--1514/,peer_reviewed,true,2
+crypto-whale-copy-funding-filter,Whale accumulation with flat/negative funding confirmation,onchain_flow_momentum,https://cryptodataapi.com/trading-strategies/funding-carry-basis,anecdote,false,3
+elder-triple-screen,"Elder Triple Screen with MACD trend, oscillator pullback, stop entry",multi_timeframe_trend,https://roboforex.com/blog/education/triple-screen-trading-system-how-to/,anecdote,false,2
+eth-12h-long-reversal-05,ETH fixed long daytime / overnight reversal (05 UTC),intraday_session,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+eth-day-reversal-night-cash-05,"ETH daytime reversal, nighttime cash (05 UTC)",intraday_reversal,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+eth-night-momentum-day-cash-05,"ETH nighttime momentum, daytime cash (05 UTC)",intraday_momentum,https://www.mdpi.com/1911-8074/19/9/692,peer_reviewed,true,2
+keltner-first-close-20-2,Keltner first-close breakout with signal-bar stop and 2R,volatility_breakout,https://therighttrader.com/learn/indicator-strategies/keltner-channel-breakout,anecdote,true,2
+keltner-original-10day-range,Original Keltner 10-day typical-price channel rule,channel_breakout,https://therighttrader.com/learn/indicator-strategies/keltner-channel-breakout,anecdote,false,3
+kimchi-premium-fx-regression-arbitrage,Kimchi premium mean reversion with FX forecast filter,statistical_arbitrage,https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003011145,peer_reviewed,false,3
+kimchi-premium-spatial-arbitrage,Pre-funded cross-exchange kimchi-premium spatial arbitrage,cross_exchange_arbitrage,https://www.jdfr.or.kr/0301-04/,anecdote,false,3
+qqq-btc-donchian-rotation,QQQ/BTC Donchian breakout rotation with cash fallback,cross_asset_rotation,https://quantpedia.com/silicon-vs-satoshi-tactical-asset-rotation-between-nasdaq-100-and-bitcoin/?a=6080,backtest_shown,true,2
+raschke-holy-grail,Raschke Holy Grail pullback,trend_pullback,https://edgelabtrading.com/blog/holy-grail-trading-strategy/,anecdote,true,2
+rsi7-30-70-fixed20,Wilder RSI(7) 30/70 reversal with 20-session time exit,mean_reversion,https://forexmt4systems.com/guides/quantitative-trading/,backtest_shown,true,2
+sma-30-150-always-in,Always-in SMA 30/150 long-short crossover,trend,https://forexmt4systems.com/guides/quantitative-trading/,backtest_shown,true,2
+turtle-system-1,Original Turtle System 1 breakout with skip filter,trend,https://ungeracademy.com/blog/turtle-trading-rules,backtest_shown,true,1
+turtle-system-2,Original Turtle System 2 55-day breakout,trend,https://ungeracademy.com/blog/turtle-trading-rules,backtest_shown,true,1
+upbit-30m-spike-chase-10pct,Upbit 30-minute +10% spike chase with 15% peak drawdown exit,momentum_breakout,https://www.investfactcheck.com/articles/crypto-surge-chasing/,backtest_shown,true,2
+upbit-eth-ma-cross-study,Upbit ETH moving-average cross strategy (study description),trend,https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002945896,peer_reviewed,false,3
+upbit-eth-volatility-breakout-close,Upbit ETH daily volatility breakout with same-day close,volatility_breakout,https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002945896,peer_reviewed,false,3
+upbit-low-volatility-top5,Upbit Low Volatility Top 5 monthly rotation,cross_sectional_low_volatility,https://datalab-static.upbit.com/rule_books/UBSI002_Methodology_v1.0.pdf,backtest_shown,true,1
+upbit-stochrsi-15m-cross,Upbit StochRSI extreme cross screener,oscillator_reversal,https://bitlogic.info/blog/upbit-screener-korean-market/,anecdote,false,3
+upbit-vwap-intraday-rules,Upbit session VWAP trend and dip-reversion family,vwap_intraday,https://spreadatlas.com/indicators/vwap/,backtest_shown,true,2

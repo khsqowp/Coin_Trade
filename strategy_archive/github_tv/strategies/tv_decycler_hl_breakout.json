@@ -1,0 +1,23 @@
+{
+  "id": "tv_decycler_hl_breakout",
+  "name": "Decycler High-Low Breakout",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/dOcUNfyv-Decycler-High-Low-Breakout-SchizoQuant/",
+  "source_type": "tradingview_pine_study",
+  "author": "SchizoQuant",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Ehlers Decycler period 115; ATR14; channel padding 0.1; slope length 3, slope confirm 0.05",
+  "entry_long": "close breaks decycler high channel with slope >= 0.05 ATR-norm",
+  "entry_short": "low channel",
+  "exit": "trend flip",
+  "stop_loss": "channel",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "slope",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Decycler is causal HP-filter complement. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,31 @@
+{
+  "id": "upbit-eth-ma-cross-study",
+  "name": "Upbit ETH moving-average cross strategy (study description)",
+  "family": "trend",
+  "source_url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002945896",
+  "source_type": "peer_reviewed_paper",
+  "author": "Lee Yumin and Lee Minhyuk",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "ETH KRW spot on Upbit"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "moving averages": "periods unspecified in accessible abstract"
+  },
+  "entry_long": "Moving averages cross bullishly",
+  "entry_short": "Moving averages cross bearishly",
+  "exit": "Close/reverse on opposite cross",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": "Study compares strategy family; parameter details unavailable from abstract.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "No lookahead-free fill rule or MA lengths in the accessible abstract.",
+  "backtest_ready_priority": 3
+}

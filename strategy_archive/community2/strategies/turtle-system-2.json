@@ -1,0 +1,33 @@
+{
+  "id": "turtle-system-2",
+  "name": "Original Turtle System 2 55-day breakout",
+  "family": "trend",
+  "source_url": "https://ungeracademy.com/blog/turtle-trading-rules",
+  "source_type": "rulebook_summary",
+  "author": "Unger Academy (Curtis Faith rules summarized)",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid futures"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "entry Donchian": 55,
+    "exit Donchian": 20,
+    "N": "Wilder-smoothed 20-day true range"
+  },
+  "entry_long": "Buy above prior 55-day high",
+  "entry_short": "Sell below prior 55-day low",
+  "exit": "Long exit at 20-day low; short exit at 20-day high",
+  "stop_loss": "2N from entry",
+  "take_profit": "None fixed",
+  "position_sizing": "Volatility-normalized units based on N; add 1 unit per 0.5N favorable move, max 4 units",
+  "filters": "Take all signals regardless of previous outcome",
+  "claimed_performance": "Original rulebook family; no performance claim.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Intraday break trigger and gap handling should use the original rules.",
+  "backtest_ready_priority": 1
+}

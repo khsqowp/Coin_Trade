@@ -1,0 +1,32 @@
+{
+  "id": "crypto-15m-previous-candle-contrarian",
+  "name": "Crypto 15-minute prior-candle sign reversal",
+  "family": "intraday_mean_reversion",
+  "source_url": "https://arxiv.org/abs/2608.21888",
+  "source_type": "preprint",
+  "author": "Nadav A. Kitron and Jonathan M. Wengrowicz",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Binance spot pairs"
+  ],
+  "timeframes": [
+    "15-minute"
+  ],
+  "indicators": {
+    "signal": "sign of previous candle return",
+    "holding horizon": "next 15-minute interval"
+  },
+  "entry_long": "If prior 15m close-to-close return < 0, take long for next interval",
+  "entry_short": "If prior 15m return > 0, take short for next interval",
+  "exit": "Flatten at next 15m close; recompute each bar",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Unit notional in descriptive signal test",
+  "filters": "No extra filter",
+  "claimed_performance": "Preprint reports gross edge around 1.3 bp/trade, below a 5 bp round-trip benchmark cost; not cost-positive at stated benchmark.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "High-frequency execution costs dominate; paper emphasizes sign prediction/AUC rather than a net executable strategy.",
+  "backtest_ready_priority": 1
+}

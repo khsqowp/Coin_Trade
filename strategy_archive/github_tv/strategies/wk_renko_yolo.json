@@ -1,0 +1,23 @@
+{
+  "id": "wk_renko_yolo",
+  "name": "RenkoYolo (ADX90 + Aroon60)",
+  "family": "trend_following",
+  "source_url": "https://github.com/werkkrew/freqtrade-strategies/blob/main/strategies/archived/RenkoYolo.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "werkkrew",
+  "license": "unknown (no LICENSE file found in repo via GitHub API 404)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 15m",
+  "indicators": "ADX(90), Aroon(60)",
+  "entry_long": "ADX>adx AND aroon_up>thr AND aroon_down<thr",
+  "entry_short": null,
+  "exit": "no sell signal (ROI only)",
+  "stop_loss": "-10000%",
+  "take_profit": "roi {0:3%,7m:2%,33m:1%,71m:0.5%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Stoploss effectively disabled; dangerous. Thresholds in buy_params. Archived strategy; author flagged them archived. Unlicensed - paraphrased only.",
+  "backtest_ready_priority": 3
+}

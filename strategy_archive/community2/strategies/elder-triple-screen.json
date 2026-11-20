@@ -1,0 +1,33 @@
+{
+  "id": "elder-triple-screen",
+  "name": "Elder Triple Screen with MACD trend, oscillator pullback, stop entry",
+  "family": "multi_timeframe_trend",
+  "source_url": "https://roboforex.com/blog/education/triple-screen-trading-system-how-to/",
+  "source_type": "educational_rule",
+  "author": "Alexander Elder / RoboForex summary",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid markets"
+  ],
+  "timeframes": [
+    "weekly/daily/hourly or daily/4h/15m"
+  ],
+  "indicators": {
+    "screen 1": "EMA(13) and MACD histogram(12,26,9) on longest timeframe",
+    "screen 2": "Stochastic(5,3,3) or selected oscillator on middle timeframe",
+    "screen 3": "trailing stop entry on shortest timeframe"
+  },
+  "entry_long": "Only in long trend; pullback in middle timeframe; place trailing buy stop above prior bar",
+  "entry_short": "Only in short trend; middle-timeframe rally; place trailing sell stop below prior bar",
+  "exit": "Exit rule not fully specified in summary",
+  "stop_loss": "Long stop behind 2-day low; short behind 2-day high after trigger",
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Trade only direction of longest-timeframe trend",
+  "claimed_performance": "No quantitative performance claim.",
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Second-screen oscillator options differ; choose one before implementation. Third-screen exact update schedule needs primary-source check.",
+  "backtest_ready_priority": 2
+}

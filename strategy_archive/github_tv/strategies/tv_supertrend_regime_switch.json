@@ -1,0 +1,23 @@
+{
+  "id": "tv_supertrend_regime_switch",
+  "name": "Supertrend + Volatility Regime Switch",
+  "family": "supertrend",
+  "source_url": "https://www.tradingview.com/script/TbK1rB5B-TrendShift-Supertrend-ADX-Regime-Adaptive-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Supertrend ATR10 with multiplier 1.75 when ADX>25 (trending) vs 4.5 when ADX<20 (choppy); ADX14",
+  "entry_long": "Supertrend flip up when not choppy",
+  "entry_short": "flip down",
+  "exit": "TP 2R; optional trailing; optional max bars",
+  "stop_loss": "supertrend line",
+  "take_profit": "2R",
+  "position_sizing": "1% equity risk",
+  "filters": "no new entries in choppy regime (disableChop)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Adaptive multiplier by regime; repainting n/a (bar-close). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

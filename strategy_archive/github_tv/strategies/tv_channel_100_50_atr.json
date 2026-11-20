@@ -1,0 +1,23 @@
+{
+  "id": "tv_channel_100_50_atr",
+  "name": "Channel Breakout 100/50 + Daily ATR Stop + R-Ladder Trail (4H)",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/fB8YZHDd-Channel-Breakout-100-50-Daily-ATR-Stop-480-Trades-5-Coins/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "Algonney",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "4H (per title)",
+  "indicators": "Donchian entry 100, exit 50 (4H), daily ATR14 via request.security (prior bar close[1],ATR[1]); R ladder",
+  "entry_long": "close > highest(high,100)[1] and risk>0",
+  "entry_short": "close < lowest(low,100)[1]",
+  "exit": "stop = prior daily close -/+ 2.0 x daily ATR; TP 4R; trail starts 2R, steps 1R",
+  "stop_loss": "2.0 x daily ATR",
+  "take_profit": "4R",
+  "position_sizing": "1% risk per trade",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Uses security() with [1] offsets - designed non-repainting. The 50-bar exit channel is computed but exit via stop/TP/trail per source. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

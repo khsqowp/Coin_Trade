@@ -1,0 +1,23 @@
+{
+  "id": "tv_ema_atr_band_flip",
+  "name": "Glow Ribbon Flip",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/OUOx3rYT-Glow-Ribbon-Flip-Trend-Following-Strategy-with-ATR-Band-Stops/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "EMA21 basis +/- 2.0 x ATR10 bands (flip logic)",
+  "entry_long": "close crosses above upper band -> long (flip); pullback re-entry on EMA reclaim",
+  "entry_short": "mirror",
+  "exit": "TP 2R or flip",
+  "stop_loss": "opposite band",
+  "take_profit": "2R",
+  "position_sizing": "1% risk, max lev 3x",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Similar to Supertrend on EMA basis (Keltner-flip). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

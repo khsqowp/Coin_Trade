@@ -1,0 +1,32 @@
+{
+  "id": "crypto-pure-momentum-bottom2-top2",
+  "name": "Crypto cross-sectional long-short 24-hour lagged return rank",
+  "family": "cross_sectional_momentum",
+  "source_url": "https://cesare-fracassi.github.io/files/pdf/Research/Fracassi_Lee_Kogan_2025.pdf.pdf",
+  "source_type": "working_paper",
+  "author": "Fracassi, Lee, Kogan",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "cryptocurrency cross-section"
+  ],
+  "timeframes": [
+    "hourly rebalance"
+  ],
+  "indicators": {
+    "ranking signal": "24-lagged 1-hour returns",
+    "portfolio": "rank eligible coins by signal"
+  },
+  "entry_long": "Long the two cryptocurrencies with lowest 24-lagged 1-hour returns",
+  "entry_short": "Short the two with highest 24-lagged 1-hour returns",
+  "exit": "Re-rank/rebalance each hour",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Equal-weight two long and two short legs per paper summary",
+  "filters": "Cross-sectional ranking",
+  "claimed_performance": "Paper abstract reports very high annualized gross return and Sharpe before costs; high turnover makes costs material.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Source labels the signal pure momentum though the stated low/high ordering is counterintuitive; verify sign convention against full tables before implementation.",
+  "backtest_ready_priority": 2
+}

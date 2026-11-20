@@ -1,0 +1,23 @@
+{
+  "id": "tv_cci_stoic",
+  "name": "CCI Stoic Continuation (Clean)",
+  "family": "oscillator_combo",
+  "source_url": "https://www.tradingview.com/script/94P7oe7n-CCI-Stoic-Continuation-Crossing-Signals/",
+  "source_type": "tradingview_pine_study",
+  "author": "kostastrovas",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "CCI(20) early level 10, strong level 80",
+  "entry_long": "CCI crosses above +10 (early) or +80 (strong)",
+  "entry_short": "crosses below -10 / -80",
+  "exit": "n/a",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Signals only; define exit separately (e.g. opposite cross). This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

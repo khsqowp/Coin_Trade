@@ -1,0 +1,23 @@
+{
+  "id": "tv_ma12_ma80_bands",
+  "name": "MA12 x MA80 Bands Signals (Far Offset + Reversed Labels)",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/mLlV4ftt-MA12-x-MA80-Bands-Signals-JAMMAL/",
+  "source_type": "tradingview_pine_study",
+  "author": "Jammal",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "MA12 vs bands built around MA80 (offset 30 ticks); ATR14",
+  "entry_long": "MA12 crosses above upper band",
+  "entry_short": "MA12 crosses below lower band",
+  "exit": "n/a",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "MA type (ma12/ma80) and band definition truncated. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

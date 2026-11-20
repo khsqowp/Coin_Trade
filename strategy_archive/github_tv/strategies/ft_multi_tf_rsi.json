@@ -1,0 +1,23 @@
+{
+  "id": "ft_multi_tf_rsi",
+  "name": "multi_tf (BTC/ETH-relative RSI cascade dip buy)",
+  "family": "multi_timeframe",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/multi_tf.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "freqtrade-strategies",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "RSI(14) on pair at 5m/30m/1h; BTC/stake RSI 1h, RSI(4) and RSI(2) 1h; ETH/BTC RSI 1h",
+  "entry_long": "BTC RSI1h<35 AND ETH/BTC RSI1h<50 AND BTC RSI4_1h<40 AND BTC RSI2_1h<30 AND pair RSI30m<40 AND RSI1h<40 AND RSI5m<30 AND RSI5m<RSI1h AND volume>0",
+  "entry_short": null,
+  "exit": "RSI5m>70 AND RSI5m>=RSI1h AND volume>0",
+  "stop_loss": "fixed -10%",
+  "take_profit": "minimal_roi {0:20%}",
+  "position_sizing": "n/a",
+  "filters": "BTC and ETH/BTC market-wide oversold",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Informative pair merge via merge_informative_pair (ffill) - this is the lookahead-safe helper; verify. Needs BTC and ETH/BTC data for same exchange. Demo of informative pairs. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 2
+}

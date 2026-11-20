@@ -1,0 +1,31 @@
+{
+  "id": "upbit-eth-volatility-breakout-close",
+  "name": "Upbit ETH daily volatility breakout with same-day close",
+  "family": "volatility_breakout",
+  "source_url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002945896",
+  "source_type": "peer_reviewed_paper",
+  "author": "Lee Yumin and Lee Minhyuk",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "ETH KRW spot on Upbit"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "volatility breakout": "threshold/estimator not disclosed in abstract"
+  },
+  "entry_long": "Buy when daily volatility rises significantly (abstract wording)",
+  "entry_short": "No short rule stated",
+  "exit": "Sell at the close of signal day",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Short holding period",
+  "claimed_performance": "Paper reports combined model comparisons; no numeric performance claim transcribed here.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Threshold and intraday decision timing are absent from accessible abstract; exact rule cannot be reconstructed without full text.",
+  "backtest_ready_priority": 3
+}

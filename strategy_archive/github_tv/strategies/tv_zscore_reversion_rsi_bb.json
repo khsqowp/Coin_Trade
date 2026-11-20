@@ -1,0 +1,23 @@
+{
+  "id": "tv_zscore_reversion_rsi_bb",
+  "name": "Z-Score Mean Reversion Pro",
+  "family": "mean_reversion",
+  "source_url": "https://www.tradingview.com/script/92rilzXd-Z-Score-Mean-Reversion-Pro/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "ayusattv",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "rolling z-score (window 80), RSI14 (30/70), BB(20,2) width>=2% filter, EMA200 trend, ATR",
+  "entry_long": "z < -2.5 AND RSI<30 AND BB width>=0.02 AND close>EMA200 (if filters on)",
+  "entry_short": "z > +2.5 AND RSI>70 AND close<EMA200",
+  "exit": "exit when |z| < 0.5",
+  "stop_loss": "ATR based (length 14, mult in source)",
+  "take_profit": "none",
+  "position_sizing": "default",
+  "filters": "EMA200, BB width, RSI",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Z of what series (close vs rolling mean) - confirm in source. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

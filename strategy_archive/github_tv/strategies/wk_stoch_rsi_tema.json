@@ -1,0 +1,23 @@
+{
+  "id": "wk_stoch_rsi_tema",
+  "name": "StochRSITEMA (stoch cross up + RSI floor, TEMA exit)",
+  "family": "oscillator_combo",
+  "source_url": "https://github.com/werkkrew/freqtrade-strategies/blob/main/strategies/archived/StochRSITEMA.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "werkkrew",
+  "license": "unknown (no LICENSE file found in repo via GitHub API 404)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 5m",
+  "indicators": "RSI, TEMA, STOCH slowk/slowd",
+  "entry_long": "RSI>lower band AND slowd and slowk cross above lower band AND slowk crosses above slowd",
+  "entry_short": null,
+  "exit": "close<TEMA (or both conditions) per tema-trigger",
+  "stop_loss": "-2.2%",
+  "take_profit": "roi {0:19.5%,13m:9.1%,36m:2.9%,64m:0}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Params in buy/sell dicts. Archived strategy; author flagged them archived. Unlicensed - paraphrased only.",
+  "backtest_ready_priority": 3
+}

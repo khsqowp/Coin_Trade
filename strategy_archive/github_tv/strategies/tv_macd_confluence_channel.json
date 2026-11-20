@@ -1,0 +1,23 @@
+{
+  "id": "tv_macd_confluence_channel",
+  "name": "MACD Confluence Strategy",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/PtmuSsWV-MACD-Confluence-Strategy-Trend-Pullback-Reversal-Entries/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "normalised MACD(12,26,9); EMA200 channel +/- 1.5x smoothed ATR; ADX>=18; optional HTF(240) MACD agreement",
+  "entry_long": "T: trend MACD cross / P: pullback entries inside channel (max extension 3 bands)",
+  "entry_short": "mirror",
+  "exit": "opposite cross / stop",
+  "stop_loss": "ATR based",
+  "take_profit": "RR",
+  "position_sizing": "risk %",
+  "filters": "HTF MACD agree; ADX",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Multiple entry modes (T, P, others truncated); only partially read. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

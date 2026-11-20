@@ -1,0 +1,23 @@
+{
+  "id": "tv_dca_rsi_martingale",
+  "name": "Advanced DCA Bot",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/0GhXXwWS-Advanced-DCA-Bot/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "fullmax",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "RSI14 crossunder 30 initial; DCA each 5% drop, size x1.5, max 5 DCAs; TP 3% over average",
+  "entry_long": "RSI crosses under 30 with flat position -> initial order (100 units)",
+  "entry_short": null,
+  "exit": "TP 3% above average entry",
+  "stop_loss": "none (martingale risk)",
+  "take_profit": "3% from average",
+  "position_sizing": "base 100, x1.5 per DCA step",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Martingale: tail risk large; test with leverage-free and with portfolio drawdown stats. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

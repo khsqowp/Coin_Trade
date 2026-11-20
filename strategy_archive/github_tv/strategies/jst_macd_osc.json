@@ -1,0 +1,23 @@
+{
+  "id": "jst_macd_osc",
+  "name": "MACD-style SMA oscillator (SMA cross as +/- difference)",
+  "family": "trend_following",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/MACD%20Oscillator%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities",
+  "indicators": "short MA vs long MA difference (momentum oscillator)",
+  "entry_long": "short MA > long MA (long and hold)",
+  "entry_short": null,
+  "exit": "short MA < long MA (clear)",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "fixed",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Duplicate of a plain MA-cross; kept as baseline. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "bt_pinkfish_high",
+  "name": "20-day-high breakout, sell after 2 bars (pinkfish challenge)",
+  "family": "breakout",
+  "source_url": "https://github.com/mementum/backtrader/blob/master/samples/pinkfish-challenge/pinkfish-challenge.py",
+  "source_type": "github_backtrader_sample",
+  "author": "Daniel Rodriguez (backtrader samples)",
+  "license": "GPL-3.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily",
+  "indicators": "Highest(high, 20), sellafter=2 bars",
+  "entry_long": "buy when high/close exceeds prior 20-bar highest (cheat/market flags in sample)",
+  "entry_short": null,
+  "exit": "sell after 2 bars",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "all-in",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Sample is an API demo (order timing); the entry condition body not fully read by me. Treat as incomplete.",
+  "backtest_ready_priority": 3
+}

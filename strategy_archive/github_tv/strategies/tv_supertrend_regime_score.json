@@ -1,0 +1,23 @@
+{
+  "id": "tv_supertrend_regime_score",
+  "name": "SuperTrend Regime Confluence",
+  "family": "supertrend",
+  "source_url": "https://www.tradingview.com/script/mpjNqADq-SuperTrend-Regime-Confluence/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "DefinedEdge",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Supertrend ATR10 base mult 3.0 (adaptive), ADX14>=20, regime lookback 40, EMA50, volume MA20; min signal score 65",
+  "entry_long": "Supertrend flip up with score >= 65",
+  "entry_short": "flip down",
+  "exit": "opposite flip",
+  "stop_loss": "ATR",
+  "take_profit": "RR",
+  "position_sizing": "risk 5%",
+  "filters": "score threshold",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Score formula opaque in my extraction. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "tv_orb_model_selector",
+  "name": "Opening Range Breakout",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/R276c1Cb-Opening-Range-Breakout-ORB-NQ-ES-Futures-Any-Symbol/",
+  "source_type": "tradingview_pine_study",
+  "author": "IvanSetuper",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Opening range 15 min from 09:30 NY; models: breakout / breakout-and-retest / ...; entries until 15:45; flat 16:00; stop at range edge or midpoint",
+  "entry_long": "close above OR high (breakout model)",
+  "entry_short": "close below OR low",
+  "exit": "flat 16:00; TP = R multiple of risk",
+  "stop_loss": "opposite range edge or midpoint",
+  "take_profit": "R multiple (input)",
+  "position_sizing": "per source",
+  "filters": "time window",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Model enum has several modes; read source for the defaults. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,23 @@
+{
+  "id": "jesse_macd_ema",
+  "name": "MACD cross with EMA100 filter (1h)",
+  "family": "trend_following",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/MACD_EMA/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "Connor McDonald",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "1h",
+  "indicators": "MACD(12,26,9); EMA(100)",
+  "entry_long": "MACD line > signal AND close > EMA100",
+  "entry_short": null,
+  "exit": "MACD<signal AND close<EMA100",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "all-in",
+  "filters": "EMA100",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "State-based not cross-based entry. Hyperparameter ranges listed. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 2
+}

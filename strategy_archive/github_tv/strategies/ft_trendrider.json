@@ -1,0 +1,23 @@
+{
+  "id": "ft_trendrider",
+  "name": "TrendRiderStrategy (bull pullback to EMA w/ ADX, OBV, BTC & Fear-Greed filters)",
+  "family": "trend_following",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/TrendRiderStrategy.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "unknown (not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 1h",
+  "indicators": "EMA(multi), EMA50/200, RSI, ADX(14), +DI/-DI, MACD, BB, OBV and OBV EMA, volume_ratio, BTC RSI 1h, Fear&Greed index, daily EMA200",
+  "entry_long": "is_bull AND pullback_to_ema AND RSI in (low,high) AND ADX>thr AND volume_ratio>f AND +DI>-DI AND OBV>OBV_ema AND BTC_RSI_1h>35 AND 25<=FNG<=85 AND RSI<70 AND close>EMA200_1d",
+  "entry_short": null,
+  "exit": "see source",
+  "stop_loss": "fixed -6%",
+  "take_profit": "minimal_roi {0:22.9%,124m:13.6%,290m:4.4%,...}",
+  "position_sizing": "n/a",
+  "filters": "BTC RSI, Fear&Greed (external feed)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Requires external Fear&Greed data (free API) - mark data dependency. Multiple entry tags (trend_pullback, ema50...). Not fully captured. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

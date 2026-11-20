@@ -1,0 +1,23 @@
+{
+  "id": "tv_chandelier_exit",
+  "name": "Chandelier Exit Trend [QuantAlgo]",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/JMcKPHvH-Chandelier-Exit-Trend-QuantAlgo/",
+  "source_type": "tradingview_pine_study",
+  "author": "QuantAlgo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Chandelier Exit: ATR(22) x 3.0, extremes on close (useClose=true)",
+  "entry_long": "price closes above short-side chandelier (flip to long)",
+  "entry_short": "flip to short",
+  "exit": "reverse on flip",
+  "stop_loss": "chandelier line (22,3)",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Standard Chandelier Exit; can be used as trailing stop or stop-and-reverse. Classic definition: highest high(22) - 3*ATR(22). This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,33 @@
+{
+  "id": "connors-rsi2-trend-pullback",
+  "name": "Connors RSI(2) trend pullback",
+  "family": "mean_reversion",
+  "source_url": "https://chartschool.stockcharts.com/table-of-contents/trading-strategies-and-models/trading-strategies/rsi-2",
+  "source_type": "educational_rule",
+  "author": "Larry Connors / StockCharts summary",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid equities or futures; crypto transfer not claimed"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "RSI": 2,
+    "trend SMA": 200,
+    "entry thresholds": "10 long / 90 short"
+  },
+  "entry_long": "Above SMA(200), RSI(2) < 10",
+  "entry_short": "Below SMA(200), RSI(2) > 90",
+  "exit": "Source excerpt directs user to explicit exit rules but the fetched rule details do not fully specify an exit in available text",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Trade only with 200-day trend",
+  "claimed_performance": "No performance claim in the cited rule excerpt.",
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Fetched source establishes trend and entry thresholds; do not infer the missing exit. Connors variants should remain grouped, not split by threshold.",
+  "backtest_ready_priority": 2
+}

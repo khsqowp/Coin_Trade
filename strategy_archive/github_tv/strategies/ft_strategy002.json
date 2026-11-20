@@ -1,0 +1,23 @@
+{
+  "id": "ft_strategy002",
+  "name": "Strategy002 oversold RSI+Stoch+BB-low+Hammer",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/Strategy002.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "Gerald Lonlas (freqtrade-strategies)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "RSI(14); STOCH slowk (default 5,3,3); Fisher RSI=(exp(2x)-1)/(exp(2x)+1), x=0.1*(RSI-50); Bollinger(20,2) on typical price; SAR(default); TA-Lib CDLHAMMER",
+  "entry_long": "RSI<30 AND slowk<20 AND close<BB_lower AND CDLHAMMER==100",
+  "entry_short": null,
+  "exit": "SAR>close AND Fisher_RSI>0.3 (exit_profit_only)",
+  "stop_loss": "fixed -10%",
+  "take_profit": "minimal_roi {0:5%,20m:4%,30m:3%,60m:1%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Hammer pattern + three oversold filters = very rare signals; check trade count. Long-only. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

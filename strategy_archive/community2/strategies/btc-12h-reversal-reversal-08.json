@@ -1,0 +1,32 @@
+{
+  "id": "btc-12h-reversal-reversal-08",
+  "name": "BTC 12-hour reversal in both sessions (08 UTC)",
+  "family": "intraday_reversal",
+  "source_url": "https://www.mdpi.com/1911-8074/19/9/692",
+  "source_type": "peer_reviewed_paper",
+  "author": "Session strategy study authors",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTCUSD"
+  ],
+  "timeframes": [
+    "hourly; two 12h sessions"
+  ],
+  "indicators": {
+    "session split": "D(h)=[8:00,20:00) UTC; N is complementary 12-hour block",
+    "signal": "sign of previous return for same session"
+  },
+  "entry_long": "reverse prior daytime-session return",
+  "entry_short": "reverse prior nighttime-session return",
+  "exit": "Recompute each session; position is 0, +1 or -1 for session return",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Unit notional in paper simulation",
+  "filters": "Session return sign only; zero return maps to flat",
+  "claimed_performance": "Paper compares 25 combinations and reports full-sample selections; costs exclude spread, slippage, venue fees, funding and taxes.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Selected h is reported in paper; session-boundary search and full-sample selection create data-mining risk. Do not treat full-sample winner as validated.",
+  "backtest_ready_priority": 2
+}
