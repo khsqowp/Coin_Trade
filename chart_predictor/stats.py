@@ -25,10 +25,12 @@ def _summary(frame):
 
 
 def _m2_summary(frame):
-    """Summarize executable target-first outcomes and skipped actionable signals."""
+    """Summarize issued actionable M2 outcomes and expose executable coverage."""
     if "status" not in frame:
-        return {"n": 0, "target_first_count": 0, "target_first_rate": None,
-                "wilson95": wilson(0, 0), "coverage": 0.0, "exit_reasons": {}}
+        return {"n": 0, "issued_actionable_n": 0, "executable_n": 0,
+                "non_executable_n": 0, "target_first_count": 0,
+                "target_first_rate": None, "wilson95": wilson(0, 0),
+                "coverage": 0.0, "exit_reasons": {}}
     scored = frame[frame.status == "SCORED"]
     actionable = scored[scored.side.isin(["long", "short"])] if "side" in scored else scored.iloc[0:0]
     executable_reasons = {"TARGET", "INVALIDATION", "TIMEOUT"}

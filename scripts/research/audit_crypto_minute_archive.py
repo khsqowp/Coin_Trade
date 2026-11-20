@@ -38,12 +38,16 @@ def _expected_minute_count(month: str) -> int:
     return int((end - start).total_seconds() // 60)
 
 
-def _sha256(path: Path) -> str:
+def _sha256(path: Path) -> tuple[str, bool, int, int]:
+    before = path.stat()
     digest = hashlib.sha256()
     with path.open("rb") as stream:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
-    return digest.hexdigest()
+    after = path.stat()
+    stable = (before.st_size, before.st_mtime_ns, before.st_ino) == (
+        after.st_size, after.st_mtime_ns, after.st_ino)
+    return digest.hexdigest(), stable, before.st_size, before.st_mtime_ns
 
 
 def _load_times(path: Path, column: str, kind: str) -> tuple[np.ndarray, int]:
@@ -55,7 +59,39 @@ def _load_times(path: Path, column: str, kind: str) -> tuple[np.ndarray, int]:
     return values, divisor
 
 
-def audit(root: Path, start: str, end: str, with_hashes: bool = False) -> dict:
+def _check_ohlc_values(path: Path, open_times: np.ndarray, divisor: int) -> dict:
+    columns = ["open", "high", "low", "close", "volume", "close_time",
+               "quote_volume", "count"]
+    table = pq.read_table(path, columns=columns)
+    values = {name: table[name].to_numpy(zero_copy_only=False).astype(np.float64, copy=False)
+              for name in columns}
+    # Keep integer arithmetic: spot archives may store microseconds, where a
+    # float conversion can round xx999999 / 1000 away from the expected ms.
+    close_times = np.floor_divide(values["close_time"].astype(np.int64), divisor)
+    opened, high, low, closed = (values[name] for name in ("open", "high", "low", "close"))
+    errors = {}
+
+    def add(name: str, condition: np.ndarray) -> None:
+        count = int(np.count_nonzero(condition))
+        if count:
+            errors[name] = count
+
+    finite_ohlc = np.isfinite(opened) & np.isfinite(high) & np.isfinite(low) & np.isfinite(closed)
+    add("NONFINITE_OHLC", ~finite_ohlc)
+    add("NONPOSITIVE_PRICE", finite_ohlc & ((opened <= 0) | (high <= 0) | (low <= 0) | (closed <= 0)))
+    add("HIGH_LOW_ENVELOPE", finite_ohlc & ((high < low) | (high < np.maximum(opened, closed)) |
+                                             (low > np.minimum(opened, closed))))
+    add("INVALID_VOLUME", ~np.isfinite(values["volume"]) | (values["volume"] < 0))
+    add("INVALID_QUOTE_VOLUME", ~np.isfinite(values["quote_volume"]) | (values["quote_volume"] < 0))
+    trade_count = values["count"]
+    add("INVALID_TRADE_COUNT", ~np.isfinite(trade_count) | (trade_count < 0) |
+        (trade_count != np.floor(trade_count)))
+    add("CLOSE_TIME_ALIGNMENT", close_times != open_times + 59_999)
+    return {"rows": len(open_times), "error_counts": errors}
+
+
+def audit(root: Path, start: str, end: str, with_hashes: bool = False,
+          validate_values: bool = False) -> dict:
     months = _months(start, end)
     per_dataset = {}
     symbol_sets = {}
@@ -75,6 +111,7 @@ def audit(root: Path, start: str, end: str, with_hashes: bool = False) -> dict:
                 errors = []
                 try:
                     times, divisor = _load_times(path, column, kind)
+                    value_result = None
                     if len(times) == 0:
                         errors.append("EMPTY")
                     if any(right <= left for left, right in zip(times, times[1:])):
@@ -84,6 +121,9 @@ def audit(root: Path, start: str, end: str, with_hashes: bool = False) -> dict:
                             errors.append("MINUTE_GAP_OR_BAD_STEP")
                         if len(times) != _expected_minute_count(month):
                             errors.append("CALENDAR_ROW_COUNT_MISMATCH")
+                        if validate_values:
+                            value_result = _check_ohlc_values(path, times, divisor)
+                            errors.extend(value_result["error_counts"])
                     else:
                         rates = pq.read_table(path, columns=["funding_interval_hours"])["funding_interval_hours"].to_pylist()
                         if not rates or len(rates) != len(times) or any(int(rate) not in {4, 8} for rate in rates):
@@ -92,12 +132,22 @@ def audit(root: Path, start: str, end: str, with_hashes: bool = False) -> dict:
                                          for hours in {int(rates[index]), int(rates[index + 1])})
                                  for index, (left, right) in enumerate(zip(times, times[1:]))):
                             errors.append("FUNDING_TIME_STEP_MISMATCH")
+                    stat = path.stat()
                     record = {"symbol": symbol, "month": month, "status": "FAIL" if errors else "PASS",
                               "rows": len(times), "first_ms": int(times[0]) if len(times) else None,
                               "last_ms": int(times[-1]) if len(times) else None, "timestamp_divisor": divisor,
-                              "size_bytes": path.stat().st_size, "errors": errors}
+                              "size_bytes": stat.st_size, "mtime_ns": stat.st_mtime_ns, "errors": errors}
+                    if value_result is not None:
+                        record["ohlc_value_audit"] = value_result
                     if with_hashes:
-                        record["sha256"] = _sha256(path)
+                        digest, stable, size_before, mtime_before = _sha256(path)
+                        record["sha256"] = digest
+                        record["stable_during_hash"] = stable
+                        record["size_before_hash"] = size_before
+                        record["mtime_ns_before_hash"] = mtime_before
+                        if not stable:
+                            record["errors"].append("FILE_CHANGED_DURING_HASH")
+                            record["status"] = "FAIL"
                     if kind == "minute" and len(times):
                         files_by_key[(symbol, month, dataset)] = times
                 except (OSError, ValueError, KeyError, TypeError) as exc:
@@ -136,7 +186,8 @@ def audit(root: Path, start: str, end: str, with_hashes: bool = False) -> dict:
             if spot is not None and perp is not None and not np.array_equal(spot, perp):
                 spot_perp_mismatches.append({"symbol": symbol, "month": month})
     return {"root": str(root), "start_month": start, "end_month": end,
-            "hashes_computed": with_hashes, "dataset_order": list(DATASETS),
+            "hashes_computed": with_hashes, "ohlc_values_checked": validate_values,
+            "dataset_order": list(DATASETS),
             "datasets": per_dataset, "price_timestamp_alignment_failures": alignment,
             "complete_file_cohort": complete_file_cohort,
             "complete_file_cohort_symbol_count": len(complete_file_cohort),
@@ -157,17 +208,19 @@ def main() -> int:
     parser.add_argument("--end-month", required=True)
     parser.add_argument("--output", type=Path, required=True, help="JSON output; never written under the source root")
     parser.add_argument("--sha256", action="store_true", help="hash every present Parquet file; potentially I/O intensive")
+    parser.add_argument("--ohlc-values", action="store_true", help="validate OHLC, volume, count and close-time columns")
     args = parser.parse_args()
     if not args.root.is_dir():
         parser.error(f"archive root does not exist: {args.root}")
     if args.output.resolve().is_relative_to(args.root.resolve()):
         parser.error("output must be outside the read-only archive root")
-    result = audit(args.root, args.start_month, args.end_month, args.sha256)
+    result = audit(args.root, args.start_month, args.end_month, args.sha256, args.ohlc_values)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"status": result["status"], "output": str(args.output),
                       "alignment_failures": len(result["price_timestamp_alignment_failures"]),
-                      "sha256": args.sha256}, sort_keys=True))
+                      "sha256": args.sha256,
+                      "ohlc_values_checked": args.ohlc_values}, sort_keys=True))
     return 0 if result["status"] == "PASS" else 1
 
 

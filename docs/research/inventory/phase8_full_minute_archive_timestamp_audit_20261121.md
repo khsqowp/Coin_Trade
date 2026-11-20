@@ -64,9 +64,47 @@ time a rate was knowable or chargeable.
   authorize strategy scoring. Phase 9 remains blocked because there is no
   individually validated Core strategy.
 
-The audit is reproducible with
-`/opt/anaconda3/bin/python3 scripts/research/audit_crypto_minute_archive.py --root /Volumes/home/mac/CODE/trading_data/external/crypto/binance --start-month 2024-09 --end-month 2026-10 --output docs/research/inventory/crypto_minute_archive_timestamp_audit_20261121.json`.
-It reads timestamp columns, checks calendar grids and declared funding intervals, and emits each file status. The
-full run did not compute file hashes (`--sha256` was not passed); no hash
-integrity claim is made. Verify source hashes before scoring. The result is
-`crypto_minute_archive_timestamp_audit_20261121.json` in this directory.
+The timestamp audit is reproducible with:
+
+```bash
+/opt/anaconda3/bin/python3 scripts/research/audit_crypto_minute_archive.py --root /Volumes/home/mac/CODE/trading_data/external/crypto/binance --start-month 2024-09 --end-month 2026-10 --output docs/research/inventory/crypto_minute_archive_timestamp_audit_20261121.json
+```
+
+The separate full-window SHA-256 run was:
+
+```bash
+/opt/anaconda3/bin/python3 scripts/research/audit_crypto_minute_archive.py --root /Volumes/home/mac/CODE/trading_data/external/crypto/binance --start-month 2024-09 --end-month 2026-10 --output docs/research/inventory/crypto_minute_archive_sha256_audit_20261121.json --sha256
+```
+
+It hashed all 3,580 present monthly files (4,631,097,912 bytes); 3,328 files
+(4,305,562,265 bytes) belong to the 32-symbol complete-file intersection.
+All 3,580 files had unchanged size, mtime, and inode during their individual
+hash read. Eight expected files are missing. This is a FAIL data-quality
+snapshot, not a clean-data approval. Local SHA-256 values create reproducible
+fingerprints but are not Binance-published checksums or proof of source
+authenticity. The output is `crypto_minute_archive_sha256_audit_20261121.json`.
+
+## Candle-value invariant audit
+
+The full-window value pass read all present OHLC price rows: 37,392,060 spot,
+39,848,385 USD-M perpetual, and 39,798,112 mark-price rows. It checked finite
+positive OHLC, the high/low envelope around open and close, nonnegative finite
+base and quote volume, nonnegative integer trade count, and close time exactly
+59,999 milliseconds after normalized open time. The close-time comparison
+uses integer unit conversion so microsecond spot timestamps are not rounded
+through floating point. **No checked price row violated these value rules.**
+
+The overall value-audit status remains FAIL because it also carries the
+archive's timestamp/calendar/funding failures: 90 full-union price timestamp
+array mismatches, partial spot/perpetual months, the 35 shared mark-price
+missing-day gaps, three funding interval-step anomalies, and eight expected
+missing files. The OHLC result is structural consistency only; it does not
+verify market-price truth against Binance, upstream checksums, licensing,
+point-in-time universe membership, execution costs, or funding availability.
+Full per-file output: `crypto_minute_archive_ohlc_audit_20261121.json`.
+
+Reproduce the value pass with:
+
+```bash
+/opt/anaconda3/bin/python3 scripts/research/audit_crypto_minute_archive.py --root /Volumes/home/mac/CODE/trading_data/external/crypto/binance --start-month 2024-09 --end-month 2026-10 --output docs/research/inventory/crypto_minute_archive_ohlc_audit_20261121.json --ohlc-values
+```

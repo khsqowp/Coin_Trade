@@ -62,3 +62,15 @@ rerunnable audit and its per-file JSON output are
 `scripts/research/audit_crypto_minute_archive.py` and
 `crypto_minute_archive_timestamp_audit_20261121.json`; the current full-union
 status is FAIL due to documented gaps and partial listings.
+The `--sha256` run is stored as
+`crypto_minute_archive_sha256_audit_20261121.json`; all 3,580 present files
+were stable during their individual hash reads. These local hashes are
+reproducibility fingerprints, not publisher checksums.
+The corrected `--ohlc-values` audit is stored as
+`crypto_minute_archive_ohlc_audit_20261121.json`; it checks finite positive
+OHLC values, high/low envelopes, nonnegative volume/count fields, and close
+time alignment. It found zero value-invariant violations across the checked
+price rows; overall status remains FAIL because of known timestamp gaps,
+partial files, and funding anomalies. Four-lane source scouting and the
+adversarial panel disposition are recorded in
+`phase8_source_round_p_4lane_panel_20261121.md`.

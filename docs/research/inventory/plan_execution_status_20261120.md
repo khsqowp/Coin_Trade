@@ -300,26 +300,48 @@ The full NAS timestamp-grid audit covers 2024-09..2026-10. It found a
 has complete aligned spot/perpetual minute grids, while mark-price data has a
 shared missing UTC day (2026-06-29) and funding first-availability remains
 unresolved. The 2024-09 POL listing is partial. This check only read timestamps,
-did not inspect outcomes, and did not score strategies. Its inline one-off
-implementation is not yet reproducible; before scoring, replace it with a
-committed read-only audit that emits per-file results and hashes. Details:
-`phase8_full_minute_archive_timestamp_audit_20261121.md`.
+did not inspect outcomes, and did not score strategies. The committed read-only
+audit now has a full-window per-file SHA-256 run: 3,580 present files totaling
+4,631,097,912 bytes were hashed, and each file's size/mtime/inode was unchanged
+during its own hash read. Eight expected files are missing; the timestamp and
+funding-integrity status remains FAIL. These local digests are reproducibility
+fingerprints, not official publisher checksums. Price-value invariants,
+authoritative source parity, and funding first-availability semantics remain
+pre-score gates. Details and artifacts:
+`phase8_full_minute_archive_timestamp_audit_20261121.md`,
+`crypto_minute_archive_timestamp_audit_20261121.json`, and
+`crypto_minute_archive_sha256_audit_20261121.json`.
 
 Code review also found that `target-first-v2` anchored M2 barriers to the
 forecast anchor even though modeled trades enter at the next candle open. New
 `target-first-v3` semantics align M2 with delayed executable entry, record
 pre-entry target/stop touches as non-executable and conservatively count them
 as failures in the full issued-actionable M2 denominator, while preserving old
-score rows. P3a run identity was advanced to isolate outputs under the new scorer version.
+score rows. Empty M2 result summaries now expose the same issued/executable
+count fields as non-empty runs. P3a run identity was advanced to isolate
+outputs under the new scorer version.
 No existing prediction database was re-scored and no performance result was
-generated. Targeted tests have not yet run because the current default Python
-has neither pytest nor NumPy/Pandas installed; use the repository-supported
-environment or provision dependencies before treating the patch as verified.
-The focused scorer, P3a, and archive-audit test set passed 43 tests. The full
+generated. The focused scorer, P3a, and archive-audit test set passed 44 tests. The full
 `chart_predictor/tests` collection had 219 passes and one unrelated failure:
 `setup_backtest._code_fingerprint()` requires a missing checkout-local
 `.claude/skills/backtest-expert/scripts/evaluate_backtest.py`; the installed
 skill exists under `~/.codex/skills`, but this task did not rewrite that
-separate dependency. `git diff --check` passed. The NAS audit JSON is committed
-alongside its script/report; it is a FAIL result, not a clean-data approval.
+separate dependency. `git diff --check` passed. The NAS audit JSONs are stored
+alongside their script/report; the timestamp status is FAIL, not a clean-data
+approval. Hashing does not establish official-source authenticity.
 Core count remains zero and Phase 9 remains blocked.
+
+The expanded OHLC-value audit initially exposed a false positive caused by
+converting microsecond close timestamps through floating point. The auditor
+was corrected to use integer unit conversion, and its focused fixture now
+stores spot timestamps at microsecond precision. The corrected full-range
+value audit checked 37,392,060 spot, 39,848,385 perpetual, and 39,798,112
+mark-price rows and found zero OHLC/volume/count/close-time invariant
+violations. Its overall status remains FAIL for known timestamp, missing-file,
+partial-month, and funding-step issues. Results are in
+`crypto_minute_archive_ohlc_audit_20261121.json` and
+`phase8_full_minute_archive_timestamp_audit_20261121.md`. Four-lane scouting
+(SNS, TradingView/Pine, public communities, GitHub/skills) found zero eligible
+source-defined M2 candidates; the Blue/Red/Data-Methods/Judge panel ruled
+**HOLD / NO SCORE / NO CORE / NO PHASE 9**. No outcomes were scored. See
+`phase8_source_round_p_4lane_panel_20261121.md`.
