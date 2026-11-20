@@ -249,3 +249,28 @@ squeeze/breakout, ATR-trend, lead-lag, and basis families were not relabeled as
 new candidates. No download, score, or code run occurred. Sources and rejection
 reasons are in `phase8_source_round_m_20261120.md`. Core count remains zero;
 Phase 9 remains blocked.
+
+### Phase 8 continuation: Round O cross-crypto return-prediction panel
+
+Four independent roles reviewed Guo et al. (2024), *Cross-cryptocurrency
+return predictability*, against the fixed M2 specification and existing
+registry. All four voted **HOLD / NO SCORE / NO CORE**. The paper studies
+minute-level cross-coin return forecasts and cross-sectional long-short
+portfolio returns; it does not define per-trade target, invalidation, or
+expiry barriers. Adding ATR or symmetric barriers would create a new
+adaptation, and the candidate overlaps the existing lead-lag / cross-sectional
+ranking family (#65, #78, #112–113). No outcomes or strategy scores were
+examined. The source also does not establish current-contract net performance
+under the fixed 10/30 bp scenarios or the local M2 target-first gate.
+
+The active research worktree was clean at `420ef165`; canonical `main` was
+clean at its shared base `489c538`. The NAS volume and Binance archive root
+were mounted, but full-history integrity was not re-audited. The existing
+three-month spot/perpetual timestamp check remains the only verified minute
+grid subset. Before any new score, audit the full selected symbol-month input,
+resolve point-in-time/funding/execution caveats, and either reproduce the
+paper's return-forecast portfolio as a separate development falsification
+study or reject it. That return-forecast study cannot satisfy M2 or qualify as
+Core. A distinct M2 specification requires independent justification for its
+barriers and forward-only validation. Details:
+`phase8_source_round_o_cross_crypto_predictability_panel_20261121.md`.

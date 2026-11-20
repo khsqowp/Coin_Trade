@@ -42,3 +42,8 @@ records the later NAS spot/perpetual minute-archive discovery and its read-only
 timestamp-grid audit. It supersedes only the earlier statement that the checked
 `/private/tmp` panel had no spot OHLCV; it does not change any strategy score or
 Core/OOS decision.
+
+Round O's four-role HOLD decision on cross-cryptocurrency return prediction is
+recorded in
+[`phase8_source_round_o_cross_crypto_predictability_panel_20261121.md`](phase8_source_round_o_cross_crypto_predictability_panel_20261121.md).
+It did not score outcomes or approve an M2 candidate.
