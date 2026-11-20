@@ -8,6 +8,7 @@ from scripts.research.cvd_taker_divergence_probe import (
     _sha_side,
     _candidate_anchor_invalid,
     _mark_incomplete_path_cell,
+    _require_clean_worktree,
     _validate_gate_inputs,
     _validate_review_gate,
     score_baseline_anchor,
@@ -160,10 +161,25 @@ def test_review_gate_binds_all_four_roles_to_exact_inputs_and_code():
                 "source_hashes": sources, "preregistration_hashes": preregs,
                 "input_audit_sha256": "i" * 64, "funding_audit_sha256": "f" * 64}
                for role in ("BLUE", "RED", "METHODS", "JUDGE")]
-    _validate_review_gate({"reviews": reviews}, sources, preregs, "i" * 64, "f" * 64)
+    gate = {"source_commit": "c" * 40, "reviews": reviews}
+    _validate_review_gate(gate, sources, preregs, "i" * 64, "f" * 64, "c" * 40)
+    try:
+        _validate_review_gate(gate, sources, preregs, "i" * 64, "f" * 64, "d" * 40)
+        assert False, "stale reviewed commit must fail closed"
+    except ValueError as exc:
+        assert "source commit differs" in str(exc)
     reviews[0]["source_hashes"] = {"probe.py": "stale"}
     try:
-        _validate_review_gate({"reviews": reviews}, sources, preregs, "i" * 64, "f" * 64)
+        _validate_review_gate(gate, sources, preregs, "i" * 64, "f" * 64, "c" * 40)
         assert False, "stale reviewed code hash must fail closed"
     except ValueError as exc:
         assert "source hashes differ" in str(exc)
+
+
+def test_scoring_refuses_dirty_worktree_provenance():
+    _require_clean_worktree("")
+    try:
+        _require_clean_worktree("?? new_research.py\n")
+        assert False, "dirty worktree must fail closed"
+    except ValueError as exc:
+        assert "not clean" in str(exc)

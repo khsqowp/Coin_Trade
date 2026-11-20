@@ -334,7 +334,10 @@ def _validate_gate_inputs(input_audit: dict, funding_audit: dict, symbols: list[
 
 
 def _validate_review_gate(gate: dict, source_hashes: dict, prereg_hashes: dict,
-                          input_audit_hash: str, funding_audit_hash: str) -> None:
+                          input_audit_hash: str, funding_audit_hash: str,
+                          source_commit: str) -> None:
+    if gate.get("source_commit") != source_commit:
+        raise ValueError("review gate source commit differs from the current checkout")
     expected_roles = {"BLUE", "RED", "METHODS", "JUDGE"}
     reviews = gate.get("reviews", [])
     roles = [review.get("role") for review in reviews]
@@ -353,6 +356,11 @@ def _validate_review_gate(gate: dict, source_hashes: dict, prereg_hashes: dict,
             raise ValueError(f"reviewed funding-audit hash differs for role {review.get('role')}")
 
 
+def _require_clean_worktree(status: str) -> None:
+    if status.strip():
+        raise ValueError("worktree is not clean; refusing to score an uncommitted source state")
+
+
 def run(archive_root: Path, coverage_path: Path, manifest_path: Path,
         input_audit_path: Path, funding_audit_path: Path, review_gate_path: Path,
         output_dir: Path) -> dict:
@@ -365,6 +373,7 @@ def run(archive_root: Path, coverage_path: Path, manifest_path: Path,
         raise ValueError("source commit/worktree provenance unavailable; refusing to score") from exc
     if not source_commit:
         raise ValueError("source commit provenance unavailable; refusing to score")
+    _require_clean_worktree(dirty_state)
     input_audit = json.loads(input_audit_path.read_text(encoding="utf-8"))
     funding_audit = json.loads(funding_audit_path.read_text(encoding="utf-8"))
     coverage = json.loads(coverage_path.read_text(encoding="utf-8"))
@@ -407,7 +416,8 @@ def run(archive_root: Path, coverage_path: Path, manifest_path: Path,
     input_audit_hash = sha256_file(input_audit_path)
     funding_audit_hash = sha256_file(funding_audit_path)
     review_gate = json.loads(review_gate_path.read_text(encoding="utf-8"))
-    _validate_review_gate(review_gate, source_hashes, prereg_hashes, input_audit_hash, funding_audit_hash)
+    _validate_review_gate(review_gate, source_hashes, prereg_hashes, input_audit_hash,
+                          funding_audit_hash, source_commit)
 
     # Re-hash every required archive before reading features or labels.
     for record in input_audit["records"]:
