@@ -1,0 +1,20 @@
+# USD-M metrics archive sample integrity audit — preregistration
+
+- Freeze date: 2026-11-20, before downloading audit sample.
+- Purpose: decide whether a bounded USD-M metrics sample is structurally sound enough to justify a later, separate field-timing/point-in-time availability audit. This is not a strategy backtest and must not produce signal-performance claims.
+- Universe: the same frozen 36-symbol USD-M cohort in `usdm_archive_coverage_20261120.json`.
+- Fixed in-period sample dates, for every symbol: `2023-03-24`, `2024-03-24`, `2025-03-24`, `2026-05-30`, `2026-05-31`.
+- Boundary diagnostic, outside the scored history but relevant to the known archive label-convention report: `2026-06-24` and `2026-06-25`, for every symbol.
+- Missing-day diagnostic: each of the nine dates recorded as absent in `/private/tmp/cointrade-oi-archive-inventory.json`, plus the immediately preceding and following UTC date for that same symbol. The prior inventory is frozen before sample acquisition; no replacement days may be selected after seeing contents.
+- Expected schema: `create_time`, `symbol`, `sum_open_interest`, `sum_open_interest_value`, `count_toptrader_long_short_ratio`, `sum_toptrader_long_short_ratio`, `count_long_short_ratio`, `sum_taker_long_short_vol_ratio`.
+- Checks: retrieve the public archive ZIP and publisher `.CHECKSUM`; verify ZIP integrity and SHA-256; require expected symbol/schema, finite values or explicitly counted nulls, 5-minute UTC grid, no within-file duplicate timestamps, and report row-count/timestamp ranges without silently shifting, deduplicating, or repairing data. Compare adjacent sampled daily files for repeated or missing boundary labels. Preserve downloaded originals outside Git and record local SHA-256.
+- Decision: sample integrity alone cannot make OI or any other field eligible as a causal strategy feature. A separate audit must establish field-specific observation time and when values could have been available to a strategy. The REST history endpoint's retention limits prevent assuming old archive values can be verified by current REST responses. If checksums, structure, time continuity, or schema fail without a deterministic provenance-backed explanation, stop before feature scoring.
+- No full archive download, no timestamp repair, no row deletion, no strategy definition, no backtest, and no live use are allowed in this audit.
+
+## Frozen field-alignment supplement (before REST comparison)
+
+- Test one completed UTC day only: BTCUSDT, `2026-11-19`; this date was chosen as the latest full UTC day at audit start and is not selected based on observed values.
+- Fetch the USD-M public metrics daily ZIP and publisher checksum, and query the public historical `/futures/data/openInterestHist` endpoint with `period=5m` for that day plus one 5-minute boundary on either side. The endpoint is documented as retaining only the latest month and timestamping records at period end; do not extrapolate this result to older periods.
+- After checksum validation, compare `sum_open_interest` and `sum_open_interest_value` against REST rows using fixed archive-time-to-REST-time offsets of -5, 0, and +5 minutes. Report matched-row coverage, median absolute relative error, and 95th percentile absolute relative error for each field and offset. Do not choose another offset or symbol after seeing results.
+- Current-convention alignment screen passes only if the +5-minute map has at least 95% matched-row coverage, both fields have median relative error <=1e-4 and 95th-percentile relative error <=1e-3, and +5 minutes beats both 0 and -5 minutes on median error for both fields. A pass supports only this symbol/day/current API comparison; it does not establish historical availability or older archive semantics.
+- Save exact raw REST response, archive ZIP/checksum, response metadata, SHA-256 values, and comparison JSON under `/private/tmp`; do not commit raw external data. If the REST response is unavailable or incomplete, report `UNRESOLVED` and do not retry using another day.
