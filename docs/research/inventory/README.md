@@ -36,3 +36,9 @@ Rounds L and M are read-only source reviews. Their candidate exclusions and
 source links are recorded in `phase8_source_round_l_20261120.md` and
 `phase8_source_round_m_20261120.md`; neither round generated a performance
 score.
+
+Supplementary correction: [`phase8_data_correction_20261121.md`](phase8_data_correction_20261121.md)
+records the later NAS spot/perpetual minute-archive discovery and its read-only
+timestamp-grid audit. It supersedes only the earlier statement that the checked
+`/private/tmp` panel had no spot OHLCV; it does not change any strategy score or
+Core/OOS decision.
