@@ -234,3 +234,18 @@ installed, executed, or scored. This is a bounded source review, not proof that
 all public strategies were exhausted. Details and primary links are in
 `phase8_source_round_l_20261120.md`. Core count remains zero; Phase 9 remains
 blocked.
+
+### Phase 8 continuation: Round M mechanism-specific source review
+
+Four independent lanes reviewed funding cross-sectional carry, volatility and
+regime mechanisms, calendar/settlement microstructure, and cross-market/venue
+signals against the fixed hourly USD-M data contract and research registry.
+Eligible new M2 candidates: **0**. Funding carry sources describe portfolio
+rebalancing without fixed directional barriers; volatility management is an
+exposure overlay; settlement/quarter-hour effects require minute order-flow or
+quote data; cross-venue and spot-perpetual signals require inputs not present
+in the local scoring panel. Already-tested funding-tail, weekday/hour,
+squeeze/breakout, ATR-trend, lead-lag, and basis families were not relabeled as
+new candidates. No download, score, or code run occurred. Sources and rejection
+reasons are in `phase8_source_round_m_20261120.md`. Core count remains zero;
+Phase 9 remains blocked.

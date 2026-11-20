@@ -31,3 +31,8 @@ The Phase 8 Round J source scan and its one fixed development-only lead-lag
 screen are recorded in `phase8_source_round_j_20261120.md` and
 `runs/lead_lag_1h_m2_round_k_20261120_v2/report.md`. The earlier incomplete
 reporting attempt is retained with an explicit superseded status.
+
+Rounds L and M are read-only source reviews. Their candidate exclusions and
+source links are recorded in `phase8_source_round_l_20261120.md` and
+`phase8_source_round_m_20261120.md`; neither round generated a performance
+score.
