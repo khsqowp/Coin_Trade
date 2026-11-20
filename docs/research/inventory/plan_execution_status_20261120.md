@@ -179,3 +179,22 @@ denominator, equal-acceptance random-filter control, and a separately
 verified eligible/unexposed dataset before any scoring. Details:
 `phase8_source_round_h_meta_label_panel_20261120.md`. Core count remains zero;
 Phase 9 remains blocked.
+
+### Phase 8 continuation: Round I four-source scan and lead-lag panel
+
+Four independent source lanes found no source-complete, reproducible M2
+strategy. A new BTC/ETH-leader to lagging-SOL continuation rule was proposed
+with minute-close signal, next-minute-open entry, ATR(14) 1R target/stop,
+10-minute expiry, stop-first intrabar tie handling, and actual-timestamp
+funding. It remains a hypothesis, not a source replication or preregistered
+Core candidate. Blue conditionally retained the idea; Red rejected current M2
+progression because of missing source-defined barriers and research overlap;
+Data/Methods found no eligible >=20-symbol unseen minute price/mark/funding
+panel; Judge ruled no score or promotion. No backtest or performance score was
+generated. Existing six-symbol 1m history is exposed and lacks established
+minute mark/funding; the hourly archive cannot resolve minute barrier order.
+Any extension beyond SOL is a new specification and requires preregistration.
+Next gates are a frozen >=20-symbol universe and cost/execution/barrier rule,
+independent forward data eligibility, then one fixed evaluation. Core remains
+zero; Phase 9 remains blocked. Details:
+`phase8_source_round_i_lead_lag_panel_20261120.md`.
