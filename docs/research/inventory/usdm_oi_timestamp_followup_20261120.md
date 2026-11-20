@@ -18,6 +18,26 @@
 - The 2021–2026 stratified archive sample is structurally strong for the sampled files, but it also found five partial daily files and 20 absent symbol/day objects. Missing rows must not be silently filled or forward-filled.
 - The quarterly archive-quality sample contains 84 files and reports one missing five-minute slot; all sampled publisher checksums matched. This is a separate sample and does not validate the unsampled archive population.
 
+## Independent offline reproduction
+
+Added `scripts/research/verify_usdm_oi_timestamp_audit.py`. It makes no network requests; it verifies the saved ZIP SHA-256 and publisher checksum, REST response SHA-256, parsed symbol/row data, and recomputes `T-5/T/T+5` from the raw saved files. For the 15 absent symbol-days, it confirms the saved S3 bodies contain `NoSuchKey` and REST arrays are empty. The cross-check audit used archive OI as the relative-error denominator; the earlier one-day comparison used REST OI. The denominator difference changes small error summaries, not which offset is exact.
+
+Re-running the verifier against the saved evidence passed:
+
+- Cross-check: 96/96 valid pairs exactly match at `T+5m`; 0/96 exactly match at `T`; all 15 unavailable pairs reproduce as HTTP 404 + empty REST response.
+- Earlier BTCUSDT 2026-11-19 sample: 288/288 exactly match at `T`; none exactly match at either adjacent five-minute offset.
+- All hashes, publisher checksums, row counts, and recorded maximum-error values matched the raw inputs.
+
+Command:
+
+```sh
+/opt/anaconda3/bin/python3 scripts/research/verify_usdm_oi_timestamp_audit.py \
+  --crosscheck-dir /private/tmp/r031-oi-availability-crosscheck \
+  --single-day-dir /private/tmp/cointrade-oi-rest-alignment-20261120
+```
+
+The verifier reproduces the saved comparisons; it does not establish when historical REST values first became observable.
+
 ## Reproduction inputs and limitations
 
 Read-only inputs inspected:
@@ -36,7 +56,7 @@ Compact verification command for the saved audit summaries:
 python3 -c 'import json,pathlib; d=json.loads(pathlib.Path("/private/tmp/r031-oi-availability-crosscheck/audit.json").read_text()); r=[x for x in d["records"] if x.get("oi_alignment")]; print("valid_pairs",len(r),"exact_T",sum(x["oi_alignment"]["offset_+0m"]["max_relative_error"]==0 for x in r),"exact_T_plus_5m",sum(x["oi_alignment"]["offset_+5m"]["max_relative_error"]==0 for x in r)); p=json.loads(pathlib.Path("/private/tmp/r030-oi-metrics-panel-sample/audit.json").read_text()); print("panel",p["summary"])'
 ```
 
-The sample-building/cross-check script for `r030`/`r031` was not found beside the saved artifacts or in the named audit directory during this continuation. The JSON retains per-file checksums, REST response hashes, row counts, and alignment summaries, but full independent reproduction of the original 111 REST requests is not claimed here.
+The script that originally built the `r030`/`r031` samples was not found beside the saved artifacts or in the named audit directory during this continuation. The new verifier independently checks the saved bytes and arithmetic but does not recreate the original 111 REST requests or establish contemporaneous availability.
 
 ## Next gate
 
