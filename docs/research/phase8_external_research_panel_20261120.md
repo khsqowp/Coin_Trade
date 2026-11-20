@@ -146,3 +146,46 @@ The local object inventory is `/private/tmp/cointrade-oi-archive-inventory.json`
 The active research checkout is `/Users/user/Desktop/CODE/trading_bot`, branch `research/bat-harmonic-validation-20261120`, initially based on commit `489c538697061c3ed2961d790735d3a8a16473fd`. The canonical `main` worktree was not edited. At initial inspection, the tracked 256 MB Git LFS ledger appeared modified and default `git status` failed because the shared LFS clean filter could not write under the canonical repository's `.git/lfs/tmp`; the ledger was never staged. After committing this report, a fresh status check completed successfully and showed the branch clean. The report is committed as `4e21813f0b9ff6b38d80dfafebf8e03fd842ae7b`; `git ls-remote` confirmed that exact hash at `origin/research/bat-harmonic-validation-20261120`.
 
 The downloaded sample files, object-listing manifest and checksums are in `/private/tmp`; they are not repository artifacts and are not referenced as complete research data. The 483 MB listed ZIP payload remains undownloaded. No tracked strategy code or historical run was changed.
+
+## Second four-source review and cross-panel decision (2026-11-20)
+
+Four independent source scouts reviewed public SNS/video, TradingView/Pine, public communities, and GitHub strategy/skill repositories. They read the crypto SPEC and the relevant strategy registry/research notes before proposing leads. The scouts did not install code, run performance tests, access accounts, post comments, or change files. Their results were then sent as one fixed candidate pool to separate Blue, Red, Methods, and Judge reviewers.
+
+### Source-scout outcome
+
+| Source group | Candidate lead | Duplicate / evidence decision |
+|---|---|---|
+| SNS / public posts | Funding timing, cross-exchange carry, funding+OI, liquidation flush | No new complete strategy. Funding/carry overlaps existing funding families; liquidation flush overlaps sweep/reversal. Posts do not establish independent performance. |
+| TradingView / Pine | CVD divergence with confirmed price-turn; OI shock followed by event-range breakout | CVD is a candidate signal family but overlaps price divergence/reversal and needs executable barriers. OI shock is potentially distinct only if point-in-time OI is valid; rule and exits are incomplete. Public script logic is not a license to copy code. |
+| Public communities | Liquidation burst rebound; volatility-only entry/risk gate | Liquidation rebound overlaps sweep/reversal and needs genuine timestamped liquidation observations. Volatility-only gating is risk management, not a standalone directional strategy. Anecdotal posts are not performance evidence. |
+| GitHub | Liquidation-pressure maker-entry filter; BTC→SOL momentum; liquidation-tail rebound | Maker filter is an execution hypothesis, not a complete strategy, and requires L2 queue/fill evidence. BTC→SOL overlaps the already tested cross-asset lead-lag family. Tail rebound overlaps existing sweep/reversal. Frameworks and skills were not counted as strategies. |
+
+### Cross-panel vote
+
+| Reviewer | Decision |
+|---|---|
+| Blue | OI shock followed by event-range breakout is the strongest mechanism to investigate, but only through a bounded data-availability/integrity audit. It is not yet a preregistered strategy and may reduce to an OI filter on an existing breakout family. |
+| Red | No candidate may progress to sealed-OOS scoring. Historical intervals are already exposed; OI timestamp availability is unresolved; liquidation-side observations and maker-queue fills are unavailable; the five labels collapse to reversal, derivatives-pressure, and risk-gating families. |
+| Methods | The 2025 four-date sample can smoke-test CVD aggregation and timestamp handling only. It cannot establish regime robustness or performance. OI, liquidation, and L2 candidates need their actual input data and availability timestamps before signal construction. |
+| Judge | **0/5 candidates approved for standalone strategy scoring.** Proceed only with OI data-quality/point-in-time audit. Keep Phase 9 blocked. |
+
+The outcome is a research eligibility decision, not evidence that these mechanisms cannot work. The fixed success gates remain unchanged. No strategy return, M2, baseline, or benchmark score was computed in this review.
+
+### Local trade-archive sufficiency check
+
+Read-only inspection found 80 ZIP files under `/private/tmp/binance-aggtrades-multiday-2025`: 20 symbols each for `2025-01-01`, `2025-04-01`, `2025-07-01`, and `2025-10-01`, split evenly between `aggTrades` and `1m` klines. Directory size was 325 MiB. This sparse sample contains four isolated days, not a continuous time series or broad set of market regimes. ZIP/checksum integrity was not re-audited in this check. It is therefore not eligible for strategy-performance scoring; at most it can support a separately preregistered aggregation/timestamp pipeline smoke test. No such smoke test was run.
+
+### Next research order
+
+1. **OI archive eligibility audit only:** choose a small stratified sample covering symbols, years, known defect classes, adjacent daily boundaries, and available checksums. Preserve raw files and record source, file hash, schema, field units, label time, publication/availability evidence, gaps, duplicates, and cross-day conflicts. Do not infer that a label timestamp is the availability time.
+2. **Stop/go on the OI input:** if historical point-in-time availability cannot be established, reject OI-based historical scoring. Do not substitute a price/OI-derived liquidation proxy for actual liquidation flow.
+3. **Only after data eligibility, decide whether to preregister one fixed OI-event hypothesis.** Freeze the OI shock definition, completed-bar event range, confirmation deadline, next-executable entry, stop, target, expiry, same-bar tie handling, funding, costs, and the price-only breakout control before accessing candidate outcomes. Label historical results exploratory because previously viewed windows are not sealed OOS.
+4. **Forward validation:** only an eligible, fully specified candidate can be put into append-only paper-signal evaluation on genuinely future data. No real orders or Oracle deployment are included.
+5. **Phase 7 robustness, then Phase 9:** only an individual candidate passing the frozen M2/sample/coverage/cost/baseline gates can proceed to robustness and eventually portfolio combination. No candidate currently meets that condition.
+
+### Reproducibility and limits
+
+- The four source-scout reports and four cross-review reports are preserved in the current Codex task messages; this document records their joint determinations and the basis for the next gate.
+- The check used the current checkout at `/Users/user/Desktop/CODE/trading_bot`; current branch at audit time: `research/bat-harmonic-validation-20261120`, HEAD `f3dcf764e91cefc49aad94d0c111d31cfe21e9a0`, working tree clean before this documentation change.
+- The local ZIP inventory command counted filenames and read ZIP member metadata; it did not extract or checksum all 80 files. The NAS volume was not mounted in this environment, so NAS-resident data was not inspected.
+- Public-source investigation was limited to the four scouts' searches and the cited repository/source pages. It does not establish that no novel strategy exists anywhere.
