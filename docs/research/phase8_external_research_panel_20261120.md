@@ -8,18 +8,43 @@ negative cross-coin predictability (the “seesaw” effect), while Guo et al.
 These are research hypotheses, not evidence that a simplified hourly rule is
 tradable. A fixed, equal-weight BTC/ETH/XRP/LTC one-hour leader-basket fade was
 therefore preregistered and tested on the verified 36-symbol 1h archive (32
-targets, H=1 and H=4). The recorded run emitted 1,118,560 signals, but average
-gross returns were small and every base/stress net mean was negative; all
-synchronized 7-day block-bootstrap net intervals were below zero. M2 was not
-measured because neither source defines a stop/target barrier for this rule.
-Decision: reject this simple proxy before M2 design; do not generalize that
-decision to every cross-asset model or to the paper results. All history was
-previously exposed, and fee proxies omit spread/slippage.
+targets, H=1 and H=4). Four roles independently reviewed the initial v2. Red
+team and methods review found that its H4 bootstrap block counted 168 four-hour
+observations (28 days), its coverage/non-overlap summary was incomplete, and
+some promised boundary tests were absent. The v3 correction fixed those issues;
+second-round red team then identified circular block joins and unresolved
+funding-at-exit timestamp semantics. v4 now uses non-circular moving blocks
+(168 H1 or 42 H4 anchors per 7 days) and reports both inclusive and exclusive
+exit-timestamp funding results. Signal rules were not changed across versions.
+
+The v4 run emitted 1,118,560 event rows. H1/H4 base and stress net means remain
+negative in all six split cells; non-circular synchronized 7-calendar-day
+intervals remain below zero. Excluding funding at the exit boundary changes
+base means only slightly and leaves them negative in all six cells. Coverage
+is 99.994–100%; market-wide non-overlap counts range from 1,271 to 16,998 and
+are not independent observations. The four-role second-round panel concluded:
+Blue allows only a distinctly preregistered, future-only asymmetric mechanism
+test (not another seesaw tuning pass); Red accepts the bootstrap correction but
+flags funding boundary ambiguity; Methods confirms this is only a pre-M2
+exploratory rejection; Judge rejects progression to M2. M2 was not measured
+because neither source defines a stop/target barrier for this rule. Decision:
+reject this simple proxy before M2 design; do not generalize that decision to
+every cross-asset model or to the paper results. All history was previously
+exposed, and fee proxies omit spread/slippage.
 
 - Frozen rule: `inventory/PREREG_CROSS_ASSET_SEESAW_SCREEN_20261120.md`.
-- Canonical run: `inventory/runs/cross_asset_seesaw_screen_20261120_v2/`.
-- Earlier generated run output is retained as an intermediate; v2 contains the
-  detailed run metadata and source manifest.
+- Canonical corrected run: `inventory/runs/cross_asset_seesaw_screen_20261120_v4/`.
+- v2, v3, and the initial output are retained as superseded intermediate artifacts.
+- v4 uses complete split-specific anchor grids with zero returns at no-signal
+  times, reports opportunity coverage and market-wide non-overlap counts, uses
+  non-circular 7-day moving blocks, and exposes funding endpoint sensitivity.
+- Final four-role vote on v4: 4/4 reject progression of this proxy to M2; all
+  reviewers limit the finding to the fixed rule, not the broader mechanism.
+- Blue team's only distinct follow-up lead is an asymmetric “positive leader
+  shock / large-vs-small next-hour relative return” mechanism test. It is not
+  yet preregistered or tested. Since all available periods have already been
+  exposed, any confirmatory version must use genuinely new forward data; it is
+  only a mechanism screen and cannot itself pass the M2 trading gate.
 - Sources: [Jia et al. (2023)](https://doi.org/10.1016/j.jempfin.2023.101428),
   [Guo et al. (2024)](https://www.sciencedirect.com/science/article/pii/S0165188924000551).
 

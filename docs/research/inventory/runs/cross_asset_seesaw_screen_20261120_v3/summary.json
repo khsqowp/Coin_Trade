@@ -1,0 +1,294 @@
+{
+  "m2": "NOT_MEASURED",
+  "targets": [
+    "AAVEUSDT",
+    "ADAUSDT",
+    "ALGOUSDT",
+    "APTUSDT",
+    "ARBUSDT",
+    "ATOMUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "CRVUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETCUSDT",
+    "FILUSDT",
+    "HBARUSDT",
+    "ICPUSDT",
+    "IMXUSDT",
+    "INJUSDT",
+    "LDOUSDT",
+    "LINKUSDT",
+    "NEARUSDT",
+    "OPUSDT",
+    "QNTUSDT",
+    "SOLUSDT",
+    "STXUSDT",
+    "THETAUSDT",
+    "TRXUSDT",
+    "UNIUSDT",
+    "VETUSDT",
+    "XLMUSDT",
+    "XMRUSDT",
+    "ZECUSDT"
+  ],
+  "cells": {
+    "1": {
+      "development": {
+        "signals": 543936,
+        "eligible_target_hour_opportunities": 543968,
+        "coverage_pct": 0.999941173010177,
+        "symbols": 32,
+        "mean_gross": 0.00010369592340483772,
+        "mean_gross_per_signal": 0.00010370202388274132,
+        "synchronized_gross_95ci": [
+          -7.781306787293266e-06,
+          0.00021412726506911934
+        ],
+        "mean_net_base": -0.0008951667997700555,
+        "mean_net_base_per_signal": -0.0008952194628362851,
+        "synchronized_net_base_95ci": [
+          -0.00100689146326341,
+          -0.000784332734681509
+        ],
+        "mean_net_stress": -0.002895049145790409,
+        "mean_net_stress_per_signal": -0.0028952194628362854,
+        "synchronized_net_stress_95ci": [
+          -0.0030067708679342724,
+          -0.002784326851982526
+        ],
+        "mean_momentum_net_base": -0.0011047155462503,
+        "mean_momentum_net_base_per_signal": -0.0011047805371637164,
+        "synchronized_momentum_net_base_95ci": [
+          -0.00121566138261951,
+          -0.0009929879414074542
+        ],
+        "mean_momentum_net_stress": -0.0031045978922706534,
+        "mean_momentum_net_stress_per_signal": -0.003104780537163716,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003215655499920527,
+          -0.0029928673460783164
+        ],
+        "m1_direction_accuracy": 0.516191243087422,
+        "nonoverlap_per_symbol": 543936,
+        "nonoverlap_marketwide": 16998
+      },
+      "validation_exposed": {
+        "signals": 188160,
+        "eligible_target_hour_opportunities": 188160,
+        "coverage_pct": 1.0,
+        "symbols": 32,
+        "mean_gross": -1.8514931875763867e-05,
+        "mean_gross_per_signal": -1.851493187576391e-05,
+        "synchronized_gross_95ci": [
+          -0.0001741412760543607,
+          0.00013193611748233384
+        ],
+        "mean_net_base": -0.0010181339578111386,
+        "mean_net_base_per_signal": -0.0010181339578111386,
+        "synchronized_net_base_95ci": [
+          -0.0011733791099744703,
+          -0.0008683163153779985
+        ],
+        "mean_net_stress": -0.0030181339578111374,
+        "mean_net_stress_per_signal": -0.0030181339578111382,
+        "synchronized_net_stress_95ci": [
+          -0.0031733791099744697,
+          -0.0028683163153779977
+        ],
+        "mean_momentum_net_base": -0.0009818660421888625,
+        "mean_momentum_net_base_per_signal": -0.0009818660421888623,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0011316836846220028,
+          -0.0008266208900255308
+        ],
+        "mean_momentum_net_stress": -0.0029818660421888615,
+        "mean_momentum_net_stress_per_signal": -0.0029818660421888615,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003131683684622001,
+          -0.0028266208900255296
+        ],
+        "m1_direction_accuracy": 0.5032100340136054,
+        "nonoverlap_per_symbol": 188160,
+        "nonoverlap_marketwide": 5880
+      },
+      "evaluation_previously_exposed": {
+        "signals": 162784,
+        "eligible_target_hour_opportunities": 162784,
+        "coverage_pct": 1.0,
+        "symbols": 32,
+        "mean_gross": 5.637967202497522e-06,
+        "mean_gross_per_signal": 5.637967202497518e-06,
+        "synchronized_gross_95ci": [
+          -0.00016512667027188176,
+          0.000186733890679889
+        ],
+        "mean_net_base": -0.0009934918696365043,
+        "mean_net_base_per_signal": -0.0009934918696365043,
+        "synchronized_net_base_95ci": [
+          -0.0011642194764337286,
+          -0.0008120556192869964
+        ],
+        "mean_net_stress": -0.002993491869636504,
+        "mean_net_stress_per_signal": -0.0029934918696365043,
+        "synchronized_net_stress_95ci": [
+          -0.0031642194764337278,
+          -0.0028120556192869953
+        ],
+        "mean_momentum_net_base": -0.0010065081303634966,
+        "mean_momentum_net_base_per_signal": -0.0010065081303634968,
+        "synchronized_momentum_net_base_95ci": [
+          -0.001187944380713005,
+          -0.0008357805235662725
+        ],
+        "mean_momentum_net_stress": -0.003006508130363496,
+        "mean_momentum_net_stress_per_signal": -0.0030065081303634962,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0031879443807130044,
+          -0.002835780523566272
+        ],
+        "m1_direction_accuracy": 0.5008416060546491,
+        "nonoverlap_per_symbol": 162784,
+        "nonoverlap_marketwide": 5087
+      }
+    },
+    "4": {
+      "development": {
+        "signals": 135968,
+        "eligible_target_hour_opportunities": 135968,
+        "coverage_pct": 1.0,
+        "symbols": 32,
+        "mean_gross": -0.00014343938150082638,
+        "mean_gross_per_signal": -0.00014343938150082643,
+        "synchronized_gross_95ci": [
+          -0.0005459186448426344,
+          0.0002683174168228945
+        ],
+        "mean_net_base": -0.0011381990125904952,
+        "mean_net_base_per_signal": -0.0011381990125904952,
+        "synchronized_net_base_95ci": [
+          -0.0015378536884884492,
+          -0.0007269101638350567
+        ],
+        "mean_net_stress": -0.003138199012590495,
+        "mean_net_stress_per_signal": -0.0031381990125904946,
+        "synchronized_net_stress_95ci": [
+          -0.0035378536884884486,
+          -0.002726910163835056
+        ],
+        "mean_momentum_net_base": -0.0008618009874095062,
+        "mean_momentum_net_base_per_signal": -0.0008618009874095061,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0012730898361649446,
+          -0.00046214631151155204
+        ],
+        "mean_momentum_net_stress": -0.0028618009874095056,
+        "mean_momentum_net_stress_per_signal": -0.002861800987409505,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.003273089836164944,
+          -0.0024621463115115515
+        ],
+        "m1_direction_accuracy": 0.5050673687926571,
+        "nonoverlap_per_symbol": 135968,
+        "nonoverlap_marketwide": 4249
+      },
+      "validation_exposed": {
+        "signals": 47040,
+        "eligible_target_hour_opportunities": 47040,
+        "coverage_pct": 1.0,
+        "symbols": 32,
+        "mean_gross": 3.114498891928289e-05,
+        "mean_gross_per_signal": 3.1144988919282975e-05,
+        "synchronized_gross_95ci": [
+          -0.0006261354835800159,
+          0.0007144920997273947
+        ],
+        "mean_net_base": -0.000966512325706568,
+        "mean_net_base_per_signal": -0.000966512325706568,
+        "synchronized_net_base_95ci": [
+          -0.001621531750719685,
+          -0.00028259489394820105
+        ],
+        "mean_net_stress": -0.0029665123257065678,
+        "mean_net_stress_per_signal": -0.0029665123257065678,
+        "synchronized_net_stress_95ci": [
+          -0.003621531750719684,
+          -0.0022825948939482004
+        ],
+        "mean_momentum_net_base": -0.0010334876742934332,
+        "mean_momentum_net_base_per_signal": -0.0010334876742934332,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0017174051060518003,
+          -0.0003784682492803166
+        ],
+        "mean_momentum_net_stress": -0.0030334876742934324,
+        "mean_momentum_net_stress_per_signal": -0.0030334876742934332,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0037174051060517993,
+          -0.0023784682492803155
+        ],
+        "m1_direction_accuracy": 0.4986607142857143,
+        "nonoverlap_per_symbol": 47040,
+        "nonoverlap_marketwide": 1470
+      },
+      "evaluation_previously_exposed": {
+        "signals": 40672,
+        "eligible_target_hour_opportunities": 40672,
+        "coverage_pct": 1.0,
+        "symbols": 32,
+        "mean_gross": -0.00030670286988734706,
+        "mean_gross_per_signal": -0.00030670286988734706,
+        "synchronized_gross_95ci": [
+          -0.0010761192044120517,
+          0.0004369748763865133
+        ],
+        "mean_net_base": -0.0013029613909829416,
+        "mean_net_base_per_signal": -0.0013029613909829418,
+        "synchronized_net_base_95ci": [
+          -0.002070891096254106,
+          -0.0005594789701356646
+        ],
+        "mean_net_stress": -0.0033029613909829406,
+        "mean_net_stress_per_signal": -0.0033029613909829414,
+        "synchronized_net_stress_95ci": [
+          -0.004070891096254105,
+          -0.0025594789701356637
+        ],
+        "mean_momentum_net_base": -0.0006970386090170595,
+        "mean_momentum_net_base_per_signal": -0.0006970386090170595,
+        "synchronized_momentum_net_base_95ci": [
+          -0.0014405210298643369,
+          7.089109625410452e-05
+        ],
+        "mean_momentum_net_stress": -0.0026970386090170587,
+        "mean_momentum_net_stress_per_signal": -0.0026970386090170596,
+        "synchronized_momentum_net_stress_95ci": [
+          -0.0034405210298643356,
+          -0.001929108903745895
+        ],
+        "m1_direction_accuracy": 0.5038601494885917,
+        "nonoverlap_per_symbol": 40672,
+        "nonoverlap_marketwide": 1271
+      }
+    }
+  },
+  "symbols_total": 36,
+  "target_symbols": 32,
+  "leaders": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "XRPUSDT",
+    "LTCUSDT"
+  ],
+  "period_start_ms": 1679583600000,
+  "period_end_exclusive_ms": 1780272000000,
+  "data_fingerprint": "cfef7ec135d24a933b8b037bf2c44a2ccbf06f06cf2fc01f140b60f4ced7735e",
+  "source_manifest_sha256": "cfef7ec135d24a933b8b037bf2c44a2ccbf06f06cf2fc01f140b60f4ced7735e",
+  "code_sha256": "057664139a97c9d4e1ccf45505a18c2b9fe167f0dfb863dfcef149db6fe5ece5",
+  "command": "/opt/anaconda3/bin/python3 scripts/research/cross_asset_seesaw_screen.py --archive-root /private/tmp/cointrade-50_50-data --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --output-dir docs/research/inventory/runs/cross_asset_seesaw_screen_20261120_v3",
+  "preregistration_sha256": "8c72966e0633f67e06c952f8955cae4465b9d0b718ce580a50e2e807a7ab8319",
+  "exposure_warning": "all historical periods exposed; exploratory rejection/debug only",
+  "causal_mutation": "PASS"
+}
