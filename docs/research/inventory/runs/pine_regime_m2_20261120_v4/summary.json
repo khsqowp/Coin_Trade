@@ -1,0 +1,635 @@
+{
+  "all_issued": {
+    "evaluable_n": 11616,
+    "m1_rate": 0.4786501377410468,
+    "m2_hits": 3532,
+    "m2_rate": 0.3040633608815427,
+    "m2_wilson_95": [
+      0.295763869081066,
+      0.31249240393851563
+    ],
+    "n": 11616,
+    "net_base_mean_R": -0.12687721489173653,
+    "net_base_mean_return_fraction": -0.0016202835215355506,
+    "net_stress_mean_R": -0.3172834353992183,
+    "net_stress_mean_return_fraction": -0.0036202835215355506
+  },
+  "archive_hash_audit": {
+    "audit_rows": 2194,
+    "checked": 2194,
+    "malformed_rows": 0,
+    "missing": 0,
+    "note": "hash equality proves file identity only, not source authenticity or time-series correctness",
+    "sha256_mismatches": 0,
+    "status": "PASS"
+  },
+  "attempted_to_trend": 11811,
+  "baseline_long_all_issued": 0.28383264462809915,
+  "baseline_short_all_issued": 0.3228305785123967,
+  "causal_checks": {
+    "AAVEUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "ADAUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "ALGOUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "APTUSDT": {
+      "bars": 20734,
+      "cut_index": 10367,
+      "status": "PASS"
+    },
+    "ARBUSDT": {
+      "bars": 17001,
+      "cut_index": 8500,
+      "status": "PASS"
+    },
+    "ATOMUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "AVAXUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "BCHUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "BNBUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "BTCUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "CRVUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "DOGEUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "DOTUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "ETCUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "ETHUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "FILUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "HBARUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "ICPUSDT": {
+      "bars": 21262,
+      "cut_index": 10631,
+      "status": "PASS"
+    },
+    "IMXUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "INJUSDT": {
+      "bars": 22246,
+      "cut_index": 11123,
+      "status": "PASS"
+    },
+    "LDOUSDT": {
+      "bars": 21372,
+      "cut_index": 10686,
+      "status": "PASS"
+    },
+    "LINKUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "LTCUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "NEARUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "OPUSDT": {
+      "bars": 24082,
+      "cut_index": 12041,
+      "status": "PASS"
+    },
+    "QNTUSDT": {
+      "bars": 20710,
+      "cut_index": 10355,
+      "status": "PASS"
+    },
+    "SOLUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "STXUSDT": {
+      "bars": 17722,
+      "cut_index": 8861,
+      "status": "PASS"
+    },
+    "THETAUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "TRXUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "UNIUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "VETUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "XLMUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "XMRUSDT": {
+      "bars": 28464,
+      "cut_index": 14232,
+      "status": "PASS"
+    },
+    "XRPUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    },
+    "ZECUSDT": {
+      "bars": 25512,
+      "cut_index": 12756,
+      "status": "PASS"
+    }
+  },
+  "code_sha256": "6262c8a07da02bac6f4bb81f8ce36bb7e4148a421f6e1e4ad8c99e5691de6a7d",
+  "command": "scripts/research/pine_regime_m2_probe.py --archive-root /private/tmp/cointrade-50_50-data --coverage docs/research/inventory/usdm_archive_coverage_20261120.json --archive-audit /private/tmp/cointrade-50_50-data/audit.json --funding-audit /private/tmp/cvd-funding-timestamp-audit-v2-20261120.json --prereg docs/research/inventory/PREREG_PINE_COMPOSITE_REGIME_TREND_M2_20261120.md --output-dir docs/research/inventory/runs/pine_regime_m2_20261120_v4 --score-development",
+  "core_eligible": false,
+  "core_gate_failures": [
+    "all_issued_M2_below_80_percent",
+    "coverage_below_10_percent",
+    "base_net_expectancy_not_positive",
+    "stress_net_expectancy_not_positive",
+    "M2_Wilson_lower_not_above_strongest_development_baseline"
+  ],
+  "coverage": 0.01900166035513606,
+  "coverage_denominator_complete_symbol_hours": 611315,
+  "created_utc": "2026-11-20T12:48:59.932004+00:00",
+  "data_fingerprint_sha256": "4cf4d55556ee1fadd0c46b0001ef3491b58a3e40fb67b8634f1fae15cfd29911",
+  "data_gaps": 0,
+  "exclusion_counts": {
+    "data_gap": 0,
+    "invalid_atr": 0,
+    "missing_entry_bar": 0,
+    "no_direction": 78,
+    "suppressed_in_position": 95,
+    "truncated_at_split": 22
+  },
+  "funding_api_crosscheck": {
+    "passed": 108,
+    "sample_count": 108,
+    "status": "PASS"
+  },
+  "git_head": "4927997185d14c1848f4432e3ac506f121efc26e",
+  "independent_sample_audit": {
+    "checked": 100,
+    "ledger_rows": 11616,
+    "mismatches": 0,
+    "sample_requested": 100,
+    "selection": "SHA256(pine-regime-audit-v1|symbol|signal_close_ms), ascending",
+    "status": "PASS"
+  },
+  "issued_executable": 11616,
+  "ledger_sha256": "aff334783703319dbf03f7f127984b04475c62e2b56c57e6bb2b751b1da01be1",
+  "mean_funding_cost_fraction": 2.3220527720385675e-05,
+  "no_direction": 78,
+  "nonoverlap_20h": {
+    "evaluable_n": 1349,
+    "m1_rate": 0.45663454410674575,
+    "m2_hits": 380,
+    "m2_rate": 0.28169014084507044,
+    "m2_wilson_95": [
+      0.258332119265873,
+      0.3062879652535309
+    ],
+    "n": 1349,
+    "net_base_mean_R": -0.18535706055545742,
+    "net_base_mean_return_fraction": -0.0023688378813305202,
+    "net_stress_mean_R": -0.38046220327805813,
+    "net_stress_mean_return_fraction": -0.004368837881330519
+  },
+  "nonoverlap_distinct_symbols": 36,
+  "nonoverlap_timestamp_clusters": 744,
+  "preregistration_sha256": "a12d3aa5e34ced5efc96cfc3361019c9920c529669bb9fe00be9b8ae09f84b74",
+  "source_pins": {
+    "license_git_blob": "4693362ee10a94d2d8a9a02b55852d2c8f0d4e94",
+    "license_sha256": "a468e9bc5c6a94a69f337a5ef276f065e778cd0170d7a7b8b3b71164a2e29d33",
+    "prereg_sha256": "a12d3aa5e34ced5efc96cfc3361019c9920c529669bb9fe00be9b8ae09f84b74",
+    "source_git_blob": "7fa6fe76631305448fa3526bef7bcaa8d56a6441",
+    "source_sha256": "a65022e8abcfc38d82a9a8b31ab9abc75ee929e4e641c584a415c6e6b2e6f98b"
+  },
+  "status": "REJECTED_DEVELOPMENT_SCREEN",
+  "strongest_development_baseline_m2": 0.3228305785123967,
+  "suppressed_in_position": 95,
+  "symbols": 36,
+  "timestamp_audit": {
+    "candle_mark_timestamp_mismatches": 0,
+    "checked": 1404,
+    "cohort": "2023-03..2026-05",
+    "duplicate_or_incomplete_hour_sets": 0,
+    "failure_examples": [],
+    "funding_integrity_failures": 0,
+    "limitations": [
+      "raw archive timestamps only; does not validate price accuracy or strategy fills",
+      "funding timestamps are checked against the interval carried in adjacent archive rows"
+    ],
+    "malformed": 0,
+    "mark_hours_outside_kline_window": 2,
+    "missing": 0,
+    "months": 39,
+    "status": "PASS",
+    "symbol_months_expected": 1404,
+    "symbols": 36
+  },
+  "truncated_or_invalid_attempts_by_symbol": {
+    "AAVEUSDT": {
+      "attempted_to_trend": 318,
+      "eligible_symbol_hours": 16981,
+      "issued": 312,
+      "issued_signal_rate": 0.018373476238148518,
+      "no_direction": 1,
+      "suppressed_in_position": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "ADAUSDT": {
+      "attempted_to_trend": 329,
+      "eligible_symbol_hours": 16981,
+      "issued": 322,
+      "issued_signal_rate": 0.018962369707319945,
+      "no_direction": 4,
+      "suppressed_in_position": 2,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "ALGOUSDT": {
+      "attempted_to_trend": 344,
+      "eligible_symbol_hours": 16981,
+      "issued": 331,
+      "issued_signal_rate": 0.01949237382957423,
+      "no_direction": 7,
+      "suppressed_in_position": 5,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "APTUSDT": {
+      "attempted_to_trend": 307,
+      "eligible_symbol_hours": 16981,
+      "issued": 303,
+      "issued_signal_rate": 0.017843472115894234,
+      "no_direction": 1,
+      "suppressed_in_position": 2,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-10-19T02:00:00Z"
+    },
+    "ARBUSDT": {
+      "attempted_to_trend": 344,
+      "eligible_symbol_hours": 16980,
+      "issued": 341,
+      "issued_signal_rate": 0.020082449941107184,
+      "suppressed_in_position": 3,
+      "warmup_start": "2023-03-23T15:00:00Z"
+    },
+    "ATOMUSDT": {
+      "attempted_to_trend": 346,
+      "eligible_symbol_hours": 16981,
+      "issued": 345,
+      "issued_signal_rate": 0.020316824686414228,
+      "suppressed_in_position": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "AVAXUSDT": {
+      "attempted_to_trend": 352,
+      "eligible_symbol_hours": 16981,
+      "issued": 345,
+      "issued_signal_rate": 0.020316824686414228,
+      "no_direction": 2,
+      "suppressed_in_position": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "BCHUSDT": {
+      "attempted_to_trend": 344,
+      "eligible_symbol_hours": 16981,
+      "issued": 338,
+      "issued_signal_rate": 0.01990459925799423,
+      "no_direction": 1,
+      "suppressed_in_position": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "BNBUSDT": {
+      "attempted_to_trend": 338,
+      "eligible_symbol_hours": 16981,
+      "issued": 336,
+      "issued_signal_rate": 0.019786820564159945,
+      "suppressed_in_position": 2,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "BTCUSDT": {
+      "attempted_to_trend": 348,
+      "eligible_symbol_hours": 16981,
+      "issued": 344,
+      "issued_signal_rate": 0.020257935339497084,
+      "suppressed_in_position": 4,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "CRVUSDT": {
+      "attempted_to_trend": 304,
+      "eligible_symbol_hours": 16981,
+      "issued": 285,
+      "issued_signal_rate": 0.016783463871385667,
+      "no_direction": 17,
+      "suppressed_in_position": 2,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "DOGEUSDT": {
+      "attempted_to_trend": 344,
+      "eligible_symbol_hours": 16981,
+      "issued": 338,
+      "issued_signal_rate": 0.01990459925799423,
+      "no_direction": 3,
+      "suppressed_in_position": 2,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "DOTUSDT": {
+      "attempted_to_trend": 336,
+      "eligible_symbol_hours": 16981,
+      "issued": 333,
+      "issued_signal_rate": 0.019610152523408517,
+      "no_direction": 1,
+      "suppressed_in_position": 1,
+      "truncated_at_split": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "ETCUSDT": {
+      "attempted_to_trend": 362,
+      "eligible_symbol_hours": 16981,
+      "issued": 353,
+      "issued_signal_rate": 0.020787939461751368,
+      "no_direction": 1,
+      "suppressed_in_position": 6,
+      "truncated_at_split": 2,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "ETHUSDT": {
+      "attempted_to_trend": 338,
+      "eligible_symbol_hours": 16981,
+      "issued": 335,
+      "issued_signal_rate": 0.0197279312172428,
+      "suppressed_in_position": 3,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "FILUSDT": {
+      "attempted_to_trend": 340,
+      "eligible_symbol_hours": 16981,
+      "issued": 334,
+      "issued_signal_rate": 0.019669041870325657,
+      "no_direction": 3,
+      "suppressed_in_position": 2,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "HBARUSDT": {
+      "attempted_to_trend": 325,
+      "eligible_symbol_hours": 16981,
+      "issued": 320,
+      "issued_signal_rate": 0.01884459101348566,
+      "no_direction": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "ICPUSDT": {
+      "attempted_to_trend": 301,
+      "eligible_symbol_hours": 16981,
+      "issued": 296,
+      "issued_signal_rate": 0.017431246687474235,
+      "no_direction": 3,
+      "suppressed_in_position": 1,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-09-27T02:00:00Z"
+    },
+    "IMXUSDT": {
+      "attempted_to_trend": 348,
+      "eligible_symbol_hours": 16981,
+      "issued": 345,
+      "issued_signal_rate": 0.020316824686414228,
+      "no_direction": 1,
+      "suppressed_in_position": 2,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "INJUSDT": {
+      "attempted_to_trend": 333,
+      "eligible_symbol_hours": 16981,
+      "issued": 332,
+      "issued_signal_rate": 0.019551263176491373,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-08-17T02:00:00Z"
+    },
+    "LDOUSDT": {
+      "attempted_to_trend": 332,
+      "eligible_symbol_hours": 16981,
+      "issued": 327,
+      "issued_signal_rate": 0.01925681644190566,
+      "no_direction": 1,
+      "suppressed_in_position": 4,
+      "warmup_start": "2022-09-22T12:00:00Z"
+    },
+    "LINKUSDT": {
+      "attempted_to_trend": 334,
+      "eligible_symbol_hours": 16981,
+      "issued": 331,
+      "issued_signal_rate": 0.01949237382957423,
+      "no_direction": 1,
+      "suppressed_in_position": 2,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "LTCUSDT": {
+      "attempted_to_trend": 312,
+      "eligible_symbol_hours": 16981,
+      "issued": 305,
+      "issued_signal_rate": 0.01796125080972852,
+      "no_direction": 2,
+      "suppressed_in_position": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "NEARUSDT": {
+      "attempted_to_trend": 320,
+      "eligible_symbol_hours": 16981,
+      "issued": 311,
+      "issued_signal_rate": 0.018314586891231378,
+      "no_direction": 2,
+      "suppressed_in_position": 6,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "OPUSDT": {
+      "attempted_to_trend": 320,
+      "eligible_symbol_hours": 16981,
+      "issued": 318,
+      "issued_signal_rate": 0.018726812319651374,
+      "suppressed_in_position": 2,
+      "warmup_start": "2022-06-01T14:00:00Z"
+    },
+    "QNTUSDT": {
+      "attempted_to_trend": 287,
+      "eligible_symbol_hours": 16981,
+      "issued": 283,
+      "issued_signal_rate": 0.01666568517755138,
+      "no_direction": 1,
+      "suppressed_in_position": 3,
+      "warmup_start": "2022-10-20T02:00:00Z"
+    },
+    "SOLUSDT": {
+      "attempted_to_trend": 346,
+      "eligible_symbol_hours": 16981,
+      "issued": 342,
+      "issued_signal_rate": 0.0201401566456628,
+      "suppressed_in_position": 2,
+      "truncated_at_split": 2,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "STXUSDT": {
+      "attempted_to_trend": 327,
+      "eligible_symbol_hours": 16981,
+      "issued": 320,
+      "issued_signal_rate": 0.01884459101348566,
+      "no_direction": 1,
+      "suppressed_in_position": 5,
+      "truncated_at_split": 1,
+      "warmup_start": "2023-02-21T14:00:00Z"
+    },
+    "THETAUSDT": {
+      "attempted_to_trend": 337,
+      "eligible_symbol_hours": 16981,
+      "issued": 335,
+      "issued_signal_rate": 0.0197279312172428,
+      "no_direction": 1,
+      "suppressed_in_position": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "TRXUSDT": {
+      "attempted_to_trend": 361,
+      "eligible_symbol_hours": 16981,
+      "issued": 353,
+      "issued_signal_rate": 0.020787939461751368,
+      "no_direction": 3,
+      "suppressed_in_position": 4,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "UNIUSDT": {
+      "attempted_to_trend": 326,
+      "eligible_symbol_hours": 16981,
+      "issued": 322,
+      "issued_signal_rate": 0.018962369707319945,
+      "no_direction": 2,
+      "suppressed_in_position": 2,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "VETUSDT": {
+      "attempted_to_trend": 335,
+      "eligible_symbol_hours": 16981,
+      "issued": 327,
+      "issued_signal_rate": 0.01925681644190566,
+      "no_direction": 7,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "XLMUSDT": {
+      "attempted_to_trend": 304,
+      "eligible_symbol_hours": 16981,
+      "issued": 298,
+      "issued_signal_rate": 0.017549025381308522,
+      "no_direction": 3,
+      "suppressed_in_position": 3,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "XMRUSDT": {
+      "attempted_to_trend": 254,
+      "eligible_symbol_hours": 16981,
+      "issued": 252,
+      "issued_signal_rate": 0.014840115423119958,
+      "no_direction": 1,
+      "suppressed_in_position": 1,
+      "warmup_start": "2021-12-01T00:00:00Z"
+    },
+    "XRPUSDT": {
+      "attempted_to_trend": 334,
+      "eligible_symbol_hours": 16981,
+      "issued": 327,
+      "issued_signal_rate": 0.01925681644190566,
+      "no_direction": 1,
+      "suppressed_in_position": 5,
+      "truncated_at_split": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    },
+    "ZECUSDT": {
+      "attempted_to_trend": 281,
+      "eligible_symbol_hours": 16981,
+      "issued": 277,
+      "issued_signal_rate": 0.016312349096048524,
+      "no_direction": 3,
+      "suppressed_in_position": 1,
+      "warmup_start": "2022-04-03T00:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "checked": 100,
+  "ledger_rows": 11616,
+  "mismatches": 0,
+  "sample": [
+    {
+      "match": true,
+      "signal_close_ms": 1740438000000,
+      "symbol": "LTCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1684807200000,
+      "symbol": "ETHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1711116000000,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1693306800000,
+      "symbol": "STXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730862000000,
+      "symbol": "ALGOUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730498400000,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1697731200000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1687939200000,
+      "symbol": "LTCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1728061200000,
+      "symbol": "OPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1715054400000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1714183200000,
+      "symbol": "AVAXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1731736800000,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1719176400000,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1720735200000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1698033600000,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730048400000,
+      "symbol": "THETAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1720303200000,
+      "symbol": "AAVEUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1715904000000,
+      "symbol": "ETHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1733472000000,
+      "symbol": "ALGOUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1728907200000,
+      "symbol": "STXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1735516800000,
+      "symbol": "ZECUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1718938800000,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1720393200000,
+      "symbol": "ICPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1705258800000,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1717052400000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1711832400000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1681819200000,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1739145600000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1714183200000,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1693746000000,
+      "symbol": "XLMUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1733738400000,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1683388800000,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1706418000000,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1699549200000,
+      "symbol": "ICPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1734555600000,
+      "symbol": "DOTUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1724508000000,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1725483600000,
+      "symbol": "INJUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1725969600000,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1711951200000,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1736265600000,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1684400400000,
+      "symbol": "APTUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1692806400000,
+      "symbol": "ETCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1739869200000,
+      "symbol": "THETAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1687294800000,
+      "symbol": "CRVUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1691449200000,
+      "symbol": "STXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730826000000,
+      "symbol": "XLMUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1700060400000,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1729702800000,
+      "symbol": "CRVUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1712574000000,
+      "symbol": "THETAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1690513200000,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1709514000000,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1690131600000,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1710118800000,
+      "symbol": "OPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1732863600000,
+      "symbol": "THETAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1719468000000,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1703613600000,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1724029200000,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1688706000000,
+      "symbol": "OPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1680292800000,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1692810000000,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1699524000000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1686614400000,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1718625600000,
+      "symbol": "LINKUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1715223600000,
+      "symbol": "XMRUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1731290400000,
+      "symbol": "STXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1731646800000,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1719162000000,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730152800000,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1730721600000,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1738796400000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1725656400000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1684173600000,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1695949200000,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1739224800000,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1721890800000,
+      "symbol": "XMRUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1731474000000,
+      "symbol": "INJUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1696669200000,
+      "symbol": "DOTUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1740214800000,
+      "symbol": "INJUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1708959600000,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1711605600000,
+      "symbol": "LDOUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1719799200000,
+      "symbol": "OPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1719064800000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1729900800000,
+      "symbol": "IMXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1735074000000,
+      "symbol": "LDOUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1732856400000,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1681502400000,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1705914000000,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1738663200000,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1684350000000,
+      "symbol": "LDOUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1679929200000,
+      "symbol": "OPUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1708970400000,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1714752000000,
+      "symbol": "VETUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1680364800000,
+      "symbol": "ARBUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1686776400000,
+      "symbol": "AVAXUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1735923600000,
+      "symbol": "QNTUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1727708400000,
+      "symbol": "ETCUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1732269600000,
+      "symbol": "HBARUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1703844000000,
+      "symbol": "BCHUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1708437600000,
+      "symbol": "XMRUSDT"
+    },
+    {
+      "match": true,
+      "signal_close_ms": 1698382800000,
+      "symbol": "VETUSDT"
+    }
+  ],
+  "sample_requested": 100,
+  "selection": "SHA256(pine-regime-audit-v1|symbol|signal_close_ms), ascending",
+  "status": "PASS"
+}
