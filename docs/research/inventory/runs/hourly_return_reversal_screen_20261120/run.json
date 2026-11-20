@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "run_id": "hourly-return-reversal-screen-20261120",
+  "status": "complete_exploratory",
+  "candidate": "contra_sign_of_previous_closed_hourly_return",
+  "candidate_count": 1,
+  "horizons_h": [
+    1,
+    4
+  ],
+  "symbols": [
+    "AAVEUSDT",
+    "ADAUSDT",
+    "ALGOUSDT",
+    "APTUSDT",
+    "ARBUSDT",
+    "ATOMUSDT",
+    "AVAXUSDT",
+    "BCHUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "CRVUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ETCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HBARUSDT",
+    "ICPUSDT",
+    "IMXUSDT",
+    "INJUSDT",
+    "LDOUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "NEARUSDT",
+    "OPUSDT",
+    "QNTUSDT",
+    "SOLUSDT",
+    "STXUSDT",
+    "THETAUSDT",
+    "TRXUSDT",
+    "UNIUSDT",
+    "VETUSDT",
+    "XLMUSDT",
+    "XMRUSDT",
+    "XRPUSDT",
+    "ZECUSDT"
+  ],
+  "archive_months": [
+    "2023-03",
+    "2026-05"
+  ],
+  "pre_registration_sha256": "1014afc202e5ea1468b2ae68876e9406f546e8ced5d48374624a00ad7175c1da",
+  "code_sha256": "39e5abce351cfbaf5b87982b2bc4a58b4c381dc35bc8ea92830983e6be2a3e00",
+  "source_manifest_sha256": "68740f603c274ed5de549882beb4f8ea3530e9fb863bf008e2c883c1add04103",
+  "input_root": "/private/tmp/cointrade-50_50-data",
+  "command": "scripts/research/hourly_return_reversal_screen.py --archive-root /private/tmp/cointrade-50_50-data --coverage-json docs/research/inventory/usdm_archive_coverage_20261120.json --prereg docs/research/inventory/PREREG_HOURLY_RETURN_REVERSAL_SCREEN_20261120.md --output-dir docs/research/inventory/runs/hourly_return_reversal_screen_20261120",
+  "coverage_file_sha256": "8937a10c2f98015c389db3f6da7b56a5be55ac6f1a76fb71cfde6c07e7782a03",
+  "costs_round_trip": {
+    "base": 0.001,
+    "stress": 0.003
+  },
+  "m2": "NOT_MEASURED",
+  "data_status": "archive loader validates hourly continuity, mark coverage, OHLC and funding timestamps; prior cohort audit verified archive hashes",
+  "historical_exposure": "all listed periods and source history were previously exposed; no OOS promotion permitted",
+  "self_checks": {
+    "status": "PASS",
+    "exact_zero_abstains": true,
+    "positive_prior_return_short": true,
+    "negative_prior_return_long": true,
+    "prefix_invariance": "PASS",
+    "future_mutation": "PASS"
+  },
+  "results": [
+    {
+      "horizon_h": 1,
+      "split": "all_exposed",
+      "opportunities": 1006882,
+      "signals": 993248,
+      "symbols": 36,
+      "unique_market_times": 27968,
+      "coverage": 0.9864591878690849,
+      "m1_accuracy": 0.5138666274686684,
+      "m1_wilson_iid_descriptive": [
+        0.5128836466978351,
+        0.5148495009795376
+      ],
+      "executable_win_rate": 0.513556533715648,
+      "mean_gross_return": 6.0323077191932145e-05,
+      "mean_signed_funding_cashflow": 9.232593471116983e-08,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.5110629687891738,
+          0.5166937385615624
+        ],
+        "gross_mean_ci": [
+          1.088336492607819e-06,
+          0.00011473028219020646
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0010604154031266435,
+          "long": -0.0009794635737184851,
+          "short": -0.001020536426281516
+        },
+        "stress": {
+          "momentum": -0.003060415403126643,
+          "long": -0.002979463573718486,
+          "short": -0.0030205364262815147
+        }
+      },
+      "net_base": -0.0009395845968733573,
+      "net_base_market_time_ci": [
+        -0.0009957583438835412,
+        -0.0008889465261964167
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.002939584596873356,
+      "net_stress_market_time_ci": [
+        -0.0029955986653328725,
+        -0.002882084768682682
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.03695215016941806,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 1,
+      "split": "development",
+      "opportunities": 612034,
+      "signals": 604238,
+      "symbols": 36,
+      "unique_market_times": 17000,
+      "coverage": 0.9872621455670764,
+      "m1_accuracy": 0.5196131325735885,
+      "m1_wilson_iid_descriptive": [
+        0.5183532754292285,
+        0.5208727403375318
+      ],
+      "executable_win_rate": 0.518974311446814,
+      "mean_gross_return": 0.00011716857021840926,
+      "mean_signed_funding_cashflow": 1.2867277463516037e-07,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.5160516909643652,
+          0.5227169770528856
+        ],
+        "gross_mean_ci": [
+          4.458619415002148e-05,
+          0.00018611238386478368
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.001117297242993045,
+          "long": -0.0009472649954648507,
+          "short": -0.0010527350045351506
+        },
+        "stress": {
+          "momentum": -0.003117297242993044,
+          "long": -0.0029472649954648492,
+          "short": -0.00305273500453515
+        }
+      },
+      "net_base": -0.0008827027570069559,
+      "net_base_market_time_ci": [
+        -0.0009575885593696097,
+        -0.0008160666098508486
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.002882702757006958,
+      "net_stress_market_time_ci": [
+        -0.0029525369674126183,
+        -0.002814781197856355
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.038096146098873615,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 1,
+      "split": "validation_exposed",
+      "opportunities": 211680,
+      "signals": 209782,
+      "symbols": 36,
+      "unique_market_times": 5880,
+      "coverage": 0.9910336356764928,
+      "m1_accuracy": 0.505038563842465,
+      "m1_wilson_iid_descriptive": [
+        0.5028989929315203,
+        0.507177950227749
+      ],
+      "executable_win_rate": 0.5053436424478744,
+      "mean_gross_return": -5.5508981371426815e-05,
+      "mean_signed_funding_cashflow": 1.8343184829966352e-08,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.4989829795115109,
+          0.5101459915911246
+        ],
+        "gross_mean_ci": [
+          -0.00018017219287095446,
+          6.186086238207829e-05
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0009445093618134035,
+          "long": -0.0009818698396470062,
+          "short": -0.001018130160352995
+        },
+        "stress": {
+          "momentum": -0.0029445093618134036,
+          "long": -0.0029818698396470063,
+          "short": -0.0030181301603529947
+        }
+      },
+      "net_base": -0.0010554906381865972,
+      "net_base_market_time_ci": [
+        -0.0011722931856377194,
+        -0.0009423470102599814
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.0030554906381865974,
+      "net_stress_market_time_ci": [
+        -0.003175313241567432,
+        -0.002933286228112661
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.039496775648846884,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 1,
+      "split": "evaluation_previously_exposed",
+      "opportunities": 183168,
+      "signals": 179228,
+      "symbols": 36,
+      "unique_market_times": 5088,
+      "coverage": 0.9784896925227113,
+      "m1_accuracy": 0.5048262548262549,
+      "m1_wilson_iid_descriptive": [
+        0.502511475007259,
+        0.5071408277639398
+      ],
+      "executable_win_rate": 0.5049043676211307,
+      "mean_gross_return": 4.256357115861795e-06,
+      "mean_signed_funding_cashflow": 5.638348918695737e-08,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.49821891752388703,
+          0.5116856934505897
+        ],
+        "gross_mean_ci": [
+          -0.00012583302460838036,
+          0.00014488498946971478
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0010043127406050493,
+          "long": -0.001085199358572429,
+          "short": -0.0009148006414275724
+        },
+        "stress": {
+          "momentum": -0.003004312740605049,
+          "long": -0.003085199358572429,
+          "short": -0.0029148006414275716
+        }
+      },
+      "net_base": -0.000995687259394952,
+      "net_base_market_time_ci": [
+        -0.0011198208124951815,
+        -0.0008515326804012212
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.002995687259394952,
+      "net_stress_market_time_ci": [
+        -0.0031308386688568674,
+        -0.002852611828036715
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.04912233638084099,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 4,
+      "split": "all_exposed",
+      "opportunities": 251711,
+      "signals": 248130,
+      "symbols": 36,
+      "unique_market_times": 6992,
+      "coverage": 0.9857733670757337,
+      "m1_accuracy": 0.5049731995325031,
+      "m1_wilson_iid_descriptive": [
+        0.5030058994536254,
+        0.5069403456272156
+      ],
+      "executable_win_rate": 0.5048160238584612,
+      "mean_gross_return": -0.00011190550496049473,
+      "mean_signed_funding_cashflow": 1.0546091967920043e-06,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.4993305432991194,
+          0.5104202281327458
+        ],
+        "gross_mean_ci": [
+          -0.0003400301192208549,
+          0.00010349281099076631
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0008891491042362979,
+          "long": -0.0009111861540433358,
+          "short": -0.0010888138459566649
+        },
+        "stress": {
+          "momentum": -0.0028891491042362977,
+          "long": -0.0029111861540433363,
+          "short": -0.003088813845956665
+        }
+      },
+      "net_base": -0.001110850895763703,
+      "net_base_market_time_ci": [
+        -0.0013415604883491325,
+        -0.0008694860664385859
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.003110850895763702,
+      "net_stress_market_time_ci": [
+        -0.0033378198112919274,
+        -0.002879837125504362
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.03682821577028248,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 4,
+      "split": "development",
+      "opportunities": 152999,
+      "signals": 150953,
+      "symbols": 36,
+      "unique_market_times": 4250,
+      "coverage": 0.9866273635775398,
+      "m1_accuracy": 0.5100660470477566,
+      "m1_wilson_iid_descriptive": [
+        0.5075440313699275,
+        0.5125875504161752
+      ],
+      "executable_win_rate": 0.5097745655932642,
+      "mean_gross_return": 3.516595373923803e-05,
+      "mean_signed_funding_cashflow": 1.1146958324776588e-06,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.5030060002993636,
+          0.5168134105815865
+        ],
+        "gross_mean_ci": [
+          -0.00028474350893277446,
+          0.00031937715475918553
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0010362806495717164,
+          "long": -0.0007915116995401213,
+          "short": -0.00120848830045988
+        },
+        "stress": {
+          "momentum": -0.0030362806495717156,
+          "long": -0.002791511699540121,
+          "short": -0.00320848830045988
+        }
+      },
+      "net_base": -0.0009637193504282848,
+      "net_base_market_time_ci": [
+        -0.0012544435131508936,
+        -0.0006532046017474247
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.002963719350428285,
+      "net_stress_market_time_ci": [
+        -0.0032437143683949543,
+        -0.002682952200960186
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.03857679999080747,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 4,
+      "split": "validation_exposed",
+      "opportunities": 52920,
+      "signals": 52384,
+      "symbols": 36,
+      "unique_market_times": 1470,
+      "coverage": 0.9898715041572185,
+      "m1_accuracy": 0.49574297495418446,
+      "m1_wilson_iid_descriptive": [
+        0.49146187431280974,
+        0.5000246999078408
+      ],
+      "executable_win_rate": 0.49580024434941966,
+      "mean_gross_return": -0.0003575989150390094,
+      "mean_signed_funding_cashflow": 2.4491944105070263e-07,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.4856603113176565,
+          0.5060070337775291
+        ],
+        "gross_mean_ci": [
+          -0.0009094554590612649,
+          0.0001304013665020938
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.000642646004402042,
+          "long": -0.0009198056599090279,
+          "short": -0.0010801943400909732
+        },
+        "stress": {
+          "momentum": -0.0026426460044020415,
+          "long": -0.0029198056599090277,
+          "short": -0.0030801943400909737
+        }
+      },
+      "net_base": -0.0013573539955979593,
+      "net_base_market_time_ci": [
+        -0.0019019182339950922,
+        -0.0008673002646996718
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.0033573539955979587,
+      "net_stress_market_time_ci": [
+        -0.003925267883425398,
+        -0.002868028196852859
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.03975353921883649,
+      "flat_net_mean": 0.0
+    },
+    {
+      "horizon_h": 4,
+      "split": "evaluation_previously_exposed",
+      "opportunities": 45792,
+      "signals": 44793,
+      "symbols": 36,
+      "unique_market_times": 1272,
+      "coverage": 0.9781839622641509,
+      "m1_accuracy": 0.4986046926975197,
+      "m1_wilson_iid_descriptive": [
+        0.49397468743779,
+        0.5032349372605294
+      ],
+      "executable_win_rate": 0.4986493425311991,
+      "mean_gross_return": -0.0003202075680406155,
+      "mean_signed_funding_cashflow": 1.7990230616390954e-06,
+      "overlap_note": "Per-symbol holding windows do not overlap at the fixed signal cadence; simultaneous symbols are correlated.",
+      "m2": "NOT_MEASURED: the source hypothesis has no target/stop barrier specification.",
+      "block_bootstrap": {
+        "block_hours": 168,
+        "replicates": 1000,
+        "seed": 20261120,
+        "m1_accuracy_ci": [
+          0.4849707137722694,
+          0.5119732740115964
+        ],
+        "gross_mean_ci": [
+          -0.0008131423915806076,
+          0.00020410773944579456
+        ]
+      },
+      "baseline_net_means": {
+        "base": {
+          "momentum": -0.0006815914550210242,
+          "long": -0.0013044104019248224,
+          "short": -0.0006955895980751789
+        },
+        "stress": {
+          "momentum": -0.0026815914550210236,
+          "long": -0.003304410401924822,
+          "short": -0.0026955895980751783
+        }
+      },
+      "net_base": -0.001318408544978977,
+      "net_base_market_time_ci": [
+        -0.0018592758012856909,
+        -0.0008019724317983573
+      ],
+      "net_base_positive_symbol_fraction": 0.0,
+      "net_stress": -0.0033184085449789774,
+      "net_stress_market_time_ci": [
+        -0.003828424825540205,
+        -0.0028077064203995547
+      ],
+      "net_stress_positive_symbol_fraction": 0.0,
+      "top_symbol_positive_gross_share": 0.051918811827905566,
+      "flat_net_mean": 0.0
+    }
+  ],
+  "screening_decision": {
+    "horizons": {
+      "1": {
+        "checks": {
+          "positive_base_net_mean": false,
+          "positive_stress_net_mean": false,
+          "positive_base_95pct_lower_ci": false,
+          "positive_stress_95pct_lower_ci": false,
+          "no_symbol_over_25pct_positive_gross": true
+        },
+        "progress_to_separate_m2_design": false
+      },
+      "4": {
+        "checks": {
+          "positive_base_net_mean": false,
+          "positive_stress_net_mean": false,
+          "positive_base_95pct_lower_ci": false,
+          "positive_stress_95pct_lower_ci": false,
+          "no_symbol_over_25pct_positive_gross": true
+        },
+        "progress_to_separate_m2_design": false
+      }
+    },
+    "overall": "REJECT_SOURCE_INSPIRED_SETUP"
+  }
+}
