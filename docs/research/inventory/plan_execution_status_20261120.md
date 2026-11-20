@@ -220,3 +220,17 @@ omitted ATR warm-up hours. Canonical results, exact rule, source findings, and
 reproduction command are recorded in `phase8_source_round_j_20261120.md`,
 `PREREG_LEAD_LAG_1H_M2_ROUNDK_20261120.md`, and
 `runs/lead_lag_1h_m2_round_k_20261120_v2/`.
+
+### Phase 8 continuation: Round L four-source scan
+
+Four independent lanes searched academic/social research, TradingView/Pine,
+public communities, and GitHub/open-source strategies against the already
+tested registry and current hourly USD-M data. Eligible candidates: **0**.
+The closest funding-squeeze and BTC funding-fade ideas lacked a fixed target
+or expiry; community MACD and Z-score examples were incomplete or overlapped
+earlier tests; Pine pages lacked source-complete fixed rules; GitHub examples
+were either overlapping/incomplete or unavailable. No strategy was downloaded,
+installed, executed, or scored. This is a bounded source review, not proof that
+all public strategies were exhausted. Details and primary links are in
+`phase8_source_round_l_20261120.md`. Core count remains zero; Phase 9 remains
+blocked.
