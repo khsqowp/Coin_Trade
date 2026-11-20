@@ -1,0 +1,12 @@
+{
+  "n_candidates": 21,
+  "N_trials": 176,
+  "draws": 1000,
+  "elapsed_seconds": 86.71294116973877,
+  "skipped_items": [
+    {
+      "reason": "15m rows dropped",
+      "count": 3
+    }
+  ]
+}
