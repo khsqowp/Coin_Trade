@@ -197,3 +197,67 @@ ineligible absent independent point-in-time evidence.
    labeled exploratory; Core requires genuinely untouched forward evidence.
 4. No qualifying candidate emerged in this round. This bounded result does not
    establish that public strategies have been exhausted or that an edge exists.
+
+## Round F — jump-event mechanism and four-role debate
+
+The panel examined Saef et al., [Understanding temporal dynamics of jumps in
+cryptocurrency markets](https://link.springer.com/article/10.1007/s42521-024-00116-1),
+and compared it with local registered strategy families. Four roles (Blue,
+Red, Data/Methods, Judge) reviewed independently, then exchanged objections
+and revised their positions. No historical backtest or data download was run.
+
+| Role | Initial position | Debate disposition |
+|---|---|---|
+| Blue | Proposed an hourly MAD jump-cluster continuation rule with ATR barriers. | Accepted that this is not an M2 candidate yet; retained only as a distinct, unscored hypothesis, not as a reproduction of the paper. |
+| Red | Reject current M2 advancement due overlap, unresolved event timing, hourly intrabar ambiguity, and weak adjacent results. | Allowed at most a single exploratory diagnostic if frozen in advance; rejected promotion or repeated tuning on exposed history. |
+| Data/Methods | Tick jump signals cannot be faithfully reconstructed from hourly OHLC/mark/funding. | Confirmed only a price-shock proxy could be measured; it must not be called a tick-jump replication. Existing aggTrades samples are sparse pipeline checks, not a continuous sample. |
+| Judge | Initially considered a constrained relative-return mechanism screen. | Final ruling: no historical performance screen. A separate forward-only mechanism study may be preregistered, but cannot by itself establish the M2 Core gate. |
+
+The cited study analyzes tick observations from seven exchanges and six
+cryptocurrencies over 2019–2021. It reports jump clustering and same-day
+intraday-return association, but no next-day effect. It does not specify an
+executable futures entry, target, stop, expiry, or M2 outcome. Its jump tests
+and event timing cannot be reproduced from the local one-hour cohort. The
+nearest local families include three-candle continuation, volume-climax
+failure reversal, breakout/impulse setups, and prior-hour reversal; their
+adjacent results do not establish that a new jump condition adds information.
+
+### Candidate dispositions
+
+1. **Hourly MAD cluster + ATR barriers: hold, no historical scoring.** The
+   proposed formula (`|z| >= 3`, past 168 completed returns, same-direction
+   second event within five bars, next-open entry, ±1 ATR14 barriers, ten-bar
+   expiry) is only a draft. It overlaps momentum/shock families, lacks a
+   completed event protocol and has no trustworthy intrabar stop/target order
+   on the available hourly bars. It is not preregistered and not an M2 result.
+2. **Positive leader-jump / large-vs-small relative-return mechanism: forward
+   research lead only.** This is a different estimand, not a trade strategy.
+   Before collection or scoring, a preregistration must fix the leader,
+   point-in-time asset buckets, jump definition, observation horizon, event
+   clustering, missing-data rules, comparison statistic, and inference method.
+   A positive mechanism result would only justify a separately specified M2
+   strategy; it would not satisfy the user's M2 ≥80% Core gate.
+
+### Revised research sequence after Round F
+
+1. Keep Phase 9 blocked; validated Core count remains zero.
+2. Do not score or tune either jump candidate on the already exposed hourly
+   archive. Do not relabel a historical proxy as tick-level or sealed OOS.
+3. For the relative-return lead, first write and red-team a complete
+   preregistration and verify point-in-time universe/bucket inputs. If those
+   inputs cannot be collected causally, close the lead without scoring.
+4. Only after that gate, begin append-only prospective data collection at
+   minute resolution or finer, with timestamp, source, gaps/reconnects,
+   universe membership, and immutable input hashes. Establish outcome
+   resolution and cost/funding assumptions before unsealing results.
+5. Run the forward mechanism screen once. A result can motivate one separate
+   preregistered trade-rule hypothesis; it is not itself strategy validation.
+6. Any resulting M2 strategy must independently satisfy the frozen SPEC gates:
+   target-first ≥80%, total and non-overlap sample requirements, symbol breadth,
+   coverage, baseline superiority, and positive base/stress net expectancy.
+   Otherwise record rejection/insufficient evidence and continue with a
+   structurally new hypothesis rather than tuning the exposed one.
+
+The four-role outcome is **0 strategies advanced to M2 scoring; 1 forward
+mechanism lead retained conditionally; 0 Core candidates**. This is a bounded
+decision, not a claim that all possible strategies have been exhausted.
