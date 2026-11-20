@@ -4,7 +4,7 @@ import json, sqlite3, time
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from .config import *
+from .config import BOOKS, SYMBOLS, get_profile
 from .strategy import signal_frame, is_coherent
 
 SCHEMA = '''
@@ -19,7 +19,9 @@ CREATE TABLE IF NOT EXISTS runs(ts REAL PRIMARY KEY,ok INTEGER,bars INTEGER,erro
 '''
 
 class Engine:
-    def __init__(self, db_path="/app/data/forward.db"):
+    def __init__(self, db_path=None, profile=None):
+        self.config = profile or get_profile()
+        db_path = db_path or self.config.db_path
         self.path=Path(db_path); self.path.parent.mkdir(parents=True,exist_ok=True)
         self.db=sqlite3.connect(self.path); self.db.row_factory=sqlite3.Row; self.db.executescript(SCHEMA)
         self.db.execute("INSERT OR IGNORE INTO heartbeat(id,started_at,last_run,bars_processed) VALUES(1,?,?,0)",(time.time(),0)); self.db.commit()
@@ -33,7 +35,7 @@ class Engine:
     def initialize_forward_start(self,now_ms=None):
         """Freeze the initial run boundary before the potentially long 2022 backfill."""
         if not self.db.execute("SELECT 1 FROM meta WHERE key='forward_start_ts'").fetchone():
-            now_ms=now_ms or int(time.time()*1000); boundary=now_ms//INTERVAL_MS*INTERVAL_MS
+            now_ms=now_ms or int(time.time()*1000); boundary=now_ms//self.config.interval_ms*self.config.interval_ms
             self.db.execute("INSERT INTO meta VALUES('forward_start_ts',?)",(str(boundary),)); self.db.commit()
 
     def frame(self,symbol):
@@ -51,10 +53,10 @@ class Engine:
             d=self.frame(symbol)
             if d.empty: continue
             # Discard any candle that is not fully closed and reject duplicate/gapped series.
-            now=int(time.time()*1000); d=d[[int(x.timestamp()*1000)+INTERVAL_MS<=now for x in d.index]]
+            now=int(time.time()*1000); d=d[[int(x.timestamp()*1000)+self.config.interval_ms<=now for x in d.index]]
             idx_ns=d.index.as_unit('ns').asi8
-            if len(d)>1 and np.any(np.diff(idx_ns)!=INTERVAL_MS*1_000_000): raise ValueError(f"candle gap for {symbol}; repair required")
-            sig=signal_frame(d,SIGNAL); ts=idx_ns//1_000_000
+            if len(d)>1 and np.any(np.diff(idx_ns)!=self.config.interval_ms*1_000_000): raise ValueError(f"candle gap for {symbol}; repair required")
+            sig=signal_frame(d,self.config.signal); ts=idx_ns//1_000_000
             previous=self.db.execute('SELECT MAX(ts) FROM signals WHERE symbol=?',(symbol,)).fetchone()[0]
             todo=np.flatnonzero((ts>=(previous+1 if previous is not None else start)) & (ts>=start))
             if not len(todo): continue
@@ -77,55 +79,55 @@ class Engine:
         if pos:
             qty,avg,adds,lastfill,entry_cost,entry_atr,entry_i=(row[k] for k in ('qty','avg','adds','lastfill','entry_cost','entry_atr','entry_i'))
             adverse=l if pos>0 else h
-            self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,CAPITAL+cash+(adverse-avg)*qty*pos-entry_cost))
-            stopdist=MANAGEMENT['atr_mult']*entry_atr/avg if np.isfinite(entry_atr) else 999
-            stop=avg*(1-pos*stopdist); tp=avg*(1+pos*MANAGEMENT['tp_pct']/100)
+            self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,self.config.capital+cash+(adverse-avg)*qty*pos-entry_cost))
+            stopdist=self.config.management['atr_mult']*entry_atr/avg if np.isfinite(entry_atr) else 999
+            stop=avg*(1-pos*stopdist); tp=avg*(1+pos*self.config.management['tp_pct']/100)
             reason=None; px=None
             if (l<=stop if pos>0 else h>=stop): reason='stop'; px=o if (o<stop if pos>0 else o>stop) else stop
             elif (h>=tp if pos>0 else l<=tp): reason='tp'; px=o if (o>tp if pos>0 else o<tp) else tp
-            elif i-entry_i>=MANAGEMENT['max_hold_bars']: reason='time'; px=c
+            elif i-entry_i>=self.config.management['max_hold_bars']: reason='time'; px=c
             if reason:
-                exitpx=px*(1-SLIPPAGE if pos>0 else 1+SLIPPAGE); net=(exitpx-avg)*qty*pos-entry_cost-exitpx*qty*FEE
-                initial_fill=float(d.iloc[entry_i].open)*(1+pos*SLIPPAGE)
-                self.db.execute('INSERT OR IGNORE INTO trades(book,symbol,entry_ts,exit_ts,side,entry_px,exit_px,adds,reason,net_pnl,pct,bars) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(book,symbol,int(d.index[entry_i].timestamp()*1000),ts,'long' if pos>0 else 'short',initial_fill,exitpx,adds,reason,net,net/CAPITAL*100,i-entry_i))
+                exitpx=px*(1-self.config.slippage if pos>0 else 1+self.config.slippage); net=(exitpx-avg)*qty*pos-entry_cost-exitpx*qty*self.config.fee
+                initial_fill=float(d.iloc[entry_i].open)*(1+pos*self.config.slippage)
+                self.db.execute('INSERT OR IGNORE INTO trades(book,symbol,entry_ts,exit_ts,side,entry_px,exit_px,adds,reason,net_pnl,pct,bars) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(book,symbol,int(d.index[entry_i].timestamp()*1000),ts,'long' if pos>0 else 'short',initial_fill,exitpx,adds,reason,net,net/self.config.capital*100,i-entry_i))
                 self.db.execute('DELETE FROM open_positions WHERE book=? AND symbol=?',(book,symbol)); cash+=net; row=None
                 closed_this_bar=True
-            elif adds<MANAGEMENT['n_adds']:
-                level=lastfill*(1-pos*MANAGEMENT['add_spacing_pct']/100)
+            elif adds<self.config.management['n_adds']:
+                level=lastfill*(1-pos*self.config.management['add_spacing_pct']/100)
                 if (l<=level if pos>0 else h>=level):
-                    addpx=(o if (o<level if pos>0 else o>level) else level)*(1+pos*SLIPPAGE); aq=BASE_NOTIONAL/addpx
-                    avg=(avg*qty+addpx*aq)/(qty+aq);qty+=aq;entry_cost+=addpx*aq*FEE;lastfill=addpx;adds+=1
+                    addpx=(o if (o<level if pos>0 else o>level) else level)*(1+pos*self.config.slippage); aq=self.config.base_notional/addpx
+                    avg=(avg*qty+addpx*aq)/(qty+aq);qty+=aq;entry_cost+=addpx*aq*self.config.fee;lastfill=addpx;adds+=1
                     self.db.execute('UPDATE open_positions SET qty=?,avg=?,adds=?,lastfill=?,entry_cost=? WHERE book=? AND symbol=?',(qty,avg,adds,lastfill,entry_cost,book,symbol))
         if not row and not closed_this_bar and i>0 and int(d.index[i-1].timestamp()*1000)>=int(self.db.execute("SELECT value FROM meta WHERE key='forward_start_ts'").fetchone()[0]):
             long=bool(sig.iloc[i-1].long); short=bool(sig.iloc[i-1].short)
             direction=(1 if long else 0) if book=='long_only' else ((-1 if short else 0) if book=='short_only' else (1 if long else (-1 if short else 0)))
             if direction:
-                fill=o*(1+direction*SLIPPAGE); atr=float(sig.iloc[i-1].atr); qty=BASE_NOTIONAL/fill; cost=BASE_NOTIONAL*FEE
-                if not is_coherent(MANAGEMENT['n_adds'],MANAGEMENT['add_spacing_pct'],MANAGEMENT['sl_pct'],MANAGEMENT['atr_mult'],100*atr/fill if np.isfinite(atr) else None):
+                fill=o*(1+direction*self.config.slippage); atr=float(sig.iloc[i-1].atr); qty=self.config.base_notional/fill; cost=self.config.base_notional*self.config.fee
+                if not is_coherent(self.config.management['n_adds'],self.config.management['add_spacing_pct'],self.config.management['sl_pct'],self.config.management['atr_mult'],100*atr/fill if np.isfinite(atr) else None):
                     return
                 self.db.execute('INSERT INTO open_positions VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(book,symbol,'long' if direction>0 else 'short',ts,i,qty,fill,0,fill,cost,atr,cash))
-                stopdist=MANAGEMENT['atr_mult']*atr/fill if np.isfinite(atr) else 999
-                stop=fill*(1-direction*stopdist); tp=fill*(1+direction*MANAGEMENT['tp_pct']/100)
+                stopdist=self.config.management['atr_mult']*atr/fill if np.isfinite(atr) else 999
+                stop=fill*(1-direction*stopdist); tp=fill*(1+direction*self.config.management['tp_pct']/100)
                 adverse=l if direction>0 else h
-                self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,CAPITAL+cash+(adverse-fill)*qty*direction-cost))
+                self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,self.config.capital+cash+(adverse-fill)*qty*direction-cost))
                 reason=None; px=None
                 if (l<=stop if direction>0 else h>=stop): reason='stop'; px=o if (o<stop if direction>0 else o>stop) else stop
                 elif (h>=tp if direction>0 else l<=tp): reason='tp'; px=o if (o>tp if direction>0 else o<tp) else tp
                 else:
-                    level=fill*(1-direction*MANAGEMENT['add_spacing_pct']/100)
+                    level=fill*(1-direction*self.config.management['add_spacing_pct']/100)
                     if (l<=level if direction>0 else h>=level):
-                        addpx=(o if (o<level if direction>0 else o>level) else level)*(1+direction*SLIPPAGE); aq=BASE_NOTIONAL/addpx
-                        avg=(fill*qty+addpx*aq)/(qty+aq); qty+=aq; cost+=addpx*aq*FEE
+                        addpx=(o if (o<level if direction>0 else o>level) else level)*(1+direction*self.config.slippage); aq=self.config.base_notional/addpx
+                        avg=(fill*qty+addpx*aq)/(qty+aq); qty+=aq; cost+=addpx*aq*self.config.fee
                         self.db.execute('UPDATE open_positions SET qty=?,avg=?,adds=1,lastfill=?,entry_cost=? WHERE book=? AND symbol=?',(qty,avg,addpx,cost,book,symbol))
                 if reason:
-                    exitpx=px*(1-SLIPPAGE if direction>0 else 1+SLIPPAGE); net=(exitpx-fill)*qty*direction-cost-exitpx*qty*FEE
-                    self.db.execute('INSERT OR IGNORE INTO trades(book,symbol,entry_ts,exit_ts,side,entry_px,exit_px,adds,reason,net_pnl,pct,bars) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(book,symbol,ts,ts,'long' if direction>0 else 'short',fill,exitpx,0,reason,net,net/CAPITAL*100,0))
+                    exitpx=px*(1-self.config.slippage if direction>0 else 1+self.config.slippage); net=(exitpx-fill)*qty*direction-cost-exitpx*qty*self.config.fee
+                    self.db.execute('INSERT OR IGNORE INTO trades(book,symbol,entry_ts,exit_ts,side,entry_px,exit_px,adds,reason,net_pnl,pct,bars) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(book,symbol,ts,ts,'long' if direction>0 else 'short',fill,exitpx,0,reason,net,net/self.config.capital*100,0))
                     self.db.execute('DELETE FROM open_positions WHERE book=? AND symbol=?',(book,symbol))
         # A just-opened position has no pre-branch mark; record its adverse entry-bar mark.
         if not had_position and not self.db.execute('SELECT 1 FROM equity_snapshots WHERE ts=? AND book=? AND symbol=?',(ts,book,symbol)).fetchone():
             realized=float(self.db.execute('SELECT COALESCE(SUM(net_pnl),0) FROM trades WHERE book=? AND symbol=?',(book,symbol)).fetchone()[0])
-            self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,CAPITAL+realized))
+            self.db.execute('INSERT OR REPLACE INTO equity_snapshots VALUES(?,?,?,?)',(ts,book,symbol,self.config.capital+realized))
 
     def write_status(self):
         from .status import status_data
-        p=self.path.parent/'status.json'; p.write_text(json.dumps(status_data(self.db),indent=2,allow_nan=False))
+        p=self.path.parent/'status.json'; p.write_text(json.dumps(status_data(self.db,profile=self.config),indent=2,allow_nan=False))
