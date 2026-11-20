@@ -138,3 +138,18 @@ available; prior archive/REST offset results conflict. No additional OI audit
 or scoring is warranted from this documentation alone. OI remains ineligible,
 Core count remains zero, and Phase 9 is not run. Detailed record:
 `phase8_source_rounds_20261120.md`, Round E.
+
+### Phase 8 continuation: Round G four-source scan and four-role panel
+
+Four scouts covering SNS/research, TradingView/Pine, public communities, and
+GitHub/skills/papers found zero source-complete, non-duplicate M2 candidates.
+The closest paper-reported lead was kquant's 5m Garman–Klass volatility-spike
+long held for 12 hours. Its public variant has no TP/SL and its exact spike
+threshold is not fully disclosed, so M2 cannot be scored without inventing
+rules. The four-role panel's binding decision was **HOLD / NO RUN / NO
+PROMOTION**; Blue's initially conditional adaptation proposal was not advanced
+after Red, Data/Methods, and Judge review. Previously exposed local 1m data
+covers six symbols, while the NAS aggregate-trade mirror is short and has
+missing hours; neither establishes the Core gates. No strategy score or new
+backtest was generated. Core count remains zero; Phase 9 is not run. See
+`phase8_source_rounds_20261120.md`, Round G.

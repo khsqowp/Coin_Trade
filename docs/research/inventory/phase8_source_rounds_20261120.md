@@ -261,3 +261,89 @@ adjacent results do not establish that a new jump condition adds information.
 The four-role outcome is **0 strategies advanced to M2 scoring; 1 forward
 mechanism lead retained conditionally; 0 Core candidates**. This is a bounded
 decision, not a claim that all possible strategies have been exhausted.
+
+## Round G — four-source re-scout and four-role debate
+
+Date: 2026-11-20. This round followed the newly verified presence of richer
+aggregate-trade fields in the NAS mirror and taker-buy volume in the local
+Binance Vision 1m database. It did not scan raw files or run a strategy.
+Four scouts independently covered SNS/public research, TradingView/Pine,
+public communities, and GitHub/skills/papers. They were then reassigned to
+Blue, Red, Data/Methods, and Judge for an adversarial decision on the closest
+published lead.
+
+### Source scouts
+
+| Lane | Closest item examined | Finding |
+|---|---|---|
+| SNS / public research | Funding-squeeze, perp/spot basis, CVD and volatility-event sources; [kquant's October 2026 indicator study](https://kquant.app/en/research/indicator-study/) was also checked in follow-up research. | No source-complete, non-duplicate M2 strategy. Existing sources omit fixed TP/SL or expiry, require unavailable inputs, or duplicate exposed families. |
+| TradingView / Pine | [Market Regime Engine](https://www.tradingview.com/script/MIEZDvM9-Market-Regime-Engine/) and [OI+CVD+Ichimoku PRO](https://www.tradingview.com/script/6NrWx3Fi-OI-CVD-Ichimoku-PRO-Strategy/). | The former is an indicator and overlaps registry #109; the latter lacks reproducible OI/CVD thresholds and exact exit defaults, with code-level repaint/HTF behavior unverified. No eligible candidate. |
+| Public community | Reddit futures-bot and indicator claims. | Reports are self-published and omit exact entry scores, TP/SL, or expiry; one requires order-book snapshots. Win rate claims are not target-first evidence. No eligible candidate. |
+| GitHub / skills / papers | Perp-spot basis research and rolling optimization frameworks. | The former lacks local spot input and fixed barriers; the latter has no standalone entry mechanism. A framework is not a strategy. No eligible candidate. |
+
+The scouts' decision was **0 source-complete candidates**. This is a bounded
+search result, not proof that all public sources have been exhausted.
+
+### Candidate debated: Garman–Klass 5m volatility-spike rebound
+
+kquant reports a pre-registered long entered when its 5m Garman–Klass
+volatility condition turns into a spike and exited after 144 five-minute bars
+(12 hours), with no stop or take-profit. It reports +73 bp total effect,
+estimated +51 bp after costs and Holm p=0.022 for the full effect. The same
+report says 85% of held-out profit came from ten days, market-excess t=1.9,
+and the cost estimate is sensitive to slippage. These are the publisher's
+results, not Coin_Trade reproductions. The public indicator description calls
+the settings “default” but does not disclose enough numeric parameters to
+reconstruct the exact spike threshold. [Study](https://kquant.app/en/research/indicator-study/),
+[indicator definition](https://kquant.app/en/research/indicators/).
+
+**Four-role disposition: do not advance to M2 scoring or Core.** Blue initially
+proposed only conditional preregistration of a separately labeled adaptation;
+after the data and red-team review, Blue agreed there is no source-faithful M2
+candidate. Red rejected promotion because (a) the source has no target or
+invalidation barrier, (b) the economics are concentrated and mostly market
+rebound, (c) the rule overlaps the existing crash-reversal family, and (d) a
+barrier adaptation would be a new strategy. Data/Methods judged local 1m data
+can be aggregated into exploratory 5m OHLC for six symbols, but this is
+previously exposed and cannot meet the 20-symbol, non-overlap N≥200,
+sealed/forward gate. Judge issued the binding **HOLD / NO RUN / NO PROMOTION**:
+do not attach arbitrary 1R barriers and present them as the source strategy.
+
+### Data and score status
+
+- No signal count, M2, M1, coverage, net expectancy, confidence interval, or
+  robustness result was generated in this round. `Not measured` is the result;
+  the external publisher's 12-hour return is not an M2 score.
+- The 1m Vision database previously audited locally contains six symbols and
+  history through 2026-06-30; it is exposed to prior research. The NAS tick
+  mirror previously audited covers only about 15 calendar days and has missing
+  hourly files. Neither can establish this candidate's Core gates.
+- The candidate's exact spike threshold is not publicly reproducible from the
+  inspected indicator description. The original has no TP/SL; an M2 score
+  cannot be defined without inventing those rules.
+- The prior 1h taker-CVD divergence remains rejected at M2 23.44% (10h) and
+  34.32% (20h), with negative base/stress net means. No retuning was done.
+
+### Research order after Round G
+
+1. Preserve the existing M2/Core gates and the `NO RUN` decision for the
+   source-reported Garman–Klass strategy.
+2. Continue source discovery with an explicit admissibility filter: source must
+   provide an auditable signal calculation and timing, an executable entry,
+   target and invalidation barriers, a maximum holding horizon, and inputs
+   available from a source-complete local or prospectively collected dataset.
+3. Deduplicate every lead against the strategy registry before preregistration.
+   Separate original source rules from any new adaptation; do not fill missing
+   source parameters and label the result a replication.
+4. Have Blue propose, Red attack, Data/Methods audit inputs and causal timing,
+   and Judge make the binding advance/reject/hold decision before any outcome
+   scoring.
+5. Score only a frozen, non-duplicate candidate whose data and baseline gates
+   pass. Exposed historical screens may be exploratory only. Core still needs
+   the frozen M2≥80%, non-overlap OOS N≥200 across ≥20 symbols, ≥10% coverage,
+   positive base/stress net expectancy, baseline superiority, and untouched
+   forward evidence. Phase 9 remains blocked until a Core actually passes.
+
+No files outside this research worktree were changed. No source code was
+installed, no data was downloaded, no historical outcome was scored, and no
+orders or deployments occurred.
