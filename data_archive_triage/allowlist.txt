@@ -1,0 +1,36 @@
+# apply.sh allowlist. Format: ACTION|path-or-glob (relative to repo root)|exclude globs (comma sep, relative to the path)|dest subdir under $DEST
+# ACTION: KEEP and COMPRESS are archived (tar.zst) then originals removed after verification; DISCARD is only deleted with --allow-discard.
+# Edit freely: delete a line or put # in front to leave that item untouched; change ACTION to DISCARD/COMPRESS as you wish.
+KEEP|backups/momentum_rotation_state.*||live_records
+KEEP|backups/momentum_*.inspect.*.json||live_records
+KEEP|backups/docker-compose.trading.yml.*||live_records
+COMPRESS|backups/pre-flyway-manual-backup-20260919-161545.sql||db_backups
+COMPRESS|backups/orchestration-2026-11-*_030000.sql.gz||db_backups
+COMPRESS|trading-crypto-paper-state||paper_state
+COMPRESS|trading/shadow_predictor/runtime|.gitkeep|paper_state
+COMPRESS|trading/docs/round*-results-*.json||research/rounds
+KEEP|trading/docs/research/*.md||research/top_level
+COMPRESS|trading/docs/research/*.json||research/top_level
+COMPRESS|trading/docs/research/*.diff||research/top_level
+COMPRESS|trading/docs/research/lev_loop|B/out,R2A/out,R2B/data,R2C/data,*.pkl,C/results.json,*.npz|research/lev_loop
+COMPRESS|trading/docs/research/lev_loop/R2B/data||research/lev_loop
+COMPRESS|trading/docs/research/lev_loop/R2C/data|new_panel_2020_2021.npz|research/lev_loop
+DISCARD|trading/docs/research/lev_loop/B/out||
+DISCARD|trading/docs/research/lev_loop/A/*.pkl||
+DISCARD|trading/docs/research/lev_loop/R2A/out||
+DISCARD|trading/docs/research/lev_loop/C/results.json||
+DISCARD|trading/docs/research/lev_loop/C/results_r.npz||
+DISCARD|trading/docs/research/lev_loop/R2C/results_arrays.npz||
+COMPRESS|trading/docs/research/aw2|raw,raw/*|research/aw2
+DISCARD|trading/docs/research/aw2/raw||
+COMPRESS|trading/docs/research/aw1||research/aw1
+COMPRESS|trading/docs/research/equity_transfer_2026-10|full_runs|research/equity_transfer
+DISCARD|trading/docs/research/equity_transfer_2026-10/full_runs||
+COMPRESS|trading/docs/research/rebal_loop|B/*.npz,B/.nbc|research/rebal_loop
+DISCARD|trading/docs/research/rebal_loop/B/streams.npz||
+DISCARD|trading/docs/research/rebal_loop/B/rs_final_panel.npz||
+DISCARD|trading/docs/research/rebal_loop/B/.nbc||
+COMPRESS|trading/docs/research/sl_loop||research/sl_loop
+COMPRESS|trading/docs/research/tp_loop||research/tp_loop
+COMPRESS|trading/docs/research/jev_intraday||research/jev_intraday
+COMPRESS|.kis-cache||market_data
