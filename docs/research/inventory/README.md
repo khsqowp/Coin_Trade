@@ -79,3 +79,17 @@ Round Q repeated a bounded four-lane source search after the rejected Round N
 minute diagnostic and convened a Blue/Red/Data-Methods/Judge panel. Both
 stages returned zero eligible candidates; no outcomes were scored. The record
 is `phase8_source_round_q_4lane_panel_20261121.md` and registry entry #119.
+
+Round R screened adaptive selective prediction, polynomial autoregression,
+microstructure, Pine, public-community, and GitHub leads. No source-defined M2
+candidate qualified; the ML-to-M2 adaptation received no-preregistration/no-
+test from the Judge. The review and next specification gate are in
+`phase8_source_round_r_ml_selective_m2_panel_20261121.md`; registry #120.
+
+Round S's fresh four-role panel cleared one frozen adaptive-selective M2
+historical diagnostic only. The 32-symbol, 92-day run emitted 426,337 signals;
+target-first M2 was 49.42%, with negative mean net return at both fixed cost
+proxies. The candidate is rejected, Core remains zero, and Phase 9 was not
+run. Approval and result records are
+`phase8_round_s_adaptive_m2_prereg_approval_20261121.md` and
+`phase8_round_s_adaptive_m2_historical_diagnostic_20261121.md`; registry #121.

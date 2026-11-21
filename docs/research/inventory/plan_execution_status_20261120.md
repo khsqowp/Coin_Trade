@@ -361,3 +361,38 @@ fixed entry/invalidation/expiry. The Blue/Red/Data-Methods/Judge panel voted
 Round Q is bounded, not proof of universal source exhaustion. Core count
 remains zero; Phase 9 remains blocked. Details and source links:
 `phase8_source_round_q_4lane_panel_20261121.md`; registry #119.
+
+### Phase 8 continuation: Round R selective-prediction review
+
+Four source lanes found no complete, non-duplicate M2 setup. The closest
+method lead was a 2026 selective fixed-odds close-direction model (source OOS
+57.81–63.34%, about 0.75% of minute bars), not a target-first futures rule.
+The local archive supports kline-level taker-buy columns in the inspected
+BTCUSDT file, but lacks aggregate-trade history, broad order-book depth, and
+eligible historical OI timing; its full audit remains FAIL. A three-class
+target-first model with ATR barriers would be a new adaptation, not a paper
+replication. Blue and Data/Methods voted HOLD, Red rejected the current
+specification, and Judge ruled **NO PREREGISTRATION / NO TEST**. No outcomes
+were scored and no backtest was run. Next gate is a complete frozen feature,
+label, threshold, universe, cost, and validation design followed by a fresh
+panel; do not code a scorer or open outcomes before that gate. Details:
+`phase8_source_round_r_ml_selective_m2_panel_20261121.md`; registry #120.
+
+### Phase 8 continuation: Round S adaptive-selective M2 diagnostic
+
+A fresh Blue/Red/Data-Methods/Judge panel unanimously cleared the exact frozen
+preregistration for one exposed historical walk-forward diagnostic. Data
+preflight passed for 576 selected Parquet files across the fixed 32-symbol
+cohort; all 18 weekly refits met frozen training-row and per-class minima. The
+sealed prequential score ledger contains 5,529,248 rows and produced 426,337
+issued signals over 2026-07-01..2026-10-01 UTC. Candidate target-first M2 was
+49.4161% (210,679/426,337; Wilson 49.2660–49.5662%); net expectancy was
+−0.09981% at 10bp and −0.29981% at 30bp per issued event. The independent
+saved-ledger recount matched all hit/status counts and both net means. Verdict:
+**REJECT**; five of eight gates passed and three failed (80% M2, positive net
+at 10bp, positive net at 30bp). No tuning or second run was performed. This
+historical exposed diagnostic is not sealed OOS/Core evidence. Phase 9 remains
+blocked; no core was accepted. Approval, results, and run artifacts are
+recorded in `phase8_round_s_adaptive_m2_prereg_approval_20261121.md`,
+`phase8_round_s_adaptive_m2_historical_diagnostic_20261121.md`, and
+`runs/adaptive_selective_m2_20261121_v6/`; registry #121.
