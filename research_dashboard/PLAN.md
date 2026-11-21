@@ -37,8 +37,7 @@ Bind to the LAN IP explicitly (`192.168.0.12:8765:80`), never `0.0.0.0` publish 
 - `verify/`, `verify2a/`, `verify2b/` csvs and REPORT verdicts; `regime/results/results.csv`
 - forward tests: copy `forward.db` read-only from linuxserver (`rsync` of `trading-forward-test*/forward.db`, never write back),
   compute status via existing `forward_test.status` code.
-Output: `dist/data.json` (+ `data.schema.md`). Frontend is a static `index.html` + `app.js` + vendored graph lib
-(vendor locally, no CDN, works offline on LAN). Page auto-refreshes data.json every 60 s.
+Output: `dist/data.json` (+ `data.schema.md`). Frontend is a static `index.html` + ESM modules + locally vendored Three.js r160 and OrbitControls (no CDN, works offline on LAN). A deterministic in-repository 3D force layout places correlated strategies closer; metadata similarity remains explicitly approximate. Page auto-refreshes data.json every 60 s.
 Server stage: tiny nginx container serves `dist/`; a sidecar loop (or cron on linuxserver) reruns `build_data.py` every 5 min
 with forward DBs mounted read-only.
 

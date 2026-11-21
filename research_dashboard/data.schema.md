@@ -9,10 +9,10 @@ Top-level fields:
 - `adjusted_sentence`: adjusted PASS count over rows with an adjusted verdict.
 - `depth_test_sources`: ordered source map for each depth flag, including its relative file and tested column/rule.
 - `nodes`: one record per strategy ID, selected timeframe, and direction.
-- `edges`: metadata similarity links plus optional measured return-correlation links. Every edge has `source`, `target`, `edge_kind`, `label`, and `weight`; correlation links additionally include `correlation` and their relative `source_file`.
+- `edges`: metadata similarity links plus optional measured return-correlation links. Every edge has `source`, `target`, `edge_kind`, `label`, and `weight`; correlation links additionally include `correlation` and their relative `source_file`. The 3D view maps measured correlation weights to line thickness, opacity, color, filtering, and spring distance. Metadata similarity remains a separate approximate edge kind.
 - `forward`: one record for each `l5_4h`, `l5_12h`, and `jbb_1h`; unavailable databases have `loaded: false` and `verdict: "not loaded"`.
 
-Node fields include identity and archive metadata (`id`, `strategy_id`, `timeframe`, `side`, `name`, `family`, `symbol_class`, `symbols`, `description`, `source_url`, `spec_complete`, `implemented`), verdict fields (`verdict`, `raw_verdict`, `adjusted_verdict`), `verification_depth`, `tests`, and secondary evidence (`params`, `train_return`, `test_return`, `null_percentile`, `per_year`, `forward`). Return fields never contribute to `verification_depth`.
+The current 3D interface requires no additional JSON fields; it uses the existing edge weights and node metadata, and preserves the existing build calculations. Node fields include identity and archive metadata (`id`, `strategy_id`, `timeframe`, `side`, `name`, `family`, `symbol_class`, `symbols`, `description`, `source_url`, `spec_complete`, `implemented`), verdict fields (`verdict`, `raw_verdict`, `adjusted_verdict`), `verification_depth`, `tests`, and secondary evidence (`params`, `train_return`, `test_return`, `null_percentile`, `per_year`, `forward`). Return fields never contribute to `verification_depth`.
 
 Each `tests` entry has `name`, `status` (`passed`, `failed`, or `not_run`), `source_file` (relative path or empty string), `source_column`, and `plain_reason`. Test order is `null`, `plateau`, `adjusted`, `A1`, `B1` through `B6`, `execution_stress`, `regime`.
 

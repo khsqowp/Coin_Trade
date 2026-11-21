@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const strings = await readFile(new URL('../dist/i18n.js', import.meta.url), 'utf8');
+const app = await readFile(new URL('../dist/app.js', import.meta.url), 'utf8');
+const htmlText = [...html.matchAll(/>([^<>]+)</g)].map(match => match[1].trim()).filter(Boolean).join(' ');
+const literals = [...strings.matchAll(/:\s*'((?:[^'\\]|\\.)*)'/g)].map(match => match[1]);
+const appLiterals = [...app.matchAll(/['"]([^'"\n]*)['"]/g)].map(match => match[1]);
+const englishPattern = /\b[A-Za-z]+(?:[’'-][A-Za-z]+)?(?:\s+[A-Za-z]+(?:[’'-][A-Za-z]+)?){2,}\b/g;
+const english = [htmlText, ...literals, ...appLiterals].flatMap(text => text.match(englishPattern) || []);
+assert.deepEqual(english, [], `화면 문구에 영어 문장이 있습니다: ${english.join(' | ')}`);
+console.log('한국어 화면 문구 확인: 통과');
