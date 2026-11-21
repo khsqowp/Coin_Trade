@@ -22,13 +22,13 @@ def bars(n=80):
     return pd.DataFrame({
         "open_time": np.arange(n, dtype=np.int64) * MINUTE_MS,
         "open": open_, "high": high, "low": low, "close": close,
-        "volume": np.full(n, 10.0),
+        "volume": 10.0 + np.arange(n, dtype=float),
         "taker_buy_volume": np.full(n, 6.0),
     })
 
 
 def test_features_are_prefix_invariant_and_have_exact_whitelist():
-    frame = bars()
+    frame = bars(130)
     features, ready = compute_features(frame)
     mutated = frame.copy()
     mutated.loc[60:, ["open", "high", "low", "close", "volume", "taker_buy_volume"]] *= 3
@@ -46,7 +46,7 @@ def test_features_are_prefix_invariant_and_have_exact_whitelist():
 
 
 def test_feature_readiness_does_not_roll_across_timestamp_gap():
-    frame = bars()
+    frame = bars(130)
     frame.loc[60:, "open_time"] += MINUTE_MS
     _, ready = compute_features(frame)
 
@@ -91,8 +91,12 @@ def test_nearest_rank_threshold_is_deterministic(values, q, expected):
 
 
 def test_select_direction_requires_positive_edge_and_strict_class_winner():
-    assert select_direction(0.60, 0.20, 0.20, 0.30) == ("long", 0.40)
-    assert select_direction(0.20, 0.60, 0.20, 0.30) == ("short", 0.40)
+    long_result = select_direction(0.60, 0.20, 0.20, 0.30)
+    short_result = select_direction(0.20, 0.60, 0.20, 0.30)
+    assert long_result is not None and long_result[0] == "long"
+    assert long_result[1] == pytest.approx(0.40)
+    assert short_result is not None and short_result[0] == "short"
+    assert short_result[1] == pytest.approx(0.40)
     assert select_direction(0.30, 0.30, 0.40, -0.20) is None
     assert select_direction(0.40, 0.40, 0.20, 0.10) is None
     assert select_direction(0.45, 0.35, 0.20, 0.30) is None
