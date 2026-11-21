@@ -2,3 +2,4 @@ parquet/
 *.parquet
 *.tmp
 work/
+inventory.json
