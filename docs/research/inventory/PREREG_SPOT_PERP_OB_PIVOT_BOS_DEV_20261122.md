@@ -1,8 +1,8 @@
 # 5분 오더블록 접촉 후 1분 확정 피벗 BOS — 개발 스크린 사전등록
 
 - 실험 ID: `CRYPTO-OB-PIVOT-BOS-002`
-- 버전: 3
-- 상태: 2차 패널 REVISE 반영 초안. 최종 명시 승인·freeze 전에는 결과 산출 금지.
+- 버전: 4
+- 상태: funding 및 커버리지 감사를 반영한 재검토 초안. 재승인·코드 커밋·별도 freeze manifest 전에는 성과 스크린 금지.
 - 연구군: 기존 OB / mitigation / MSS 연구군의 추가 trial. 독립 전략군이나 OOS 검증으로 세지 않는다.
 - 목적: OB 첫 접촉 즉시 진입 대신, 접촉 뒤 완성된 1분 구조 피벗의 종가 돌파를 기다리는 규칙이 개발 자료에서 반증을 견디는지 단 한 번 확인한다.
 
@@ -12,8 +12,8 @@
 
 1. 발행된 모든 `long|short` 신호의 M2 목표 선도달률 ≥80%.
 2. 발행 신호 N≥200, 종목 내 20분 비중복 N≥200, 그리고 전체 종목을 통틀어 20분 간격으로 greedy 선정한 시간 비중복 N≥200.
-3. 방향성 first-touch arm 중 BOS 발행 비율 ≥10%. 양방향 모호 접촉은 별도 보고하며 이 방향성 coverage 분모에서 제외한다. 이 수치는 확인 신호가 너무 희소한 것을 막는 arm-conversion gate이며 제품/Core의 전체 eligible-anchor coverage 합격을 뜻하지 않는다. 이전 후보의 10% coverage 판정은 소급 변경하지 않는다.
-4. 모든 first-touch arm을 같은 가중치로 센 arm당 fee-only 순 단순수익이 base·stress 모두 양수여야 한다. 미발행 arm과 미체결 신호는 0수익·0수수료, 실행된 trade는 gross return에서 왕복 fee proxy를 뺀다. 발행 신호만 분모로 한 평균수익도 별도 보고한다. funding 자료가 없으므로 fee-only 결과를 완전한 경제성 통과라고 부르지 않는다.
+3. 방향성 first-touch arm 중 BOS 발행 비율 ≥10%와 고유 발행 first-touch anchor 비율 ≥10%를 모두 만족한다. 전자는 `issued arms / directional first-touch arms`, 후자는 `distinct (symbol, first-touch 5m anchor close) with an issued signal / distinct first-touch anchors`다. 한 anchor에서 arm이 여러 개면 arm 전환율은 arm별, anchor coverage는 anchor별로 센다. 양방향 모호 접촉은 둘 다 별도 보고하고 이 분모에서 제외한다. 이전 후보의 10% coverage 판정은 소급 변경하지 않는다.
+4. 모든 first-touch arm을 같은 가중치로 센 arm당 fee-only 순 단순수익이 base·stress 모두 양수여야 한다. 미발행 arm과 미체결 신호는 0수익·0수수료, 실행된 trade는 gross return에서 왕복 fee proxy를 뺀다. 발행 신호만 분모로 한 평균수익도 별도 보고한다. funding 파일은 존재하지만 알려진 이벤트 결측과 mark-price 공백 때문에 이 스크린에서 funding 비용을 반영하지 않는다. fee-only 결과를 완전한 경제성 통과라고 부르지 않는다.
 5. 같은 first-touch arm을 쌍으로 둬 후보 arm M2(발행·목표 선도달만 1, 미발행·실패는 0)와 즉시진입 기준선 arm M2의 차이를 계산한다. 후보·기준선의 같은 UTC 주를 함께 재표집하는 2주 circular moving-block bootstrap에서 M2 차이와 base·stress 순수익 차이 각각의 95% 하한이 모두 0보다 커야 한다. 이는 조건부 발행 M2와 다른 추정량이며, 가족 내 선택편향을 제거하지 못한다.
 6. 경제성 계산 전 고정 코호트 전체의 pre-cutoff 퍼페추얼 1분 OHLC 불변식과 warmed 5분 완전성을 선행 검사한다. 유한 OHLC 1분봉은 가격이 양수이고 `high >= max(open, close)`, `low <= min(open, close)`, `high >= low`여야 한다. 위반 봉 또는 불완전 5분봉이 하나라도 있으면 신호·경제성 점수나 arm/trade 원장을 계산·기록하지 않고 결함 수와 입력 fingerprint만 담은 `DATA_INVALID` 요약만 남긴다. preflight 뒤 신호 경로 결함이 하나라도 발견돼도 같은 방식으로 점수와 원장을 억제한다.
 
@@ -24,8 +24,9 @@ M1, Wilson 구간, 주별 cluster bootstrap, 종목별 결과, 연·월별 결�
 - 대상: 이전 실험의 고정 32개 USDT 코인 COIN underlying 심볼, Binance USDⓈ-M perpetual 1분 OHLCV. spot은 이전 input bundle fingerprint를 보존하기 위한 무결성 자료일 뿐 신호·적격성·손익 계산에는 사용하지 않는다.
 - 기간: `2024-10-01 00:00 UTC <= t < 2026-11-01 00:00 UTC`.
 - 파일 목록·선택 코호트의 기존 aggregate SHA-256: `de5c87e883f4c3e00b818c541a0e36d1320f08a2577dc063d2bb9ff519ab9036`.
-- 이전 후보의 1m/5m 자료는 이미 노출된 개발자료다. 전체 archive audit는 다른 코호트 오류 때문에 FAIL이므로, 기존 선택 코호트 일치·OHLC·시간 그리드·결측 규칙을 다시 확인하기 전 scoring 금지.
-- 현재 로컬 Binance 코호트에는 해당 계약의 과거 funding rate 원장이 확인되지 않았다. 따라서 funding 반영 순기대값과 완전한 거래경제성은 점수화 불가다. 이 자료 부재를 0 funding으로 대체하지 않는다. 32개 고정 코호트의 당시 상장·상폐·거래 가능성도 입증되지 않아 시장 전체 대표성은 주장하지 않는다.
+- 이전 후보의 1m/5m 자료는 이미 노출된 개발자료다. 선택 32개 가격 코호트는 고정 fingerprint와 이전 OHLC 감사상 시각 불일치 0·OHLC 위반 0이지만, 전체 archive audit는 FAIL이다. 현재 결과는 미사용 OOS가 아니다.
+- 후속 staging에서 32개 심볼 × 25개월 funding 파일은 모두 확인됐다. 단, ENAUSDT·POLUSDT·TIAUSDT 각각 2026-06-24 00:00에서 08:00으로 8시간 간격이 생기고 두 행의 간격 라벨은 4시간이어서 예상 04:00 이벤트 3건이 누락됐다. 또 저장소의 2026-11-21 분봉 감사는 32개 심볼 mark-price에서 2026-06-29 하루 결측을 기록했다. 따라서 funding은 0으로 간주하지 않으며 이번 후보 scorer에서 funding 비용을 계산하지 않는다. 비용 차감 값은 명시적인 fee-only 개발 진단일 뿐 승격·완전 경제성 판단에 쓰지 않는다. 당시 상장·상폐·거래 가능성도 입증되지 않아 시장 전체 대표성은 주장하지 않는다.
+- 현재 입력 루트 `/Users/user/CODE/trading_data/external/crypto/binance`를 직접 감사한 산출물은 `crypto_ob_pivot_bos_cost_input_audit_20261122.json`이다. 감사 SHA-256은 `8f04890b1b52444bec9453f00618dae4bc05fe9173640342306dfad13ee42a1c`이며, freeze manifest는 이 SHA를 고정해야 한다. Scorer는 감사 파일 내용의 기대 파일 수·행 수·3개 funding gap·32개 mark gap도 fail-closed 검증한다. 과거 `/Volumes/home/mac/...` 경로에 있던 자료는 현 입력 루트와 동일하다고 간주하지 않는다.
 - 개발 anchor는 ATR warm-up 이후 perp 5분봉과 touch 뒤 10분 확인창·20분 경로의 perp 1분 OHLCV가 완전하고 전체 경로가 cutoff 전에 끝나는 완료 5분봉 close다. 결측은 보간하지 않는다. 1분 원자료 중 하나라도 빠졌거나 OHLCV가 비유한 값을 만들어 불완전해진 5분봉은 결함으로 센다. 기준 ATR warm-up 이후 cutoff 전의 불완전 5분봉이 하나라도 있으면 기존 zone/pending 상태를 초기화해 계속하는 대신 전체 개발 스크린을 `DATA_INVALID`로 처리하고 경제성 점수를 산출하지 않는다. 월 경계 재집계 오류나 5분 timestamp 결손도 동일하게 무효다. 터치 후 확인·실행 경로의 결측 또한 전체 스크린을 무효로 한다.
 
 ## 3. OB 및 최초 접촉 정의
@@ -54,20 +55,20 @@ M1, Wilson 구간, 주별 cluster bootstrap, 종목별 결과, 연·월별 결�
 - `no_signal_arm`: pivot/BOS 미확인, 5분 무효화, confirmation timeout. 각 이유를 분리한다. M2 issued 분모에는 없지만 candidate arm-M2에서는 실패, arm 순수익에서는 0으로 포함한다.
 - 동일 종목 20분 내 중첩 신호는 issued M2에는 모두 남기고 비중복 표본에서는 앞선 신호부터 하나만 선택한다. 전체 시장 시간 비중복은 signal timestamp 순으로 정렬해 이전 선택 후 20분 안의 후속 종목 신호를 제외한다. 타임스탬프 동률은 심볼 사전순, 롱 우선이다. 개발 후보는 최소 20개 심볼에서 각 1건 이상 발행하고 단일 심볼 발행 비중 ≤20%여야 한다.
 - 기준선은 같은 OB/first-touch 모집단에서 즉시 첫 1분 시가 진입, zone distal 바깥 0.1×ATR(직전 완료 5분봉), 2R, 20분 만기다. 후보와 기준선은 손절·진입이 다르므로 성과 차이를 BOS 인과효과라고 단정하지 않는다.
-- 수수료 proxy: 왕복 10bp base / 30bp stress. 이는 고정 대용치이고 실측 호가·체결 슬리피지는 아니다. funding·시장충격 미포함으로 funding 경계를 넘는 거래의 진정한 net expectancy는 판정 불가다. 순수익은 fee-only proxy임을 표시하며 실제 순수익이라고 부르지 않는다.
+- 수수료 proxy: 왕복 10bp base / 30bp stress. 이는 고정 대용치이고 실측 호가·체결 슬리피지가 아니다. 확인된 funding archive의 이벤트 누락 및 정산시각 mark-price 결측 때문에 funding 비용을 반영하지 않는다. 모든 손익은 fee-only proxy이며 완전 순수익 또는 실제 수익이라고 부르지 않는다.
 - uncertainty: first-touch anchor UTC calendar week를 cluster로 묶어 고정 seed `20261122`의 1,000회 circular moving-block bootstrap을 수행한다. 각 반복은 2주 연속 블록을 원형 추출해 전체 주 수만큼 이어 붙인다. 같은 arm의 후보·기준선을 같은 주 추출에 함께 포함한다. 통계량은 후보 arm-M2와 기준선 arm-M2의 paired 차이 `sum(candidate_arm_m2-baseline_arm_m2)/sum(arm_count)`, 그리고 paired base/stress arm 평균 순수익 차이다. CI는 반복 통계량의 2.5/97.5 percentile이다. 주보다 긴 의존성과 trial-family 다중검정은 해결하지 못한다. 종목별·전체 timestamp 비중복 N도 보고한다.
 
 ## 6. 재현성·중단 조건
 
-- 기존 frozen input fingerprint를 재확인하고, 신규 scorer·사전등록·실행환경을 고정한다. fingerprint가 다르면 scoring 금지.
+- 기존 frozen input fingerprint와 위 funding/mark 감사 JSON의 SHA-256을 재확인하고, 신규 scorer·사전등록·실행환경을 고정한다. price fingerprint 또는 보조 비용감사 SHA가 manifest와 다르면 scoring 금지.
 - scorer는 퍼페추얼 원장만 신호·적격성·손익 계산에 읽는다. spot 파일은 input fingerprint 재확인 과정에서만 해시하며 전략 데이터로 로드하거나 timestamp 비교에 쓰지 않는다. scorer는 최초 실행 전 별도 commit/push하고, 그 다음 manifest-only freeze commit을 별도 생성한다. freeze manifest에는 prereg, 코드 tree, input fingerprint, trial-family 이력, 실제 배정에 맞춘 네 역할(`CRYPTO_BLUE`, `CRYPTO`, `DATA_METHODS`, `RED_TEAM`)의 판정을 기록한다. KR/US 전문가로 역할명을 바꾸어 적지 않는다. 결과 디렉터리는 새 경로만 사용하며 덮어쓰지 않는다.
 - 합성 테스트: pivot 중심/오른쪽 확인봉 causal timing, confirmation/BOS 동일봉 거부, window 경계, touch-bar 미래 재사용 차단, zone 만료/무효화 동시 경합, gap, stop-first, timeout, missing minute, overlap, weekly cluster bootstrap 재현성.
 - 본 후보의 탐색은 고정 규칙 1개만 실행한다. 결과를 본 뒤 파라미터 변경/하위 그룹 선택/반복 재시도 금지. 필요한 수정은 오류 수정으로 명백할 때만 기록하고 새 버전 trial로 분리한다.
 - M2<80%, 최소 표본/arm conversion/심볼 분산 실패, fee-only arm 기대값 비양수, paired arm M2 또는 base/stress 순수익 차이의 bootstrap 95% 하한이 0 이하인 경우 중 하나면 `REJECT_DEV`. 모든 개발 gate 통과 후에도 verified funding·미사용 전향 표본·제품/Core coverage가 없으므로 최대 상태는 `HOLD_FUNDING_AND_OOS`며 전략 또는 전향투입 승인을 의미하지 않는다.
-- 최종 OOS/Core gate는 고정한다: 전체 발행 신호 `issued_signal / eligible_anchor` ≥10% (`eligible_anchor`는 §5의 ATR warm-up·perp 경로 완전성·cutoff를 만족하는 완료 5분봉 close 수), 최소 20개 COIN underlying 계약에서 각 1건 이상 발행, 단일 계약 발행 비중 ≤20%, 전체 발행 M2 점추정 ≥80%와 Wilson 95% 하한이 같은 기간 즉시진입 기준선 arm-M2 점추정 초과, 전체 OOS 발행 N≥200 및 global nonoverlap N≥200, funding을 포함한 기본·스트레스 비용 후 기대값 양수여야 한다. 신규 관측기간과 독립 계약 유니버스로 결과 열람 전 이를 1회 평가한다. 과거 2024-10~2026-10 입력은 OOS로 재사용하지 않는다. 이 coverage는 후보 시점 전체 대비 비율이라 OB 희소성 때문에 비현실적으로 높을 수 있으며, 그 문제를 이유로 분모를 바꾸지 않는다.
+- OOS/Core 빈도 gate는 서로 다른 두 통계량으로 고정한다. (a) **발행 first-touch arm 수 / 방향성 first-touch arm 수 ≥10%**는 zone-arm 전환율이고, (b) **고유 발행 `(symbol, first-touch 5m anchor close)` 수 / 고유 방향성 first-touch anchor 수 ≥10%**는 anchor coverage다. 한 anchor에 zone arm이 여러 개면 (a)는 arm별, (b)는 anchor별로 세며 두 분자·분모 단위를 섞지 않는다. 전체 eligible 5분봉 대비 anchor signal density는 별도 진단이며 합격 분모가 아니다. 이 정정은 결과 확인 전 이루어졌고 M2·표본 기준을 변경하지 않는다. 그 밖에 최소 20개 COIN underlying 계약에서 각 1건 이상 발행, 단일 계약 발행 비중 ≤20%, 전체 발행 M2 점추정 ≥80%와 Wilson 95% 하한이 같은 기간 즉시진입 기준선 arm-M2 점추정 초과, 전체 OOS 발행 N≥200 및 global nonoverlap N≥200, funding을 포함한 기본·스트레스 비용 후 기대값 양수여야 한다. 최종 OOS 실행 전에는 정확한 계약 유니버스·기간·cutoff·입력 fingerprint·권리·funding/mark 완전성 규칙을 별도 사전등록하고 재검토한다. 과거 2024-10~2026-10 입력은 OOS로 재사용하지 않는다.
 
 ## 7. 기존 trial과의 관계
 
 같은 family의 과거 trial로 P6 `order_block`/`fabio_liquidity_mss`, P9-E `order_block_confluence_*`, P9-F OB 유니버스 확장, Round 10 sweep+taker-flow, first-touch same-bar spot/perpetual candidate 001, 그리고 이미 노출된 OB/FVG/MSS 변형을 계수한다. 정확한 총 trial 수가 registry와 archived outputs를 전수 대조하기 전까지 미확정이므로, 승률 신뢰구간은 선택편향/다중검정 조정 완료로 표현하지 않는다.
 
-이 문서는 2차 패널 수정 반영 초안이다. 네 실제 배정 역할의 명시 승인, 오류 없는 합성 테스트, 별도 scorer 및 freeze commit 전에는 실험하지 않는다.
+v3의 네 역할 승인은 v4의 funding·coverage 수정에 자동 승계되지 않는다. 타깃 합성 테스트를 다시 실행하고 네 역할이 v4 정확한 코드·규칙을 승인한 뒤, scorer/prereg 커밋과 manifest-only freeze commit을 만들고 현행 input fingerprint·자원을 확인한다. 그 후에도 역사 개발자료 1회 스크린은 M2 및 fee-only 진단이며 funding·OOS 승인이 아니다.

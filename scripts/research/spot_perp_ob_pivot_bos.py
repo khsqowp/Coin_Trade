@@ -28,6 +28,7 @@ from scripts.research.spot_perp_ob_first_touch import (
 PREREG_PATH = ROOT / "docs/research/inventory/PREREG_SPOT_PERP_OB_PIVOT_BOS_DEV_20261122.md"
 FINGERPRINT_PATH = ROOT / "docs/research/inventory/crypto_ob_reclaim_input_fingerprint_20261122.json"
 FREEZE_PATH = ROOT / "docs/research/inventory/crypto_ob_pivot_bos_freeze_20261122.json"
+SUPPORTING_COST_AUDIT_PATH = ROOT / "docs/research/inventory/crypto_ob_pivot_bos_cost_input_audit_20261122.json"
 EXPECTED_BRANCH = "research/bat-harmonic-validation-20261120"
 ARM_WINDOW = 10
 HORIZON = 20
@@ -35,6 +36,41 @@ BOOTSTRAP_REPS = 1_000
 BOOTSTRAP_SEED = 20_261_122
 WEEK_MS = 7 * 24 * 60 * 60 * 1000
 PANEL_ROLE_KEYS = {"CRYPTO_BLUE", "CRYPTO", "DATA_METHODS", "RED_TEAM"}
+EXPECTED_COST_AUDIT_SHA256 = "8f04890b1b52444bec9453f00618dae4bc05fe9173640342306dfad13ee42a1c"
+
+
+def validate_supporting_cost_audit(audit: dict) -> None:
+    """Fail closed unless the recorded fee/funding/mark audit is the reviewed snapshot."""
+    funding = audit.get("funding", {})
+    mark = audit.get("mark_price_june_2026", {})
+    gaps = funding.get("interval_gap_anomalies", [])
+    mark_gaps = mark.get("grid_gap_anomalies", [])
+    expected_gap_symbols = {"ENAUSDT", "POLUSDT", "TIAUSDT"}
+    if (audit.get("audit_id") != "CRYPTO-OB-PIVOT-BOS-COST-INPUTS-20261122" or
+            audit.get("status") != "KNOWN_COST_INPUT_GAPS" or
+            funding.get("expected_files") != 800 or funding.get("present_files") != 800 or
+            funding.get("missing_files") != [] or funding.get("rows") != 79902 or
+            funding.get("null_or_nonfinite_rates") != 0 or len(gaps) != 3 or
+            {row.get("symbol") for row in gaps} != expected_gap_symbols or
+            any(row.get("estimated_missing_events") != 1 or row.get("interval_hours") != 4
+                for row in gaps) or mark.get("expected_files") != 32 or
+            mark.get("present_files") != 32 or mark.get("missing_files") != [] or
+            len(mark_gaps) != 32 or
+            any(row.get("missing_minutes") != 1440 for row in mark_gaps)):
+        raise ValueError("supporting cost-input audit differs from reviewed evidence")
+
+
+def load_supporting_cost_audit() -> tuple[dict, str]:
+    raw = SUPPORTING_COST_AUDIT_PATH.read_bytes()
+    content = json.loads(raw)
+    validate_supporting_cost_audit(content)
+    return content, hashlib.sha256(raw).hexdigest()
+
+
+def _committed_blob_sha(commit: str, relative_path: str) -> str:
+    result = subprocess.run(["git", "show", f"{commit}:{relative_path}"], cwd=ROOT,
+                            check=True, capture_output=True)
+    return hashlib.sha256(result.stdout).hexdigest()
 
 
 def is_confirmed_pivot(high: np.ndarray, low: np.ndarray, center: int,
@@ -173,6 +209,35 @@ def global_nonoverlap_count(rows: list[dict]) -> int:
     return selected
 
 
+def unique_signal_anchor_count(rows: list[dict]) -> int:
+    """Count each symbol's 5m eligible anchor once, even if rows ever duplicate."""
+    return len({(row["symbol"], int(row["anchor_time_ms"])) for row in rows})
+
+
+def signal_anchor_coverage(rows: list[dict], eligible_anchor_count: int) -> tuple[int, float | None]:
+    """Return unique issued opportunity anchors and their diagnostic bar density."""
+    count = unique_signal_anchor_count(rows)
+    return count, 100 * count / eligible_anchor_count if eligible_anchor_count else None
+
+
+def first_touch_conversion_metrics(arms: list[dict]) -> dict:
+    """Keep zone-arm conversion separate from distinct first-touch-anchor coverage."""
+    issued = [row for row in arms if row.get("candidate_signal")]
+    arm_count = len(arms)
+    opportunity_anchor_count = unique_signal_anchor_count(arms)
+    issued_anchor_count = unique_signal_anchor_count(issued)
+    return {
+        "issued_arm_n": len(issued),
+        "directional_arm_n": arm_count,
+        "issuance_per_first_touch_pct": 100 * len(issued) / arm_count if arm_count else None,
+        "issued_signal_anchor_n": issued_anchor_count,
+        "first_touch_anchor_n": opportunity_anchor_count,
+        "issued_anchor_coverage_per_first_touch_pct": (
+            100 * issued_anchor_count / opportunity_anchor_count
+            if opportunity_anchor_count else None),
+    }
+
+
 def block_bootstrap(arms: list[dict], *, reps: int = BOOTSTRAP_REPS,
                     seed: int = BOOTSTRAP_SEED) -> dict:
     """Circular 2-week moving-block bootstrap of paired arm-level policy outcomes."""
@@ -231,6 +296,9 @@ def development_screen(metrics: dict) -> dict:
         "symbol_nonoverlap_n_at_least_200": metrics["symbol_nonoverlap_n"] >= 200,
         "market_time_nonoverlap_n_at_least_200": metrics["market_time_nonoverlap_n"] >= 200,
         "issuance_per_first_touch_at_least_10pct": metrics["issuance_per_first_touch_pct"] is not None and metrics["issuance_per_first_touch_pct"] >= 10,
+        "issued_anchor_coverage_per_first_touch_at_least_10pct": (
+            metrics["issued_anchor_coverage_per_first_touch_pct"] is not None and
+            metrics["issued_anchor_coverage_per_first_touch_pct"] >= 10),
         "at_least_20_issued_symbols": metrics["issued_symbol_count"] >= 20,
         "no_symbol_over_20pct_of_issued": metrics["max_symbol_issued_share"] is not None and metrics["max_symbol_issued_share"] <= .20,
         "invalid_5m_bars_zero": metrics["invalid_5m_bars"] == 0,
@@ -249,7 +317,7 @@ def development_screen(metrics: dict) -> dict:
     }
     status = "REJECT_DEV" if not all(checks.values()) else "HOLD_FUNDING_AND_OOS"
     return {"status": status, "checks": checks,
-            "funding_economic_gate": "BLOCKED_NO_BINANCE_FUNDING_ARCHIVE",
+            "funding_economic_gate": "BLOCKED_INCOMPLETE_EVENT_AND_MARK_PRICE_COVERAGE",
             "sealed_oos_gate": "BLOCKED_EXPOSED_DEVELOPMENT_HISTORY"}
 
 
@@ -349,6 +417,7 @@ def _write_data_invalid(args, *, input_sha: str, prereg_sha: str,
         "input_fingerprint": input_sha,
         "preregistration_sha256": prereg_sha,
         "code_sha256": code_sha,
+        "supporting_cost_input_audit_sha256": getattr(args, "support_audit_sha", None),
         "code_commit_sha": freeze["code_commit_sha"],
         "freeze_commit_sha": freeze["_observed_freeze_commit_sha"],
     }
@@ -359,12 +428,15 @@ def _write_data_invalid(args, *, input_sha: str, prereg_sha: str,
 
 
 def _check_freeze(args, prereg_sha: str, code_sha: str, input_sha: str,
-                  fingerprint_json: dict) -> dict:
+                  fingerprint_json: dict, support_audit_sha: str) -> dict:
     freeze = json.loads(FREEZE_PATH.read_text(encoding="utf-8"))
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
                           capture_output=True, text=True).stdout.strip()
     parent = subprocess.run(["git", "rev-parse", "HEAD^"], cwd=ROOT, check=True,
                             capture_output=True, text=True).stdout.strip()
+    audit_relative = SUPPORTING_COST_AUDIT_PATH.relative_to(ROOT).as_posix()
+    if _committed_blob_sha(parent, audit_relative) != support_audit_sha:
+        raise ValueError("supporting cost-input audit is absent or differs in the frozen code tree")
     tree = subprocess.run(["git", "rev-parse", f"{parent}^{{tree}}"], cwd=ROOT, check=True,
                           capture_output=True, text=True).stdout.strip()
     paths = subprocess.run(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"],
@@ -380,6 +452,7 @@ def _check_freeze(args, prereg_sha: str, code_sha: str, input_sha: str,
     expected = {
         "prereg_sha256": prereg_sha, "scorer_sha256": code_sha,
         "code_tree_sha256": tree, "input_fingerprint": input_sha,
+        "supporting_cost_input_audit_sha256": support_audit_sha,
     }
     if any(freeze.get(key) != value for key, value in expected.items()):
         raise ValueError("prereg/code/tree/input does not match committed freeze")
@@ -401,11 +474,16 @@ def run(args) -> dict:
     if args.prereg.resolve() != PREREG_PATH.resolve() or args.fingerprint.resolve() != FINGERPRINT_PATH.resolve():
         raise ValueError("preregistration or fingerprint path differs from the frozen contract")
     saved_fp = json.loads(args.fingerprint.read_text(encoding="utf-8"))
+    _, support_audit_sha = load_supporting_cost_audit()
+    if support_audit_sha != EXPECTED_COST_AUDIT_SHA256:
+        raise ValueError("supporting cost-input audit hash differs from reviewed snapshot")
+    args.support_audit_sha = support_audit_sha
     audit = fingerprint(args.root, args.audit_json)
     if audit.get("aggregate_sha256") != saved_fp.get("aggregate_sha256"):
         raise ValueError("live input fingerprint differs from saved fingerprint")
     code_sha = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
-    freeze = _check_freeze(args, prereg_sha, code_sha, audit["aggregate_sha256"], saved_fp)
+    freeze = _check_freeze(args, prereg_sha, code_sha, audit["aggregate_sha256"], saved_fp,
+                           support_audit_sha)
     expected_files = {row["path"]: row for row in audit["files"]}
     preflight = _preflight_incomplete_bars(args.root, expected_files)
     if preflight["invalid_5m_bars"] or preflight["invalid_ohlc_bars"]:
@@ -498,6 +576,9 @@ def run(args) -> dict:
             arms.append(row)
             baseline_rows.append({**enriched, **baseline})
     issued = [row for row in arms if row.get("candidate_signal")]
+    issued_anchor_n, eligible_bar_coverage_pct = signal_anchor_coverage(issued, eligible_total)
+    duplicate_anchor_signal_n = len(issued) - issued_anchor_n
+    conversion = first_touch_conversion_metrics(arms)
     baseline_hits = sum(bool(row["baseline_m2"]) for row in arms)
     candidate_hits = sum(bool(row["candidate_m2"]) for row in issued)
     bootstrap = block_bootstrap(arms)
@@ -511,11 +592,16 @@ def run(args) -> dict:
         "invalid_ohlc_bars": preflight["invalid_ohlc_bars"],
         "ambiguous_touch_anchors": ambiguous_total, "first_touch_arm_n": len(arms),
         "issued_n": len(issued), "no_signal_arm_n": len(arms) - len(issued),
-        "issuance_per_first_touch_pct": 100 * len(issued) / len(arms) if arms else None,
+        "issuance_per_first_touch_pct": conversion["issuance_per_first_touch_pct"],
         "issued_plus_ambiguous_n": len(arms) + ambiguous_total,
         "issuance_per_directional_or_ambiguous_touch_pct": (
             100 * len(issued) / (len(arms) + ambiguous_total) if arms or ambiguous_total else None),
-        "coverage_per_eligible_5m_anchor_pct": 100 * len(issued) / eligible_total if eligible_total else None,
+        "issued_signal_anchor_n": issued_anchor_n,
+        "first_touch_anchor_n": conversion["first_touch_anchor_n"],
+        "issued_anchor_coverage_per_first_touch_pct": conversion["issued_anchor_coverage_per_first_touch_pct"],
+        "duplicate_signal_anchor_n": duplicate_anchor_signal_n,
+        "coverage_per_eligible_5m_anchor_pct": eligible_bar_coverage_pct,
+        "signal_density_per_eligible_5m_anchor_pct": 100 * len(issued) / eligible_total if eligible_total else None,
         "issued_m2_hits": candidate_hits, "issued_m2_rate": candidate_hits / len(issued) if issued else None,
         "issued_m2_wilson_descriptive_95": wilson(candidate_hits, len(issued)),
         "issued_m1_rate": (sum(bool(row["candidate_m1"]) for row in issued if row["candidate_m1"] is not None) /
@@ -539,12 +625,13 @@ def run(args) -> dict:
         "baseline_arm_mean_net_base": float(np.mean([row["baseline_net_base"] for row in arms])) if arms else None,
         "baseline_arm_mean_net_stress": float(np.mean([row["baseline_net_stress"] for row in arms])) if arms else None,
         "block_bootstrap": bootstrap, "data_defects": data_defects,
-        "funding_cost_data_available": False,
-        "funding_economic_gate": "BLOCKED_NO_BINANCE_FUNDING_ARCHIVE",
+        "funding_costs_included": False,
+        "funding_economic_gate": "BLOCKED_INCOMPLETE_EVENT_AND_MARK_PRICE_COVERAGE",
         "oos_status": "BLOCKED_EXPOSED_DEVELOPMENT_HISTORY",
         "input_fingerprint": audit["aggregate_sha256"],
         "input_content_fingerprint": audit["aggregate_sha256"],
         "preregistration_sha256": prereg_sha, "code_sha256": code_sha,
+        "supporting_cost_input_audit_sha256": support_audit_sha,
         "code_commit_sha": freeze["code_commit_sha"],
         "freeze_commit_sha": freeze["_observed_freeze_commit_sha"],
         "trial_family_total": "UNRESOLVED_FROM_HISTORICAL_REGISTRY; no adjusted-approval claim",

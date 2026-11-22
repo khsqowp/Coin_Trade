@@ -1,0 +1,5410 @@
+{
+  "audit_id": "CRYPTO-OB-PIVOT-BOS-COST-INPUTS-20261122",
+  "funding": {
+    "expected_files": 800,
+    "files": [
+      {
+        "path": "um_fundingRate/AAVEUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "2500e52f5b875c28d56480181da181091d71ad83afd7578225837aae66a24eeb",
+        "size_bytes": 2134
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "fc485f8551307fe1c722d670b7ababd19d6bc363d49aba9373fc16f6adab6b78",
+        "size_bytes": 2092
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "0b24874c14af721edeaa6e47d85c1f3b8eea274b62709aadc8414dd3202e2fcc",
+        "size_bytes": 2072
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "22370423db1fa83201802e139ed51ef081e795d9966fefd4e85c228440cb7a19",
+        "size_bytes": 1911
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "428db7ea9337e064cb11c2413fde075d99aeb04d02f77208c79806fc86b06d7f",
+        "size_bytes": 2273
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "6350bb2335530895279600921e7f92b13d094aca11ec1f6ef3f0ae6ff0b8f87b",
+        "size_bytes": 2423
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "61e1dc205ea0867ae2368ceb885d373004b1c8189bc49a8ee34a282cbad2d4d3",
+        "size_bytes": 2313
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "1a2451ecf6330260f2158c7c2f5ba8ba162d1e91641c3545891708c2ddf0075b",
+        "size_bytes": 2218
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "9175bfda2553b9df78ba28ba77795201da5851ad207accbe55636279810478b6",
+        "size_bytes": 2333
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "fef110d7a119d0937e04beace899c7efc5a72ea1b5c5d68600ff997b628f30d3",
+        "size_bytes": 2072
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "2d26c8802fa3bb9284c0d625257e6523858d20e64468b4d8feaf218c7ba1b700",
+        "size_bytes": 2274
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "c1d4410812dee9978f799b52bab92de967f8075d4ee3287c64597f08b7af2d4b",
+        "size_bytes": 2330
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "95d841c73d00c7e184518d25e331704720faf40e520277f473db9bf636c30fae",
+        "size_bytes": 2398
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "08efdf282ee1621bd0a1a8aa3e520ab9fa78f028173c55d4c6f907352fb8f6f6",
+        "size_bytes": 2354
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "e732e84484be1853e8f5275dc43828ca829a4162328c4652456bbbd9504c7177",
+        "size_bytes": 2514
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "47349e31108d7af3104ceaff5e0006dfb285c3302ba4fedb961e78418c463978",
+        "size_bytes": 2521
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "916b08434f24f3df7be76c7b236c3049f6e3eb18da2068d427eeecbe41dbddd4",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "4853fdcce1c38375ac88c092b65452d7f39cd48fba4fb4d0d87f07f6053f4e8c",
+        "size_bytes": 2420
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "8234f51fc2c7a42a03566ba99d616e034fc9ef2bb4f2cb21dd9365c6e30b2c24",
+        "size_bytes": 2387
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "749c098da69f88bbaf21695fd4190a177b30defdb2ecce3865661524fefd7676",
+        "size_bytes": 2513
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "ace7c641b4d243bda7a16225954854d2b8921952c9cac0188594f0447361e9a7",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "3c33b29662e9bef2d83a02fb6b9694f755b5a20d49de6a0117b4b25156a2511f",
+        "size_bytes": 2445
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "2d362e653fb92fa71d4f0ea62f26bda45ca0c3f09e35a0522a239009543896e9",
+        "size_bytes": 2350
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "93116de53b8a847aceeb3bf07f21f3e46b4b9e733483be82596843d572c58eec",
+        "size_bytes": 2276
+      },
+      {
+        "path": "um_fundingRate/AAVEUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "63cd562390e2ab9d0ee7ccadacd2ab3df7c4410341ad83031ac9301c6b5b86fd",
+        "size_bytes": 2482
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "4bfb8dbc208fb25000b2139487decc1f7208680ad927f2893d29bc63d0a6c6ca",
+        "size_bytes": 2050
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "16e7c4318a976decc4246070711b2e8b7804c1c905611c8fae4402e20eb1dd48",
+        "size_bytes": 2104
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "519d515f5694400e4a29fb3e0875370053981be1aceac7c7fed5684a180461e2",
+        "size_bytes": 2102
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "d1fcdc1ed451d2c6d8996baf9365b3441fd8feb1eef38018c9536a45f4530a66",
+        "size_bytes": 1826
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "ed98dac9963691a52c26e3c436b57b885ca60153162a551cc49ba2e5372cf5d2",
+        "size_bytes": 2297
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "309f3447a31548c9291de6b6a8066ad7f9c7455341a5573c5c4d42e7f9a67352",
+        "size_bytes": 2367
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "71060267d39b4a0ee70f5093b8c39da256a5729c99a678f531eb3ddaa1e81503",
+        "size_bytes": 2305
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "8219a40d251029e5245b3442e40e4d7886351795521502243c2ead24d276391b",
+        "size_bytes": 2255
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "5edbee9d5b37e8fc09cf4d1ffbe3ac00d78f31f8f09cfd2bba009347fbff1205",
+        "size_bytes": 2264
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "3666f4c655f41205124a6d82a0ab2ff188ef4b722af9b5336e25a0a8d0abff05",
+        "size_bytes": 1921
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "498409432aa3dc64dc93de685792dcc81685aa36e67b3d017349c12e5c65a4bd",
+        "size_bytes": 2150
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "59664802fccb4d8dfe06aa497651b04929f02bc819c95505827f8d97fc792a3f",
+        "size_bytes": 2065
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "aef46169de396019016dbef253b6f96ffc117a07dc240fceea6e2cb64d26ebbe",
+        "size_bytes": 2293
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "2c78b183cad53009d4315ede3689d2b9c54ed91292c0840d03b6386e984c5b46",
+        "size_bytes": 2330
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "e598877b26e290d2d85e06a0b5ce534f0e3798bb454a1aec512a371b9f75a097",
+        "size_bytes": 2394
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "614cea8d7c5dd4c0af98e8c32e670aa2783213e0acb8d086ef6d4eec92a1bb5a",
+        "size_bytes": 2284
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "7b3781eb14fea6d2339331a744633035a3446d4b16a1dd42da4063cb51a0909e",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "cf748b6dd1d19888f072c93d1659bedfd0e06753e6fd50b8d18aa048bd763008",
+        "size_bytes": 2404
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "f44c1a545796540bf420c163d069b72376cabc77f3012104ba92d411eae92c7e",
+        "size_bytes": 2222
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "0f4fc8212a704cb9a551ec698e0ceeee681f4e342e6266052e31a92b44a4de48",
+        "size_bytes": 2337
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "808d8c53fc9b64495f48cfab69ca49013ac88a4554b256ed7fab64202ff59e76",
+        "size_bytes": 2487
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "2e147afe26408507080c42a558555991608dd2845293454cd10e8ee73859c883",
+        "size_bytes": 2261
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "43990c2fb6e5d2d3d56df3fdc565c62239f5d5110a1e79f1a8ae253dd54e325a",
+        "size_bytes": 2184
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "c7ab8165cd4d6739f15cc6847dc4b013086318eddcbb1b5c8428ca23b15d7fb5",
+        "size_bytes": 2123
+      },
+      {
+        "path": "um_fundingRate/ADAUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "626b7ba94c7451276fba474c47288f07c977096ee7ea6ea20bdbe888bdf8362b",
+        "size_bytes": 2322
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "183e0b50678877ba4969cff560af46458457f7e1ef444c3a9a68f97962f58539",
+        "size_bytes": 1896
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "e49e61bc7fa7b8e77f5f808fabd47506bcd41e2da32f0dd71588e392b9348a2c",
+        "size_bytes": 2072
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "05c938c410205b91a770d67397f7e02ca2d89c4ca14b93e8491ce859cebe238c",
+        "size_bytes": 2094
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "b78581f7121e05a77a98f113ea49b54892f8a4b4a0ec1d4e1334dadaa22a8c7c",
+        "size_bytes": 1893
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "510687f80866d9f118e73db8bb209c9b066484b337c1e5f138d3682a9b8e0679",
+        "size_bytes": 2345
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "00eb596462ba7400f9988da60473a0c1d5f22e8c9368f9150a87ed23959ad708",
+        "size_bytes": 2367
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "a42e8d1c7e921967b807af9d34f44d2716fd8836d5f65169d5d0ea14e960bc69",
+        "size_bytes": 2473
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "f52e01a20a4851923631df1b1737b6d9c9f755760a2cb09a6ceb5d4ea739b857",
+        "size_bytes": 2270
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "7ca89b8897299677acb9eb1a2e48e040f5a74453b0b1ab7fe1ed5ed4f422a543",
+        "size_bytes": 2365
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "a47e170a3bc982a4755c73850aa1faa98f924850680512f0e8ab70ad19c8e66d",
+        "size_bytes": 2261
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "c3bdfa22e94f7b40812b65d9eef8cf6a8ad970219b730e0a20cd31f2d972a9da",
+        "size_bytes": 2286
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "359f89c5841231f5768a43a77d86194205eadeb20bdb8977981169530972d1f4",
+        "size_bytes": 2172
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "3de4c07338bbf82085cb10e667a7716d28c4b5a6567643866bccc48da250d9f6",
+        "size_bytes": 2542
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "7b9025a5bce5fc7aabcb9f194637862b782373f77f645c90b15ddc455f73305e",
+        "size_bytes": 2514
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "8368fc49060c122b3db8f2662541545277cd4fd64878cb93d22acef2cc86dcae",
+        "size_bytes": 2538
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "ea2e5d8e7937631963c088ef036f94e8982c43ecb27b919fc034adb0c3158bd5",
+        "size_bytes": 2481
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "b630e2035d76a44205a25c7de074df95d38eee513680931e9e989646e3840da1",
+        "size_bytes": 2419
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "35d6ed10db72c54020fe21f13df5ae07b726cb8ddf249f22604ef0e5eb43a2ef",
+        "size_bytes": 2508
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "6337a3c3d268bb32001e12159e042f009ee82e07b0c10dbae416bac37f2ff9bb",
+        "size_bytes": 2419
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "f83315b91b303aca51afee2eee37382aa22fcf3983d320b97abd8e9b00272f3e",
+        "size_bytes": 2465
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "741b668fc2f22ee507132b76bda9fa918c000588c7c464cd98d5ad7e2e2ec0cb",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "1ba404a775d3d52191bf92bf16554a02fb2e23ef090e38ddc89d8adbf55b9c49",
+        "size_bytes": 2309
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "bd70a7640426bd8d4824138892a8846736a16cce2e9cfac3d6381f9786917ec6",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "ec97468d44a4559865443e66dc245420fdc1bb193afc8544101ecbc6c7be7448",
+        "size_bytes": 2124
+      },
+      {
+        "path": "um_fundingRate/APTUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "f25be1ffe5ffb0b9b9eae1d1fb2e213546480499582fe8d4a72e0195e06a7ec4",
+        "size_bytes": 2410
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "1d33e82c29e7fb79b4b9592a42e5b10d81eb31346c0a902a3729b932959a7e77",
+        "size_bytes": 1947
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "e608b062122e07067b341a73a1b661df68a821cdc02bedad8c395d9115bc69bf",
+        "size_bytes": 2124
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "04cd023719fab74d627362ab815050547741328d7d2f5d1a57900a71c4688937",
+        "size_bytes": 2064
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "78d7d651facb266e7ffc5c9ee8790fa63f4505ae5d7325ee88637c9261eceb42",
+        "size_bytes": 1823
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "9ec70a0901707fab5929e62e1fe74a15bcb18b63792572a81d85a4d61a32a0dd",
+        "size_bytes": 2181
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "f8af3a5521d87e1073b8837f810dde1fbbd1220ad47e0ceb1f8945935acb456d",
+        "size_bytes": 2319
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "8c4d6c483d2a00231c584d623baf58045f83c7c349f407b0e4b87fd3f05386f7",
+        "size_bytes": 2289
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "6a787eb435783d26efc3f6dbdf1cb32c2253217734797316d252bf0be36da9ab",
+        "size_bytes": 2307
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "30cabf9b39d6e72c88839412fb56566937beed3ae79cc7f23800402f1fb8c91d",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "b88b4c28379bfed7295f08987a04692891f4782fd2b580dd1d5160178e878093",
+        "size_bytes": 2017
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "bc5043a0f817f430c5dcb570e16bdc9f2a20365a28ada199b380eeedc911ff9b",
+        "size_bytes": 2211
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "f4366359a3f5a1ef53dac6a91ed9a916f532e0b0b7cda8219aaa7a50bd6e200e",
+        "size_bytes": 2170
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "5e08ef742a26e3c70c387d794b4fce13d9f9bb9eb40b3d354c65b0915c0096f5",
+        "size_bytes": 2342
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "3e83f36ba1dd3316f1b51b5cf97f0edbd9ee2fa4bc0eb30ef534a52d0ef292de",
+        "size_bytes": 2330
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "6d2cd87bfc7351565bde938b772eefc0b23d6aa855eb75905b436817b00879ef",
+        "size_bytes": 2285
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "1324beef389affb8eb1c095ad52fbba5cc0bbeda13856759a8d544ba7deb624c",
+        "size_bytes": 2353
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "22e177791d728aa11ed626df9157a5e3ef2ba565e0c302fa09f93e3358e0ac47",
+        "size_bytes": 2231
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "027d446dbf04ede5b5d01bd1ece43ce23952246ff9591614c4f25fde1ee6077f",
+        "size_bytes": 2356
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "39b874697b5f41f8a1f82f0b9eaae18d483d986f27269ff93f8225c9614de47b",
+        "size_bytes": 2198
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "1290da9390aa2863982ffc358e3eb4b38cb8b0cbbca0027f6ce4fc135a29d79c",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "7740a05847424921180a0eeeed718cbf6b3702eab4e041a53196cd8734ef4170",
+        "size_bytes": 2423
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "147f5a3901ae74dbb8c82f3c4b3a8adead664d93e7a58946d9ec1fffb2f8ef78",
+        "size_bytes": 2397
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "4d254408bc09a1baeed05f65d44e7ad4f14a67d70a4dbbad93c8118ed4d891da",
+        "size_bytes": 2289
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "0bae12989f3facfcc2b3076c2337b3e26899800143c593c7a73160bf384b28f1",
+        "size_bytes": 2260
+      },
+      {
+        "path": "um_fundingRate/ARBUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "71466df3905d45a0a95d156454a9d0cb49c7e28e975a1a608f358b4bbc3a0772",
+        "size_bytes": 2522
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "b629400bc7604b07e9d05bafd9e152181034d91efd6310cf36c2200b6ae63e60",
+        "size_bytes": 2054
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "7fdc036be608f453637c6498988b2e63c2131ab088dab9a8c489cfbe51b6fe1a",
+        "size_bytes": 1959
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "6dbd9e6253c5e17e917d76836b337f9aef1e6094328d8ac9956c99e0cc98bc57",
+        "size_bytes": 2199
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "c776f5a94f4a90b0a79e99fd1e12e7b78d39d9df538a50cbe70ce82f631880e3",
+        "size_bytes": 2165
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "f4ec5c158f6ade014a776def1f0881fa240bbf6b8f2b7267877b50444c855b76",
+        "size_bytes": 2337
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "581004d076afa5a2ae30b136e2ee8d84e20a2ebd0f9e5eb797638a79eb00dda2",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "99556fae814508520d6d2f72e8b1b91cb7829a2cc9ec44c839d7c55f41368114",
+        "size_bytes": 2417
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "5d2310779f7edc89c00b3516820d32980ad49567261d051b5d3df33c59b923f3",
+        "size_bytes": 2335
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "5395d7aebffdfff5141a91f24e26e07c1924e9b770d2a502548babc233a84381",
+        "size_bytes": 2477
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "c6e01aa8c705aa8cbe3a93c5fc37407b53761ad56342d1396502d79624d18b40",
+        "size_bytes": 2166
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "dd17d8306797c528efb307b5a2d48f0b36caffe10087a94bfd351c578762413f",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "68649dabb346cd68ba55ac15e078f47d02a7f0a1ae40be8fd78105fee6e86989",
+        "size_bytes": 2261
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "2d6cf5d3671582f45c9cc20aed152bf6bfca9cbe83b4268f6b5999fad6d52bea",
+        "size_bytes": 2430
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "d2faa2b4aa2dd059e6bc610fbd3d2a11fcc261fb0fea1ad32c61b10a3d3ec932",
+        "size_bytes": 2498
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "c462a189890b3c7789f4f67adfb156e6cfa1a5697cffac9b2f8fded418b76b0c",
+        "size_bytes": 2530
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "f311bfe73b2a4f65ad6a42133e2c545d9b3e21cef5e8d20b29face7c398ef209",
+        "size_bytes": 2537
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "366b079057097691310406b694dbf3c970817740a800bb297bdf6213c0447180",
+        "size_bytes": 2379
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "51d3998b9f968b64117c525adf005c62daa6894127318b1a6a7b42b979bfd704",
+        "size_bytes": 2548
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "9058895fe9ff71c725ad81b85c6f70a892babf02853405958efa10d533dd2253",
+        "size_bytes": 2419
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "3cdc3811914797fca69a24c985b96c987c5d1f1c483b8601e09d57651f544e18",
+        "size_bytes": 2473
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "2989b9b194339d10ce2a5e9c9019a877e06456c85477d87abe208a4f4d788d99",
+        "size_bytes": 2503
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "0d16f400a97559770fb98464686eac881143a446593dc1654d72e867d7ea9df4",
+        "size_bytes": 2533
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "f34b414cf1826576825bfb184db5f0bb1612bde8c474ea3d80431c8c264354bd",
+        "size_bytes": 2449
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "43f3732523f44675dc78b396b5f87d1770535ccd74d724b14815622ff0894c2e",
+        "size_bytes": 2249
+      },
+      {
+        "path": "um_fundingRate/ATOMUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "26b38937a89a13ffded3db173f97588d0fc46530669a64116402f2240af6e3ce",
+        "size_bytes": 2474
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "d98357085a740422dae98ef73af5c3ac346b49ce58972332da01a14e00a0a5d2",
+        "size_bytes": 2360
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "345f589efc6b7acbbff5089f4e898ac69cedd2f0a601f07d10e56a9ef8d301c0",
+        "size_bytes": 2100
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "387c127b995b1fba4336f2a06782c1e3aa8792cddbbc12d9749058a2a9314ba4",
+        "size_bytes": 2140
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "dad91cb5171de22789d8f248c53968793956936e6478ef00d0d953fe063128c0",
+        "size_bytes": 1967
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "b94f51168ab51d963b966959aa35ed909d59fc285a5050bc8aaba4a876872940",
+        "size_bytes": 2305
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "b1da3008a64c6b5ee3c3f581a7a522f16020cdc3122343037febd7cb3368d85c",
+        "size_bytes": 2431
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "f1db503fbdb2e1353d760dd51c33f13d3b31872abe80663986689a1c76122912",
+        "size_bytes": 2369
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "8ccd09707eff633a0e7061bf951cb2eb07a90f6808b2bffa61cba720aba8b62d",
+        "size_bytes": 2298
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "3fbe08dd409d67c4a3baa9fb966b470bc226ece4fa2c93eb1d1f83335b52c9a1",
+        "size_bytes": 2437
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "dcea08ffebefd8a4807f8807690f46437eba3e8bbc6e971a1a5655a9650ea820",
+        "size_bytes": 2044
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "d8cd9e3af4087299060e2bc63a3119cf9c23dd290f6ebb0764f90befb56bac3e",
+        "size_bytes": 2096
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "1ca51100414e52709224ac6cdd8b6c053a9ae1fcd0b170d16ade9d73ac005e7b",
+        "size_bytes": 2106
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "230373d8b35561d22a9f8e323224842e177b447889d3e9f364e0868baa8d130a",
+        "size_bytes": 2358
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "33e70483f2ac79bd7500391d7ec59cb9089c38df7ae67a8daf74f74eeba731c9",
+        "size_bytes": 2450
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "7d170852e07c291b19fbea8394490be361f5aa9078e6c2219121c9c97e58bd21",
+        "size_bytes": 2402
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "ae89dd90c2d58616dce68830d13dc2e052b62b851bc2fa21fc00193c3e5ee344",
+        "size_bytes": 2433
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "49cb82d17099cf94a73034cc92743546896d81c078031e812e1064909f6f4af4",
+        "size_bytes": 2363
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "f7884f4b66ed244766ef32c28566e332f6dbe020ec3ff4c298e52726bcb32570",
+        "size_bytes": 2372
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "7404b200089e3926570712883a9128965f2e9dd847cdc07c46c63f363571605f",
+        "size_bytes": 2270
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "a098f9cb0a2e8ad5f812e33592dfecfd4c52a28db10374e9f99b20593fbe8b51",
+        "size_bytes": 2401
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "1a32fd54e71da6b2214707756d04f1a8142519d30948fbbcc8fb02a154cb5e05",
+        "size_bytes": 2503
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "4875a2d5f77895b24bd8e710bdf1327cce7a7e859ef31b0ea7ca83d4ceb16276",
+        "size_bytes": 2413
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "98822c490c18135f58cb1f04e74ab693a7df2ecfaacea9e361902808dc5edcba",
+        "size_bytes": 2249
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "0c45365d5a83469f952db9ba3ccf124ac88b02128032265fe8d463d6e2cbc256",
+        "size_bytes": 2204
+      },
+      {
+        "path": "um_fundingRate/AVAXUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "dc7063870cec75ef516e00b9d862b0bdaf4120791563151e13d956b46875f5b6",
+        "size_bytes": 2426
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "60a8dad6da5615ea013ada64195f3877df31499eb1d5fe90cb06b9cb18cda6d5",
+        "size_bytes": 2336
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "4c0bdd4eb4be5f1b282739189463552a13c17e7afdd91be2d7ee6c4297aee827",
+        "size_bytes": 1901
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "87ed5cb688bf0ccb2a49dc200d9bdf931efbebab9a47faf67f182503af0296fd",
+        "size_bytes": 2049
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "248f02193903b57c603d2096d1ab7da080ad7dc5f03c235f3af04ffdf616c033",
+        "size_bytes": 1911
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "84b2ef14db89a100e6149f5b3655a8bf34bf335ca25bc627a528dd12fc6b9d5e",
+        "size_bytes": 2297
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "39616e683bb359aa495d96f2c9624839196af970df5bba504edd0fab2c97eebd",
+        "size_bytes": 2327
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "0e5323742634cf633658385b857e8b42cc02f8fdfd4c09cb255478262394c2ff",
+        "size_bytes": 2401
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "2219e1c094d77a5fb6a7e5042e5465eb1b08b2358bd4c4ccb5744fd1ec50392d",
+        "size_bytes": 2479
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "b7d34c55303f95208db63e6e46deb2385283170191dc9b60a7da683a9ae5d30f",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "f32e3e7f1bc92913a26b32417a32b9f5611f10c0f707786663330ac9eef19ed9",
+        "size_bytes": 2242
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "8671c7871d727ec093a63349c0202f1151ec49b0f1fb0d4d3d9621447c3dc143",
+        "size_bytes": 2017
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "dc56349cfb64bca25621efaf89d21f3fc7609c71d066021f9148909a9a8a5543",
+        "size_bytes": 2174
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "af01b9ee39100309da4f932a2e56381970e2b6a1dd278cfed09fd5867fa7c5b8",
+        "size_bytes": 2398
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "4538007f401ca7a15be557fc65900255a5548db3316c2b9d68ee2dc6faceccb5",
+        "size_bytes": 2458
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "d0a1a80432abd7c29278575e451950a9b29de5be13adc2a62f9b4b69a901a507",
+        "size_bytes": 2538
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "37ac79b5a161a6285392595008340ecf13e8c3acd5408275cefa16cae01d7c65",
+        "size_bytes": 2497
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "2848694554fe3ee82e41b55965dda48bac3253be97ae3b978a4ed0a5d1af1227",
+        "size_bytes": 2395
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "2e645981b4c2be3ff47824e706bf711332d3f6cc0941217b061e43f2f25bdcb3",
+        "size_bytes": 2508
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "570ca98f6940e211b5299d30e3fa74075c8074fec25a8d66e38d8849a10e394d",
+        "size_bytes": 2435
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "a38223de2d611fe0286e826b09bdebfbd83a1e7447c6c43b8fe5ed99d6e67ee5",
+        "size_bytes": 2537
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "f6a9027ddd0958244cf99528aa6987ae4e4d4908bdf403d8bb6a2a7839be8f0c",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "d7b9ddb8c0b68fbee5728c382ff70501e960a8a7127a7c97e6422ca2fd844014",
+        "size_bytes": 2493
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "8743da6c97fe2a67fb08f74696b8550d8f9af6a88b47dda531fece0a9474bbb8",
+        "size_bytes": 2289
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "7512387abe914cb97f9f19ba5d0d0c04b84055b27f006cd352487a4cbc310fd7",
+        "size_bytes": 2236
+      },
+      {
+        "path": "um_fundingRate/BCHUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "9f65cd112ae6a69862e318b012b9a85f804520782781720972f74f1d94ce113c",
+        "size_bytes": 2370
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "e1b4316dd7517b1aa496d55f19a19bc2a3daeeaf385a2eae189592dd48f72f15",
+        "size_bytes": 1874
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "09bf67e57f1836da4fd88e87b975edac39fabee37f77952bc35d108edeb5618c",
+        "size_bytes": 2286
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "15688c6122846bf10b62500ee306259ee963caedb14c893a6dc9145ef2853610",
+        "size_bytes": 2204
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "6d3225925a55696babf705927155bde6dad2eca6a35c7c1a798724201a47ced4",
+        "size_bytes": 1965
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "c34f5f8ebd5e1f39ac41e0fc141f6a4f30109808a85b34ba310a1555bea26e9b",
+        "size_bytes": 2026
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8756d14211624730795ae013a75b8ffb4be29a3249d67fb89aa49ca414628752",
+        "size_bytes": 2167
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "fd6407a228016a70069fd1ff5f1faa5531fe7961ea02fc7a5f0a00a3c0ca5c0d",
+        "size_bytes": 1922
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "3b7d98b7bf725bf132547ef6c3e8b5936a2fc9fb3ae6f4d3e3167d43589eb6a2",
+        "size_bytes": 1888
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "29f3b76b1d2b77e3ead960fda27af33b452613dc5f0c1e22a2745fd5ec9cc309",
+        "size_bytes": 1921
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "0f49f809d69a9caf9d568ffd631b7040830af0fb4a24551562e6563ef45846c1",
+        "size_bytes": 2019
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "99553d16bea6b6bb2d1748ab93251ca80e668b4272c95a9fb307aaca80705136",
+        "size_bytes": 2099
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "1ae982130497912a6568f833af6aa121f2e601863bf622dd034fa0c5768693fd",
+        "size_bytes": 2077
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "65d0dffb55d1ff06aab5fc3b0e5bf94c21ae3207e67fa8ecf5564922e404e618",
+        "size_bytes": 2121
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "338d6e27ed2d43b63c5497bcbcdf7a93db414e213109f781b1781f69f18dd43f",
+        "size_bytes": 1971
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "080d31b60cb2aa667040712275a6de2808a89bb2efb6fc9d01bc37fbe46b620f",
+        "size_bytes": 2011
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "f45b04348b53174974048936430b84ffbdea85306a473327b5106a5f8ec48e62",
+        "size_bytes": 2172
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "06ee1b622f6583e9599301d99424b1941b78f926e39e5d9cc64f26848f2ed3a6",
+        "size_bytes": 1707
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "128455b5f42607353d3aac0b985e0705c6682b67abb0638e2ec2b9e34bb72ad3",
+        "size_bytes": 1788
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "4bd1549cad3d9dfc4eec7257adc12ac8ed802b272e19ae7dfb52e5312cda6493",
+        "size_bytes": 2107
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "f5d85e8f9d4f5c67e581c3830ff1db001e4009f322ce89efcdf712a3419a3713",
+        "size_bytes": 2292
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "b9054a2f6b2a77cef65861e648ccfee7cff638ba192d26be4cc43af2e0eefa78",
+        "size_bytes": 1995
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "7dc3188540a0b55c2f8e9ca86ae9bfd435c444f358c37f6189e49978b2721d77",
+        "size_bytes": 2429
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "dca55cec8e87ddcbe7e49da322bf7b32ebcc24a02bae8cda663fcf3e109df76d",
+        "size_bytes": 2276
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "1353918effc509bab1fa3be0b1c8b5d66a24a441ca59a716342df43aead75eea",
+        "size_bytes": 2219
+      },
+      {
+        "path": "um_fundingRate/BNBUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "60e785a7ee7cfee38e992aa1448c093f27e01f7db82934ff5f9ad42c9e28b779",
+        "size_bytes": 2084
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "8b6ed4f7338d55244f391f204a149707e925e6caba9f25b830cd97ecf22d65a2",
+        "size_bytes": 2076
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "5993961c5db9eac793454d6f5a880b6e4d276a72e5ca1e53e20b200d1a6edf64",
+        "size_bytes": 1987
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "459bce6f4918753682600c26fed3792d24c64059a67d57d783ee04525bf35bee",
+        "size_bytes": 2079
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "3b0388ee84a0b60f1a0c712d6fcbc68f8e41f595505f29a423e4dbb6f61954a8",
+        "size_bytes": 2142
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "bba1eec105f939a63f9980b125d507ced2ded10d5c8efdc0e5f07baf921a7f2f",
+        "size_bytes": 2314
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8c2e17e324556c2d6db2fb38752005f0bcffd29fb22c11c13a6fe371421798d3",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "628ac67466af691e9c017fc5cd30fc1f0baae790319f322c82f6ed473dd5536c",
+        "size_bytes": 2481
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "b20aada0aa5c5d3dd993f14c1f3b59f8349eed93459fa3ae5b4352bdbd64c55e",
+        "size_bytes": 2463
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "23ecf9bd6b0a781390f1e983170de99a32ef3c1167c48f1d742ec1ee43349c1e",
+        "size_bytes": 2485
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "4ef2b6dab6b43765ce18482c2010e1f9149411a6193a10e83c214d6b55aa5c23",
+        "size_bytes": 2012
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "6b80e27199ae9dab2e384ea2f0ec3569f71249977016d117a199f2422b7390eb",
+        "size_bytes": 2387
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "a4672b967011585c8809f398c53834ca175ef7d6875aed9385c3e53ba99e7d27",
+        "size_bytes": 2474
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "99a99e85393ea5014749ad04c631b02b9182ffb5d39cc15ecd77ca6070bc49b3",
+        "size_bytes": 2438
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "c1d2db4e2c022b8cc1f1616e1b6f78ee1040adc7369d39f218acee9b2eb80484",
+        "size_bytes": 2450
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "05d8d6b53234340a48c8b58242141b2b16fad352779083a36acb1a9136c4d56c",
+        "size_bytes": 2482
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "5adfc81ecec5cdf5393d92b2d3f8cd2bfe891ddbea02020128c0121adcabdf97",
+        "size_bytes": 2513
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "ac099170d5a46a1feec3d5ec005c43d0fc5b13bfb879589f986d03f647d15c1c",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "259d0fe3511816d205ba223fbd35bac5144dae6888ca96adca6cf46a56f8bf62",
+        "size_bytes": 2548
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "be6137cd746ba78f5476fdf024e9ae0722f4254cc1014e82033eb88c7554c6fa",
+        "size_bytes": 2507
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "7fb72033de9e2f13ea93412ed71d32c030a5cf70aadcaa726c575d82364a0400",
+        "size_bytes": 2529
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "786295053f44c8ead61ac139bf2078bbd41d782ef07a6e099e43cc526cccb3dd",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "7c1bd92d3b03cabcf0306b8a8af630d1ab73ce41e9fbc231882fb71cf903a38f",
+        "size_bytes": 2437
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "0e309c2122b0013494b6e82050835ac07b9b06b08402a3ffe59a855d92c6305f",
+        "size_bytes": 2357
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "4e87d611ef72dafa3419f74665aebe5d0765b1060bda28b24d75c30f2959dc31",
+        "size_bytes": 2457
+      },
+      {
+        "path": "um_fundingRate/BTCUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "03071b350240ba60877dc743446a9fa44194f3a207f65fe1d20908cbb8d13fdd",
+        "size_bytes": 2458
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "a29d9610b7f8c643ed757daf3c62d8f6f9031d4dbdfe51cd8d8868c4e20345f5",
+        "size_bytes": 1732
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "bb9123e6445acf77359bf982125e4fb63dfc56a1b9fe46c75e1b9a4e2a4fbe2b",
+        "size_bytes": 1699
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "dfb4dc2b2c6501f150bd0a0e6f742f1d8ee684db168f635dd607a8ededd642af",
+        "size_bytes": 2048
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "c7a72a7b033806066e7f1248b45e5653ea9582167a0751da1e72b8bf55ac567b",
+        "size_bytes": 1807
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "3ebc47eb06f952b16ae4756127ff0ce4ffd9c2111cb9b0f335cd3b1271576ff0",
+        "size_bytes": 2189
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "123260dcc6e98afb961c5ffeca8ea07280923d5d601a548427173dd22c34b636",
+        "size_bytes": 2231
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "7ec8c650baa4a746b73d1c58833185d98c7fb0e33108b2df2429d4eb986afc8d",
+        "size_bytes": 2164
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "623debc2442c991e2c0fd31ba546c424c92233c4410f2c599703cdc2650275c8",
+        "size_bytes": 2113
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "972124e90858b78fd154ea021b61d333c800006338e60286cfc804f403cca258",
+        "size_bytes": 2176
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "325d2af7c9250bd645d6625485690f4301f023b01349a3a4a8f3287f4ee1fdd7",
+        "size_bytes": 1932
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "bce2d4b5e32c56e1d95f619e2b0f59ec668386665d8db27332f197301991b40a",
+        "size_bytes": 1936
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "466a251874bdaa574d47c128cbb82de370cfc2504e1ef54bf6b424237ac74b32",
+        "size_bytes": 1904
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "ee57e1f740c2a91fbb3053f50d1882e0407acf347ce64b1121a838770d75ed0f",
+        "size_bytes": 2225
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "2fc6eb461dee4a232835a9c7a0c81789f4180b097fd970455f65153371141c21",
+        "size_bytes": 2116
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "eedc6b57c6ae9df287d31bb7913ce2c36c76365f85ce55676a1acb63a5b965bc",
+        "size_bytes": 2125
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "3392a1439362f20ad020acba5318d8f9cb847bad12d708bcc3f9131ab60e2a8e",
+        "size_bytes": 2159
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "cfe35fe99e4912427e4c680100a3a179c701b1c8b1cccbcd5d98f083abba48bd",
+        "size_bytes": 1921
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "f07a017d28918d196dff9d5ed2385bb8f706f77866987b09cb5b00e5ea60dde1",
+        "size_bytes": 1976
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "4d5d7466edb9200b5514a57148bb1830db9ed944cdcbf48d903c05268b2ecb0e",
+        "size_bytes": 1943
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "28be03889440736da97ce281fc2c6824229d27bd647370e1e7c5d2288e569332",
+        "size_bytes": 2457
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "5adee03245e26ad500341da48c59dcdbb671aa343c5921d09fe44ba1d982ff37",
+        "size_bytes": 2407
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "4ae4762dd844b0ed58be3339ca286df5a804ceadc2c2d396af9a5fd782f16a8e",
+        "size_bytes": 2221
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "98633489e6c9dc0b945e9b2285e8d44e583ae8df7dba0e820965731a597e0750",
+        "size_bytes": 2177
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "4f427c34a5dd2601fc66e6722dd26fd087050f023629ab5678422633e37e4b0d",
+        "size_bytes": 2171
+      },
+      {
+        "path": "um_fundingRate/CRVUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "e054f4a85ecba9e369e044bbcaa5f1583524aedeb156c3e30e3494b0a92f24f9",
+        "size_bytes": 2213
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "09cf04cec32772b3367d1573cd798181c59475f396bd4cb73c5efe67cb4de608",
+        "size_bytes": 1960
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "fd2503e6e9df58fc8d1f1d72ed88252406370a807d9f083ac16d17d2a62d4f59",
+        "size_bytes": 2117
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "a47f3414965995d786daf4d6404a11e6b15c27fd55615b4c87e07d3b52c8b9d4",
+        "size_bytes": 2288
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "6d70e11a6deca0ca7de9a834e933a4c7a3b53d8abf4fffddeade0fd834c5cc83",
+        "size_bytes": 2237
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "0760683d7a229ad47cc3c83c57a833fdf7c55b6bf0751cc2c8f922c6955f1dcc",
+        "size_bytes": 2345
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "b219e6afd7a991c27ae54110d3a20173a26597269be079abf89db25ad824adc5",
+        "size_bytes": 2455
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "6fc8c542dfaf10a711414386bd3fa51c23e50e7610d6f10443664bf51cd38657",
+        "size_bytes": 2329
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "162f2f19b38df4ae932e84ff8f00beeb4cfa734006a02610f30b677ee18b6462",
+        "size_bytes": 2331
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "d4c1d1f262f77cf8a1f641beadbec496ad3cc2d5fc985aa8797195a1aff405b0",
+        "size_bytes": 2453
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "a3031a5cfd4703229f3e9b8dabda8c3c2b4811e727216c7404b136dc316d43d0",
+        "size_bytes": 2013
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "df58456ed5651c75398ed73e99f10b9a5f0885809c4a747f2e5ef8d233ecfce5",
+        "size_bytes": 2238
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "2699af7a9d0076949fe1250e30a3718c734898afb3add81cff22b757caef79a1",
+        "size_bytes": 2237
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "c966d02297af6ce0c640a403416b7ce902f1806fef0de49200fd10551ebe2eec",
+        "size_bytes": 2390
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "995a6262950492f11ebe6d1f9ce697d8cbd7ce7d1f4c98983d6a118bd1e8b3af",
+        "size_bytes": 2410
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "08b734f290ddaa0bacae2417673ef6c970b010819930a141a9364bddf78497f1",
+        "size_bytes": 2506
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "76fc9434e6dfc318d1ca71f9121ddbc757ec799a123fa7d964b3dd422fc90a0b",
+        "size_bytes": 2433
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "fb6c7db8fe0604037a08315d03d7ad36068d114e76ff5e69969b48ce5c3bf6cd",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "9cc837f8b0e30ae051d872e8f5c5846792692f67af2379e0cb0e1badee69ab1c",
+        "size_bytes": 2452
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "ed83e692c837cbbc69c67ab68f00d289bfc2249fb48bc3334858465441f4723c",
+        "size_bytes": 2230
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "a24e684e22dd75656b057e4917a0bf5515f1163a9e239535468ca93d5a3f41c4",
+        "size_bytes": 2481
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "594db30a0ea9d5ba64cd5c28d4ff9e05a4378e36e1758a97e5a15fcf7955d503",
+        "size_bytes": 2487
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "3e2b424d084dea47c8daaeabd34e91a2b81b575190c226ac1b5c17dad13528ad",
+        "size_bytes": 2381
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "be6187485d4097e6d76c97683c4e3a66d2226169e2794a5506a4539adb1d81cf",
+        "size_bytes": 2165
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "1e1a2dbf11436672c0fa1cc23a878dfed8f20785be1cc94a00bc9789411b4863",
+        "size_bytes": 2196
+      },
+      {
+        "path": "um_fundingRate/DOGEUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "8c83e4c6240e49934d14686a196465660f9c7c4dd447eafcd94479d273fdca7b",
+        "size_bytes": 2386
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "563bd30f3d8acea07de33d4b958cbd76cb5f892fb305e93cda8fbe305f4c4f33",
+        "size_bytes": 1926
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "32c8f7a4d8557545a358f0c5c6f29dc09f7cfcbfd75dd80ec27dcefbeb1be4fc",
+        "size_bytes": 1961
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "124854006aefe67277af877a723c16bd9efb791bbd5f89737bb81ce3d50b3e94",
+        "size_bytes": 2070
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "5468550e480bfaed9c7929b5e9a7cb55e6ff0f472a0713613029171e321d7293",
+        "size_bytes": 1918
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "86de99e6b1056b3dc8bdd6dee4476ba717e31e1b459cefd8acaaedadc760f3c3",
+        "size_bytes": 2197
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "6d7cca2dcdb96ccd482f40bfc3462c8d23eb3a65ed8282a5aad4123a383a33d3",
+        "size_bytes": 2307
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "1946df5b34b43d2b8fd2cccabead4a9563beb0f676afbaf6be1ec869fd6e6169",
+        "size_bytes": 2236
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "fd82531d32a63e87a13fbbd5cb8835a213ba1e80885061fc30d1c65ddd5277d6",
+        "size_bytes": 2217
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "981c349e2fafe39dd79252ae137ae356ec8cd65440d79f0a1bfd74232ee89c09",
+        "size_bytes": 2325
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "d2e5254f50ec02e023e14c8be9c4e833d648abfa358fcd4f21ad380218074b58",
+        "size_bytes": 1963
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "87d21cb726abe2c197b7b136f06ea7a6cfc0340e61b622dc304fc3afe0db7d7a",
+        "size_bytes": 2150
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "8d94ddb59174922433c70b33e7c0073b7dab7f2a275d3227c20a53d75104a5f8",
+        "size_bytes": 2030
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "4b3e961fc86325ea981a2235896f87649cfdc0cc8f2cc2921166ec7db3411bc7",
+        "size_bytes": 2398
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "f8407a51db09fb972d8e067e831bf11d62f83ae32b1dc9cee2d1fae13cf4f96d",
+        "size_bytes": 2474
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "6722bf1f17f69244cc33afb8237b4c01dd19c740622ce4c143da94e9f8b670fd",
+        "size_bytes": 2426
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "2c7e49e1a48191982d0b1d720294e6b3511990651221245815258733fbc83d17",
+        "size_bytes": 2321
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "45485bd4606437131cb277196751c35db98e9817f8bd27ecbafe085cd28deda2",
+        "size_bytes": 2299
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "c1e80a470208fa9a8e8196480f32649fed7af9cbebb502b6f401b5eae8d3d986",
+        "size_bytes": 2436
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "d4a20af969d22a25d4096f93728e6f64ea66ccb99978911070e74b6954340d57",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "39bbca7dc1ca036bb92b2958a86a96ad71d9592aaf9af6c6c205de50e0bfa0d8",
+        "size_bytes": 2329
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "b9f21ffed35a84310a266a12306b335f5f32a29c6964036a41030588640a6830",
+        "size_bytes": 2439
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "cf10c76ffe37efbfeba9c7f544b16af7255eea8202681af567cc76d845ca1e4d",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "1ed9a1c3e749f23f84cb0a839e28a608e6c5fd4737e975e7be418bef4db21060",
+        "size_bytes": 2217
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "20d2236e82d68c82e83eaa12ae144fca60a2978035cc8fee28eaf95246cfbe9e",
+        "size_bytes": 2071
+      },
+      {
+        "path": "um_fundingRate/DOTUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "3204ab0efeac0c958bb18da5dcac4aefa06bcef7fec2c50013fe8d3cd9283361",
+        "size_bytes": 2266
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2024-10.parquet",
+        "rows": 186,
+        "sha256": "4cded27df9138a34163f6f28d9b8707b12ecf4b9d405775d7b40f5860d64a4ba",
+        "size_bytes": 3130
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2024-11.parquet",
+        "rows": 180,
+        "sha256": "aeea00940606d3dec1bc7027b7f30b8d69882115f3f86286e770c7c26b33ef08",
+        "size_bytes": 3017
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2024-12.parquet",
+        "rows": 186,
+        "sha256": "92cdc6e1d36f2d365133917b748b82a352946c95483264474e80eee9fce2c726",
+        "size_bytes": 3111
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-01.parquet",
+        "rows": 186,
+        "sha256": "2ec8e2533c7d4ffbb09a3b40006d3fb62510f9cec1ff834c1ed1dc8e07f3715c",
+        "size_bytes": 3112
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-02.parquet",
+        "rows": 168,
+        "sha256": "dbb7e9d88c90371aee8053b831743bf3930a42ac798523e8cf12457e20204480",
+        "size_bytes": 3466
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-03.parquet",
+        "rows": 186,
+        "sha256": "d407777bb48ca30052297fac910e7dec8c0fa73abf3e09bd972c0e20be290248",
+        "size_bytes": 2885
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-04.parquet",
+        "rows": 180,
+        "sha256": "157a5ea1fc3386436f0633ceaae951497de574cf052803c50489e7600380bb3f",
+        "size_bytes": 2985
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-05.parquet",
+        "rows": 186,
+        "sha256": "03db456f81fd7e632e43ebe442952ec70049496f64a6d17a3ad45bd735e3c72c",
+        "size_bytes": 2898
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-06.parquet",
+        "rows": 180,
+        "sha256": "116571bf0364e58fe7b7f332918a18b2856137f87efcf946486db03a411ef2fe",
+        "size_bytes": 2828
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-07.parquet",
+        "rows": 186,
+        "sha256": "1604ec7c49591bd6058a1f6e96baa71d21963bac7f2f384315e6338323b1d43c",
+        "size_bytes": 2692
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-08.parquet",
+        "rows": 186,
+        "sha256": "38573fdc112845600c6623f441c0ab922a8e12d27a6aad37e812006132b78400",
+        "size_bytes": 2841
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-09.parquet",
+        "rows": 180,
+        "sha256": "71e0e1e32f54a931ad50237aae6c412a58b4db9e4a16dff4ad81e0948f0e43e7",
+        "size_bytes": 3399
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-10.parquet",
+        "rows": 186,
+        "sha256": "833271de7cdf6f7d17719696f4f895029dcf99bbb14ebde739396f3e93d7bdde",
+        "size_bytes": 3620
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-11.parquet",
+        "rows": 180,
+        "sha256": "f748b151705f2f862cf4c8db76f4edefa0edaef42683a1b4bbc03ff2ecd1dba9",
+        "size_bytes": 3697
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2025-12.parquet",
+        "rows": 186,
+        "sha256": "b80bbb9281826565b6a189114267adc893f884723efe0cf71f977e57df6af9eb",
+        "size_bytes": 3551
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-01.parquet",
+        "rows": 186,
+        "sha256": "a8adf60cd6a3ebae018a592ec578aa6aa87b2c4a1b90c07ae54adf4eec981bf5",
+        "size_bytes": 3171
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-02.parquet",
+        "rows": 168,
+        "sha256": "2aa638b5359c07086ad391617813e7b89474a25ee38ad72235b58d91fffc1258",
+        "size_bytes": 3360
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-03.parquet",
+        "rows": 186,
+        "sha256": "2b0e7c5a3307036b5c86af77c4893f27f1432589af4dd4f83e8d8e12150880c8",
+        "size_bytes": 3315
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-04.parquet",
+        "rows": 180,
+        "sha256": "6c142b34e312a9a7b16cc323fef72afc1d6a55b8dc61660fcc5112a4d82670cd",
+        "size_bytes": 3332
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-05.parquet",
+        "rows": 186,
+        "sha256": "9d0c158eddf8023acdb787b6147712162058dceb886265d30d2501571be7518d",
+        "size_bytes": 3321
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-06.parquet",
+        "rows": 179,
+        "sha256": "c88606593278665c1568f139b408e57082e58712c7126c8402b5cbc33920bb38",
+        "size_bytes": 3365
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-07.parquet",
+        "rows": 186,
+        "sha256": "6ca4e6a645314efee21a4e2bc86c90812b5456f91dee5f873d52d23eea9763d8",
+        "size_bytes": 3122
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-08.parquet",
+        "rows": 186,
+        "sha256": "2819d25240108f3970172e7b878249288e00e52237d0752d04ae26f1734dfbd8",
+        "size_bytes": 3028
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-09.parquet",
+        "rows": 180,
+        "sha256": "39f8dd5c0b33fe989374187e0ac57ae9519f084363f273486d68a371b806ba10",
+        "size_bytes": 2785
+      },
+      {
+        "path": "um_fundingRate/ENAUSDT/2026-10.parquet",
+        "rows": 186,
+        "sha256": "34db94b5e3a1128395b4d6775f18b3c97e4c031ca8183ba16bd1641476dde1b3",
+        "size_bytes": 3102
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "45e47496b9c9c61c7efc676626f7f1b7b6ab8999aa8c7e3d3ee35afa20ae6499",
+        "size_bytes": 1899
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "b1666679e9761363eb85cae2b2c261a50cdb54867052e827e507737cb28fef18",
+        "size_bytes": 1958
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "0b5b907ed76561c99435c859cfac567cdc9b745df2c60e37508add51256773e4",
+        "size_bytes": 1943
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "4917521efd3dbbf1d06022fabe5fd315ba7af7f50f9f5c42855e41d0b1572b64",
+        "size_bytes": 1799
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "8a2a720f107814f4384ee34b1cc324574b7916a4416d7c5c79f2af7b6e643a80",
+        "size_bytes": 2149
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "52d6cd6436504ebf8f4a861787eeae5e99491d2b4e5badf0444d1917f1103abb",
+        "size_bytes": 2239
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "b0ab5359b328a808c8e08d9dbef76c1102c1c165d9d6242aae47eb48fbc65223",
+        "size_bytes": 2353
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "d1b8643569cbf1f10a9d177cfe4cea62b86600cdb1b8ac5ed14c5728978fac43",
+        "size_bytes": 2169
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "adc855180de7be789d0591572c0cedfa9d663abe16a8f06d89df9e2e7af1eb1e",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "356bfb06bd61b70cd9869e45cb0c72851062588483071470d79b13cf2604d38e",
+        "size_bytes": 1926
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "1e4b51c93fdeb71b1160340ad1740d7395ff1e31c963b4164c3e18f19fb5756b",
+        "size_bytes": 2091
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "1ab7f602e56927aabf12e29c62185bd1b0e98a762c2774ef6261082966c0e0ba",
+        "size_bytes": 2194
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "5addd5cf9df6f47f6d961bb9c19c107fd082dca7b4d1f16b8616ebd05b43dfe4",
+        "size_bytes": 2346
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "beaea0f08b80def1d3029f1c320d9e117ff755d19c84a8c2dbf4a557e76a6b74",
+        "size_bytes": 2402
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "50954dafb0ffc61808eacf0932f048ddfe6816d1119b341851110ea1ff846d5a",
+        "size_bytes": 2362
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "b3031d01483bb23e1f869323170cdf9c6cb651dbe4816a92705c652606f0efb1",
+        "size_bytes": 2284
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "e1448cb1e004499761a9857d44eed22bcc79520f2be81ec46394d64580cf7e7d",
+        "size_bytes": 2395
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "9271e4c937e0aff4999697ac11321427051a4f3c81a30c4037665f94f3fc50e9",
+        "size_bytes": 2452
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "ec95dd7ef4659b227e9a34827d2003c7e3934108f1ea2e34baf3f7ec8fcadb9d",
+        "size_bytes": 2262
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "de476b6fc7860c26d07747f3b6fa63dcd5c55cd3500082aca95d1db1110f0b71",
+        "size_bytes": 2300
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "fda1192608f421afb5ffd89772030d0fa5d99cbb3bb5a2a61abbe690f5a1e6bc",
+        "size_bytes": 2343
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "f4c84309755d078947f935766476432a1e83d3686bb2a2da0a6decdbc84e17ba",
+        "size_bytes": 2289
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "09d0650fb3bfc29ff7160133b29d9143778b8ea88d0283b19d168e123270883b",
+        "size_bytes": 2137
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "9e11f75446c7f6d8bd63d16f14c5f433282de2af8f366e8b40bf7a10a113cd89",
+        "size_bytes": 1962
+      },
+      {
+        "path": "um_fundingRate/ETCUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "3fd45d15df6482d90a59402d49d7cf027bc465040c23588b9f332b00315a58f6",
+        "size_bytes": 2338
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "0b5c789384dbbabaf0ca0a7e4a37484e39934c2c12e5fc562b1bf2e16a116461",
+        "size_bytes": 1931
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "d0d51cd496fbe86c43eb1a21ac0b67d41fb739b875d6b8fe9f3d35a0dcd821ef",
+        "size_bytes": 2155
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "928f3896fe667e3d1a6cb334d85c91a0f6634db73548d23e0496ebfc827a94b7",
+        "size_bytes": 2156
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "d79b300894fcb6204772484b754367db71c8f0df56c1773c60f676be5a6532df",
+        "size_bytes": 1995
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "8fa95d8e5387d1c9d3ae38b99b37e42999500b9cfa151f952d62003810f8c86d",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "be287395a46cc126f68f145cb552db08895b1a6d76bf007b95edc4fe17829f74",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "522db20ec73f9f18ce634c5c100d64de12f2c6e79f711909e75b4e6717b945db",
+        "size_bytes": 2457
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "7e05d02568e1779c89ef617c6b5ff5449d78e037569263547c72255f51d00843",
+        "size_bytes": 2351
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "d0439f81d2704a8a8a8f3d258419fe05038b05cd016a4a424b79108d5ff94607",
+        "size_bytes": 2445
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "8b45d80d381549233dcaed70017cd0064bde412517cfac602525b9dfdc86bbca",
+        "size_bytes": 2119
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "8493411f45b765aaff942623454598d9e9b0d9bd59888cfb6084e6edf35faa79",
+        "size_bytes": 2323
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "88a9040b79bcb0c891ed308380cd30cdcbb34be29ad29890b42bca9863e44635",
+        "size_bytes": 2442
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "cf577cf3a1ece19a7a64e8033ef270cde2e4732ce4cc6d6a6c17eb6b37f0be78",
+        "size_bytes": 2470
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "c9cecfa042cc03654387213119a893905452432a6983efede3ac97cbf26ce2f6",
+        "size_bytes": 2458
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "c941a0c1a7d9daba6029879f3864c62b9f8e3762734bbe0ed3abfc57a2749e11",
+        "size_bytes": 2530
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "5e21c03670b2264bdc7e7ca1abeacf4c7ed7583f74fd673171a92c37104ce49c",
+        "size_bytes": 2497
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "e935e170bd33746cae66ff1d71ad392c92fb496f7b0eac603ccd6453d80152d5",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "0f1566aba180e49ea641c212fc07c263fd8530093036975f18fb3dd3d6816467",
+        "size_bytes": 2548
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "b3a3ea9f69c2bd396795e8fa284c9cd56a590fe91dc50fd7c6d5080b32c9ede1",
+        "size_bytes": 2467
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "38f411d4cfc7ffef991df03e6ccd287d561b523d1cba0a5fdc47cc49fbff0afb",
+        "size_bytes": 2537
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "f3e81edd0dd7cfab82f634ce5934db94f503c11577b432f7afdb7b2478e819bf",
+        "size_bytes": 2503
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "8499ac13952031836a6a30a35643458807846ca9bf59f63c38ad625c266f74ce",
+        "size_bytes": 2525
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "a80c03f9c6a5c14d9541a6f3557c832c3b97469f5be77d6edb534116d3e9daa4",
+        "size_bytes": 2381
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "f719df0c3865068228b5b5c2d648ff9a053b7842a45952d24f1061148815609b",
+        "size_bytes": 2465
+      },
+      {
+        "path": "um_fundingRate/ETHUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "005dfce958bc65137b318e96154dd7b6d9c1dd991dd7753ff4f9a85bb41d3c60",
+        "size_bytes": 2538
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "bc4284cbb4051107d318d5f17c01ecb0c4ab37ef72ff0f9b080a3f5fe539da8a",
+        "size_bytes": 1958
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "86b4034458e262ac6034b241579acca292bc5f7601069d0ca6f6797af7e8c103",
+        "size_bytes": 2108
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "6f953c5ffd755e5a9d975d3882bb47aadcc6be94d155f46625327e01d619d57e",
+        "size_bytes": 2086
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "42a18ac3e5a9925d0be2692dd58dc90c71e8214da6fdd4948c11ce7d3190eefd",
+        "size_bytes": 1880
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "b96feb7c9f74a9ca6112e1b1149d3041eee1e6ddb80f8e9a51bcdc452757f031",
+        "size_bytes": 2122
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "9aecec7e6928f6059bdf62a143e72350b85582b1fe3a6fc5cc1622da11251628",
+        "size_bytes": 2234
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "9afffc1d2bde08cce9338c9b4243ccd4a6ae3ea8004f06fc1284b31707088f19",
+        "size_bytes": 2172
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "ece28092c5700ff8b3deab09fb6d4e0c728b6c627a74528d70f518bf71059c1c",
+        "size_bytes": 2218
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "c3e7b6ee16325c493d06d7ad80bf600a0ee2248e3a361bb41ee324b7e7d596aa",
+        "size_bytes": 2168
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "a83b3dfa83cf859b47d7f9de66191671c9310d3890a8345c00c6adfa5ffac55a",
+        "size_bytes": 1897
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "27ad2eddeda8d75e4700b76da86f4acca3d3ea31c2d4fb85706be3987acbb09b",
+        "size_bytes": 2083
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "607a529a0df6c1b57e5d932b48eb8d7d17def7d1403ac83ea2d34b3aae7aeef1",
+        "size_bytes": 2092
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "181b594762b6708e2ee245604e4533acb24738d4adab102629e88fe5cb981319",
+        "size_bytes": 2217
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "9ead9d2c811a16fbb174922a348d2c4842d723f6a5999ab085453b73f55d9c13",
+        "size_bytes": 2220
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "b232ca64d52046a991cf4b33020742fe4fe5602962e5273780c7b1a47df8f4f1",
+        "size_bytes": 2426
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "226b751159cf086db13817fe7c39b18970c427668f60cd24d2d28ffd11818a70",
+        "size_bytes": 2385
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "5189bc136fb89df8741defd1dee7f83ede67bbde4b59a8e5be92ccfc7fadc2c0",
+        "size_bytes": 2363
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "a3a266e43b686ae7ca7ebabc0b5eff57455f0021e83c40648fba3a93f067c2b8",
+        "size_bytes": 2332
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "a67c756969d053d21975027e6f625f59308300e49a3e99942e0a8b50b0f6350b",
+        "size_bytes": 2270
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "99bf3354009799528b09f9e0cadb0403114ad4a8ef2293f645d17532bdc931ec",
+        "size_bytes": 2276
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "6c29b4442aad659cb88fce7afd103be5339c4961d1de103d21852c6ebb62c351",
+        "size_bytes": 2375
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "696640ac0d9b3fad8504e3a3a2cd0015f39dbaa0878e59871e72e639f2692b2d",
+        "size_bytes": 2208
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "091c8b6c98da5aa14ad3914f93e0a2c912e17220672c462aadec00029d20df88",
+        "size_bytes": 2217
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "d4d72b6dc9b31002107bb250a0e6068c07ddb9a7b20cccf951bcbc7e174220cf",
+        "size_bytes": 2148
+      },
+      {
+        "path": "um_fundingRate/FILUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "7311072700065048b34ae8fdc3b871667c2fab36f52ae614bf06025c05ec03ce",
+        "size_bytes": 2378
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "2eb3d32bc6470cad88f5559c152b84d17abd18eed981eef8a160d4827ae7adc9",
+        "size_bytes": 1836
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "fe6e6927e7d610a0b9e22b40442ad08f432ba6e61adc87a77554d9988b41186a",
+        "size_bytes": 1955
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "4c390140c34fb4dfcb0d36664c57d73971c07257ab87497eb5a2cc485b557cd1",
+        "size_bytes": 2094
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "f275586e9c0466ee66882c5f867b4051347179ce4641670a78df301d6acca5c6",
+        "size_bytes": 1994
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "4596726668c679c3aad554e96d131e399b243e92f2f565914ec6b85469b99d29",
+        "size_bytes": 2241
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "3566f41c987a988431783a8e2654a63651819aa3a33d3f01ac0ded63e1089ffe",
+        "size_bytes": 2343
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "a9c81644345e9e1b3a6dbf3e081f15fb5dad90cc45f5f6c4ed6b08b504ad61d9",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "aaf9a2edb156facf4389400240a02765ea20514a4fcaca1096c5aceafbafd1f8",
+        "size_bytes": 2206
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "8dbfa4d5e14b6ebde53d57a54870e7974e0f233e51f1037201f71d56ed513bd1",
+        "size_bytes": 2405
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "7c897b8a5af289ada979dbfe09cc05fedb2d394bef968ddd48c6384b04a49165",
+        "size_bytes": 2071
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "833d9d08f0c531ab303017ba866368f1d61a3441f83ca9b537d169ea85ba2852",
+        "size_bytes": 2222
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "c90e2705fdfcf5e98b0d112037b68fa97ca0fff350cff1200d541502775d2d57",
+        "size_bytes": 2130
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "a7da9148ff973c6c5e179dd8131301d946e746f1f2469f34f7ba44db66c93648",
+        "size_bytes": 2334
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "4b0b9d16cefcf1984f26b725f8476b9d090a607baa3e16fd9ec769d98772aeeb",
+        "size_bytes": 2442
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "67dfbc966ba235f0b82cd65bf3680d6944d0b0ef9280bf38088cf80125bea439",
+        "size_bytes": 2442
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "e74305031c2c1e0c0a3d96c6e74d1fc71624f46b4bff7f8faddbb155000b86f9",
+        "size_bytes": 2345
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "8f3c213d7998c422d7239bed31bbfa921b29dbdf7507b778e60e749fc7f005d0",
+        "size_bytes": 2411
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "5aa01501503bae0599cffdfc45d026e55bd460e9b624ca8c6e4a3e63589220aa",
+        "size_bytes": 2508
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "774659380e40a9c4768bdfd23a8d351703e167419c3640c2ea60339c53c41265",
+        "size_bytes": 2411
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "757bdb69a8705bb89ca0d2934b6e5c8fbffb154ae90fc6be0d0eb5f7fb41d228",
+        "size_bytes": 2409
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "793af81f50a527730fbc8a03fd0499c70091ce7fe646f7ad604c3964ed851c44",
+        "size_bytes": 2471
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "1767e1aaa996d52f6063e28d699553512673aca16528012e432c9a4f131af620",
+        "size_bytes": 2501
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "bc5435acac78a771faad371319470b5eb48a7733bfdc27d21b9109807b2e051b",
+        "size_bytes": 2284
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "cf374004b8ced5946d292b57d9da7caec8ac867f58a5b385d99162aa974ef202",
+        "size_bytes": 2188
+      },
+      {
+        "path": "um_fundingRate/HBARUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "d0702ed4b61de21a110f573c074ed5aa0ae75b4a5aae41708536520a9abe8027",
+        "size_bytes": 2402
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "0a48fc1573973de03cce2e3e484757996954a73b27b04bc69a862c7cbc361192",
+        "size_bytes": 2039
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "a29a11181fdad0cea41dbf030a58bc6d22d129c7a68846635d16e843ca5c4031",
+        "size_bytes": 2102
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "8bc369cd98d87f22f2d9a4b2025a0fbc6a04702dac797691299e43588aa6d3b0",
+        "size_bytes": 2096
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "27f3175c69848b2380927700cc98a0c4ee12a939969ff493300104392edbe0ab",
+        "size_bytes": 1893
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "a9e3678c7553c4fb18daf55034d2240f159c8956f960bf6d870c8a7099917e47",
+        "size_bytes": 2281
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8283a04a1ad9ad58b9c780a1f20661a822242caf9fde3c785ed691c04ceadbf8",
+        "size_bytes": 2295
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "20f61ec31b52884b545877dec2e73c2ec5e6380e408108e36062d949a76f2042",
+        "size_bytes": 2377
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "efa6eb99d47e7e868869487725f960e77221035e5d64674b1ac3ba01230c112e",
+        "size_bytes": 2351
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "f0d8f34b6060b57cd5e2aeb2eec12c2f3badd4520928e9d338bf85e78007ecd8",
+        "size_bytes": 2469
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "d7a4d15bc22ffc402bd608709dabb011e2af5737bbf15d2054c2c3bee9955fd9",
+        "size_bytes": 1995
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "d5ff4cd586fbb4134a9b3671bd947a12b4be213023277ed45fbb5a1e914d89e4",
+        "size_bytes": 2155
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "b09794b7a36b10b2002f51a5e827a97fee445dd80905635e7af7ab54941ff866",
+        "size_bytes": 2058
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "69eb4fedfcb60c038cb780090faf58f3ef9872a420c87496ef0743053df9f5df",
+        "size_bytes": 2342
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "a752d684f24684621a8ebc782f603fc7831d59cf41a468fd33df11c97df9d9ac",
+        "size_bytes": 2378
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "c03f7da258ced28839a82a575de90d81f294c409f27741e4aec089bfe35b14ce",
+        "size_bytes": 2434
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "6908b8fe913ca55e0eb52311eca54ce1fccf8261b6cd8fa08f6b1ef4c5b5998e",
+        "size_bytes": 2433
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "9cf736e5f41a4a5824317a8f5888a37d14ca37305ef0f395af19a3a20a6803a2",
+        "size_bytes": 2419
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "415b9c537ee5961f0c39d794680bb0cec3bbe62e092558cb7de9bf77aef0a353",
+        "size_bytes": 2524
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "8d055654ac97bb9e8617e6e99e0ded43c865f2579943c3fbef17c80bcd73f9fa",
+        "size_bytes": 2483
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "5e365fad96356f09f25c4ab0d49b228f3d5587985a38ca0860a8312df8e5a5d3",
+        "size_bytes": 2553
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "cc3623509aa605234413c9b2b520c2654f57b7babc4b8965e49d17e7b2adc792",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "c65491f6cd300fd7a1c0bad91837ff3073ac1bff9357667966bd1a2e25ac89ab",
+        "size_bytes": 2533
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "d1ef8f4f86f9bdd527ac44bca15c5e09662f4b854899f054b0fcac1c27c55724",
+        "size_bytes": 2397
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "1a6e0c44725be790d078c59c5a7490798c64f9261ddaf4b5514f2e8c36eb81f9",
+        "size_bytes": 2121
+      },
+      {
+        "path": "um_fundingRate/INJUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "07b291322865110277744388a4c1f0e977f94bd4c946a44fe835982bae3c3fdf",
+        "size_bytes": 2354
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "3958197dec56a8b672274d82509272983fc70aede5139eb981199a6383bc50ce",
+        "size_bytes": 1907
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "6c9f53fdaf3f5e997d9fc8247a72eeafbc84c1a50d999cba745f76146b0e2e72",
+        "size_bytes": 2129
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "e1cffb5d6004f52d5ac389a9d6972fb93235f3512599548f7d4347e1ea8e1fe6",
+        "size_bytes": 2088
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "33a49c2c7ac1baa6547a5e13aa1c3e0bfbced3f91d2787900a4c18071a38159b",
+        "size_bytes": 1966
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "e1e459bafb029e2ac9641cd562bb4897ae88eba131cfb276f54f8fdcabc906f8",
+        "size_bytes": 2273
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "e5a71a2c99e4e3ee00acc74a7ca78e3fdfc592aa685c9a89179578c3e585339c",
+        "size_bytes": 2287
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "0c3330c78e02b1ae4e6835c6ca322a9be08b6e00e5b296e825351cf38039808e",
+        "size_bytes": 2153
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "e5ca0e01fdd8442cbc5977223cd3df3f4cc47616c2f63ef94547062a7d85709b",
+        "size_bytes": 2247
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "6c7815559fdd6d240c7a28a63ab34346300042965fbb7a5c60eedc2d7fc9e509",
+        "size_bytes": 2413
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "3cb2a1fedce712fa0e399b72c8f0990989c5d5aca5fdf50e3d2f78949cd308cd",
+        "size_bytes": 1931
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "cfcdf913116bf854d8a6f5c228f7429774b58ea069dd01972b74fcf917d3d983",
+        "size_bytes": 2109
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "afdb775f7b5270c2c9365ed7ec087ca343959af797c4db00ad1be49489fc9c07",
+        "size_bytes": 2084
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "52da3ee2a021502e4c20dec52e0041fee4ddb3ff63247caa62a0f6fdd3fda79c",
+        "size_bytes": 2289
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "ca37d857cf321dcc73a4624b3cfb4214981d87e6d70a0b5ec31db343e0149db9",
+        "size_bytes": 2253
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "48d38aab414022afb767f7e0b8eddda1766ce88c9748e975deb8a73599a1baab",
+        "size_bytes": 2330
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "7df4cdecd63a1baafd6b3493e7e4a7a085e39fbc3d55f37dcb49d00fd40415d7",
+        "size_bytes": 2276
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "db015b4dbb957b4c821131f8877d939a75eb38300a12e9a9d8c85954d72ca9f7",
+        "size_bytes": 2363
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "6b385792790a8214ae5018c429773e0686cc2bd6645ae2b987837cff49d21a2f",
+        "size_bytes": 2412
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "427e10e9ef1a2770a3b1bf975a5b8698af6aa2c37705df13aff4fc79a830836e",
+        "size_bytes": 2315
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "11db4d93d5e647bc005aadfa28d27b49a7b7640d418fb5bcf854b08714f15323",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "9ecaf71dce3e3a29636f32a43f3caad1350c08e03823d1bb43b2c2e6ec11709d",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "707f0ee5d116effff3eee0a4cd25445b253d2635e9aca8d203d007e7919c9f5e",
+        "size_bytes": 2333
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "b96164313ecbf1a94b2379641b24e170c023a25772d76cd36e088550063c98e0",
+        "size_bytes": 2155
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "3fff5f3fc0a39835329be7d0a5e74952aa0f0acc9260b0ad2c05011bea1318ce",
+        "size_bytes": 2212
+      },
+      {
+        "path": "um_fundingRate/LINKUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "af3dd9473ba76dc1c21de5770661f099adfb432ed4894aeb1f3f64a7c32ca2fa",
+        "size_bytes": 2442
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "ac17c5476bf66bd38d489caec8153127e3e16042e740d38c61703952821bd94a",
+        "size_bytes": 1974
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "080183138676ada0a80f8f869565f9baf6fb0a379db632d6f9803f6681318cf5",
+        "size_bytes": 2062
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "91c0983dee0604f46997b3ee2975424e6f0b66a4a1aef9c33de802273983b23c",
+        "size_bytes": 2040
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "2e3dc7df9c0afd9665486a42f8cf2a0e5a99fd5179405562765d2cd41e0b8c57",
+        "size_bytes": 1929
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "ec9dbcb97a802f7030669198dc7238b8516993ada8689e133b8a82f7227167c9",
+        "size_bytes": 2141
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "db84edce425ecc51987e6d421f4579af74962cb82291477455795b20f7be2bcf",
+        "size_bytes": 2367
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "d6878d11110782f8d7cd14168e35b25e2b723e6b0223dcd037b8d1f047ac3a1f",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "cfb4363d1595dc36d79aee701d8bc11a76ffcf435daa111b85ff9fc67a0af93a",
+        "size_bytes": 2207
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "74faee0e8596ed547c5b7375bbaf031b6747f219130bf42785f1c16653afca11",
+        "size_bytes": 2349
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "bbdbde5475eecc586ecb938597ffb5770db0c03ced8732ee2d19db1b27ba856d",
+        "size_bytes": 2006
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "1b7b25407d2eb4dba3396e6d34aab3c01b138347373aeea308474139d179962e",
+        "size_bytes": 2190
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "a9acdb9b69ff401f755ea11f2db06dbd389035d85e8969521da1e792fa7ea07b",
+        "size_bytes": 2237
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "ffdc77fca6dcab1142cfa7c5cd6e17aa33d5437cfef20925e866a1da6d10e688",
+        "size_bytes": 2366
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "7635370e8f8e5306d326ab3a906feca44028520e85bac2d1eeb79fc99fffafed",
+        "size_bytes": 2434
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "bee2eb484d994865610ba8fc1b84c0a384bbf49147cc85038c2032c83ef1d55c",
+        "size_bytes": 2434
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "2ccf80e88e85af815b21e4f2aabf62a6ed7e8a2a26ef845dd750ab4f09f917ad",
+        "size_bytes": 2425
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "05c910f1325378bd3455f18c0bcc8b31cfd354274a69a9e873813e7798fdaa00",
+        "size_bytes": 2395
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "3951e1ffebff465ca1c745ffeb5b323e22474d5abe49d3806a9f4cbc2b0fa1cd",
+        "size_bytes": 2476
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "bbcdd3fad01a7031144100baada782f502a95baeb9d7394ff22fdb2a2872be38",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "47661c910cc4c79103001f3fd1465bb1f768f3ee0f0827bc1a6816cef8799224",
+        "size_bytes": 2497
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "cdabe062f29797cce8fda1f3a94e2fbbdde762dd3099a5af5f8d01c5ec57ec6a",
+        "size_bytes": 2511
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "aa34d8d9a4620c604fb6fe484541498b7dd61a13144183b48f249810b219dde9",
+        "size_bytes": 2389
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "875437b3eacce1f287d6dc490d9d97e9b62b471049e9afec7b5064011974323a",
+        "size_bytes": 2326
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "895cf519abb7620a8bc7f462b632efbf99ba3fc048c5a073b78a51b762aaff08",
+        "size_bytes": 2187
+      },
+      {
+        "path": "um_fundingRate/LTCUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "630c3611278b06b9348052b7f1b19634cd5512606375a1d99e90ec5018ecf564",
+        "size_bytes": 2418
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "8113f4dc86ddbd08098df99bbe84cd21f035eaf6e11d58a79be0ad6917ffc9b8",
+        "size_bytes": 2010
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "fa33bea5815092a5386d1d3dba421b3c69fb8b8298b10957830d52fb99dcd932",
+        "size_bytes": 2097
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "2b5c25e3942c85b123b08aa708289144c579de560cd44fb6151e1b6f6ed002c9",
+        "size_bytes": 2188
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "28ec65eab28f50819a2d0ebb618dac967be10bb053025e872f64a6da084b15d0",
+        "size_bytes": 2084
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "e8b432b4c63a5b07056e034e15723e5a050c42b63349fcedae39e9d86c697e17",
+        "size_bytes": 2273
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "773a01a5506fe8f635a7d070cb18427ea783e9fa47f61cb0e027c213359383c5",
+        "size_bytes": 2359
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "f2d1a99c5d4befa81a9ef1570674d60c0205bbcf8f9e80aa4834cfef03dfa87a",
+        "size_bytes": 2329
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "4894b4a748cd7a07ae12547bfe20dfe28b308923185e30e65921c968f4d5e47c",
+        "size_bytes": 2343
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "6802af6db68acae6ba753e0820c7fdd8c00a163c22a1e9806f3cd6fcf3bfef6d",
+        "size_bytes": 2223
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "f618fb2b4109649874388c42ca163f5d5590b0cbc505af3268190bdec502bba8",
+        "size_bytes": 2076
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "a00665cd8915a024edf28d6812f29685c86970ce6addca20a1fc8c1dcba77869",
+        "size_bytes": 2182
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "68a0ebb79ee29858e9c190b49d7c8b8c529fe8688671d3615b77678ef640d681",
+        "size_bytes": 2092
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "e78e9ed2316e342ca4a9cc5506022bfe730fb130c41c24db64b978933f3bc674",
+        "size_bytes": 2281
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "d5adb23a34b4d9c50705f0facec366fc7fd6ce005c930585a589c00d4af164fc",
+        "size_bytes": 2253
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "5097ffb0f7ecf5597785eb3afe4a887185db3ae1bf0c53f6a1465ffb01d2ef7a",
+        "size_bytes": 2205
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "79f36aae32c62c09132572bb08e8497354e7bff922a4f350429368d24815281c",
+        "size_bytes": 2260
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "bbebee3f1f44f0e5d6312bb25a5f911f260cb7fb8fd357d0f632b6746803bcd2",
+        "size_bytes": 2247
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "b8c2c184ddd529b77b6387059880b126bad32e09b4d03eaa3f5bf08ea2916d8c",
+        "size_bytes": 2271
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "b11839bdf069d1cb4f3a402f2d3e122d1d886b4bbe4ea57901689f73359af4cb",
+        "size_bytes": 2262
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "65f2a552a9f518155c860d88b86ae3e4ea23335a1d603fbfddc329e6d74c71c2",
+        "size_bytes": 2369
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "aa15644ec8b0a8fa99fab2fbbf9e8103c2d4b90a52432c3c77cdcc7040f2b00c",
+        "size_bytes": 2343
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "aca1dad04f6410c1580ff8d080e0506002dc42891e205c33612c7c28359a3e69",
+        "size_bytes": 2248
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "2bf4690cd9776500fe746ace933778beb5f07f5cba7d045ba69ea93356bfd967",
+        "size_bytes": 2097
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "564dc529d00ffb190cb587674c48ad245b695e2ddf89db09bab189e8ef59a316",
+        "size_bytes": 2097
+      },
+      {
+        "path": "um_fundingRate/NEARUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "e69f53e836908e8aca23c4b93655c4effe591b3bd2114ed53e1c4dc73686c063",
+        "size_bytes": 2322
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "a66a301f0d48b55e42b99b9678b1ee22fb17075633e8c1840be8e5f1cb54213f",
+        "size_bytes": 1980
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "d67141c2111ecc37e5b7b7478ffeb0c2f5ba714307176d87eb0f39dbadad92d8",
+        "size_bytes": 2141
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "550665718421f78f0580ff0940ce6e8c7e32d1fb7d7ae1484ad90eb3c17ef1bc",
+        "size_bytes": 2052
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "8b042a3ef4b5c190363a822bb6cee0f08b00e16fefdd274998fa6d229dd25ec7",
+        "size_bytes": 1926
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "f0a91d6e9d96ff979bc62db1b0f43479f677cf7a5a890de3152e63650c3e3101",
+        "size_bytes": 2181
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8d9f490244c30da4e24c89c5e83f43eaf81a20075b215202b274a4da3c012f85",
+        "size_bytes": 2367
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "62ec47f5456ed774bb051dae259dbf1c89c7e95243e9195a00340876d3ba4beb",
+        "size_bytes": 2252
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "a72e1e0d119f877a5ae7c6c704fdcf397470f2a12aef07a16bb02e326ddc72cd",
+        "size_bytes": 2257
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "c96c49ff2abc6a6efe52872439ccefe9c1de568df36411bb5191365e541b53b6",
+        "size_bytes": 2325
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "92920d5d057e715dfd4fb22ba8e2821685a25ac57a5c51f41c3740ff922f4f7b",
+        "size_bytes": 2068
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "faa55ff91b74c1a16065425641bec95d19bd9590e2e3759f97e5d252ebeedd7c",
+        "size_bytes": 2187
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "f1083ad9d61d288668018fb58c3145e797f6dbee112943a72a70914c450e4e59",
+        "size_bytes": 2064
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "68b3413dbd98a55127e10c4d71d12000234e7673d5e481f4afc1da9f1ae6c885",
+        "size_bytes": 2249
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "a5eda1dd740b98d222118a5fecf14bff372cfe78afadbaa3c3893c6947c4dccf",
+        "size_bytes": 2410
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "a87bee753f3e7dd5fb16c2c6ad32f37f588fa3a5b34926f6c2290f754f0ff989",
+        "size_bytes": 2302
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "f02f6a352a13ddec7915a96f36a9ba9b8181385a8b7115526f52e4de657eb079",
+        "size_bytes": 2220
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "d789aa88b44e798dea509fbe2554e921866801e213f06af4ea12ab2f8f1a853f",
+        "size_bytes": 2347
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "12bca238f19cb220589dc54cdb7ff89216690608802cf4241301c4e99748ab95",
+        "size_bytes": 2364
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "b7ce12894da7d8f7d83663f65fdcf3c8d25be1d98606cb67289b34408218cbe5",
+        "size_bytes": 2238
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "3f9e5ebe4466cb8b8da301339fe2876b1531d69715a2a524e3268312d366e1f6",
+        "size_bytes": 2353
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "5e5a8c351e5e3542b2e338539e4abd7396ef0135a9811902c930170b8edda979",
+        "size_bytes": 2439
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "ceace4173ad6595fb9a47aae2c586a2789b267548214aedaf760e9d9e8c2a2eb",
+        "size_bytes": 2205
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "a8be1f711556977c01220f1a6e15d3ba6cbd4ce911ada682f77d16c44e51f822",
+        "size_bytes": 2153
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "178a36f33ef18fb844f3d0641ade00b4ae9f2a4f01ff9ceeae4b3333dca8ecf6",
+        "size_bytes": 2156
+      },
+      {
+        "path": "um_fundingRate/OPUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "2547ccd3cc65ff3b0b69b21bd5678412cb97eeb4f8f4974484b7d427cc2c4ce9",
+        "size_bytes": 2402
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2024-10.parquet",
+        "rows": 186,
+        "sha256": "38b5593c4c1eca52a92bedc019cbd014396e55fb4469fde7fad930545693f151",
+        "size_bytes": 2345
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2024-11.parquet",
+        "rows": 180,
+        "sha256": "685c127749a480fc1ee05f8a9e92cd351474440e59c06329a73221ab1ef49b42",
+        "size_bytes": 2813
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2024-12.parquet",
+        "rows": 186,
+        "sha256": "9763c83b7ecf2385291f15abaf484e34bd2942152ce08f8cca060a2c0fbba638",
+        "size_bytes": 2789
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-01.parquet",
+        "rows": 186,
+        "sha256": "3872b56602be3ce7d89cc0ad06bc966c896640802171a16da24ee71631b3ad8c",
+        "size_bytes": 2314
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-02.parquet",
+        "rows": 168,
+        "sha256": "925b6656820e54f490129ddbe0e493f69ee1f541c881f8bdfc17aa6f174d3b37",
+        "size_bytes": 3234
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-03.parquet",
+        "rows": 186,
+        "sha256": "7c36252680e3c339ef88c6a2ead593bc42286b13290d4700049e93a14459883a",
+        "size_bytes": 3130
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-04.parquet",
+        "rows": 180,
+        "sha256": "c953dd0d4c99622ddceb6eb4b6838ab1ba241b500c4459dd8c8890ed06ff3bda",
+        "size_bytes": 2807
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-05.parquet",
+        "rows": 186,
+        "sha256": "cc20e32b8d193cd1eb2e013339bebbddbcb620a029324ef0e1f9d73c21e8c11f",
+        "size_bytes": 2989
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-06.parquet",
+        "rows": 180,
+        "sha256": "5e5794e27e67996728d1ba61a9031d778ad0d7828c710f72ab23f12ea5f8c515",
+        "size_bytes": 3422
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-07.parquet",
+        "rows": 186,
+        "sha256": "30a226dc5669bfeda66f5dba6c08be784f25b3bfdfdcdfd0352957547d02d92e",
+        "size_bytes": 2774
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-08.parquet",
+        "rows": 186,
+        "sha256": "ab993eb749da2f6af803bbf9c1ecf48081aaa93d15fe0665d0b8585e8dbe4338",
+        "size_bytes": 2800
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-09.parquet",
+        "rows": 180,
+        "sha256": "928d949b163a53d6714649fdf970cf3a81f2e2fe80c0b7c86aa83aa63e5b5def",
+        "size_bytes": 2884
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-10.parquet",
+        "rows": 186,
+        "sha256": "217798905622c6bbd5773d01257ed082bbc0a34c48352718bccf526fb35a255c",
+        "size_bytes": 3307
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-11.parquet",
+        "rows": 180,
+        "sha256": "a799bf50bbbfeeaaaaba94555b21398b72b80e4682e6850f4bcb1eabb1545edd",
+        "size_bytes": 3641
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2025-12.parquet",
+        "rows": 186,
+        "sha256": "0a660d1442e68824910a7ac954997837cba03ac8bd9c0ae6f0aa47b28d96f1db",
+        "size_bytes": 3700
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-01.parquet",
+        "rows": 186,
+        "sha256": "7e4dc5cd8e15559b24c4a79879200e6e9a208708be77f929e9c7e4a2715ee7a8",
+        "size_bytes": 3486
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-02.parquet",
+        "rows": 168,
+        "sha256": "a1ca279e30926d4b4ec547da3fbaf187005b5cebe2a3244a163adddee45e1c2b",
+        "size_bytes": 3600
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-03.parquet",
+        "rows": 186,
+        "sha256": "3da0f1c5cd4f507bff7e210e1ff88c9aad0b993618a12070f3eb235533fc418e",
+        "size_bytes": 3816
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-04.parquet",
+        "rows": 180,
+        "sha256": "f9056de3dd59205fc6704b100b2d177cd2dfe3e26186b8652814594f51c2cf44",
+        "size_bytes": 3603
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-05.parquet",
+        "rows": 186,
+        "sha256": "705e588ef04fca74a32b8c517eebe3eaddb2df4ef29208ef06ae9ca3cdb403d6",
+        "size_bytes": 3545
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-06.parquet",
+        "rows": 179,
+        "sha256": "4152299fa34cb4c6c4959c7fb24aaf5b216ff1f031c562a05208f5218f14d66e",
+        "size_bytes": 3503
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-07.parquet",
+        "rows": 186,
+        "sha256": "ffb06645086ac0aaac485395e15fb9f286f19e8c4f92712ee5e82b202c6e5e70",
+        "size_bytes": 3488
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-08.parquet",
+        "rows": 186,
+        "sha256": "ac45e2c99e12f23b6f3e54fcb21b762592667c96836619684a17cf4c6a7c1102",
+        "size_bytes": 3393
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-09.parquet",
+        "rows": 180,
+        "sha256": "8d90a6ebe58af0e9736a261ed97c01bdc08ffd7016993863dafb35e30d902a58",
+        "size_bytes": 3492
+      },
+      {
+        "path": "um_fundingRate/POLUSDT/2026-10.parquet",
+        "rows": 186,
+        "sha256": "371f6c23558719fe9048a017ebf33b5d6228cca02e2aafb09291f4f771688f57",
+        "size_bytes": 3781
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "38fcfc3a5906c8bf8c333f125499bf4c77634467981dec1f8ea2602e54d8fed2",
+        "size_bytes": 1843
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "a7fe6e11ba40dd5fe8799d03f9d3e8c01fa5e92698b5f1cb5b8ef05155bdc272",
+        "size_bytes": 2005
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "5df0612b32dec4efc7ecb4c8190ef25e9bd6fb63a063d72e5d14387ea3f830e0",
+        "size_bytes": 1941
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "d3bce9dff988ac5b50a2d4ae8117a75037c0b6781dc27c55f5e365434392a6c9",
+        "size_bytes": 1799
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "f64c3a1447bee31f7ee3412ddccdb2c0d70e12071078528ee1d2fdb968f7d021",
+        "size_bytes": 2077
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8b07d42f769e75c3cb39f54d7d7ebefb1c48e3eb55c9491190584932ca478da8",
+        "size_bytes": 2130
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "ced6b09ff9f03a26def61f49dc2eb3bbbc548a25b4afdf8de14e43ff3e96a280",
+        "size_bytes": 1987
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "72f46be464c0c60320239eaea95812649665038f03c9571f0b5d06db92fec25c",
+        "size_bytes": 2081
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "0d6ea3f2e2d0ce69b7805ee6ee1f2213d1af7147b1135392afdf8ecc8f486522",
+        "size_bytes": 2168
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "2bab2ffcdb190aa94481dfd8c61d9ffc688870b73b7b5e6901928bf957b85e8e",
+        "size_bytes": 1896
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "1564a5cb06edab4930a302d934d964de5beb4f833976441fdfcc5e1db075892a",
+        "size_bytes": 1967
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "98b12d43c53f53bdf6d941760c4280d26728e69cef62e1cb027c958651a6947c",
+        "size_bytes": 1944
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "944dc1dfb2eab51174b728e06dcfe11a47c017724a4322ddf7f619589c9de78d",
+        "size_bytes": 2185
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "3a405b0470f5d4462d560d74fc2d9f8de05ae2d318ecbf04944cb132857b18e4",
+        "size_bytes": 2157
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "8df4b06adb2693ed7deee9e9d9ed89344a81e4e2c77de70ee4c82ce7c79c7b36",
+        "size_bytes": 2125
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "94a9fd8466f62126bb23bbbeac3a14a301878a8e379516ec35a761027b8fa0f0",
+        "size_bytes": 2129
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "7c6d64ece47be6a7dee4a48f981ce5664398b1c804a3391f7a137640340095ac",
+        "size_bytes": 2207
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "72d233028bfc85748f12b6f446b56406da1222e8ccf85e7c71b8c3a11e577961",
+        "size_bytes": 2175
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "942934774923dee08dd9a7031239fd9f5fd3fe76e57a9e464c5872a021695762",
+        "size_bytes": 2190
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "23989729ec6681ab2a66adeba15da89bf330175b6f984ce8991ed83cb8d12487",
+        "size_bytes": 2172
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "c79ff7491cc14d548a186470b9f317beba9b116e9c97fdd2f6a36e83a176719c",
+        "size_bytes": 2105
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "1cb5075308b7ab506595bb62562e9a35932a8fed289b9d91df74f460a75a7cf7",
+        "size_bytes": 2192
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "e952196cfa8f4b3728ee75febb23d11672572b3a3996a1760031cc2dd7e40b8f",
+        "size_bytes": 1972
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "d564da44b1b7c1cec105e4104e8823506e9aa62fd814940d29b18e36f3d83078",
+        "size_bytes": 1866
+      },
+      {
+        "path": "um_fundingRate/RUNEUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "df5d9ce65da40dd0699ed72196f5133794813344392e23711979cb335907e403",
+        "size_bytes": 2170
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "a10daea3f3f230f429e90dcf81df1186dd4b133b6825cb21d3cc1d0b859c4ce2",
+        "size_bytes": 2065
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "7fa7ce24c2d5055c00990e7a1816b09d229ccbb8581d5ddd489b81dcb93d750c",
+        "size_bytes": 2153
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "f808b677a0b27f51297fd75ebd9567877a94b49bb5f58696c2f30f35a18d3a6c",
+        "size_bytes": 2247
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "f367b267e020dee9fe3c03f6c8625854be12ded1551376440bf8401ca53739ad",
+        "size_bytes": 2165
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "3d36843654284fb6a9b5b95e5e56daf4fee6a040343b63fdbad8d39a0350958b",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "5f03cb3a59b28c43573f383d69b58028b4368aa8d39b83372f8ae42770c07f1c",
+        "size_bytes": 2487
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "c0569cfb298588e8a86a723e24328d63aa5c687f0306b17cda4aeb0f45c06133",
+        "size_bytes": 2377
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "1902642fe9acf0a7bfde01b3f868f99ac6f50283747e1c4a6eb10ed20a382ea5",
+        "size_bytes": 2347
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "c1599095411cf17698c12f1b4fc6cc885685b75f9c91f2f9f333a6b4ad1c4495",
+        "size_bytes": 2501
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "949e830268a6339c2f4a4921e278afd649017c3c2cc7eb11f216148423278e72",
+        "size_bytes": 2239
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "bdbf6b97de9be9408b834af4def652c15e00f4896455ea753e3dec368b7a19cc",
+        "size_bytes": 2303
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "8bf9f3e8378c689adaf4578eef50dd4ead6531da38ceade9bd91007860fe98ee",
+        "size_bytes": 2022
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "16cd10b0f8bcd634fd906a823c7eb71a6a8bac6407589720133a76bbe3367a2c",
+        "size_bytes": 2398
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "cd576f1580da0617aa851e4a918f218fe5d5971e7d4ed22711d9631e405cc55c",
+        "size_bytes": 2434
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "b964bc2163412daccbe7299f64412f5fae34c5f328709791251daadab15ae01b",
+        "size_bytes": 2434
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "deb80696aaa0ad9fcba67c428412c30218d7f3c8f3c96f96e8f875f105d47912",
+        "size_bytes": 2292
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "f507b7b175cd006dcf7c655092aec6ffab58e231430e7a31c5240f051dfcbbca",
+        "size_bytes": 2256
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "5100ed3632e57f8bac9d4bd4f27deb637168da6659087fd9b8535d5fe194234e",
+        "size_bytes": 2468
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "22701e608ec1e14c71677c2e41ce36421b2126ec359f0eb32c31d6e9109a0139",
+        "size_bytes": 2419
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "dd95379e40cf03a1e247f27fb6431c6ca849a263ce51c40d957165614d057e54",
+        "size_bytes": 2521
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "34ebaa001d2f762ecb25b9f5e9a6a2e7336ddac0847187fd754ee4ca7a9134fd",
+        "size_bytes": 2455
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "903ea1c23b9c4af10e1294c5dfdec846a903c943c2d589bf5285bb27045e6e57",
+        "size_bytes": 2509
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "a681980673db444ad0b3fd56939e59b5186e6f699e64485b345bc7ce47f20ae0",
+        "size_bytes": 2333
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "afbe80fa576b954aea41975c82955aa26fd8043d96393ab97305aa9fbfa6775c",
+        "size_bytes": 2027
+      },
+      {
+        "path": "um_fundingRate/SEIUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "be1203c32d81090c90d99a01485d6fe0c6bfa7992472a72e36a26e784191ce6a",
+        "size_bytes": 2450
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "90f4c9fbc96575725d39f88b6f76a8f1f2f3b844514a5fbc22d636bd1271a438",
+        "size_bytes": 2168
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "62c4bc04540457058b7b06d17e4f657019210cafa7474faecc9ed8d8cc7eb701",
+        "size_bytes": 2105
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "9c3019c88fb7c5fa4a5c10eccd2d3e396610333abfedbf4641abeef37b6fb651",
+        "size_bytes": 2304
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "50dd0035fe62fa80b9bc5ec2c5e7286c04ab3bdb0dd347fc38ed56a2d26bff22",
+        "size_bytes": 2362
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "5b7fd4a28289d5704cc313e61c4d8a221334a7e25a240fc8ec661a1d76b125cb",
+        "size_bytes": 2361
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "ff55813988ae95ca2a6bcca383568fc2dcf1de527e07d224a3b27f1e5fb4190f",
+        "size_bytes": 2447
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "40c14b367d0c4f88ead0d083dfae8e388b232053f2c89dacae3ef15852643c70",
+        "size_bytes": 2401
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "427e9eb5b32690177985e21491dabb0459a1c700dc6862d1574e9b4feb8973ed",
+        "size_bytes": 2379
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "78af40a35cb546acbc08580bc6dacfd7cf62e2a53c11abd2925310614e755ba0",
+        "size_bytes": 2413
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "f02b9ed1469d41cb98d76095350b40bda6a5ea2d65ae50903196e5f56b6e53f4",
+        "size_bytes": 2156
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "653de496307e202d7bcc7ca558dc182c71e3766b72e1a06ef08db7b6fdb9a32a",
+        "size_bytes": 2283
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "c526ddbb00fe4e632c04d1864cb28e5a8dba6c1f773ffec3ee46b0d2bd0e16e1",
+        "size_bytes": 2410
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "c5594ab0ecfa9dacb2593bc4909236f9dd925aa4b5a9a06a3f958797104b13bd",
+        "size_bytes": 2462
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "d9f91e2ac804e5cc4e1658f8f0bcfd5076312f76ba6b53712f8c1d324462b7a7",
+        "size_bytes": 2450
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "0b1ea8f4fb5bf2fd9e2cfc4452db4090022e3eb2b6d77486fa22301b52855bfa",
+        "size_bytes": 2386
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "eab8cee3c62d84ee63a9fb86700851f6e9151f8180935a103294de9dbc8c85fd",
+        "size_bytes": 2409
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "a9f4eaf3ae5c17f58e0405ed8b1009db1ee11b7b13f2424fe581c63282730111",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "40be131ebc47b8a27d54b42a8c279e81e34be7f6a1a6416ae274309a11ae293a",
+        "size_bytes": 2532
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "106cd2cbb0622c8e26f00fca92151f8398b63bc3787efa0b2eb06ab3d4a26a4f",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "078301855c6ec7c08fe37b3f6f2f7996146f30175753d1c7cafc1c85a6025a9e",
+        "size_bytes": 2489
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "71b6a025ab8f26564b1f4f9561620a4f8863e553804504cb29006b0b867a0080",
+        "size_bytes": 2487
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "659bf5144e338e6c6b4292579d88c881c72e37d39aa4f9d54d6b8bc82ed71563",
+        "size_bytes": 2509
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "492e7a36cc341421436a138347d7e4bfc6f40458673282f0909dd21b60c2db0b",
+        "size_bytes": 2233
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "b839d3e06f4cc6bfee601ba49c13b51707332b6e56d03bf6343fbc2666b22e1c",
+        "size_bytes": 2369
+      },
+      {
+        "path": "um_fundingRate/SOLUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "57f2de8cfcda651b75b74fcba41bfbf1055e41e50e666a0f27f3960549bd9632",
+        "size_bytes": 2394
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "c87ecec4849640ceb840b5ba60d29466071244840f971bfdaf426d9689a702d9",
+        "size_bytes": 2184
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "93f6a93ec77dc378adf6e8ae2cb165b9986ee99edc6342461eb89213216be8f3",
+        "size_bytes": 2113
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "1ff5658169e352c34369b1eaf65a48b0e4cb8ac5e321b735e7d2300d76f2981c",
+        "size_bytes": 2332
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "2dc23514e2f63b04f8cec62acb11b1a9ed4761df2bfcfdbde2aa97fdba166e9d",
+        "size_bytes": 2041
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "48d412b4bfc33ce6c08a6c1a7713853153d3b9df8e9a0cbe4970c39a471bbcc3",
+        "size_bytes": 2337
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "f0c7a9eeaf962519bdc64507f142327fe68b4ae664b760cedffdb2455e0568fe",
+        "size_bytes": 2431
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "3c3161091e55f325cd3a8c41e0f2c277c67069ab4b3f30de311deb2edf71e862",
+        "size_bytes": 2401
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "097501afb7a3cd18b1a3af36bba802b995f8e4a98e067b09ba07845ae771150a",
+        "size_bytes": 2167
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "329ea5900306aa2b09fa281d97aec67ab42c316a8a65499e413ef78877d32a5a",
+        "size_bytes": 2381
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "90da7bffb29b3b61609fefedd9950faf04276f60ad610b195fa6c4a4c7885776",
+        "size_bytes": 2096
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "86aebc681e3404f06962537129eb8d828ab22726ad0de5fcf4a9f8a15513ef38",
+        "size_bytes": 2195
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "5e42e710f884ae7fc77a15f176babe2dfa02d6968faebb02377014b1d4b18bc2",
+        "size_bytes": 2221
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "565c31d7a2be530f314fb1969455fd78f7d2acb7daad3e2e1d28cb24061b9333",
+        "size_bytes": 2374
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "8813c26b883a252438804fdff14e7cb9b908477222abe26f7acff9698f219237",
+        "size_bytes": 2398
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "f37bd630681acef35917c37a0c623715f3849e3e165990faa7f6c01ea050ebf5",
+        "size_bytes": 2386
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "823a110a8e44304df572cca872728c0b5f29c0d81c276ffa65678a6e6572900f",
+        "size_bytes": 2433
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "2665f240da34a05a37ab49978d323bb1ad0302b26045c1813d620288b700abaa",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "dac6ce34019300c5e964f12978b1aef428ce4295137d14c9a6507debbb5d335d",
+        "size_bytes": 2484
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "be448dc59112166b3909a4a792746c69d63021a9a75f0387bdbd979a4405d380",
+        "size_bytes": 2459
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "165aa429dfe2060a912c0696ed966f848b55465d3d9e7291f831ed348d94624a",
+        "size_bytes": 2513
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "7d4658bb865a5f36fe8b512c35cb04c312b1f1acf081c6007ba70545e437a3f6",
+        "size_bytes": 2471
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "bc269167262596f466d93e1aff0882066321564e1836c6dfe4fb4d0c886fac2a",
+        "size_bytes": 2405
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "6a904a653b39ad85f3be0f54233df67eb9531b6227e780bd220e7638311837a2",
+        "size_bytes": 2321
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "a4b3422d73b77507e74343febd579e65db7e40d43e75117a52f76c687c904c76",
+        "size_bytes": 2225
+      },
+      {
+        "path": "um_fundingRate/SUIUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "4d12a8364a910a810c4e022a721ad6f9178ed289a4bf0aa600d544c126f56a3d",
+        "size_bytes": 2410
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2024-10.parquet",
+        "rows": 186,
+        "sha256": "07b3c23fcf705175850542c4347f8ddeecc360e3d8f1e950b4248b093cc64277",
+        "size_bytes": 3694
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2024-11.parquet",
+        "rows": 180,
+        "sha256": "a1c7cc77002469812cc653cd41f793daf1444c7c94db621259541bff028a7b45",
+        "size_bytes": 2971
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2024-12.parquet",
+        "rows": 186,
+        "sha256": "c4f74e0db940617d8915e51e8d2d866470fe38c793d28931543dfbafdb7ff7d1",
+        "size_bytes": 2765
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-01.parquet",
+        "rows": 186,
+        "sha256": "9439365f9a4c930decdd5ab32a2f0a7413f5024b58c193f467cb4404c556a4f1",
+        "size_bytes": 2453
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-02.parquet",
+        "rows": 168,
+        "sha256": "d43f52abfaaa539286e8ffb9aa818f5f429a6cb3c6a6e1346cc211507b4b2588",
+        "size_bytes": 3180
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-03.parquet",
+        "rows": 186,
+        "sha256": "29e9f55cf6a9b4e904227617775428f9ce7ef40220395973bc8b31b16424dc52",
+        "size_bytes": 3587
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-04.parquet",
+        "rows": 180,
+        "sha256": "945ba0ee90a8195856829478530ef0de98e5a6a0949b45e70a7fd2f9714a5260",
+        "size_bytes": 2977
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-05.parquet",
+        "rows": 186,
+        "sha256": "0fa9c85350a79a427839ffba6179f4a983027094154a3100c5b8179c63bb88a6",
+        "size_bytes": 3057
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-06.parquet",
+        "rows": 180,
+        "sha256": "57d23bd53738cb28397885cb2b586b3e8546781d3ba490ab72ec15092ab2c752",
+        "size_bytes": 2977
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-07.parquet",
+        "rows": 186,
+        "sha256": "a60805e86b412e4acf046a0d08e4d33d1723ec67ab125c80db9eadd1dfed6c8d",
+        "size_bytes": 2853
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-08.parquet",
+        "rows": 186,
+        "sha256": "bf6e009e0189a0d84c779ba4a1f61fb6fd7ebe469ce24d1bb3d498339b59f70c",
+        "size_bytes": 2887
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-09.parquet",
+        "rows": 180,
+        "sha256": "c9c61a4981d531d1e107607a8005875b012aaea976cbd95f3a79f1c733422640",
+        "size_bytes": 2791
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-10.parquet",
+        "rows": 186,
+        "sha256": "a2ea80ae0aa67c1935317a179c4b9ba51d0ef4be19fc7a0f5368ecfe5893d2f0",
+        "size_bytes": 3342
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-11.parquet",
+        "rows": 180,
+        "sha256": "ebce9d8eae2a8c9694d6b4b4d2fc6a257b212f60360dded057d7ade13e3070ea",
+        "size_bytes": 3090
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2025-12.parquet",
+        "rows": 186,
+        "sha256": "69e9a618f18a033be9ab8217142dd303da201b61d4f471b5f2a62e9a839c0871",
+        "size_bytes": 3117
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-01.parquet",
+        "rows": 186,
+        "sha256": "e90e20ca764194152f0e49a44d376e5d2f051383e09e86d8f90959f7b5486433",
+        "size_bytes": 3318
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-02.parquet",
+        "rows": 168,
+        "sha256": "02b7f72ad18c54cad2bb6bfe9891ecf142f2e2c68faa9edbdf31405bf9fd2b9d",
+        "size_bytes": 3285
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-03.parquet",
+        "rows": 186,
+        "sha256": "4542379b0fd49e86f8fd2cb47d17c4924442e5ae70283dbe2cae81f764c95052",
+        "size_bytes": 3504
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-04.parquet",
+        "rows": 180,
+        "sha256": "0fc39923a87a8a8943192f5118c7737eb5d2d90d8003d258385b731517cbbdb3",
+        "size_bytes": 3371
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-05.parquet",
+        "rows": 186,
+        "sha256": "1e875ef399bd6a46d7df3868e514969d160d3c303474dfd2a6725d78bdb50155",
+        "size_bytes": 3633
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-06.parquet",
+        "rows": 179,
+        "sha256": "8968cdfbb729b2e98bf6aa2a7448167f4eb51af2ebf4872607cc2ccb2181b503",
+        "size_bytes": 3493
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-07.parquet",
+        "rows": 186,
+        "sha256": "73fa6e0cddb361d26c7c7d2835e664096c8f12349acee9c553d8f424f7c68659",
+        "size_bytes": 3225
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-08.parquet",
+        "rows": 186,
+        "sha256": "6289c06584d4b9c3213613fd65499c14eb77064ccbf2b6d3babd331ba7f02135",
+        "size_bytes": 3062
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-09.parquet",
+        "rows": 180,
+        "sha256": "b352308d2930ac44caa2545a35782eee103399a3817f1a56bc8d22e30d5960ce",
+        "size_bytes": 2776
+      },
+      {
+        "path": "um_fundingRate/TIAUSDT/2026-10.parquet",
+        "rows": 186,
+        "sha256": "3be331087d76763ed58b6d669ea69eff57b1a99917059a59e2cf2313bbc234ee",
+        "size_bytes": 3534
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "bf1bdc0fbeeccff01f6e2e6cb070f21f20261bd94c91f0281cf5c4827a9ad79f",
+        "size_bytes": 2114
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "b9a49c82263a4fe33d3cc8bdcbf6451fe9bbb42684bd32429bcde0285d952314",
+        "size_bytes": 2064
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "b720b3478966639fbfc4c199215f06d6f5fcc4a9da915451ca7d74893229d223",
+        "size_bytes": 2151
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "9ce42f911514d88577accd1368c5b2ff8bd72340a0a28a7203f5326baedc6059",
+        "size_bytes": 1943
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "3c54e5caa6a478d5d325817d36bd6a7fcb72c98f442b8a86fe5b9a5aa3040029",
+        "size_bytes": 2189
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "452f91ba17387ebb7d1ae785935957260650002847dd1603bf793e2e9b491e44",
+        "size_bytes": 2279
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "34b43b678d39bac4c5dbac00a251e5840b0f5e3cdf3800c73da96971f910d5f9",
+        "size_bytes": 2188
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "09362ce874a6d89d41d32894e560536e4c0ac58bc0aa1fa15b1c8a9af4b8b7e1",
+        "size_bytes": 2105
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "9916f966612ecaa5522e3291a8e169e91942f30fa108c3629d9dceb8eb03caa0",
+        "size_bytes": 2272
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "0e9dcf173a14aeb37255a3e964f8ba8a7c54b56f2b28f705abea5fbcde860f5e",
+        "size_bytes": 2046
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "9990bd099954a0471c62df8f61c3f6c52e958e4e567be33460d45c62377aa07a",
+        "size_bytes": 2192
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "7660c18bb96dd5dc121c08e5399d8fb00ca278b88a5a68c81fabe6c84acd305f",
+        "size_bytes": 2450
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "cb0cd63d008c4059714c27b70f42bfc0360e1182359dbd2678aea986437df8c5",
+        "size_bytes": 2462
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "1ea06c7e64564b3bbff8ffdbc0baaff8d89bc74218ddf734f55863bd939e470f",
+        "size_bytes": 2394
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "94d4d65cdb4abe6210225431f29c004f6378a388bb7c88614de1995c7a5a4b6a",
+        "size_bytes": 2302
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "ee6f3310e28f65a63439b610b6afba4ce2a04e46a43417b2224dea548b1a37c8",
+        "size_bytes": 2409
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "2ba06d65ea9f7ff114522aeb7656fe6130df0000eabc8895ce504847f102cab1",
+        "size_bytes": 2379
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "9d403851e0fadc5da7b4b54583dacb306efd7854eb0cc2237dc4ce37816d6b7e",
+        "size_bytes": 2412
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "2974bac829e05af8579adbfa5b3142dbabb0701ddb3a55bd97a37b0305458a88",
+        "size_bytes": 2507
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "390e9f712cb32da9efad3adff467d6b75a9da350ad1bfb4e7a9916e59bd7b463",
+        "size_bytes": 2417
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "c79235a01398a9fcf87eb699c04f2712653111e32e170b54300fa36075cc8f48",
+        "size_bytes": 2503
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "12745a64828440a70dced6d4229796911c261ec86b5da280ad3b6ae14598414e",
+        "size_bytes": 2493
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "3319ea54b9a4b617682d43a0c2672b7c5580dd49a6c803c5001420d63e4d8c16",
+        "size_bytes": 2369
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "b22dd7612b10913e9227c412ac195529589e11b4144a2fcff27938b48a28400f",
+        "size_bytes": 2473
+      },
+      {
+        "path": "um_fundingRate/TRXUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "9c64cfb447beb6a2239ff4bc5b265ba7bf80535cff1836f1283818f335842c9e",
+        "size_bytes": 2474
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "f28ff63620e09f0c1ceeea53dadfe65c4fe7537c85bcfeab3330a40c508b42cd",
+        "size_bytes": 1902
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "cc245d66b3ee7eaab692cf6c565ce42afc87dc4fea14c169cb4304729562ded8",
+        "size_bytes": 2037
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "d94caf33df694d1bf393dca4c2ca518132b6f0cfa471af29957d67e3ecd159eb",
+        "size_bytes": 2029
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "74dfcda730ef83816d723057bf6cac88476bf171066f9c7b42bf06306728d03c",
+        "size_bytes": 1985
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "c13d6e565f1aa8cb62fcec08fb59016cd12b4fdb449505c3be2618a267f38f51",
+        "size_bytes": 2313
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "30813129ca365e44c6d80a68e09d2ca3d10f6b85d51180e9ec3fc16b9f18e342",
+        "size_bytes": 2383
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "ec4fa3c5c45fd783866ad44ec8a3c900ac36cce9ccee7de0c135ed35e8cdb6b3",
+        "size_bytes": 2313
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "b4848a032e114b7acbb014ce5205028f0c2378c7269b6edc786140d137c5d04f",
+        "size_bytes": 2233
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "06ad7c0672008b3d4cfbc4b69117d2bc8322bc859429e8fa44b19af53549739a",
+        "size_bytes": 2143
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "0e7eed7784c8885f0f3b5408859e3f27b5de27fcc9ed3119be5d8233df53ecc2",
+        "size_bytes": 1907
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "5ddf78346b7205a4a499d9fd5a8f9a73998a78525671f799a229f261e674e0ba",
+        "size_bytes": 1972
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "460ac955b5dc0c8cc2f01621fd8056824611826ca99e2529ee747b8d03ff0b3d",
+        "size_bytes": 2164
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "1638fe24f87d92f9614d498666efc965da1d399b99dfd698db20d5def1c167b1",
+        "size_bytes": 2326
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "361f8221a53182d1993dbe5fe06f416f543bfbc13e1866cdfca8323df1867044",
+        "size_bytes": 2370
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "45b9da8e7b2579edc2748aaaa61121f8439dd0d458526e1edf9402fd9006b47a",
+        "size_bytes": 2362
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "ecde1bf133fd23151ae24d5a9410ae3da64a323869f459ab9fa162124b58181d",
+        "size_bytes": 2449
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "66a2a87f7b109ce4fbb46fac4e7b50561916a9669d6e056cd2a3ce686026fad0",
+        "size_bytes": 2347
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "3e78657f4a7a6cf044edb350847ea0afde63049cd57a672a95d9720c6ac68ef8",
+        "size_bytes": 2452
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "3af7ba78f74061cad0845020fb466f3e0977098800d321f4d765e55ba61004ca",
+        "size_bytes": 2403
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "be46cac07fe4ce2b6206ec6b9759ba350c9c26d9fb364d3287d2e25662e25def",
+        "size_bytes": 2417
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "baa5f8feba346d6ccfedcf97ec0c0db0a7ce1f52af1f0e2e877fb5ea0b89a609",
+        "size_bytes": 2391
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "97db6e2e92e83e0aa5094f1cfd8ba76f91aff95ec96e460acf7f4a80fe941fea",
+        "size_bytes": 2240
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "d3fa0e610ec960e3b43d214561c7f6770ff9fa57c299a89ef15315c03d2d3bc9",
+        "size_bytes": 2161
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "6395ee2ef462fb7f698196a4e04a48bb557a15284d0821ba2004a8e6277e4457",
+        "size_bytes": 2180
+      },
+      {
+        "path": "um_fundingRate/UNIUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "2aa257abdbc284622fd79fc99a7248639ae2a51b78fd3bb7af6aa62ddfa67002",
+        "size_bytes": 2378
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "7ccf44b8296d94d237144479876cf3f2bb8b21a538dacb45f94bb7c30808cbab",
+        "size_bytes": 1908
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "5ecd1e1b4429560428f3442d81d50b7850d319cd96c61d7d37cc34e991e41653",
+        "size_bytes": 2128
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "17652599e28a2267a2b4b81b8e379221a455a812d00f1eecf3fabe141e221464",
+        "size_bytes": 2143
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "7d6019fa1b1669fd0499d051f3e1e56ffa8e8490ea1e25e2ddeb5177cc1be7dc",
+        "size_bytes": 1815
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "915cf5b7edc64c1f58dfc8d2bcc155b19df40c34408e566cee738dc0f8d9f6ba",
+        "size_bytes": 2133
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "8062643712f4ca8d02159ea91d7eacd2a0b3f3c4b20928dd3cbd3180f9fc1b1e",
+        "size_bytes": 2138
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "1ff16379928979d80fe84d3d33ceae46b2a756b2ff0ca3fbd744ff06fc40853f",
+        "size_bytes": 2065
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "60805b8629b782c18275c6da3b46de5786d6b4ac3dc9c7f44c46469a1d11e10b",
+        "size_bytes": 2257
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "7a0fa7900ab3c31ae391334a50a057b4ba7138bc0ccef5c139976903c1f3f0c2",
+        "size_bytes": 2405
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "18de82b64fd4d498a5fa2bb1896b9489800f7d441351487f631988709bbae2e9",
+        "size_bytes": 1986
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "8cf865088e7b37f191a416de2010c8528eb547b8b28644e6135b9f1f9bfa424e",
+        "size_bytes": 1974
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "eca97254003f4226aca679481ceede4003083047a483a9ddc601c5b9883721b0",
+        "size_bytes": 1902
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "62f7661bfe719c8b5b3e8abde6f1658958d5a176746d963c8114f932677570c2",
+        "size_bytes": 2221
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "f9e7f23bd5d46ab92141864b7f69eea14b5c76b5301932548e21235e1acc2f1b",
+        "size_bytes": 2394
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "a47f18eb53a71f120905291118ee7b6875d0fae0b71f0d393b57edb702cc5bd7",
+        "size_bytes": 2458
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "14265f04988b0421468b1358a614a76a772e05c71b4d93f3f6502cfed79aed16",
+        "size_bytes": 2369
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "3bc3ac5e1300ebcb52d38882bea61ae7551a9b1f4f185753677c0a0105e13bf4",
+        "size_bytes": 2355
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "285a7df2c2ec82ac3c7cbd64455575ba506753b1ede53845addddef80c58fe82",
+        "size_bytes": 2436
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "2c03b29079de0daed9391178ecac9bfedf2c5a42f94c1ef63c1f004ea2c8cfc2",
+        "size_bytes": 2451
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "13f9d7000201f117cf71b037b91b648c1f1f98f6a31ad8c78bf63ba8edcd688f",
+        "size_bytes": 2529
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "5b839de79b02cc02230b52b3aa1a1ee917d06be0747ade2bb8b28b50225da418",
+        "size_bytes": 2391
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "fdce5bcd5914ed2d9c7f09dd4623d15e2b15ef2f65bc2fce4e865e36f0485137",
+        "size_bytes": 2469
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "2bac595a51bc24ad14525789bf074d39468a82f6f9ba9bb2ea057080d9c3fc38",
+        "size_bytes": 2393
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "cfd223db2890d00378e82d3688f0a8261778ed028910557ca6e73c6966ee1416",
+        "size_bytes": 2180
+      },
+      {
+        "path": "um_fundingRate/WLDUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "c1fe0d355e9e2ebd5cbf6cf4c65c03d8528eb7b5572e5bbc3ed21077bbb6b133",
+        "size_bytes": 2330
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2024-10.parquet",
+        "rows": 93,
+        "sha256": "df23449aa9c4e9f6abecb5c4ed6fc3298bce7cf2b50a6e0be0657fa702fbb057",
+        "size_bytes": 1925
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2024-11.parquet",
+        "rows": 90,
+        "sha256": "2307ef1b130149481e481010b112e6e8e1c2d36a5219f6a8c915e7b7319da64a",
+        "size_bytes": 2072
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2024-12.parquet",
+        "rows": 93,
+        "sha256": "2c91c13827661f86e8f3ddcf13fdeac0bea1a4193822e1c6ff8279deaee6c4f6",
+        "size_bytes": 2068
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-01.parquet",
+        "rows": 93,
+        "sha256": "346007b20f7db199016ce06d8c40a65e1638a18693dc93e2de4550798d8d5916",
+        "size_bytes": 1927
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-02.parquet",
+        "rows": 84,
+        "sha256": "1db26734250680b551b27956ef72a6658bf389665f665107fa14e6a413e31fb6",
+        "size_bytes": 2313
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-03.parquet",
+        "rows": 93,
+        "sha256": "73f6f0991e5c3db69e9353746fc15ed7e67a500d2df87513fa4205f59a7cda7f",
+        "size_bytes": 2495
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-04.parquet",
+        "rows": 90,
+        "sha256": "3a1deeaee9982ffa6e8230ee4484613b45a6e804c315a2a23bfaac25be842ac9",
+        "size_bytes": 2353
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-05.parquet",
+        "rows": 93,
+        "sha256": "6dc49e4a5bbe3a8cd3c173433b38549a6d2f2f44e4ad65f300e1daad9f08f202",
+        "size_bytes": 2231
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-06.parquet",
+        "rows": 90,
+        "sha256": "28dfeb83be07c62ba19e52c76308aeca6fcaae58f694719d4bb20da4061197fd",
+        "size_bytes": 2309
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-07.parquet",
+        "rows": 93,
+        "sha256": "f19f9b893e684cd79aa4c43eadc9f637cab033e07ecf4bcf423a577fd316231c",
+        "size_bytes": 2016
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-08.parquet",
+        "rows": 93,
+        "sha256": "b131c521b318bbe12fb506be21230fc479acb7d3e71d23a9cd0bac1a193e4f7c",
+        "size_bytes": 2238
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-09.parquet",
+        "rows": 90,
+        "sha256": "8a882ff84bf443dfe96cdc44f64efc431bdc51d3ea87f5db8501d9ed125e26ea",
+        "size_bytes": 2245
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-10.parquet",
+        "rows": 93,
+        "sha256": "42084840f44b18dcedcdf408b7d6168b23d03ca8851481e78aba467367601182",
+        "size_bytes": 2430
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-11.parquet",
+        "rows": 90,
+        "sha256": "a148dd18da891b6b84aa21841586ae9b8005a2dc6675163783a70d954af7a05c",
+        "size_bytes": 2466
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2025-12.parquet",
+        "rows": 93,
+        "sha256": "00a92dd5aff04f366de0a400c32be819f6fb8ccf9a895bae3e27244bb16ab3b6",
+        "size_bytes": 2514
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-01.parquet",
+        "rows": 93,
+        "sha256": "47043892a1039f580365a214ae903b98c9338c27e3207303dab448228f3d9edb",
+        "size_bytes": 2481
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-02.parquet",
+        "rows": 84,
+        "sha256": "5e41c174bee906b0585198f69296daf4fa940dc20e6d059c41d22b4401e05d3f",
+        "size_bytes": 2427
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-03.parquet",
+        "rows": 93,
+        "sha256": "8beb92b31c39e97bc5ba580bdc167e2b1b92fb15777e0c76cf339507fc6fd7aa",
+        "size_bytes": 2524
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-04.parquet",
+        "rows": 90,
+        "sha256": "3fae392a96adb2c51ef669deda77e5b4785c421c7e11496d3e516a7ecafad3d8",
+        "size_bytes": 2483
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-05.parquet",
+        "rows": 93,
+        "sha256": "5f7e7b5e1e176ea641bb1ab93bd5e6b1ba1a228433e58eb402acec4536f8e822",
+        "size_bytes": 2537
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-06.parquet",
+        "rows": 90,
+        "sha256": "a19c6940bde1b6f01354e467da8fff496f6614231739da957f9c0b98fe60d8bf",
+        "size_bytes": 2503
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-07.parquet",
+        "rows": 93,
+        "sha256": "e5a7c13d10b0d86aa72f07bad9662d6bd46b561cd51ae4ed093d46e9067ccbdd",
+        "size_bytes": 2493
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-08.parquet",
+        "rows": 93,
+        "sha256": "6615b4521d8d63a4a269caa9b110aac217141ce272356d750f22b71dd2793779",
+        "size_bytes": 2341
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-09.parquet",
+        "rows": 90,
+        "sha256": "1ba5db5f86f0993ec8e653ad2bed80f8216c1fb1896eb3af2ebbe42a91115f53",
+        "size_bytes": 2321
+      },
+      {
+        "path": "um_fundingRate/XRPUSDT/2026-10.parquet",
+        "rows": 93,
+        "sha256": "f93c88d62d11309424f1f52bebcc8359f9562f216b9827b78119fb1de0289c48",
+        "size_bytes": 2311
+      }
+    ],
+    "interval_gap_anomalies": [
+      {
+        "actual_gap_ms": 28800000,
+        "calc_time_ms": 1782288000005,
+        "estimated_missing_events": 1,
+        "expected_gap_ms": 14400000,
+        "interval_hours": 4,
+        "previous_calc_time_ms": 1782259200005,
+        "symbol": "ENAUSDT"
+      },
+      {
+        "actual_gap_ms": 28800000,
+        "calc_time_ms": 1782288000005,
+        "estimated_missing_events": 1,
+        "expected_gap_ms": 14400000,
+        "interval_hours": 4,
+        "previous_calc_time_ms": 1782259200005,
+        "symbol": "POLUSDT"
+      },
+      {
+        "actual_gap_ms": 28800000,
+        "calc_time_ms": 1782288000005,
+        "estimated_missing_events": 1,
+        "expected_gap_ms": 14400000,
+        "interval_hours": 4,
+        "previous_calc_time_ms": 1782259200005,
+        "symbol": "TIAUSDT"
+      }
+    ],
+    "interval_hours_by_symbol": {
+      "AAVEUSDT": [
+        8
+      ],
+      "ADAUSDT": [
+        8
+      ],
+      "APTUSDT": [
+        8
+      ],
+      "ARBUSDT": [
+        8
+      ],
+      "ATOMUSDT": [
+        8
+      ],
+      "AVAXUSDT": [
+        8
+      ],
+      "BCHUSDT": [
+        8
+      ],
+      "BNBUSDT": [
+        8
+      ],
+      "BTCUSDT": [
+        8
+      ],
+      "CRVUSDT": [
+        8
+      ],
+      "DOGEUSDT": [
+        8
+      ],
+      "DOTUSDT": [
+        8
+      ],
+      "ENAUSDT": [
+        4
+      ],
+      "ETCUSDT": [
+        8
+      ],
+      "ETHUSDT": [
+        8
+      ],
+      "FILUSDT": [
+        8
+      ],
+      "HBARUSDT": [
+        8
+      ],
+      "INJUSDT": [
+        8
+      ],
+      "LINKUSDT": [
+        8
+      ],
+      "LTCUSDT": [
+        8
+      ],
+      "NEARUSDT": [
+        8
+      ],
+      "OPUSDT": [
+        8
+      ],
+      "POLUSDT": [
+        4
+      ],
+      "RUNEUSDT": [
+        8
+      ],
+      "SEIUSDT": [
+        8
+      ],
+      "SOLUSDT": [
+        8
+      ],
+      "SUIUSDT": [
+        8
+      ],
+      "TIAUSDT": [
+        4
+      ],
+      "TRXUSDT": [
+        8
+      ],
+      "UNIUSDT": [
+        8
+      ],
+      "WLDUSDT": [
+        8
+      ],
+      "XRPUSDT": [
+        8
+      ]
+    },
+    "missing_files": [],
+    "null_or_nonfinite_rates": 0,
+    "present_files": 800,
+    "rows": 79902
+  },
+  "limitations": [
+    "Funding and mark-price records are not used by the fee-only development scorer.",
+    "The audit does not establish the first time a historical funding rate was knowable.",
+    "Historical price/funding archives are exposed development data, not untouched OOS."
+  ],
+  "mark_price_june_2026": {
+    "expected_files": 32,
+    "files": [
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/AAVEUSDT/2026-06.parquet",
+        "sha256": "fe7ef8eff8d5d43a2c759f63289de1befbf48ffb8268c3d4b026f00e00e1ff90",
+        "size_bytes": 1332967,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ADAUSDT/2026-06.parquet",
+        "sha256": "995c2983a004d7b8ed24cbb906b6b60c54aac2cec43da0b9c9e6504c22c2e879",
+        "size_bytes": 1335435,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/APTUSDT/2026-06.parquet",
+        "sha256": "860bf88a216fa337d315a2b248b91e461befaf6d191133507a0e49d5cbbf0de9",
+        "size_bytes": 1406164,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ARBUSDT/2026-06.parquet",
+        "sha256": "b44fcad2ed86da5456283e520e51cdc45e244c55ee9b76c944768340eeafd8fd",
+        "size_bytes": 1458394,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ATOMUSDT/2026-06.parquet",
+        "sha256": "acf8bb63e24da784892989f4165db92fa77634cfffc9ce90bb9dd5a226deb937",
+        "size_bytes": 1224731,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/AVAXUSDT/2026-06.parquet",
+        "sha256": "4f546e7a1e37e9edfcd59cd0c2dcd519ae6f23f1ae595b6bb916f02cad15713b",
+        "size_bytes": 1317403,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/BCHUSDT/2026-06.parquet",
+        "sha256": "65f125d6b959db7a803d8537c50c24391604aec13e3da67b7b485d189a08230d",
+        "size_bytes": 1375124,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/BNBUSDT/2026-06.parquet",
+        "sha256": "3e67e485d7bf15687b302309f20a0a6fa48fb7823b830b853819d3067e0a04d9",
+        "size_bytes": 1409618,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/BTCUSDT/2026-06.parquet",
+        "sha256": "3027fca0b56c89483bbdfe4397619ae02da507cb2fde6e75a4d9563c33720f93",
+        "size_bytes": 1465256,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/CRVUSDT/2026-06.parquet",
+        "sha256": "ff8cec0f47cf45b0fc08ad178c3ddb4e6308678f395f3abf2fdfa4ccf31c2ec8",
+        "size_bytes": 1349859,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/DOGEUSDT/2026-06.parquet",
+        "sha256": "202f240569aad6521c61fb29aeee73e517d5e07d574ccc2decd113e8f1fbfbf9",
+        "size_bytes": 1346503,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/DOTUSDT/2026-06.parquet",
+        "sha256": "aa333e09929ea070dc5255816da1b5dae079a1d75f3d3562b841ce07708fa605",
+        "size_bytes": 1401513,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ENAUSDT/2026-06.parquet",
+        "sha256": "19c386a9ed9732de7df449d8c424f016f3550c7bcc984d770e7186b9795b3abb",
+        "size_bytes": 1475317,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ETCUSDT/2026-06.parquet",
+        "sha256": "801911a57c15f293e18abe26c91fea2de34eb5f6a33b0c90efac775ea7eebd47",
+        "size_bytes": 1344211,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/ETHUSDT/2026-06.parquet",
+        "sha256": "e9db25efd810e225e06e7f092b235c2a0bf22db328f8577de49eee6251aec180",
+        "size_bytes": 1402218,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/FILUSDT/2026-06.parquet",
+        "sha256": "d9ede4c3dae62b6b257988c96af73859eb585cf476f65e182beaa8e5ef609940",
+        "size_bytes": 1432767,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/HBARUSDT/2026-06.parquet",
+        "sha256": "c690f6cc931d83a08138cd9a98c4165efe0a1b307be31f6db65d010e470dd254",
+        "size_bytes": 1327124,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/INJUSDT/2026-06.parquet",
+        "sha256": "c88363b425f4292dbc4272b43d8cbf01d20404e1d3c252cff1647653a4fab7b8",
+        "size_bytes": 1372819,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/LINKUSDT/2026-06.parquet",
+        "sha256": "cfcccc14b32c473df40a22e5afe9dc774c8a21d0b74f56ed608b3aff97a305b4",
+        "size_bytes": 1316750,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/LTCUSDT/2026-06.parquet",
+        "sha256": "229d89c2da925d214d9c0dba3631e431609f46061a6dd63892263106976ac20b",
+        "size_bytes": 1132835,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/NEARUSDT/2026-06.parquet",
+        "sha256": "21915265a24372de230308d67d897a136dd8ddd0f7eb0500837b33cc49c4387c",
+        "size_bytes": 1401730,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/OPUSDT/2026-06.parquet",
+        "sha256": "cbf9d2606237e5accd7e0be80da05461c348ea72a5fbb675999c2fe6c991b9d5",
+        "size_bytes": 1411172,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/POLUSDT/2026-06.parquet",
+        "sha256": "1209b8f961620c6c74c88a436455deb1d80bf5787e6647f0d39e1417989d9983",
+        "size_bytes": 1335223,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/RUNEUSDT/2026-06.parquet",
+        "sha256": "94654a39145f87fa01927879a97858144061825fd796c9e282988158072408d4",
+        "size_bytes": 1381244,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/SEIUSDT/2026-06.parquet",
+        "sha256": "28a3b92500bb0d6846e21fd8e597d0b9f94c5ddd5b82b5b13d936f51ebacf149",
+        "size_bytes": 1372930,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/SOLUSDT/2026-06.parquet",
+        "sha256": "e64c60d37a3c438300fde48a610aa187685e6b62b06674f7a5940124400cbe7f",
+        "size_bytes": 1299335,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/SUIUSDT/2026-06.parquet",
+        "sha256": "3be7a96f9deacb58d7cf81d8b1990bfa1fb34908b0d3427818adc0a6b5093e8e",
+        "size_bytes": 1326753,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/TIAUSDT/2026-06.parquet",
+        "sha256": "46bf6991a13b534ae5d4c1ef91917f47e665772ec5df21666f7c63846cdb0394",
+        "size_bytes": 1302191,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/TRXUSDT/2026-06.parquet",
+        "sha256": "d441e6339c6dc0460452e8dcedbf8ef281cf3513ca209fef5cf464f562d10e80",
+        "size_bytes": 1390941,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/UNIUSDT/2026-06.parquet",
+        "sha256": "e431a10e200a5b3c6c1686f7f33e720b6992c40690b72c95b3a7984916ace9bb",
+        "size_bytes": 1320060,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/WLDUSDT/2026-06.parquet",
+        "sha256": "1016790af04c71a01e4b5d168f5de43bbe721bf04e66ee5cf9188d26fb9a3d62",
+        "size_bytes": 1457952,
+        "timestamp_rows": 41760
+      },
+      {
+        "grid_gaps": 1,
+        "path": "um_markPriceKlines_1m/XRPUSDT/2026-06.parquet",
+        "sha256": "6917f40b207ff8e493d54473624571fe4a2065a3e19dd3b45821b6db1abe7253",
+        "size_bytes": 1321419,
+        "timestamp_rows": 41760
+      }
+    ],
+    "grid_gap_anomalies": [
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "AAVEUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ADAUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "APTUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ARBUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ATOMUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "AVAXUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "BCHUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "BNBUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "BTCUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "CRVUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "DOGEUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "DOTUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ENAUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ETCUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "ETHUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "FILUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "HBARUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "INJUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "LINKUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "LTCUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "NEARUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "OPUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "POLUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "RUNEUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "SEIUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "SOLUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "SUIUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "TIAUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "TRXUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "UNIUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "WLDUSDT"
+      },
+      {
+        "actual_gap_ms": 86460000,
+        "missing_minutes": 1440,
+        "next_open_time_ms": 1782777600000,
+        "previous_open_time_ms": 1782691140000,
+        "symbol": "XRPUSDT"
+      }
+    ],
+    "missing_files": [],
+    "present_files": 32,
+    "timestamp_rows": 1336320
+  },
+  "source_root_label": "TRADING_DATA_DIR/external/crypto/binance",
+  "status": "KNOWN_COST_INPUT_GAPS",
+  "window": {
+    "end_month": "2026-10",
+    "funding_months_per_symbol": 25,
+    "funding_symbols": 32,
+    "start_month": "2024-10"
+  }
+}

@@ -14,7 +14,20 @@ from scripts.research.spot_perp_ob_pivot_bos import (
     score_trade,
     _eligible_mask,
     _invalid_ohlc_bar_count,
+    _committed_blob_sha,
     _write_data_invalid,
+    first_touch_conversion_metrics,
+    signal_anchor_coverage,
+    unique_signal_anchor_count,
+)
+from scripts.research.audit_ob_pivot_bos_cost_inputs import (
+    funding_interval_gaps,
+    minute_grid_gaps,
+)
+from scripts.research.spot_perp_ob_pivot_bos import (
+    EXPECTED_COST_AUDIT_SHA256,
+    load_supporting_cost_audit,
+    validate_supporting_cost_audit,
 )
 
 
@@ -161,6 +174,74 @@ def test_market_wide_nonoverlap_counts_only_nonoverlapping_20m_intervals():
     assert global_nonoverlap_count(rows) == 2
 
 
+def test_signal_coverage_counts_unique_symbol_anchor_not_duplicate_rows():
+    rows = [
+        {"symbol": "BTCUSDT", "anchor_time_ms": 300_000},
+        {"symbol": "BTCUSDT", "anchor_time_ms": 300_000},
+        {"symbol": "ETHUSDT", "anchor_time_ms": 300_000},
+    ]
+    assert unique_signal_anchor_count(rows) == 2
+    assert signal_anchor_coverage(rows, 20) == (2, 10.0)
+
+
+def test_arm_conversion_and_distinct_anchor_coverage_use_matching_units():
+    arms = [
+        {"symbol": "BTCUSDT", "anchor_time_ms": 300_000, "candidate_signal": True,
+         "zone_id": "older"},
+        {"symbol": "BTCUSDT", "anchor_time_ms": 300_000, "candidate_signal": True,
+         "zone_id": "newer"},
+    ]
+    both_issued = first_touch_conversion_metrics(arms)
+    assert both_issued["issuance_per_first_touch_pct"] == 100.0
+    assert both_issued["issued_anchor_coverage_per_first_touch_pct"] == 100.0
+
+    arms[1]["candidate_signal"] = False
+    one_issued = first_touch_conversion_metrics(arms)
+    assert one_issued["issuance_per_first_touch_pct"] == 50.0
+    assert one_issued["issued_anchor_coverage_per_first_touch_pct"] == 100.0
+
+
+def test_cost_input_audit_detects_missing_funding_and_mark_minutes():
+    times = np.array([5, 4 * 60 * 60_000 + 5, 12 * 60 * 60_000 + 5], dtype=np.int64)
+    intervals = np.array([4, 4, 4], dtype=np.int64)
+    gaps = funding_interval_gaps(times, intervals)
+    assert len(gaps) == 1
+    assert gaps[0]["estimated_missing_events"] == 1
+
+    mark = np.array([0, 60_000, 1441 * 60_000], dtype=np.int64)
+    mark_gaps = minute_grid_gaps(mark)
+    assert len(mark_gaps) == 1
+    assert mark_gaps[0]["missing_minutes"] == 1439
+
+
+def test_reviewed_cost_audit_is_hash_bound_and_tampering_is_rejected():
+    audit, sha = load_supporting_cost_audit()
+    assert sha == EXPECTED_COST_AUDIT_SHA256
+    assert audit["funding"]["rows"] == 79902
+    assert len(audit["funding"]["interval_gap_anomalies"]) == 3
+    assert len(audit["mark_price_june_2026"]["grid_gap_anomalies"]) == 32
+    audit["funding"]["rows"] += 1
+    try:
+        validate_supporting_cost_audit(audit)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("tampered audit counts must fail closed")
+
+
+def test_freeze_blob_hash_is_computed_from_committed_bytes(monkeypatch):
+    from scripts.research import spot_perp_ob_pivot_bos as scorer
+    import hashlib
+
+    def fake_run(command, **kwargs):
+        assert command == ["git", "show", "parent:artifact.json"]
+        return SimpleNamespace(stdout=b'{"frozen":true}\n')
+
+    monkeypatch.setattr(scorer.subprocess, "run", fake_run)
+    assert _committed_blob_sha("parent", "artifact.json") == hashlib.sha256(
+        b'{"frozen":true}\n').hexdigest()
+
+
 def test_weekly_cluster_bootstrap_is_reproducible_and_paired_by_arm():
     arms = []
     for i in range(8):
@@ -178,6 +259,7 @@ def test_dev_screen_never_calls_success_approved_without_funding_or_oos():
     metrics = {
         "issued_m2_rate": .85, "issued_n": 300, "symbol_nonoverlap_n": 250,
         "market_time_nonoverlap_n": 220, "issuance_per_first_touch_pct": 20,
+        "issued_anchor_coverage_per_first_touch_pct": 15,
         "issued_symbol_count": 20, "max_symbol_issued_share": .20,
         "invalid_5m_bars": 0,
         "arm_mean_net_base": .01, "arm_mean_net_stress": .005, "data_defects": 0,
