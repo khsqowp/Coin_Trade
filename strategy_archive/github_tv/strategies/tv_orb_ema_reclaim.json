@@ -1,0 +1,23 @@
+{
+  "id": "tv_orb_ema_reclaim",
+  "name": "ORB EMA Reclaim [Artillery]",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/fwZLEmt3-ORB-EMA-Reclaim-Artillery/",
+  "source_type": "tradingview_pine_study",
+  "author": "ArtilleryTrades",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Opening range 09:30-10:00 NY; signal window 10:00-11:30; 10m confirm; EMA20; stop 2 ticks beyond pivot + ATR buffer; time exit 12:00",
+  "entry_long": "break of OR high then pullback reclaims EMA20 (within window, max 3 setups/day)",
+  "entry_short": "mirror",
+  "exit": "time exit 12:00",
+  "stop_loss": "beyond pivot + ATR buffer",
+  "take_profit": "per source",
+  "position_sizing": "n/a",
+  "filters": "session window",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Intraday US session equities/futures; needs 1m/5m data. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

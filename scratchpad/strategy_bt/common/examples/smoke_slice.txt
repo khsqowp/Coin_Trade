@@ -1,0 +1,1 @@
+scratchpad/strategy_bt/common/examples/example-sma-cross.json

@@ -1,0 +1,23 @@
+{
+  "id": "wk_ichis",
+  "name": "Ichis (Ichimoku + SSL + ATR-SuperTrend like up_trend)",
+  "family": "ichimoku",
+  "source_url": "https://github.com/werkkrew/freqtrade-strategies/blob/main/strategies/archived/Ichis.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "werkkrew",
+  "license": "unknown (no LICENSE file found in repo via GitHub API 404)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto, 1h",
+  "indicators": "Ichimoku(tenkan/kijun/senkou A,B), SSL channel, ATR(14), rolling max3/min6",
+  "entry_long": "go_long (tenkan>kijun & close>both spans) crosses up AND sslUp>sslDown AND up_trend==1",
+  "entry_short": null,
+  "exit": "sslDown crosses above sslUp AND (tenkan crosses below kijun OR close crosses below kijun)",
+  "stop_loss": "-1%",
+  "take_profit": "roi {0:5%,30m:4%,60m:3%,90m:2.5%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Custom up_trend calc in file; ichimoku params custom. Archived strategy; author flagged them archived. Unlicensed - paraphrased only.",
+  "backtest_ready_priority": 2
+}

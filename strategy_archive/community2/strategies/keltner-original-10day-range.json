@@ -1,0 +1,32 @@
+{
+  "id": "keltner-original-10day-range",
+  "name": "Original Keltner 10-day typical-price channel rule",
+  "family": "channel_breakout",
+  "source_url": "https://therighttrader.com/learn/indicator-strategies/keltner-channel-breakout",
+  "source_type": "historical_rule_summary",
+  "author": "Chester Keltner as summarized by The Right Trader",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "commodity futures"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "center": "10-day SMA of typical price (H+L+C)/3",
+    "bands": "one average high-low range above/below center"
+  },
+  "entry_long": "Break above upper channel",
+  "entry_short": "Break below lower channel",
+  "exit": "Opposite channel break is the natural reversal; original source page does not provide complete holding rules",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Page differentiates original 1960 formula from modern EMA/ATR Keltner. Exact range averaging convention is absent.",
+  "backtest_ready_priority": 3
+}

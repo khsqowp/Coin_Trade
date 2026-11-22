@@ -1,0 +1,23 @@
+{
+  "id": "tv_bb_squeeze_breakout_quality",
+  "name": "Squeeze Bollinger Bands Tracker [MarkitTick]",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/ovdpbMDq-Squeeze-Bollinger-Bands-Tracker-MarkitTick/",
+  "source_type": "tradingview_pine_study",
+  "author": "MarkitTick",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "BB(20,2) breakout of prior band; channel width z-score (50); spread/volume quality (SMA20)",
+  "entry_long": "close crosses above upper band[1]",
+  "entry_short": "close crosses below lower band[1]",
+  "exit": "n/a (signal only)",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "squeeze z-score; breakout quality (spread>avg & volume>avg)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Entry only; no exit defined. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

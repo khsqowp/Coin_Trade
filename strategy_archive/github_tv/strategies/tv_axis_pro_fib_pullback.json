@@ -1,0 +1,23 @@
+{
+  "id": "tv_axis_pro_fib_pullback",
+  "name": "Axis-Pro System (by Moiso) [Fixed Exits + No Errors]",
+  "family": "market_structure_smc",
+  "source_url": "https://www.tradingview.com/script/1gs4oknv-Axis-Pro-System-Trend-Structure-Fibonacci-Pullbacks/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "Fikiss77",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "HTF(60) EMA200 bias; LTF EMA21/50; pivots 5/5; impulse lookback 60; pullback 38-62% fib; invalidate >80%",
+  "entry_long": "HTF bias up + impulse + pullback into 38-62% fib zone with EMA alignment",
+  "entry_short": "mirror",
+  "exit": "fixed exits (stop/target) per source",
+  "stop_loss": "ATR-based",
+  "take_profit": "RR",
+  "position_sizing": "cooldown 5 bars",
+  "filters": "HTF bias",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Pivot lookahead (5 right bars) - delay signals by 5 bars in implementation. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

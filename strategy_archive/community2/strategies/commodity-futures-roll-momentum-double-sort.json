@@ -1,0 +1,37 @@
+{
+  "id": "commodity-futures-roll-momentum-double-sort",
+  "name": "Commodity futures roll-yield and momentum double-sort",
+  "family": "cross_sectional_carry_momentum",
+  "source_url": "https://alphaarchitect.com/improving-commodity-strategies-with-momentum-and-term-structure/",
+  "source_type": "research_summary",
+  "author": "Fuertes, Miffre and Rallis / Alpha Architect summary",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "commodity futures"
+  ],
+  "timeframes": [
+    "monthly"
+  ],
+  "indicators": {
+    "roll return": "nearby vs second-nearby contracts",
+    "momentum lookbacks": [
+      1,
+      3,
+      12
+    ],
+    "sorts": "terciles of roll return, then momentum winners/losers"
+  },
+  "entry_long": "Long top momentum winners within highest roll-return tercile",
+  "entry_short": "Short lowest momentum losers within lowest roll-return tercile",
+  "exit": "Monthly rebalance",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Equal weight portfolios",
+  "filters": "Cross-sectional double sort",
+  "claimed_performance": "Summary reports hypothetical annualized alpha estimates from source paper; not investor-attained performance.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Contract roll methodology and futures universe need paper-level reconstruction.",
+  "backtest_ready_priority": 2
+}

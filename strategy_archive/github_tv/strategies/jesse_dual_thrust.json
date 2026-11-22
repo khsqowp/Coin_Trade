@@ -1,0 +1,23 @@
+{
+  "id": "jesse_dual_thrust",
+  "name": "Dual Thrust daily-anchor breakout (ATR stop, reversal)",
+  "family": "breakout",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/DUAL_THRUST/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "jesse example author",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto intraday vs anchor TF",
+  "indicators": "anchor-timeframe candle open; range = max(HH-LC, HC-LL) over N bars (up_length=21, down_length=21); up_coeff 0.71, down_coeff 0.67; ATR(14 default) stop 2x",
+  "entry_long": "price > anchor_open + up_coeff*range",
+  "entry_short": "price < anchor_open - down_coeff*range",
+  "exit": "liquidate if opposite thrust condition true",
+  "stop_loss": "entry -/+ ATR*2 (stop_loss_atr_rate default 2)",
+  "take_profit": "none",
+  "position_sizing": "risk_to_qty 2% of balance",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Anchor candle = utils.anchor_timeframe(tf); verify no use of forming anchor candle high/low. Same concept as je-suis-tm Dual Thrust (merged note). Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 1
+}

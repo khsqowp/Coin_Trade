@@ -1,0 +1,81 @@
+id,name,family,source_url,evidence_quality,mechanical_spec_complete,priority
+elite-ema-rsi-bollinger-break,50 EMA plus RSI/Bollinger breakout with ATR trail,breakout_trend,https://www.elitetrader.com/et/threads/trading-strategy.23438/,anecdote,false,2
+elite-ema5-12-force-index,Hourly EMA/RSI/Force Index trend system,trend,https://test.elitetrader.com/et/threads/an-effective-swing-trading-strategy.237496/,anecdote,false,2
+qc-accrual,Accrual anomaly decile spread,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-asset-growth,Annual asset-growth factor spread,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-bb-cross-entry-2r,Forex lower-Bollinger recross risk/reward,mean_reversion,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-beta-ranked-weights,Rank-weighted beta factor,beta_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-beta-stocks,Low-beta versus high-beta stock spread,beta_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-book-market,Book-to-market value quintile,value_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-can-oil-predict-equity,Crude-oil regression equity timing,intermarket_regression,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-capm-dow30,CAPM alpha ranking on Dow 30,factor_model,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-commodity-momentum-term,Commodity momentum plus term structure,commodity_carry_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-commodity-momentum,Commodity futures cross-sectional momentum,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-commodity-term-structure,Commodity roll-yield quintile spread,commodity_carry,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-copula-cointegration-pairs,Copula versus cointegration pairs,pairs_trading,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-country-36m-reversal,Country ETF 36-month mean reversion,cross_asset_mean_reversion,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-country-beta,Country ETF low/high beta spread,beta_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-country-momentum,Country ETF 12-month momentum,cross_asset_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-country-pairs,Country ETF pairs divergence,pairs_trading,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-country-value-cape,Country ETF CAPE value basket,value_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-dual-thrust,Dual Thrust intraday breakout,intraday_breakout,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-dynamic-breakout-ii,Dynamic Breakout II,breakout,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-earnings-quality-spread,Composite earnings quality long-short,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-earnings-quality,Earnings-quality factor spread,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-ema-ratio-reversion,SP500 EMA ratio with RSI confirmation,mean_reversion,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-fama-french-five,Fama-French five-factor stock selection,factor_model,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-forex-carry,Forex carry trade,carry,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-forex-filter-momentum,Low-frequency-component forex momentum,time_series_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-forex-momentum,12-month forex momentum,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-fundamental-stock-selection,Fundamental factor stock selection,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-futures-reversal,Weekly futures reversal with volume/open-interest filter,futures_reversal,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-fx-momentum-meanrev,Forex momentum plus mean reversion,fx_hybrid,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-gold-fed-model,Gold Fed-model timing,macro_timing,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-idiosyncratic-skewness,Low idiosyncratic-skewness basket,factor_model,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-intraday-pairs,Intraday cointegration pairs,statistical_arbitrage,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-january-12m-cycle,January-anchored annual winner-loser spread,calendar_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-january-barometer,January return market filter,calendar_timing,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-january-cross-section,January return cross-sectional stock spread,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-january-size,January small-cap then large-cap rotation,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-low-beta-countries,Low-beta country index portfolio,beta_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-lunar-cycle,Emerging-market lunar-cycle switch,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-lunar-emerging-markets,Lunar phase emerging-market ETF switch,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-mean-reversion-30d-z,Thirty-day one-standard-deviation reversion hypothesis,mean_reversion,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-momentum-market-filter,Six-month momentum with market regime gate,momentum_regime,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-momentum-reversal-vol,High-volatility momentum/reversal spread,momentum_reversal,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-momentum-short-reversal,Winner/loser short-term reversal overlay,momentum_reversal,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-momentum-volume-extremes,Volume-confirmed momentum decile spread,momentum_volume,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-momentum-volume,Momentum and volume stock selection,momentum_volume,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-mutual-fund-momentum,Asset manager momentum and nearness-to-high,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-options-expiry-week,Option-expiration-week equity exposure,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-overnight-anomaly,SPY overnight long,overnight_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-paired-switching,Quarterly paired asset switch,relative_strength_rotation,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-pe-anomaly,Low price-to-earnings stock selection,value_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-preholiday,Pre-holiday equity exposure,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-reit-momentum-terciles,Best REIT momentum tercile,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-reit-momentum,REIT momentum tercile selection,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-residual-momentum,Residual momentum portfolio,momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-roa,ROA factor within market-cap groups,fundamental_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-same-month-seasonality,Same-calendar-month return strategy,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-sector-momentum,Sector ETF momentum allocation,sector_rotation,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-sentiment-style-rotation,Sentiment-conditioned growth/value spread,style_rotation,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-small-cap-premium,Annual small-cap stock basket,size_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-smallcap-low-liquidity,Low-cap liquidity effect,liquidity_factor,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-standardized-unexpected-earnings,Standardized unexpected earnings top quintile,fundamental_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-mean-reversion-bb,SPY Bollinger mean reversion,mean_reversion,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-momentum-10x10,One-year top/bottom ten-stock momentum,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-momentum-12m,Large-cap 12-month momentum,cross_sectional_momentum,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-pairs,Stock pairs statistical spread,pairs_trading,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-short-reversal-tutorial,Short-term stock reversal tutorial,short_term_reversal,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-stock-short-term-reversal,Monthly stock short-term reversal,short_term_reversal,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-style-momentum,Style ETF 12-month momentum spread,style_rotation,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-turn-month,Turn-of-month SPY effect,calendar_anomaly,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-vix-percentile,VIX two-year percentile contrarian,volatility_regime,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-vix-roll-hedged,VIX roll direction with ES hedge,volatility_term_structure,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-vix-term-structure,VIX futures roll with ES hedge,volatility_term_structure,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-volatility-low-stocks,Lowest-volatility stock basket,cross_sectional_low_volatility,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-volatility-risk-premium,Monthly ATM straddle with put hedge,options_volatility_risk_premium,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+qc-wti-brent-spread,WTI-Brent spread moving-average reversal,spread_trading,https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library,anecdote,false,3
+reddit-btc-bb-vwap-momentum,BTC Bollinger breakout or VWAP trend confirmation,breakout_momentum,https://www.reddit.com/r/algotrading/comments/1lmrjl6/updated_bollinger_band_vwap_breakout_strategy/,backtest_shown,false,3
+reddit-ema-9-19-pullback,9/19 EMA trend pullback scalp,trend_pullback,https://www.reddit.com/r/Daytrading/comments/1ln0lpm/im_getting_a_lot_of_questions_about_my_strategy/,anecdote,false,3
+reddit-vwap-band-bounce,Session VWAP band bounce with trend gate,vwap_intraday,https://www.reddit.com/r/Daytrading/comments/1vj6za8/vwap_with_1st_2nd_bands_trading/,anecdote,false,3

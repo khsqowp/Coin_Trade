@@ -1,0 +1,32 @@
+{
+  "id": "btc-supertrend-3-32",
+  "name": "BTC Supertrend reversal (3, 3.2)",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "Supertrend ATR length": 3,
+    "multiplier": 3.2
+  },
+  "entry_long": "Price crosses above Supertrend line",
+  "entry_short": "Price crosses below Supertrend line",
+  "exit": "Reverse/exit on opposite Supertrend crossing",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Long-only implementation stated",
+  "claimed_performance": "Source reports historical backtest; no forward validation.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Source does not identify ATR smoothing, price basis or fill timing.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,1 @@
+- 2026-11-22 — Role A — stats.py 신규 합성 테스트 8/8 통과. 관련 전체 주문블록 테스트 48개 중 47 통과, 1 실패(crypto.py의 `_count` 미정의); 전체 discover는 기존 `test_data_access.py`가 pandas 미설치로 import 오류. — 다음: owner가 crypto.py 결함과 data-access 의존성을 정리한 뒤 전체 테스트 재실행 — 막힘: 실시장 자료 백테스트 미실행. `arch`/`numpy` 미설치이며 설치는 네트워크/샌드박스 제약으로 진행하지 못함; 현재 비교검정은 표준 라이브러리 stationary-bootstrap 근사임.

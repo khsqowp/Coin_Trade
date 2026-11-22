@@ -1,0 +1,228 @@
+{
+  "counts": {
+    "total_archived": 1,
+    "spec_complete": 1,
+    "implemented_tested": 1,
+    "trials_counted": 7,
+    "adjusted_passed": 1,
+    "adjusted_tested": 1,
+    "confirmed_real_winners": 0
+  },
+  "headline": "Confirmed real winners: 0",
+  "adjusted_sentence": "1 of 1 passed after multiple-testing correction",
+  "depth_test_sources": [
+    {
+      "test": "null",
+      "file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+      "column_or_rule": "null_percentile >= 95"
+    },
+    {
+      "test": "plateau",
+      "file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+      "column_or_rule": "plateau"
+    },
+    {
+      "test": "adjusted",
+      "file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+      "column_or_rule": "adjusted_verdict == PASS"
+    },
+    {
+      "test": "A1",
+      "file": "",
+      "column_or_rule": "A1 == PASS"
+    },
+    {
+      "test": "B1",
+      "file": "",
+      "column_or_rule": "FINAL tag contains/omits B1; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "B2",
+      "file": "",
+      "column_or_rule": "FINAL tag contains/omits B2; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "B3",
+      "file": "",
+      "column_or_rule": "FINAL tag contains/omits B3; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "B4",
+      "file": "",
+      "column_or_rule": "walk_forward_pct > 0; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "B5",
+      "file": "",
+      "column_or_rule": "yearly status; failures <= half; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "B6",
+      "file": "",
+      "column_or_rule": "status == PASS; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "execution_stress",
+      "file": "",
+      "column_or_rule": "cost_multiple == 2; test_return > 0; timeframe from verify/reproduce.csv"
+    },
+    {
+      "test": "regime",
+      "file": "",
+      "column_or_rule": "timeframe; variant in V1/V2/V3; PASS"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "demo|4h|long",
+      "strategy_id": "demo",
+      "timeframe": "4h",
+      "side": "long",
+      "name": "Demo trend",
+      "family": "trend",
+      "symbol_class": "crypto",
+      "symbols": [
+        "BTC"
+      ],
+      "description": "Demo trend enters long when Break above prior high.",
+      "source_url": "https://example.test/demo",
+      "spec_complete": true,
+      "implemented": true,
+      "verdict": "adjusted_pass",
+      "raw_verdict": "PASS",
+      "adjusted_verdict": "PASS",
+      "verification_depth": 3,
+      "tests": [
+        {
+          "name": "null",
+          "status": "passed",
+          "plain_reason": "Null comparison reached the 95th percentile.",
+          "source_file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+          "source_column": "null_percentile >= 95"
+        },
+        {
+          "name": "plateau",
+          "status": "passed",
+          "plain_reason": "Nearby parameter settings remained acceptable.",
+          "source_file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+          "source_column": "plateau"
+        },
+        {
+          "name": "adjusted",
+          "status": "passed",
+          "plain_reason": "Passed the multiple-testing correction.",
+          "source_file": "scratchpad/strategy_bt/results/slice_*/summary.csv",
+          "source_column": "adjusted_verdict == PASS"
+        },
+        {
+          "name": "A1",
+          "status": "not_run",
+          "plain_reason": "No A1 result was recorded.",
+          "source_file": "",
+          "source_column": "A1 == PASS"
+        },
+        {
+          "name": "B1",
+          "status": "not_run",
+          "plain_reason": "No applicable B1 result was recorded.",
+          "source_file": "",
+          "source_column": "FINAL tag contains/omits B1; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "B2",
+          "status": "not_run",
+          "plain_reason": "No applicable B2 result was recorded.",
+          "source_file": "",
+          "source_column": "FINAL tag contains/omits B2; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "B3",
+          "status": "not_run",
+          "plain_reason": "No applicable B3 result was recorded.",
+          "source_file": "",
+          "source_column": "FINAL tag contains/omits B3; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "B4",
+          "status": "not_run",
+          "plain_reason": "No applicable B4 result was recorded.",
+          "source_file": "",
+          "source_column": "walk_forward_pct > 0; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "B5",
+          "status": "not_run",
+          "plain_reason": "No applicable B5 result was recorded.",
+          "source_file": "",
+          "source_column": "yearly status; failures <= half; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "B6",
+          "status": "not_run",
+          "plain_reason": "No applicable B6 result was recorded.",
+          "source_file": "",
+          "source_column": "status == PASS; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "execution_stress",
+          "status": "not_run",
+          "plain_reason": "No doubled-cost stress result was recorded.",
+          "source_file": "",
+          "source_column": "cost_multiple == 2; test_return > 0; timeframe from verify/reproduce.csv"
+        },
+        {
+          "name": "regime",
+          "status": "not_run",
+          "plain_reason": "No regime result was recorded for this strategy.",
+          "source_file": "",
+          "source_column": "timeframe; variant in V1/V2/V3; PASS"
+        }
+      ],
+      "params": "{\\n\\\":4}\"",
+      "train_return": 99.0,
+      "test_return": -20.0,
+      "null_percentile": 97.0,
+      "per_year": [],
+      "forward": null
+    }
+  ],
+  "edges": [],
+  "forward": [
+    {
+      "profile": "l5_4h",
+      "loaded": false,
+      "verdict": "not loaded",
+      "trades": null,
+      "days_running": null,
+      "equity_curve_points": null,
+      "backtest_expectation_trades": null,
+      "days_left": null,
+      "trades_left": null,
+      "test_return_pct": 20.6
+    },
+    {
+      "profile": "l5_12h",
+      "loaded": false,
+      "verdict": "not loaded",
+      "trades": null,
+      "days_running": null,
+      "equity_curve_points": null,
+      "backtest_expectation_trades": null,
+      "days_left": null,
+      "trades_left": null,
+      "test_return_pct": 48.8
+    },
+    {
+      "profile": "jbb_1h",
+      "loaded": false,
+      "verdict": "not loaded",
+      "trades": null,
+      "days_running": null,
+      "equity_curve_points": null,
+      "backtest_expectation_trades": null,
+      "days_left": null,
+      "trades_left": null,
+      "test_return_pct": 13.8
+    }
+  ]
+}

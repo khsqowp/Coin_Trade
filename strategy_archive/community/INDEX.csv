@@ -1,0 +1,21 @@
+id,name,family,source_url,evidence_quality,mechanical_spec_complete,priority
+btc-max-5d,BTC rolling 5-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-5d,BTC rolling 5-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-max-10d,BTC rolling 10-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-10d,BTC rolling 10-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-max-20d,BTC rolling 20-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-20d,BTC rolling 20-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-max-30d,BTC rolling 30-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-30d,BTC rolling 30-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-max-40d,BTC rolling 40-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-40d,BTC rolling 40-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-max-50d,BTC rolling 50-day high continuation,trend,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-50d,BTC rolling 50-day low entry,mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,2
+btc-min-max-10d,BTC 10-day high/low combined entry,trend_mean_reversion,https://quantpedia.com/revisiting-trend-following-and-mean-reversion-strategies-in-bitcoin/,backtest_shown,false,3
+btc-max10-nyse-close,BTC MAX(10) NYSE-close daily hold,trend,https://quantpedia.com/how-to-profitably-trade-bitcoins-overnight-sessions/,backtest_shown,true,1
+btc-max10-overnight-selected,BTC MAX(10) selected overnight sessions,seasonality_trend,https://quantpedia.com/how-to-profitably-trade-bitcoins-overnight-sessions/,backtest_shown,true,1
+btc-monday-intraday,BTC Monday intraday calendar effect,seasonality,https://quantpedia.com/the-day-of-the-week-effect-in-the-crypto-currency-market/,peer_reviewed,true,2
+ibs-range-break-meanrev,IBS plus rolling-range lower-band rebound,mean_reversion,https://www.reddit.com/r/algotrading/comments/1cwsco8/a_mean_reversion_strategy_with_211_sharpe/,backtest_shown,true,1
+spx-close-near-low-nextday,Index close-near-low one-day dip,mean_reversion,https://www.reddit.com/r/algotrading/comments/1f0689m/backtest_results_for_a_simple_buy_the_dip_strategy/,backtest_shown,true,2
+four-lower-high-break-intraday,Four consecutive lower highs breakout reversal,breakout_reversal,https://www.reddit.com/r/algotrading/comments/1gcoq4m/backtest_results_for_a_simple_multiple_lower/,backtest_shown,true,2
+spy-opening-range-breakout-qc,SPY opening-range breakout with ATR sizing and PSAR,opening_range_breakout,https://www.quantconnect.com/forum/discussion/799/strategy-opening-range-breakout/p1,backtest_shown,false,2

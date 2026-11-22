@@ -1,0 +1,32 @@
+{
+  "id": "crypto-weekend-gated-7d-momentum",
+  "name": "Crypto 7-day momentum, weekend-only exposure",
+  "family": "seasonality_momentum",
+  "source_url": "https://acr-journal.com/article/the-weekend-effect-in-crypto-momentum-does-momentum-change-when-markets-never-sleep--1514/",
+  "source_type": "peer_reviewed_paper",
+  "author": "Nidhi Kumari et al.",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "cryptocurrencies"
+  ],
+  "timeframes": [
+    "daily UTC"
+  ],
+  "indicators": {
+    "momentum lookback": 7,
+    "weekend definition": "UTC weekend; paper alternative Fri close-Mon open"
+  },
+  "entry_long": "During weekend, take long if prior 7-day return > 0; remain flat weekdays",
+  "entry_short": "During weekend, short if prior 7-day return < 0; remain flat weekdays",
+  "exit": "Reassess daily; hold only weekend interval",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Weekend-only exposure",
+  "claimed_performance": "Authors report weekend momentum exceeds weekdays, notably altcoins; reported results are paper-specific.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Paper tests a 14-day alternative; resolve weekend UTC boundary from full article before replay.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,23 @@
+{
+  "id": "tv_gaussian_trend_targets",
+  "name": "Gaussian Trend Targets Strategy",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/YdPN7mVe-Gaussian-Trend-Targets-Supertrend-Strategy-w-3R-Exits/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Gaussian (length 16, sigma 5) median basis; ATR bands",
+  "entry_long": "trend flip up (price vs gaussian band)",
+  "entry_short": "flip down",
+  "exit": "targets by ATR",
+  "stop_loss": "band",
+  "take_profit": "ATR targets",
+  "position_sizing": "default",
+  "filters": "late entry option",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Gaussian filter is causal; verify. Partially read. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

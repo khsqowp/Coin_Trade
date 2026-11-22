@@ -1,0 +1,33 @@
+{
+  "id": "btc-adx-di-24-9",
+  "name": "BTC directional movement with ADX gate",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "ADX length": 24,
+    "ADX minimum": 9,
+    "directional indicators": "+DI/-DI"
+  },
+  "entry_long": "+DI > -DI and ADX(24) >= 9",
+  "entry_short": "-DI > +DI and ADX(24) >= 9",
+  "exit": "Exit when direction reverses or ADX < 9",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Trend-strength gate",
+  "claimed_performance": "Source reports historical backtest, self-published.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Wilder smoothing convention and short/long position handling require confirmation.",
+  "backtest_ready_priority": 2
+}

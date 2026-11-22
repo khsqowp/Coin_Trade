@@ -1,0 +1,23 @@
+{
+  "id": "i1_bigz04",
+  "name": "BigZ04 (BB-lower capitulation with 1h trend + volume-pump filters)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/i1ya/freqtrade-strategies/blob/main/BigZ04/BigZ04.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "i1ya collection (file says inspired by iterativ CombinedBinHAndClucV6)",
+  "license": "unknown (no LICENSE found via GitHub API; repo is a fork-collection)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "EMA200 (5m and 1h), BB lower (20,2 typical price), RSI 1h, volume means (slow/fast), shift(48) volume pump",
+  "entry_long": "close>EMA200 AND close>EMA200_1h AND close<0.993*BB_lower AND low<0.985*BB_lower AND close[-1]>BB_lower AND RSI1h<72.8 AND open>close AND volume_mean_slow vs shift(48)*pump AND volume<volume[-1]*drop AND (open-close)<(BB_upper-BB_lower)[-2] AND volume>0 (several OR-ed condition blocks)",
+  "entry_short": null,
+  "exit": "see source (condition blocks; sell uses BB/EMA conditions)",
+  "stop_loss": "fixed -99% (effectively none)",
+  "take_profit": "minimal_roi {0:2.8%,10m:1.8%,40m:0.5%,180m:1.8%}",
+  "position_sizing": "n/a",
+  "filters": "1h trend, volume pump",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Long, many boolean toggles; 1h informative merge (lookahead check). Overfit-prone hyperopt. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

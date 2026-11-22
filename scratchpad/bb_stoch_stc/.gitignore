@@ -1,0 +1,15 @@
+.venv/
+data/
+results*/
+!results*/
+results*/**
+!results*/**/REPORT.md
+!results*/**/null_summary.csv
+!results*/**/wf_summary.csv
+!results*/**/tune_winners.csv
+!results*/**/cross_summary.csv
+!results*/**/plateau*.csv
+__pycache__/
+.pytest_cache/
+*.log
+.DS_Store

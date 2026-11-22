@@ -1,0 +1,32 @@
+{
+  "id": "crypto-crowded-long-funding-fade",
+  "name": "Crowded-long funding fade basket",
+  "family": "funding_contrarian",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC, ETH, SOL unless a specific playbook changes universe"
+  ],
+  "timeframes": [
+    "4h or 1d as catalog-pinned per strategy"
+  ],
+  "indicators": [
+    "funding rate",
+    "open interest"
+  ],
+  "entry_long": "Short assets when positive funding indicates crowded long positioning",
+  "entry_short": "Short leg only",
+  "exit": "Catalog page directs readers to separate playbooks for full rules.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Catalog default prompt asks 1% equity risk/trade; not a definitive strategy sizing rule.",
+  "filters": "Universe/filter thresholds and exit levels absent",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Concept summary explains condition but numeric signal thresholds absent.",
+  "backtest_ready_priority": 3
+}

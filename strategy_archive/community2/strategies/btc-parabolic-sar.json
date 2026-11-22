@@ -1,0 +1,31 @@
+{
+  "id": "btc-parabolic-sar",
+  "name": "BTC Parabolic SAR flip",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "Parabolic SAR": "source parameters not stated"
+  },
+  "entry_long": "Price moves above SAR",
+  "entry_short": "Price moves below SAR",
+  "exit": "Exit/reverse on SAR direction flip",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": "Source reports historical backtest; exact SAR settings unavailable.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Parameterization, intrabar trigger, and order timing unspecified.",
+  "backtest_ready_priority": 3
+}

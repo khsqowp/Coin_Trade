@@ -1,0 +1,23 @@
+{
+  "id": "bt_btfd",
+  "name": "Buy-the-dip: enter after an N% down bar, hold k bars",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/mementum/backtrader/blob/master/samples/btfd/btfd.py",
+  "source_type": "github_backtrader_sample",
+  "author": "Daniel Rodriguez (backtrader samples)",
+  "license": "GPL-3.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities (sample); any",
+  "indicators": "pctdown by approach: close/close[-1]-1, close/open-1, close/high-1 or low/high-1 (default highlow)",
+  "entry_long": "pctdown <= fall (-1%) and flat -> order_target_percent(100%)",
+  "entry_short": null,
+  "exit": "close position after `hold` (2) bars",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "target=100% equity",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Sample/demo strategy; default 'highlow' approach uses the bar's own range -> it signals on the close of the bar, entry at next open in backtrader. Sample accompanied by a Reddit thread reference in the docs I did not open.",
+  "backtest_ready_priority": 3
+}

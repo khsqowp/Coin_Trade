@@ -1,0 +1,32 @@
+{
+  "id": "btc-bollinger-37-16",
+  "name": "BTC Bollinger upper-band breakout and midline exit",
+  "family": "volatility_breakout",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "Bollinger center": "37-period moving average",
+    "band width": "1.6 × source volatility measure"
+  },
+  "entry_long": "Close crosses above upper band",
+  "entry_short": "Close returns to center moving average",
+  "exit": "Exit at center moving average",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Long only",
+  "claimed_performance": "Source reports 81.7% CAGR and -41.5% MDD on its backtest; self-published, historical-only, methodology and costs unclear.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "The article says volatility multiplier but does not define standard deviation versus another volatility estimator; resolve before implementation.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ft_multirsi",
+  "name": "MultiRSI (RSI vs resampled RSIs)",
+  "family": "multi_timeframe",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/MultiRSI.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "SMA5, SMA200, RSI(14) on base, x2.. and x8 resampled timeframes",
+  "entry_long": "SMA5>=SMA200 AND RSI < RSI_(8x tf) - 20",
+  "entry_short": null,
+  "exit": "RSI > RSI(2x tf) AND RSI > RSI(8x tf)",
+  "stop_loss": "fixed -5%",
+  "take_profit": "minimal_roi {0:1%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Resample-merge lookahead risk. Exact resample intervals derived from get_ticker_indicator(). Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

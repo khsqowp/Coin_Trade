@@ -1,0 +1,6 @@
+cohort,timeframe,variant,neighbors,robust_neighbor_pct,verdict
+M,4h,unconstrained,12,0.0,FRAGILE
+M,4h,with_stop,15,0.0,FRAGILE
+M,4h,long_only,12,0.0,FRAGILE
+M,4h,short_only,12,0.0,FRAGILE
+M,4h,combined,15,0.0,FRAGILE

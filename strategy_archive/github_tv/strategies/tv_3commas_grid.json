@@ -1,0 +1,23 @@
+{
+  "id": "tv_3commas_grid",
+  "name": "XRP Grid Bot — Long Strategy",
+  "family": "grid_dca",
+  "source_url": "https://www.tradingview.com/script/3VLM19TH-3Commas-XRP-Grid-Bot-Long-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "3Commas",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "arithmetic/geometric grid between low and high price, N levels (e.g. 23), investment 10000 USDT",
+  "entry_long": "buy each grid level crossed down; sell one level up",
+  "entry_short": null,
+  "exit": "sell at next grid level; flat at range break",
+  "stop_loss": "stop below low (optional)",
+  "take_profit": "one grid step",
+  "position_sizing": "equal quote per level",
+  "filters": "price within [low,high]",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "One of ~10 near-identical 3Commas coin-specific grid scripts (XRP,FIL,XLM,BTC,TWT,ENA,NOT,EURUSD,TRX) differing only in hard-coded range/levels (merged, see DEDUPE_NOTES). Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

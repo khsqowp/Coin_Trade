@@ -1,0 +1,23 @@
+{
+  "id": "tv_williams_r_exhaustion",
+  "name": "Williams %R Exhaustion Map [AGPro Series]",
+  "family": "oscillator_combo",
+  "source_url": "https://www.tradingview.com/script/wNX00k4j-AG-Pro-Williams-R-Exhaustion-Map-AGPro-Series/",
+  "source_type": "tradingview_pine_study",
+  "author": "AGProLabs",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Williams %R(21) extremes -20/-80, lock 3 bars, release buffer 5, confirm distance 18 within 6 bars",
+  "entry_long": "%R leaves oversold (-80) and confirms by 18 points within 6 bars",
+  "entry_short": "mirror",
+  "exit": "n/a",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "fail window 4",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Signal semantics only; labels heavy. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,31 @@
+{
+  "id": "kimchi-premium-spatial-arbitrage",
+  "name": "Pre-funded cross-exchange kimchi-premium spatial arbitrage",
+  "family": "cross_exchange_arbitrage",
+  "source_url": "https://www.jdfr.or.kr/0301-04/",
+  "source_type": "research_article",
+  "author": "Journal of Data Forensics Research",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "same crypto asset on offshore exchange and Korean exchange"
+  ],
+  "timeframes": [
+    "intraday"
+  ],
+  "indicators": {
+    "premium": "KRW domestic asset quote vs FX-converted offshore quote"
+  },
+  "entry_long": "If premium is positive enough after fees, buy offshore and sell Korean leg",
+  "entry_short": "If premium is negative enough after costs, buy Korean and sell offshore",
+  "exit": "Close paired legs when price gap converges; threshold not specified",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Equal asset notional across two venues",
+  "filters": "Needs pre-funded accounts; withdrawal and capital-control constraints",
+  "claimed_performance": "Article describes mechanics and structural frictions, not a tested parameterized signal.",
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Do not interpret as executable arbitrage absent transfer, fee, FX, settlement, inventory and legal constraints.",
+  "backtest_ready_priority": 3
+}

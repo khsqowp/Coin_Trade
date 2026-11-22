@@ -1,0 +1,23 @@
+{
+  "id": "tv_pair_rotation_zscore",
+  "name": "Swap Engine - Pair Rotation (Z-Score) [AGPro Series]",
+  "family": "pairs_statarb",
+  "source_url": "https://www.tradingview.com/script/CZBZw27L-Swap-Engine-Pair-Rotation-Z-Score-AGPro-Series/",
+  "source_type": "tradingview_pine_study",
+  "author": "AGProLabs",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "log ratio of two symbols z-score (180), entry 1.7, deep 2.4, exit 0.7, corr 60, drift filter",
+  "entry_long": "ratio z <= -1.7 -> rotate into underpriced asset (relative value)",
+  "entry_short": "z >= +1.7",
+  "exit": "exit |z| <= 0.7",
+  "stop_loss": "deep z 2.4 add",
+  "take_profit": "0.7",
+  "position_sizing": "n/a",
+  "filters": "correlation integrity >= 58; vol expansion < 1.45",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Two-symbol security() needed; label-quality filter is cosmetic. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

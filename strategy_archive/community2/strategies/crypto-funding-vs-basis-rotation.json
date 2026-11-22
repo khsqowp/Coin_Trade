@@ -1,0 +1,33 @@
+{
+  "id": "crypto-funding-vs-basis-rotation",
+  "name": "Funding vs basis rotation",
+  "family": "carry_basis",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC, ETH, SOL unless a specific playbook changes universe"
+  ],
+  "timeframes": [
+    "4h or 1d as catalog-pinned per strategy"
+  ],
+  "indicators": [
+    "funding rate",
+    "basis",
+    "open interest"
+  ],
+  "entry_long": "Rotate exposure between funding carry and basis carry according to relative opportunity",
+  "entry_short": "Hedge leg depends on selected carry trade",
+  "exit": "Catalog page directs readers to separate playbooks for full rules.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Catalog default prompt asks 1% equity risk/trade; not a definitive strategy sizing rule.",
+  "filters": "No numerical rotation boundary in index page",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Strategy name and inputs present, exact decision function not exposed.",
+  "backtest_ready_priority": 3
+}

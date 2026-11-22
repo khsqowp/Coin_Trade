@@ -1,0 +1,32 @@
+{
+  "id": "crypto-funding-filtered-momentum",
+  "name": "Funding-filtered crypto momentum",
+  "family": "momentum_funding_filter",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC, ETH, SOL unless a specific playbook changes universe"
+  ],
+  "timeframes": [
+    "4h or 1d as catalog-pinned per strategy"
+  ],
+  "indicators": [
+    "funding rate",
+    "perp returns"
+  ],
+  "entry_long": "Apply momentum direction subject to funding crowding filter",
+  "entry_short": "Direction depends on momentum",
+  "exit": "Catalog page directs readers to separate playbooks for full rules.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Catalog default prompt asks 1% equity risk/trade; not a definitive strategy sizing rule.",
+  "filters": "Threshold and horizon absent",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Name and required inputs only on index page.",
+  "backtest_ready_priority": 3
+}

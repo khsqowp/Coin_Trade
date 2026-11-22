@@ -1,0 +1,23 @@
+{
+  "id": "jst_bb_w_bottom",
+  "name": "Bollinger W-bottom pattern recognition",
+  "family": "candlestick_pattern",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/Bollinger%20Bands%20Pattern%20Recognition%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities",
+  "indicators": "Bollinger(20,2); five-node W shape nodes l,k,j,m,i with 4 conditions (first bottom k below lower band, middle j near mid band, second bottom m above first and above lower band, current i above mid)",
+  "entry_long": "bottom-W confirmed on node i (see code conditions)",
+  "entry_short": "top-M mirror",
+  "exit": "hold until opposite/time exit (see code)",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "fixed capital",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Pattern node search windows/thresholds defined in code; needs porting from source. Lookahead risk in pivot search if not shifted. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 3
+}

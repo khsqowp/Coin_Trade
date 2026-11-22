@@ -1,0 +1,32 @@
+{
+  "id": "btc-roc-36-9pct",
+  "name": "BTC ROC threshold trend rule",
+  "family": "time_series_momentum",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "ROC lookback": 36,
+    "threshold": 0.09
+  },
+  "entry_long": "36-day return > 9%",
+  "entry_short": "No short rule specified",
+  "exit": "Exit when 36-day return <= 9%",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Long only",
+  "claimed_performance": "Source reports historical backtest, without independent validation.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Clarify whether ROC is simple or log return; source calls it 36-day return.",
+  "backtest_ready_priority": 2
+}

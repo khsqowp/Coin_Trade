@@ -1,0 +1,32 @@
+{
+  "id": "sma-30-150-always-in",
+  "name": "Always-in SMA 30/150 long-short crossover",
+  "family": "trend",
+  "source_url": "https://forexmt4systems.com/guides/quantitative-trading/",
+  "source_type": "systematic_rule_review",
+  "author": "ForexMT4Systems guide",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid futures in the source test"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "fast SMA": 30,
+    "slow SMA": 150
+  },
+  "entry_long": "Hold long while SMA(30) > SMA(150); enter/reverse long on bullish cross.",
+  "entry_short": "Hold short while SMA(30) < SMA(150); enter/reverse short on bearish cross.",
+  "exit": "Reverse at the next opposite crossover.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Always invested, one directional position at a time.",
+  "claimed_performance": "The guide reports an in-sample score for this configuration; not treated as transferable performance.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Source describes an always-in rule and next-cross reversal. Confirm its futures universe and execution convention before implementation.",
+  "backtest_ready_priority": 2
+}

@@ -1,0 +1,67 @@
+from snippets import *
+import json, pathlib
+OUT = pathlib.Path(__file__).resolve().parent.parent / "plugins" / "slice_1"
+
+TEMPLATE = '''"""{doc}"""
+''' + IMPORTS + TIMES.replace('{','{{').replace('}','}}') + '''
+SPEC_ID = "{sid}"
+PARAMS = {{"cutoff_hour": 8}}
+PARAM_GRID = {{}}   # fixed 08 UTC boundary exactly as archived; no tuning (paper's cutoff search is the data-mining risk)
+TIMEFRAMES = ["1h"]
+SIDES = "both"
+DAY_RULE = "{day}"      # rule for [cutoff, cutoff+12h) UTC; one of long/short/cash/mom/rev
+NIGHT_RULE = "{night}"  # rule for [cutoff+12h, cutoff+24h) UTC
+IMPLEMENTED_FIELDS = ["entry_long", "entry_short", "exit", "stop_loss", "take_profit", "position_sizing", "filters", "timeframes"]
+DEVIATIONS = [
+    "Spec is BTCUSD only; harness pools the 5 majors (BTC, ETH, BNB, SOL, XRP) with the same BTC-derived rule applied to each symbol.",
+    "Session returns are computed on Binance-style USDT spot/perp hourly bars: session return = close of last hourly bar / open of first hourly bar of the PREVIOUS same-type session (needs all 12 bars, else flat).",
+    "Harness passes RangeIndex frames (HARNESS_ISSUES.md #2): bar timestamps are recovered by exact OHLCV matching against the cached parquet. Entries fill at the next-bar open = session start (signal on the last hourly bar of the preceding session); session end is realised by max_hold=11 bars, i.e. exit at the close of the final hourly bar (= next session open). No explicit exit signal is used so back-to-back sessions need no reversal workaround.",
+    "Zero previous-session return maps to flat (as the spec's filter says). Unit notional = harness fixed 1000 per session leg. Paper's costs exclude fees/slippage; harness charges 0.04%+0.02% per fill (so ~0.12% round trip per 12h leg).",
+    "Cutoff hour fixed at 08 UTC exactly as the archived spec; the paper's cutoff-hour search is NOT replicated (no grid).",
+]
+
+def _keys(ts, base, cutoff):
+    sh = ts - pd.Timedelta(hours=int(cutoff))
+    d = np.asarray((sh.normalize() - base).days)
+    return d * 2 + (np.asarray(sh.hour) >= 12).astype(int)
+
+def _dir(rule, prev_ret):
+    if rule == "long": return np.ones(len(prev_ret))
+    if rule == "short": return -np.ones(len(prev_ret))
+    if rule == "cash": return np.zeros(len(prev_ret))
+    s = np.sign(np.nan_to_num(prev_ret, nan=0.0))   # NaN or zero -> flat
+    return s if rule == "mom" else -s
+
+def signals(df, cutoff_hour=8):
+    idx = _times(df, TIMEFRAMES[0]); n = len(df); cutoff = int(cutoff_hour)
+    o = df.open.to_numpy(float); c = df.close.to_numpy(float)
+    base = (idx[0] - pd.Timedelta(hours=cutoff)).normalize()
+    key = _keys(idx, base, cutoff)
+    g = pd.DataFrame({{"k": key, "o": o, "c": c}}).groupby("k")
+    cnt = g["o"].count(); first_o = g["o"].first(); last_c = g["c"].last()
+    ret = (last_c / first_o - 1.0).where(cnt == 12)          # complete sessions only
+    nxt_key = _keys(idx + pd.Timedelta(hours=1), base, cutoff)
+    prev_ret = pd.Series(nxt_key - 2).map(ret).to_numpy(float)  # previous same-type session, completed before the signal bar closes
+    nh = (np.asarray(idx.hour) + 1) % 24
+    day_b = nh == cutoff; night_b = nh == (cutoff + 12) % 24
+    dirs = np.zeros(n)
+    dirs[day_b] = _dir(DAY_RULE, prev_ret)[day_b]
+    dirs[night_b] = _dir(NIGHT_RULE, prev_ret)[night_b]
+    le = dirs > 0; se = dirs < 0
+    mh = np.full(n, 11.0)   # constant on every bar so the harness's random-entry null also gets the session-end exit
+    z = np.zeros(n, bool)
+    out = pd.DataFrame({{"long_entry": le, "short_entry": se, "long_exit": z, "short_exit": z, "max_hold": mh}}, index=df.index)
+    return out
+'''
+SPECS = {
+ "btc-08utc-long-cash": ("long","cash","BTC 08 UTC: long daytime [08,20) / cash nighttime."),
+ "btc-08utc-long-short": ("long","short","BTC 08 UTC: long daytime / short nighttime."),
+ "btc-08utc-reversal-long": ("rev","long","BTC 08 UTC: daytime = negative sign of previous day-session return, nighttime long."),
+ "btc-08utc-short-long": ("short","long","BTC 08 UTC: short daytime / long nighttime."),
+ "btc-12h-momentum-momentum-08": ("mom","mom","BTC 08 UTC: momentum (sign of previous same-session return) in both sessions."),
+ "btc-day-momentum-night-cash-08": ("mom","cash","BTC 08 UTC: daytime momentum (sign of previous day-session return), nighttime cash."),
+}
+for sid,(d,nn,doc) in SPECS.items():
+    src = TEMPLATE.format(sid=sid, day=d, night=nn, doc=doc)
+    (OUT / f"{sid}.py").write_text(src)
+print("wrote", len(SPECS))

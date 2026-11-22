@@ -1,0 +1,1 @@
+trial_id,round,owner,market,hypothesis,definition,timeframe,symbols,train_period,test_period,parameters,cost_model,data_cutoff,status,metrics,decision,reason,prereg_sha256,run_id

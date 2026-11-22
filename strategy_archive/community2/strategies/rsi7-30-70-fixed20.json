@@ -1,0 +1,34 @@
+{
+  "id": "rsi7-30-70-fixed20",
+  "name": "Wilder RSI(7) 30/70 reversal with 20-session time exit",
+  "family": "mean_reversion",
+  "source_url": "https://forexmt4systems.com/guides/quantitative-trading/",
+  "source_type": "systematic_rule_review",
+  "author": "ForexMT4Systems guide",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid futures in the source test"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "RSI": "Wilder RSI(7)",
+    "lower threshold": 30,
+    "upper threshold": 70,
+    "maximum holding period": 20
+  },
+  "entry_long": "Enter long when RSI(7) crosses back above 30 after being below 30.",
+  "entry_short": "Enter short when RSI(7) crosses back below 70 after being above 70.",
+  "exit": "Close after 20 sessions; source rule is fixed-horizon.",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Signal only on threshold re-entry, not while RSI remains beyond threshold.",
+  "claimed_performance": "The source reports historical test summary; no performance claim carried over.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "This differs from Connors RSI(2): Wilder RSI(7) threshold recrosses with fixed duration and no 200-day trend gate.",
+  "backtest_ready_priority": 2
+}

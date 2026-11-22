@@ -1,0 +1,47 @@
+{
+  "id": "qqq-btc-donchian-rotation",
+  "name": "QQQ/BTC Donchian breakout rotation with cash fallback",
+  "family": "cross_asset_rotation",
+  "source_url": "https://quantpedia.com/silicon-vs-satoshi-tactical-asset-rotation-between-nasdaq-100-and-bitcoin/?a=6080",
+  "source_type": "research_blog",
+  "author": "Quantpedia research note",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "QQQ/IBIT or BTC-linked series and cash"
+  ],
+  "timeframes": [
+    "daily, QQQ calendar"
+  ],
+  "indicators": {
+    "lookback variants": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50
+    ],
+    "breakout": "close exceeds prior-window high",
+    "priority variants": [
+      "QQQ then BTC",
+      "BTC then QQQ"
+    ]
+  },
+  "entry_long": "Hold first-priority asset with valid breakout; otherwise test second asset breakout",
+  "entry_short": "No short leg; allocate cash when neither breaks out",
+  "exit": "Reassess at each QQQ session close; switch to cash when neither asset breaks out",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "100% allocated to selected asset or cash",
+  "filters": "Equity-calendar alignment; two priority versions grouped",
+  "claimed_performance": "Source claims historical risk-adjusted improvements; self-published backtest and sample selection caveats apply.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Parameter lookbacks and priority variants grouped. Source uses BTC intraday quote aligned to QQQ close; beware survivorship and sample endpoint issues.",
+  "backtest_ready_priority": 2
+}

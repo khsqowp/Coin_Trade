@@ -1,0 +1,23 @@
+{
+  "id": "tv_breakout_hunter_60",
+  "name": "Algonney Breakout Hunter",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/NvKkkxJk-Algonney-Breakout-Hunter/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "Algonney",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Donchian 60 entry, 30 exit, 400-bar midrange trend, body>=60% of range, volume>=2x SMA(40)[1], stop = low/high of last 5 bars",
+  "entry_long": "close>HH60[1] AND body% >= 60 AND volume >= 2*avg AND close > trend mid (400-bar HH/LL midpoint) AND inDate",
+  "entry_short": "mirror below",
+  "exit": "exit at 30-bar opposite channel or stop",
+  "stop_loss": "low (high) of last 5 candles",
+  "take_profit": "none",
+  "position_sizing": "1% risk",
+  "filters": "body, volume, 400-bar regime",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": " Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

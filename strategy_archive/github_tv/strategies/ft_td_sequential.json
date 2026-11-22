@@ -1,0 +1,23 @@
+{
+  "id": "ft_td_sequential",
+  "name": "TDSequentialStrategy (setup count >8 + exceed low)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/TDSequentialStrategy.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 1h",
+  "indicators": "seq_buy = consecutive closes < close[-4]; seq_sell likewise; exceed_low / exceed_high flags",
+  "entry_long": "exceed_low AND seq_buy>8",
+  "entry_short": null,
+  "exit": "exceed_high OR seq_sell>8",
+  "stop_loss": "fixed -5%",
+  "take_profit": "minimal_roi {0:500%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "exceed_high/low definition lives in a loop in populate_indicators; not captured. TD Setup 9 style. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

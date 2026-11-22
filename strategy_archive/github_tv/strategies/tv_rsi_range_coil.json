@@ -1,0 +1,23 @@
+{
+  "id": "tv_rsi_range_coil",
+  "name": "RSI Range Compression (Momentum Coil Breakout)",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/dwgn7hrE-Coil-Breaker-RSI-Range-Compression/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "RSI14; range of RSI over 20 bars -> percentile (lookback 100) <=20 (coil); EMA50 + slope 5; ADX>=15; ATR14 stop x2",
+  "entry_long": "RSI coil released upward with EMA50 slope up and ADX>=15",
+  "entry_short": "mirror",
+  "exit": "TP 2R",
+  "stop_loss": "2.0 x ATR14",
+  "take_profit": "2R",
+  "position_sizing": "1% risk",
+  "filters": "ADX>=15, EMA slope",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Percentile includes current bar? verify. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

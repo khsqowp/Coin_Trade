@@ -1,0 +1,23 @@
+{
+  "id": "tv_bbw_compression_release",
+  "name": "[DAOL] Compression Release Strategy",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/YpX17vOI-DAOL-Compression-Release-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "unknown",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "futures/any (contracts)",
+  "indicators": "BB(20,2) width %; threshold = 20th percentile of last 100 bbw[1]; ATR14; 10-bar high/low range",
+  "entry_long": "after BB width squeezes (below 20th pct) and breaks out of 10-bar range (setup lifetime 10 bars)",
+  "entry_short": "mirror",
+  "exit": "target 2R; close on range return",
+  "stop_loss": "ATR/range based",
+  "take_profit": "2R",
+  "position_sizing": "1 contract",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Percentile threshold uses prior bars [1] (good). Entry trigger details truncated. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

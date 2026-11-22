@@ -1,0 +1,23 @@
+{
+  "id": "ft_strategy003",
+  "name": "Strategy003 deep-oversold (RSI/MFI/Fisher) dip buy",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/Strategy003.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "Gerald Lonlas (freqtrade-strategies)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 5m",
+  "indicators": "RSI(14), MFI(14), STOCHF, Fisher RSI, BB(20,2) typical price, EMA5/10/50/100, SAR, SMA40",
+  "entry_long": "RSI<28 AND RSI>0 AND close<SMA40 AND Fisher_RSI<-0.94 AND MFI<16 AND ((EMA50>EMA100) OR EMA5 crosses above EMA10) AND fastd>fastk AND fastd>0",
+  "entry_short": null,
+  "exit": "SAR>close AND Fisher_RSI>0.3",
+  "stop_loss": "fixed -10%",
+  "take_profit": "minimal_roi {0:5%,20m:4%,30m:3%,60m:1%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Operator precedence in the OR-block is as printed in source; re-read the file before coding. Exit condition truncated in my extract (SAR>close & fisher>0.3 per Strategy002 sibling) - verify. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,7 @@
+c5-adx-dmi-slope-keylevel-23 — MA/volume filter types and thresholds plus ATR/SAR exit settings are not specified; selecting them would invent rule parameters.
+c5-raschke-80-20-momentum-candle-false-break — source instrument-specific 20-point overshoot has no faithful conversion for cached crypto; ATR/percent conversion requires discretion.
+c5-swingforge-daily-sd-zone-fresh-touch-4h — requires daily-zone state to be carried causally into 4h, but the shared harness supplies independent timeframe frames and drops timestamps in slices; faithful zone birth/first-touch alignment cannot be established without inventing state reconstruction.
+c5-aicoin-liquidation-hunter-atr-rsi-ema — Requires live AiCoin liquidation bias/OI filters; neutral backtest substitution changes a defining filter and does not reproduce the archived strategy.
+- c5-upbit-larry-k05-ma5-dual-noise-basket — 규칙이 10개 KRW 종목 간 일별 5일 노이즈 순위 선정과 Upbit 09:00 롤/08:50 KST 청산을 요구하지만, 하네스는 단일 심볼 OHLC 시계열이며 KRW basket selection과 그 세션 실행을 표현할 수 없음.
+c5-noro-riskturtle-40-20-center-stop — Harness supports only entry-fixed percentage/distance stops; the spec requires an intrabar moving 20-bar Donchian midpoint stop plus 2% equity-risk sizing. A static stop or next-open signal exit would materially change the explicit exit and risk rules.
+c5-sc-stochastic-pop-steckler — Parabolic SAR trailing exit and pre-pop reaction-low/support stop are not specified mechanically enough to implement faithfully; the stochastic/ADX/250-day-volume setup alone omits required exits and stops.

@@ -1,0 +1,32 @@
+{
+  "id": "kimchi-premium-fx-regression-arbitrage",
+  "name": "Kimchi premium mean reversion with FX forecast filter",
+  "family": "statistical_arbitrage",
+  "source_url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003011145",
+  "source_type": "peer_reviewed_paper",
+  "author": "Cho GiJeong, Park Jonghyun, Ahn Hyunchul",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC spot Upbit and Binance"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "premium": "Korean BTC price translated by exchange rate versus Binance BTC price",
+    "model": "linear regression; alternative official/unofficial FX inputs and LSTM FX prediction"
+  },
+  "entry_long": "Use modeled premium deviation from its FX-conditioned average as cross-exchange convergence trade; exact thresholds absent",
+  "entry_short": "Opposite hedge in the venue with lower converted BTC price",
+  "exit": "Close when premium converges; exact rule not exposed in abstract",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Cross-venue hedge; pre-fund both legs needed",
+  "claimed_performance": "Paper reports tests over 2017-09-26 to 2023-04-06; no claim copied.",
+  "evidence_quality": "peer_reviewed",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Abstract says mean reversion and model-based FX prediction but does not disclose entry bands, lookback, or execution constraints. Transfers/capital controls matter.",
+  "backtest_ready_priority": 3
+}

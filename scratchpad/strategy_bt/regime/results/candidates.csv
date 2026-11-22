@@ -1,0 +1,22 @@
+strategy_id,timeframe,train_return,params,sides,finalist
+btc-supertrend-3-32,1d,627.763975406224,"{'atr_len': 3, 'mult': 2.8}",long,False
+btc-ema-5-30,1d,602.0331218403811,"{'fast': 5, 'slow': 25}",both,False
+btc-adx-di-24-9,1d,571.3395168985999,"{'adx_len': 24, 'adx_min': 7}",both,False
+btc-bollinger-37-16,1d,489.962897472816,"{'k': 1.4, 'n': 45}",long,True
+sma-30-150-always-in,1d,442.77213088669276,"{'fast': 20, 'slow': 120}",both,False
+btc-roc-36-9pct,1d,408.80379919394915,"{'n': 36, 'thr': 0.07}",long,True
+turtle-system-2,1d,366.6223467039328,"{'entry_n': 40, 'exit_n': 20, 'n_len': 20, 'stop_n': 2.0}",both,True
+btc-macd-15-41-12,1d,363.3061675262103,"{'fast': 18, 'signal': 12, 'slow': 47}",both,True
+turtle-system-1,1d,345.7625706232148,"{'atr_n': 20, 'entry_n': 15, 'exit_n': 10, 'fallback_n': 55, 'stop_mult': 2.0}",both,False
+jesse_turtle,1d,329.5574584069703,"{'atr_n': 20, 'entry': 20, 'exit': 12, 'stop_n': 2.0}",both,False
+btc-donchian-37-6,1d,306.7734287286872,"{'entry_n': 30, 'exit_n': 8}",long,False
+jst_parabolic_sar,1d,269.45946690509294,"{'af': 0.01, 'af_max': 0.2}",both,False
+tv_dca_rsi_martingale,4h,257.04726870400054,"{'add_size_mult': 1.5, 'add_spacing_pct': 5.0, 'n_adds': 5, 'rsi_len': 14, 'rsi_level': 35, 'tp': 0.04}",long,False
+tv_dca_rsi_martingale,1h,250.22645414400043,"{'add_size_mult': 1.5, 'add_spacing_pct': 5.0, 'n_adds': 5, 'rsi_len': 14, 'rsi_level': 35, 'tp': 0.04}",long,False
+c5-sc-last-stochastic-39,1d,186.83093658255643,"{'length': 39, 'week_bars': 5}",both,False
+c5-raschke-anti-stochastic-7-10-3-hook,1h,164.9827857899113,"{'fast_len': 8, 'slow_len': 10, 'smooth': 3}",both,False
+c5-raschke-anti-stochastic-7-10-3-hook,4h,134.3638044262439,"{'fast_len': 7, 'slow_len': 10, 'smooth': 3}",both,False
+crypto-weekend-gated-7d-momentum,1d,117.51303605531747,{'lookback': 14},both,False
+ft_volatility_system,1h,103.53822950212766,"{'atr_mult': 2.5, 'resample_hours': 2}",both,False
+c5-turtle-crypto-20-10-donchian-2n-stop,1h,94.67875518056867,"{'entry_days': 18, 'exit_days': 10, 'n_days': 20, 'stop_n': 2.2}",long,False
+jesse_simple_bollinger,1h,35.606987142733594,"{'base': 26, 'bb_k': 2.5, 'bb_len': 25, 'conv': 9, 'disp': 26, 'span_b': 52}",long,True

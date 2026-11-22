@@ -1,0 +1,32 @@
+{
+  "id": "upbit-stochrsi-15m-cross",
+  "name": "Upbit StochRSI extreme cross screener",
+  "family": "oscillator_reversal",
+  "source_url": "https://bitlogic.info/blog/upbit-screener-korean-market/",
+  "source_type": "educational_rule",
+  "author": "BitLogic",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Upbit KRW markets"
+  ],
+  "timeframes": [
+    "15-minute"
+  ],
+  "indicators": {
+    "StochRSI": "parameter values unspecified",
+    "%K/%D": "cross signal"
+  },
+  "entry_long": "%K crosses above %D while %K < 20",
+  "entry_short": "%K crosses below %D while %K > 80",
+  "exit": "Opposite extreme cross; no other exit stated",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Extremes: 20/80",
+  "claimed_performance": "Source demonstrates screening workflow, not validated edge/performance.",
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "StochRSI lengths and smoothing parameters not provided; cannot implement exactly until selected.",
+  "backtest_ready_priority": 3
+}

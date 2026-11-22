@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"test":"python3 -m unittest discover -s tests && node tests/test_frontend.mjs && node tests/lint_korean.mjs && node --check dist/app.js && node --check dist/force3d.js && node --check dist/size.js && node --check dist/i18n.js && node --check dist/shaders.js"}}

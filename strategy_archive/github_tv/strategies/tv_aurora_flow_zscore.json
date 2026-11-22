@@ -1,0 +1,23 @@
+{
+  "id": "tv_aurora_flow_zscore",
+  "name": "Aurora Flow | Regime & Volatility",
+  "family": "mean_reversion",
+  "source_url": "https://www.tradingview.com/script/aEWSQaOq-Aurora-Flow-Regime-Filtered-Volatility-Trend-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Z-score(48) of hlcc4, smoothing 8, EWMA vol decay 0.94, EMA50 trend, ATR14, efficiency ratio(30)>=0.20, ATR shock <1.8x baseline",
+  "entry_long": "Z-score signal beyond min threshold 0.5 with trend EMA50 alignment, skip chop/spikes",
+  "entry_short": "mirror",
+  "exit": "ATR trailing stop 2.5x",
+  "stop_loss": "trailing 2.5 ATR",
+  "take_profit": "none",
+  "position_sizing": "default",
+  "filters": "efficiency ratio >=0.2; shock filter",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Signal semantics (momentum vs reversion) unclear from extraction. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

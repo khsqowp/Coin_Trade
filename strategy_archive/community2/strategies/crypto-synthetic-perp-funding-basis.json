@@ -1,0 +1,34 @@
+{
+  "id": "crypto-synthetic-perp-funding-basis",
+  "name": "Synthetic-perp skew funding and oracle-lag basis harvest",
+  "family": "defi_arbitrage",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "Synthetix/GMX-like synthetic perps versus CEX perps"
+  ],
+  "timeframes": [
+    "4h"
+  ],
+  "indicators": [
+    "venue skew funding",
+    "CEX perp funding",
+    "oracle-update lag basis",
+    "open interest"
+  ],
+  "entry_long": "Take the underweight side on oracle-priced synthetic perp when its skew funding and oracle lag basis compensate exposure",
+  "entry_short": "Hedge with equivalent CEX perp exposure; exact direction formula absent",
+  "exit": "Exit when funding/basis differential closes; threshold absent",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Cross-venue delta hedge intended",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Index identifies two return sources but not executable thresholds; smart-contract, oracle, depeg, and hedge risks.",
+  "backtest_ready_priority": 3
+}

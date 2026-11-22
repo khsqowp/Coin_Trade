@@ -1,0 +1,23 @@
+{
+  "id": "tv_structure_edge_choch_ob",
+  "name": "Structure Edge - BOS/CHOCH + Order Blocks [Fixed v1.1]",
+  "family": "market_structure_smc",
+  "source_url": "https://www.tradingview.com/script/TqLt9irs-Super-Trend-Structure-Edge-BOS-CHOCH-Order-Blocks/",
+  "source_type": "tradingview_pine_study",
+  "author": "Quantum-Edge-Capital",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "pivot 5, WMA20, ATR14 x1.5, BOS/CHOCH, order blocks, score >= 5.0, vol filter 2-8",
+  "entry_long": "CHOCH with structure state bull AND filters AND setup score>=minScore, bar confirmed",
+  "entry_short": "mirror",
+  "exit": "n/a",
+  "stop_loss": "ATR 1.5",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "score, volatility band",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Pivot lookahead; score formula opaque. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

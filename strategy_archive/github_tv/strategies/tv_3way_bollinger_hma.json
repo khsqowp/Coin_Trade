@@ -1,0 +1,23 @@
+{
+  "id": "tv_3way_bollinger_hma",
+  "name": "3-Way Bollinger Trend [ZynAlgo]",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/LM69E8gZ-3-Way-Bollinger-Trend-ZynAlgo/",
+  "source_type": "tradingview_pine_study",
+  "author": "ZynAlgo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "HMA20 center +/- 2.0 stdev bands; RSI14 55/45 trend filter; 2 confirmation bars; SL 1.5 ATR",
+  "entry_long": "close beyond upper band with RSI>55, confirmed 2 bars",
+  "entry_short": "mirror with RSI<45",
+  "exit": "SL/TP in trade mode",
+  "stop_loss": "1.5 x ATR",
+  "take_profit": "RR in source",
+  "position_sizing": "n/a",
+  "filters": "RSI",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Trade Mode optional. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

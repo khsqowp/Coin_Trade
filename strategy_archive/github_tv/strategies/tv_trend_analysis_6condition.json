@@ -1,0 +1,23 @@
+{
+  "id": "tv_trend_analysis_6condition",
+  "name": "Trend Analysis Strategy",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/Z8EhgIzs-Trend-Engine-Scored-Trend-Strategy-with-Squeeze-Breakout/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "ATR tracker (14, mult 2.2), equilibrium, RSI14 vs 50 & its 14-avg, DMI14; six boolean conditions",
+  "entry_long": "all selected conditions true (tracker up, price>equilibrium, slope up, RSI>50, RSI>RSI-avg, +DI>-DI)",
+  "entry_short": "all false",
+  "exit": "condition breakdown / strength thr 67%",
+  "stop_loss": "tracker line",
+  "take_profit": "none",
+  "position_sizing": "default",
+  "filters": "vote count",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Entry threshold 'strong 67%' semantic unclear. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

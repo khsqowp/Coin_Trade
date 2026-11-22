@@ -1,0 +1,23 @@
+{
+  "id": "ft_heracles",
+  "name": "Heracles (Donchian %B / Keltner width ratio band, hyperopt)",
+  "family": "volatility",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/Heracles.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "@Mablue (Masoud Azizi)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 4h",
+  "indicators": "ta.volatility keltner_channel_wband, donchian_channel_pband; ratio dcp/kcw with shifts",
+  "entry_long": "buy_div_min <= DCP.shift(a)/KCW.shift(b) <= buy_div_max",
+  "entry_short": null,
+  "exit": "none (exit_long=0; ROI/stop only)",
+  "stop_loss": "fixed -25.6%",
+  "take_profit": "minimal_roi {0:59.8%,644m:16.6%,3269m:11.5%,7289m:0}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Hyperopt-fit single-ratio rule; very likely overfit curve-fit. Shift params and div bounds in class attributes. Needs the `ta` python package. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

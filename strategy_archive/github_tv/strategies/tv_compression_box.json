@@ -1,0 +1,23 @@
+{
+  "id": "tv_compression_box",
+  "name": "Compression Box + Breakout Plan [Rider Algo]",
+  "family": "volatility",
+  "source_url": "https://www.tradingview.com/script/sdA9tn96-Compression-Box-Breakout-Plan-Rider-Algo/",
+  "source_type": "tradingview_pine_study",
+  "author": "RiderAlgo",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "consecutive low-range bars (>=5, max height 1.0 in units per source) -> box; targets 1x/2x/3x box height; max hold 30",
+  "entry_long": "close above box high after compression",
+  "entry_short": "close below box low",
+  "exit": "T1/T2/T3 multiples or 30-bar time stop",
+  "stop_loss": "box opposite edge",
+  "take_profit": "1/2/3 x height",
+  "position_sizing": "n/a",
+  "filters": "min 5 bars compression",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Box height unit (ATR or %) unclear. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

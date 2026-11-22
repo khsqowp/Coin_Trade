@@ -1,0 +1,33 @@
+{
+  "id": "crypto-whale-copy-funding-filter",
+  "name": "Whale accumulation with flat/negative funding confirmation",
+  "family": "onchain_flow_momentum",
+  "source_url": "https://cryptodataapi.com/trading-strategies/funding-carry-basis",
+  "source_type": "strategy_catalog",
+  "author": "CryptoDataAPI strategy catalog",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "BTC or ETH"
+  ],
+  "timeframes": [
+    "4h"
+  ],
+  "indicators": [
+    "whale/net-flow signal",
+    "perp funding rate",
+    "open interest"
+  ],
+  "entry_long": "Enter directional long when on-chain whale accumulation occurs and funding is flat or negative",
+  "entry_short": "Short-side rule not specified",
+  "exit": "Exit rule not supplied",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Catalog prompt suggests 1% equity risk per trade, not a fixed tested sizing rule",
+  "filters": "See implementation_notes; exact numeric gates unavailable on catalog page.",
+  "claimed_performance": null,
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Catalog says reject whale signals when funding already elevated (>0.03%/8h); whale source and accumulation threshold not defined.",
+  "backtest_ready_priority": 3
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ft_low_bb",
+  "name": "Low_BB (close <= 0.98 x BB lower)",
+  "family": "mean_reversion",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/berlinguyinca/Low_BB.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "berlinguyinca collection (author not stated in file)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 1m",
+  "indicators": "Bollinger(20,2)",
+  "entry_long": "close <= 0.98*BB_lower",
+  "entry_short": null,
+  "exit": "no exit signal",
+  "stop_loss": "fixed -1.5%",
+  "take_profit": "minimal_roi {0:90%,1m:5%,10m:4%,15m:50%}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "ROI table looks degenerate (15m:50%); effectively time/stop exits. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

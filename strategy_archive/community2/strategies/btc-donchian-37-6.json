@@ -1,0 +1,32 @@
+{
+  "id": "btc-donchian-37-6",
+  "name": "BTC Donchian breakout 37/6",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "entry channel": 37,
+    "exit channel": 6
+  },
+  "entry_long": "Break above prior 37-day high",
+  "entry_short": "No explicit short side stated",
+  "exit": "Exit long on break below prior 6-day low",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": "Source-reported historical backtest only.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Use prior completed bars for channel; source does not detail equality or fills.",
+  "backtest_ready_priority": 2
+}

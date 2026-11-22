@@ -1,0 +1,2 @@
+strategy_id,status,timeframe,train_return,test_return,null_percentile,plateau,raw_verdict,adjusted_verdict,params
+demo,DONE,4h,99,-20,97,ROBUST,PASS,PASS,"{\"n\":4}"

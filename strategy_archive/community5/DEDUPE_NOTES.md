@@ -1,0 +1,10 @@
+# Community5 deduplication notes
+
+- Read all five existing `INDEX.csv` files first (`github_tv`, `community`, `community2`, `community3`, `community4`; 405 lines incl. headers). Compared normalized names and source URLs against all existing entries.
+- Source URL overlap with existing archive (kept deliberately, as refinements): `c5-sc-connors-rsi2-sma200-sma5` and `c5-sc-rsi2-centerline-confirmation` share the StockCharts RSI(2) page with existing `connors-rsi2-trend-pullback` (marked incomplete/anecdote there). The c5 records state the exact thresholds, exit and filter variants verified on the page; treat `c5-sc-connors-rsi2-sma200-sma5` as the canonical RSI(2) spec and the older record as superseded.
+- Dropped as duplicate: edgelab Holy Grail rule card (already archived as `raschke-holy-grail`). `c5-raschke-holy-grail-adx-ema` kept because it is a different source (Traders Mastermind) with a different exit description.
+- Not added because already archived: Elder Triple Screen (`elder-triple-screen`), Turtle System 1/2 (`turtle-system-1/2`), kimchi premium spatial arbitrage / FX regression (`kimchi-premium-*`), funding-fade baskets and basis carry items, Connors IBS range rebound (`ibs-range-break-meanrev`). No new, reachable Elder Triple Screen source was found this pass.
+- 58 Pine records come from the hasnocool/tradingview-pine-scripts mirror; none of these file names appear in the 79 mirror files already archived (checked by filename). Near-synonyms are kept only where the entry/exit logic differs (e.g., three PSAR implementations differ in AF settings and sizing).
+- Several Pine titles are misleading and are named after what the code does (for example the "Holy Grail (Trailing Stop)" script is the Pin Bar Magic setup, not Raschke Holy Grail).
+- IDs and slugs are unique within community5; no previous archive files were edited.
+- `mechanical_spec_complete=true` was set only when the cited file/page states both entry and exit (or a stop-and-reverse rule). Python-code records for signal generators without exit logic are marked false.

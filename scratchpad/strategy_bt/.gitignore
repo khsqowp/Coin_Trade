@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+*.log
+.DS_Store
+results/*/*.log
+verify/daily_returns.csv
+verify/subperiod.csv
+verify/correlation.csv
+verify2a/a1_daily_pnl_matrix.csv
+verify2a/funding/

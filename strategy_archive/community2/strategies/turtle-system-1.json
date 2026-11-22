@@ -1,0 +1,33 @@
+{
+  "id": "turtle-system-1",
+  "name": "Original Turtle System 1 breakout with skip filter",
+  "family": "trend",
+  "source_url": "https://ungeracademy.com/blog/turtle-trading-rules",
+  "source_type": "rulebook_summary",
+  "author": "Unger Academy (Curtis Faith rules summarized)",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid futures"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "entry Donchian": 20,
+    "exit Donchian": 10,
+    "N": "Wilder-smoothed 20-day true range"
+  },
+  "entry_long": "Buy above prior 20-day high unless previous breakout in this market would have been winner; skipped-signal fallback at 55-day breakout",
+  "entry_short": "Sell below prior 20-day low under same filter/fallback",
+  "exit": "Long exit at 10-day low; short exit at 10-day high",
+  "stop_loss": "2N from entry",
+  "take_profit": "None fixed",
+  "position_sizing": "Volatility-normalized units based on N; add 1 unit per 0.5N favorable move, max 4 units",
+  "filters": "Prior breakout outcome filter; market-specific",
+  "claimed_performance": "Original rulebook family; no performance claim.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Winner/loser determination and gap execution must follow the detailed original rules; summary describes 2N adverse move before profitable exit.",
+  "backtest_ready_priority": 1
+}

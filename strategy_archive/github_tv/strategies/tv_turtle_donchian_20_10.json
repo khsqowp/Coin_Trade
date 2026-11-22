@@ -1,0 +1,23 @@
+{
+  "id": "tv_turtle_donchian_20_10",
+  "name": "Turtle Breakout — Donchian Channel, Graded & Edge-Measured",
+  "family": "breakout",
+  "source_url": "https://www.tradingview.com/script/fUp30sX0-Turtle-Breakout-Donchian-Channel-Graded-Measured/",
+  "source_type": "tradingview_pine_study",
+  "author": "Market_Logic_India",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "Donchian entry 20, exit/trail 10; confirm on bar close; optional ATR buffer",
+  "entry_long": "close breaks above 20-bar high (confirm close, buffer 0xATR)",
+  "entry_short": "close breaks below 20-bar low",
+  "exit": "10-bar opposite channel trail",
+  "stop_loss": "10-bar channel",
+  "take_profit": "none",
+  "position_sizing": "n/a (indicator)",
+  "filters": "signal grade filter (>=4)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Classic Turtle S1; same family as jesse_turtle (merged conceptually). This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

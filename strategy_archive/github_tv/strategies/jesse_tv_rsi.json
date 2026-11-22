@@ -1,0 +1,23 @@
+{
+  "id": "jesse_tv_rsi",
+  "name": "TradingView RSI-Trend-Crypto port (RSI crosses 35, exit at 75)",
+  "family": "oscillator_combo",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/TradingView_RSI/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "jesse example author (based on TV script Ru7qOVtp)",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto",
+  "indicators": "RSI(5 default; hp rsi 10-30); xparam 75",
+  "entry_long": "RSI crosses above 35",
+  "entry_short": null,
+  "exit": "RSI crosses below xparam (75) OR RSI crosses below 10 (emergency)",
+  "stop_loss": "stop at 0.95*entry (hp stop_loss .5-.99)",
+  "take_profit": "take profit at 1.10*entry",
+  "position_sizing": "size_to_qty with leverage 3",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Original TV script not opened by me (only referenced in the jesse docstring); no URL claimed for it. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 2
+}

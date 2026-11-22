@@ -1,0 +1,35 @@
+{
+  "id": "raschke-holy-grail",
+  "name": "Raschke Holy Grail pullback",
+  "family": "trend_pullback",
+  "source_url": "https://edgelabtrading.com/blog/holy-grail-trading-strategy/",
+  "source_type": "educational_rule",
+  "author": "Linda Raschke / EdgeLab transcription",
+  "retrieved_at": "2026-11-20",
+  "language": "en",
+  "instruments": [
+    "liquid futures"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "ADX": 14,
+    "ADX gate": ">30 and rising",
+    "DI gate": "+DI > -DI",
+    "EMA": 20,
+    "setup validity": "1 next bar"
+  },
+  "entry_long": "Established close above EMA(20); setup low touches EMA; place buy stop at setup high for next bar only",
+  "entry_short": "Mirror short: established close below EMA; setup high touches EMA; sell stop at setup low",
+  "exit": "20-bar swing high/low objective or time exit at close of bar 10",
+  "stop_loss": "Setup bar low for long / high for short",
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "ADX>30, rising; directional DI confirmation",
+  "claimed_performance": "No performance claim recorded.",
+  "evidence_quality": "anecdote",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Source is a modern tested rule card; validate against original Street Smarts text before attributing exact historical authorship.",
+  "backtest_ready_priority": 2
+}

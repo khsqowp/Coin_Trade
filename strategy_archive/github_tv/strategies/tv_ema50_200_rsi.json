@@ -1,0 +1,23 @@
+{
+  "id": "tv_ema50_200_rsi",
+  "name": "EMA Cross + RSI Filter - Rules Template",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/CzdJSde0-EMA-Cross-RSI-Filter-Rules-Template/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "aleksandr0x",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "EMA50, EMA200, RSI14, ATR14 x3 stop",
+  "entry_long": "EMA50 crosses above EMA200 AND RSI>50",
+  "entry_short": "mirrored if allowShort (RSI<50)",
+  "exit": "bracket stop/target only",
+  "stop_loss": "3.0 x ATR14 (or 2%)",
+  "take_profit": "3R",
+  "position_sizing": "10% of equity default_qty (strategy declaration)",
+  "filters": "optional weekday/session",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Rules template; ~identical to user's existing golden-cross family (TRX swing) - low novelty. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}

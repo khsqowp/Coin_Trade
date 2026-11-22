@@ -1,0 +1,23 @@
+{
+  "id": "jst_awesome_oscillator",
+  "name": "Awesome Oscillator zero-cross + saucer (AO 5/34 on hl2)",
+  "family": "momentum",
+  "source_url": "https://github.com/je-suis-tm/quant-trading/blob/master/Awesome%20Oscillator%20backtest.py",
+  "source_type": "github_quant_trading_repo",
+  "author": "je-suis-tm",
+  "license": "Apache-2.0 (repo)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily equities",
+  "indicators": "AO = SMA(hl2,5) - SMA(hl2,34)",
+  "entry_long": "AO crosses above 0, or bullish saucer (AO>0 dips two bars then rises, signal before MA cross takes priority)",
+  "entry_short": "AO crosses below 0 / bearish saucer",
+  "exit": "exit on opposite signal",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "fixed 5000 capital",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Saucer detection details in code (lines ~65-110); not fully extracted. Repo note: educational scripts (Yahoo/histdata), not production.",
+  "backtest_ready_priority": 3
+}

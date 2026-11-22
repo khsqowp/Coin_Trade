@@ -1,0 +1,23 @@
+{
+  "id": "tv_trend_pullback_ema21",
+  "name": "Trend Pullback Sniper PRO [Thomas]",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/QgrcchYQ-Trend-Pullback-Sniper-PRO-Thomas/",
+  "source_type": "tradingview_pine_study",
+  "author": "Thomas-Sterling",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "EMA21/50/200, RSI14 (50), ATR14; SL buffer 0.5 ATR; TP1/2/3 = 1/2/3R; cooldown 8",
+  "entry_long": "close>EMA200 AND EMA21>EMA50 AND low<=EMA21 AND close>EMA21 AND close>open AND RSI>50 AND cooldown ok (bar confirmed)",
+  "entry_short": "mirror (bear: high>=EMA21, close<EMA21, close<open, RSI<50)",
+  "exit": "TP1/2/3 at 1R,2R,3R",
+  "stop_loss": "swing/ATR 0.5 buffer (see source)",
+  "take_profit": "1R/2R/3R",
+  "position_sizing": "n/a",
+  "filters": "trend filter",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Entry rules fully extracted; exit/stop reference: slBuffer=0.5 ATR beyond signal candle (verify). This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

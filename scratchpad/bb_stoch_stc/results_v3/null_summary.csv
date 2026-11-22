@@ -1,0 +1,46 @@
+cohort,timeframe,variant,status,strategy_test_return,test_trades,null_reps,null_percentile,null_p50,null_p90,verdict,verdict_gates
+L2,15m,combined,DONE,-21.868477374852937,1232.0,200,11.5,-14.913828579087038,-7.3830283117171005,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,15m,long_only,DONE,-4.846098502715829,220.0,200,100.0,-5.429315772353019,-5.429315772353019,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,15m,short_only,DONE,7.591641114195379,45.0,200,100.0,6.962812895859775,6.962812895859775,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,15m,unconstrained,DONE,-4.846098502715829,220.0,200,100.0,-5.429315772353019,-5.429315772353019,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,15m,with_stop,DONE,-21.868477374852937,1232.0,200,11.5,-14.913828579087038,-7.3830283117171005,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,1h,combined,DONE,1.0733344080552953,73.0,200,66.0,-1.2613528151529412,5.6415979170229615,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,1h,long_only,DONE,-2.3890963418370137,51.0,200,100.0,-4.33248128268177,-4.33248128268177,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,1h,short_only,DONE,-0.5826273367862655,144.0,200,0.0,1.932881277777572,1.932881277777572,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,1h,unconstrained,DONE,-2.3890963418370137,51.0,200,100.0,-4.33248128268177,-4.33248128268177,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,1h,with_stop,DONE,1.0733344080552953,73.0,200,66.0,-1.2613528151529412,5.6415979170229615,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,4h,combined,DONE,16.251094556059435,131.0,200,87.0,0.6360339276933737,18.06431797734756,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,4h,long_only,DONE,7.4520736331577035,103.0,200,100.0,-3.1294100436005707,-3.1294100436005707,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,4h,short_only,DONE,0.0665403301110592,89.0,200,0.0,4.9835605198169155,4.9835605198169155,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L2,4h,unconstrained,DONE,7.4520736331577035,103.0,200,100.0,-3.1294100436005707,-3.1294100436005707,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L2,4h,with_stop,DONE,16.251094556059435,131.0,200,87.0,0.6360339276933737,18.06431797734756,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,15m,combined,DONE,-0.9442427126107102,270.0,200,24.5,0.9415817728088514,5.279586661374944,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,15m,long_only,DONE,-5.540429069111887,44.0,200,0.0,8.354755904000026,8.354755904000026,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,15m,short_only,DONE,-0.8431734296267226,272.0,200,100.0,-0.9709815345255741,-0.9709815345255741,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L5,15m,unconstrained,DONE,-0.8431734296267226,272.0,200,100.0,-0.9709815345255741,-0.9709815345255741,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L5,15m,with_stop,DONE,-7.764110822126315,491.0,200,26.0,-3.550249410375505,2.9742962393785835,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,1h,combined,DONE,1.7101120820080091,31.0,200,88.0,-1.7234012198661453,2.266306912590027,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,1h,long_only,DONE,-4.968370158226738,165.0,200,0.0,-2.0103774770694147,-2.0103774770694147,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,1h,short_only,DONE,34.41351527483771,80.0,200,0.0,35.0700540929392,35.0700540929392,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,1h,unconstrained,DONE,-4.968370158226738,165.0,200,0.0,-2.0103774770694147,-2.0103774770694147,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,1h,with_stop,DONE,1.7101120820080091,31.0,200,88.0,-1.7234012198661453,2.266306912590027,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+L5,4h,combined,DONE,20.562181917714586,255.0,200,99.0,-10.073932505523242,6.266492381157776,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L5,4h,long_only,DONE,-0.6941497592197619,197.0,200,100.0,-5.997474983978841,-5.997474983978841,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L5,4h,short_only,DONE,3.802384320000006,15.0,200,0.0,4.562861184000009,4.562861184000009,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=False
+L5,4h,unconstrained,DONE,-0.6941497592197619,197.0,200,100.0,-5.997474983978841,-5.997474983978841,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+L5,4h,with_stop,DONE,20.562181917714586,255.0,200,99.0,-10.073932505523242,6.266492381157776,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,15m,combined,DONE,-3.6592244665340563,110.0,200,20.0,-1.3904051586917698,1.42874677636767,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+M,15m,long_only,DONE,-2.354959425851516,53.0,200,100.0,-5.947155634671668,-5.947155634671668,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,15m,short_only,DONE,27.727549969735346,57.0,200,100.0,27.45345765030295,27.45345765030295,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,15m,unconstrained,DONE,-2.354959425851516,53.0,200,100.0,-5.947155634671668,-5.947155634671668,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,15m,with_stop,DONE,0.24557060166917943,147.0,200,83.5,-1.9670732707573708,0.8387261911636829,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+M,1h,combined,DONE,-6.178744521278929,731.0,200,92.5,-15.662086757906149,-7.842027268869093,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,1h,long_only,DONE,1.2781196269802275,44.0,200,100.0,-7.384616443234259,-7.384616443234259,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,1h,short_only,DONE,-0.3144099796022013,106.0,200,0.0,1.14123537600003,1.14123537600003,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+M,1h,unconstrained,DONE,-6.178744521278929,731.0,200,92.5,-15.662086757906149,-7.842027268869093,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,1h,with_stop,DONE,-6.178744521278929,731.0,200,92.5,-15.662086757906149,-7.842027268869093,no edge,beats_p90=True; not_fragile=False; at_least_30_trades=True
+M,4h,combined,DONE,-3.0689499796835946,46.0,200,48.0,-3.0380342603679504,3.1809534565676065,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True
+M,4h,long_only,INELIGIBLE,,,0,,,,,
+M,4h,short_only,INELIGIBLE,,,0,,,,,
+M,4h,unconstrained,INELIGIBLE,,,0,,,,,
+M,4h,with_stop,DONE,0.27727049600001863,92.0,200,88.5,-4.5179298879999825,0.2820704960000205,no edge,beats_p90=False; not_fragile=False; at_least_30_trades=True

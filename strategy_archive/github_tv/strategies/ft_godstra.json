@@ -1,0 +1,23 @@
+{
+  "id": "ft_godstra",
+  "name": "GodStra (genetic 'DNA' rule generator over many indicators)",
+  "family": "oscillator_combo",
+  "source_url": "https://github.com/freqtrade/freqtrade-strategies/blob/main/user_data/strategies/GodStra.py",
+  "source_type": "github_freqtrade_strategy",
+  "author": "@Mablue (Masoud Azizi)",
+  "license": "GPL-3.0 (repo license; per-file headers absent)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "crypto spot/futures (freqtrade), timeframe 12h",
+  "indicators": "huge indicator set (TA lib); rules gene-encoded: operator (>,<,=,CA,CB,>I,<I,>R,<R) between indicator/cross-indicator/int/real",
+  "entry_long": "AND of gene rules defined in buy_params (each: indicator OPR cross-indicator or constant)",
+  "entry_short": null,
+  "exit": "same for sell genes",
+  "stop_loss": "fixed -34.5%",
+  "take_profit": "minimal_roi {0:35.6%,4818m:21.3%,6395m:9%,22372m:0}",
+  "position_sizing": "n/a",
+  "filters": "none",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "A search framework, not one strategy; the found gene set is overfit. Archive as method only (P3). The sibling GodStraNew lives under lookahead_bias/ folder, i.e. known lookahead. Freqtrade note: minimal_roi/stoploss are part of the published strategy; ROI exits are time-since-entry based. Source file is the sole spec; no independent verification of results.",
+  "backtest_ready_priority": 3
+}

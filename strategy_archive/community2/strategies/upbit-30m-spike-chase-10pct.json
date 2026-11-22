@@ -1,0 +1,34 @@
+{
+  "id": "upbit-30m-spike-chase-10pct",
+  "name": "Upbit 30-minute +10% spike chase with 15% peak drawdown exit",
+  "family": "momentum_breakout",
+  "source_url": "https://www.investfactcheck.com/articles/crypto-surge-chasing/",
+  "source_type": "community_rule_analysis",
+  "author": "InvestFactCheck synthesis of community spike-chasing concept",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "Upbit KRW markets; eligible coins subject to 24h trading value >= KRW 100m"
+  ],
+  "timeframes": [
+    "5-minute bars"
+  ],
+  "indicators": {
+    "lookback": 30,
+    "price rise threshold": 0.1,
+    "min 24h trading value": 100000000,
+    "trailing drawdown": 0.15
+  },
+  "entry_long": "Buy when close is >=10% above lowest price over prior 30 minutes",
+  "entry_short": "None",
+  "exit": "Exit when price falls 15% from post-entry peak; source also tested time exit variant",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "No re-entry while position open",
+  "claimed_performance": "Source reports this tested rule lost on its sample; self-published experiment.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "A community hypothesis synthesized/tested by source; fills/slippage are source-specific, signal close vs entry fill must be reconciled.",
+  "backtest_ready_priority": 2
+}

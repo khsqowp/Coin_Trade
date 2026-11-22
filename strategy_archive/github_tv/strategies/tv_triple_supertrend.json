@@ -1,0 +1,23 @@
+{
+  "id": "tv_triple_supertrend",
+  "name": "Triple Supertrend Confluence [MarkitTick]",
+  "family": "supertrend",
+  "source_url": "https://www.tradingview.com/script/J3lVk5Qo-Triple-Supertrend-Confluence-MarkitTick/",
+  "source_type": "tradingview_pine_study",
+  "author": "MarkitTick",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "3 Supertrends (ATR10, factor 3.0, adaptive 1.5-4.5), ADX filter 20",
+  "entry_long": "confluence of multiple Supertrends up (+ADX>20)",
+  "entry_short": "confluence down",
+  "exit": "flip",
+  "stop_loss": "supertrend line",
+  "take_profit": "none",
+  "position_sizing": "n/a",
+  "filters": "ADX, optional HTF",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Which 3 factors: see source; adaptive factor via percentile rank 100. This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

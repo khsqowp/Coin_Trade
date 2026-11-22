@@ -1,0 +1,23 @@
+{
+  "id": "tv_stat_arb_modz",
+  "name": "Statistical Arbitrage Pairs Trading - Long-Side Only",
+  "family": "pairs_statarb",
+  "source_url": "https://www.tradingview.com/script/Kt6XkQIM-Statistical-Arbitrage-Pairs-Trading-Long-Side-Only/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "piirsalu",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "z-score of main and pair symbol (length param) -> spread z; modified z-score (median/MAD)",
+  "entry_long": "modified z-score of spread < -1.0 (long-side only)",
+  "entry_short": null,
+  "exit": "close when modified z >= 0",
+  "stop_loss": "none",
+  "take_profit": "none",
+  "position_sizing": "default",
+  "filters": "pair symbol input (e.g. GOOG)",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Long-only leg, no real hedge. Pair needs same-timeframe security() (request.security without lookahead param, same TF => ok). Crypto pair e.g. ETH/BTC replace. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 2
+}

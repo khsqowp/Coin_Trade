@@ -1,0 +1,33 @@
+{
+  "id": "btc-sma-1-136",
+  "name": "BTC SMA crossover 1/136",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "fast SMA": 1,
+    "slow SMA": 136,
+    "input": "average price per source"
+  },
+  "entry_long": "SMA(1) crosses above SMA(136)",
+  "entry_short": "SMA(1) crosses below SMA(136)",
+  "exit": "Exit to cash on bearish cross",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "Long only",
+  "claimed_performance": "Source-reported historical backtest only.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Fast 1-period average behaves nearly as price; the source parameter is retained as stated.",
+  "backtest_ready_priority": 3
+}

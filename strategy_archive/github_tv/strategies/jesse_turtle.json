@@ -1,0 +1,23 @@
+{
+  "id": "jesse_turtle",
+  "name": "Original Turtle Rules (Faith) System 1/2 Donchian with N-unit pyramiding",
+  "family": "breakout",
+  "source_url": "https://github.com/jesse-ai/example-strategies/blob/master/TurtleRules/__init__.py",
+  "source_type": "github_jesse_example_strategy",
+  "author": "FengkieJ",
+  "license": "MIT (repo LICENSE; individual authors per README)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "daily",
+  "indicators": "Donchian(20) entry, Donchian(10) exit (S1; S2 = 55/20), ATR(20)=N, stop 2N, pyramid every 0.5N up to 4 units, unit = 1% equity/(N*dollars per point)",
+  "entry_long": "high >= entry Donchian upper (20)",
+  "entry_short": "low <= entry Donchian lower (20)",
+  "exit": "exit long when low <= exit Donchian lower(10) or opposite entry signal; short mirror",
+  "stop_loss": "2N from latest unit (stops of earlier units re-raised)",
+  "take_profit": "none",
+  "position_sizing": "1% of equity risk unit; max 4 units; pyramid threshold 0.5N",
+  "filters": "S1 skip-after-winner filter described in comments but not clearly implemented",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "S1 'skip if last trade profitable' rule referenced (last_was_profitable var) - verify it is enforced. Intrabar breakout fills assumed at close price in jesse. Jesse note: README states these are code examples, not profitable strategies.",
+  "backtest_ready_priority": 1
+}

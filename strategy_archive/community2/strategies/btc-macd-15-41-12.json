@@ -1,0 +1,33 @@
+{
+  "id": "btc-macd-15-41-12",
+  "name": "BTC MACD (15,41,12) crossover",
+  "family": "trend",
+  "source_url": "https://sleepwelltrade.com/backtest/bitcoin/",
+  "source_type": "research_blog",
+  "author": "Sleepwell Trade",
+  "retrieved_at": "2026-11-20",
+  "language": "ko",
+  "instruments": [
+    "BTC"
+  ],
+  "timeframes": [
+    "daily"
+  ],
+  "indicators": {
+    "MACD fast EMA": 15,
+    "MACD slow EMA": 41,
+    "signal EMA": 12
+  },
+  "entry_long": "MACD line crosses above signal line",
+  "entry_short": "MACD line crosses below signal line",
+  "exit": "Exit/reverse on opposite signal cross",
+  "stop_loss": null,
+  "take_profit": null,
+  "position_sizing": "Not specified",
+  "filters": "None stated",
+  "claimed_performance": "Source-reported historical backtest only.",
+  "evidence_quality": "backtest_shown",
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Execution timing unspecified.",
+  "backtest_ready_priority": 2
+}

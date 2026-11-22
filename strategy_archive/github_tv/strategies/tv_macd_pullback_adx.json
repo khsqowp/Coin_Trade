@@ -1,0 +1,23 @@
+{
+  "id": "tv_macd_pullback_adx",
+  "name": "MACD Pullback Sniper | Trend + ADX Filtered Strategy",
+  "family": "trend_following",
+  "source_url": "https://www.tradingview.com/script/V87nRt9v-MACD-Pullback-Sniper-Trend-ADX-Filtered-Strategy/",
+  "source_type": "tradingview_pine_strategy",
+  "author": "blitz_algo",
+  "license": "Mozilla Public License 2.0",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "MACD(12,26,9), EMA200, ADX(14)>=20, ATR14",
+  "entry_long": "MACD crosses above signal while MACD < 0 (pullback) AND close>EMA200 AND ADX>=20",
+  "entry_short": "mirror: MACD crosses below signal while MACD>0 AND close<EMA200 AND ADX>=20 (allowShort)",
+  "exit": "opposite MACD cross (optional)",
+  "stop_loss": "entry -/+ 2.0xATR14",
+  "take_profit": "2.0 R (reward:risk)",
+  "position_sizing": "risk 1% equity, cap 1x equity",
+  "filters": "EMA200, zero-line, ADX",
+  "claimed_performance": null,
+  "mechanical_spec_complete": true,
+  "implementation_notes": "Clean rule set; good candidate. Pine strategy() script: backtest results depend on TradingView broker emulator (fills, slippage) - not reproducible 1:1. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 1
+}

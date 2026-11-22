@@ -1,0 +1,23 @@
+{
+  "id": "tv_cci_reversion_quality",
+  "name": "CCI Reversion Quality [AGPro Series]",
+  "family": "mean_reversion",
+  "source_url": "https://www.tradingview.com/script/766E51CC-AG-Pro-CCI-Reversion-Quality-AGPro-Series/",
+  "source_type": "tradingview_pine_study",
+  "author": "AGProLabs",
+  "license": "unknown (no license header; TradingView House Rules open-source script)",
+  "retrieved_at": "2026-11-20",
+  "instruments_timeframes_claimed": "any (TradingView; user-chosen symbol/timeframe)",
+  "indicators": "CCI(20), mean line 34, stretch tiers 100/150/200, ready threshold 70 (score)",
+  "entry_long": "CCI <= -100 (mild) .. -200 (extreme) then turn up, score>=70",
+  "entry_short": "CCI>=100 then turn down",
+  "exit": "return to 34-bar mean touch within 8 bars",
+  "stop_loss": "none",
+  "take_profit": "mean touch",
+  "position_sizing": "n/a",
+  "filters": "quality score",
+  "claimed_performance": null,
+  "mechanical_spec_complete": false,
+  "implementation_notes": "Score composition heavy (turn, body, friction). This is an INDICATOR (study), not a strategy(): signal rules were inferred from its inputs/signal variables and must be verified against the source. Retrieved source via pine-facade API; my extraction is a lossy summary, read the source before coding.",
+  "backtest_ready_priority": 3
+}
