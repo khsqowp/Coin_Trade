@@ -42,11 +42,18 @@
 ## 이번 실행 상태와 실제 제약
 
 - 저장소: `/Users/user/Desktop/CODE/trading_bot`; 브랜치 `research/bat-harmonic-validation-20261120`; 시작 시 `9faa4858ae3edcd88bb3b95710289237b2e87771`, 원격과 동기화, 시작 작업 트리 clean.
-- 외장/NAS 데이터 경로 `/Volumes/HDD2TB/Trade` 및 앞서 감사된 `/Volumes/home/mac/CODE/trading_data/external/crypto/binance`는 이번 실행 환경에서 존재하지 않았다. 따라서 코인 아카이브를 열거나 재점수화하지 않았다.
+- 최초 작성 시에는 외장/NAS 경로가 없다고 기록했으나, 후속 점검에서 별도 로컬 staging 경로 `/Users/user/CODE/trading_data`가 발견됐다. 따라서 아래 정정 감사에서 해당 Binance 아카이브를 읽기 전용 검사했다. 이 감사는 후보 성과를 점수화하지 않았다.
 - `/Users/user/CODE/Coin_Trade/chart_predictor/data` 디렉터리 존재만 확인했다. 수집 중일 수 있는 보호 경로이므로 내용·DB는 열지 않았다.
 - `ps` 프로세스 목록 조회는 `Operation not permitted`로 거부됐다. 실행 중 수집 프로세스 여부는 확인 안 됨.
 - 이 라운드는 문서·코드 정적 읽기와 에이전트 검토만 수행했다. 새 백테스트, 네트워크, 데이터 이동, DB 열기, 주문, 배포는 수행하지 않았다.
 - 이번 후보 합계는 KR 2, US 2 슬롯(그중 1개는 기존 탐색 후보), Coin OB 2다. 검증 통과 후보는 0/6이다. 이것은 전략 부재 판정이 아니라 필수 데이터/OOS 게이트 미통과다.
+
+## 후속 데이터 경로 정정 — 2026-11-22
+
+- NAS mount 부재는 맞지만, 로컬 `/Users/user/CODE/trading_data/external/crypto/binance`가 별도로 존재했다. KR/US staged datasets도 `/Users/user/CODE/trading_data/external/equities/`의 `MANIFEST.csv`에 등록되어 있다. 이 사실을 초기 문서에 반영하지 못한 기록 오류를 정정한다.
+- Binance `audit_crypto_minute_archive.py --ohlc-values`의 선택 코호트 감사는 `/tmp/cointrade_local_archive_audit_20261122.json`에 출력됐다. 전역 결과는 `FAIL`, 총 alignment failures 87이었다. 고정 후보 코호트의 spot/perp timestamp mismatch 0, OHLC 규칙 위반 0, 완전 파일 코호트 32종목 × 25개월이다. 전역 FAIL을 성공으로 바꾸어 부르지 않는다.
+- 이 경로에서 확인된 KR/US 가격 자료가 있다고 해서 필수 체결 데이터·PIT 이력·권리·봉인 OOS가 확보된 것은 아니다. 기존 4개 후보는 아직 데이터/검증 한계가 있으며 성과 통과는 0/6이다.
+- 수정된 코인 OB 사전등록은 [`PREREG_SPOT_PERP_OB_RECLAIM_DEV_20261122.md`](PREREG_SPOT_PERP_OB_RECLAIM_DEV_20261122.md)에 있다. 레드팀은 baseline gate와 N≥200 표현을 추가 수정하도록 요구했으며, 수정본 4인 패널 재검토가 끝날 때까지 성과 계산 금지다.
 
 ## 다음 실행 순서
 

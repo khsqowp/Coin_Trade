@@ -103,3 +103,9 @@ not mounted in the current environment, and the validated count remains zero.
 One US slot is an existing ETF volatility-rotation candidate, not a new
 strategy family; the low-skew alternative was excluded after a prior stress-cost
 failure.
+
+Follow-up correction: local staged data was subsequently found under
+`/Users/user/CODE/trading_data`, although the NAS mount remained absent. The
+read-only crypto archive audit and the resulting blocked gates are recorded in
+`strategy_search_round_20261122.md`. The spot/perpetual order-block historical
+screen remains unscored pending a revised four-role preregistration verdict.
