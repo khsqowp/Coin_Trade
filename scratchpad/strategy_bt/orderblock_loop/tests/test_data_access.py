@@ -7,7 +7,8 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from data_access import (EQUITY_COMMON_SPLIT_MS, UTC_CUTOFF_MS, _settlement_bar_ms, iter_train_bars,
+from data_access import (EQUITY_COMMON_SPLIT_MS, UTC_CUTOFF_MS, _funding_cadence_gaps,
+                         _settlement_bar_ms, iter_train_bars,
                          load_bars, split_timestamp)
 
 
@@ -22,8 +23,16 @@ class DataAccessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             split_timestamp(pd.DataFrame({"open_time": [2, 1, 3]}))
 
-    def test_funding_settlement_millisecond_jitter_maps_to_minute_bar(self):
-        self.assertEqual(_settlement_bar_ms(1683331200009), 1683331200000)
+    def test_funding_settlement_millisecond_jitter_keeps_exact_time_and_maps_mark_minute(self):
+        timestamp = 1683331200009
+        self.assertEqual(_settlement_bar_ms(timestamp), 1683331200000)
+
+    def test_funding_cadence_uses_published_interval_and_tolerates_millisecond_jitter(self):
+        start = 1_680_000_000_000
+        complete = [(start, 0.001, 8), (start + 28_800_009, 0.001, 8)]
+        missing = [(start, 0.001, 8), (start + 57_600_000, 0.001, 8)]
+        self.assertEqual(_funding_cadence_gaps(complete), [])
+        self.assertEqual(_funding_cadence_gaps(missing), [start + 28_800_000])
 
     def test_post_cutoff_request_requires_explicit_freeze(self):
         with self.assertRaises(ValueError):
@@ -110,7 +119,8 @@ class DataAccessTests(unittest.TestCase):
             funding_dir = base / "external/crypto/binance/um_fundingRate/BTCUSDT"
             funding_dir.mkdir(parents=True)
             pq.write_table(pa.table({"calc_time": [funding_ts],
-                                     "last_funding_rate": [0.001]}),
+                                     "last_funding_rate": [0.001],
+                                     "funding_interval_hours": [8]}),
                            funding_dir / "2020-01.parquet")
             future = base / "external/crypto/binance/um_fundingRate/BTCUSDT"
             pq.write_table(pa.table({"not_a_funding_schema": [1]}),
@@ -128,8 +138,9 @@ class DataAccessTests(unittest.TestCase):
             self.assertEqual(symbol, "BTCUSDT")
             self.assertEqual(len(train_bars), 6)
             self.assertTrue(all(bar.timestamp <= train_bars[-1].timestamp for bar in train_bars))
-            normalized_ts = funding_ts - 9
-            self.assertEqual(funding[normalized_ts].mark_price, 99.5)
+            self.assertIn(funding_ts, funding)
+            self.assertEqual(funding[funding_ts].timestamp, funding_ts)
+            self.assertEqual(funding[funding_ts].mark_price, 99.5)
 
     def test_crypto_loader_keeps_symbol_with_no_pre_cutoff_bars_as_empty(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -163,7 +174,8 @@ class DataAccessTests(unittest.TestCase):
             funding_dir = base / "external/crypto/binance/um_fundingRate/BTCUSDT"
             funding_dir.mkdir(parents=True)
             pq.write_table(pa.table({"calc_time": [funding_ts],
-                                     "last_funding_rate": [0.001]}),
+                                     "last_funding_rate": [0.001],
+                                     "funding_interval_hours": [8]}),
                            funding_dir / "2020-01.parquet")
             marks = base / "external/crypto/binance/um_markPriceKlines_1m/BTCUSDT"
             marks.mkdir(parents=True)

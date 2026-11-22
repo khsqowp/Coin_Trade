@@ -158,27 +158,42 @@ def _settlement_bar_ms(timestamp_ms: int) -> int:
     return timestamp_ms - timestamp_ms % 60_000
 
 
+def _funding_cadence_gaps(rows: list[tuple[int, float, int]]) -> list[int]:
+    """Return expected but absent settlement times, tolerating exchange millisecond jitter."""
+    gaps = []
+    for (previous_ts, _, previous_hours), (timestamp, _, hours) in zip(rows, rows[1:]):
+        if previous_hours <= 0 or hours <= 0:
+            raise ValueError(f"invalid funding interval at {timestamp}")
+        expected_deltas = (previous_hours * 3_600_000, hours * 3_600_000)
+        if not any(abs(timestamp - previous_ts - delta) <= 1_000
+                   for delta in expected_deltas):
+            gaps.append(previous_ts + previous_hours * 3_600_000)
+    return gaps
+
+
 def _funding_events(base: Path, symbol: str, through_ms: int) -> dict[int, FundingEvent]:
     """Read pre-cutoff funding rows and preceding-minute mark closes only."""
     funding_root = base / "external/crypto/binance/um_fundingRate" / symbol
     mark_root = base / "external/crypto/binance/um_markPriceKlines_1m" / symbol
-    rows: list[tuple[int, float]] = []
+    rows: list[tuple[int, float, int]] = []
     for path in sorted(funding_root.glob("????-??.parquet")):
         if path.stem > "2026-05":
             continue
-        frame = pd.read_parquet(path, columns=["calc_time", "last_funding_rate"],
+        frame = pd.read_parquet(path, columns=["calc_time", "last_funding_rate",
+                                               "funding_interval_hours"],
                                 filters=[("calc_time", "<=", min(through_ms, UTC_CUTOFF_MS))])
-        rows.extend((int(row.calc_time), float(row.last_funding_rate))
+        rows.extend((int(row.calc_time), float(row.last_funding_rate),
+                     int(row.funding_interval_hours))
                     for row in frame.itertuples(index=False))
     if not rows:
         raise ValueError(f"no funding rows available for {symbol} through train cutoff")
     rows.sort()
-    if len({timestamp for timestamp, _ in rows}) != len(rows):
+    if len({timestamp for timestamp, _, _ in rows}) != len(rows):
         raise ValueError(f"duplicate funding timestamp for {symbol}")
-    normalized = [(_settlement_bar_ms(timestamp), rate) for timestamp, rate in rows]
-    if len({timestamp for timestamp, _ in normalized}) != len(normalized):
-        raise ValueError(f"funding settlements collide at minute precision for {symbol}")
-    wanted = {timestamp - 60_000 for timestamp, _ in normalized}
+    gaps = _funding_cadence_gaps(rows)
+    settlements = [(timestamp, _settlement_bar_ms(timestamp), rate)
+                   for timestamp, rate, _ in rows]
+    wanted = {minute - 60_000 for _, minute, _ in settlements}
     marks: dict[int, float] = {}
     by_month: dict[str, set[int]] = {}
     for timestamp in wanted:
@@ -196,11 +211,13 @@ def _funding_events(base: Path, symbol: str, through_ms: int) -> dict[int, Fundi
                      for ts, price in zip(table["open_time"].to_pylist(),
                                           table["close"].to_pylist()))
     events: dict[int, FundingEvent] = {}
-    for timestamp, rate in normalized:
-        mark_timestamp = timestamp - 60_000
+    for timestamp, minute, rate in settlements:
+        mark_timestamp = minute - 60_000
         mark = marks.get(mark_timestamp)
         valid_mark = float(mark) if mark is not None and pd.notna(mark) and mark > 0 else None
         events[timestamp] = FundingEvent(timestamp, rate, valid_mark)
+    for timestamp in gaps:
+        events[timestamp] = FundingEvent(timestamp, 0.0, None, coverage_gap=True)
     return events
 
 

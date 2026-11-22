@@ -115,7 +115,8 @@ def signals(bars: Sequence[Bar], kind: str = "body") -> list[Signal]:
 def trade(bars: Sequence[Bar], setup: Signal, *, revisit: int = 24,
           reward: float = 1.5, holding: int = 48, fee: float = .0004,
           slip: float = .0002,
-          funding_events: Sequence[tuple[int, float, float]] = ()) -> Fill | None:
+          funding_events: Sequence[tuple[int, float, float]] = (),
+          bar_duration_ms: int | None = None) -> Fill | None:
     """First-revisit entry, OB-boundary invalidation, padded stop, and exits."""
     if revisit <= 0 or holding <= 0:
         raise ValueError("revisit and holding must be positive")
@@ -163,9 +164,14 @@ def trade(bars: Sequence[Bar], setup: Signal, *, revisit: int = 24,
         raw, reason = bars[exit_i].open, "time"
     settled = 0.0
     for ts, rate, mark_price in funding_events:
-        if ts not in {b.timestamp for b in bars}:
-            raise ValueError("unaligned funding event: validation unavailable")
-        if bars[entry_i].timestamp < ts <= bars[exit_i].timestamp:
+        exit_ts = bars[exit_i].timestamp
+        event_in_exit_candle = (
+            reason != "time" and bar_duration_ms is not None
+            and exit_ts < ts < exit_ts + bar_duration_ms
+        )
+        if bars[entry_i].timestamp < ts <= exit_ts or event_in_exit_candle:
+            if event_in_exit_candle:
+                raise ValueError("unscorable: funding order within exit candle is unknown")
             settled += -side * rate * mark_price / entry
     gross = side * (raw - entry) / entry
     net = gross - 2 * (fee + slip)

@@ -13,6 +13,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import resource
 import sys
 from collections import defaultdict
@@ -84,6 +85,7 @@ def _load_train(path: Path, split_file: Path, symbol: str, market: str) -> list[
     if market not in ("US", "KR"):
         raise ValueError(f"unsupported equity market: {market}")
     frame = load_bars(path, window="train", split_file=split_file, symbol=symbol,
+                      end_ms=EQUITY_COMMON_SPLIT_MS,
                       fixed_split_ms=EQUITY_COMMON_SPLIT_MS)
     return _bars(frame)
 
@@ -124,9 +126,32 @@ def _max_drawdown(trades: list[tuple[int, float]]) -> float:
     return maximum * 100
 
 
+def _daily_trade_pnl(bars: list[Bar], trade, market: str) -> dict[int, float]:
+    """Daily fixed-capital mark-to-market PnL, including asymmetric KR sell tax."""
+    costs = preregistered_costs(market)
+    entry_cost = (costs.commission_bps_per_side + costs.slippage_bps_per_side) / 10_000
+    exit_cost = entry_cost + costs.sell_tax_bps / 10_000
+    values: dict[int, float] = {}
+    previous = trade.entry_price
+    for index in range(trade.entry_index, trade.exit_index + 1):
+        bar = bars[index]
+        mark = trade.exit_price if index == trade.exit_index else bar.close
+        day = bar.timestamp // 86_400_000
+        values[day] = values.get(day, 0.0) + (mark - previous) / trade.entry_price
+        previous = mark
+    entry_day = bars[trade.entry_index].timestamp // 86_400_000
+    exit_day = bars[trade.exit_index].timestamp // 86_400_000
+    values[entry_day] = values.get(entry_day, 0.0) - entry_cost
+    values[exit_day] = values.get(exit_day, 0.0) - exit_cost
+    if not math.isclose(sum(values.values()), trade.net_return, rel_tol=1e-9, abs_tol=1e-10):
+        raise ValueError("daily equity marks do not reconcile to trade net return")
+    return values
+
+
 def _metric_row(config: dict[str, Any], market: str, symbol_count: int,
                 records: list[tuple[str, int, float]], errors: int,
-                train_start: int | str, train_end: int | str) -> dict[str, Any]:
+                train_start: int | str, train_end: int | str,
+                daily_marks: list[tuple[str, int, float]]) -> dict[str, Any]:
     returns = [item[2] for item in records]
     stats = trade_metrics(returns)
     gross_wins = sum(value for value in returns if value > 0)
@@ -143,7 +168,8 @@ def _metric_row(config: dict[str, Any], market: str, symbol_count: int,
         "wilson_95_lower_pct": stats.wilson_lower_95 * 100 if stats.wilson_lower_95 is not None else "",
         "payoff_ratio": payoff, "profit_factor": stats.profit_factor,
         "expectancy_net_bps": stats.expectancy_bps,
-        "mdd_realized_pct": _max_drawdown([(r[1], r[2] / max(symbol_count, 1)) for r in records]),
+        "mdd_daily_mtm_pct": _max_drawdown(
+            [(r[1], r[2] / max(symbol_count, 1)) for r in daily_marks]),
         "data_errors": errors,
     }
 
@@ -170,11 +196,13 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
         raise ValueError("universe CSV needs market,symbol,daily_path columns")
     if any(row["market"] not in ("US", "KR") for row in rows):
         raise ValueError("universe market must be US or KR")
+    requested_markets = sorted({row["market"] for row in rows})
 
     configs = _configs()
     definition = json.dumps(configs, sort_keys=True, separators=(",", ":"))
     grid_sha = hashlib.sha256(definition.encode()).hexdigest()
     results: dict[tuple[str, int], list[tuple[str, int, float]]] = defaultdict(list)
+    daily_marks: dict[tuple[str, int], list[tuple[str, int, float]]] = defaultdict(list)
     errors: dict[tuple[str, int], int] = defaultdict(int)
     symbols_seen: dict[str, set[str]] = defaultdict(set)
     train_ranges: dict[str, list[int]] = defaultdict(list)
@@ -200,6 +228,9 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
                     results[(market, idx)].append(
                         (symbol, exit_bars[trade.exit_index].timestamp,
                          trade.net_return))
+                    daily_marks[(market, idx)].extend(
+                        (symbol, day, pnl) for day, pnl in
+                        _daily_trade_pnl(exit_bars, trade, market).items())
             _check_memory_limit()
         except MemoryError:
             raise
@@ -218,18 +249,23 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
             existing_fields = next(csv.reader(handle))
         if existing_fields != fields:
             raise ValueError(f"trial ledger schema mismatch: {existing_fields!r}")
-    code_sha = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    code_hash = hashlib.sha256()
+    for filename in ("search_equities.py", "equities.py", "data_access.py",
+                     "metrics.py", "resource_guard.py"):
+        code_hash.update((ROOT / filename).read_bytes())
+    code_sha = code_hash.hexdigest()
     now = datetime.now(timezone.utc).isoformat()
     with out_path.open("a", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         if handle.tell() == 0:
             writer.writeheader()
-        for market in ("US", "KR"):
+        for market in requested_markets:
             for idx, config in enumerate(configs):
                 row = _metric_row(config, market, len(symbols_seen[market]),
                                   results[(market, idx)], errors[(market, idx)],
                                   min(train_ranges[market]) if train_ranges[market] else "",
-                                  max(train_ranges[market]) if train_ranges[market] else "")
+                                  max(train_ranges[market]) if train_ranges[market] else "",
+                                  daily_marks[(market, idx)])
                 metrics = {key: value for key, value in row.items()
                            if key not in ("market", "family", "timeframe",
                                           "parameters", "grid_sha256")}
@@ -243,7 +279,7 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
                     "rank": "", "notes": "TRAIN only; survivorship bias PRESENT/UNKNOWN; "
                     f"symbols={row['symbols']}; data_errors={row['data_errors']}; logged_at={now}",
                 })
-    return len(configs) * 2
+    return len(configs) * len(requested_markets)
 
 
 def main() -> None:
@@ -254,7 +290,9 @@ def main() -> None:
                         default=ROOT / "equities_splits.json")
     args = parser.parse_args()
     _check_memory_limit()
-    print(f"logged trial rows: {run(args.universe, args.trials, args.splits)}")
+    from resource_guard import heavy_task
+    with heavy_task("C"):
+        print(f"logged trial rows: {run(args.universe, args.trials, args.splits)}")
 
 
 if __name__ == "__main__":

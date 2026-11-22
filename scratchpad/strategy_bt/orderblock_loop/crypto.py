@@ -7,7 +7,7 @@ closed OHLCV bars. A signal can only use information available at its close.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import isfinite
+from math import isclose, isfinite
 from typing import Literal, Mapping, Sequence
 
 Definition = Literal["displacement", "bos_origin", "volume_displacement"]
@@ -49,6 +49,7 @@ class FundingEvent:
     timestamp: int
     rate: float
     mark_price: float | None
+    coverage_gap: bool = False
 
 
 @dataclass(frozen=True)
@@ -286,14 +287,15 @@ def first_retest(bars: Sequence[Bar], zone: Zone, *, deadline: int,
 def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, FundingEvent],
                    max_holding_bars: int = 48, fee_bps_per_side: float = 4.0,
                    slippage_bps_per_side: float = 2.0,
+                   bar_duration_ms: int | None = None,
                    validated: bool = False) -> Trade | None:
     """Simulate stop/target/time exit and signed funding for a single setup.
 
-    Funding mapping keys identify candle indices aligned to the exact funding
-    timestamp (bar timestamps are candle-open UTC milliseconds). An event at
-    the entry timestamp is excluded because the position was not held just
-    before settlement. This cannot resolve sub-bar exits at unaligned events;
-    such data are rejected rather than approximated.
+    Funding mapping keys are exact UTC settlement timestamps, including events
+    inside a candle. An event at the entry timestamp is excluded because the
+    position was not held just before settlement. If a stop/target exit occurs
+    inside the same candle as a funding event, event order is unknowable and
+    the trade is marked unscorable.
     Returns None when a required next-open time exit is outside the supplied
     series; it never fabricates a close fill.
     """
@@ -301,6 +303,8 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
         raise ValueError("holding horizon is fixed at 48 bars for this preregistered version")
     if fee_bps_per_side < 0 or slippage_bps_per_side < 0:
         raise ValueError("costs cannot be negative")
+    if bar_duration_ms is not None and bar_duration_ms <= 0:
+        raise ValueError("bar_duration_ms must be positive")
     if validated:
         eligible = range(len(bars))
         start = (setup.entry_index if 0 <= setup.entry_index < len(bars)
@@ -352,10 +356,22 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     gross = (exit_price / setup.entry_price - 1) * long_sign
     funding_return = 0.0
     funding_covered = True
-    for i, event in funding.items():
-        if i < 0 or i >= len(bars) or event.timestamp != bars[i].timestamp:
-            raise ValueError("funding event must align to its candle-open timestamp")
-        if setup.entry_index < i <= exit_index:
+    entry_timestamp = bars[setup.entry_index].timestamp
+    exit_timestamp = bars[exit_index].timestamp
+    for timestamp, event in funding.items():
+        if timestamp != event.timestamp:
+            raise ValueError("funding key must equal its exact settlement timestamp")
+        if timestamp < bars[0].timestamp or timestamp > bars[-1].timestamp:
+            raise ValueError("funding event lies outside the simulated candle range")
+        exit_bar_start = bars[exit_index].timestamp
+        intrabar_exit = reason != "time" and bar_duration_ms is not None
+        event_in_exit_candle = (
+            intrabar_exit and exit_bar_start < timestamp < exit_bar_start + bar_duration_ms
+        )
+        if entry_timestamp < timestamp <= exit_timestamp or event_in_exit_candle:
+            if event_in_exit_candle:
+                funding_covered = False
+                continue
             if not isfinite(event.rate) or not (-1 < event.rate < 1):
                 raise ValueError("invalid funding event")
             if event.mark_price is None:
@@ -371,6 +387,47 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     cost_bps = 2 * side_cost * 10_000
     return Trade(setup, exit_index, exit_price, reason, gross,
                  funding_return if funding_covered else None, cost_bps, net)
+
+
+def trade_daily_pnl(bars: Sequence[Bar], trade: Trade, *,
+                    funding: Mapping[int, FundingEvent],
+                    bar_duration_ms: int) -> dict[int, float] | None:
+    """Return UTC-day fixed-capital mark-to-market contributions for a scored trade."""
+    if trade.net_return is None or bar_duration_ms <= 0:
+        return None
+    entry_i, exit_i = trade.setup.entry_index, trade.exit_index
+    entry = trade.setup.entry_price
+    sign = 1 if trade.setup.zone.direction == "long" else -1
+    daily: dict[int, float] = {}
+    previous_mark = entry
+    side_cost = trade.cost_bps / 20_000
+    for index in range(entry_i, exit_i + 1):
+        bar = bars[index]
+        mark = trade.exit_price if index == exit_i else bar.close
+        day = bar.timestamp // 86_400_000
+        daily[day] = daily.get(day, 0.0) + sign * (mark - previous_mark) / entry
+        previous_mark = mark
+    entry_day = bars[entry_i].timestamp // 86_400_000
+    exit_day = bars[exit_i].timestamp // 86_400_000
+    daily[entry_day] = daily.get(entry_day, 0.0) - side_cost
+    daily[exit_day] = daily.get(exit_day, 0.0) - side_cost
+    for timestamp, event in funding.items():
+        exit_ts = bars[exit_i].timestamp
+        uncertain_exit_event = (
+            trade.exit_reason != "time" and exit_ts < timestamp < exit_ts + bar_duration_ms
+        )
+        if uncertain_exit_event:
+            return None
+        if bars[entry_i].timestamp < timestamp <= bars[exit_i].timestamp:
+            if event.mark_price is None or not isfinite(event.mark_price):
+                return None
+            daily[timestamp // 86_400_000] = (
+                daily.get(timestamp // 86_400_000, 0.0)
+                - sign * event.rate * event.mark_price / entry
+            )
+    if not isclose(sum(daily.values()), trade.net_return, rel_tol=1e-9, abs_tol=1e-10):
+        raise ValueError("daily mark-to-market contributions do not reconcile to trade net return")
+    return daily
 
 
 def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: Direction, *,

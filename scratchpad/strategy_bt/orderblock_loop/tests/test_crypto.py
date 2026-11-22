@@ -2,7 +2,8 @@ import unittest
 from unittest.mock import patch
 
 from crypto import (Bar, FundingEvent, Setup, Zone, enforce_single_active_zone,
-                    first_retest, simulate_orderblock, simulate_trade, zones)
+                    first_retest, simulate_orderblock, simulate_trade,
+                    trade_daily_pnl, zones)
 
 
 class CryptoOrderBlockTests(unittest.TestCase):
@@ -124,6 +125,42 @@ class CryptoOrderBlockTests(unittest.TestCase):
         self.assertIsNotNone(trade)
         self.assertIsNone(trade.funding_return)
         self.assertIsNone(trade.net_return)
+
+    def test_exact_intrabar_funding_time_is_charged_for_time_exit(self):
+        data = [Bar(i * 1000, 100, 101, 99, 100, 10) for i in range(50)]
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 500
+        trade = simulate_trade(
+            data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=1000,
+        )
+        self.assertIsNotNone(trade)
+        self.assertAlmostEqual(trade.funding_return, -0.001)
+
+    def test_funding_inside_intrabar_stop_exit_candle_makes_trade_unscorable(self):
+        data = [Bar(i * 1000, 100, 100.5, 99.5, 100, 10) for i in range(50)]
+        data[5] = Bar(5000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 500
+        trade = simulate_trade(
+            data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=1000,
+        )
+        self.assertIsNotNone(trade)
+        self.assertEqual(trade.exit_reason, "stop")
+        self.assertIsNone(trade.funding_return)
+        self.assertIsNone(trade.net_return)
+
+    def test_daily_mark_to_market_reconciles_to_fixed_capital_trade_return(self):
+        day = 86_400_000
+        data = [Bar(i * day, 100, 101, 99, 100, 10) for i in range(50)]
+        data[2] = Bar(2 * day, 100, 110, 99, 108, 10)
+        data[3] = Bar(3 * day, 108, 109, 100, 102, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 120)
+        trade = simulate_trade(data, setup, funding={}, validated=True)
+        marks = trade_daily_pnl(data, trade, funding={}, bar_duration_ms=day)
+        self.assertAlmostEqual(sum(marks.values()), trade.net_return)
+        self.assertLess(marks[3], 0)
 
     def test_unavailable_next_open_time_exit_is_unscorable(self):
         data = [Bar(i, 100, 100.5, 99.5, 100, 10) for i in range(48)]

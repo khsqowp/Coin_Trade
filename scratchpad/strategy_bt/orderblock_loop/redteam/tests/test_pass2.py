@@ -106,7 +106,7 @@ class Pass2Fixtures(unittest.TestCase):
         events = {}
         funding_rows = []
         if funding:
-            events[3] = candidate_crypto.FundingEvent(bars[3].timestamp, .001, 103)
+            events[bars[3].timestamp] = candidate_crypto.FundingEvent(bars[3].timestamp, .001, 103)
             funding_rows.append((bars[3].timestamp, .001, 103))
         actual = candidate_crypto.simulate_trade(bars, setup, funding=events)
         expected = oracle_crypto.trade(
@@ -149,6 +149,17 @@ class Pass2Fixtures(unittest.TestCase):
 
     def test_crypto_funding_absent_many(self):
         for _ in range(10): self.compare_crypto("target", "short", funding=False)
+
+    def test_independent_oracle_rejects_intrabar_funding_exit_ambiguity(self):
+        bars = [candidate_crypto.Bar(i * 1000, 100, 100.5, 99.5, 100, 10)
+                for i in range(50)]
+        bars[5] = candidate_crypto.Bar(5000, 100, 100.5, 97, 99, 10)
+        setup = oracle_crypto.Signal(0, "long", 99, 100, 1, "body")
+        with self.assertRaisesRegex(ValueError, "unscorable"):
+            oracle_crypto.trade(
+                bars, setup, funding_events=[(5500, .001, 100)],
+                bar_duration_ms=1000,
+            )
 
     def test_crypto_all_definitions_traded(self):
         for kind in ("body", "bos", "volume"):

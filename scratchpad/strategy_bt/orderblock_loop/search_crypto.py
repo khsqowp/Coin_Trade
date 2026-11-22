@@ -22,7 +22,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from crypto import active_zones, first_retest, simulate_trade  # noqa: E402
+from crypto import active_zones, first_retest, simulate_trade, trade_daily_pnl  # noqa: E402
 from metrics import trade_metrics  # noqa: E402
 
 DEFINITIONS = ("displacement", "bos_origin", "volume_displacement")
@@ -61,15 +61,16 @@ def _trial_id(config: dict[str, object]) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def _funding_by_bar_index(bars, funding):
-    indices = {bar.timestamp: index for index, bar in enumerate(bars)}
+def _funding_by_timestamp(bars, funding):
+    """Keep exact settlement timestamps inside the candle series' time span."""
+    if not bars:
+        return {}
     first, last = bars[0].timestamp, bars[-1].timestamp
-    in_holding_range = {timestamp: event for timestamp, event in funding.items()
-                        if first <= timestamp <= last}
-    unmatched = sorted(set(in_holding_range) - set(indices))
-    if unmatched:
-        raise ValueError(f"funding events do not align to candle opens: {unmatched[:3]}")
-    return {indices[timestamp]: event for timestamp, event in in_holding_range.items()}
+    relevant = {timestamp: event for timestamp, event in funding.items()
+                if first <= timestamp <= last}
+    if any(timestamp != event.timestamp for timestamp, event in relevant.items()):
+        raise ValueError("funding key must equal its exact settlement timestamp")
+    return relevant
 
 
 def _append(row: dict[str, object]) -> None:
@@ -84,12 +85,16 @@ def _append(row: dict[str, object]) -> None:
     grid_hash = hashlib.sha256(json.dumps(grid, sort_keys=True,
                                            separators=(",", ":")).encode()).hexdigest()
     code_hash = hashlib.sha256()
-    for filename in ("crypto.py", "search_crypto.py", "data_access.py", "metrics.py"):
+    for filename in ("crypto.py", "search_crypto.py", "data_access.py", "metrics.py",
+                     "resource_guard.py"):
         code_hash.update((HERE / filename).read_bytes())
     metric = {key: row.get(key) for key in
               ("symbols", "trades", "win_rate", "wilson_95_lower", "payoff_ratio",
                "profit_factor", "expectancy_bps", "max_drawdown",
                "incomplete_bars_excluded", "unscorable_funding_trades",
+               "time_exit_censored_setups", "symbols_excluded_missing_funding_marks",
+               "symbols_missing_funding_marks", "symbols_excluded_funding_gap",
+               "symbols_funding_gap", "symbols_without_bars",
                "status", "detail")}
     now = str(row["timestamp_utc"])
     record = {
@@ -119,12 +124,27 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
     symbols_seen: list[str] = []
     incomplete_bars_excluded = 0
     unscorable_funding_trades = 0
+    time_exit_censored_setups = 0
+    mark_missing_symbols: set[str] = set()
+    funding_gap_symbols: set[str] = set()
+    valid_symbols: set[str] = set()
+    empty_symbols: set[str] = set()
     symbol_day_pnl: dict[str, dict[int, float]] = {}
     first_day: int | None = None
     last_day: int | None = None
     for symbol, bars, funding, excluded_count in barsets:
         _check_memory()
+        if not bars:
+            empty_symbols.add(symbol)
+            continue
+        if any(event.coverage_gap for event in funding.values()):
+            funding_gap_symbols.add(symbol)
+            continue
+        if any(event.mark_price is None for event in funding.values()):
+            mark_missing_symbols.add(symbol)
+            continue
         symbols_seen.append(symbol)
+        valid_symbols.add(symbol)
         incomplete_bars_excluded += excluded_count
         if bars:
             symbol_day_pnl[symbol] = {}
@@ -138,7 +158,7 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                 displacement_atr=1.5, volume_multiple=1.5,
             )
             zone_cache[cache_key] = zones
-        funding_by_index = _funding_by_bar_index(bars, funding)
+        funding_by_timestamp = _funding_by_timestamp(bars, funding)
         next_free = -1
         for zone in zones:
             if zone.direction != config["direction"] or zone.signal_index < next_free:
@@ -147,15 +167,30 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                                  reward_r=config["reward_r"], validated=True)
             if setup is None:
                 continue
-            trade = simulate_trade(bars, setup, funding=funding_by_index,
-                                   validated=True)
-            if trade is not None:
+            trade = simulate_trade(
+                bars, setup, funding=funding_by_timestamp,
+                bar_duration_ms={"15m": 900_000, "1h": 3_600_000,
+                                 "4h": 14_400_000}[config["timeframe"]],
+                validated=True,
+            )
+            if trade is None:
+                time_exit_censored_setups += 1
+            else:
                 if trade.net_return is None:
                     unscorable_funding_trades += 1
                 else:
                     trade_returns.append(trade.net_return)
-                    utc_day = bars[trade.exit_index].timestamp // 86_400_000
-                    symbol_day_pnl[symbol][utc_day] = symbol_day_pnl[symbol].get(utc_day, 0.0) + trade.net_return
+                    daily_pnl = trade_daily_pnl(
+                        bars, trade, funding=funding_by_timestamp,
+                        bar_duration_ms={"15m": 900_000, "1h": 3_600_000,
+                                         "4h": 14_400_000}[config["timeframe"]],
+                    )
+                    if daily_pnl is None:
+                        unscorable_funding_trades += 1
+                        trade_returns.pop()
+                    else:
+                        for utc_day, value in daily_pnl.items():
+                            symbol_day_pnl[symbol][utc_day] = symbol_day_pnl[symbol].get(utc_day, 0.0) + value
                 next_free = trade.exit_index + 1
     metrics = trade_metrics(trade_returns)
     payoff = (metrics.average_win / metrics.average_loss
@@ -169,19 +204,42 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
         ]
     return {
         "symbols": len(set(symbols_seen)), "trades": metrics.count,
+        "symbols_excluded_missing_funding_marks": len(mark_missing_symbols),
+        "symbols_missing_funding_marks": sorted(mark_missing_symbols),
+        "symbols_excluded_funding_gap": len(funding_gap_symbols),
+        "symbols_funding_gap": sorted(funding_gap_symbols),
+        "symbols_without_bars": len(empty_symbols),
         "win_rate": metrics.win_rate, "wilson_95_lower": metrics.wilson_lower_95,
         "payoff_ratio": payoff, "profit_factor": metrics.profit_factor,
         "expectancy_bps": metrics.expectancy_bps,
         "max_drawdown": _drawdown(portfolio_daily),
         "incomplete_bars_excluded": incomplete_bars_excluded,
         "unscorable_funding_trades": unscorable_funding_trades,
-        "status": "unscorable" if unscorable_funding_trades else "completed",
-        "detail": (f"{unscorable_funding_trades} trades lacked funding mark coverage"
-                   if unscorable_funding_trades else ""),
+        "time_exit_censored_setups": time_exit_censored_setups,
+        "status": ("unscorable" if unscorable_funding_trades or len(valid_symbols) < 30
+                   else "completed"),
+        "detail": "; ".join(filter(None, (
+            f"{unscorable_funding_trades} trades crossed missing funding marks"
+            if unscorable_funding_trades else "",
+            f"excluded {len(mark_missing_symbols)} symbols with missing funding marks"
+            if mark_missing_symbols else "",
+            f"excluded {len(funding_gap_symbols)} symbols with funding cadence gaps"
+            if funding_gap_symbols else "",
+            f"{len(empty_symbols)} symbols have no train bars"
+            if empty_symbols else "",
+            f"only {len(valid_symbols)} valid symbols; need 30"
+            if len(valid_symbols) < 30 else "",
+        ))),
     }
 
 
-def main() -> int:
+def _run() -> int:
+    try:
+        resource.setrlimit(resource.RLIMIT_AS, (MEMORY_LIMIT_BYTES, MEMORY_LIMIT_BYTES))
+    except (OSError, ValueError):
+        # macOS may report an unusable RLIMIT_AS infinity sentinel; _check_memory
+        # remains the hard stop at every symbol/trial boundary.
+        pass
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--shard", default="0/1", help="stable shard index/count, e.g. 0/4")
     args = parser.parse_args()
@@ -229,6 +287,9 @@ def main() -> int:
                                 "wilson_95_lower", "payoff_ratio", "profit_factor",
                                 "expectancy_bps", "max_drawdown",
                                 "incomplete_bars_excluded", "unscorable_funding_trades",
+                                "time_exit_censored_setups", "symbols_excluded_missing_funding_marks",
+                                "symbols_missing_funding_marks", "symbols_excluded_funding_gap",
+                                "symbols_funding_gap", "symbols_without_bars",
                                 "status", "detail"))
                             status, detail = "failed", f"{type(exc).__name__}: {exc}"
                         else:
@@ -236,6 +297,12 @@ def main() -> int:
                         _append({"timestamp_utc": timestamp, "trial_id": trial_id,
                                  **config, **result, "status": status, "detail": detail})
     return 0
+
+
+def main() -> int:
+    from resource_guard import heavy_task
+    with heavy_task("B"):
+        return _run()
 
 
 if __name__ == "__main__":
