@@ -50,6 +50,7 @@ class FundingEvent:
     rate: float
     mark_price: float | None
     coverage_gap: bool = False
+    used_candle_close_fallback: bool = False
 
 
 @dataclass(frozen=True)
@@ -85,6 +86,20 @@ def _validate(bars: Sequence[Bar]) -> list[int]:
         raise ValueError("incomplete bars may only be a trailing suffix")
     indices = [i for i, bar in enumerate(bars) if bar.complete]
     return indices
+
+
+def _funding_order(entry_ts: int, exit_ts: int, event_ts: int,
+                   exit_reason: str, bar_duration_ms: int) -> tuple[bool, bool]:
+    """Return (charge, unknown_order) using exact settlement timestamps."""
+    if bar_duration_ms > 0 and event_ts == entry_ts:
+        return False, True
+    if exit_reason == "time":
+        if bar_duration_ms > 0 and event_ts == exit_ts:
+            return False, True
+        return entry_ts < event_ts <= exit_ts, False
+    if exit_ts <= event_ts <= exit_ts + bar_duration_ms:
+        return False, True
+    return entry_ts < event_ts < exit_ts, False
 
 
 def _atr(bars: Sequence[Bar], index: int, period: int = 14) -> float | None:
@@ -361,17 +376,15 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     for timestamp, event in funding.items():
         if timestamp != event.timestamp:
             raise ValueError("funding key must equal its exact settlement timestamp")
-        if timestamp < bars[0].timestamp or timestamp > bars[-1].timestamp:
+        series_end = bars[-1].timestamp + (bar_duration_ms or 0) + 1_000
+        if timestamp < bars[0].timestamp or timestamp > series_end:
             raise ValueError("funding event lies outside the simulated candle range")
-        exit_bar_start = bars[exit_index].timestamp
-        intrabar_exit = reason != "time" and bar_duration_ms is not None
-        event_in_exit_candle = (
-            intrabar_exit and exit_bar_start < timestamp < exit_bar_start + bar_duration_ms
-        )
-        if entry_timestamp < timestamp <= exit_timestamp or event_in_exit_candle:
-            if event_in_exit_candle:
-                funding_covered = False
-                continue
+        should_charge, order_unknown = _funding_order(
+            entry_timestamp, exit_timestamp, timestamp, reason, bar_duration_ms or 0)
+        if order_unknown:
+            funding_covered = False
+            continue
+        if should_charge:
             if not isfinite(event.rate) or not (-1 < event.rate < 1):
                 raise ValueError("invalid funding event")
             if event.mark_price is None:
@@ -413,12 +426,12 @@ def trade_daily_pnl(bars: Sequence[Bar], trade: Trade, *,
     daily[exit_day] = daily.get(exit_day, 0.0) - side_cost
     for timestamp, event in funding.items():
         exit_ts = bars[exit_i].timestamp
-        uncertain_exit_event = (
-            trade.exit_reason != "time" and exit_ts < timestamp < exit_ts + bar_duration_ms
-        )
-        if uncertain_exit_event:
+        should_charge, order_unknown = _funding_order(
+            bars[entry_i].timestamp, exit_ts, timestamp,
+            trade.exit_reason, bar_duration_ms)
+        if order_unknown:
             return None
-        if bars[entry_i].timestamp < timestamp <= bars[exit_i].timestamp:
+        if should_charge:
             if event.mark_price is None or not isfinite(event.mark_price):
                 return None
             daily[timestamp // 86_400_000] = (

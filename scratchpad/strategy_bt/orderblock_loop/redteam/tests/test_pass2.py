@@ -106,13 +106,17 @@ class Pass2Fixtures(unittest.TestCase):
         events = {}
         funding_rows = []
         if funding:
-            events[bars[3].timestamp] = candidate_crypto.FundingEvent(bars[3].timestamp, .001, 103)
-            funding_rows.append((bars[3].timestamp, .001, 103))
-        actual = candidate_crypto.simulate_trade(bars, setup, funding=events)
+            # This settlement is inside the entry candle but strictly before
+            # the target exit candle, so its order relative to the later exit is known.
+            event_ts = bars[2].timestamp + 1_000
+            events[event_ts] = candidate_crypto.FundingEvent(event_ts, .001, 103)
+            funding_rows.append((event_ts, .001, 103))
+        actual = candidate_crypto.simulate_trade(
+            bars, setup, funding=events, bar_duration_ms=900_000)
         expected = oracle_crypto.trade(
             [oracle_crypto.Bar(b.timestamp, b.open, b.high, b.low, b.close, b.volume) for b in bars],
             oracle_crypto.Signal(0, direction, setup.zone.low, setup.zone.high, setup.zone.atr_at_signal, kind),
-            holding=48, funding_events=funding_rows,
+            holding=48, funding_events=funding_rows, bar_duration_ms=900_000,
         )
         self.assertIsNotNone(actual, f"{mode}/{direction}/{kind}: target had no trade")
         self.assertIsNotNone(expected, f"{mode}/{direction}/{kind}: independent had no trade")
@@ -146,6 +150,31 @@ class Pass2Fixtures(unittest.TestCase):
 
     def test_crypto_funding_present_many(self):
         for _ in range(10): self.compare_crypto("target", "long", funding=True)
+
+    def test_crypto_funding_in_target_exit_candle_is_unscorable(self):
+        bars, zone = c_bars("target", "long")
+        setup = candidate_crypto.first_retest(bars, zone, deadline=24, reward_r=1.5)
+        self.assertIsNotNone(setup)
+        exit_candle_open = bars[3].timestamp
+        oracle_bars = [oracle_crypto.Bar(b.timestamp, b.open, b.high, b.low, b.close, b.volume)
+                       for b in bars]
+        oracle_setup = oracle_crypto.Signal(
+            0, "long", setup.zone.low, setup.zone.high, setup.zone.atr_at_signal, "body")
+        for event_ts in (exit_candle_open, exit_candle_open + 450_000,
+                         exit_candle_open + 900_000):
+            with self.subTest(event_ts=event_ts):
+                event = candidate_crypto.FundingEvent(event_ts, .001, 103)
+                actual = candidate_crypto.simulate_trade(
+                    bars, setup, funding={event_ts: event}, bar_duration_ms=900_000)
+                self.assertIsNotNone(actual)
+                self.assertEqual(actual.exit_reason, "target")
+                self.assertIsNone(actual.funding_return)
+                self.assertIsNone(actual.net_return)
+                with self.assertRaisesRegex(ValueError, "unscorable"):
+                    oracle_crypto.trade(
+                        oracle_bars, oracle_setup, holding=48,
+                        funding_events=[(event_ts, .001, 103)],
+                        bar_duration_ms=900_000)
 
     def test_crypto_funding_absent_many(self):
         for _ in range(10): self.compare_crypto("target", "short", funding=False)

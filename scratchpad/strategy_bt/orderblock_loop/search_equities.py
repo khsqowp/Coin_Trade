@@ -14,6 +14,7 @@ import csv
 import hashlib
 import json
 import math
+import os
 import resource
 import sys
 from collections import defaultdict
@@ -25,12 +26,18 @@ from typing import Any
 import pandas as pd
 
 from data_access import EQUITY_COMMON_SPLIT_MS, load_bars
+from data_quality import SymbolQualityError, filter_equity_bars
 from equities import Bar, preregistered_costs, simulate_c1, simulate_c2, simulate_c3, simulate_c4
 from metrics import trade_metrics
 
 ROOT = Path(__file__).resolve().parent
 CUTOFF = "2026-05-31"
 MEMORY_LIMIT_BYTES = 3 * 1024**3
+
+
+def _default_split_path() -> Path:
+    data_dir = Path(os.environ.get("TRADING_DATA_DIR") or (Path.home() / "CODE/trading_data"))
+    return data_dir / "cache/orderblock/equity_splits_r2.json"
 
 
 def _check_memory_limit() -> None:
@@ -81,13 +88,77 @@ def _bars(frame: pd.DataFrame) -> list[Bar]:
             for row, is_complete in zip(frame.itertuples(index=False), complete)]
 
 
-def _load_train(path: Path, split_file: Path, symbol: str, market: str) -> list[Bar]:
+def _load_train(path: Path, split_file: Path, symbol: str, market: str) -> pd.DataFrame:
     if market not in ("US", "KR"):
         raise ValueError(f"unsupported equity market: {market}")
-    frame = load_bars(path, window="train", split_file=split_file, symbol=symbol,
-                      end_ms=EQUITY_COMMON_SPLIT_MS,
-                      fixed_split_ms=EQUITY_COMMON_SPLIT_MS)
-    return _bars(frame)
+    return load_bars(path, window="train", split_file=split_file, symbol=symbol,
+                     end_ms=EQUITY_COMMON_SPLIT_MS,
+                     fixed_split_ms=EQUITY_COMMON_SPLIT_MS)
+
+
+def _prepare_train(frame: pd.DataFrame, symbol: str) -> tuple[list[Bar], dict[str, int]]:
+    incomplete_excluded = 0
+    if frame.empty:
+        return [], {"rows": 0, "invalid_ohlc": 0, "halt_bars": 0,
+                    "incomplete_bars_excluded": 0, "loaded_rows": 0,
+                    "rows_after_quality_filter": 0}
+    if "complete" in frame.columns:
+        if not pd.api.types.is_bool_dtype(frame["complete"].dtype) or frame["complete"].isna().any():
+            raise SymbolQualityError(f"{symbol}: complete flag must be non-null boolean")
+        incomplete = ~frame["complete"]
+        incomplete_positions = [index for index, flag in enumerate(incomplete.tolist()) if flag]
+        if incomplete_positions:
+            first = incomplete_positions[0]
+            if incomplete_positions != list(range(first, len(frame))):
+                raise SymbolQualityError(f"{symbol}: incomplete bar is not a trailing suffix")
+            incomplete_excluded = len(incomplete_positions)
+            frame = frame.iloc[:first].copy().reset_index(drop=True)
+    filtered, stats = filter_equity_bars(frame, symbol)
+    return _bars(filtered), {**stats, "incomplete_bars_excluded": incomplete_excluded,
+                   "loaded_rows": len(frame) + incomplete_excluded,
+                   "rows_after_quality_filter": len(filtered)}
+
+
+def _canonical_train_value(value: Any) -> list[Any]:
+    if hasattr(value, "item"):
+        value = value.item()
+    if value is None or (not isinstance(value, (str, bytes)) and pd.isna(value)):
+        return ["missing"]
+    if isinstance(value, bool):
+        return ["bool", value]
+    if isinstance(value, int):
+        return ["int", str(value)]
+    if isinstance(value, float):
+        return ["float", value.hex()] if math.isfinite(value) else ["nonfinite", repr(value)]
+    if isinstance(value, bytes):
+        return ["bytes", value.hex()]
+    return ["text", str(value)]
+
+
+def _train_frame_sha256(frame: pd.DataFrame) -> str:
+    columns = [str(column) for column in frame.columns]
+    digest = hashlib.sha256(b"R2-TRAIN-FRAME-v1\0")
+    digest.update((json.dumps(columns, separators=(",", ":")) + "\n").encode())
+    for row in frame.itertuples(index=False, name=None):
+        values = [_canonical_train_value(value) for value in row]
+        digest.update((json.dumps(values, separators=(",", ":"), ensure_ascii=False) + "\n").encode())
+    return digest.hexdigest()
+
+
+def _market_train_sha256(accounting: dict[str, dict[str, Any]]) -> str:
+    digest = hashlib.sha256(b"R2-MARKET-TRAIN-v1\0")
+    for symbol, record in sorted(accounting.items()):
+        digest.update((json.dumps([symbol, record], sort_keys=True, separators=(",", ":"),
+                                  ensure_ascii=False) + "\n").encode())
+    return digest.hexdigest()
+
+
+def _source_code_sha256() -> str:
+    digest = hashlib.sha256()
+    for filename in ("search_equities.py", "equities.py", "data_access.py",
+                     "data_quality.py", "metrics.py", "resource_guard.py"):
+        digest.update((ROOT / filename).read_bytes())
+    return digest.hexdigest()
 
 
 def _weekly_bars(daily: list[Bar]) -> list[Bar]:
@@ -206,17 +277,35 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
     errors: dict[tuple[str, int], int] = defaultdict(int)
     symbols_seen: dict[str, set[str]] = defaultdict(set)
     train_ranges: dict[str, list[int]] = defaultdict(list)
+    train_accounting: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
 
     # Read and simulate one symbol at a time so resident bar data is shard-bounded.
     for item in rows:
         market, symbol = item["market"], item["symbol"]
+        frame: pd.DataFrame | None = None
+        frame_sha: str | None = None
+        quality_counts: dict[str, int] = {}
+        status, detail, stage = "loader_error", "", "load"
         try:
-            daily = _load_train(Path(item["daily_path"]).expanduser(), split_file, symbol, market)
+            frame = _load_train(Path(item["daily_path"]).expanduser(), split_file, symbol, market)
+            frame_sha = _train_frame_sha256(frame)
+            if frame.empty:
+                status, detail = "empty_train", "no rows at or before fixed TRAIN boundary"
+                for idx in range(len(configs)):
+                    errors[(market, idx)] += 1
+                continue
+            stage = "completion_and_quality"
+            daily, quality_counts = _prepare_train(frame, symbol)
             if not daily:
-                raise ValueError("empty train window")
+                status, detail = "empty_after_filter", "no complete rows remain after preregistered filters"
+                for idx in range(len(configs)):
+                    errors[(market, idx)] += 1
+                continue
             train_ranges[market].extend((daily[0].timestamp, daily[-1].timestamp))
             weekly = _weekly_bars(daily)
             symbols_seen[market].add(symbol)
+            status = "valid"
+            stage = "simulation"
             for idx, config in enumerate(configs):
                 if config["timeframe"] == "weekly" and len(weekly) < 2:
                     errors[(market, idx)] += 1
@@ -234,10 +323,26 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
             _check_memory_limit()
         except MemoryError:
             raise
-        except Exception as exc:  # preserve per-symbol failures in the trial ledger
-            print(f"{market},{symbol}: {type(exc).__name__}: {exc}", file=sys.stderr)
+        except SymbolQualityError as exc:
+            status, detail = "quality_excluded", str(exc)
             for idx in range(len(configs)):
                 errors[(market, idx)] += 1
+        except Exception as exc:  # preserve per-symbol failures in the trial ledger
+            print(f"{market},{symbol}: {type(exc).__name__}: {exc}", file=sys.stderr)
+            status = "loader_error" if stage == "load" else "processing_error"
+            detail = f"{type(exc).__name__}: {exc}"
+            for idx in range(len(configs)):
+                errors[(market, idx)] += 1
+        finally:
+            record: dict[str, Any] = {
+                "status": status,
+                "loaded_rows": len(frame) if frame is not None else None,
+                "frame_sha256": frame_sha,
+                **quality_counts,
+            }
+            if detail:
+                record["detail"] = detail
+            train_accounting[market][symbol] = record
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     # Keep the coordinator's existing ledger schema. One trial is one
@@ -249,11 +354,7 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
             existing_fields = next(csv.reader(handle))
         if existing_fields != fields:
             raise ValueError(f"trial ledger schema mismatch: {existing_fields!r}")
-    code_hash = hashlib.sha256()
-    for filename in ("search_equities.py", "equities.py", "data_access.py",
-                     "metrics.py", "resource_guard.py"):
-        code_hash.update((ROOT / filename).read_bytes())
-    code_sha = code_hash.hexdigest()
+    code_sha = _source_code_sha256()
     now = datetime.now(timezone.utc).isoformat()
     with out_path.open("a", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
@@ -266,6 +367,32 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
                                   min(train_ranges[market]) if train_ranges[market] else "",
                                   max(train_ranges[market]) if train_ranges[market] else "",
                                   daily_marks[(market, idx)])
+                status_counts: dict[str, int] = defaultdict(int)
+                for account in train_accounting[market].values():
+                    status_counts[account["status"]] += 1
+                row.update({
+                    "train_data_sha256": _market_train_sha256(train_accounting[market]),
+                    "symbols_in_universe": len([item for item in rows if item["market"] == market]),
+                    "symbols_valid_source": len(symbols_seen[market]),
+                    "symbols_empty_train": status_counts["empty_train"],
+                    "symbols_empty_after_filter": status_counts["empty_after_filter"],
+                    "symbols_quality_excluded": status_counts["quality_excluded"],
+                    "symbols_loader_errors": status_counts["loader_error"],
+                    "symbols_processing_errors": status_counts["processing_error"],
+                    "incomplete_bars_excluded": sum(
+                        account.get("incomplete_bars_excluded", 0)
+                        for account in train_accounting[market].values()
+                    ),
+                    "invalid_ohlc_rows_filtered": sum(
+                        account.get("invalid_ohlc", 0)
+                        for account in train_accounting[market].values()
+                    ),
+                    "halt_bars_filtered": sum(
+                        account.get("halt_bars", 0)
+                        for account in train_accounting[market].values()
+                    ),
+                    "train_symbol_accounting": train_accounting[market],
+                })
                 metrics = {key: value for key, value in row.items()
                            if key not in ("market", "family", "timeframe",
                                           "parameters", "grid_sha256")}
@@ -277,7 +404,8 @@ def run(universe_path: Path, out_path: Path, split_file: Path) -> int:
                     "train_period": f"{row['train_start']}..{row['train_end']}",
                     "metric": json.dumps(metrics, sort_keys=True, separators=(",", ":")),
                     "rank": "", "notes": "TRAIN only; survivorship bias PRESENT/UNKNOWN; "
-                    f"symbols={row['symbols']}; data_errors={row['data_errors']}; logged_at={now}",
+                    f"symbols={row['symbols']}; data_errors={row['data_errors']}; "
+                    f"train_data_sha256={row['train_data_sha256']}; logged_at={now}",
                 })
     return len(configs) * len(requested_markets)
 
@@ -286,8 +414,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Search preregistered equity families on train only")
     parser.add_argument("--universe", type=Path, required=True)
     parser.add_argument("--trials", type=Path, default=ROOT / "TRAIN_TRIALS.csv")
-    parser.add_argument("--splits", type=Path,
-                        default=ROOT / "equities_splits.json")
+    parser.add_argument("--splits", type=Path, default=_default_split_path())
     args = parser.parse_args()
     _check_memory_limit()
     from resource_guard import heavy_task

@@ -57,7 +57,12 @@ def download(year, docid, dest):
 
 
 def pdf_to_md(pdf, converter):
-    text = converter.convert(str(pdf)).text_content or ""
+    try:
+        text = converter.convert(str(pdf)).text_content or ""
+    except BaseException as e:  # pdfminer raises non-Exception errors (e.g. PSEOF) on damaged PDFs
+        if isinstance(e, (KeyboardInterrupt, SystemExit)):
+            raise
+        return ocr_pdf(pdf), "ocr"
     if len(text.strip()) >= MIN_TEXT:
         return text, "markitdown"
     return ocr_pdf(pdf), "ocr"
@@ -137,7 +142,9 @@ def main():
                         out.parent.mkdir(parents=True, exist_ok=True)
                         out.write_text(md, encoding="utf8")
                         row.update(md_chars=len(md), method=method)
-                    except Exception as e:  # keep going; failure is recorded, not hidden
+                    except BaseException as e:  # keep going; failure is recorded, not hidden
+                        if isinstance(e, (KeyboardInterrupt, SystemExit)):
+                            raise
                         row.update(status=f"convert_error:{type(e).__name__}")
                 w.writerow(row)
                 fh.flush()

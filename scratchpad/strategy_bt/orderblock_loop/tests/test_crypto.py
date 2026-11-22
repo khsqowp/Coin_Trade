@@ -136,19 +136,117 @@ class CryptoOrderBlockTests(unittest.TestCase):
         )
         self.assertIsNotNone(trade)
         self.assertAlmostEqual(trade.funding_return, -0.001)
+        marks = trade_daily_pnl(
+            data, trade, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=1000,
+        )
+        self.assertAlmostEqual(sum(marks.values()), trade.net_return)
 
-    def test_funding_inside_intrabar_stop_exit_candle_makes_trade_unscorable(self):
-        data = [Bar(i * 1000, 100, 100.5, 99.5, 100, 10) for i in range(50)]
-        data[5] = Bar(5000, 100, 100.5, 97, 99, 10)
+    def test_funding_500ms_after_entry_is_charged_by_exact_timestamp(self):
+        data = [Bar(i * 10_000, 100, 101, 99, 100, 10) for i in range(50)]
         setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
-        event_ts = data[5].timestamp + 500
+        event_ts = data[1].timestamp + 500
+        trade = simulate_trade(
+            data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=10_000,
+        )
+        self.assertIsNotNone(trade)
+        self.assertAlmostEqual(trade.funding_return, -0.001)
+        marks = trade_daily_pnl(
+            data, trade, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=10_000,
+        )
+        self.assertAlmostEqual(sum(marks.values()), trade.net_return)
+
+    def test_funding_500ms_after_time_exit_is_not_charged(self):
+        data = [Bar(i * 1000, 100, 101, 99, 100, 10) for i in range(50)]
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        exit_ts = data[49].timestamp
+        event_ts = exit_ts + 500
         trade = simulate_trade(
             data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
             bar_duration_ms=1000,
         )
         self.assertIsNotNone(trade)
+        self.assertEqual(trade.funding_return, 0.0)
+        self.assertIsNotNone(trade.net_return)
+        marks = trade_daily_pnl(
+            data, trade, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=1000,
+        )
+        self.assertAlmostEqual(sum(marks.values()), trade.net_return)
+
+    def test_entry_and_time_exit_ties_are_unscorable_with_real_bar_duration(self):
+        data = [Bar(i * 1000, 100, 101, 99, 100, 10) for i in range(50)]
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        for timestamp in (data[1].timestamp, data[49].timestamp):
+            with self.subTest(timestamp=timestamp):
+                event = FundingEvent(timestamp, 0.001, 100)
+                trade = simulate_trade(
+                    data, setup, funding={timestamp: event}, bar_duration_ms=1000,
+                )
+                self.assertIsNotNone(trade)
+                self.assertIsNone(trade.funding_return)
+                self.assertIsNone(trade.net_return)
+                self.assertIsNone(trade_daily_pnl(
+                    data, trade, funding={timestamp: event}, bar_duration_ms=1000,
+                ))
+
+    def test_no_duration_synthetic_ties_keep_registered_entry_exit_semantics(self):
+        data = [Bar(i, 100, 101, 99, 100, 10) for i in range(50)]
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        funding = {
+            data[1].timestamp: FundingEvent(data[1].timestamp, 0.002, 100),
+            data[49].timestamp: FundingEvent(data[49].timestamp, 0.001, 100),
+        }
+        trade = simulate_trade(data, setup, funding=funding)
+        self.assertIsNotNone(trade)
+        self.assertAlmostEqual(trade.funding_return, -0.001)
+
+    def test_funding_inside_stop_or_target_exit_candle_is_unscorable(self):
+        for exit_kind in ("stop", "target"):
+            with self.subTest(exit_kind=exit_kind):
+                data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10)
+                        for i in range(50)]
+                data[5] = (Bar(50_000, 100, 100.5, 97, 99, 10)
+                           if exit_kind == "stop" else
+                           Bar(50_000, 100, 111, 99.5, 109, 10))
+                setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+                event_ts = data[5].timestamp + 500
+                trade = simulate_trade(
+                    data, setup,
+                    funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+                    bar_duration_ms=10_000,
+                )
+                self.assertIsNotNone(trade)
+                self.assertEqual(trade.exit_reason, exit_kind)
+                self.assertIsNone(trade.funding_return)
+                self.assertIsNone(trade.net_return)
+
+    def test_funding_inside_intrabar_stop_exit_candle_makes_trade_unscorable(self):
+        data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10) for i in range(50)]
+        data[5] = Bar(50_000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 5_000
+        trade = simulate_trade(
+            data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=10_000,
+        )
+        self.assertIsNotNone(trade)
         self.assertEqual(trade.exit_reason, "stop")
         self.assertIsNone(trade.funding_return)
+        self.assertIsNone(trade.net_return)
+
+    def test_funding_at_intrabar_exit_candle_close_is_unscorable(self):
+        data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10) for i in range(50)]
+        data[5] = Bar(50_000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 10_000
+        trade = simulate_trade(
+            data, setup, funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+            bar_duration_ms=10_000,
+        )
+        self.assertEqual(trade.exit_reason, "stop")
         self.assertIsNone(trade.net_return)
 
     def test_daily_mark_to_market_reconciles_to_fixed_capital_trade_return(self):

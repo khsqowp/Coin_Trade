@@ -1,9 +1,10 @@
 """Single-heavy-run lock and resource preflight for orderblock research."""
 from __future__ import annotations
 
-import json
 import os
 import shutil
+import time
+from datetime import datetime, timezone
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
@@ -20,8 +21,17 @@ def heavy_task(role: str, lock_path: Path | None = None) -> Iterator[None]:
         raise RuntimeError(f"cannot lower research process priority: {exc}") from exc
     if shutil.disk_usage("/").free < 40 * 1024**3:
         raise RuntimeError("less than 40 GiB free on root volume")
-    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    identity = json.dumps({"role": role, "pid": os.getpid()})
+    started = time.monotonic()
+    while True:
+        stamp = datetime.now(timezone.utc).isoformat()
+        identity = f"{role}, {os.getpid()}, {stamp}"
+        try:
+            descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            break
+        except FileExistsError:
+            if time.monotonic() - started >= 3600:
+                raise TimeoutError("heavy lock wait exceeded 60 minutes")
+            time.sleep(300)
     try:
         os.write(descriptor, identity.encode())
         os.fsync(descriptor)

@@ -2,13 +2,14 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
 from data_access import (EQUITY_COMMON_SPLIT_MS, UTC_CUTOFF_MS, _funding_cadence_gaps,
-                         _settlement_bar_ms, iter_train_bars,
+                         _funding_events, _settlement_bar_ms, iter_train_bars,
                          load_bars, split_timestamp)
 
 
@@ -31,8 +32,31 @@ class DataAccessTests(unittest.TestCase):
         start = 1_680_000_000_000
         complete = [(start, 0.001, 8), (start + 28_800_009, 0.001, 8)]
         missing = [(start, 0.001, 8), (start + 57_600_000, 0.001, 8)]
-        self.assertEqual(_funding_cadence_gaps(complete), [])
-        self.assertEqual(_funding_cadence_gaps(missing), [start + 28_800_000])
+        self.assertEqual(_funding_cadence_gaps(complete, complete[-1][0]), [])
+        self.assertEqual(_funding_cadence_gaps(missing, missing[-1][0]),
+                         [start + 28_800_000])
+
+    def test_funding_cadence_detects_missing_final_settlement_through_cutoff(self):
+        start = 1_680_000_000_000
+        rows = [(start, 0.001, 8)]
+        through_ms = start + 28_800_000
+        self.assertEqual(_funding_cadence_gaps(rows, through_ms), [through_ms])
+        self.assertEqual(_funding_cadence_gaps(rows, through_ms - 1), [])
+
+    def test_funding_loader_never_opens_months_after_train_cutoff(self):
+        through_ms = int(pd.Timestamp("2023-01-15", tz="UTC").timestamp() * 1000)
+        empty = pd.DataFrame(columns=["calc_time", "last_funding_rate",
+                                      "funding_interval_hours"])
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "external/crypto/binance/um_fundingRate/BTCUSDT"
+            root.mkdir(parents=True)
+            (root / "2023-01.parquet").touch()
+            (root / "2023-02.parquet").touch()
+            with patch("data_access.pd.read_parquet", return_value=empty) as read:
+                with self.assertRaisesRegex(ValueError, "no funding rows"):
+                    _funding_events(Path(temp), "BTCUSDT", through_ms)
+            self.assertEqual(read.call_count, 1)
+            self.assertEqual(read.call_args.args[0].name, "2023-01.parquet")
 
     def test_post_cutoff_request_requires_explicit_freeze(self):
         with self.assertRaises(ValueError):
@@ -82,6 +106,21 @@ class DataAccessTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "conflicts with preregistered fixed split"):
                 load_bars(source, window="train", split_file=split, fixed_split_ms=4)
 
+    def test_symbol_filtered_equity_load_preserves_optional_complete_flag(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "equities.parquet"
+            split = root / "split.json"
+            pd.DataFrame({"ticker": ["AAA"] * 5,
+                          "open_time": range(5), "open": [10.0] * 5,
+                          "high": [11.0] * 5, "low": [9.0] * 5,
+                          "close": [10.5] * 5,
+                          "complete": [True, True, False, True, True]}).to_parquet(source)
+            frame = load_bars(source, window="train", split_file=split,
+                              symbol="AAA", end_ms=2, fixed_split_ms=2)
+            self.assertIn("complete", frame.columns)
+            self.assertEqual(list(frame["complete"]), [True, True, False])
+
     def test_crypto_bar_cutoff_excludes_bar_closing_after_freeze(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -95,6 +134,24 @@ class DataAccessTests(unittest.TestCase):
                               fixed_split_ms=cutoff - 60 * 60_000,
                               bar_duration_ms=15 * 60_000)
             self.assertEqual(list(frame.open_time), [cutoff - 29 * 60_000])
+
+    def test_crypto_close_aligned_split_has_no_train_test_bar_overlap(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "bars.parquet"
+            split = root / "split.json"
+            pd.DataFrame({"open_time": [100, 200, 300, 400],
+                          "open": [10.0] * 4, "high": [11.0] * 4,
+                          "low": [9.0] * 4, "close": [10.0] * 4}).to_parquet(source)
+            train = load_bars(source, window="train", split_file=split,
+                              fixed_split_ms=300, bar_duration_ms=100,
+                              split_at_bar_close=True)
+            test = load_bars(source, window="test", split_file=split,
+                             fixed_split_ms=300, bar_duration_ms=100,
+                             split_at_bar_close=True)
+            self.assertEqual(list(train.open_time), [100, 200])
+            self.assertEqual(list(test.open_time), [300, 400])
+            self.assertTrue(set(train.open_time).isdisjoint(test.open_time))
 
     def test_equity_common_cutoff_is_frozen_preregistered_timestamp(self):
         self.assertEqual(pd.to_datetime(EQUITY_COMMON_SPLIT_MS, unit="ms", utc=True),
@@ -155,10 +212,10 @@ class DataAccessTests(unittest.TestCase):
             pq.write_table(pa.Table.from_pandas(rows, preserve_index=False),
                            bars_dir / "NEWCOINUSDT.parquet")
             result = list(iter_train_bars("15m", data_dir=base,
-                                          common_split_ms=start - 1))
+                                          common_split_ms=start - 4 * 60 * 60_000))
             self.assertEqual(result, [("NEWCOINUSDT", [], {})])
 
-    def test_crypto_loader_preserves_funding_event_when_mark_is_missing(self):
+    def test_crypto_loader_uses_same_minute_close_when_mark_is_missing(self):
         with tempfile.TemporaryDirectory() as temp:
             base = Path(temp)
             start = int(pd.Timestamp("2020-01-01", tz="UTC").timestamp() * 1000)
@@ -179,9 +236,15 @@ class DataAccessTests(unittest.TestCase):
                            funding_dir / "2020-01.parquet")
             marks = base / "external/crypto/binance/um_markPriceKlines_1m/BTCUSDT"
             marks.mkdir(parents=True)
+            candles = base / "external/crypto/binance/um_klines_1m/BTCUSDT"
+            candles.mkdir(parents=True)
+            fallback_ts = funding_ts - 60_000
+            pq.write_table(pa.table({"open_time": [fallback_ts], "close": [100.25]}),
+                           candles / "2020-01.parquet")
             result = list(iter_train_bars("15m", data_dir=base, common_split_ms=None))
             event = result[0][2][funding_ts]
-            self.assertIsNone(event.mark_price)
+            self.assertEqual(event.mark_price, 100.25)
+            self.assertTrue(event.used_candle_close_fallback)
 
 
 if __name__ == "__main__":

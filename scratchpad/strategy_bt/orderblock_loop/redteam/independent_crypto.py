@@ -165,13 +165,16 @@ def trade(bars: Sequence[Bar], setup: Signal, *, revisit: int = 24,
     settled = 0.0
     for ts, rate, mark_price in funding_events:
         exit_ts = bars[exit_i].timestamp
+        entry_ts = bars[entry_i].timestamp
+        entry_tie = bar_duration_ms is not None and ts == entry_ts
+        time_exit_tie = reason == "time" and bar_duration_ms is not None and ts == exit_ts
         event_in_exit_candle = (
             reason != "time" and bar_duration_ms is not None
-            and exit_ts < ts < exit_ts + bar_duration_ms
+            and exit_ts <= ts <= exit_ts + bar_duration_ms
         )
-        if bars[entry_i].timestamp < ts <= exit_ts or event_in_exit_candle:
-            if event_in_exit_candle:
-                raise ValueError("unscorable: funding order within exit candle is unknown")
+        if entry_tie or time_exit_tie or event_in_exit_candle:
+            raise ValueError("unscorable: funding order at entry/exit boundary is unknown")
+        if entry_ts < ts <= exit_ts:
             settled += -side * rate * mark_price / entry
     gross = side * (raw - entry) / entry
     net = gross - 2 * (fee + slip)
