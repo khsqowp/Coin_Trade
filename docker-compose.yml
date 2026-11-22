@@ -111,7 +111,7 @@ services:
     volumes:
       - trading_kr_rotation_state:/app/data
       - trading_control:/app/control
-      - ./.kis-cache:/app/cache
+      - ${STATE_ROOT:-.}/.kis-cache:/app/cache
     networks: [trading]
     profiles: ["kr-rotation"]
     restart: unless-stopped
@@ -140,7 +140,7 @@ services:
     volumes:
       - trading_us_rotation_state:/app/data
       - trading_control:/app/control
-      - ./.kis-cache:/app/cache
+      - ${STATE_ROOT:-.}/.kis-cache:/app/cache
     networks: [trading]
     profiles: ["us-rotation"]
     restart: unless-stopped
@@ -240,7 +240,7 @@ services:
       SCAN_START_HHMM: "09:00"
       SCAN_WINDOW_MINUTES: "120"
     volumes:
-      - ./trading-tick-archive:/app/archive
+      - ${STATE_ROOT:-.}/trading-tick-archive:/app/archive
     networks: [trading]
     profiles: ["kr-opening-scan"]
     restart: unless-stopped
@@ -263,7 +263,7 @@ services:
       - trading_tick_state:/app/data
       - trading_kr_swing_state:/app/kr-state:ro
       - trading_us_swing_state:/app/us-state:ro
-      - ./trading-tick-archive:/app/archive
+      - ${STATE_ROOT:-.}/trading-tick-archive:/app/archive
     networks: [trading]
     profiles: ["tick-stream"]
     restart: unless-stopped
@@ -278,7 +278,7 @@ services:
     # 서버 호스트 유저(noroot, uid 1000)와 맞춰서 bind mount 디렉터리에 별도 chown 없이 쓸 수 있게 한다
     user: "1000:1000"
     volumes:
-      - ./trading-forward-test:/app/data
+      - ${STATE_ROOT:-.}/trading-forward-test:/app/data
     networks: [trading]
     profiles: ["forward-test"]
     restart: unless-stopped
@@ -293,7 +293,7 @@ services:
     environment:
       FORWARD_PROFILE: l5_12h
     volumes:
-      - ./trading-forward-test-12h:/app/data
+      - ${STATE_ROOT:-.}/trading-forward-test-12h:/app/data
     networks: [trading]
     profiles: ["forward-test"]
     restart: unless-stopped
@@ -308,7 +308,7 @@ services:
     environment:
       FORWARD_PROFILE: jbb_1h
     volumes:
-      - ./trading-forward-test-jbb-1h:/app/data
+      - ${STATE_ROOT:-.}/trading-forward-test-jbb-1h:/app/data
     networks: [trading]
     profiles: ["forward-test"]
     restart: unless-stopped

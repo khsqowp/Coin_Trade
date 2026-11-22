@@ -20,7 +20,7 @@ services:
       KRONOS_TOKENIZER_ID: NeoQuasar/Kronos-Tokenizer-2k
       KRONOS_CONTEXT_LENGTH: "300"
     volumes:
-      - ../../trading-crypto-paper-state:/input:ro
+      - ${STATE_ROOT:-../..}/trading-crypto-paper-state:/input:ro
       - ./runtime:/output
       - type: bind
         source: ${HOME}/Library/Application Support/CoinTradeShadowArchive
