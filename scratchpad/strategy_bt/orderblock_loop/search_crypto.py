@@ -10,6 +10,7 @@ PREREG arithmetic rule: price return + funding cash flow - two one-way costs.
 from __future__ import annotations
 
 import argparse
+from bisect import bisect_left
 import csv
 import hashlib
 import json
@@ -36,7 +37,8 @@ CSV_PATH = HERE / "TRAIN_TRIALS.csv"
 FIELDS = ("trial_id", "round", "market_group", "utc_timestamp", "definition",
           "parameter_grid_hash", "code_sha256", "train_period", "metric", "rank", "notes")
 METRIC_FIELDS = (
-    "symbols", "trades", "win_rate", "wilson_95_lower", "payoff_ratio",
+    "symbols", "kept_symbols", "excluded_funding_symbols",
+    "excluded_no_train_bar_symbols", "trades", "win_rate", "wilson_95_lower", "payoff_ratio",
     "profit_factor", "expectancy_bps", "max_drawdown",
     "incomplete_bars_excluded", "unscorable_funding_trades",
     "unscorable_funding_trade_ids", "time_exit_censored_setups",
@@ -155,7 +157,7 @@ def _append(row: dict[str, object]) -> None:
     grid_hash = hashlib.sha256(json.dumps(grid, sort_keys=True,
                                            separators=(",", ":")).encode()).hexdigest()
     code_hash = hashlib.sha256()
-    for filename in ("crypto.py", "search_crypto.py", "data_access.py", "metrics.py",
+    for filename in ("crypto.py", "search_crypto.py", "search_crypto_r3.py", "data_access.py", "metrics.py",
                      "resource_guard.py"):
         code_hash.update((HERE / filename).read_bytes())
     metric = {key: row.get(key) for key in METRIC_FIELDS}
@@ -238,6 +240,7 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                 displacement_atr=1.5, volume_multiple=1.5,
             )
             zone_cache[cache_key] = zones
+        zones = _filter_r3_zones(bars, zones, config)
         bar_duration_ms = {"15m": 900_000, "1h": 3_600_000,
                            "4h": 14_400_000}[config["timeframe"]]
         funding_by_timestamp = _funding_by_timestamp(bars, funding, bar_duration_ms)
@@ -315,7 +318,9 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             "censored_setup_ids": setup_ids, "censored_setup_count": len(setup_ids),
         })
     return {
-        "symbols": len(set(symbols_seen)), "trades": metrics.count,
+        "symbols": len(set(symbols_seen)), "kept_symbols": len(set(symbols_seen)),
+        "excluded_funding_symbols": [], "excluded_no_train_bar_symbols": [],
+        "trades": metrics.count,
         "symbols_with_unresolved_funding_prices": len(mark_missing_symbols),
         "symbols_unresolved_funding_prices": sorted(mark_missing_symbols),
         "symbols_with_funding_coverage_gaps": len(funding_gap_symbols),
@@ -334,7 +339,8 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
         "time_exit_censored_setup_ids": sorted(censored_setup_ids),
         "unscorable_censored_setup_count": len(unscorable_censored_setup_ids),
         "status": ("unscorable" if unscorable_funding_trades
-                   or unscorable_censored_setup_ids or len(valid_symbols) < 30
+                   or unscorable_censored_setup_ids
+                   or len(valid_symbols) < int(config.get("minimum_symbols", 30))
                    else "completed"),
         "detail": "; ".join(filter(None, (
             f"{unscorable_funding_trades} funding trades are unscorable; trial cannot pass G"
@@ -347,10 +353,56 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             if funding_gap_symbols else "",
             f"{len(empty_symbols)} symbols have no train bars"
             if empty_symbols else "",
-            f"only {len(valid_symbols)} valid symbols; need 30"
-            if len(valid_symbols) < 30 else "",
+            f"only {len(valid_symbols)} valid symbols; need {int(config.get('minimum_symbols', 30))}"
+            if len(valid_symbols) < int(config.get("minimum_symbols", 30)) else "",
         ))),
     }
+
+
+def _filter_r3_zones(bars, candidates, config):
+    """Apply R3's pre-registered prior-complete-day trend and UTC session filters."""
+    trend = config.get("trend_filter", "none")
+    session = config.get("session_filter", "none")
+    if trend not in ("none", "close_gt_sma20", "close_gt_sma50", "sma20_gt_sma50"):
+        raise ValueError(f"unsupported R3 trend filter: {trend}")
+    if session not in ("none", "asia", "europe", "us"):
+        raise ValueError(f"unsupported R3 session filter: {session}")
+    if trend == "none" and session == "none":
+        return candidates
+    day_closes = {}
+    for bar in bars:
+        day_closes[bar.timestamp // 86_400_000] = bar.close
+    days = sorted(day_closes)
+    closes = [day_closes[day] for day in days]
+    prefix = [0.0]
+    for close in closes:
+        prefix.append(prefix[-1] + close)
+    kept = []
+    for zone in candidates:
+        signal = bars[zone.signal_index]
+        signal_day = signal.timestamp // 86_400_000
+        hour = datetime.fromtimestamp(signal.timestamp / 1000, timezone.utc).hour
+        signal_session = "asia" if hour < 8 else "europe" if hour < 16 else "us"
+        if session != "none" and signal_session != session:
+            continue
+        prior_count = bisect_left(days, signal_day)
+        if trend == "close_gt_sma20":
+            if prior_count < 20 or closes[prior_count - 1] <= (
+                    prefix[prior_count] - prefix[prior_count - 20]) / 20:
+                continue
+        if trend == "close_gt_sma50":
+            if prior_count < 50 or closes[prior_count - 1] <= (
+                    prefix[prior_count] - prefix[prior_count - 50]) / 50:
+                continue
+        if trend == "sma20_gt_sma50":
+            sma20 = ((prefix[prior_count] - prefix[prior_count - 20]) / 20
+                     if prior_count >= 20 else None)
+            sma50 = ((prefix[prior_count] - prefix[prior_count - 50]) / 50
+                     if prior_count >= 50 else None)
+            if sma20 is None or sma50 is None or sma20 <= sma50:
+                continue
+        kept.append(zone)
+    return kept
 
 
 def _run() -> int:
