@@ -1,0 +1,17 @@
+{
+  "experiment_id": "CRYPTO-OB-PIVOT-BOS-002",
+  "code_commit_sha": "306926212e348e9cf8c3aa8da819b6e3ea1819d9",
+  "code_tree_sha256": "3761da4afb77a493c11988253c85f2ac95b894b7",
+  "prereg_sha256": "6cd396a8ae32f0121bb43a106ca52d845c166878456b598bfbc4cdfe18a41b30",
+  "scorer_sha256": "b6da0ae5ce0846b1e5209f4d0ef91df5abea9ce26ac0a852b46f0408ab43e831",
+  "input_fingerprint": "de5c87e883f4c3e00b818c541a0e36d1320f08a2577dc063d2bb9ff519ab9036",
+  "supporting_cost_input_audit_sha256": "8f04890b1b52444bec9453f00618dae4bc05fe9173640342306dfad13ee42a1c",
+  "panel_verdicts": {
+    "BANACH": "APPROVE",
+    "RAMAN": "APPROVE",
+    "HARVEY": "APPROVE",
+    "SINGER": "APPROVE"
+  },
+  "scope": "single historical development-only fee-proxy screen; funding economics and sealed OOS remain blocked",
+  "trial_family": "OB mitigation / MSS / sweep / retest family; total historical trial count unresolved"
+}
