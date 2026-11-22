@@ -108,4 +108,6 @@ Follow-up correction: local staged data was subsequently found under
 `/Users/user/CODE/trading_data`, although the NAS mount remained absent. The
 read-only crypto archive audit and the resulting blocked gates are recorded in
 `strategy_search_round_20261122.md`. The spot/perpetual order-block historical
-screen remains unscored pending a revised four-role preregistration verdict.
+screen remains unscored. Its four-role preregistration and accounting rules are
+approved; only the final code/document commit freeze and run fingerprint gate
+remain before a one-time development-only falsification screen.

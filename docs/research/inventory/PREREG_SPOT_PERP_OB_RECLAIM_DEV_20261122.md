@@ -1,6 +1,6 @@
 # 사전등록 — 동일구간 현물/퍼페추얼 OB 재탈환 개발 반증 실험
 
-상태: `DATA_FINGERPRINTED — 역사 개발 반증 1회 전용; strategy code fingerprint·합성 테스트·고정 commit SHA 전에는 실행 금지`  
+상태: `IMPLEMENTATION_TESTED — 4인 패널 승인·입력 fingerprint·합성 테스트 완료; commit SHA 고정 전에는 실행 금지`
 기록일: 2026-11-22  
 시장: Binance USDⓈ-M perpetual / historical backtest only  
 가설 ID: `CRYPTO-OB-SPOTPERP-SAMEBAR-001`  
@@ -49,14 +49,14 @@
 
 - Stop buffer는 signal 직전 완료 5분 ATR14의 0.1배다. Long stop=`zone_low - 0.1×ATR14`; short stop=`zone_high + 0.1×ATR14`.
 - 위험 `R=abs(entry-stop)`. Long target=`entry+2R`, short target=`entry-2R`. R≤0, 비정상 가격, 다음 봉이 이미 stop 바깥에서 시작한 경우도 신호 분모에 남기고 non-executable/M2 failure로 기록한다.
-- 경로는 실제 다음 5분봉의 첫 1분봉 open 진입 후, 그 진입 분봉을 포함해 100개 완료 1분봉(100분)까지만 확인한다. 각 분봉은 먼저 open gap을 판정한다: open이 stop을 넘어 불리하게 갭이면 open 가격 체결, open이 target을 넘어 유리하게 갭이면 target 가격 체결로 제한한다. open이 두 barrier 사이면 high/low를 확인하고 같은 분봉에서 stop과 target이 모두 닿으면 stop-first 실패다. 시간 만료는 M2 실패다. 사전 제외 tail이 아닌 시계열 결측·정렬 위반은 성공에서 제외하지 않고 M2 실패로 세며 데이터 결함률을 따로 보고한다.
+- 경로는 실제 다음 5분봉의 첫 1분봉 open 진입 후, 그 진입 분봉을 포함해 100개 완료 1분봉(100분)까지만 확인한다. 각 분봉은 먼저 open gap을 판정한다: open이 stop을 넘어 불리하게 갭이면 open 가격 체결, open이 target을 넘어 유리하게 갭이면 target 가격 체결로 제한한다. open이 두 barrier 사이면 high/low를 확인하고 같은 분봉에서 stop과 target이 모두 닿으면 stop-first 실패다. 시간 만료는 M2 실패이며 100번째 분봉 종가에 청산해 그 수익을 경제성 지표에 반영한다. 사전 제외 tail이 아닌 시계열 결측·정렬 위반은 성공에서 제외하지 않고 M2 실패로 세며 데이터 결함률을 따로 보고하고, 데이터 결함 신호가 한 건이라도 있으면 경제성 스크린을 중단한다.
 - M1은 100분 종료 가격을 신호 기준 5분 종가와 비교한다. flat band는 `0.25 × ATR14(신호 직전 5분봉) × sqrt(20)`로 고정하고, 그 위/아래 종가를 각각 long/short 적중으로 채점한다. M1은 M2 대체 지표가 아니다.
 - 비용: 역사 코인 비교 프로토콜의 왕복 10bp base와 30bp stress를 그대로 쓴다. 실제 spread/slippage가 아니며 미측정 spread/market-impact를 대변하지 않는다. Funding cash flow와 그 timestamp semantics는 아래 별도 게이트가 해결되기 전까지 계산하지 않는다. 따라서 `net expectancy after fees, before funding`만 설명 지표이며 수익성 합격 판정에는 사용할 수 없다.
 
 ## 분모·독립 표본·지표
 
-- M2 주 분모는 모든 발행 `side=long|short` 신호다. 미체결·무효 진입·손절·시간 만료·동시 touch·결측 경로는 실패다. `side=none` 모호 anchor는 별도 건수와 모든 eligible anchor coverage에 반영한다.
-- eligible anchor는 고정 코호트의 완전하게 존재하고 spot/perp 정렬된 USDⓈ-M 및 spot 5분봉, ATR warm-up 완료, 그리고 신호 확정 후 100분 평가창 전체가 cutoff 이전에 끝나는 시각이다. OB 계산은 USDⓈ-M만 사용하고 spot은 동일구간 close 필터에만 쓴다. zone이 없는 봉도 분모에 포함한다. cutoff 직전 행정적 tail 제외 건수는 별도 공개한다. eligible 신호의 이후 경로 안에 있는 결측·불일치는 해당 신호의 M2 실패로 포함한다. 전체 발행 M2, Wilson 95% interval, M1, M2 outcome별 수, coverage=`actionable issued / all fixed-cohort eligible 5m anchors`, 최초 접촉 대비 발행률, 종목별 신호·M2·수익, 수수료 전/후 비용가정별 기대 R을 출력한다.
+- M2 주 분모는 모든 발행 `side=long|short` 신호다. 미체결·무효 진입·손절·시간 만료·동시 touch·결측 경로는 실패다. 비체결/무효 위험 신호는 실현 손익 0·거래비용 0으로 기록하되 M2 실패로 분모에 남긴다. 왕복 수수료는 실제 진입이 체결된 신호에만 적용하고, 유효 체결 신호는 target/stop 체결가 또는 시간 만료 종가의 gross 손익에서 고정 왕복 수수료를 뺀다. 수수료 후 평균 simple return은 모든 발행 신호 분모에 포함해 계산하고, 체결 신호만의 평균 R도 **수수료 차감 후** 별도 표시한다. `side=none` 모호 anchor는 별도 건수와 모든 eligible anchor coverage에 반영한다.
+- eligible anchor는 고정 코호트의 완전하게 존재하고 spot/perp 정렬된 USDⓈ-M 및 spot 5분봉, ATR warm-up 완료, 그리고 신호 확정 후 100분 평가창 전체가 cutoff 이전에 끝나는 시각이다. OB 계산은 USDⓈ-M만 사용하고 spot은 동일구간 close 필터에만 쓴다. zone이 없는 봉도 분모에 포함한다. cutoff 직전 행정적 tail 제외 건수는 별도 공개한다. eligible 신호의 이후 경로 안에 있는 결측·불일치는 해당 신호의 M2 실패로 포함한다. 전체 발행 M2와 Wilson 95% interval, M1, M2 outcome별 수, coverage=`actionable issued / all fixed-cohort eligible 5m anchors`, 최초 접촉 대비 발행률, 종목별 신호·M2·M1·수익, 동시간 코인 anchor 군집, 수수료 후 all-issued 평균수익 및 체결-only 평균 R을 출력한다. Wilson 구간은 군집 보정하지 않은 기술 통계로 표시한다.
 - 비중복 표본은 종목 내 시간순으로 정렬한다. 앞 신호의 최대 100분 평가창이 끝나기 전에 나온 다음 신호는 전체 발행 M2에 남기되 비중복 M2에는 넣지 않는다. 합격 게이트의 비중복 `N≥200`은 심볼별이 아니라 전체 코호트 합계이며, 심볼별 분포와 상위 심볼 집중도를 따로 보고한다. 시장 전체 동시간 알트 상관은 별도 5분 anchor cluster로 집계한다.
 - 성공적 개발 스크린은 다음 모두가 필요하다: 후보 전체 발행 M2 ≥80%; 전체 고정 코호트 합산 비중복 신호 N≥200; coverage≥10%; base/stress 두 경우 모두 수수료 후·펀딩 전 기대값 >0; 후보 M2의 Wilson 하한이 위에 고정한 단 하나의 1차 비교군 M2 점추정치보다 높음. 모든 종목의 신호·성공 수와 종목 집중도도 보고하되 종목별 N≥200을 요구하지 않는다. 이 비교는 역사 개발자료에서의 선별 스크린일 뿐이며 가설의 인과효과나 엣지 증명이 아니다. prospective/sealed OOS 실험에 진입할 자격만 부여한다. 표본 부족은 `INSUFFICIENT_SAMPLE`, 조건 미달은 `REJECT`.
 - 최종 코인 승인은 개발 스크린이 아니다. 미사용 prospective/valid sealed OOS에서 전체 발행 N≥200, 비중복 N≥200, ≥20개 종목, coverage≥10%, M2≥80%, 두 비용 후 funding 포함 기대값>0, 사전고정 기준선보다 Wilson lower-bound 우위, walk-forward/cluster/bootstrap/multiple-testing/red-team 게이트까지 모두 필요하다.
@@ -84,7 +84,7 @@
 | Execution / Causality | Singer | `APPROVE` | 가격원천·시점·경로 체결 규칙 |
 | Red / Judge | Raman | `APPROVE` | baseline·선택편향·레드팀 검토 |
 
-1차·2차 리뷰에서 나온 모호성 수정 후 네 명이 같은 3차 수정본을 승인했다. 패널 승인은 역사 개발자료의 단 한 차례 반증 실험을 위한 문서 승인일 뿐이며, 입력 파일 무결성, 커밋된 코드/문서 지문, synthetic 경계 테스트 및 약관 확인을 대체하지 않는다. 어떤 OOS·수익성·실거래 승인도 아니다.
+1차·2차 리뷰에서 나온 모호성 수정 후 네 명이 같은 3차 수정본을 승인했다. 이어 경로 결측·만기 회계·미체결 비용 처리를 보강했고 네 명 모두 최종 accounting wording도 승인했다. 패널 승인은 역사 개발자료의 단 한 차례 반증 실험을 위한 문서 승인일 뿐이며, 커밋된 코드/문서 지문 및 약관 확인을 대체하지 않는다. 현재 구현의 전략·입력 freeze 합성 테스트 17개와 지문/아카이브 회귀 테스트 6개가 통과했다. 어떤 OOS·수익성·실거래 승인도 아니다.
 
 ## 근거 문서
 
