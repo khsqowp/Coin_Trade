@@ -29,7 +29,7 @@
 - funding/mark 결함 때문에 scorer는 funding 비용을 반영하지 않는다. 후보 스크린은 fee-only 과거 개발 진단일 뿐, 완전 순수익·OOS·전향 성과를 주장할 수 없다.
 - 독립 검토자 4명(Banach, Raman, Harvey, Singer)이 사전등록·scorer 프로토콜을 승인했다. 이는 코드·절차 승인이지 전략 성과 승인과 다르다.
 - 재현성 테스트: `tests/test_spot_perp_ob_pivot_bos.py` 19 passed. `py_compile`, `git diff --check` 통과.
-- 코드/감사 커밋: `d806be368a3ea5aa4b2c1e6a74069fce1441d8b1`; 검토자 식별자 수정: `306926212e348e9cf8c3aa8da819b6e3ea1819d9`; freeze manifest 단독 커밋: `a98ea22e37b4e1d968ed2f7d5891e9f2fdf8fd77`. 세 커밋은 요청된 브랜치에 push했고, 마지막 원격 SHA는 로컬 HEAD와 일치했다.
+- 코드/감사 커밋 `d806be368a3ea5aa4b2c1e6a74069fce1441d8b1` 및 검토자 식별자 수정 `306926212e348e9cf8c3aa8da819b6e3ea1819d9`는 원격에 반영됐다. 첫 freeze manifest-only 커밋(`a98ea22e37b4e1d968ed2f7d5891e9f2fdf8fd77`)도 당시 push됐지만, 뒤이은 진행기록 커밋으로 scorer의 `freeze commit == HEAD` 및 `freeze parent == code_commit` 조건이 더는 성립하지 않는다. 따라서 이 첫 manifest는 실행 승인에 사용할 수 없으며, 현재 진행기록 커밋을 새 코드 기준점으로 삼는 manifest-only freeze를 마지막 커밋으로 다시 만들어야 한다.
 
 ## 실행 직전 자원 게이트와 재개 조건
 
