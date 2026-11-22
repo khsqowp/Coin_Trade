@@ -21,8 +21,8 @@ strategies.
 |---|---|---|
 | KR equities/ETFs researcher | Existing momentum, stress-day reversal, ETF rotation, and compression/breakout work is either below risk/return gates or compromised by survivor-cohort and adjustment-history gaps. No distinct candidate can be defended with the present inputs. | 0 qualifying candidates; do not tune the exposed panel. |
 | US equities/ETFs researcher | Existing momentum/ETF/gap families are rejected or blocked. The 92-symbol current-survivor cache has OHLC violations, zero-volume rows, unresolved corporate actions and no PIT membership. An earnings-surprise idea cannot be reconstructed from the available OHLCV alone. | 0 qualifying candidates; no new price backtest until data eligibility is fixed. |
-| Crypto order-block researcher | Proposed one new mechanism: funding-settlement-linked failed-auction recovery at an existing OB zone. It conditions on information before a settlement, then requires a zone sweep and close reclaim within a fixed five-minute window. This is materially different from merely changing OB confidence thresholds, but it is not yet preregistered or measured. | One unvalidated hypothesis; no performance claim. |
-| Independent red team | Confirmed the frozen M2 gate and rejected Core promotion. Found a comparison-contract mismatch: the shared protocol requires beating the strongest valid preregistered baseline, while the Round S implementation checks only same-event momentum. Also found a run ID `v1` versus output directory `v6` mismatch. | Keep Round S rejected; reconcile contracts and identifiers before any new score run. |
+| Crypto order-block researcher | Proposed two unvalidated leads: funding-settlement-linked failed-auction recovery at an existing OB zone; and 5m OB first mitigation followed by a confirmed 1m pivot BOS. Both have fixed-rule outlines but no score. | Two hypothesis leads; neither is a validated strategy. |
+| Independent red team | Confirmed the frozen M2 gate and rejected Core promotion. Found a comparison-contract mismatch: the shared protocol requires beating the strongest valid preregistered baseline, while the Round S implementation checks only same-event momentum. Also found a run ID `v1` versus output directory `v6` mismatch. Separately reviewed the exact 5m OB → 1m pivot BOS rule: it is not a direct clone, but it belongs to the same OB/sweep-MSS family and needs overlap-aware trial accounting. | Keep Round S rejected; reconcile contracts and identifiers before any new score run. Treat the second OB lead as an unregistered family variant, not independent evidence. |
 
 ## Crypto hypothesis lead — not a registered experiment
 
@@ -55,6 +55,27 @@ uncertainty as well as all-signal M2, M1, Wilson interval, coverage, stop/target
 timeout rates and net expectancy after fees, slippage assumptions and observed
 holding-period funding.
 
+## Second crypto hypothesis lead — not a registered experiment
+
+The second lead uses a fully closed 5m OB's first 1m mitigation only to arm a
+setup. It waits for a post-touch 1m pivot high/low confirmed by two right-side
+closed bars, then enters on the first completed close through that pivot in the
+OB direction. No sweep is required. The proposed window is 10 one-minute bars
+after the touch; entry is the following 1m open; stop is the touch-to-BOS
+extreme; target is 2R; vertical barrier is 20 completed 1m bars; same-bar
+stop/target resolves stop-first. A completed 5m close through the OB distal
+edge cancels the setup.
+
+The red team judged it a distinct trigger from same-timeframe OB retests and
+from P5's sweep/CHoCH/retest, but an adjacent OB/sweep-MSS family variant, not
+an independent strategy family. Before any scoring, freeze exact OB formation,
+edge conventions, overlapping-zone selection, whether touch counts the
+contact candle, pivot confirmation timing, the 10-bar deadline, same-time
+invalidation priority, invalid-entry and gap rules, denominator, costs and
+trial-family accounting. A right-side pivot cannot be used until both right
+bars close; if that pushes confirmation past the deadline, no signal exists.
+This candidate is unregistered, unmeasured and cannot be promoted.
+
 ## Existing evidence that prevents false promotion
 
 - Round S adaptive selective M2 historical diagnostic: M2 49.4161%, Wilson
@@ -86,11 +107,12 @@ holding-period funding.
 ## Run record and next gates
 
 - Four agents completed independent read-only market/reviewer tasks. The
-  bounded crypto follow-up proposed sweep/reclaim/BOS as a possible second OB
-  hypothesis; the red team rejected it as structurally overlapping P5
-  `sweep_choch_retest`, P6 `fabio_liquidity_mss`, Round 10 sweep+taker-flow,
-  and the existing OB zone-retest family. A second distinct crypto candidate
-  did not survive the overlap screen.
+  red team rejected a generic sweep/reclaim/BOS formulation as overlapping
+  P5 `sweep_choch_retest`, P6 `fabio_liquidity_mss`, Round 10 sweep+taker-flow,
+  and the existing OB zone-retest family. On a separate exact-rule review, it
+  classified the no-sweep 5m-OB-first-mitigation → 1m-confirmed-pivot-BOS lead
+  as a distinct trigger but an adjacent OB/sweep-MSS family variant. Its score
+  remains prohibited until preregistration and data gates pass.
 - Verification run in the active checkout:
   `python3 -m pytest -q -p no:cacheprovider tests/test_adaptive_selective_m2_probe.py`
   — 23 passed, 1 environment warning about physical-core detection.
@@ -104,10 +126,10 @@ holding-period funding.
 - Next actions: (1) obtain two independent KR/US data-eligibility proofs,
   including permitted sample coverage and price quote only; (2) fix the
   baseline comparator and run-ID versioning in a newly versioned experiment
-  rather than modifying Round S history; (3) source a second non-overlapping
-  OB mechanism with fixed source rules before preregistration; (4) preregister
-  only surviving crypto hypotheses; (5) collect a fresh post-freeze forward
-  sample before any one-time score.
+  rather than modifying Round S history; (3) preregister the two crypto leads
+  separately, with family-level multiple-testing accounting and complete
+  execution definitions; (4) resolve the 1m/5m contract and funding data gates;
+  (5) collect a fresh post-freeze forward sample before any one-time score.
 
 ## Source links
 
