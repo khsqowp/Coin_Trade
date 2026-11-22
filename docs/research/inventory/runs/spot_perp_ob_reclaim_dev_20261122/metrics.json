@@ -1,0 +1,362 @@
+{
+  "administrative_tail_excluded_anchors": 672,
+  "ambiguous_anchors": 504,
+  "candidate_issuance_pct_of_first_touches": 10.89918788068093,
+  "candidate_m1_direction_accuracy": 0.3376320974386531,
+  "candidate_m1_scored": 16749,
+  "candidate_m2_hits": 5257,
+  "candidate_m2_rate": 0.3138694847453579,
+  "candidate_m2_wilson_95": [
+    0.3068848440852452,
+    0.32093948557692364
+  ],
+  "code_commit_sha": "ff88bcc746c097c3212813d6f9f310f4a3aebcd7",
+  "code_file_sha256": "8795ad4d64468c6dda27cca432a4cbb9b33aa1be8e6688fccf44331c47cd67c6",
+  "cohort_symbols": 32,
+  "coverage_pct": 0.2388532306863868,
+  "development_screen": {
+    "checks": {
+      "all_issued_m2_at_least_80pct": false,
+      "base_net_return_per_issued_signal_positive": false,
+      "candidate_wilson_lower_above_fixed_unfiltered_baseline": true,
+      "cohort_nonoverlap_at_least_200": true,
+      "coverage_at_least_10pct": false,
+      "stress_net_return_per_issued_signal_positive": false
+    },
+    "status": "REJECT"
+  },
+  "eligible_anchors": 7012256,
+  "experiment_id": "CRYPTO-OB-SPOTPERP-SAMEBAR-001",
+  "filter_failure_m1_direction_accuracy": 0.3404395171008523,
+  "filter_failure_m2": 0.27908386465385654,
+  "filter_failure_m2_wilson_95": [
+    0.27671423433908404,
+    0.28146589049645576
+  ],
+  "filter_failure_n": 136923,
+  "freeze_commit_sha": "6d9448e3ebf6eee5e0f5b126bc55e0947deda978",
+  "input_fingerprint": "de5c87e883f4c3e00b818c541a0e36d1320f08a2577dc063d2bb9ff519ab9036",
+  "invalid_anchor_excluded_anchors": 0,
+  "issued_candidate_n": 16749,
+  "issued_symbol_count": 32,
+  "m2_outcomes": {
+    "NON_EXECUTABLE": 7,
+    "STOP": 10424,
+    "STOP_GAP": 75,
+    "TARGET": 5215,
+    "TARGET_GAP": 42,
+    "TIMEOUT": 986
+  },
+  "max_symbols_same_5m_anchor": 10,
+  "mean_net_r_executed_base": -1.490614694008871,
+  "mean_net_r_executed_stress": -4.518242913081829,
+  "net_return_per_issued_signal_base": -0.0009663532243703993,
+  "net_return_per_issued_signal_stress": -0.002965517353572143,
+  "no_entry_count": 7,
+  "nonoverlap_candidate_n": 15789,
+  "per_symbol": {
+    "AAVEUSDT": {
+      "candidate_n": 449,
+      "first_touch_n": 4870,
+      "m1_direction_accuracy": 0.36525612472160357,
+      "m2_hits": 161,
+      "m2_rate": 0.3585746102449889,
+      "net_return_base_mean": -0.000578079542856637,
+      "net_return_stress_mean": -0.002578079542856637
+    },
+    "ADAUSDT": {
+      "candidate_n": 395,
+      "first_touch_n": 4241,
+      "m1_direction_accuracy": 0.27341772151898736,
+      "m2_hits": 118,
+      "m2_rate": 0.29873417721518986,
+      "net_return_base_mean": -0.0009136718493829824,
+      "net_return_stress_mean": -0.0029136718493829824
+    },
+    "APTUSDT": {
+      "candidate_n": 466,
+      "first_touch_n": 4735,
+      "m1_direction_accuracy": 0.3669527896995708,
+      "m2_hits": 144,
+      "m2_rate": 0.3090128755364807,
+      "net_return_base_mean": -0.0010729577572656966,
+      "net_return_stress_mean": -0.003072957757265697
+    },
+    "ARBUSDT": {
+      "candidate_n": 395,
+      "first_touch_n": 4427,
+      "m1_direction_accuracy": 0.3468354430379747,
+      "m2_hits": 127,
+      "m2_rate": 0.32151898734177214,
+      "net_return_base_mean": -0.0011463811063388237,
+      "net_return_stress_mean": -0.0031463811063388233
+    },
+    "ATOMUSDT": {
+      "candidate_n": 619,
+      "first_touch_n": 4709,
+      "m1_direction_accuracy": 0.3473344103392569,
+      "m2_hits": 187,
+      "m2_rate": 0.30210016155088854,
+      "net_return_base_mean": -0.0010388373574347,
+      "net_return_stress_mean": -0.0030388373574346994
+    },
+    "AVAXUSDT": {
+      "candidate_n": 457,
+      "first_touch_n": 4936,
+      "m1_direction_accuracy": 0.32603938730853393,
+      "m2_hits": 144,
+      "m2_rate": 0.3150984682713348,
+      "net_return_base_mean": -0.0007472105122025697,
+      "net_return_stress_mean": -0.00274721051220257
+    },
+    "BCHUSDT": {
+      "candidate_n": 571,
+      "first_touch_n": 5100,
+      "m1_direction_accuracy": 0.3327495621716287,
+      "m2_hits": 183,
+      "m2_rate": 0.3204903677758319,
+      "net_return_base_mean": -0.0008142034084742827,
+      "net_return_stress_mean": -0.0028142034084742825
+    },
+    "BNBUSDT": {
+      "candidate_n": 789,
+      "first_touch_n": 5849,
+      "m1_direction_accuracy": 0.3105196451204056,
+      "m2_hits": 255,
+      "m2_rate": 0.3231939163498099,
+      "net_return_base_mean": -0.0009314066893170606,
+      "net_return_stress_mean": -0.0029314066893170606
+    },
+    "BTCUSDT": {
+      "candidate_n": 862,
+      "first_touch_n": 5812,
+      "m1_direction_accuracy": 0.3375870069605568,
+      "m2_hits": 262,
+      "m2_rate": 0.3039443155452436,
+      "net_return_base_mean": -0.0010533064470279725,
+      "net_return_stress_mean": -0.003053306447027973
+    },
+    "CRVUSDT": {
+      "candidate_n": 466,
+      "first_touch_n": 2986,
+      "m1_direction_accuracy": 0.3497854077253219,
+      "m2_hits": 136,
+      "m2_rate": 0.2918454935622318,
+      "net_return_base_mean": -0.0006655850940156217,
+      "net_return_stress_mean": -0.002665585094015621
+    },
+    "DOGEUSDT": {
+      "candidate_n": 444,
+      "first_touch_n": 4638,
+      "m1_direction_accuracy": 0.32432432432432434,
+      "m2_hits": 142,
+      "m2_rate": 0.31981981981981983,
+      "net_return_base_mean": -0.0009162918713349421,
+      "net_return_stress_mean": -0.0029162918713349422
+    },
+    "DOTUSDT": {
+      "candidate_n": 439,
+      "first_touch_n": 4307,
+      "m1_direction_accuracy": 0.3712984054669704,
+      "m2_hits": 128,
+      "m2_rate": 0.29157175398633256,
+      "net_return_base_mean": -0.0011005241337868905,
+      "net_return_stress_mean": -0.0031005241337868908
+    },
+    "ENAUSDT": {
+      "candidate_n": 349,
+      "first_touch_n": 4421,
+      "m1_direction_accuracy": 0.34097421203438394,
+      "m2_hits": 113,
+      "m2_rate": 0.3237822349570201,
+      "net_return_base_mean": -0.0007852386290417349,
+      "net_return_stress_mean": -0.0027852386290417343
+    },
+    "ETCUSDT": {
+      "candidate_n": 616,
+      "first_touch_n": 5276,
+      "m1_direction_accuracy": 0.3198051948051948,
+      "m2_hits": 197,
+      "m2_rate": 0.3198051948051948,
+      "net_return_base_mean": -0.0009344506422709476,
+      "net_return_stress_mean": -0.002931203889024194
+    },
+    "ETHUSDT": {
+      "candidate_n": 533,
+      "first_touch_n": 4964,
+      "m1_direction_accuracy": 0.36397748592870544,
+      "m2_hits": 158,
+      "m2_rate": 0.2964352720450281,
+      "net_return_base_mean": -0.0011512991889068335,
+      "net_return_stress_mean": -0.003151299188906833
+    },
+    "FILUSDT": {
+      "candidate_n": 346,
+      "first_touch_n": 3961,
+      "m1_direction_accuracy": 0.31213872832369943,
+      "m2_hits": 111,
+      "m2_rate": 0.3208092485549133,
+      "net_return_base_mean": -0.0007234866066047453,
+      "net_return_stress_mean": -0.002723486606604745
+    },
+    "HBARUSDT": {
+      "candidate_n": 589,
+      "first_touch_n": 4969,
+      "m1_direction_accuracy": 0.3140916808149406,
+      "m2_hits": 168,
+      "m2_rate": 0.28522920203735147,
+      "net_return_base_mean": -0.0011562331889046031,
+      "net_return_stress_mean": -0.003156233188904603
+    },
+    "INJUSDT": {
+      "candidate_n": 471,
+      "first_touch_n": 4836,
+      "m1_direction_accuracy": 0.3099787685774947,
+      "m2_hits": 152,
+      "m2_rate": 0.3227176220806794,
+      "net_return_base_mean": -0.0009278470445627933,
+      "net_return_stress_mean": -0.0029278470445627935
+    },
+    "LINKUSDT": {
+      "candidate_n": 504,
+      "first_touch_n": 4963,
+      "m1_direction_accuracy": 0.30158730158730157,
+      "m2_hits": 144,
+      "m2_rate": 0.2857142857142857,
+      "net_return_base_mean": -0.001267309838436424,
+      "net_return_stress_mean": -0.0032673098384364244
+    },
+    "LTCUSDT": {
+      "candidate_n": 504,
+      "first_touch_n": 5087,
+      "m1_direction_accuracy": 0.3353174603174603,
+      "m2_hits": 146,
+      "m2_rate": 0.2896825396825397,
+      "net_return_base_mean": -0.0010800376016291131,
+      "net_return_stress_mean": -0.0030800376016291136
+    },
+    "NEARUSDT": {
+      "candidate_n": 400,
+      "first_touch_n": 4319,
+      "m1_direction_accuracy": 0.3175,
+      "m2_hits": 113,
+      "m2_rate": 0.2825,
+      "net_return_base_mean": -0.0013833091407770592,
+      "net_return_stress_mean": -0.003383309140777059
+    },
+    "OPUSDT": {
+      "candidate_n": 410,
+      "first_touch_n": 4472,
+      "m1_direction_accuracy": 0.348780487804878,
+      "m2_hits": 128,
+      "m2_rate": 0.3121951219512195,
+      "net_return_base_mean": -0.0010229313584021523,
+      "net_return_stress_mean": -0.0030229313584021517
+    },
+    "POLUSDT": {
+      "candidate_n": 645,
+      "first_touch_n": 5363,
+      "m1_direction_accuracy": 0.3937984496124031,
+      "m2_hits": 226,
+      "m2_rate": 0.35038759689922483,
+      "net_return_base_mean": -0.000796636114403944,
+      "net_return_stress_mean": -0.0027935353392101454
+    },
+    "RUNEUSDT": {
+      "candidate_n": 780,
+      "first_touch_n": 4814,
+      "m1_direction_accuracy": 0.3423076923076923,
+      "m2_hits": 234,
+      "m2_rate": 0.3,
+      "net_return_base_mean": -0.001038477028408527,
+      "net_return_stress_mean": -0.003030784720716219
+    },
+    "SEIUSDT": {
+      "candidate_n": 454,
+      "first_touch_n": 4477,
+      "m1_direction_accuracy": 0.28854625550660795,
+      "m2_hits": 147,
+      "m2_rate": 0.3237885462555066,
+      "net_return_base_mean": -0.0007774850149524177,
+      "net_return_stress_mean": -0.0027774850149524175
+    },
+    "SOLUSDT": {
+      "candidate_n": 415,
+      "first_touch_n": 4649,
+      "m1_direction_accuracy": 0.344578313253012,
+      "m2_hits": 114,
+      "m2_rate": 0.2746987951807229,
+      "net_return_base_mean": -0.0011092137630286539,
+      "net_return_stress_mean": -0.003109213763028654
+    },
+    "SUIUSDT": {
+      "candidate_n": 343,
+      "first_touch_n": 4648,
+      "m1_direction_accuracy": 0.3206997084548105,
+      "m2_hits": 111,
+      "m2_rate": 0.3236151603498542,
+      "net_return_base_mean": -0.0010814984187752933,
+      "net_return_stress_mean": -0.0030814984187752933
+    },
+    "TIAUSDT": {
+      "candidate_n": 442,
+      "first_touch_n": 4628,
+      "m1_direction_accuracy": 0.34841628959276016,
+      "m2_hits": 134,
+      "m2_rate": 0.3031674208144796,
+      "net_return_base_mean": -0.0008964693580703035,
+      "net_return_stress_mean": -0.002896469358070304
+    },
+    "TRXUSDT": {
+      "candidate_n": 1408,
+      "first_touch_n": 7265,
+      "m1_direction_accuracy": 0.3693181818181818,
+      "m2_hits": 516,
+      "m2_rate": 0.3664772727272727,
+      "net_return_base_mean": -0.0008796841432664581,
+      "net_return_stress_mean": -0.002876843234175549
+    },
+    "UNIUSDT": {
+      "candidate_n": 394,
+      "first_touch_n": 4643,
+      "m1_direction_accuracy": 0.36548223350253806,
+      "m2_hits": 120,
+      "m2_rate": 0.30456852791878175,
+      "net_return_base_mean": -0.0011648964552146176,
+      "net_return_stress_mean": -0.0031648964552146177
+    },
+    "WLDUSDT": {
+      "candidate_n": 299,
+      "first_touch_n": 4464,
+      "m1_direction_accuracy": 0.3311036789297659,
+      "m2_hits": 99,
+      "m2_rate": 0.3311036789297659,
+      "net_return_base_mean": -0.000513109536553007,
+      "net_return_stress_mean": -0.002513109536553006
+    },
+    "XRPUSDT": {
+      "candidate_n": 495,
+      "first_touch_n": 4843,
+      "m1_direction_accuracy": 0.3090909090909091,
+      "m2_hits": 139,
+      "m2_rate": 0.2808080808080808,
+      "net_return_base_mean": -0.0011656658420077517,
+      "net_return_stress_mean": -0.0031656658420077524
+    }
+  },
+  "period_end_exclusive_utc": "2026-11-01T00:00:00Z",
+  "period_start_utc": "2024-10-01T00:00:00Z",
+  "preregistration_sha256": "213c1862f31e9a5422744b10ef714aab79d267509f3a089c83b6b78a7d9be21a",
+  "same_5m_anchor_cluster_count": 2196,
+  "status": "complete_dev_only",
+  "unfiltered_first_touch_m1_direction_accuracy": 0.34013353115727,
+  "unfiltered_first_touch_m2": 0.2828752147430892,
+  "unfiltered_first_touch_m2_wilson_95": [
+    0.28062878234477107,
+    0.28513250214520747
+  ],
+  "unfiltered_first_touch_n": 153672,
+  "unresolved_data_defects": 0,
+  "warmed_anchors": 7012928,
+  "wilson_intervals_are_cluster_adjusted": false
+}

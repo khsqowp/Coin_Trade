@@ -106,8 +106,10 @@ failure.
 
 Follow-up correction: local staged data was subsequently found under
 `/Users/user/CODE/trading_data`, although the NAS mount remained absent. The
-read-only crypto archive audit and the resulting blocked gates are recorded in
-`strategy_search_round_20261122.md`. The spot/perpetual order-block historical
-screen remains unscored. Its four-role preregistration and accounting rules are
-approved; only the final code/document commit freeze and run fingerprint gate
-remain before a one-time development-only falsification screen.
+read-only crypto archive audit and the resulting blocked equity gates are in
+`strategy_search_round_20261122.md`. The frozen spot/perpetual OB historical
+development screen ran once and was rejected: candidate M2 target-first was
+31.3869% across 16,749 issued signals and fee-proxy mean return was negative.
+The report and compressed ledgers are in
+`CRYPTO_OB_SAMEBAR_DEV_RESULT_20261122.md` and its linked run directory. This
+does not qualify as OOS or profitability validation.
