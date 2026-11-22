@@ -1,7 +1,7 @@
 {
   "experiment_id": "CRYPTO-OB-PIVOT-BOS-002",
-  "code_commit_sha": "306926212e348e9cf8c3aa8da819b6e3ea1819d9",
-  "code_tree_sha256": "3761da4afb77a493c11988253c85f2ac95b894b7",
+  "code_commit_sha": "d1b92842a3b4cd019e2e813df48a9b1cc7bff6f2",
+  "code_tree_sha256": "17756b0501c2a5bbdfa561bfaf3a086fc0a9af8e",
   "prereg_sha256": "6cd396a8ae32f0121bb43a106ca52d845c166878456b598bfbc4cdfe18a41b30",
   "scorer_sha256": "b6da0ae5ce0846b1e5209f4d0ef91df5abea9ce26ac0a852b46f0408ab43e831",
   "input_fingerprint": "de5c87e883f4c3e00b818c541a0e36d1320f08a2577dc063d2bb9ff519ab9036",
