@@ -16,8 +16,8 @@
 
 ## KR·US 담당자 추가 제안의 중복 검토
 
-- Raman의 월간 저변동성 주식 바스켓은 신규 분류하지 않았다. 기존 Round5 저변동성(realized-volatility) decile과 같은 요인 가족이며, registry 기록상 KR CAGR 5.45% 대 동일 코호트 buy-and-hold 11.95%로 합격선에서 반려됐다. 이번 제안의 리밸런싱·유니버스 세부는 다르지만 과거 결과를 새 전략 수로 재포장하지 않는다.
-- Harvey의 SPY 매월 첫 거래일 시가 진입·3거래일째 종가 청산 규칙도 신규 독립 가족으로 세지 않는다. Gen16 preregistration C1이 이미 월 첫 관측 세션 진입 및 초반 세션 청산을 시험했고, 기존 달력 효과 가족과 표본을 공유한다. 새 stop을 붙이는 것은 별도 하위 가설이며 이번 연구에서 그 성과를 생성하거나 기존 OOS를 새로 부르지 않았다.
+- Raman 제안 규칙은 월말 당시 거래 가능한 보통주에서 최근 60거래일 변동성 하위 20%를 동일가중으로 매수하고, 다음 거래일 시가 진입 후 다음 달 첫 거래일 시가에 교체하는 방식이다. 직전 60일 거래대금 중앙값 하위 절반을 거르는 조건은 거래대금 필드 확인 시에만 쓰겠다고 해 규칙이 아직 완전히 고정되지 않았다. 신규 전략으로 세지 않은 이유는 기존 Round5 저변동성(realized-volatility) decile과 같은 요인 가족이기 때문이다. Registry 결과는 KR CAGR 5.45% 대 동일 코호트 buy-and-hold 11.95%로 반려였다. KR 파일 스키마에는 `code/date/open/high/low/close/volume/change`가 있어 일봉 가격 계산은 가능하지만, `adj_close` 열은 없고 point-in-time 유니버스·조정가격 빈티지·거래비용 결함은 남는다.
+- Harvey 제안 규칙은 SPY를 매월 첫 거래일 시가에 매수하고, -3% 손절(시가가 그 아래면 시가 체결; 그 외 손절가), 손절이 없으면 3거래일째 종가 청산하는 방식이다. 6~8번째 거래일 같은 보유기간 대조군을 두려 했다. 로컬 ETF 파일에서 SPY 8,511행(1993-01-29~2026-11-19), OHLC·조정종가·배당·분할 필드 null 0을 확인했다. 다만 기존 Gen16 C1도 월 첫 세션의 단기 노출을 시험했으므로 독립 전략군이 아니라 달력 효과 family의 stop/체결 세부 변형이다. 기존 exposed history를 sealed OOS로 다시 부르지 않았고 새 성과는 계산하지 않았다.
 - 두 담당자의 제안은 데이터 확인 단계에서 규칙 후보로만 기록한다. 새 독립 연구군으로 인정받으려면 사전 trial registry 대조, 구조적 메커니즘 차이, 미사용 OOS와 기준 비용을 먼저 고정해야 한다.
 
 ## 코인 후보 002 준비 증거
@@ -29,7 +29,7 @@
 - funding/mark 결함 때문에 scorer는 funding 비용을 반영하지 않는다. 후보 스크린은 fee-only 과거 개발 진단일 뿐, 완전 순수익·OOS·전향 성과를 주장할 수 없다.
 - 독립 검토자 4명(Banach, Raman, Harvey, Singer)이 사전등록·scorer 프로토콜을 승인했다. 이는 코드·절차 승인이지 전략 성과 승인과 다르다.
 - 재현성 테스트: `tests/test_spot_perp_ob_pivot_bos.py` 19 passed. `py_compile`, `git diff --check` 통과.
-- 코드/감사 커밋 `d806be368a3ea5aa4b2c1e6a74069fce1441d8b1` 및 검토자 식별자 수정 `306926212e348e9cf8c3aa8da819b6e3ea1819d9`는 원격에 반영됐다. 첫 freeze manifest-only 커밋(`a98ea22e37b4e1d968ed2f7d5891e9f2fdf8fd77`)도 당시 push됐지만, 뒤이은 진행기록 커밋으로 scorer의 `freeze commit == HEAD` 및 `freeze parent == code_commit` 조건이 더는 성립하지 않는다. 따라서 이 첫 manifest는 실행 승인에 사용할 수 없으며, 현재 진행기록 커밋을 새 코드 기준점으로 삼는 manifest-only freeze를 마지막 커밋으로 다시 만들어야 한다.
+- 코드/감사·검토자 식별자 수정·진행기록 커밋은 각각 분리되어 원격에 반영됐다. 진행기록 커밋 뒤 첫 freeze가 scorer의 `freeze commit == HEAD` 및 `freeze parent == code_commit` 조건을 만족하지 않게 된 것을 확인하고, 최신 코드 기준점의 직계 부모를 갖는 manifest-only freeze를 다시 만들었다. 현재 reissued freeze 자체는 기록의 다음 커밋이며, freeze 뒤 새 커밋을 추가하면 다시 무효가 되므로 다음에는 scorer를 먼저 실행해야 한다.
 
 ## 실행 직전 자원 게이트와 재개 조건
 
