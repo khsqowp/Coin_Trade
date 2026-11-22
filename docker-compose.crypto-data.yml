@@ -1,0 +1,27 @@
+services:
+  crypto-tick-stream:
+    mem_limit: 384m
+    memswap_limit: 384m
+    pids_limit: 32
+    oom_score_adj: -300
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cointrade-crypto-tick-stream
+    user: "${LOCAL_UID:-501}:${LOCAL_GID:-20}"
+    entrypoint: ["python", "-u", "-m", "app.crypto_tick_stream"]
+    environment:
+      TICK_ARCHIVE_DIR: /app/archive
+      CRYPTO_TICK_BASES: BTC,ETH,SOL,XRP,DOGE,BNB
+      CRYPTO_TICK_STATE_PATH: /tmp/crypto_tick_state.json
+      CRYPTO_PAPER_STATE_PATH: /app/data/crypto_paper_strategies_6symbols.json
+    volumes:
+      - ./trading-tick-archive:/app/archive
+      - ./trading-crypto-paper-state:/app/data
+    restart: unless-stopped
+    init: true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

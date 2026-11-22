@@ -1,0 +1,355 @@
+# 트레이딩 봇 전용 compose — 메인(docker-compose.yml)과 완전히 분리된 프로젝트.
+#
+#   왜: Ochestration(api/web/mysql/n8n)을 재빌드하거나 빌드가 깨져도 실거래 봇은 영향받지 않아야 한다.
+#   메인 compose 에는 더 이상 trading-* 서비스가 없으므로 `docker compose up/down/build` (인자 없이)를
+#   실행해도 이 봇들은 건드려지지 않는다.
+#
+#   상태 볼륨은 external — 이 파일도 메인 파일도 볼륨을 "생성/삭제"하지 않는다. 기존
+#   ochestration_trading_* 볼륨을 그대로 공유하고, api 컨테이너는 그걸 :ro 로 읽어 대시보드에 표시한다.
+#
+#   실행:
+#     docker compose -f docker-compose.trading.yml \
+#       --profile momentum-rotation --profile kr-rotation --profile us-rotation \
+#       --profile tick-stream --profile paper-trading \
+#       up -d
+#   중지: docker compose -f docker-compose.trading.yml down   (볼륨은 external 이라 -v 로도 안 지워짐)
+
+name: ochestration-trading
+
+# 컨테이너 로그 무한 증가 방지 — 다음 recreate 때부터 적용(실행 중 컨테이너에는 영향 없음).
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  trading:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    networks: [trading]
+    profiles: ["trading"]
+    logging: *default-logging
+
+  trading-paper-funding-arb:
+    mem_limit: 768m
+    memswap_limit: 768m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-m", "app.paper_trade_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # TRX 스윙 봇으로 자금 이관 진행중 — 보유 포지션은 기존 청산조건대로 자동 매도되지만 재진입은 안 함.
+      FUNDING_ARB_HALT_NEW_ENTRIES: "true"
+    volumes:
+      - trading_paper_state:/app/data
+    networks: [trading]
+    profiles: ["paper-trading"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-kr-swing:
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.kr_swing_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TICK_STATE_PATH: /app/tick-state/tick_state.json
+    volumes:
+      - trading_kr_swing_state:/app/data
+      - trading_tick_state:/app/tick-state:ro
+    networks: [trading]
+    profiles: ["kr-swing"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-us-swing:
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.us_swing_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TICK_STATE_PATH: /app/tick-state/tick_state.json
+    volumes:
+      - trading_us_swing_state:/app/data
+      - trading_tick_state:/app/tick-state:ro
+    networks: [trading]
+    profiles: ["us-swing"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  # 국장/미장 top-N 모멘텀 로테이션 페이퍼봇 (KIS 모의) — EMA 크로스 스윙 대체 테스트.
+  # 같은 모의계좌를 쓰므로 kr-swing/us-swing 과 동시 기동 금지.
+  trading-kr-rotation:
+    mem_limit: 640m
+    memswap_limit: 640m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.stock_rotation_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ROTATION_MARKET: KR
+      ROTATION_LOOKBACK: "20"
+      ROTATION_REBAL_DAYS: "10"
+      ROTATION_TOP_K: "8"
+      ROTATION_REGIME: ew_sma200
+      ROTATION_BUDGET: "4000000"
+      ROTATION_STATE_PATH: /app/data/stock_rotation_state.json
+      # 10초->3초(2026-09-20). KIS 초당 거래건수 한도(kis_auth._MIN_REQUEST_INTERVAL_SECONDS=1.05초,
+      # 이건 하한선이라 안 건드림) 때문에 크립토(웹소켓, 여유 넉넉)만큼은 못 줄임 — 안전마진 두고 3초.
+      ROTATION_LOOP_SLEEP_SECONDS: "3"
+    volumes:
+      - trading_kr_rotation_state:/app/data
+      - trading_control:/app/control
+      - ./.kis-cache:/app/cache
+    networks: [trading]
+    profiles: ["kr-rotation"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-us-rotation:
+    mem_limit: 384m
+    memswap_limit: 384m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.stock_rotation_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ROTATION_MARKET: US
+      ROTATION_LOOKBACK: "120"
+      ROTATION_REBAL_DAYS: "20"
+      ROTATION_TOP_K: "8"
+      ROTATION_REGIME: ew_sma200
+      ROTATION_BUDGET: "2800"
+      ROTATION_STATE_PATH: /app/data/stock_rotation_state.json
+      # 10초->3초(2026-09-20), kr-rotation과 동일 근거(KIS 초당한도 안전마진 두고 3초까지만).
+      ROTATION_LOOP_SLEEP_SECONDS: "3"
+    volumes:
+      - trading_us_rotation_state:/app/data
+      - trading_control:/app/control
+      - ./.kis-cache:/app/cache
+    networks: [trading]
+    profiles: ["us-rotation"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-trx-swing:
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.trx_swing_loop"]
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - trading_trx_swing_state:/app/data
+    networks: [trading]
+    profiles: ["trx-swing"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  # 코인 6종목 롱숏 스윙 페이퍼봇 — 완전 가상자본, 실주문 없음, 공개 시세만 쓰므로 API 키
+  # 자체가 필요없다(env_file 없음, 의도적). funding-arb가 신규진입 중단으로 사실상 유휴
+  # 상태라 그 자리에 새 전략 검증용으로 추가.
+  trading-coin-swing6:
+    mem_limit: 768m
+    memswap_limit: 768m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.coin_swing6_loop"]
+    volumes:
+      - trading_coin_swing6_state:/app/data
+    networks: [trading]
+    profiles: ["coin-swing6"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-momentum-rotation:
+    mem_limit: 1024m
+    memswap_limit: 1024m
+    pids_limit: 64
+    oom_score_adj: -500
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.momentum_rotation_loop"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # 실거래 — 2026-10-11 전략 변경(docs/research/final_integration.md §4 후보1 + 총노출 2x):
+      # 14일룩백/리밸3일/상하위 8개, 달러중립. 총노출 = equity * DEPLOY_PCT(0.95) * LEVERAGE(4) = 3.8x (2026-10-24 시드 95% 운용; 5%는 수수료/반올림 여유),
+      # 초기증거금 사용 = 총노출/LEVERAGE = equity 의 95%. 디레버 사다리 폐기(DELEVER_DD=1.0 = 비활성;
+      # 142 USDT 에서 1x 로 내리면 포지션당 명목 < 5 USDT 라 영구 flat 함정). 소액계좌는 총노출을 줄이지
+      # 않고 K 를 줄임(최소 3). 유일한 레짐 오버레이 = BTC 14일 수익률 < -10% 일 때 전량 flat(일 1회, 완결 일봉).
+      # 킬: 고점대비 -35% 전량청산+정지, 14일 쿨다운 후 hwm 리셋 자동 재진입(RESET_HALT=true 로 수동 재개도 가능).
+      MOMENTUM_ROTATION_LIVE: "true"
+      MOMENTUM_ROTATION_EXCHANGE: mainnet
+      MOMENTUM_ROTATION_LOOKBACK_DAYS: "14"
+      MOMENTUM_ROTATION_REBALANCE_DAYS: "3"
+      MOMENTUM_ROTATION_TOP_K: "8"
+      MOMENTUM_ROTATION_LEVERAGE: "4"
+      MOMENTUM_ROTATION_DEPLOY_PCT: "0.95"
+      MOMENTUM_ROTATION_DELEVER_DD: "1.0"
+      MOMENTUM_ROTATION_KILL_DD: "0.35"
+      MOMENTUM_ROTATION_KILL_COOLDOWN_DAYS: "14"
+      MOMENTUM_ROTATION_CRASH_FILTER: "true"
+      MOMENTUM_ROTATION_CRASH_THRESHOLD: "-0.10"
+      MOMENTUM_ROTATION_CRASH_LOOKBACK_DAYS: "14"
+      # PROFIT_LOCK 코드 기본값은 OFF. "true" 활성화 여부는 사용자가 결정한다.
+      MOMENTUM_ROTATION_PROFIT_LOCK: "false"
+      MOMENTUM_ROTATION_PROFIT_LOCK_ACTIVATION: "0.20"
+      MOMENTUM_ROTATION_PROFIT_LOCK_TRAIL: "0.25"
+      MOMENTUM_ROTATION_PROFIT_LOCK_COOLDOWN_DAYS: "3"
+      # 가격 조회는 배치 REST(fetch_tickers) 1회로 함(2026-10-13, crypto-tick-stream 웹소켓
+      # 기능 제거 — 아카이브 디스크사용량 문제로 폐기). 매매판단(리밸런스 2일 주기)엔 영향 없음,
+      # fetch_positions/fetch_balance weight 낮아서(각 ~5, 분당한도 2400) 여유 충분.
+      MOMENTUM_ROTATION_CHECK_INTERVAL_SECONDS: "15"
+    volumes:
+      - trading_momentum_rotation_state:/app/data
+      - trading_control:/app/control
+    networks: [trading]
+    profiles: ["momentum-rotation"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  # 장 시작 갭업/급등주 전략을 백테스트하려고 개장 직후 등락률순위 스냅샷을 떠서 쌓아두기만
+  # 하는 캡처 전용 컨테이너 — 계좌 조회/주문 없음, kr-rotation과 계좌를 같이 써도 무관.
+  trading-kr-opening-scan:
+    mem_limit: 256m
+    memswap_limit: 256m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.opening_scan_capture"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TICK_ARCHIVE_DIR: /app/archive
+      SCAN_START_HHMM: "09:00"
+      SCAN_WINDOW_MINUTES: "120"
+    volumes:
+      - ./trading-tick-archive:/app/archive
+    networks: [trading]
+    profiles: ["kr-opening-scan"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-tick-stream:
+    mem_limit: 512m
+    memswap_limit: 512m
+    pids_limit: 32
+    oom_score_adj: -300
+    build: .
+    entrypoint: ["python", "-u", "-m", "app.tick_stream"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      KR_SWING_STATE_PATH: /app/kr-state/kr_swing_state.json
+      US_SWING_STATE_PATH: /app/us-state/us_swing_state.json
+    volumes:
+      - trading_tick_state:/app/data
+      - trading_kr_swing_state:/app/kr-state:ro
+      - trading_us_swing_state:/app/us-state:ro
+      - ./trading-tick-archive:/app/archive
+    networks: [trading]
+    profiles: ["tick-stream"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  # Isolated public-data PAPER forward-test. No env file, exchange keys, or orders.
+  trading-forward-test:
+    mem_limit: 512m
+    pids_limit: 32
+    build: .
+    entrypoint: ["python", "-u", "-m", "forward_test.run_loop"]
+    # 서버 호스트 유저(noroot, uid 1000)와 맞춰서 bind mount 디렉터리에 별도 chown 없이 쓸 수 있게 한다
+    user: "1000:1000"
+    volumes:
+      - ./trading-forward-test:/app/data
+    networks: [trading]
+    profiles: ["forward-test"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-forward-test-12h:
+    mem_limit: 512m
+    pids_limit: 32
+    build: .
+    entrypoint: ["python", "-u", "-m", "forward_test.run_loop"]
+    user: "1000:1000"
+    environment:
+      FORWARD_PROFILE: l5_12h
+    volumes:
+      - ./trading-forward-test-12h:/app/data
+    networks: [trading]
+    profiles: ["forward-test"]
+    restart: unless-stopped
+    logging: *default-logging
+
+  trading-forward-test-jbb-1h:
+    mem_limit: 512m
+    pids_limit: 32
+    build: .
+    entrypoint: ["python", "-u", "-m", "forward_test.run_loop"]
+    user: "1000:1000"
+    environment:
+      FORWARD_PROFILE: jbb_1h
+    volumes:
+      - ./trading-forward-test-jbb-1h:/app/data
+    networks: [trading]
+    profiles: ["forward-test"]
+    restart: unless-stopped
+    logging: *default-logging
+
+networks:
+  trading:
+
+# 메인 compose 가 만들어 둔 기존 볼륨을 그대로 공유한다. external → 이 파일은 볼륨을 생성·삭제하지 않는다.
+volumes:
+  trading_paper_state:
+    external: true
+    name: ochestration_trading_paper_state
+  trading_kr_swing_state:
+    external: true
+    name: ochestration_trading_kr_swing_state
+  trading_us_swing_state:
+    external: true
+    name: ochestration_trading_us_swing_state
+  trading_momentum_rotation_state:
+    external: true
+    name: ochestration_trading_momentum_rotation_state
+  trading_kr_rotation_state:
+    external: true
+    name: ochestration_trading_kr_rotation_state
+  trading_us_rotation_state:
+    external: true
+    name: ochestration_trading_us_rotation_state
+  trading_trx_swing_state:
+    external: true
+    name: ochestration_trading_trx_swing_state
+  trading_tick_state:
+    external: true
+    name: ochestration_trading_tick_state
+  # 2단계: api 가 :ro 로 읽어 "펀딩 아비" 탭에 표시 — external 전환. 이름은 다른 볼륨들의
+  # ochestration_trading_* 관례가 아니라 컴포즈가 처음에 자동 생성한 실제 이름 그대로 참조한다
+  # (재생성하면 그동안 쌓인 페이퍼 매매 기록이 날아가므로 볼륨을 새로 안 만들고 기존 것을 그대로 씀).
+  trading_coin_swing6_state:
+    external: true
+    name: ochestration-trading_trading_coin_swing6_state
+  # 수동 제어 채널 (api rw ↔ 로테이션 봇 rw). control.json 한 파일.
+  trading_control:
+    external: true
+    name: ochestration_trading_control

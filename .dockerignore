@@ -10,3 +10,13 @@ data/
 *.pkl
 *.pickle
 *.log
+
+# 연구 전용(컨테이너 이미지에 불필요)
+scratchpad/
+strategy_archive/
+research_dashboard/
+data_tick/
+data_sources/
+data_archive_triage/
+.kis-cache-local/
+.claude/
