@@ -93,3 +93,13 @@ proxies. The candidate is rejected, Core remains zero, and Phase 9 was not
 run. Approval and result records are
 `phase8_round_s_adaptive_m2_prereg_approval_20261121.md` and
 `phase8_round_s_adaptive_m2_historical_diagnostic_20261121.md`; registry #121.
+
+The 2026-11-22 four-agent cross-market candidate round defines two KR, two US,
+and two crypto order-block research slots, with red-team exclusions and
+data/OOS gates recorded in
+[`strategy_search_round_20261122.md`](strategy_search_round_20261122.md).
+These are hypotheses, not passing strategies: no backtest ran, NAS paths were
+not mounted in the current environment, and the validated count remains zero.
+One US slot is an existing ETF volatility-rotation candidate, not a new
+strategy family; the low-skew alternative was excluded after a prior stress-cost
+failure.
