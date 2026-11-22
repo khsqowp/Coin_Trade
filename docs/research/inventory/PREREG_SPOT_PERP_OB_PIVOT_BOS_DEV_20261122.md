@@ -61,7 +61,7 @@ M1, Wilson 구간, 주별 cluster bootstrap, 종목별 결과, 연·월별 결�
 ## 6. 재현성·중단 조건
 
 - 기존 frozen input fingerprint와 위 funding/mark 감사 JSON의 SHA-256을 재확인하고, 신규 scorer·사전등록·실행환경을 고정한다. price fingerprint 또는 보조 비용감사 SHA가 manifest와 다르면 scoring 금지.
-- scorer는 퍼페추얼 원장만 신호·적격성·손익 계산에 읽는다. spot 파일은 input fingerprint 재확인 과정에서만 해시하며 전략 데이터로 로드하거나 timestamp 비교에 쓰지 않는다. scorer는 최초 실행 전 별도 commit/push하고, 그 다음 manifest-only freeze commit을 별도 생성한다. freeze manifest에는 prereg, 코드 tree, input fingerprint, trial-family 이력, 실제 배정에 맞춘 네 역할(`CRYPTO_BLUE`, `CRYPTO`, `DATA_METHODS`, `RED_TEAM`)의 판정을 기록한다. KR/US 전문가로 역할명을 바꾸어 적지 않는다. 결과 디렉터리는 새 경로만 사용하며 덮어쓰지 않는다.
+- scorer는 퍼페추얼 원장만 신호·적격성·손익 계산에 읽는다. spot 파일은 input fingerprint 재확인 과정에서만 해시하며 전략 데이터로 로드하거나 timestamp 비교에 쓰지 않는다. scorer는 최초 실행 전 별도 commit/push하고, 그 다음 manifest-only freeze commit을 별도 생성한다. freeze manifest에는 prereg, 코드 tree, input fingerprint, trial-family 이력, 실제 검토자 식별자(`BANACH`, `RAMAN`, `HARVEY`, `SINGER`)의 최신 명시 판정을 기록한다. 검토자에게 실제로 부여되지 않은 역할명은 추정해 쓰지 않는다. 결과 디렉터리는 새 경로만 사용하며 덮어쓰지 않는다.
 - 합성 테스트: pivot 중심/오른쪽 확인봉 causal timing, confirmation/BOS 동일봉 거부, window 경계, touch-bar 미래 재사용 차단, zone 만료/무효화 동시 경합, gap, stop-first, timeout, missing minute, overlap, weekly cluster bootstrap 재현성.
 - 본 후보의 탐색은 고정 규칙 1개만 실행한다. 결과를 본 뒤 파라미터 변경/하위 그룹 선택/반복 재시도 금지. 필요한 수정은 오류 수정으로 명백할 때만 기록하고 새 버전 trial로 분리한다.
 - M2<80%, 최소 표본/arm conversion/심볼 분산 실패, fee-only arm 기대값 비양수, paired arm M2 또는 base/stress 순수익 차이의 bootstrap 95% 하한이 0 이하인 경우 중 하나면 `REJECT_DEV`. 모든 개발 gate 통과 후에도 verified funding·미사용 전향 표본·제품/Core coverage가 없으므로 최대 상태는 `HOLD_FUNDING_AND_OOS`며 전략 또는 전향투입 승인을 의미하지 않는다.
@@ -71,4 +71,4 @@ M1, Wilson 구간, 주별 cluster bootstrap, 종목별 결과, 연·월별 결�
 
 같은 family의 과거 trial로 P6 `order_block`/`fabio_liquidity_mss`, P9-E `order_block_confluence_*`, P9-F OB 유니버스 확장, Round 10 sweep+taker-flow, first-touch same-bar spot/perpetual candidate 001, 그리고 이미 노출된 OB/FVG/MSS 변형을 계수한다. 정확한 총 trial 수가 registry와 archived outputs를 전수 대조하기 전까지 미확정이므로, 승률 신뢰구간은 선택편향/다중검정 조정 완료로 표현하지 않는다.
 
-v3의 네 역할 승인은 v4의 funding·coverage 수정에 자동 승계되지 않는다. 타깃 합성 테스트를 다시 실행하고 네 역할이 v4 정확한 코드·규칙을 승인한 뒤, scorer/prereg 커밋과 manifest-only freeze commit을 만들고 현행 input fingerprint·자원을 확인한다. 그 후에도 역사 개발자료 1회 스크린은 M2 및 fee-only 진단이며 funding·OOS 승인이 아니다.
+v3의 네 역할 승인은 v4의 funding·coverage 수정에 자동 승계되지 않는다. 타깃 합성 테스트를 다시 실행하고 네 명의 검토자가 v4 정확한 코드·규칙을 승인한 뒤, scorer/prereg 커밋과 manifest-only freeze commit을 만들고 현행 input fingerprint·자원을 확인한다. 그 후에도 역사 개발자료 1회 스크린은 M2 및 fee-only 진단이며 funding·OOS 승인이 아니다.

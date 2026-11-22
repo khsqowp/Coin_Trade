@@ -5,7 +5,7 @@ import numpy as np
 
 from scripts.research.spot_perp_ob_pivot_bos import (
     CUTOFF_MS,
-    PANEL_ROLE_KEYS,
+    PANEL_REVIEWER_IDS,
     block_bootstrap,
     development_screen,
     find_bos,
@@ -280,6 +280,6 @@ def test_dev_screen_never_calls_success_approved_without_funding_or_oos():
     assert development_screen(metrics)["status"] == "REJECT_DEV"
 
 
-def test_freeze_uses_the_four_actual_reviewer_roles_not_assumed_market_roles():
-    assert PANEL_ROLE_KEYS == {
-        "CRYPTO_BLUE", "CRYPTO", "DATA_METHODS", "RED_TEAM"}
+def test_freeze_uses_actual_reviewer_identifiers_not_inferred_roles():
+    assert PANEL_REVIEWER_IDS == {
+        "BANACH", "RAMAN", "HARVEY", "SINGER"}

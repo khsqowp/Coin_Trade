@@ -35,7 +35,7 @@ HORIZON = 20
 BOOTSTRAP_REPS = 1_000
 BOOTSTRAP_SEED = 20_261_122
 WEEK_MS = 7 * 24 * 60 * 60 * 1000
-PANEL_ROLE_KEYS = {"CRYPTO_BLUE", "CRYPTO", "DATA_METHODS", "RED_TEAM"}
+PANEL_REVIEWER_IDS = {"BANACH", "RAMAN", "HARVEY", "SINGER"}
 EXPECTED_COST_AUDIT_SHA256 = "8f04890b1b52444bec9453f00618dae4bc05fe9173640342306dfad13ee42a1c"
 
 
@@ -456,8 +456,8 @@ def _check_freeze(args, prereg_sha: str, code_sha: str, input_sha: str,
     }
     if any(freeze.get(key) != value for key, value in expected.items()):
         raise ValueError("prereg/code/tree/input does not match committed freeze")
-    if freeze.get("panel_verdicts", {}).keys() != PANEL_ROLE_KEYS:
-        raise ValueError("freeze manifest must contain the four assigned reviewer roles")
+    if freeze.get("panel_verdicts", {}).keys() != PANEL_REVIEWER_IDS:
+        raise ValueError("freeze manifest must contain the four actual reviewer identifiers")
     if not all(value == "APPROVE" for value in freeze["panel_verdicts"].values()):
         raise ValueError("all four reviewers must approve the frozen rule")
     if fingerprint_json.get("aggregate_sha256") != input_sha or input_sha != "de5c87e883f4c3e00b818c541a0e36d1320f08a2577dc063d2bb9ff519ab9036":
