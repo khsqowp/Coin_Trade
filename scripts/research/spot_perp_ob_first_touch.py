@@ -173,8 +173,8 @@ def normalize_month_grid(month: str, times: np.ndarray,
 
 
 def eligible_anchor_mask(perp: dict[str, np.ndarray], spot: dict[str, np.ndarray],
-                         atr_values: np.ndarray) -> tuple[np.ndarray, int, int]:
-    """Use only complete aligned 5m anchors; count tail and data exclusions separately."""
+                         atr_values: np.ndarray) -> tuple[np.ndarray, int, int, int]:
+    """Use complete anchors; return eligible, tail, invalid-in-window, and warm counts."""
     warmed = np.isfinite(np.r_[np.nan, atr_values[:-1]])
     full_window = perp["time"] + 105 * 60_000 < CUTOFF_MS
     complete = np.ones(len(perp["time"]), dtype=bool)
@@ -182,9 +182,9 @@ def eligible_anchor_mask(perp: dict[str, np.ndarray], spot: dict[str, np.ndarray
         for name in ("open", "high", "low", "close", "volume"):
             complete &= np.isfinite(bars[name])
     eligible = warmed & full_window & complete
-    tail_excluded = int(np.count_nonzero(warmed & ~full_window & complete))
+    tail_excluded = int(np.count_nonzero(warmed & ~full_window))
     invalid_anchor_excluded = int(np.count_nonzero(warmed & full_window & ~complete))
-    return eligible, tail_excluded, invalid_anchor_excluded
+    return eligible, tail_excluded, invalid_anchor_excluded, int(np.count_nonzero(warmed))
 
 
 def score_path(event: dict, perp_1m: dict[str, np.ndarray], minute_index: int) -> dict:
@@ -425,6 +425,7 @@ def run(args) -> dict:
     data_defects = 0
     administrative_tail_excluded = 0
     invalid_anchor_total = 0
+    warmed_anchor_total = 0
     for symbol in SYMBOLS:
         minute = _read_symbol(args.root, symbol, expected_files)
         def to_5m(bars):
@@ -435,10 +436,11 @@ def run(args) -> dict:
         if not np.array_equal(perp["time"], spot["time"]):
             raise ValueError(f"5m spot/perpetual grid mismatch: {symbol}")
         atr_values = wilder_atr(perp["high"], perp["low"], perp["close"], 14)
-        eligible, tail_excluded, invalid_anchor_excluded = eligible_anchor_mask(
+        eligible, tail_excluded, invalid_anchor_excluded, warmed_anchors = eligible_anchor_mask(
             perp, spot, atr_values)
         administrative_tail_excluded += tail_excluded
         invalid_anchor_total += invalid_anchor_excluded
+        warmed_anchor_total += warmed_anchors
         events, ambiguous, anchors = first_touch_events(perp, spot, atr_values, eligible)
         opportunities_total += anchors
         ambiguous_total += ambiguous
@@ -499,6 +501,7 @@ def run(args) -> dict:
         "cohort_symbols": len(SYMBOLS), "period_start_utc": "2024-10-01T00:00:00Z",
         "period_end_exclusive_utc": "2026-11-01T00:00:00Z",
         "eligible_anchors": opportunities_total,
+        "warmed_anchors": warmed_anchor_total,
         "administrative_tail_excluded_anchors": administrative_tail_excluded,
         "invalid_anchor_excluded_anchors": invalid_anchor_total,
         "ambiguous_anchors": ambiguous_total,

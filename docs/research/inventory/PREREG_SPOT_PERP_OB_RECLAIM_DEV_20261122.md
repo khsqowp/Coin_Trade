@@ -56,7 +56,7 @@
 ## 분모·독립 표본·지표
 
 - M2 주 분모는 모든 발행 `side=long|short` 신호다. 미체결·무효 진입·손절·시간 만료·동시 touch·결측 경로는 실패다. 비체결/무효 위험 신호는 실현 손익 0·거래비용 0으로 기록하되 M2 실패로 분모에 남긴다. 왕복 수수료는 실제 진입이 체결된 신호에만 적용하고, 유효 체결 신호는 target/stop 체결가 또는 시간 만료 종가의 gross 손익에서 고정 왕복 수수료를 뺀다. 수수료 후 평균 simple return은 모든 발행 신호 분모에 포함해 계산하고, 체결 신호만의 평균 R도 **수수료 차감 후** 별도 표시한다. `side=none` 모호 anchor는 별도 건수와 모든 eligible anchor coverage에 반영한다.
-- eligible anchor는 고정 코호트의 완전하게 존재하고 spot/perp 정렬된 USDⓈ-M 및 spot 5분봉, ATR warm-up 완료, 그리고 신호 확정 후 100분 평가창 전체가 cutoff 이전에 끝나는 시각이다. OB 계산은 USDⓈ-M만 사용하고 spot은 동일구간 close 필터에만 쓴다. zone이 없는 봉도 분모에 포함한다. cutoff 직전 행정적 tail 제외 건수는 별도 공개한다. eligible 신호의 이후 경로 안에 있는 결측·불일치는 해당 신호의 M2 실패로 포함한다. 전체 발행 M2와 Wilson 95% interval, M1, M2 outcome별 수, coverage=`actionable issued / all fixed-cohort eligible 5m anchors`, 최초 접촉 대비 발행률, 종목별 신호·M2·M1·수익, 동시간 코인 anchor 군집, 수수료 후 all-issued 평균수익 및 체결-only 평균 R을 출력한다. Wilson 구간은 군집 보정하지 않은 기술 통계로 표시한다.
+- eligible anchor는 고정 코호트의 완전하게 존재하고 spot/perp 정렬된 USDⓈ-M 및 spot 5분봉, ATR warm-up 완료, 그리고 신호 확정 후 100분 평가창 전체가 cutoff 이전에 끝나는 시각이다. OB 계산은 USDⓈ-M만 사용하고 spot은 동일구간 close 필터에만 쓴다. zone이 없는 봉도 분모에 포함한다. warm-up 완료 anchor는 eligible, cutoff tail, 또는 cutoff 전 불완전 데이터 제외로 서로 겹치지 않게 분류하고 총수와 함께 공개한다. eligible 신호의 이후 경로 안에 있는 결측·불일치는 해당 신호의 M2 실패로 포함한다. 전체 발행 M2와 Wilson 95% interval, M1, M2 outcome별 수, coverage=`actionable issued / all fixed-cohort eligible 5m anchors`, 최초 접촉 대비 발행률, 종목별 신호·M2·M1·수익, 동시간 코인 anchor 군집, 수수료 후 all-issued 평균수익 및 체결-only 평균 R을 출력한다. Wilson 구간은 군집 보정하지 않은 기술 통계로 표시한다.
 - 비중복 표본은 종목 내 시간순으로 정렬한다. 앞 신호의 최대 100분 평가창이 끝나기 전에 나온 다음 신호는 전체 발행 M2에 남기되 비중복 M2에는 넣지 않는다. 합격 게이트의 비중복 `N≥200`은 심볼별이 아니라 전체 코호트 합계이며, 심볼별 분포와 상위 심볼 집중도를 따로 보고한다. 시장 전체 동시간 알트 상관은 별도 5분 anchor cluster로 집계한다.
 - 성공적 개발 스크린은 다음 모두가 필요하다: 후보 전체 발행 M2 ≥80%; 전체 고정 코호트 합산 비중복 신호 N≥200; coverage≥10%; base/stress 두 경우 모두 수수료 후·펀딩 전 기대값 >0; 후보 M2의 Wilson 하한이 위에 고정한 단 하나의 1차 비교군 M2 점추정치보다 높음. 모든 종목의 신호·성공 수와 종목 집중도도 보고하되 종목별 N≥200을 요구하지 않는다. 이 비교는 역사 개발자료에서의 선별 스크린일 뿐이며 가설의 인과효과나 엣지 증명이 아니다. prospective/sealed OOS 실험에 진입할 자격만 부여한다. 표본 부족은 `INSUFFICIENT_SAMPLE`, 조건 미달은 `REJECT`.
 - 최종 코인 승인은 개발 스크린이 아니다. 미사용 prospective/valid sealed OOS에서 전체 발행 N≥200, 비중복 N≥200, ≥20개 종목, coverage≥10%, M2≥80%, 두 비용 후 funding 포함 기대값>0, 사전고정 기준선보다 Wilson lower-bound 우위, walk-forward/cluster/bootstrap/multiple-testing/red-team 게이트까지 모두 필요하다.
@@ -84,7 +84,7 @@
 | Execution / Causality | Singer | `APPROVE` | 가격원천·시점·경로 체결 규칙 |
 | Red / Judge | Raman | `APPROVE` | baseline·선택편향·레드팀 검토 |
 
-1차·2차 리뷰에서 나온 모호성 수정 후 네 명이 같은 3차 수정본을 승인했다. 이어 경로 결측·만기 회계·미체결 비용 처리를 보강했고 네 명 모두 최종 accounting wording도 승인했다. 패널 승인은 역사 개발자료의 단 한 차례 반증 실험을 위한 문서 승인일 뿐이며, 커밋된 코드/문서 지문 및 약관 확인을 대체하지 않는다. 현재 구현의 전략·입력 freeze 합성 테스트 17개와 지문/아카이브 회귀 테스트 6개가 통과했다. 어떤 OOS·수익성·실거래 승인도 아니다.
+1차·2차 리뷰에서 나온 모호성 수정 후 네 명이 같은 3차 수정본을 승인했다. 이어 경로 결측·만기 회계·미체결 비용 처리를 보강했고 네 명 모두 최종 accounting wording도 승인했다. 패널 승인은 역사 개발자료의 단 한 차례 반증 실험을 위한 문서 승인일 뿐이며, 커밋된 코드/문서 지문 및 약관 확인을 대체하지 않는다. 현재 구현의 전략·입력 freeze 합성 테스트 19개와 지문/아카이브 회귀 테스트 6개가 통과했다. 어떤 OOS·수익성·실거래 승인도 아니다.
 
 ## 근거 문서
 

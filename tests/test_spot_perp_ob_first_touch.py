@@ -97,21 +97,6 @@ def test_missing_minute_is_reindexed_as_nan_instead_of_silently_compressed():
     assert result["close"][3] == 103.0
 
 
-def test_missing_minute_is_reindexed_as_nan_instead_of_silently_compressed():
-    start = int(datetime(2025, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
-    times = start + np.array([0, 60_000, 180_000], dtype=np.int64)
-    columns = {name: np.array([100.0, 101.0, 103.0])
-               for name in ("open", "high", "low", "close", "volume")}
-
-    result = normalize_month_grid("2025-01", times, columns)
-
-    assert len(result["time"]) == 31 * 24 * 60
-    assert result["close"][:4][0] == 100.0
-    assert result["close"][:4][1] == 101.0
-    assert np.isnan(result["close"][2])
-    assert result["close"][3] == 103.0
-
-
 def test_first_touch_on_watch_bar_60_is_actionable_and_consumes_zone():
     perp, spot, atr_values, eligible = _zone_fixture()
     perp["open"][76], perp["close"][76], perp["high"][76], perp["low"][76] = 100.2, 100.2, 100.4, 100.0
@@ -278,10 +263,28 @@ def test_incomplete_signal_anchor_is_not_eligible_or_coverage_denominator():
     atr_values = np.ones(3, dtype=float)
     spot["close"][1] = np.nan
 
-    eligible, _, invalid = eligible_anchor_mask(perp, spot, atr_values)
+    eligible, _, invalid, warmed = eligible_anchor_mask(perp, spot, atr_values)
 
     assert eligible.tolist() == [False, False, True]
     assert invalid == 1
+    assert warmed == 2
+
+
+def test_incomplete_cutoff_tail_is_counted_as_tail_not_lost_or_double_counted():
+    times = CUTOFF_MS - np.array([120, 105], dtype=np.int64) * 60_000
+    perp = {key: np.ones(2, dtype=float)
+            for key in ("open", "high", "low", "close", "volume")}
+    spot = {key: value.copy() for key, value in perp.items()}
+    perp["time"] = spot["time"] = times
+    atr_values = np.ones(2, dtype=float)
+    spot["volume"][1] = np.nan
+
+    eligible, tail, invalid, warmed = eligible_anchor_mask(perp, spot, atr_values)
+
+    assert eligible.tolist() == [False, False]
+    assert tail == 1
+    assert invalid == 0
+    assert warmed == tail + invalid + int(eligible.sum())
 
 
 def test_cutoff_is_utc_first_day_boundary():
