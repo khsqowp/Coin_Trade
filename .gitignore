@@ -22,3 +22,6 @@ logs/
 
 # Raw per-trade backtest ledgers — large, regenerable from the paired script
 docs/kr-us-equity-trader/*.json
+
+# regenerable engine cache
+.rs_cache/
