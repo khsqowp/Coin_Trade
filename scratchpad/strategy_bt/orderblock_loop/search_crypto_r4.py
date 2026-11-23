@@ -10,10 +10,11 @@ import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Sequence
 
 import search_crypto as common
 from crypto import r4_zones, simulate_orderblock, trade_daily_pnl
-from metrics import curve_metrics, trade_metrics
+from metrics import curve_metrics, trade_metrics, wilson_lower
 
 HERE = Path(__file__).resolve().parent
 DEFINITIONS = ("displacement", "bos_origin", "volume_displacement")
@@ -41,10 +42,40 @@ def _load_timeframe(loader, timeframe):
     return barsets
 
 
+def _m2_metrics(events: Sequence[tuple[str, int, int, int, bool]]) -> dict:
+    """Score target-first labels overall and per-symbol non-overlapping intervals."""
+    total_hits = sum(event[4] for event in events)
+    last_exit_end = {}
+    nonoverlap_hits = nonoverlap_count = 0
+    for symbol, entry_ts, exit_end_ts, signal_index, target_first in sorted(
+            events, key=lambda event: (event[0], event[1], event[3])):
+        if entry_ts < last_exit_end.get(symbol, -1):
+            continue
+        nonoverlap_count += 1
+        nonoverlap_hits += target_first
+        last_exit_end[symbol] = exit_end_ts
+    total = len(events)
+    return {
+        "m2_signal_count": total,
+        "m2_target_hits": total_hits,
+        "m2_target_first_rate": total_hits / total if total else None,
+        "m2_wilson_lower_95": wilson_lower(total_hits, total),
+        "m2_nonoverlap_signal_count": nonoverlap_count,
+        "m2_nonoverlap_target_hits": nonoverlap_hits,
+        "m2_nonoverlap_target_first_rate": (
+            nonoverlap_hits / nonoverlap_count if nonoverlap_count else None
+        ),
+        "m2_nonoverlap_wilson_lower_95": wilson_lower(nonoverlap_hits, nonoverlap_count),
+    }
+
+
 def _trial(config, barsets, zone_cache):
     returns = []
+    strict_returns = []
     symbol_daily = {}
+    strict_symbol_daily = {}
     symbols = []
+    m2_events = []
     total_trades = unscorable = strict_unscorable = ambiguous_events = 0
     time_exit_censored = right_censored = 0
     missing_mark_symbols = set()
@@ -63,6 +94,7 @@ def _trial(config, barsets, zone_cache):
         if any(event.coverage_gap for event in funding.values()):
             coverage_gap_symbols.add(symbol)
         symbol_daily[symbol] = {}
+        strict_symbol_daily[symbol] = {}
         start = bars[0].timestamp // 86_400_000
         end = bars[-1].timestamp // 86_400_000
         first_day = start if first_day is None else min(first_day, start)
@@ -85,6 +117,12 @@ def _trial(config, barsets, zone_cache):
         right_censored += audit.get("right_censored", 0)
         total_trades += len(trades)
         for trade in trades:
+            entry_ts = bars[trade.setup.entry_index].timestamp
+            exit_end_ts = bars[trade.exit_index].timestamp + duration
+            m2_events.append((
+                symbol, entry_ts, exit_end_ts, trade.setup.zone.signal_index,
+                trade.exit_reason == "target",
+            ))
             ambiguous_events += trade.ambiguous_funding_events
             strict_unknown = trade.net_return is None or trade.ambiguous_funding_events > 0
             if trade.net_return is None:
@@ -96,11 +134,16 @@ def _trial(config, barsets, zone_cache):
             )
             if daily is None:
                 unscorable += 1
-                if not strict_unknown:
-                    strict_unscorable += 1
+                strict_unscorable += 1
                 continue
             if strict_unknown:
                 strict_unscorable += 1
+            else:
+                strict_returns.append(trade.net_return)
+                for day, value in daily.items():
+                    strict_symbol_daily[symbol][day] = (
+                        strict_symbol_daily[symbol].get(day, 0.0) + value
+                    )
             returns.append(trade.net_return)
             for day, value in daily.items():
                 symbol_daily[symbol][day] = symbol_daily[symbol].get(day, 0.0) + value
@@ -115,6 +158,14 @@ def _trial(config, barsets, zone_cache):
         ] if n_symbols else []
     trade_stats = trade_metrics(returns)
     curve = curve_metrics(daily_returns, 365)
+    strict_trade_stats = trade_metrics(strict_returns)
+    strict_curve = None
+    if strict_returns:
+        strict_daily_returns = [
+            sum(strict_symbol_daily[symbol].get(day, 0.0) for symbol in symbols) / n_symbols
+            for day in range(first_day, last_day + 1)
+        ] if n_symbols else []
+        strict_curve = curve_metrics(strict_daily_returns, 365)
     payoff = (trade_stats.average_win / trade_stats.average_loss
               if trade_stats.average_win and trade_stats.average_loss else None)
     status = "unscorable" if n_symbols < MINIMUM_SYMBOLS or unscorable else "completed"
@@ -137,6 +188,16 @@ def _trial(config, barsets, zone_cache):
         "max_drawdown": curve.max_drawdown,
         "annualized_sharpe": curve.annualized_sharpe,
         "solvent": curve.solvent,
+        "strict_scored_trades": len(strict_returns),
+        "strict_win_rate": strict_trade_stats.win_rate,
+        "strict_wilson_95_lower": strict_trade_stats.wilson_lower_95,
+        "strict_profit_factor": strict_trade_stats.profit_factor,
+        "strict_expectancy_bps": strict_trade_stats.expectancy_bps,
+        "strict_cumulative_return": strict_curve.cumulative_return if strict_curve else None,
+        "strict_max_drawdown": strict_curve.max_drawdown if strict_curve else None,
+        "strict_annualized_sharpe": strict_curve.annualized_sharpe if strict_curve else None,
+        "strict_solvent": strict_curve.solvent if strict_curve else None,
+        **_m2_metrics(m2_events),
         "detail": (f"{n_symbols} symbols; {unscorable} funding-unscorable trades"
                    if status == "unscorable" else "TRAIN only; not a G decision"),
     }

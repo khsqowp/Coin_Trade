@@ -270,6 +270,7 @@ def _run_trial(config: dict[str, object], barsets, zone_cache,
                 bars, setup, funding=funding_by_timestamp,
                 bar_duration_ms=bar_duration_ms,
                 validated=True,
+                funding_order_policy=config.get("funding_order_policy", "fail_closed"),
             )
             if trade is None:
                 time_exit_censored_setups += 1

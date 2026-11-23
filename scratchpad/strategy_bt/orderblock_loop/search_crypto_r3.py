@@ -19,11 +19,13 @@ import search_crypto as r2  # noqa: E402
 
 TREND_FILTERS = ("none", "close_gt_sma20", "close_gt_sma50", "sma20_gt_sma50")
 SESSION_FILTERS = ("none", "asia", "europe", "us")
+FUNDING_ORDER_POLICY = "adverse_only"
 CONFIGS = tuple({
     "definition": definition, "timeframe": "4h", "direction": "long",
     "deadline": 48, "reward_r": 2.0, "trend_filter": trend,
     "session_filter": session, "minimum_symbols": 25,
     "maximum_censored_fraction": 0.35, "minimum_remaining_trades": 20,
+    "funding_order_policy": FUNDING_ORDER_POLICY,
 } for definition in r2.DEFINITIONS for trend in TREND_FILTERS
   for session in SESSION_FILTERS)
 FIELDS = r2.FIELDS

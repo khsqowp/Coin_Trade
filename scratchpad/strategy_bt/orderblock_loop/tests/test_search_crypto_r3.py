@@ -10,7 +10,7 @@ from search_crypto import _filter_r3_zones, _sentinel_reason
 import search_crypto
 from trial_ledger_compaction import compact_id_list
 from search_crypto_r3 import (CONFIGS, _append_r3, _apply_symbol_floor,
-                              exclude_unscorable_symbols)
+                              FUNDING_ORDER_POLICY, exclude_unscorable_symbols)
 
 
 class SearchCryptoR3Tests(unittest.TestCase):
@@ -22,6 +22,8 @@ class SearchCryptoR3Tests(unittest.TestCase):
     def test_grid_has_exactly_48_unique_registered_configs(self):
         keys = {tuple(sorted(config.items())) for config in CONFIGS}
         self.assertEqual(len(CONFIGS), 48)
+        self.assertEqual({config["funding_order_policy"] for config in CONFIGS},
+                         {"adverse_only"})
         self.assertEqual(len(keys), 48)
         self.assertEqual({config["definition"] for config in CONFIGS},
                          {"displacement", "bos_origin", "volume_displacement"})
@@ -74,6 +76,35 @@ class SearchCryptoR3Tests(unittest.TestCase):
                          compact_id_list([]))
         self.assertEqual(overlapping["censored_funding_trade_id_summary"]["count"], 1)
         self.assertEqual(overlapping["trade_id_summary"]["count"], 1)
+
+    def test_r3_passes_adverse_policy_and_scores_unknown_order_settlement(self):
+        bars = [Bar(0, 10, 11, 9, 10, 1), Bar(14_400_000, 10, 11, 9, 10, 1)]
+        zone = Zone(0, 0, "long", 9, 10, 1)
+        setup = Setup(zone, 0, 10, 9, 12)
+        # Valid mark, with settlement ordering ambiguity handled by R3 policy.
+        event = FundingEvent(14_400_000, 0.001, 100)
+        trade = Trade(setup, 1, 11, "time", 0.1, None, 12, 0.09,
+                      funding_order_policy="adverse_only", ambiguous_funding_events=1)
+        config = {"definition": "displacement", "timeframe": "4h",
+                  "direction": "long", "deadline": 48, "reward_r": 2.0,
+                  "minimum_symbols": 1, "funding_order_policy": FUNDING_ORDER_POLICY}
+        with patch.object(search_crypto, "active_zones", return_value=[zone]), \
+                patch.object(search_crypto, "_filter_r3_zones", return_value=[zone]), \
+                patch.object(search_crypto, "first_retest", return_value=setup), \
+                patch.object(search_crypto, "simulate_trade", return_value=trade) as simulate, \
+                patch.object(search_crypto, "trade_daily_pnl", return_value={0: trade.net_return}):
+            result = search_crypto._run_trial(
+                config, [("BTCUSDT", bars, {event.timestamp: event}, 0)], {})
+
+        self.assertEqual(FUNDING_ORDER_POLICY, "adverse_only")
+        self.assertEqual(simulate.call_args.kwargs["funding_order_policy"], "adverse_only")
+        self.assertEqual(result["total_trades"], 1)
+        self.assertEqual(result["trades"], 1)
+        self.assertEqual(result["unscorable_funding_trades"], 0)
+        self.assertEqual(result["unscorable_funding_trade_id_summary"]["count"], 0)
+        self.assertEqual(result["censored_funding_trades"], 0)
+        self.assertEqual(result["censored_fraction"], 0.0)
+        self.assertEqual(result["funding_sentinels"], [])
 
     def test_symbol_floor_requires_25_kept_symbols(self):
         result = {"status": "complete", "detail": "", "trades": 20,

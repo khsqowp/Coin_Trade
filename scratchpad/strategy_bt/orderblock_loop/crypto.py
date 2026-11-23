@@ -364,8 +364,8 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     Returns None when a required next-open time exit is outside the supplied
     series; it never fabricates a close fill.
     """
-    if max_holding_bars != 48:
-        raise ValueError("holding horizon is fixed at 48 bars for this preregistered version")
+    if max_holding_bars not in (24, 48):
+        raise ValueError("holding horizon must be a preregistered 24 or 48 bars")
     if fee_bps_per_side < 0 or slippage_bps_per_side < 0:
         raise ValueError("costs cannot be negative")
     if bar_duration_ms is not None and bar_duration_ms <= 0:

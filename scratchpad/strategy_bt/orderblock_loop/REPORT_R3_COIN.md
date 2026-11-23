@@ -59,3 +59,37 @@ cd /Users/user/CODE/Coin_Trade/scratchpad/strategy_bt/orderblock_loop && /Users/
 ```
 
 No real-data full run, TEST read, process termination, Ochestration access, or commit was performed. Process state could not be independently checked because sandbox `ps` access was denied.
+
+## Fourth R3-coin funding status diagnosis (2026-11-23)
+
+Scope: static tracing of `PREREG.md`, `search_crypto.py`, `search_crypto_r3.py`, `crypto.py`, and `data_access.py`; one synthetic regression test added. No TRAIN/TEST data or `TRAIN_TRIALS.csv` was read or changed. No real-data command was run.
+
+The reported `593` is not explained by missing-mark/coverage censoring. The scorer only puts a completed trade into `censored_funding_trades` when `_overlapping_sentinel_timestamps()` finds an unresolved-price or coverage-gap event during the actual holding interval. It puts a trade in `unscorable_funding_trades` when `simulate_trade()` returns a trade with `net_return is None` and that unresolved-sentinel overlap list is empty, or when daily P&L validation fails without such an overlap. `funding_sentinels` only audits unresolved mark/coverage events, so valid-price events with unknowable within-candle ordering do not appear there.
+
+The registered rules support this separation. The R3-coin censor addendum applies to unresolved mark/coverage sentinels. PREREG v2.2 explicitly keeps price-independent settlement ordering uncertainty (including entry/exit candle ambiguity) fail-closed and unscorable. The existing simulator uses `fail_closed` by default; for time exits, an event exactly at the exit timestamp has unknown ordering, and for stop/target exits events in the exit candle are also unknown. Consequently a valid mark can yield an unscorable trade while `censored_funding_trades=0`, `censored_fraction=0.0`, and all missing-price sentinel overlap counts are zero. This is consistent with the registered rules; changing those trades to censored or adverse-only would change the rule and is not authorized by the addendum.
+
+The `593` count itself cannot be decomposed into exact event timestamps from static code and the user-provided summary alone. The scorer has a second unscorable path for failed daily-P&L reconciliation, so exact attribution of every row would require per-trade TRAIN diagnostics. No such data was read here. A synthetic regression now locks the specific valid-mark/unknown-order case: it must remain unscorable, must not count as sentinel-censored, and must have no missing-price sentinel audit row.
+
+Full unittest command (to verify the code-only change; no search runner is invoked):
+
+```sh
+cd /Users/user/CODE/Coin_Trade/scratchpad/strategy_bt/orderblock_loop && /Users/user/CODE/trading_data/cache/orderblock/venv/bin/python -m unittest discover -s tests
+```
+
+Observed verification: `Ran 212 tests in 1.850s`, `OK` (exit code 0). The exact future R3-coin rerun command remains the one documented above and was not run. Existing trial rows remain untouched.
+
+## R3-coin adverse-only funding-order rerun addendum (2026-11-23)
+
+The preceding diagnostic identified unknown settlement ordering as the cause of a large share of the R3-coin unscorable trades. This code-only amendment registers the same `funding_order_policy=adverse_only` already preregistered for R4-coin. With valid mark and rate, ambiguous funding is charged only when adverse to the position; favorable ambiguous cashflow is zero. This is a conservative convention for consistent cost treatment across the two coin rounds, selected from the supplied diagnostic and the existing R4 preregistration, without viewing R3 performance results.
+
+The earlier R3 rows remain diagnostic and unchanged. The new 48-configuration R3 rerun is a separate set of trials with fresh IDs and adds 48 to cumulative `N_train`. Missing mark and coverage-gap overlap censoring remains unchanged; no missing event is imputed or scored as zero. No R4 behavior, thresholds, grid, or G criteria are changed.
+
+Exact rerun command (documented only; not executed):
+
+```sh
+cd /Users/user/CODE/Coin_Trade/scratchpad/strategy_bt/orderblock_loop && /Users/user/CODE/trading_data/cache/orderblock/venv/bin/python search_crypto_r3.py --shard 0/1
+```
+
+Verification scope: synthetic regression tests and the full unittest suite only. No real-data run, TEST read, `TRAIN_TRIALS.csv` access, process inspection/termination, or commit was performed.
+
+Post-change verification result: the focused R3 suite passed (`Ran 11 tests`, `OK`) and the crypto simulator suite passed (`Ran 35 tests`, `OK`). Full `unittest discover -s tests` ran 219 tests and failed with 1 failure and 2 errors, all reported in `test_search_crypto_r6.py`: `test_atr_bin_uses_only_preceding_history_and_median_ties_are_low` failed, while `test_minimum_symbol_floor_is_30` and `test_symbol_floor_passes_at_30_without_signals` errored with `KeyError: 'S0'`. These failures are outside the R3/R4 files changed for this amendment. The full-suite requirement therefore remains unmet; no unrelated R6 code or tests were changed.
