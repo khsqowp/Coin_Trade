@@ -422,6 +422,21 @@ class CryptoOrderBlockTests(unittest.TestCase):
         self.assertEqual(trades[1].exit_reason, "target")
         self.assertEqual(audit["ignored_while_busy"], 1)
 
+    def test_orderblock_runner_passes_bar_duration_to_funding_validator(self):
+        data = [Bar(i * 1000, 101, 103, 100.5, 102, 10) for i in range(60)]
+        data[2] = Bar(2000, 100, 101, 99.5, 100.5, 10)
+        data[3] = Bar(3000, 101, 103, 100.5, 102, 10)
+        zone = Zone(1, 0, "long", 99, 100, 1)
+        event_ts = data[-1].timestamp + 1500
+        with patch("crypto.zones", return_value=[zone]):
+            trades = simulate_orderblock(
+                data, "bos_origin", "long", deadline=24, reward_r=1.5,
+                funding={event_ts: FundingEvent(event_ts, 0.001, 100)},
+                bar_duration_ms=1000,
+            )
+        self.assertEqual(len(trades), 1)
+        self.assertEqual(trades[0].exit_reason, "time")
+
 
 if __name__ == "__main__":
     unittest.main()

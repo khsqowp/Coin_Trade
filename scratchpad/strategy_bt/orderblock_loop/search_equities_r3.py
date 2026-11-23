@@ -20,6 +20,7 @@ from typing import Any
 import pandas as pd
 
 from data_access import EQUITY_COMMON_SPLIT_MS, load_bars
+from data_quality import SymbolQualityError, filter_equity_bars
 from equities import Bar, preregistered_costs
 from metrics import trade_metrics
 from resource_guard import heavy_task
@@ -59,17 +60,6 @@ def _validate_bar(bar: Bar, row_number: int) -> None:
         raise DataQualityError(
             f"incomplete TRAIN bar at row={row_number} timestamp={bar.timestamp}"
         )
-    prices = (bar.open, bar.high, bar.low, bar.close)
-    if not all(math.isfinite(value) and value > 0 for value in prices):
-        raise DataQualityError(
-            f"invalid OHLC at row={row_number} timestamp={bar.timestamp}: "
-            f"open={bar.open!r},high={bar.high!r},low={bar.low!r},close={bar.close!r}"
-        )
-    if not (bar.low <= min(bar.open, bar.close) <= max(bar.open, bar.close) <= bar.high):
-        raise DataQualityError(
-            f"inconsistent OHLC at row={row_number} timestamp={bar.timestamp}: "
-            f"open={bar.open!r},high={bar.high!r},low={bar.low!r},close={bar.close!r}"
-        )
 
 
 def _configs(market: str) -> list[dict[str, Any]]:
@@ -83,7 +73,11 @@ def _configs(market: str) -> list[dict[str, Any]]:
     return configs
 
 
-def _bars(frame: pd.DataFrame) -> list[Bar]:
+def _bars(frame: pd.DataFrame, symbol: str,
+          quality_stats: dict[str, int] | None = None) -> list[Bar]:
+    frame, filter_stats = filter_equity_bars(frame, symbol)
+    if quality_stats is not None:
+        quality_stats.update(filter_stats)
     required = {"open_time", "open", "high", "low", "close"}
     if not required.issubset(frame.columns):
         raise ValueError(f"bar columns missing: {sorted(required - set(frame.columns))}")
@@ -329,6 +323,7 @@ def run(universe_path: Path, trials_path: Path, split_file: Path) -> list[dict[s
     unfilled_censored = defaultdict(int)
     entries_skipped = defaultdict(int)
     train_hashes = defaultdict(hashlib.sha256)
+    quality_stats = defaultdict(lambda: {"invalid_ohlc": 0, "halt_bars": 0})
     universe_sha = hashlib.sha256(universe_path.read_bytes()).hexdigest()
     for row in rows:
         market, symbol = row["market"], row["symbol"]
@@ -339,7 +334,15 @@ def run(universe_path: Path, trials_path: Path, split_file: Path) -> list[dict[s
             if frame.empty:
                 empty_symbols[market].add(symbol)
                 continue
-            bars = _bars(frame)
+            symbol_quality: dict[str, int] = {}
+            try:
+                bars = _bars(frame, symbol, symbol_quality)
+            finally:
+                quality_stats[market]["invalid_ohlc"] += symbol_quality.get("invalid_ohlc", 0)
+                quality_stats[market]["halt_bars"] += symbol_quality.get("halt_bars", 0)
+            if not bars:
+                empty_symbols[market].add(symbol)
+                continue
             local_trades = {}
             local_censored = {}
             local_unfilled = {}
@@ -363,7 +366,7 @@ def run(universe_path: Path, trials_path: Path, split_file: Path) -> list[dict[s
                 entries_skipped[key] += local_entry_skips[key]
         except MemoryError:
             raise
-        except DataQualityError as exc:
+        except (DataQualityError, SymbolQualityError) as exc:
             failures[(market, symbol)] = {"kind": "invalid_ohlc_or_time", "detail": str(exc)}
             train_hashes[market].update(symbol.encode() + b"\0INVALID\0" + str(exc).encode() + b"\n")
         except Exception as exc:
@@ -399,6 +402,8 @@ def run(universe_path: Path, trials_path: Path, split_file: Path) -> list[dict[s
                                                                if m == market and issue["kind"] == "invalid_ohlc_or_time"),
                           "symbols_loader_or_simulation_error": sum(1 for (m, _), issue in failures.items()
                                                                      if m == market and issue["kind"] == "loader_or_simulation_error"),
+                          "invalid_ohlc_rows_filtered": quality_stats[market]["invalid_ohlc"],
+                          "halt_bars_filtered": quality_stats[market]["halt_bars"],
                           "symbol_failures": {symbol: issue for (m, symbol), issue in sorted(failures.items())
                                               if m == market},
                           "empty_train_symbols": sorted(empty_symbols[market]),

@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 import os
+import sys
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -527,25 +528,34 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
         try:
             frame = _load_train(Path(row["daily_path"]).expanduser(), symbol, market, split_file)
             bars = _daily_bars(frame, member, quality_stats)
+            symbol_accounting.setdefault(market, {})[symbol] = {"status": "valid", **quality_stats}
+            e3j_bars.setdefault(market, {})[symbol] = bars
+            filtered_frame, _ = filter_equity_bars(frame, symbol)
+            volumes = _daily_volumes(filtered_frame, member)
+            for candidate in NEW_CANDIDATES:
+                trades, gaps = simulate_e3(candidate, bars, market, volumes if candidate == "E3-E" else None)
+                accepted, pit_gaps = survivorship_safe_trades(trades, bars, member)
+                per_market.setdefault((market, candidate), []).extend(accepted)
+                all_results.append({"market": market, "symbol": symbol, "strategy": candidate,
+                                    "parameters": {"candidate": candidate}, **_metrics(accepted),
+                                    "delisting_gap": pit_gaps, "uncompleted": gaps,
+                                    "survivorship_biased": False,
+                                    "status": "TRAIN_ONLY_NOT_G"})
+                if survivors_only and bars and member.alive(_day(bars[-1])):
+                    survivor_trades.setdefault((market, candidate), []).extend(trades)
+        except MemoryError:
+            raise
         except SymbolQualityError as exc:
             symbol_accounting.setdefault(market, {})[symbol] = {
                 "status": "quality_excluded", **quality_stats, "detail": str(exc)}
             continue
-        symbol_accounting.setdefault(market, {})[symbol] = {"status": "valid", **quality_stats}
-        e3j_bars.setdefault(market, {})[symbol] = bars
-        filtered_frame, _ = filter_equity_bars(frame, symbol)
-        volumes = _daily_volumes(filtered_frame, member)
-        for candidate in NEW_CANDIDATES:
-            trades, gaps = simulate_e3(candidate, bars, market, volumes if candidate == "E3-E" else None)
-            accepted, pit_gaps = survivorship_safe_trades(trades, bars, member)
-            per_market.setdefault((market, candidate), []).extend(accepted)
-            all_results.append({"market": market, "symbol": symbol, "strategy": candidate,
-                                "parameters": {"candidate": candidate}, **_metrics(accepted),
-                                "delisting_gap": pit_gaps, "uncompleted": gaps,
-                                "survivorship_biased": False,
-                                "status": "TRAIN_ONLY_NOT_G"})
-            if survivors_only and bars and member.alive(_day(bars[-1])):
-                survivor_trades.setdefault((market, candidate), []).extend(trades)
+        except Exception as exc:
+            print(f"{market},{symbol}: {type(exc).__name__}: {exc}", file=sys.stderr)
+            symbol_accounting.setdefault(market, {})[symbol] = {
+                "status": "data_error", **quality_stats,
+                "detail": f"{type(exc).__name__}: {exc}"}
+            continue
+
     trial_rows = []
     for market, candidate in sorted(per_market):
         subset = per_market[(market, candidate)]
@@ -554,6 +564,7 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
                            "invalid_ohlc_rows_filtered": sum(int(a["invalid_ohlc"]) for a in symbol_accounting.get(market, {}).values()),
                            "halt_bars_filtered": sum(int(a["halt_bars"]) for a in symbol_accounting.get(market, {}).values()),
                            "symbols_quality_excluded": sum(a["status"] == "quality_excluded" for a in symbol_accounting.get(market, {}).values()),
+                           "symbols_data_error": sum(a["status"] == "data_error" for a in symbol_accounting.get(market, {}).values()),
                            "symbol_accounting": symbol_accounting.get(market, {}),
                            **_metrics(subset), "survivorship_biased": False, "status": "TRAIN_ONLY_NOT_G"})
     for market in MARKETS:

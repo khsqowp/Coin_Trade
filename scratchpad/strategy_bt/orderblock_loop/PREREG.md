@@ -115,6 +115,18 @@ Funding 사건이 진입 시각과 같거나 손절·목표 발생 봉의 시간
 
 이 라운드는 TRAIN 탐색만 허용한다. G 판정은 하지 않는다. 설정별 비용 후 거래당 기대값(bp) 내림차순으로 정렬하고, 동률이면 PF 내림차순, 그다음 점수화 거래 수 내림차순으로 최대 3개를 검증 후보로 고정한다. 점수화 거래가 100건 미만이거나 비용 후 기대값이 0 이하인 설정은 후보 목록에 들지 않는다. 이 후보 선택 규칙은 TEST를 열기 전에 고정한다. 검증·최종 TEST는 각각 별도 승인·동결 뒤 한 번씩만 연다. TEST에는 G의 코인 최소 거래 100건, 비용 후 양의 수익, PF≥1.3, 기대값≥15bp, Wilson 하한, MDD·Sharpe, 다중검정, 무작위 귀무, 평탄도, 비용 2배, 1봉 지연, 미사용 종목·국면 검증을 모두 적용한다. **2018년 Binance USDⓈ-M 자료는 현재 카탈로그상 존재하지 않는다(선물 자료 시작 2019-09).** 그러므로 2018년 약세장 요건은 데이터가 확인될 때까지 `검증불가`이며, 해당 검증을 생략해 G 통과로 선언하지 않는다. 2022년 결과도 따로 보고한다.
 
+#### R4-coin 실행기 오류 정정 (2026-11-23, 재실행 전)
+
+- 첫 실행은 TRAIN 데이터 로드 후 첫 설정에서 `funding event lies outside the simulated candle range`로 실패했다. 원인은 실행기가 funding 이벤트 검증에 시간단위별 봉 길이를 넘기지 않은 구현 오류다. 첫 시도는 `TRAIN_TRIALS.csv`에 `failed`로 보존하며 지표는 후보 선정에 사용하지 않는다.
+- 수정은 사전등록 시간단위의 봉 길이를 거래 시뮬레이터에 전달해 기존 funding 경계 정책을 구현하는 것뿐이다. 전략 정의·격자·비용·G·데이터 구간은 바꾸지 않는다. 수정 후 전체 지정 venv 테스트 186개가 통과했다.
+- 수정 코드 hash cohort로 사전등록 72설정을 모두 한 번씩 실행한다. 첫 실패 1회를 삭제·대체하지 않으므로 R4-coin 누적 시도는 73회(실패 1 + 수정 코드 격자 72)다. 장부의 현재 행 수는 1,138이며, 실행 후 예정 누적 분모는 `N=1,210`, Bonferroni 기준은 `0.05/1,210 = 0.0000413223`이다. 후보 순위는 수정 코드 hash의 72설정만으로 계산하고, 실패 행은 다중검정 분모에 남긴다.
+
+#### R4-coin 정정 실행 전 장부 재계산 (2026-11-23)
+
+- 직전 addendum의 장부 기준 1,138행은 현재 실행 시점에 오래된 값이다. 새 결과를 열지 않고 `TRAIN_TRIALS.csv` 전체 행을 다시 세어 현재 총 시도 수 **1,162**를 확인했다. 현 R4-coin 실패행은 1건이다.
+- R5가 공유 heavy lock을 보유 중인 동안 R4 실데이터 탐색을 시작하지 않는다. 잠금이 실제로 해제된 뒤, 실행 직전 장부 행 수를 다시 세고 아래 72개를 더해 누적 분모를 고정한다. 확인된 현재 장부가 변하지 않았다면 예정 `N=1,234`, Bonferroni 기준 `0.05/1,234 = 0.0000405186`이다. 실행 직전 행 수가 달라졌으면 실제 행 수로만 분모를 다시 계산해 기록한다.
+- 첫 실패행은 보존하며 총 73회의 R4-coin 시도(실패 1 + 수정 코드 격자 72)로 센다. 이 수정은 시도 수 장부 기준만 현재화하며 가설·격자·데이터·비용·합격 기준을 바꾸지 않는다.
+
 ### 4. 실행 가능 조건·고정 원칙
 
 - 주식 R4 입력에 공식 시점별 상장/상폐 상태 이력과 그 출처/기준일이 담긴 별도 membership CSV가 필요하다. 현재 `universe/US.csv`, `universe/KR.csv`의 `universe_asof`는 고정 proxy라 PIT를 증명하지 않는다. 대체·추정 상태는 쓰지 않는다.
@@ -181,6 +193,29 @@ Funding 사건이 진입 시각과 같거나 손절·목표 발생 봉의 시간
 4. **US 회귀 불변**: US 입력에는 이 변경 전후로 **단 한 글자도 다른 결과가 나오면 안 된다**(종목별 유지/배제, invalid_ohlc/halt_bars 집계치 모두 동일). 합성 테스트와, 가능하면 실제 US 표본 몇 종목에 대해 전/후 비교 회귀 테스트로 확인한다.
 5. **이번 단계는 read-only 카운트만**: 새 규칙으로 KR 558개 중 몇 개가 `quality_excluded`를 벗어나는지만 세어 REPORT_R4.md에 적는다. **이 단계에서 성과 지표(거래수·PF·기대값 등)는 계산하지 않는다** — 전략 신호 코드를 호출하지 않는다. TRAIN_TRIALS.csv에 새 행을 쓰지 않는다.
 6. 변경 범위는 `data_quality.py`뿐이다(필요하면 `search_equities_r4.py`/`r5.py`가 쓰는 halt/품질 통계 필드명은 유지). 코인 파일과 `common/`은 건드리지 않는다.
+
+## search_equities_r3.py data_quality.py 경로 통일 addendum (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 코드 변경 전. 2026-11-23 발견: `search_equities_r3.py`의 `_bars`/`_validate_bar`는 `data_quality.filter_equity_bars`를 쓰지 않고 자체 `DataQualityError`로 OHLC 비일관 행 1개만 있어도 그 종목 전체를 실패시킨다(걸러내지 않음, 임계값도 없음, 틱 허용오차도 없음). R2/R4/R5는 이미 `filter_equity_bars`로 통일돼 있고(R4/R5는 2026-11-23 적용, KRX 틱 허용오차·halt 재분류 포함), R3만 남아 KR 재실행에서 유효 종목이 5개(31건)에 그쳤다.
+
+규칙(결과 열람 전 고정):
+1. `_bars`에서 Bar를 만들기 전에 `data_quality.filter_equity_bars(frame, symbol)`를 먼저 호출해 걸러낸 프레임만 쓴다. `complete` 플래그 검사와 비감소 timestamp 검사는 그대로 유지한다(가격 오염과 무관). 걸러낸 뒤 남는 OHLC 비일관은 더 이상 발생하지 않아야 하므로 `_validate_bar`의 가격 유효성/일관성 raise는 제거한다.
+2. `filter_equity_bars`가 던지는 `SymbolQualityError`는 기존 `except DataQualityError` 분기와 같게 취급한다 — `failures[(market,symbol)]`에 기존 그대로 `kind="invalid_ohlc_or_time"`로 기록한다(새 카테고리를 만들지 않는다, R3의 기존 장부 스키마·필드명을 그대로 유지한다).
+3. 시장별 집계 `metric`에 R2/R4/R5와 같은 필드명으로 `invalid_ohlc_rows_filtered`(심볼별 `filter_equity_bars` 반환 `invalid_ohlc` 합), `halt_bars_filtered`(`halt_bars` 합)를 추가한다. 기존 `symbols_invalid_ohlc_or_time`/`symbols_loader_or_simulation_error` 등 R3 고유 필드명은 그대로 둔다.
+4. **US 회귀 불변**: US 입력에는 이 변경 전후로 결과가 조금도 달라지면 안 된다. R4/R5에 적용했던 것과 동일한 방식으로, 실제 US TRAIN 심볼 몇 개를 구버전 로직(순수 raise)과 신버전(filter_equity_bars 경유) 양�_로 돌려 `_bars`가 반환하는 Bar 리스트(개수·값)가 동일한지 회귀 테스트로 확인한다. 하나라도 다르면 구현을 고치기 전까지 통과로 보지 않는다.
+5. 변경 범위는 `search_equities_r3.py`뿐이다. `data_quality.py` 자체(이미 R4/R5 작업에서 틱 허용오차·halt 재분류로 수정됨)는 다시 바꾸지 않는다. 코인 파일과 `common/`은 건드리지 않는다.
+6. 이번 단계도 read-only 카운트 우선이다 — KR 유효 종목 수가 몇 개로 늘었는지만 세어 보고하고, 새 전략 성과 TRAIN_TRIALS.csv 행 작성은 리눅스 투자 세션이 직접 실행해서 만든다(이 세션은 실행하지 않는다).
+
+## 틱 허용 행 보정 + R4/R5 종목단위 data_error addendum (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 코드 변경 전. 2026-11-23 R4b 실제 재실행이 `equities.py:97 _validate`의 `"bar OHLC values are inconsistent"`로 전체가 죽음(리눅스 투자 세션 보고). 원인: `data_quality.filter_equity_bars`가 1틱 이내 불일치를 "유효"로 보고 **행 값은 그대로 둔 채** 통과시키는데, `equities.py`의 `_validate`(simulate_c1 등에서 호출)는 같은 행의 실제 숫자(`close>high` 등)를 다시 엄격 검사해 또 거부한다. R2는 이미 종목 단위 broad `except Exception`으로 이런 예외까지 잡아 `processing_error`로 기록하고 계속 진행하므로 안 죽지만, R4/R5는 2026-11-23 추가한 `except SymbolQualityError`만 있고 그 외 예외는 그대로 전체 run을 중단시킨다.
+
+규칙(결과 열람 전 고정):
+1. **행 보정**: `filter_equity_bars`에서 1틱 허용 범위로 "유효"로 판정한(= `invalid_ohlc`로 세지 않은) 행 중, 실제 숫자가 `low<=min(open,close)<=max(open,close)<=high`를 깨는 행만 그 행에 한해 `high=max(open,high,low,close)`, `low=min(open,high,low,close)`로 보정해 내부적으로 항상 일관되게 만든다. 이미 일관된 행(보정 불필요)은 절대 건드리지 않는다 — 값 비교 후 다를 때만 고친다. 보정 건수를 새 필드(`tick_corrected`)로 `filter_equity_bars`의 반환 stats에 추가한다. 이 보정은 틱 허용 한도(이미 사전등록된 1틱) 안에서만 일어나므로 새 허용폭을 만들지 않는다.
+2. **US 불변 재확인**: US는 1틱 위반이 없다고 이미 확인했으므로 `tick_corrected==0`이어야 한다. 기존 US 회귀 테스트(2026-11-23, `test_real_us_train_filter_is_unchanged_from_prechange_baseline`)가 여전히 그대로(바이트 동일) 통과해야 한다 — 이 테스트를 다시 돌려 재확인하고, 추가로 `tick_corrected`가 US에서 0임을 검증하는 asserion을 더한다.
+3. **R4/R5 종목단위 예외 처리를 R2와 동일 우선순위로 맞춘다**: `run()`의 종목별 처리에서 `except MemoryError: raise`(그대로 전파) → `except SymbolQualityError`(기존, `quality_excluded`) → **새로 추가** `except Exception`(그 외 모든 예외, 새 상태값 `data_error`로 기록하고 해당 종목만 건너뛰고 다음 종목 계속) 순서로 잡는다. R2처럼 예외 종류·메시지를 종목별 기록에 남긴다(`stderr` 출력 포함, R2 패턴 재사용). 새 필드명 `symbols_data_error`를 집계 trial 행에 추가한다.
+4. 변경 범위는 `data_quality.py`(보정)와 `search_equities_r4.py`/`search_equities_r5.py`의 `run()` 예외 처리뿐이다. `equities.py`의 `_validate`나 전략 신호 로직은 바꾸지 않는다(엄격 검사를 느슨하게 만들지 않는다 — 1틱 밖 불일치는 여전히 거부돼야 한다). 코인 파일과 `common/`은 건드리지 않는다.
+5. 합성 테스트로 (a) 1틱 보정이 실제로 행을 일관되게 만들고 `tick_corrected`를 정확히 세는지, (b) 보정 후에도 `simulate_c1`/`evaluate_c1` 등이 더 이상 ValueError 없이 도는지, (c) 2틱 이상 등 보정 범위 밖 문제가 있는 종목이 `data_error`로 빠지고 나머지 유니버스는 계속 처리되는지, (d) US 회귀가 `tick_corrected=0`으로 그대로 통과하는지 확인한다. 전체 지정 venv unittest 통과 필수. 이번 단계도 성과 지표는 계산하지 않는다(read-only 카운트만 필요시 보고).
 
 ## 고정 합격 게이트 G
 

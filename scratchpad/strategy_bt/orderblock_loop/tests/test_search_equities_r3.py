@@ -101,7 +101,7 @@ class SearchEquitiesR3Tests(unittest.TestCase):
                               {"open_time": 1, "open": 103, "high": 108,
                                "low": 102, "close": 107, "complete": False}])
         with self.assertRaisesRegex(DataQualityError, "incomplete.*timestamp=1"):
-            _bars(frame)
+            _bars(frame, "TEST")
         with self.assertRaisesRegex(DataQualityError, "incomplete.*timestamp=1"):
             _simulate([Bar(0, 100, 101, 99, 100),
                        Bar(1, 103, 108, 102, 107, complete=False)], "US",
@@ -139,11 +139,20 @@ class SearchEquitiesR3Tests(unittest.TestCase):
         self.assertEqual(trades[0]["reason"], "target")
         self.assertEqual(audit.get("right_censored", 0), 0)
 
-    def test_bars_reject_malformed_ohlc_instead_of_repairing(self):
-        frame = pd.DataFrame([{"open_time": 1, "open": 100, "high": 99,
-                               "low": 98, "close": 100}])
-        with self.assertRaisesRegex(DataQualityError, "inconsistent OHLC.*timestamp=1"):
-            _bars(frame)
+    def test_bars_filter_malformed_ohlc_and_keep_timestamp_check_hard(self):
+        frame = pd.DataFrame([{"open_time": i, "open": 100, "high": 101,
+                               "low": 99, "close": 100} for i in range(1, 101)])
+        frame.loc[0, "high"] = 98
+        stats = {}
+        result = _bars(frame, "TEST", stats)
+        self.assertEqual([bar.timestamp for bar in result], list(range(2, 101)))
+        self.assertEqual(stats["invalid_ohlc"], 1)
+        duplicate = pd.DataFrame([{"open_time": 2, "open": 100, "high": 101,
+                                   "low": 99, "close": 100},
+                                  {"open_time": 2, "open": 100, "high": 101,
+                                   "low": 99, "close": 100}])
+        with self.assertRaisesRegex(DataQualityError, "non-increasing TRAIN timestamp"):
+            _bars(duplicate, "TEST")
 
     def test_train_frame_fingerprint_includes_completion_eligibility(self):
         frame = pd.DataFrame([{"open_time": 1, "open": 100, "high": 101,
@@ -153,7 +162,7 @@ class SearchEquitiesR3Tests(unittest.TestCase):
         self.assertNotEqual(_frame_sha256(frame), _frame_sha256(incomplete))
 
     def test_run_records_bad_symbol_by_name_and_keeps_valid_count_zero(self):
-        bad_frame = pd.DataFrame([{"open_time": 1, "open": 100, "high": 99,
+        bad_frame = pd.DataFrame([{"open_time": 1, "open": 100, "high": 98,
                                    "low": 98, "close": 100}])
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -168,6 +177,40 @@ class SearchEquitiesR3Tests(unittest.TestCase):
             self.assertTrue(all(row["symbols"] == 0 for row in kr_rows))
             self.assertTrue(all(row["symbols_invalid_ohlc_or_time"] == 1 for row in kr_rows))
             self.assertTrue(all("000001" in row["symbol_failures"] for row in kr_rows))
+
+    def test_symbol_quality_error_uses_existing_invalid_ohlc_category(self):
+        bad_frame = pd.DataFrame([{"open_time": i, "open": 100, "high": 98,
+                                   "low": 98, "close": 100} for i in range(100)])
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            universe, trials = root / "universe.csv", root / "trials.csv"
+            universe.write_text("market,symbol,daily_path\nKR,000001,fake.parquet\n")
+            with patch("search_equities_r3._load_train", return_value=bad_frame), \
+                 patch("search_equities_r3._simulate", return_value=[]):
+                output = run(universe, trials, root / "splits.json")
+            self.assertTrue(all(row["symbols_invalid_ohlc_or_time"] == 1 for row in output))
+            self.assertTrue(all(row["symbols_loader_or_simulation_error"] == 0 for row in output))
+            self.assertTrue(all(row["symbol_failures"]["000001"]["kind"] ==
+                                "invalid_ohlc_or_time" for row in output))
+
+    def test_aggregate_includes_filtered_invalid_and_halt_counts(self):
+        invalid_frame = pd.DataFrame([{"open_time": i, "open": 100, "high": 101,
+                                       "low": 99, "close": 100} for i in range(100)])
+        invalid_frame.loc[0, "high"] = 98
+        halt_frame = pd.DataFrame([{"open_time": i, "open": 100, "high": 101,
+                                    "low": 99, "close": 100} for i in range(100)])
+        halt_frame.loc[0, ["open", "high", "low", "close"]] = 0
+        frames = {"000001": invalid_frame, "000002": halt_frame}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            universe, trials = root / "universe.csv", root / "trials.csv"
+            universe.write_text("market,symbol,daily_path\nKR,000001,a\nKR,000002,b\n")
+            with patch("search_equities_r3._load_train",
+                       side_effect=lambda path, symbol, market, split: frames[symbol]), \
+                 patch("search_equities_r3._simulate", return_value=[]):
+                output = run(universe, trials, root / "splits.json")
+            self.assertTrue(all(row["invalid_ohlc_rows_filtered"] == 1 for row in output))
+            self.assertTrue(all(row["halt_bars_filtered"] == 1 for row in output))
 
 
 if __name__ == "__main__":

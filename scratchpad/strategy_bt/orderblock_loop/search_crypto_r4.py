@@ -78,6 +78,7 @@ def _trial(config, barsets, zone_cache):
             deadline=config["deadline"], reward_r=config["reward_r"],
             funding=funding_in_range, r4_definition=True,
             funding_order_policy=FUNDING_ORDER_POLICY,
+            bar_duration_ms=duration,
             candidate_zones=zone_cache[key], audit=audit,
         )
         time_exit_censored += audit.get("time_exit_censored", 0)
@@ -225,8 +226,9 @@ def run():
             completed += 1
             print(f"[{completed}/{len(CONFIGS)}] {config['definition']} {timeframe} "
                   f"{config['direction']} D{config['deadline']} R{config['reward_r']}: "
-                  f"{result['status']} scored={result['trades']} "
-                  f"unscorable={result['unscorable_funding_trades']}", flush=True)
+                  f"{result['status']} scored={result.get('trades', 0)} "
+                  f"unscorable={result.get('unscorable_funding_trades', 0)}",
+                  flush=True)
         del barsets, zone_cache
     return completed
 

@@ -1,7 +1,11 @@
+import csv
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from crypto import Bar
-from search_crypto_r4 import CONFIGS, _trial
+from search_crypto_r4 import CONFIGS, _registered_trials, _trial
 
 
 class SearchCryptoR4Tests(unittest.TestCase):
@@ -30,6 +34,21 @@ class SearchCryptoR4Tests(unittest.TestCase):
         self.assertEqual(result["symbols"], 30)
         self.assertEqual(result["trades"], 0)
         self.assertEqual(result["cumulative_return"], 0.0)
+
+    def test_resume_reader_handles_large_existing_metric_fields(self):
+        fields = ("trial_id", "round", "parameter_grid_hash", "code_sha256", "definition", "metric")
+        config = '{"definition":"displacement"}'
+        with tempfile.TemporaryDirectory() as directory:
+            ledger = Path(directory) / "ledger.csv"
+            with ledger.open("w", newline="", encoding="utf-8") as stream:
+                writer = csv.DictWriter(stream, fieldnames=fields)
+                writer.writeheader()
+                writer.writerow({
+                    "trial_id": "old", "round": "R4-coin", "parameter_grid_hash": "grid",
+                    "code_sha256": "code", "definition": config, "metric": "x" * 150_000,
+                })
+            with patch("search_crypto_r4.common.CSV_PATH", ledger):
+                self.assertEqual(_registered_trials("grid", "code"), {config})
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import unittest
 import csv
 import hashlib
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -70,6 +71,24 @@ class EquityDataQualityTests(unittest.TestCase):
             self.assertEqual(len(filtered), 1, f"high={high}")
             self.assertEqual(stats["invalid_ohlc"], 0, f"high={high}")
 
+    def test_one_tick_row_is_clamped_and_consistent_rows_are_unchanged(self):
+        frame = bars(2)
+        original = frame.iloc[1].copy()
+        frame.loc[0, ["open", "high", "low", "close"]] = [2000, 2000, 1900, 2005]
+        filtered, stats = filter_equity_bars(frame, "TICK")
+        self.assertEqual(stats["tick_corrected"], 1)
+        self.assertEqual(stats["invalid_ohlc"], 0)
+        self.assertEqual(filtered.loc[0, "high"], 2005)
+        self.assertEqual(filtered.loc[0, "low"], 1900)
+        pd.testing.assert_series_equal(filtered.iloc[1], original, check_names=False)
+
+    def test_already_consistent_row_is_not_tick_corrected(self):
+        frame = bars(1)
+        before = frame.copy(deep=True)
+        filtered, stats = filter_equity_bars(frame, "CLEAN")
+        self.assertEqual(stats["tick_corrected"], 0)
+        pd.testing.assert_frame_equal(filtered, before)
+
     def test_two_tick_close_high_violation_is_rejected(self):
         frame = bars(100)
         frame.loc[0, ["open", "low", "high", "close"]] = [2000, 1900, 2000, 2010]
@@ -118,8 +137,38 @@ class EquityDataQualityTests(unittest.TestCase):
             csv_bytes = kept.to_csv(index=False, lineterminator="\n").encode()
             observed[symbol] = {"kept": len(kept), "invalid_ohlc": stats["invalid_ohlc"],
                                 "halt_bars": stats["halt_bars"],
+                                "tick_corrected": stats["tick_corrected"],
                                 "sha256": hashlib.sha256(csv_bytes).hexdigest()}
-        self.assertEqual(observed, baseline)
+        self.assertEqual({k: {x: v for x, v in val.items() if x != "tick_corrected"}
+                          for k, val in observed.items()}, baseline)
+        self.assertEqual({symbol: val["tick_corrected"] for symbol, val in observed.items()},
+                         {symbol: 0 for symbol in baseline})
+
+    def test_real_us_train_r3_bars_match_original_prechange_baseline(self):
+        from search_equities_r3 import _bars, _load_train
+
+        root = Path(__file__).resolve().parents[1]
+        split_file = Path("/Users/user/CODE/trading_data/cache/orderblock/equity_splits_r3.json")
+        baseline = {
+            "AAL": (3295, "0465810c448040fbca1f9656d47af557c3c8d3046e8cb2680db774f68edc03e2"),
+            "AAPL": (9552, "14daa6f4faad8073800627f3143e639983af4c546bd71886308e89264176d965"),
+            "ABT": (9740, "81d305c2183fcebd91db227fa0cc726ffa2897eb3c0cc21a31f303cb0eb25cfb"),
+        }
+        with (root / "universe/US.csv").open(newline="") as handle:
+            rows = {row["symbol"]: row for row in csv.DictReader(handle)
+                    if row["symbol"] in baseline}
+        self.assertEqual(set(rows), set(baseline))
+        for symbol, row in rows.items():
+            frame = _load_train(Path(row["daily_path"]), symbol, row["market"], split_file)
+            stats = {}
+            result = _bars(frame, symbol, stats)
+            payload = [(bar.timestamp, bar.open, bar.high, bar.low, bar.close, bar.complete)
+                       for bar in result]
+            encoded = json.dumps(payload, separators=(",", ":"), allow_nan=False).encode()
+            self.assertEqual(len(result), baseline[symbol][0], symbol)
+            self.assertEqual(hashlib.sha256(encoded).hexdigest(), baseline[symbol][1], symbol)
+            self.assertEqual(stats["invalid_ohlc"], 0, symbol)
+            self.assertEqual(stats["halt_bars"], 0, symbol)
 
     def test_drops_five_day_zero_volume_halt_run(self):
         frame = bars()

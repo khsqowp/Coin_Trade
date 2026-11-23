@@ -74,7 +74,8 @@ def filter_equity_bars(frame: pd.DataFrame, symbol: str) -> tuple[pd.DataFrame, 
     if not required.issubset(frame.columns):
         raise ValueError(f"bar columns missing: {sorted(required - set(frame.columns))}")
     if frame.empty:
-        return frame.copy(), {"rows": 0, "invalid_ohlc": 0, "halt_bars": 0}
+        return frame.copy(), {"rows": 0, "invalid_ohlc": 0, "halt_bars": 0,
+                              "tick_corrected": 0}
 
     price_halted = _price_halt(frame)
     invalid = _invalid_ohlc(frame) & ~price_halted
@@ -100,6 +101,17 @@ def filter_equity_bars(frame: pd.DataFrame, symbol: str) -> tuple[pd.DataFrame, 
                 run_start = None
 
     rejected = invalid | halted
-    kept = frame.loc[~rejected].copy().reset_index(drop=True)
+    kept = frame.loc[~rejected].copy()
+    corrected = 0
+    prices = kept[["open", "high", "low", "close"]].apply(pd.to_numeric, errors="coerce")
+    needs_correction = ((prices["high"] < prices[["open", "close"]].max(axis=1))
+                        | (prices["low"] > prices[["open", "close"]].min(axis=1)))
+    if needs_correction.any():
+        highs = prices.loc[needs_correction].max(axis=1)
+        lows = prices.loc[needs_correction].min(axis=1)
+        kept.loc[needs_correction, "high"] = highs
+        kept.loc[needs_correction, "low"] = lows
+        corrected = int(needs_correction.sum())
+    kept = kept.reset_index(drop=True)
     return kept, {"rows": len(frame), "invalid_ohlc": invalid_count,
-                  "halt_bars": int(halted.sum())}
+                  "halt_bars": int(halted.sum()), "tick_corrected": corrected}

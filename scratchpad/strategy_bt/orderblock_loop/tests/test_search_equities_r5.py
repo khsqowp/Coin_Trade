@@ -1,4 +1,5 @@
 import csv
+import json
 import math
 import tempfile
 import unittest
@@ -63,6 +64,33 @@ class SearchEquitiesR5Tests(unittest.TestCase):
             self.assertEqual(metric["invalid_ohlc_rows_filtered"], 1)
             self.assertEqual(metric["halt_bars_filtered"], 0)
             self.assertEqual(metric["symbols_quality_excluded"], 1)
+            self.assertEqual(metric["symbols_data_error"], 0)
+
+    def test_unexpected_symbol_error_is_recorded_and_run_continues(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            universe, membership, trial_path = root / "universe.csv", root / "membership.csv", root / "trials.csv"
+            universe.write_text("market,symbol,daily_path\nUS,BROKEN,bad.csv\nUS,GOOD,good.csv\n")
+            membership.write_text("market,symbol,alive_from,alive_through,source,source_asof\n"
+                                  "US,BROKEN,2000-01-01,2020-01-01,fixture,2020-01-01\n"
+                                  "US,GOOD,2000-01-01,2020-01-01,fixture,2020-01-01\n")
+            frames = {"BROKEN": self.quality_frame(), "GOOD": self.quality_frame()}
+            def load(_path, symbol, _market, _split):
+                return frames[symbol]
+            original = _daily_bars
+            def fail_one(frame, member, stats=None):
+                if member.symbol == "BROKEN":
+                    raise ValueError("synthetic unexpected failure")
+                return original(frame, member, stats)
+            with patch("search_equities_r3._load_train", side_effect=load), \
+                 patch("search_equities_r5._daily_bars", side_effect=fail_one):
+                results = run(universe, membership, root / "split.json", trials_path=trial_path)
+            self.assertTrue(any(r.get("symbol") == "GOOD" for r in results))
+            self.assertFalse(any(r.get("symbol") == "BROKEN" for r in results))
+            with trial_path.open(newline="", encoding="utf-8") as handle:
+                metrics = [json.loads(row["metric"]) for row in csv.DictReader(handle)]
+            self.assertTrue(metrics)
+            self.assertTrue(all(metric["symbols_data_error"] == 1 for metric in metrics))
 
     def test_membership_market_labels_normalize_and_fail_closed(self):
         with tempfile.TemporaryDirectory() as temp:

@@ -522,6 +522,7 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
                         funding: Mapping[int, FundingEvent],
                         fee_bps_per_side: float = 4.0,
                         slippage_bps_per_side: float = 2.0,
+                        bar_duration_ms: int | None = None,
                         r4_definition: bool = False,
                         funding_order_policy: Literal["fail_closed", "adverse_only"] = "fail_closed",
                         candidate_zones: Sequence[Zone] | None = None,
@@ -529,6 +530,8 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
     """Run one fixed OB candidate end-to-end without overlapping positions."""
     if deadline not in (24, 48) or reward_r not in (1.5, 2.0):
         raise ValueError("parameters outside preregistered grid")
+    if bar_duration_ms is not None and bar_duration_ms <= 0:
+        raise ValueError("bar_duration_ms must be positive")
     eligible = _validate(bars)
     detected = candidate_zones
     if detected is None:
@@ -596,6 +599,7 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
                         bars, setup, funding=funding,
                         fee_bps_per_side=fee_bps_per_side,
                         slippage_bps_per_side=slippage_bps_per_side,
+                        bar_duration_ms=bar_duration_ms,
                         funding_order_policy=funding_order_policy,
                     )
                     if trade is None:
