@@ -548,3 +548,10 @@ Funding 사건이 진입 시각과 같거나 손절·목표 발생 봉의 시간
 - 진짜 미해결 가격만 unscorable이다: mark와 등록된 1분 close fallback 모두 없거나 값이 유한한 양수가 아닌 settlement, 그리고 coverage-gap/missing-settlement sentinel은 보유 구간과 겹치면 해당 거래를 unscorable로 처리한다. 누락 이벤트를 0 처리하거나 추가 가격원·보간을 도입하지 않는다. stop/target exit-candle 내부 정산 순서 불명확성 등 가격 유무와 독립된 기존 미판정 규칙은 유지한다.
 - 보유구간에 해당하는 실제 fallback 가격이 있는 event는 sentinel overlap 판정에서 제외하고 정상 funding 현금흐름 산식에 사용한다. sentinel 감사에는 unresolved-price와 coverage-gap만 기록한다. 모든 unscorable funding ID는 생성된 거래 ID의 부분집합이어야 한다.
 - 이 addendum은 이번 세 번째 R3-coin 재실행의 지정된 진단 필드를 열기 전에 기록한다. 기존 행을 수정하지 않는다. 결과 성과, 가설, 격자, 거래 수·비용·유니버스 기준 및 G 기준을 바꾸지 않는다.
+
+### E3-J-portfolio 비용 반영 addendum (2026-11-23, 코드 수정 전 선등록, 수정은 별도 승인 후)
+- 감사(REPORT_R5.md "E3-J 감사" 절)로 `search_equities_r5.py::_e3j_portfolio_metrics`(동일비중 Sharpe/MDD 집계)가 거래비용을 전혀 반영하지 않음을 확인했다. 같은 전략의 종목별 PF/expectancy(`_metrics`, `simulate_e3`의 `net = gross - cost/10_000`)는 비용 포함 net인데, 포트폴리오 Sharpe/MDD만 gross라서 두 지표 집합의 비용 처리 기준이 다르다.
+- 승인 시 고정할 수정 범위: 코호트 리밸런싱 시점(진입일, 그리고 익년 5월 첫 관측일 롤오버)마다 `_cost_bps(market)`을 해당 일자의 `daily_return`에서 1회씩 차감한다. 그 외 날짜의 `daily_return`은 수정하지 않는다. `simulate_e3`의 종목별 비용 계산 방식이나 비용표(`preregistered_costs`) 자체는 바꾸지 않는다.
+- 같이 고정할 보정: 포트폴리오 곡선의 마지막 마킹일을 "5월 첫주 신호일 종가"에서 "그 다음 거래일 시가"로 맞춰, 종목별 실제 청산 체결일과 동일한 날짜 기준이 되게 한다(`entry_pos:may_pos+1` 범위를 `exit_pos`까지로, 마지막 구간의 마크를 해당일 종가 대신 시가로 교체).
+- 생존편향 처리(진입·청산일 모두 alive 요구, 미확인 시 코호트 전체 제외 후 `delisting_gap` 집계)는 R2~R4와 동일한 기존 fail-closed 관행이라 이 addendum에서 바꾸지 않는다.
+- 이 addendum은 수정 코드를 열기 전에 등록한다. 기존 `TRAIN_TRIALS.csv` 행(R5-KR-E3-J 포함)은 수정하지 않는다. 종목별 PF/expectancy 산출 경로, E3-A~I, 비용표, universe/membership 규칙, G 기준은 바꾸지 않는다. 실제 구현은 총괄(사용자 또는 요청한 피어 세션)의 별도 승인 후에만 진행한다.
