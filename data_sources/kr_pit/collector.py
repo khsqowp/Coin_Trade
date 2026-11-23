@@ -88,9 +88,15 @@ def _is_merger(row):
     return any(term in text for term in ('합병', 'merger', '흡수', '주식교환', '이전상장'))
 
 
-def fetch_delisted_prices(delistings, stock, sleep=time.sleep, rate_seconds=0.35, min_rows=2):
+def fetch_delisted_prices(delistings, stock, sleep=time.sleep, rate_seconds=0.35, min_rows=2, chunk_dir=None):
     pieces, meta = [], []
     for row in delistings.to_dict('records'):
+        chunk = Path(chunk_dir) / f"{hashlib.sha256(row['instrument_key'].encode()).hexdigest()}.parquet" if chunk_dir else None
+        if chunk and chunk.exists():
+            cached = pd.read_parquet(chunk)
+            pieces.append(cached)
+            meta.append({**row, 'status': 'ok_cached', 'rows': len(cached), 'merger_delisting': bool(cached.merger_delisting.iloc[0])})
+            continue
         listing = row.get('listing_date')
         end = row['delisting_date']
         start = listing if isinstance(listing, date) else date(max(1980, end.year - 30), 1, 1)
@@ -121,6 +127,9 @@ def fetch_delisted_prices(delistings, stock, sleep=time.sleep, rate_seconds=0.35
         frame['delisting_date'] = end
         frame['merger_delisting'] = _is_merger(pd.Series(row))
         frame['source'] = 'pykrx get_market_ohlcv_by_date'
+        if chunk:
+            chunk.parent.mkdir(parents=True, exist_ok=True)
+            frame.to_parquet(chunk, index=False, compression='zstd')
         pieces.append(frame)
         meta.append({**row, 'status': 'ok', 'rows': len(frame), 'merger_delisting': _is_merger(pd.Series(row))})
     return (pd.concat(pieces, ignore_index=True) if pieces else pd.DataFrame()), pd.DataFrame(meta)
@@ -149,9 +158,16 @@ def fetch_membership(stock, dates, sleep=time.sleep, rate_seconds=0.35, snapshot
     out = []
     for (market, code), observed in sorted(seen.items()):
         observed.sort()
-        out.append({'market': market, 'symbol': code, 'alive_from': observed[0].isoformat(),
-                    'alive_through': observed[-1].isoformat(), 'source': 'pykrx get_market_ticker_list month-end snapshots',
-                    'source_asof': observed[-1].isoformat()})
+        groups = [[observed[0]]]
+        for day in observed[1:]:
+            if (day - groups[-1][-1]).days > 45:
+                groups.append([day])
+            else:
+                groups[-1].append(day)
+        for group in groups:
+            out.append({'market': market, 'symbol': code, 'alive_from': group[0].isoformat(),
+                        'alive_through': group[-1].isoformat(), 'source': 'pykrx get_market_ticker_list month-end snapshots; gaps >45d split',
+                        'source_asof': group[-1].isoformat()})
     return pd.DataFrame(out, columns=MEMBERSHIP_COLUMNS)
 
 
@@ -189,7 +205,8 @@ def run(out=ROOT, sleep=time.sleep, rate_seconds=0.35):
     write_table(membership, membership_path)
     delistings = fetch_delistings(fdr, sleep)
     write_table(delistings, out / 'delistings.csv')
-    prices, coverage = fetch_delisted_prices(delistings, stock, sleep, rate_seconds)
+    prices, coverage = fetch_delisted_prices(delistings, stock, sleep, rate_seconds,
+                                             chunk_dir=out / 'delisted_chunks')
     if not prices.empty:
         write_table(prices, out / 'delisted_ohlcv.parquet')
     if not coverage.empty:

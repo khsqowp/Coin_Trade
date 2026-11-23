@@ -5,7 +5,9 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import sys
+import uuid
 from datetime import datetime, timezone
 
 from pathlib import Path
@@ -29,8 +31,7 @@ def exclude_unscorable_symbols(barsets):
     """Drop no-bar symbols and any symbol with missing marks/settlement coverage."""
     kept, funding_excluded, empty_excluded = [], [], []
     for symbol, bars, funding, incomplete_count in barsets:
-        if any(event.mark_price is None or event.coverage_gap
-               for event in funding.values()):
+        if any(_funding_unresolved(event) for event in funding.values()):
             funding_excluded.append(symbol)
             continue
         if not bars:
@@ -38,6 +39,22 @@ def exclude_unscorable_symbols(barsets):
             continue
         kept.append((symbol, bars, funding, incomplete_count))
     return kept, sorted(funding_excluded), sorted(empty_excluded)
+
+
+def _funding_unresolved(event):
+    if event.coverage_gap or event.mark_price is None:
+        return True
+    try:
+        return not math.isfinite(event.mark_price) or event.mark_price <= 0
+    except (TypeError, ValueError):
+        return True
+
+
+def _apply_symbol_floor(result, minimum_symbols, kept_count):
+    if kept_count < minimum_symbols:
+        result["status"] = "unscorable"
+        result["detail"] = f"only {kept_count} kept symbols; need {minimum_symbols}"
+    return result
 
 
 def _append_r3(config, result, fingerprint):
@@ -52,7 +69,8 @@ def _append_r3(config, result, fingerprint):
     metric = {key: result.get(key) for key in r2.METRIC_FIELDS}
     metric["train_input_fingerprint"] = fingerprint
     record = {
-        "trial_id": f"R3-crypto-{config_hash[:16]}", "round": "R3-coin",
+        "trial_id": f"R3-coin-reregistered-{config_hash[:12]}-{uuid.uuid4().hex}",
+        "round": "R3-coin",
         "market_group": "crypto", "utc_timestamp": datetime.now(timezone.utc).isoformat(),
         "definition": config_json, "parameter_grid_hash": grid_hash,
         "code_sha256": code_hash.hexdigest(),
@@ -99,9 +117,7 @@ def _run(shard="0/1"):
             result["kept_symbols"] = len(kept)
             result["excluded_funding_symbols"] = funding_excluded
             result["excluded_no_train_bar_symbols"] = empty_excluded
-            if len(kept) < 25:
-                result["status"] = "unscorable"
-                result["detail"] = f"only {len(kept)} kept symbols; need 25"
+            _apply_symbol_floor(result, config["minimum_symbols"], len(kept))
         except Exception as exc:
             result = dict.fromkeys(r2.METRIC_FIELDS)
             result.update(status="failed", detail=f"{type(exc).__name__}: {exc}",

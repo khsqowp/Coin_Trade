@@ -30,7 +30,7 @@ class CollectorTests(unittest.TestCase):
     def test_price_cutoff_merger_and_empty_guard(self):
         class Stock:
             def get_market_ohlcv_by_date(self, start, end, code):
-            return pd.DataFrame({'시가':[10,11,12], '고가':[11,12,13], '저가':[9,10,11], '종가':[10,11,12], '거래량':[1,1,1]}, index=['2026-05-29','2026-05-31','2026-06-01'])
+                return pd.DataFrame({'시가':[10,11,12], '고가':[11,12,13], '저가':[9,10,11], '종가':[10,11,12], '거래량':[1,1,1]}, index=['2026-05-29','2026-05-31','2026-06-01'])
         rows = pd.DataFrame([{'code':'000001','listing_date':date(2020,1,1),'delisting_date':date(2026,5,31),'instrument_key':'000001:2020-01-01','Reason':'합병'}])
         prices, _ = collector.fetch_delisted_prices(rows, Stock(), sleep=lambda _:None, rate_seconds=0)
         self.assertEqual(len(prices), 2); self.assertTrue((prices.date <= collector.CUTOFF).all()); self.assertTrue(prices.merger_delisting.all())

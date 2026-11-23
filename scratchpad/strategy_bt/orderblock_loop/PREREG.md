@@ -6,7 +6,7 @@
 
 ### 1. 고정 심볼 제외 규칙
 
-- timeframe별 TRAIN 입력에서 완성 TRAIN 봉이 0개인 심볼은 해당 라운드의 모든 설정에서 제외한다. funding 입력 중 하나라도 `mark_price`가 없거나 `coverage_gap`이 참인 심볼도 모든 설정에서 제외한다. 보간·0 처리·다른 가격 대용은 하지 않는다. 미완성 봉만 있는 심볼은 “TRAIN 봉 없음”으로 센다.
+- timeframe별 TRAIN 입력에서 완성 TRAIN 봉이 0개인 심볼은 해당 라운드의 모든 설정에서 제외한다. funding 입력 중 하나라도 `mark_price`가 없거나 유한한 양수가 아니거나 `coverage_gap`이 참인 심볼도 모든 설정에서 제외한다. 보간·0 처리·다른 가격 대용은 하지 않는다. 미완성 봉만 있는 심볼은 “TRAIN 봉 없음”으로 센다.
 - 제외 심볼은 이유별 심볼명과 개수를 모든 R3-coin 시도에 남긴다. 중복 이유는 `funding`을 우선 분류하고, no-bars 목록에는 funding 목록 심볼을 중복 기재하지 않는다. fingerprint는 제외 전 전체 TRAIN 입력을 포함한다. 설정별 `kept_symbols`는 제외 후 적격 심볼 수다.
 - 적격 심볼 수가 25 미만이면 각 설정은 `unscorable`이며, 있는 일부 거래의 순위를 후보 판단에 쓰지 않는다. 25 이상이어도 개별 거래 구간에서 funding 정산 불확실성이나 우측 검열이 남으면 기존 미판정 규칙을 적용한다. 이는 R2의 등록 최소 30개보다 낮은 별도 R3 규칙이며 R3 결과를 G 통과로 만들지 않는다.
 
@@ -24,6 +24,14 @@
 - 기존 코인 공통 TRAIN 경계 `2023-11-06T16:00:00Z`와 4h cutoff, 신호 확정 후 다음 봉 시가 진입, 최초 재방문, 48봉 시간청산, funding 현금흐름, 왕복 12bp 비용, funding 동시각 처리, 우측 검열 및 일간 손익 규칙을 그대로 쓴다. 포지션 중첩·동일 봉 손절/목표 충돌 규칙도 변경하지 않는다.
 - 코인 자료는 TRAIN 전용 loader만 사용한다. TEST 경로/행을 열지 않는다. 실행 명령은 `cd /Users/user/CODE/Coin_Trade/scratchpad/strategy_bt/orderblock_loop && /Users/user/CODE/trading_data/cache/orderblock/venv/bin/python search_crypto_r3.py --shard 0/1`이다. 실행은 향후 별도 자원·단일 heavy slot 확인 후 가능하며, 이번 설계 작업에서는 실행하지 않는다.
 - 이는 TRAIN 탐색이다. G 통과, 후보 동결, TEST 제출 권한을 주지 않는다. 48개 시도는 실패나 `unscorable`이어도 누적 시도 수에서 빼지 않는다.
+
+### 4. R3-coin 재등록 보충 규칙 (2026-11-23, 재실행 전)
+
+- 앞서 기록된 R3-coin 48개 행은 당시 시도로 그대로 보존한다. 이번 재등록은 같은 48개 설정을 다시 시도하므로 누적 `N_train`에 48회를 추가한다. 예전 행의 상태·결과를 수정하거나 삭제하지 않는다.
+- 재등록 실행의 `round`는 계속 `R3-coin`으로 기록하고, 각 새 시도는 예전 R3-coin 행과 구분되는 새 고유 `trial_id`를 발급한다. 각 격자 설정은 한 번씩 기록하며, 추후 재실행도 별도 새 시도로 누적한다.
+- 제외 대상과 최소 심볼 수, 가설, 48개 격자, cutoff, 비용, 채점은 위 R3-coin 사전등록을 그대로 따른다. 변경은 trial 식별과 기존 실패 원인(미해결 funding 가격·무 TRAIN 봉 심볼)의 사전 제외뿐이다.
+- 합성 회귀 테스트는 미해결 mark와 coverage gap 심볼, 완성 TRAIN 봉이 없는 심볼을 전 격자 공통으로 제외하고 최소 25개 기준을 유지하는지, 그리고 새 trial ID가 이전 R3-coin ID와 중복되지 않는지 확인한다. 실데이터 탐색 전 지정 venv의 전체 unittest suite를 통과해야 한다.
+- 실행 명령은 위에 등록한 `search_crypto_r3.py --shard 0/1` 명령 그대로다. 이번 재등록은 코드·합성 테스트 검증만 수행하며 실데이터 run 0회, TEST 미열람 상태를 유지한다.
 
 ## R4 addendum — 미국·한국 주식 생존편향 및 후보군, 코인 오답노트 파생 (2026-11-23, 실행 전)
 
@@ -70,6 +78,25 @@
 - 실검색 전에 본 addendum, 실행 코드 hash, 유니버스·membership 파일 hash, TRAIN 범위·데이터 hash를 기록한다. 실행 시도 수는 32+12=44로 우선 장부에 더하고, 실패/미산출도 시도로 유지한다. 명시 격자 외 미세조정은 새 사전등록 없이는 금지한다.
 - 주식 검색은 TRAIN만 읽고 공통 경계 `2018-10-26T23:59:00Z`까지다. TEST 읽기 경로는 구현하지 않는다. 결과 탐색 후 기준·격자 변경 금지. R4 실검색 결과/통과 주장 없음.
 - 단위 테스트는 합성 바와 가짜 membership을 사용한다. 실데이터 탐색은 별도 명시 승인 및 자원 게이트 뒤에만 가능하다.
+
+## R5 addendum — 전략 아카이브 파생 신규 미국·한국 일봉/주봉 가설 10개 (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 실데이터 탐색 0회, TEST 미열람. `strategy_archive/`(community~community5, github_tv, spec-complete 209개) 중 E2(R4) 6개와 겹치지 않는 가족(supertrend, ichimoku, channel_breakout, oscillator_combo×2, divergence, trend_pullback, candlestick 계열 캘린더 변형, seasonality×2)에서 10개를 선정했다. 각 가설은 US/KR 공통 1개 고정 설정이며 튜닝하지 않는다. 총 10×2=20개 사전등록 설정.
+
+1. E3-A `community4/c4-ema-supertrend.json`·`c4-double-supertrend.json` 기반 Supertrend(10, 3.0) flip: ATR(10) 기준 Supertrend band를 계산해, 전일 종가는 band 아래였고 금일 종가가 band 위로 마감하면(flip) 롱. 다음 시가 진입. 청산: 종가가 다시 band 아래로 마감한 다음 시가, 또는 최대 60거래일.
+2. E3-B `community4/c4-ichimoku-long-and-short-strategy.json` 기반 Ichimoku cloud breakout: Tenkan=(9일 최고+최저)/2, Kijun=(26일 최고+최저)/2, Senkou A=(Tenkan+Kijun)/2를 26일 선행, Senkou B=(52일 최고+최저)/2를 26일 선행. 종가가 min(Senkou A, Senkou B) 위로 마감하고 Tenkan>Kijun이면 롱. 다음 시가 진입. 청산: 종가가 cloud 아래로 마감한 다음 시가 또는 최대 60거래일.
+3. E3-C `community4/c4-bb-keltner-squeeze-strategy.json` 기반 Keltner squeeze breakout: Keltner=EMA20±2×ATR10. 직전 20일 Bollinger band(20,2) 폭이 Keltner band 폭보다 좁았던 날(squeeze) 다음날 종가가 Keltner 상단을 넘으면 롱. 다음 시가 진입, ATR10×2 손절, 최대 30거래일.
+4. E3-D `github_tv/pk_rsi_directional.json` 기반 RSI(4) 추세필터 반등: 종가>EMA100(상승추세)이고 RSI(4)가 15 아래로 내려간 다음날 RSI(4)가 15 위로 회복하면 롱. 다음 시가 진입. 청산: RSI(4)>85 또는 최대 15거래일.
+5. E3-E `github_tv/ft_cmc_winner.json` 기반 CCI+MFI 이중 오실레이터 반등: CCI(20)<-100이고 동시에 MFI(14)<20인 날의 다음날 둘 다 반등(CCI(20)>-100 and MFI(14)>20)하면 롱. 다음 시가 진입. 청산: CCI(20)>100 또는 최대 10거래일.
+6. E3-F `community5/c5-williams-r-14-cross-minus50-pips-ma200.json` 기반 Williams %R 추세필터 교차: 종가>SMA200(장기상승)이고 Williams %R(14)가 -80 아래에서 -60 위로 상향 교차하면 롱. 다음 시가 진입. 청산: %R(14)>-20 또는 최대 20거래일.
+7. E3-G `community4/c4-divergence-for-many-indicators-v4-st.json` 기반 RSI 상승 다이버전스: 직전 20거래일 내 가격 저가가 그 이전 저점보다 낮아지는 동안 RSI(14) 저점은 그 이전 RSI 저점보다 높게 형성되면(다이버전스) 확인일 다음날 종가가 다이버전스 구간 중 최고가를 넘으면 롱. 다음 시가 진입. 청산: ATR14×1.5 손절 또는 최대 15거래일.
+8. E3-H `community2/raschke-holy-grail.json` 기반 ADX 추세 + 20EMA pullback: ADX(14)>30이고 종가>EMA20(상승추세)인 상태에서 당일 저가≤EMA20≤당일 종가로 되돌림이 확인된 날의 다음날 전일 고가를 넘으면 롱. 다음 시가 진입. 청산: ATR14×1.5 손절 또는 최대 10거래일.
+9. E3-I `community5/c5-et-turnaround-monday-two-red-bars.json` 기반 캘린더 반전(지표 없음): 직전 2 연속 거래일 종가가 모두 하락했고 오늘이 월요일 거래일이면 월요일 종가에 롱 진입(지표 신호 없는 순수 캘린더 규칙, 체결은 월요일 종가 확정 뒤 다음 거래일 시가). 청산: 익일 종가가 그 전일 고가를 넘는 날의 다음 시가 또는 최대 5거래일.
+10. E3-J `community5/c5-sell-in-may-buy-september.json`·`c5-sc-six-month-cycle-macd-harding.json` 기반 6개월 계절성: 매년 11월 첫 거래일 종가 확정 뒤 다음 시가에 100% 롱 진입(개별 신호가 아니라 시장 전체 동일비중 패널), 익년 5월 첫 거래일 종가 확정 뒤 다음 시가에 전량 청산. 10/11월 롤오버 사이 신규 상장은 11월 진입 시점 risk set에만 포함한다.
+
+모든 신호는 완료 봉만 사용하고 다음 실제 거래일 시가에 체결한다. 같은 봉에서 양쪽 장벽 도달은 손절 우선. 비용·PIT/membership/alive_through/delisting_gap 규칙은 R4 1절·2절과 동일하게 그대로 적용한다(별도 CSV 없이는 `PIT_UNKNOWN`, fail-closed, 동결·TEST 금지). 공통 TRAIN 경계 `2018-10-26T23:59:00Z`, 2026-05-31 이후 자료 미열람도 동일하다. 10개 시도는 R4의 44회에 더해 누적 시도 수에 20(시장 2 × 가설 10)을 더한다. 결과를 보기 전 고정했으며, 실행 뒤 격자·기준을 바꾸지 않는다.
+
+구현은 새 파일 `search_equities_r5.py`(기존 search_equities*.py/equities.py/stats.py/data_access.py 수정 금지, 필요하면 어댑터)로 하고, 합성 unittest로 10개 신호 로직·PIT 경계·비용 차감을 검증한다. 지정 venv 전체 unittest 통과 전 실데이터는 열지 않는다. 이번 addendum에서는 구현·합성 테스트만 수행하고 실데이터 검색·TEST 열람·커밋은 하지 않는다.
 
 - 상태: v1.0 정식 사전등록, **실데이터 백테스트 미실행**
 - 저장소: `/Users/user/CODE/Coin_Trade`

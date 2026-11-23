@@ -7,7 +7,8 @@ from unittest.mock import patch
 
 from crypto import Bar, FundingEvent, Zone
 from search_crypto import _filter_r3_zones
-from search_crypto_r3 import CONFIGS, _append_r3, exclude_unscorable_symbols
+from search_crypto_r3 import (CONFIGS, _append_r3, _apply_symbol_floor,
+                              exclude_unscorable_symbols)
 
 
 class SearchCryptoR3Tests(unittest.TestCase):
@@ -24,12 +25,24 @@ class SearchCryptoR3Tests(unittest.TestCase):
             ("GOOD", bars, {1: FundingEvent(1, 0.0, 10)}, 0),
             ("NO_MARK", bars, {1: FundingEvent(1, 0.0, None)}, 0),
             ("GAP", bars, {1: FundingEvent(1, 0.0, 10, coverage_gap=True)}, 0),
+            ("NAN_MARK", bars, {1: FundingEvent(1, 0.0, float("nan"))}, 0),
+            ("INFINITE_MARK", bars, {1: FundingEvent(1, 0.0, float("inf"))}, 0),
+            ("ZERO_MARK", bars, {1: FundingEvent(1, 0.0, 0)}, 0),
             ("EMPTY", [], {}, 0),
         ]
         kept, funding_excluded, empty_excluded = exclude_unscorable_symbols(barsets)
         self.assertEqual([item[0] for item in kept], ["GOOD"])
-        self.assertEqual(funding_excluded, ["GAP", "NO_MARK"])
+        self.assertEqual(funding_excluded,
+                         ["GAP", "INFINITE_MARK", "NAN_MARK", "NO_MARK", "ZERO_MARK"])
         self.assertEqual(empty_excluded, ["EMPTY"])
+
+    def test_symbol_floor_requires_25_kept_symbols(self):
+        result = {"status": "complete", "detail": "scored"}
+        self.assertIs(_apply_symbol_floor(result, 25, 25), result)
+        self.assertEqual(result["status"], "complete")
+        _apply_symbol_floor(result, 25, 24)
+        self.assertEqual(result["status"], "unscorable")
+        self.assertEqual(result["detail"], "only 24 kept symbols; need 25")
 
     def test_daily_trend_uses_only_prior_completed_utc_days(self):
         day_ms = 86_400_000
@@ -62,8 +75,13 @@ class SearchCryptoR3Tests(unittest.TestCase):
             path = Path(temp) / "trials.csv"
             with patch("search_crypto_r3.r2.CSV_PATH", path):
                 _append_r3(config, result, "f" * 64)
+                _append_r3(config, result, "f" * 64)
             with path.open(newline="", encoding="utf-8") as stream:
-                row = next(csv.DictReader(stream))
+                rows = list(csv.DictReader(stream))
+        self.assertEqual(len(rows), 2)
+        row = rows[0]
+        self.assertNotEqual(rows[0]["trial_id"], rows[1]["trial_id"])
+        self.assertTrue(row["trial_id"].startswith("R3-coin-reregistered-"))
         self.assertEqual(row["round"], "R3-coin")
         self.assertEqual(row["market_group"], "crypto")
         self.assertEqual(json.loads(row["definition"]), config)
