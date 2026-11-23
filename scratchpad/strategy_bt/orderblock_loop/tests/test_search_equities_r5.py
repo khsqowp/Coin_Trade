@@ -241,18 +241,60 @@ class SearchEquitiesR5Tests(unittest.TestCase):
             "LATE": Membership("US", "LATE", date(2020, 11, 3), date(2022, 1, 1), "official", date(2022, 1, 1)),
         }
 
-        result = _e3j_portfolio_metrics(symbols, members)
+        result = _e3j_portfolio_metrics(symbols, members, "US")
 
-        # Daily portfolio marks are 1.05, 1.05, 0.95; returns are 1/20, 0, -2/21.
-        expected_returns = [1 / 20, 0.0, -2 / 21]
-        average = sum(expected_returns) / 3
-        sample_variance = sum((value - average) ** 2 for value in expected_returns) / 2
+        # Entry and May rebalancing each charge 20 bps; final mark uses the exit-day open.
+        expected_returns = [1 / 20 - .002, 0.0, -2 / 21 - .002, 1 / .95 - 1]
+        average = sum(expected_returns) / len(expected_returns)
+        sample_variance = sum((value - average) ** 2 for value in expected_returns) / (len(expected_returns) - 1)
         expected_sharpe = math.sqrt(252) * average / math.sqrt(sample_variance)
         self.assertEqual(result["symbols"], 2)
         self.assertEqual(result["trades"], 2)
         self.assertEqual(result["delisting_gap"], 1)
-        self.assertAlmostEqual(result["max_drawdown"], 0.95 / 1.05 - 1)
+        curve = []
+        current = 1.0
+        for daily_return in expected_returns:
+            current *= 1 + daily_return
+            curve.append(current)
+        peak = 1.0
+        expected_drawdown = 0.0
+        for value in curve:
+            peak = max(peak, value)
+            expected_drawdown = min(expected_drawdown, value / peak - 1)
+        self.assertAlmostEqual(result["max_drawdown"], expected_drawdown)
         self.assertAlmostEqual(result["sharpe"], expected_sharpe)
+
+    def test_e3j_portfolio_costs_once_per_rebalance_and_exit_mark_uses_open(self):
+        days = [date(2020, 11, 2), date(2020, 11, 3), date(2021, 5, 3), date(2021, 5, 4)]
+        closes = [100.0, 100.0, 100.0, 80.0]
+        opens = [100.0, 100.0, 100.0, 110.0]
+        bars = [Bar(int(datetime(day.year, day.month, day.day, tzinfo=timezone.utc).timestamp() * 1000),
+                    opens[i], max(opens[i], closes[i]) + 1, min(opens[i], closes[i]) - 1, closes[i])
+                for i, day in enumerate(days)]
+        member = Membership("US", "AAA", date(2000, 1, 1), date(2022, 1, 1),
+                            "official", date(2022, 1, 1))
+
+        with patch("search_equities_r5._cost_bps", return_value=25.0) as cost:
+            result = _e3j_portfolio_metrics({"AAA": bars}, {"AAA": member}, "US")
+
+        self.assertEqual(cost.call_args_list, [(("US",), {}), (("US",), {})])
+        # Three daily returns: entry -25bp, May rollover -25bp, exit-open +10%.
+        expected_returns = [-.0025, -.0025, .10]
+        average = sum(expected_returns) / len(expected_returns)
+        deviation = math.sqrt(sum((value - average) ** 2 for value in expected_returns) / 2)
+        self.assertAlmostEqual(result["sharpe"], math.sqrt(252) * average / deviation)
+
+    def test_e3j_portfolio_keeps_out_of_range_exit_season_skipped(self):
+        days = [date(2020, 11, 2), date(2020, 11, 3), date(2021, 5, 3)]
+        bars = [Bar(int(datetime(day.year, day.month, day.day, tzinfo=timezone.utc).timestamp() * 1000),
+                    100, 101, 99, 100) for day in days]
+        member = Membership("US", "AAA", date(2000, 1, 1), date(2022, 1, 1),
+                            "official", date(2022, 1, 1))
+
+        result = _e3j_portfolio_metrics({"AAA": bars}, {"AAA": member}, "US")
+
+        self.assertEqual(result["trades"], 0)
+        self.assertEqual(result["delisting_gap"], 0)
 
     def test_membership_interval_is_inclusive(self):
         membership = Membership("US", "AAA", date(2000, 1, 1), date(2000, 1, 2),

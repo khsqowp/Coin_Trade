@@ -411,8 +411,9 @@ def _metrics(trades: list[Trade]) -> dict[str, object]:
 
 
 def _e3j_portfolio_metrics(symbol_bars: dict[str, list[Bar]],
-                           memberships: dict[str, Membership]) -> dict[str, object]:
-    """Build equal-weight daily close marks for PIT-safe November cohorts."""
+                           memberships: dict[str, Membership],
+                           market: str) -> dict[str, object]:
+    """Build equal-weight daily marks for PIT-safe November cohorts."""
     dated_bars = {symbol: {_day(bar): bar for bar in bars}
                   for symbol, bars in symbol_bars.items()}
     market_days = sorted({day for bars in dated_bars.values() for day in bars})
@@ -450,13 +451,17 @@ def _e3j_portfolio_metrics(symbol_bars: dict[str, list[Bar]],
         trades += len(cohort)
         marks = {symbol: close for symbol, (_, close) in cohort.items()}
         previous_value = 1.0
-        for day in market_days[entry_pos:may_pos + 1]:
+        rebalance_days = {entry_day, market_days[may_pos]}
+        for day_pos in range(entry_pos, exit_pos + 1):
+            day = market_days[day_pos]
             for symbol in cohort:
                 bar = dated_bars[symbol].get(day)
                 if bar is not None:
-                    marks[symbol] = bar.close
+                    marks[symbol] = bar.open if day_pos == exit_pos else bar.close
             value = mean(marks[symbol] / cohort[symbol][0] for symbol in cohort)
             daily_return = value / previous_value - 1
+            if day in rebalance_days:
+                daily_return -= _cost_bps(market) / 10_000
             returns.append(daily_return)
             previous_value = value
 
@@ -574,7 +579,8 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
                                 **_e3j_portfolio_metrics(
                                     e3j_bars.get(market, {}),
                                     {symbol: memberships[(market, symbol)]
-                                     for mkt, symbol in memberships if mkt == market}),
+                                     for mkt, symbol in memberships if mkt == market},
+                                    market),
                                 "survivorship_biased": False,
                                 "status": "TRAIN_ONLY_NOT_G"})
     if trials_path is not None and trial_rows:
