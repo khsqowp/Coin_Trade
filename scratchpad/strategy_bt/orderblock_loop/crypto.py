@@ -63,6 +63,14 @@ class Trade:
     funding_return: float | None
     cost_bps: float
     net_return: float | None
+    funding_order_policy: Literal["fail_closed", "adverse_only"] = "fail_closed"
+    ambiguous_funding_events: int = 0
+
+
+def funding_price_available(event: FundingEvent) -> bool:
+    """A finite positive observed mark or registered close proxy is usable."""
+    return (event.mark_price is not None and isfinite(event.mark_price)
+            and event.mark_price > 0)
 
 
 def _count(audit: dict[str, int] | None, key: str) -> None:
@@ -253,6 +261,47 @@ def active_zones(bars: Sequence[Bar], definition: Definition, *, deadline: int,
     )
 
 
+def r4_zones(bars: Sequence[Bar], definition: Definition) -> list[Zone]:
+    """Detect the separately preregistered R4 definitions without future bars."""
+    if definition not in ("displacement", "bos_origin", "volume_displacement"):
+        raise ValueError(f"unsupported R4 definition: {definition!r}")
+    eligible = _validate(bars)
+    pivots = _confirmed_pivot_levels(bars, eligible)
+    found = []
+    for i in eligible:
+        if i < 20:
+            continue
+        atr_value = _atr(bars, i)
+        if atr_value is None:
+            continue
+        if definition == "bos_origin":
+            pivot_high, pivot_low = pivots[i]
+            up = pivot_high is not None and bars[i].close > pivot_high
+            down = pivot_low is not None and bars[i].close < pivot_low
+            if up == down:
+                continue
+            direction: Direction = "long" if up else "short"
+        else:
+            direction = "long" if bars[i].close > bars[i].open else "short"
+            if bars[i].close == bars[i].open:
+                continue
+            if abs(bars[i].close - bars[i].open) < 1.5 * atr_value:
+                continue
+        if definition == "volume_displacement":
+            previous = sorted(bars[j].volume for j in range(i - 20, i))
+            median = (previous[9] + previous[10]) / 2
+            if bars[i].volume < 1.5 * median:
+                continue
+        opposite = [j for j in range(i - 20, i)
+                    if (bars[j].close < bars[j].open if direction == "long"
+                        else bars[j].close > bars[j].open)]
+        if opposite:
+            origin = opposite[-1]
+            found.append(Zone(i, origin, direction, bars[origin].low,
+                              bars[origin].high, atr_value))
+    return found
+
+
 def first_retest(bars: Sequence[Bar], zone: Zone, *, deadline: int,
                  reward_r: float, validated: bool = False) -> Setup | None:
     """Enter next open after first overlapping retest, unless invalidated first.
@@ -303,7 +352,8 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
                    max_holding_bars: int = 48, fee_bps_per_side: float = 4.0,
                    slippage_bps_per_side: float = 2.0,
                    bar_duration_ms: int | None = None,
-                   validated: bool = False) -> Trade | None:
+                   validated: bool = False,
+                   funding_order_policy: Literal["fail_closed", "adverse_only"] = "fail_closed") -> Trade | None:
     """Simulate stop/target/time exit and signed funding for a single setup.
 
     Funding mapping keys are exact UTC settlement timestamps, including events
@@ -320,6 +370,8 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
         raise ValueError("costs cannot be negative")
     if bar_duration_ms is not None and bar_duration_ms <= 0:
         raise ValueError("bar_duration_ms must be positive")
+    if funding_order_policy not in ("fail_closed", "adverse_only"):
+        raise ValueError("unknown funding-order policy")
     if validated:
         eligible = range(len(bars))
         start = (setup.entry_index if 0 <= setup.entry_index < len(bars)
@@ -371,6 +423,7 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     gross = (exit_price / setup.entry_price - 1) * long_sign
     funding_return = 0.0
     funding_covered = True
+    ambiguous_funding_events = 0
     entry_timestamp = bars[setup.entry_index].timestamp
     exit_timestamp = bars[exit_index].timestamp
     for timestamp, event in funding.items():
@@ -382,9 +435,19 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
         should_charge, order_unknown = _funding_order(
             entry_timestamp, exit_timestamp, timestamp, reason, bar_duration_ms or 0)
         if order_unknown:
-            funding_covered = False
+            if (funding_order_policy == "adverse_only" and not event.coverage_gap
+                    and isfinite(event.rate) and -1 < event.rate < 1
+                    and funding_price_available(event)):
+                ambiguous_funding_events += 1
+                if long_sign * event.rate > 0:
+                    funding_return -= long_sign * event.rate * event.mark_price / setup.entry_price
+            else:
+                funding_covered = False
             continue
         if should_charge:
+            if event.coverage_gap:
+                funding_covered = False
+                continue
             if not isfinite(event.rate) or not (-1 < event.rate < 1):
                 raise ValueError("invalid funding event")
             if event.mark_price is None:
@@ -399,7 +462,8 @@ def simulate_trade(bars: Sequence[Bar], setup: Setup, *, funding: Mapping[int, F
     net = gross + funding_return - 2 * side_cost if funding_covered else None
     cost_bps = 2 * side_cost * 10_000
     return Trade(setup, exit_index, exit_price, reason, gross,
-                 funding_return if funding_covered else None, cost_bps, net)
+                 funding_return if funding_covered else None, cost_bps, net,
+                 funding_order_policy, ambiguous_funding_events)
 
 
 def trade_daily_pnl(bars: Sequence[Bar], trade: Trade, *,
@@ -430,9 +494,19 @@ def trade_daily_pnl(bars: Sequence[Bar], trade: Trade, *,
             bars[entry_i].timestamp, exit_ts, timestamp,
             trade.exit_reason, bar_duration_ms)
         if order_unknown:
-            return None
+            if (trade.funding_order_policy != "adverse_only" or event.coverage_gap
+                    or not isfinite(event.rate) or not (-1 < event.rate < 1)
+                    or not funding_price_available(event)):
+                return None
+            if sign * event.rate > 0:
+                daily[timestamp // 86_400_000] = (
+                    daily.get(timestamp // 86_400_000, 0.0)
+                    - sign * event.rate * event.mark_price / entry
+                )
+            continue
         if should_charge:
-            if event.mark_price is None or not isfinite(event.mark_price):
+            if (event.coverage_gap or event.mark_price is None
+                    or not isfinite(event.mark_price) or event.mark_price <= 0):
                 return None
             daily[timestamp // 86_400_000] = (
                 daily.get(timestamp // 86_400_000, 0.0)
@@ -448,12 +522,19 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
                         funding: Mapping[int, FundingEvent],
                         fee_bps_per_side: float = 4.0,
                         slippage_bps_per_side: float = 2.0,
+                        r4_definition: bool = False,
+                        funding_order_policy: Literal["fail_closed", "adverse_only"] = "fail_closed",
+                        candidate_zones: Sequence[Zone] | None = None,
                         audit: dict[str, int] | None = None) -> list[Trade]:
     """Run one fixed OB candidate end-to-end without overlapping positions."""
     if deadline not in (24, 48) or reward_r not in (1.5, 2.0):
         raise ValueError("parameters outside preregistered grid")
     eligible = _validate(bars)
-    candidates = [zone for zone in zones(bars, definition) if zone.direction == direction]
+    detected = candidate_zones
+    if detected is None:
+        detected = (r4_zones(bars, definition) if r4_definition
+                    else zones(bars, definition))
+    candidates = [zone for zone in detected if zone.direction == direction]
     by_index: dict[int, Zone] = {}
     for zone in candidates:
         if zone.signal_index in by_index:
@@ -515,6 +596,7 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
                         bars, setup, funding=funding,
                         fee_bps_per_side=fee_bps_per_side,
                         slippage_bps_per_side=slippage_bps_per_side,
+                        funding_order_policy=funding_order_policy,
                     )
                     if trade is None:
                         _count(audit, "time_exit_censored")

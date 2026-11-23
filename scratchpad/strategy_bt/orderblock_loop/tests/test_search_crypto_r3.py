@@ -5,13 +5,19 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
-from crypto import Bar, FundingEvent, Zone
-from search_crypto import _filter_r3_zones
+from crypto import Bar, FundingEvent, Setup, Trade, Zone
+from search_crypto import _filter_r3_zones, _sentinel_reason
+import search_crypto
 from search_crypto_r3 import (CONFIGS, _append_r3, _apply_symbol_floor,
                               exclude_unscorable_symbols)
 
 
 class SearchCryptoR3Tests(unittest.TestCase):
+    def test_fallback_price_is_not_a_missing_mark_sentinel(self):
+        event = FundingEvent(1, 0.001, 100.25,
+                             used_candle_close_fallback=True)
+        self.assertIsNone(_sentinel_reason(event))
+
     def test_grid_has_exactly_48_unique_registered_configs(self):
         keys = {tuple(sorted(config.items())) for config in CONFIGS}
         self.assertEqual(len(CONFIGS), 48)
@@ -31,10 +37,35 @@ class SearchCryptoR3Tests(unittest.TestCase):
             ("EMPTY", [], {}, 0),
         ]
         kept, funding_excluded, empty_excluded = exclude_unscorable_symbols(barsets)
-        self.assertEqual([item[0] for item in kept], ["GOOD"])
-        self.assertEqual(funding_excluded,
-                         ["GAP", "INFINITE_MARK", "NAN_MARK", "NO_MARK", "ZERO_MARK"])
+        self.assertEqual([item[0] for item in kept],
+                         ["GOOD", "NO_MARK", "GAP", "NAN_MARK", "INFINITE_MARK", "ZERO_MARK"])
+        self.assertEqual(funding_excluded, [])
         self.assertEqual(empty_excluded, ["EMPTY"])
+
+    def test_funding_symbol_is_flagged_only_for_a_real_overlapping_trade(self):
+        bars = [Bar(0, 10, 11, 9, 10, 1), Bar(14_400_000, 10, 11, 9, 10, 1)]
+        zone = Zone(0, 0, "long", 9, 10, 1)
+        setup = Setup(zone, 0, 10, 9, 12)
+        sentinel = FundingEvent(1_000_000, 0.0, None)
+        fake_trade = Trade(setup, 1, 11, "time", 0.1, None, 12, None)
+        config = {"definition": "displacement", "timeframe": "4h",
+                  "direction": "long", "deadline": 48, "reward_r": 2.0,
+                  "minimum_symbols": 1, "trend_filter": "none", "session_filter": "none"}
+        with patch.object(search_crypto, "active_zones", return_value=[zone]), \
+                patch.object(search_crypto, "_filter_r3_zones", return_value=[zone]), \
+                patch.object(search_crypto, "first_retest", return_value=setup), \
+                patch.object(search_crypto, "simulate_trade", return_value=fake_trade):
+            overlapping = search_crypto._run_trial(
+                config, [("BTCUSDT", bars, {sentinel.timestamp: sentinel}, 0)], {})
+            outside = search_crypto._run_trial(
+                config, [("BTCUSDT", bars,
+                          {15_000_000: FundingEvent(15_000_000, 0, None)}, 0)], {})
+        self.assertEqual(overlapping["excluded_funding_symbols"], ["BTCUSDT"])
+        self.assertEqual(outside["excluded_funding_symbols"], [])
+        self.assertEqual(overlapping["total_trades"], 1)
+        self.assertEqual(overlapping["trades"], 0)
+        self.assertEqual(overlapping["unscorable_funding_trades"], 1)
+        self.assertEqual(overlapping["unscorable_funding_trade_ids"], overlapping["trade_ids"])
 
     def test_symbol_floor_requires_25_kept_symbols(self):
         result = {"status": "complete", "detail": "scored"}

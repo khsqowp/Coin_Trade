@@ -23,7 +23,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from crypto import (_funding_order, active_zones, first_retest, simulate_trade,
+from crypto import (_funding_order, active_zones, first_retest,
+                    funding_price_available, simulate_trade,
                     trade_daily_pnl)  # noqa: E402
 from metrics import trade_metrics  # noqa: E402
 
@@ -38,7 +39,8 @@ FIELDS = ("trial_id", "round", "market_group", "utc_timestamp", "definition",
           "parameter_grid_hash", "code_sha256", "train_period", "metric", "rank", "notes")
 METRIC_FIELDS = (
     "symbols", "kept_symbols", "excluded_funding_symbols",
-    "excluded_no_train_bar_symbols", "trades", "win_rate", "wilson_95_lower", "payoff_ratio",
+    "excluded_no_train_bar_symbols", "trades", "total_trades", "trade_ids",
+    "win_rate", "wilson_95_lower", "payoff_ratio",
     "profit_factor", "expectancy_bps", "max_drawdown",
     "incomplete_bars_excluded", "unscorable_funding_trades",
     "unscorable_funding_trade_ids", "time_exit_censored_setups",
@@ -126,7 +128,7 @@ def _audit_trade_id(symbol: str, config: dict[str, object], setup,
 def _sentinel_reason(event) -> str | None:
     if event.coverage_gap:
         return "missing_settlement"
-    if event.mark_price is None:
+    if not funding_price_available(event):
         return "missing_mark"
     return None
 
@@ -195,6 +197,8 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
     time_exit_censored_setups = 0
     funding_close_fallbacks = 0
     unscorable_trade_ids: set[str] = set()
+    all_trade_ids: set[str] = set()
+    funding_overlap_symbols: set[str] = set()
     censored_setup_ids: set[str] = set()
     unscorable_censored_setup_ids: set[str] = set()
     mark_missing_symbols: set[str] = set()
@@ -223,7 +227,7 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             continue
         if any(event.coverage_gap for event in funding.values()):
             funding_gap_symbols.add(symbol)
-        if any(event.mark_price is None for event in funding.values()):
+        if any(not funding_price_available(event) for event in funding.values()):
             mark_missing_symbols.add(symbol)
         symbols_seen.append(symbol)
         valid_symbols.add(symbol)
@@ -269,13 +273,17 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                     unscorable_censored_setup_ids.add(setup_id)
             else:
                 trade_id = _audit_trade_id(symbol, config, setup, trade.exit_index)
+                all_trade_ids.add(trade_id)
                 if trade.net_return is None:
                     unscorable_funding_trades += 1
                     unscorable_trade_ids.add(trade_id)
-                    for timestamp in _overlapping_sentinel_timestamps(
+                    overlaps = _overlapping_sentinel_timestamps(
                             bars[setup.entry_index].timestamp,
                             bars[trade.exit_index].timestamp, trade.exit_reason,
-                            funding_by_timestamp, bar_duration_ms):
+                            funding_by_timestamp, bar_duration_ms)
+                    if overlaps:
+                        funding_overlap_symbols.add(symbol)
+                    for timestamp in overlaps:
                         sentinel_audit[(symbol, timestamp)]["overlap_trade_ids"].add(trade_id)
                 else:
                     trade_returns.append(trade.net_return)
@@ -287,10 +295,13 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                         unscorable_funding_trades += 1
                         unscorable_trade_ids.add(trade_id)
                         trade_returns.pop()
-                        for timestamp in _overlapping_sentinel_timestamps(
+                        overlaps = _overlapping_sentinel_timestamps(
                                 bars[setup.entry_index].timestamp,
                                 bars[trade.exit_index].timestamp, trade.exit_reason,
-                                funding_by_timestamp, bar_duration_ms):
+                                funding_by_timestamp, bar_duration_ms)
+                        if overlaps:
+                            funding_overlap_symbols.add(symbol)
+                        for timestamp in overlaps:
                             sentinel_audit[(symbol, timestamp)]["overlap_trade_ids"].add(trade_id)
                     else:
                         for utc_day, value in daily_pnl.items():
@@ -317,10 +328,17 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             "overlap_trade_ids": trade_ids, "overlap_trade_count": len(trade_ids),
             "censored_setup_ids": setup_ids, "censored_setup_count": len(setup_ids),
         })
+    if not unscorable_trade_ids.issubset(all_trade_ids):
+        raise AssertionError("unscorable funding IDs must belong to generated trades")
+    if len(all_trade_ids) != metrics.count + unscorable_funding_trades:
+        raise AssertionError("generated trades must be scored or unscorable")
     return {
         "symbols": len(set(symbols_seen)), "kept_symbols": len(set(symbols_seen)),
-        "excluded_funding_symbols": [], "excluded_no_train_bar_symbols": [],
+        "excluded_funding_symbols": sorted(funding_overlap_symbols),
+        "excluded_no_train_bar_symbols": [],
         "trades": metrics.count,
+        "total_trades": len(all_trade_ids),
+        "trade_ids": sorted(all_trade_ids),
         "symbols_with_unresolved_funding_prices": len(mark_missing_symbols),
         "symbols_unresolved_funding_prices": sorted(mark_missing_symbols),
         "symbols_with_funding_coverage_gaps": len(funding_gap_symbols),

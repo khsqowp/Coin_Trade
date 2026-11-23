@@ -3,15 +3,92 @@ import unittest
 from datetime import date
 from pathlib import Path
 import csv
+import pandas as pd
+from datetime import datetime, timedelta, timezone
+from unittest.mock import patch
 
 from equities import Trade
 from equities import Bar
 from search_equities_r4 import (Membership, NEW_CANDIDATES, _configs,
                                 _e2_signal, _crossed_weekly, load_membership,
-                                _append_trials, simulate_e2, survivorship_safe_trades)
+                                _append_trials, simulate_e2, survivorship_safe_trades,
+                                _daily_bars, run)
 
 
 class SearchEquitiesR4Tests(unittest.TestCase):
+    @staticmethod
+    def quality_frame(count=40, bad_positions=()):
+        day = datetime(2010, 1, 4, tzinfo=timezone.utc)
+        rows = []
+        while len(rows) < count:
+            if day.weekday() < 5:
+                close = 100 + len(rows) * .1
+                rows.append({"open_time": int(day.timestamp() * 1000), "open": close,
+                             "high": close + 1, "low": close - 1, "close": close,
+                             "volume": 100, "complete": True})
+            day += timedelta(days=1)
+        for index in bad_positions:
+            rows[index]["high"] = rows[index]["low"] - 1
+        return pd.DataFrame(rows)
+
+    def test_ohlc_quality_filter_keeps_symbol_and_computes_bars(self):
+        frame = self.quality_frame(bad_positions=(5,))
+        member = Membership("US", "AAA", date(2000, 1, 1), date(2020, 1, 1),
+                            "fixture", date(2020, 1, 1))
+        stats = {}
+        bars = _daily_bars(frame, member, stats)
+        self.assertEqual(len(bars), len(frame) - 1)
+        self.assertEqual(stats["invalid_ohlc"], 1)
+        self.assertIsInstance(simulate_e2("E2-B", bars, "US")[0], list)
+
+    def test_quality_exclusion_is_per_symbol_and_trial_metrics_are_aggregated(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            universe, membership, trial_path = root / "universe.csv", root / "membership.csv", root / "trials.csv"
+            universe.write_text("market,symbol,daily_path\nUS,BAD,bad.csv\nUS,GOOD,good.csv\n")
+            membership.write_text("market,symbol,alive_from,alive_through,source,source_asof\n"
+                                  "US,BAD,2000-01-01,2020-01-01,fixture,2020-01-01\n"
+                                  "US,GOOD,2000-01-01,2020-01-01,fixture,2020-01-01\n")
+            frames = {"BAD": self.quality_frame(30, (2, 3, 4)),
+                      "GOOD": self.quality_frame(40, (5,))}
+            def load(_path, symbol, _market, _split):
+                return frames[symbol]
+            with patch("search_equities_r3._load_train", side_effect=load):
+                results = run(universe, membership, root / "split.json", trials_path=trial_path)
+            self.assertTrue(any(r.get("symbol") == "GOOD" for r in results))
+            self.assertTrue(any(r.get("symbol") == "GOOD" and "trades" in r for r in results))
+            self.assertFalse(any(r.get("symbol") == "BAD" for r in results))
+            with trial_path.open(newline="", encoding="utf-8") as handle:
+                trial = next(csv.DictReader(handle))
+            import json
+            metric = json.loads(trial["metric"])
+            self.assertEqual(metric["invalid_ohlc_rows_filtered"], 1)
+            self.assertEqual(metric["halt_bars_filtered"], 0)
+            self.assertEqual(metric["symbols_quality_excluded"], 1)
+
+    def test_membership_market_labels_normalize_and_fail_closed(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "membership.csv"
+            header = "market,symbol,alive_from,alive_through,source,source_asof\n"
+            rows = [f"{market},KR{i},2000-01-01,2010-01-01,official,2020-01-01"
+                    for i, market in enumerate(("KOSPI", "KOSDAQ", "KONEX", "KOSDAQ GLOBAL"))]
+            rows.append("US,AAA,2000-01-01,2010-01-01,official,2020-01-01")
+            path.write_text(header + "\n".join(rows) + "\n")
+            records = load_membership(path)
+            for i in range(4):
+                self.assertEqual(records[("KR", f"KR{i}")].market, "KR")
+            self.assertEqual(records[("US", "AAA")].market, "US")
+
+            path.write_text(header + "UNKNOWN,AAA,2000-01-01,2010-01-01,official,2020-01-01\n")
+            with self.assertRaisesRegex(ValueError, "^invalid membership key: 'UNKNOWN'/'AAA'$"):
+                load_membership(path)
+
+            path.write_text(header +
+                            "KOSPI,AAA,2000-01-01,2010-01-01,official,2020-01-01\n"
+                            "KOSDAQ,AAA,2001-01-01,2011-01-01,official,2020-01-01\n")
+            with self.assertRaisesRegex(ValueError, "^duplicate membership record: KR/AAA$"):
+                load_membership(path)
+
     def test_c1_robustness_grid_is_16_per_market(self):
         self.assertEqual(len(_configs()), 16)
         self.assertEqual(len(NEW_CANDIDATES), 6)

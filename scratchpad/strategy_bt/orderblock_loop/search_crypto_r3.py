@@ -28,17 +28,14 @@ FIELDS = r2.FIELDS
 
 
 def exclude_unscorable_symbols(barsets):
-    """Drop no-bar symbols and any symbol with missing marks/settlement coverage."""
-    kept, funding_excluded, empty_excluded = [], [], []
+    """Exclude only symbols without TRAIN bars; score funding gaps by overlap."""
+    kept, empty_excluded = [], []
     for symbol, bars, funding, incomplete_count in barsets:
-        if any(_funding_unresolved(event) for event in funding.values()):
-            funding_excluded.append(symbol)
-            continue
         if not bars:
             empty_excluded.append(symbol)
             continue
         kept.append((symbol, bars, funding, incomplete_count))
-    return kept, sorted(funding_excluded), sorted(empty_excluded)
+    return kept, [], sorted(empty_excluded)
 
 
 def _funding_unresolved(event):
@@ -115,7 +112,8 @@ def _run(shard="0/1"):
         try:
             result = r2._run_trial(config, kept, zone_cache)
             result["kept_symbols"] = len(kept)
-            result["excluded_funding_symbols"] = funding_excluded
+            # This is overlap-derived by the scorer; do not restore the old
+            # symbol-wide prefilter list.
             result["excluded_no_train_bar_symbols"] = empty_excluded
             _apply_symbol_floor(result, config["minimum_symbols"], len(kept))
         except Exception as exc:

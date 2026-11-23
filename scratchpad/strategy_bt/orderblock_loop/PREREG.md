@@ -33,6 +33,15 @@
 - 합성 회귀 테스트는 미해결 mark와 coverage gap 심볼, 완성 TRAIN 봉이 없는 심볼을 전 격자 공통으로 제외하고 최소 25개 기준을 유지하는지, 그리고 새 trial ID가 이전 R3-coin ID와 중복되지 않는지 확인한다. 실데이터 탐색 전 지정 venv의 전체 unittest suite를 통과해야 한다.
 - 실행 명령은 위에 등록한 `search_crypto_r3.py --shard 0/1` 명령 그대로다. 이번 재등록은 코드·합성 테스트 검증만 수행하며 실데이터 run 0회, TEST 미열람 상태를 유지한다.
 
+### 5. R3-coin funding overlap 감사 수정 (2026-11-23, 코드 수정 전)
+
+- 사유: R3 실행기가 거래 여부와 관계없이 심볼의 모든 TRAIN funding 이벤트를 훑어 단 하나의 missing mark 또는 coverage sentinel만으로 해당 심볼의 모든 설정 내 바를 제거한다. 이 판정은 실제 보유 구간과 정산 이벤트의 겹침을 확인하지 않는다. 또 scorer의 `trades`는 점수화 가능한 거래 수인데 `unscorable_funding_trade_ids`는 미점수 거래 ID 수이므로, ID 수가 `trades`보다 큰 상태만으로 목록이 제외 전 계산됐다고 결론 낼 수 없다.
+- 사전 고정 수정: 4h TRAIN 봉이 있는 심볼은 funding 이벤트 전체에 결측이 있어도 사전 제외하지 않는다. 기존 scorer가 entry/exit 사이 실제 보유 구간과 정산 timestamp/coverage sentinel을 대조해 거래를 unscorable 처리한다. `excluded_funding_symbols`에는 실제 생성된 거래가 missing mark/coverage sentinel과 겹친 심볼만 기록한다. 외부 TRAIN 구간의 이벤트나 어떠한 거래에도 겹치지 않는 이벤트는 심볼 제외 사유가 아니다. 빈 TRAIN 봉 심볼은 기존대로 따로 기록한다.
+- 일관성 불변조건: `unscorable_funding_trade_ids`는 해당 설정에서 생성된 모든 거래 ID 집합의 부분집합이어야 한다. 집계의 `trades`는 기존 의미(점수화된 거래 수)를 유지하며, scored/unscorable/total counts를 별도 명시해 ID 개수와 혼동하지 않게 한다.
+- 새 합성 회귀 테스트는 (1) funding gap/missing mark가 거래에 겹치지 않으면 해당 심볼을 funding 제외 목록에 넣지 않고, 실제 보유 거래에 겹치면 해당 심볼을 기록하며, (2) unscorable ID가 사후 제외된 거래에서 남지 않으며, (3) ID 수가 점수화 거래 수보다 많아도 전체 거래 ID 부분집합 규칙은 유지되는지 확인한다.
+- 이번 addendum은 성과값을 판단 근거로 사용하지 않으며, 신호·파라미터 격자·비용·cutoff·G 기준을 바꾸지 않는다. 기존 장부 행은 보존하며 새 TRAIN 검색은 하지 않는다. TEST 데이터는 열지 않는다.
+- 열람 범위 정정: 원인 추적 중 쉘 출력이 최근 장부 행의 metric JSON까지 노출했다. 해당 성과값을 분석·수정 근거로 사용하지 않았다. 이번 addendum은 출력 후, 코드 변경 전에 작성했다.
+
 ## R4 addendum — 미국·한국 주식 생존편향 및 후보군, 코인 오답노트 파생 (2026-11-23, 실행 전)
 
 상태: 설계·사전등록만 완료. R4 실데이터 탐색 0회, TEST 미열람. 이 addendum 작성 시 R2/R3 지표는 가설 선택의 동기일 뿐 재현된 성과나 통과 근거가 아니다. R4 실행은 본 절의 구현·입력 요구사항을 만족한 후 TRAIN 기간만 대상으로 한다.
@@ -72,6 +81,40 @@
 
 세 가설은 코인 시장별 사전등록된 기존 15m/1h/4h, 롱/숏 체계 안에서 독립 구현 후 합성 인과성·경계 테스트를 먼저 수행한다. 격자와 수치 통과기준은 코인 실행 전에 별도 addendum으로 고정한다. 이번 addendum에는 결과 관찰이 없고 코인 실행 수 0이다.
 
+### 3-A. R4-coin 사전등록 — 오더블록 3종 × 시간단위·방향·청산 격자 (2026-11-23, 다음 실행 전)
+
+상태: 사전등록 전용. R3-coin의 144개 과거 시도는 수정·삭제하지 않고 후보 근거로 쓰지 않는다. 이번 새 라운드에서만 아래 정의·경계·비용을 적용한다. G의 합격 기준과 12라운드 종료 조건은 변경하지 않는다.
+
+#### 가설과 진입 규칙
+
+모든 계산은 해당 신호 봉까지 완성된 OHLCV만 사용한다. ATR은 신호 봉까지의 ATR(14)이며, origin은 신호 봉보다 앞선 최대 20개 봉에서 가장 최근 반대색 완성 봉이다. 오더블록 구간은 origin 봉의 저가~고가다.
+
+1. `R4-A displacement`: 신호 봉 몸통이 ATR(14)의 1.5배 이상이고, 롱은 양봉·숏은 음봉일 때만 블록을 만든다.
+2. `R4-B BOS-origin`: 좌우 3개 완성 봉으로 이미 확인된 가장 최근 pivot high/low를 신호 봉 종가가 상향/하향 돌파할 때 블록을 만든다. 확인되지 않은 미래 pivot은 쓰지 않는다.
+3. `R4-C volume-displacement`: R4-A 조건에 더해 신호 봉 거래량이 직전 20개 완성 봉 거래량 중앙값의 1.5배 이상일 때 블록을 만든다. 신호 봉 거래량은 기준 중앙값에서 제외한다.
+
+심볼×시간단위×방향마다 활성 블록은 하나만 둔다. 활성 블록이 대기 중이면 뒤의 블록 신호는 무시한다. 롱 블록은 완성 봉 저가가 OB 저가 이하, 숏 블록은 완성 봉 고가가 OB 고가 이상이면 무효화한다. 블록은 첫 재방문, wick 무효화, 또는 만료에서 소진한다. 같은 봉에서 재방문과 무효화가 함께 보이면 무효화를 우선한다. 신호 이후 처음 구간에 닿은 완성 봉을 재방문으로 보고, 진입은 그 다음 완성 봉 시가다. 진입 시 시가가 OB 경계를 이미 넘어 있거나 위험폭이 0 이하이면 거래하지 않는다.
+
+손절은 롱에서 `OB low − 0.1×ATR(14)`, 숏에서 `OB high + 0.1×ATR(14)`다. 목표는 진입 위험의 `R∈{1.5,2.0}`배다. 최대 대기 기한 `D∈{24,48}`개 봉이며, 기한 내 재방문이 없으면 신호를 만료한다. 체결 뒤 최대 보유는 48개 완성 봉이다. 갭 손절은 해당 봉 시가, 장중 손절은 손절 가격으로 체결한다. 한 봉에서 손절·목표가 모두 닿으면 손절을 우선한다. 시간 종료는 보유 48개째 다음 봉 시가로 하며, 다음 봉이 동결 구간 안에 없으면 우측 검열로 성과에서 제외하고 별도 계수한다.
+
+#### 고정 격자·시도 수
+
+3개 정의 × 3개 시간단위(`15m`,`1h`,`4h`) × 2개 방향(`long`,`short`) × 2개 대기 기한 × 2개 목표 R = **72개 시도**다. 정의별·시간단위별 별도 결과를 남기며 설정을 합산해 독립 표본처럼 세지 않는다. 새 시도는 모두 `round=R4-coin`과 고유 ID로 `TRAIN_TRIALS.csv`에 추가한다. 실패·검증불가도 시도 수에 포함한다. 누적 다중검정 분모는 실행 직전 장부 행 수에 72를 더해 고정한다.
+
+#### 데이터·비용·funding 불확실성
+
+기존 35개 Binance USDⓈ-M 심볼 집합을 그대로 쓴다. TRAIN 완성 봉이 없는 심볼은 이름과 함께 제외한다. 각 설정에서 실제 완성 TRAIN 봉이 있는 심볼이 30개 미만이면 전 설정을 `unscorable`로 처리한다. 결측 가격이나 funding 정산율을 보간·추정하지 않는다. 데이터가 시작되기 전의 정산 시각은 거래가 데이터 시작 전에 열려 있었던 경우에만 영향을 주므로 그대로 미판정 거래로 남기며, 가격 자료가 없는 이벤트를 사후 대체하지 않는다.
+
+Funding 사건이 진입 시각과 같거나 손절·목표 발생 봉의 시간 구간 안에 있거나 시간 종료 시각과 같아서 선후를 알 수 없는 경우, mark 가격과 정산율이 유효하면 **불리한 현금흐름은 포지션 보유로 간주해 전액 비용 처리하고, 유리한 현금흐름은 0으로 둔다.** 이는 모호한 funding 사건에 대한 거래별 손익 하한 convention이며, 실제 수익의 불편추정치가 아니다. 사건 수와 가정 funding 금액을 표시하고, 기존 fail-closed 방식의 미판정 거래 수·점수도 함께 보고한다. 이 규칙은 funding을 유리하게 생략하지 않는다. 해당 구간에 mark가 없거나 정산 이벤트 자체가 누락된 coverage gap이면 그 거래는 계속 `unscorable`이며, 어떤 성과 표본에도 포함하지 않는다. 이벤트가 모호한 봉의 일간 mark-to-market에도 동일한 cashflow convention을 적용하고 거래손익과 합계가 일치하는지 검산한다. MDD·Sharpe는 그 convention으로 만든 자본곡선 지표이지 수학적으로 모든 실제 경로의 손실 상한이라고 표현하지 않는다. 이 R4 규칙은 R3 이전 행·코드 의미를 소급 변경하지 않는다.
+
+기본 비용은 왕복 12bp(수수료 편도 4bp + 슬리피지 편도 2bp)와 실제 funding이다. 스트레스는 왕복 거래비용 2배와 1개 신호 봉 지연이다. 설정·비용·데이터 fingerprint·코드 hash를 장부에 남긴다. 분할은 공통 TRAIN 경계 `2023-11-06T16:00:00Z`를 그대로 사용하고, 2026-06-01 이후 행은 최종 동결 실행 전까지 열지 않는다.
+
+#### 실행 전 검증과 사용 제한
+
+모의 synthetic tests는 ① 세 정의의 인과성 및 prefix invariance, ② 활성 블록 1개·최초 재방문·무효화 우선, ③ entry/stop/target/time 경계 funding의 adverse-only 최악경계, ④ mark 누락·coverage gap의 계속된 미판정, ⑤ 일간 손익-거래손익 조정, ⑥ 30개 미만 심볼 차단, ⑦ cutoff 이후 입력 차단을 검증한다. 전체 지정 venv 단위 테스트를 통과하고 독립 레드팀이 funding 경계 규칙을 승인하기 전에는 TRAIN 실데이터를 실행하지 않는다.
+
+이 라운드는 TRAIN 탐색만 허용한다. G 판정은 하지 않는다. 설정별 비용 후 거래당 기대값(bp) 내림차순으로 정렬하고, 동률이면 PF 내림차순, 그다음 점수화 거래 수 내림차순으로 최대 3개를 검증 후보로 고정한다. 점수화 거래가 100건 미만이거나 비용 후 기대값이 0 이하인 설정은 후보 목록에 들지 않는다. 이 후보 선택 규칙은 TEST를 열기 전에 고정한다. 검증·최종 TEST는 각각 별도 승인·동결 뒤 한 번씩만 연다. TEST에는 G의 코인 최소 거래 100건, 비용 후 양의 수익, PF≥1.3, 기대값≥15bp, Wilson 하한, MDD·Sharpe, 다중검정, 무작위 귀무, 평탄도, 비용 2배, 1봉 지연, 미사용 종목·국면 검증을 모두 적용한다. **2018년 Binance USDⓈ-M 자료는 현재 카탈로그상 존재하지 않는다(선물 자료 시작 2019-09).** 그러므로 2018년 약세장 요건은 데이터가 확인될 때까지 `검증불가`이며, 해당 검증을 생략해 G 통과로 선언하지 않는다. 2022년 결과도 따로 보고한다.
+
 ### 4. 실행 가능 조건·고정 원칙
 
 - 주식 R4 입력에 공식 시점별 상장/상폐 상태 이력과 그 출처/기준일이 담긴 별도 membership CSV가 필요하다. 현재 `universe/US.csv`, `universe/KR.csv`의 `universe_asof`는 고정 proxy라 PIT를 증명하지 않는다. 대체·추정 상태는 쓰지 않는다.
@@ -105,6 +148,39 @@
 - 작성자/역할 A: 총괄·통계 책임자. 라운드 등록과 장부는 이 문서와 `LEDGER.csv`에 먼저 기록한다.
 - 이번 작업의 코드 범위: 새 어댑터와 연구 기록만. `scratchpad/strategy_bt/common/` 및 기존 `results/` 수정 금지.
 - 커밋·푸시·서버 작업·실주문: 금지.
+
+## R4/R5 KR market 라벨 정규화 addendum (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 코드 변경 전. 2026-11-23 발견: `equity_membership_kr.csv`의 `market`은 거래소 원천값(`KOSPI`/`KOSDAQ`/`KONEX`/`KOSDAQ GLOBAL`)인데 `universe/KR.csv`의 `market`은 고정 `KR`이다. `load_membership`의 `(market, symbol)` 키 조회가 이 둘을 그대로 받으면 전부 "membership 없음"으로 실패한다. symbol 단독 비교로는 `universe/KR.csv` 558개 전부 일치함을 read-only로 이미 확인했다(TEST 미접근).
+
+규칙(결과 열람 전 고정):
+1. KR 실행 경로에서만, membership 로더가 원천 `market` 값이 `{KOSPI, KOSDAQ, KONEX, "KOSDAQ GLOBAL"}` 중 하나면 조회 키를 `KR`로 정규화한다. `US`는 그대로 `US`로 둔다(미국 membership 파일은 아직 없어 이 변경의 영향을 받지 않는다). 위 집합에도 `US`에도 속하지 않는 원천 값은 정규화하지 않고 기존처럼 즉시 오류로 거부한다(새로운 거래소 라벨을 임의로 KR에 포함하지 않는다).
+2. 정규화 후 같은 `(KR, symbol)` 키에 서로 다른 레코드가 생기면(예: 코드 재사용이지만 `build_membership.py`의 겹침검사를 통과해 둘 다 남은 경우) 기존처럼 `duplicate membership record` 오류로 **즉시 중단**한다. 어느 쪽을 쓸지 추정하거나 최신값을 택하지 않는다. 이는 기존 중복 거부 로직을 그대로 재사용하는 것이며 새 예외 처리를 추가하지 않는다.
+3. universe 쪽 `market` 값(`KR`/`US`)은 바꾸지 않는다. 정규화는 membership 로더 쪽에서만 한다.
+4. 변경 범위는 `search_equities_r4.py`·`search_equities_r5.py`의 `load_membership`뿐이다. 코인 파일(`search_crypto*.py`, `crypto.py`)과 `common/`은 건드리지 않는다.
+5. 합성 테스트로 (a) KOSPI/KOSDAQ/KONEX/KOSDAQ GLOBAL 각각이 KR로 정규화돼 `(KR,symbol)`로 조회되는지, (b) US는 그대로 US로 남는지, (c) 미지원 라벨은 여전히 오류인지, (d) 정규화 후 키 충돌이 fail-closed로 거부되는지 확인한다. 전체 지정 venv unittest가 통과해야 하며, 이번 변경에서도 실데이터 TRAIN 검색은 실행하지 않는다.
+
+## R4/R5 OHLC 품질필터 연동 addendum (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 코드 변경 전. 2026-11-23 실제 실행 중단 발견: `search_equities_r4.py`/`r5.py`의 `_daily_bars`가 OHLC 비일관(`high<low` 등)을 만나면 해당 행 1개만으로 전체 실행을 즉시 `raise`해서 시장 전체가 멈춘다(예: KR `000360` 2003-04-01). `search_equities.py`(R2)는 이미 같은 문제를 `data_quality.py`의 `filter_equity_bars`/`SymbolQualityError`로 해결해 둔 선례가 있다: 비일관 행을 종목별로 걸러내고 누적 비율·연속 길이가 사전등록 한계(`MAX_BAD_ROW_FRACTION=0.05`, `MAX_CONSECUTIVE_BAD_ROWS=3`)를 넘을 때만 그 **종목 하나**를 `quality_excluded`로 빼고 나머지 유니버스는 계속 진행한다.
+
+규칙(결과 열람 전 고정, R2와 동일 임계값·동일 필드명 재사용 — 새 임계값을 만들지 않는다):
+1. `_daily_bars`가 Bar를 만들기 전에 `data_quality.filter_equity_bars(frame, membership.symbol)`를 먼저 호출해 걸러낸 프레임만 쓴다. OHLC 비일관(`high<low`, `open`/`close`가 구간 밖, 비유한·비양수 값)과 halt(연속 5거래일 거래량 0)는 이 필터가 떨어낸다. `complete`/`incomplete bar` 검사와 timestamp 비감소 검사는 그대로 유지한다(가격 오염과 무관한 별도 규칙이므로 바꾸지 않는다).
+2. `filter_equity_bars`가 `SymbolQualityError`를 던지면(걸러낸 뒤에도 비율·연속길이 한계 초과) 그 **종목만** `status="quality_excluded"`로 장부에 기록하고 다음 종목으로 넘어간다. 그 외 예외(로더 오류 등)는 기존처럼 즉시 실패로 둔다(새로 삼키지 않는다) — "필터 후 남는 불일치만 fail-closed"는 종목 단위 거부를 뜻하며, 전체 실행을 죽이지 않는다는 뜻이 아니다.
+3. 장부 metric에 R2와 동일한 필드명으로 누적치를 기록한다: `invalid_ohlc_rows_filtered`(심볼별 `filter_equity_bars` 반환 `invalid_ohlc` 합), `halt_bars_filtered`(`halt_bars` 합), `symbols_quality_excluded`(해당 상태 심볼 수). 기존에 없던 새 필드명을 만들지 않는다.
+4. 이 변경은 OHLC 품질 필터링뿐이다. 전략 신호·비용·PIT/membership/delisting_gap 로직, G 게이트, 격자는 바꾸지 않는다. 합성 테스트로 (a) 소량 비일관 행이 걸러지고 종목이 계속 처리되는지, (b) 한계를 넘는 종목이 `quality_excluded`로 빠지고 나머지 유니버스는 계속 처리되는지, (c) `invalid_ohlc_rows_filtered`/`halt_bars_filtered`/`symbols_quality_excluded`가 정확히 집계되는지 확인한다. 전체 지정 venv unittest가 통과해야 한다. 이번 변경에서도 실데이터 TRAIN 검색은 실행하지 않는다.
+
+## data_quality.py KR 1틱 허용오차·halt 재분류 addendum (2026-11-23, 실행 전)
+
+상태: 설계·사전등록만, 코드 변경 전. 2026-11-23 진단(REPORT_R4.md 'KR 실행 결과 거래종목 5% 원인 진단' 절)에서 확인: KR `daily_stocks_delisted.parquet`의 `invalid_ohlc` 다수가 (i) 가격이 전부 0으로 패딩된 실제 거래정지 구간과 (ii) `close == high + 1원`(또는 `low - 1원`) 패턴의 결정론적 1틱 잔차, 두 가지였다. 리눅스 투자 세션 결정(2026-11-23): 임의 "+1원"이 아니라 **KRX 공식 호가단위(틱 사이즈) 표에 근거한 허용오차**로 바꾸고, 제로가격 구간은 `invalid_ohlc`가 아니라 `halt`로 재분류한다.
+
+규칙(결과 열람 전 고정):
+1. **틱 사이즈 표**는 2023-01 개편 이전(TRAIN 구간 전체가 이 체제 안에 있음) KOSPI·KOSDAQ 공통 호가단위를 쓴다: 가격<1,000원→1원, 1,000~5,000원→5원, 5,000~10,000원→10원, 10,000~50,000원→50원, 50,000~100,000원→100원, 100,000~500,000원→500원, 500,000원 이상→1,000원. 이 표는 `data_quality.py`에 상수로 박아 넣고 다른 임의 상수를 만들지 않는다.
+2. **허용오차 판정**: `close`가 `high`보다 큰 행에서, `high`와 `close` 각각의 틱 사이즈 중 **더 작은 쪽**(경계를 넘나드는 경우 더 보수적인 쪽)을 `tick`이라 할 때 `close - high <= tick`이면 참값과 동일로 보고 무효 처리하지 않는다. `open`이 `high`를 넘거나 `open`/`close`가 `low`보다 작은 경우도 각각 같은 방식(해당 두 값의 틱 사이즈 중 작은 쪽)으로 판정한다. 틱을 넘는 불일치는 기존처럼 `invalid_ohlc`로 센다. 허용오차는 "1틱 이내"만이며, 2틱 이상이나 음수 가격 등은 봐주지 않는다.
+3. **halt 재분류**: `open`/`high`/`low`/`close` 중 하나라도 0 이하(또는 비유한)이면 그 행은 `invalid_ohlc` 집계에서 빼고 가격 기반 halt로 분류해 기존 거래량 기반 halt 마스크와 합친다(`rejected = invalid | halted`는 그대로 유지, 어느 것도 2중 집계하지 않는다). 가격 halt는 기존처럼 심볼 전체를 막는 상한(`MAX_BAD_ROW_FRACTION`/`MAX_CONSECUTIVE_BAD_ROWS`)의 대상이 아니다(현재 거래량 halt와 동일한 대우; 새로 상한을 만들지 않는다).
+4. **US 회귀 불변**: US 입력에는 이 변경 전후로 **단 한 글자도 다른 결과가 나오면 안 된다**(종목별 유지/배제, invalid_ohlc/halt_bars 집계치 모두 동일). 합성 테스트와, 가능하면 실제 US 표본 몇 종목에 대해 전/후 비교 회귀 테스트로 확인한다.
+5. **이번 단계는 read-only 카운트만**: 새 규칙으로 KR 558개 중 몇 개가 `quality_excluded`를 벗어나는지만 세어 REPORT_R4.md에 적는다. **이 단계에서 성과 지표(거래수·PF·기대값 등)는 계산하지 않는다** — 전략 신호 코드를 호출하지 않는다. TRAIN_TRIALS.csv에 새 행을 쓰지 않는다.
+6. 변경 범위는 `data_quality.py`뿐이다(필요하면 `search_equities_r4.py`/`r5.py`가 쓰는 halt/품질 통계 필드명은 유지). 코인 파일과 `common/`은 건드리지 않는다.
 
 ## 고정 합격 게이트 G
 
@@ -403,3 +479,10 @@
 - R2는 공통 고정 cutoff 로더가 반환한 TRAIN 행만 대상으로 종목별 canonical frame SHA-256을 계산한다. 열 이름·순서, 각 열 값, `complete` 값을 모두 fingerprint에 포함한다. 시장 fingerprint는 정렬된 심볼별 frame hash와 상태/실패 분류 및 품질 계수를 함께 결합하며, empty 및 loader-error 종목도 sentinel/accounting으로 포함한다. 각 R2 metric/notes에는 시장 TRAIN fingerprint, 유니버스 수, valid/empty/quality-excluded/loader-error/processing-error 수, 완료봉 제외·가격무효·거래정지 행 수와 심볼별 회계를 기록한다. `data_quality.py`는 R2 source-code SHA 번들에 포함한다. 기존 장부 행은 수정하지 않는다.
 - R2에서 `complete` 열이 있으면 null 없는 boolean이어야 한다. 끝부분의 연속 `False` 행은 신호·체결·주봉 생성 전에 제외하고 건수를 기록한다. 중간에 끼어 있는 `False` 또는 비boolean/null flag는 종목을 품질 제외로 처리한다. `complete`가 없는 입력은 기존 R2 가격 품질 규칙을 적용하고, 그 부재를 fingerprint의 열 목록에 그대로 남긴다.
 - R3는 기존 엄격 규칙을 유지한다. `complete` 열이 있으면 `False`가 하나라도 있는 심볼 전체를 제외한다. R3 TRAIN frame fingerprint에도 `complete`를 포함한다. 이 보완은 G의 수치 기준, universe, 시도 격자, 비용, cutoff를 변경하지 않는다.
+
+### v2.2 R3-coin fallback settlement scoring correction (2026-11-23, diagnostics 미열람 전)
+- 기존 v2.1은 미해결 결측 mark 및 정산 누락 sentinel만 unscorable로 규정했지만, 구현이 허용된 1분 close fallback 사용 이벤트까지 같은 sentinel로 처리할 수 있는지 명확히 구분하지 않았다. 실행 전에 이 경계를 고정한다.
+- 앞선 mark-proxy addendum에 이미 등록한 인과적 직전 1분 close fallback은 가격이 존재하는 관측치다. 그 값이 funding settlement 가격으로 쓰인 거래는 SCORABLE로 계산하며 fallback 여부를 감사 카운트에 남긴다. fallback 사용만으로 심볼 제외, 거래 미판정, trial unscorable을 유발하지 않는다.
+- 진짜 미해결 가격만 unscorable이다: mark와 등록된 1분 close fallback 모두 없거나 값이 유한한 양수가 아닌 settlement, 그리고 coverage-gap/missing-settlement sentinel은 보유 구간과 겹치면 해당 거래를 unscorable로 처리한다. 누락 이벤트를 0 처리하거나 추가 가격원·보간을 도입하지 않는다. stop/target exit-candle 내부 정산 순서 불명확성 등 가격 유무와 독립된 기존 미판정 규칙은 유지한다.
+- 보유구간에 해당하는 실제 fallback 가격이 있는 event는 sentinel overlap 판정에서 제외하고 정상 funding 현금흐름 산식에 사용한다. sentinel 감사에는 unresolved-price와 coverage-gap만 기록한다. 모든 unscorable funding ID는 생성된 거래 ID의 부분집합이어야 한다.
+- 이 addendum은 이번 세 번째 R3-coin 재실행의 지정된 진단 필드를 열기 전에 기록한다. 기존 행을 수정하지 않는다. 결과 성과, 가설, 격자, 거래 수·비용·유니버스 기준 및 G 기준을 바꾸지 않는다.

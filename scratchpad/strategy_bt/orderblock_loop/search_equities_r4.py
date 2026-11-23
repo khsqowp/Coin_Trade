@@ -18,6 +18,7 @@ import pandas as pd
 
 from data_access import EQUITY_COMMON_SPLIT_MS
 from equities import Bar, Trade, simulate_c1, preregistered_costs
+from data_quality import SymbolQualityError, filter_equity_bars
 from resource_guard import heavy_task
 
 ROOT = Path(__file__).resolve().parent
@@ -57,7 +58,8 @@ def load_membership(path: Path) -> dict[tuple[str, str], Membership]:
             raise ValueError(f"membership CSV requires {sorted(MEMBERSHIP_FIELDS)}")
         records = {}
         for row in reader:
-            market, symbol = row["market"].strip(), row["symbol"].strip()
+            raw_market, symbol = row["market"].strip(), row["symbol"].strip()
+            market = "KR" if raw_market in {"KOSPI", "KOSDAQ", "KONEX", "KOSDAQ GLOBAL"} else raw_market
             if market not in MARKETS or not symbol:
                 raise ValueError(f"invalid membership key: {market!r}/{symbol!r}")
             key = (market, symbol)
@@ -92,10 +94,14 @@ def survivorship_safe_trades(trades: Iterable[Trade], daily_bars: list[Bar],
     return kept, delisting_gap
 
 
-def _daily_bars(frame: pd.DataFrame, membership: Membership) -> list[Bar]:
+def _daily_bars(frame: pd.DataFrame, membership: Membership,
+                quality_stats: dict[str, int] | None = None) -> list[Bar]:
     required = {"open_time", "open", "high", "low", "close"}
     if not required.issubset(frame.columns):
         raise ValueError(f"daily columns missing: {sorted(required - set(frame.columns))}")
+    frame, stats = filter_equity_bars(frame, membership.symbol)
+    if quality_stats is not None:
+        quality_stats.update(stats)
     if "complete" in frame and not pd.api.types.is_bool_dtype(frame["complete"].dtype):
         raise ValueError("complete column must be boolean")
     output = []
@@ -109,10 +115,6 @@ def _daily_bars(frame: pd.DataFrame, membership: Membership) -> list[Bar]:
                   float(row.close), complete)
         if not complete:
             raise ValueError(f"incomplete bar for {membership.symbol} at {day}")
-        if not all(pd.notna(x) and x > 0 for x in (bar.open, bar.high, bar.low, bar.close)):
-            raise ValueError(f"invalid OHLC for {membership.symbol} at {day}")
-        if not bar.low <= min(bar.open, bar.close) <= max(bar.open, bar.close) <= bar.high:
-            raise ValueError(f"inconsistent OHLC for {membership.symbol} at {day}")
         if output and stamp <= output[-1].timestamp:
             raise ValueError(f"non-increasing timestamp for {membership.symbol}")
         output.append(bar)
@@ -359,11 +361,19 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
     survivor_rows = []
     trial_trades: dict[tuple[str, str], list[Trade]] = {}
     survivor_trades: dict[tuple[str, str], list[Trade]] = {}
+    symbol_accounting: dict[str, dict[str, dict[str, object]]] = {}
     for row in rows:
         market, symbol = row["market"], row["symbol"]
         member = memberships[(market, symbol)]
-        frame = _load_train(Path(row["daily_path"]).expanduser(), symbol, market, split_file)
-        bars = _daily_bars(frame, member)
+        quality_stats: dict[str, int] = {"invalid_ohlc": 0, "halt_bars": 0}
+        try:
+            frame = _load_train(Path(row["daily_path"]).expanduser(), symbol, market, split_file)
+            bars = _daily_bars(frame, member, quality_stats)
+        except SymbolQualityError as exc:
+            symbol_accounting.setdefault(market, {})[symbol] = {
+                "status": "quality_excluded", **quality_stats, "detail": str(exc)}
+            continue
+        symbol_accounting.setdefault(market, {})[symbol] = {"status": "valid", **quality_stats}
         for config in _configs():
             metrics = evaluate_c1(bars, market, member, config)
             results.append({"market": market, "symbol": symbol, "parameters": config, **metrics})
@@ -398,6 +408,10 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
                     "parameters": config, "symbols": len(subset), "trades": sum(r["trades"] for r in subset),
                     "expectancy_net_bps": (sum(r["expectancy_net_bps"] for r in subset if r["expectancy_net_bps"] is not None) /
                         max(1, sum(r["expectancy_net_bps"] is not None for r in subset))),
+                    "invalid_ohlc_rows_filtered": sum(int(a["invalid_ohlc"]) for a in symbol_accounting.get(market, {}).values()),
+                    "halt_bars_filtered": sum(int(a["halt_bars"]) for a in symbol_accounting.get(market, {}).values()),
+                    "symbols_quality_excluded": sum(a["status"] == "quality_excluded" for a in symbol_accounting.get(market, {}).values()),
+                    "symbol_accounting": symbol_accounting.get(market, {}),
                     "survivorship_biased": False, "status": "TRAIN_ONLY_NOT_G"})
         market_results = [r for r in results if r["market"] == market and r.get("strategy")]
         for candidate in [f"E2-{x}" for x in "ABCDEF"]:
@@ -405,6 +419,10 @@ def run(universe_path: Path, membership_path: Path, split_file: Path,
             if subset:
                 merged = {"market": market, "strategy": candidate, "parameters": {"candidate": candidate},
                           "symbols": len(subset), "trades": sum(r.get("trades", 0) for r in subset),
+                          "invalid_ohlc_rows_filtered": sum(int(a["invalid_ohlc"]) for a in symbol_accounting.get(market, {}).values()),
+                          "halt_bars_filtered": sum(int(a["halt_bars"]) for a in symbol_accounting.get(market, {}).values()),
+                          "symbols_quality_excluded": sum(a["status"] == "quality_excluded" for a in symbol_accounting.get(market, {}).values()),
+                          "symbol_accounting": symbol_accounting.get(market, {}),
                           "survivorship_biased": False, "status": "TRAIN_ONLY_NOT_G"}
                 merged.update(_metrics(trial_trades.get((market, candidate), [])))
                 merged["symbols"] = len(subset)

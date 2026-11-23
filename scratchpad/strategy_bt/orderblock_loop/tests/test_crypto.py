@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from crypto import (Bar, FundingEvent, Setup, Zone, enforce_single_active_zone,
-                    first_retest, simulate_orderblock, simulate_trade,
+                    first_retest, r4_zones, simulate_orderblock, simulate_trade,
                     trade_daily_pnl, zones)
 
 
@@ -56,6 +56,34 @@ class CryptoOrderBlockTests(unittest.TestCase):
         extended = data[:25] + [Bar(i, 100, 110, 90, 100, 1000) for i in range(25, 30)]
         full_zones = zones(extended, "bos_origin")
         self.assertEqual([z for z in full_zones if z.signal_index < 25], prefix_zones)
+
+    def test_r4_displacement_definition_does_not_require_bos(self):
+        data = [Bar(i, 100, 101, 99, 100, 10) for i in range(22)]
+        data[19] = Bar(19, 100, 101, 98, 99, 10)
+        data[20] = Bar(20, 100, 111, 99.5, 110, 10)
+        found = r4_zones(data, "displacement")
+        self.assertTrue(any(zone.signal_index == 20 and zone.origin_index == 19
+                            and zone.direction == "long" for zone in found))
+
+    def test_r4_confirmed_bos_is_causal_and_does_not_require_displacement(self):
+        data = [Bar(i, 100, 101, 99, 100, 10) for i in range(28)]
+        data[20] = Bar(20, 100, 105, 99, 101, 10)
+        data[23] = Bar(23, 101, 102, 99, 100.5, 10)
+        data[24] = Bar(24, 104.9, 105.2, 104.8, 105.1, 10)
+        found = r4_zones(data, "bos_origin")
+        self.assertTrue(any(zone.signal_index == 24 and zone.direction == "long"
+                            for zone in found))
+        extended = data + [Bar(28 + i, 100, 120, 80, 100, 10) for i in range(4)]
+        self.assertEqual([z for z in r4_zones(extended, "bos_origin") if z.signal_index < 28],
+                         r4_zones(data, "bos_origin"))
+
+    def test_r4_volume_displacement_uses_prior_only_volume_median(self):
+        data = [Bar(i, 100, 101, 99, 100, 10) for i in range(22)]
+        data[19] = Bar(19, 100, 101, 98, 99, 10)
+        data[20] = Bar(20, 100, 111, 99.5, 110, 14)
+        self.assertFalse(any(z.signal_index == 20 for z in r4_zones(data, "volume_displacement")))
+        data[20] = Bar(20, 100, 111, 99.5, 110, 16)
+        self.assertTrue(any(z.signal_index == 20 for z in r4_zones(data, "volume_displacement")))
 
     def test_invalid_parameters_and_ohlc_are_rejected(self):
         data = [Bar(i, 100, 102, 98, 100, 10) for i in range(25)]
@@ -125,6 +153,20 @@ class CryptoOrderBlockTests(unittest.TestCase):
         self.assertIsNotNone(trade)
         self.assertIsNone(trade.funding_return)
         self.assertIsNone(trade.net_return)
+
+    def test_registered_close_fallback_funding_price_is_scorable(self):
+        data = [Bar(i, 100, 100.5, 99.5, 100, 10) for i in range(50)]
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event = FundingEvent(5, 0.001, 100.25,
+                             used_candle_close_fallback=True)
+        trade = simulate_trade(data, setup, funding={5: event})
+        self.assertIsNotNone(trade)
+        self.assertAlmostEqual(trade.funding_return, -0.0010025)
+        self.assertIsNotNone(trade.net_return)
+        daily = trade_daily_pnl(data, trade, funding={5: event},
+                                bar_duration_ms=1)
+        self.assertIsNotNone(daily)
+        self.assertAlmostEqual(sum(daily.values()), trade.net_return)
 
     def test_exact_intrabar_funding_time_is_charged_for_time_exit(self):
         data = [Bar(i * 1000, 100, 101, 99, 100, 10) for i in range(50)]
@@ -248,6 +290,61 @@ class CryptoOrderBlockTests(unittest.TestCase):
         )
         self.assertEqual(trade.exit_reason, "stop")
         self.assertIsNone(trade.net_return)
+
+    def test_adverse_only_policy_charges_worst_case_for_ambiguous_exit_funding(self):
+        data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10)
+                for i in range(50)]
+        data[5] = Bar(50_000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 5_000
+        event = FundingEvent(event_ts, 0.001, 100)
+        trade = simulate_trade(
+            data, setup, funding={event_ts: event}, bar_duration_ms=10_000,
+            funding_order_policy="adverse_only",
+        )
+        self.assertEqual(trade.funding_order_policy, "adverse_only")
+        self.assertEqual(trade.ambiguous_funding_events, 1)
+        self.assertAlmostEqual(trade.funding_return, -0.001)
+        self.assertAlmostEqual(trade.net_return, -0.0222)
+        daily = trade_daily_pnl(
+            data, trade, funding={event_ts: event}, bar_duration_ms=10_000,
+        )
+        self.assertAlmostEqual(sum(daily.values()), trade.net_return)
+
+    def test_adverse_only_policy_does_not_claim_ambiguous_favorable_funding(self):
+        data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10)
+                for i in range(50)]
+        data[5] = Bar(50_000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 5_000
+        event = FundingEvent(event_ts, -0.001, 100)
+        trade = simulate_trade(
+            data, setup, funding={event_ts: event}, bar_duration_ms=10_000,
+            funding_order_policy="adverse_only",
+        )
+        self.assertEqual(trade.ambiguous_funding_events, 1)
+        self.assertEqual(trade.funding_return, 0.0)
+        self.assertIsNotNone(trade.net_return)
+
+    def test_adverse_only_policy_keeps_missing_settlement_and_mark_unscorable(self):
+        data = [Bar(i * 10_000, 100, 100.5, 99.5, 100, 10)
+                for i in range(50)]
+        data[5] = Bar(50_000, 100, 100.5, 97, 99, 10)
+        setup = Setup(Zone(0, 0, "long", 99, 100, 1), 1, 100, 98, 110)
+        event_ts = data[5].timestamp + 5_000
+        for event in (
+            FundingEvent(event_ts, 0.0, 100, coverage_gap=True),
+            FundingEvent(event_ts, 0.001, None),
+        ):
+            with self.subTest(event=event):
+                trade = simulate_trade(
+                    data, setup, funding={event_ts: event}, bar_duration_ms=10_000,
+                    funding_order_policy="adverse_only",
+                )
+                self.assertIsNone(trade.net_return)
+                self.assertIsNone(trade_daily_pnl(
+                    data, trade, funding={event_ts: event}, bar_duration_ms=10_000,
+                ))
 
     def test_daily_mark_to_market_reconciles_to_fixed_capital_trade_return(self):
         day = 86_400_000
