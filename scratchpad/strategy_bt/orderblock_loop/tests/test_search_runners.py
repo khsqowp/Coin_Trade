@@ -9,6 +9,7 @@ from unittest.mock import patch
 from crypto import Bar, FundingEvent
 from search_crypto import (METRIC_FIELDS, _append, _funding_by_timestamp,
                            _run_trial, _train_input_fingerprint)
+from trial_ledger_compaction import compact_id_list
 from equities import Bar as EquityBar, Trade
 from search_equities import _configs, _daily_trade_pnl, _max_drawdown, _weekly_bars
 
@@ -46,10 +47,12 @@ class SearchRunnerTests(unittest.TestCase):
             "symbols_unresolved_funding_prices": ["APTUSDT", "ARBUSDT"],
             "symbols_with_funding_coverage_gaps": 1, "symbols_funding_gap": ["APTUSDT"],
             "funding_sentinels": [{"symbol": "APTUSDT", "timestamp_ms": 1500,
-                                   "reason": "missing_mark", "overlap_trade_ids": ["t1"],
+                                   "reason": "missing_mark", "overlap_trade_id_summary": compact_id_list(["t1"]),
                                    "overlap_trade_count": 1}],
-            "unscorable_funding_trades": 1, "unscorable_funding_trade_ids": ["t1"],
-            "time_exit_censored_setups": 2, "time_exit_censored_setup_ids": ["c1", "c2"],
+            "unscorable_funding_trades": 1,
+            "unscorable_funding_trade_id_summary": compact_id_list(["t1"]),
+            "time_exit_censored_setups": 2,
+            "time_exit_censored_setup_id_summary": compact_id_list(["c1", "c2"]),
             "symbols_without_bars": 3, "status": "unscorable", "detail": "fixture",
         }
         with tempfile.TemporaryDirectory() as temp:
@@ -64,7 +67,8 @@ class SearchRunnerTests(unittest.TestCase):
                          ["APTUSDT", "ARBUSDT"])
         self.assertEqual(metric["train_input_fingerprint"], fingerprint)
         self.assertEqual(metric["funding_sentinels"][0]["timestamp_ms"], 1500)
-        self.assertEqual(metric["funding_sentinels"][0]["overlap_trade_ids"], ["t1"])
+        self.assertEqual(metric["funding_sentinels"][0]["overlap_trade_id_summary"],
+                         compact_id_list(["t1"]))
         self.assertEqual(metric["unscorable_funding_trades"], 1)
         self.assertEqual(metric["time_exit_censored_setups"], 2)
         self.assertNotIn("symbols_missing_funding_marks", metric)
@@ -181,13 +185,14 @@ class SearchRunnerTests(unittest.TestCase):
             barsets, {},
         )
         self.assertGreater(result["trades"], 0)
-        self.assertEqual(result["unscorable_funding_trades"], 1)
+        self.assertEqual(result["unscorable_funding_trades"], 0)
+        self.assertEqual(result["censored_funding_trades"], 1)
         self.assertEqual(result["status"], "unscorable")
         sentinel = next(item for item in result["funding_sentinels"]
                         if item["symbol"] == "GAP")
         self.assertEqual(sentinel["timestamp_ms"], gap_ts)
         self.assertEqual(sentinel["overlap_trade_count"], 1)
-        self.assertEqual(len(sentinel["overlap_trade_ids"]), 1)
+        self.assertEqual(sentinel["overlap_trade_id_summary"]["count"], 1)
 
     def test_censored_setup_overlapping_missing_settlement_makes_trial_unscorable(self):
         bars = [Bar(i * 900_000, 100, 101, 99, 100, 10) for i in range(40)]

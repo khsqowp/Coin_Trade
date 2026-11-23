@@ -8,6 +8,7 @@ from unittest.mock import patch
 from crypto import Bar, FundingEvent, Setup, Trade, Zone
 from search_crypto import _filter_r3_zones, _sentinel_reason
 import search_crypto
+from trial_ledger_compaction import compact_id_list
 from search_crypto_r3 import (CONFIGS, _append_r3, _apply_symbol_floor,
                               exclude_unscorable_symbols)
 
@@ -62,18 +63,61 @@ class SearchCryptoR3Tests(unittest.TestCase):
                           {15_000_000: FundingEvent(15_000_000, 0, None)}, 0)], {})
         self.assertEqual(overlapping["excluded_funding_symbols"], ["BTCUSDT"])
         self.assertEqual(outside["excluded_funding_symbols"], [])
+        self.assertEqual(outside["unscorable_funding_trades"], 1)
+        self.assertEqual(outside["unscorable_funding_trade_id_summary"],
+                         outside["trade_id_summary"])
         self.assertEqual(overlapping["total_trades"], 1)
         self.assertEqual(overlapping["trades"], 0)
-        self.assertEqual(overlapping["unscorable_funding_trades"], 1)
-        self.assertEqual(overlapping["unscorable_funding_trade_ids"], overlapping["trade_ids"])
+        self.assertEqual(overlapping["unscorable_funding_trades"], 0)
+        self.assertEqual(overlapping["censored_funding_trades"], 1)
+        self.assertEqual(overlapping["unscorable_funding_trade_id_summary"],
+                         compact_id_list([]))
+        self.assertEqual(overlapping["censored_funding_trade_id_summary"]["count"], 1)
+        self.assertEqual(overlapping["trade_id_summary"]["count"], 1)
 
     def test_symbol_floor_requires_25_kept_symbols(self):
-        result = {"status": "complete", "detail": "scored"}
+        result = {"status": "complete", "detail": "", "trades": 20,
+                  "censored_fraction": 0.35}
         self.assertIs(_apply_symbol_floor(result, 25, 25), result)
         self.assertEqual(result["status"], "complete")
         _apply_symbol_floor(result, 25, 24)
         self.assertEqual(result["status"], "unscorable")
         self.assertEqual(result["detail"], "only 24 kept symbols; need 25")
+
+    def test_censoring_is_independent_of_trade_pnl(self):
+        bars = [Bar(0, 10, 11, 9, 10, 1), Bar(14_400_000, 10, 11, 9, 10, 1)]
+        zone = Zone(0, 0, "long", 9, 10, 1)
+        setup = Setup(zone, 0, 10, 9, 12)
+        sentinel = FundingEvent(1_000_000, 0.0, None)
+        config = {"definition": "displacement", "timeframe": "4h", "direction": "long",
+                  "deadline": 48, "reward_r": 2.0, "minimum_symbols": 1}
+        outcomes = []
+        for pnl in (0.1, -0.1):
+            fake_trade = Trade(setup, 1, 11, "time", pnl, None, 12, pnl)
+            with patch.object(search_crypto, "active_zones", return_value=[zone]), \
+                    patch.object(search_crypto, "_filter_r3_zones", return_value=[zone]), \
+                    patch.object(search_crypto, "first_retest", return_value=setup), \
+                    patch.object(search_crypto, "simulate_trade", return_value=fake_trade):
+                outcomes.append(search_crypto._run_trial(
+                    config, [("BTCUSDT", bars, {sentinel.timestamp: sentinel}, 0)], {}))
+        self.assertEqual(outcomes[0]["censored_funding_trades"], 1)
+        self.assertEqual(outcomes[1]["censored_funding_trades"], 1)
+        self.assertEqual(outcomes[0]["censored_funding_trade_id_summary"],
+                         outcomes[1]["censored_funding_trade_id_summary"])
+
+    def test_censor_and_remaining_trade_threshold_boundaries(self):
+        result = {"status": "completed", "detail": "", "trades": 20,
+                  "censored_fraction": 0.35}
+        _apply_symbol_floor(result, 25, 25)
+        self.assertEqual(result["status"], "completed")
+        result.update(trades=19)
+        _apply_symbol_floor(result, 25, 25)
+        self.assertEqual(result["status"], "unscorable")
+        self.assertIn("remaining trades 19 below minimum 20", result["detail"])
+        result.update(status="completed", detail="", trades=20, censored_fraction=0.350001)
+        _apply_symbol_floor(result, 25, 25)
+        self.assertEqual(result["status"], "unscorable")
+        self.assertIn("censored_fraction", result["detail"])
 
     def test_daily_trend_uses_only_prior_completed_utc_days(self):
         day_ms = 86_400_000

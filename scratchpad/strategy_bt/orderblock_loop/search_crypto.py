@@ -27,6 +27,7 @@ from crypto import (_funding_order, active_zones, first_retest,
                     funding_price_available, simulate_trade,
                     trade_daily_pnl)  # noqa: E402
 from metrics import trade_metrics  # noqa: E402
+from trial_ledger_compaction import compact_id_list  # noqa: E402
 
 DEFINITIONS = ("displacement", "bos_origin", "volume_displacement")
 TIMEFRAMES = ("15m", "1h", "4h")
@@ -39,12 +40,17 @@ FIELDS = ("trial_id", "round", "market_group", "utc_timestamp", "definition",
           "parameter_grid_hash", "code_sha256", "train_period", "metric", "rank", "notes")
 METRIC_FIELDS = (
     "symbols", "kept_symbols", "excluded_funding_symbols",
-    "excluded_no_train_bar_symbols", "trades", "total_trades", "trade_ids",
+    "excluded_no_train_bar_symbols", "trades", "total_trades",
+    "trade_id_summary", "censored_funding_trades", "censored_fraction",
+    "censored_funding_trade_id_summary", "sensitivity_excluded_symbols",
+    "sensitivity_trades", "sensitivity_expectancy_bps",
+    "sensitivity_profit_factor", "sensitivity_win_rate",
+    "sensitivity_max_drawdown", "sensitivity_kept_symbols",
     "win_rate", "wilson_95_lower", "payoff_ratio",
     "profit_factor", "expectancy_bps", "max_drawdown",
     "incomplete_bars_excluded", "unscorable_funding_trades",
-    "unscorable_funding_trade_ids", "time_exit_censored_setups",
-    "time_exit_censored_setup_ids", "funding_close_fallbacks",
+    "unscorable_funding_trade_id_summary", "time_exit_censored_setups",
+    "time_exit_censored_setup_id_summary", "funding_close_fallbacks",
     "symbols_with_unresolved_funding_prices", "symbols_unresolved_funding_prices",
     "symbols_with_funding_coverage_gaps", "symbols_funding_gap",
     "funding_sentinels", "symbols_without_bars", "train_input_fingerprint",
@@ -160,7 +166,7 @@ def _append(row: dict[str, object]) -> None:
                                            separators=(",", ":")).encode()).hexdigest()
     code_hash = hashlib.sha256()
     for filename in ("crypto.py", "search_crypto.py", "search_crypto_r3.py", "data_access.py", "metrics.py",
-                     "resource_guard.py"):
+                     "resource_guard.py", "trial_ledger_compaction.py"):
         code_hash.update((HERE / filename).read_bytes())
     metric = {key: row.get(key) for key in METRIC_FIELDS}
     now = str(row["timestamp_utc"])
@@ -189,7 +195,8 @@ def _append(row: dict[str, object]) -> None:
         writer.writerow(record)
 
 
-def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, object]:
+def _run_trial(config: dict[str, object], barsets, zone_cache,
+               exclude_symbols=()) -> dict[str, object]:
     trade_returns: list[float] = []
     symbols_seen: list[str] = []
     incomplete_bars_excluded = 0
@@ -198,6 +205,7 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
     funding_close_fallbacks = 0
     unscorable_trade_ids: set[str] = set()
     all_trade_ids: set[str] = set()
+    censored_trade_ids: set[str] = set()
     funding_overlap_symbols: set[str] = set()
     censored_setup_ids: set[str] = set()
     unscorable_censored_setup_ids: set[str] = set()
@@ -210,6 +218,8 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
     first_day: int | None = None
     last_day: int | None = None
     for symbol, bars, funding, excluded_count in barsets:
+        if symbol in exclude_symbols:
+            continue
         _check_memory()
         funding_close_fallbacks += sum(event.used_candle_close_fallback
                                        for event in funding.values())
@@ -274,15 +284,22 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             else:
                 trade_id = _audit_trade_id(symbol, config, setup, trade.exit_index)
                 all_trade_ids.add(trade_id)
+                overlaps = _overlapping_sentinel_timestamps(
+                    bars[setup.entry_index].timestamp,
+                    bars[trade.exit_index].timestamp, trade.exit_reason,
+                    funding_by_timestamp, bar_duration_ms)
                 if trade.net_return is None:
-                    unscorable_funding_trades += 1
-                    unscorable_trade_ids.add(trade_id)
-                    overlaps = _overlapping_sentinel_timestamps(
-                            bars[setup.entry_index].timestamp,
-                            bars[trade.exit_index].timestamp, trade.exit_reason,
-                            funding_by_timestamp, bar_duration_ms)
                     if overlaps:
+                        censored_trade_ids.add(trade_id)
                         funding_overlap_symbols.add(symbol)
+                    else:
+                        unscorable_funding_trades += 1
+                        unscorable_trade_ids.add(trade_id)
+                    for timestamp in overlaps:
+                        sentinel_audit[(symbol, timestamp)]["overlap_trade_ids"].add(trade_id)
+                elif overlaps:
+                    censored_trade_ids.add(trade_id)
+                    funding_overlap_symbols.add(symbol)
                     for timestamp in overlaps:
                         sentinel_audit[(symbol, timestamp)]["overlap_trade_ids"].add(trade_id)
                 else:
@@ -308,6 +325,9 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
                             symbol_day_pnl[symbol][utc_day] = symbol_day_pnl[symbol].get(utc_day, 0.0) + value
                 next_free = trade.exit_index + 1
     metrics = trade_metrics(trade_returns)
+    total_trade_count = len(all_trade_ids)
+    censored_fraction = (len(censored_trade_ids) / total_trade_count
+                         if total_trade_count else 0.0)
     payoff = (metrics.average_win / metrics.average_loss
               if metrics.average_win is not None and metrics.average_loss else None)
     portfolio_daily = []
@@ -325,20 +345,25 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
             "symbol": sentinel["symbol"], "timestamp_ms": sentinel["timestamp_ms"],
             "reason": sentinel["reason"],
             "used_candle_close_fallback": sentinel["used_candle_close_fallback"],
-            "overlap_trade_ids": trade_ids, "overlap_trade_count": len(trade_ids),
-            "censored_setup_ids": setup_ids, "censored_setup_count": len(setup_ids),
+            "overlap_trade_id_summary": compact_id_list(trade_ids),
+            "overlap_trade_count": len(trade_ids),
+            "censored_setup_id_summary": compact_id_list(setup_ids),
+            "censored_setup_count": len(setup_ids),
         })
     if not unscorable_trade_ids.issubset(all_trade_ids):
         raise AssertionError("unscorable funding IDs must belong to generated trades")
-    if len(all_trade_ids) != metrics.count + unscorable_funding_trades:
-        raise AssertionError("generated trades must be scored or unscorable")
+    if len(all_trade_ids) != metrics.count + unscorable_funding_trades + len(censored_trade_ids):
+        raise AssertionError("generated trades must be scored, unscorable, or censored")
     return {
         "symbols": len(set(symbols_seen)), "kept_symbols": len(set(symbols_seen)),
         "excluded_funding_symbols": sorted(funding_overlap_symbols),
         "excluded_no_train_bar_symbols": [],
         "trades": metrics.count,
-        "total_trades": len(all_trade_ids),
-        "trade_ids": sorted(all_trade_ids),
+        "total_trades": total_trade_count,
+        "trade_id_summary": compact_id_list(all_trade_ids),
+        "censored_funding_trades": len(censored_trade_ids),
+        "censored_fraction": censored_fraction,
+        "censored_funding_trade_id_summary": compact_id_list(censored_trade_ids),
         "symbols_with_unresolved_funding_prices": len(mark_missing_symbols),
         "symbols_unresolved_funding_prices": sorted(mark_missing_symbols),
         "symbols_with_funding_coverage_gaps": len(funding_gap_symbols),
@@ -351,18 +376,24 @@ def _run_trial(config: dict[str, object], barsets, zone_cache) -> dict[str, obje
         "max_drawdown": _drawdown(portfolio_daily),
         "incomplete_bars_excluded": incomplete_bars_excluded,
         "unscorable_funding_trades": unscorable_funding_trades,
-        "unscorable_funding_trade_ids": sorted(unscorable_trade_ids),
+        "unscorable_funding_trade_id_summary": compact_id_list(unscorable_trade_ids),
         "funding_close_fallbacks": funding_close_fallbacks,
         "time_exit_censored_setups": time_exit_censored_setups,
-        "time_exit_censored_setup_ids": sorted(censored_setup_ids),
+        "time_exit_censored_setup_id_summary": compact_id_list(censored_setup_ids),
         "unscorable_censored_setup_count": len(unscorable_censored_setup_ids),
         "status": ("unscorable" if unscorable_funding_trades
                    or unscorable_censored_setup_ids
+                   or censored_fraction > float(config.get("maximum_censored_fraction", 0.0))
+                   or metrics.count < int(config.get("minimum_remaining_trades", 0))
                    or len(valid_symbols) < int(config.get("minimum_symbols", 30))
                    else "completed"),
         "detail": "; ".join(filter(None, (
             f"{unscorable_funding_trades} funding trades are unscorable; trial cannot pass G"
             if unscorable_funding_trades else "",
+            f"censored_fraction {censored_fraction:.6f} exceeds maximum {float(config.get('maximum_censored_fraction', 0.0)):.6f}"
+            if censored_fraction > float(config.get("maximum_censored_fraction", 0.0)) else "",
+            f"remaining trades {metrics.count} below minimum {int(config.get('minimum_remaining_trades', 0))}"
+            if metrics.count < int(config.get("minimum_remaining_trades", 0)) else "",
             f"{len(unscorable_censored_setup_ids)} censored setups overlap missing-funding sentinels"
             if unscorable_censored_setup_ids else "",
             f"{len(mark_missing_symbols)} symbols retain missing funding prices after close fallback"

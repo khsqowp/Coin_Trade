@@ -11,6 +11,7 @@ import uuid
 from datetime import datetime, timezone
 
 from pathlib import Path
+from trial_ledger_compaction import compact_id_list
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -22,6 +23,7 @@ CONFIGS = tuple({
     "definition": definition, "timeframe": "4h", "direction": "long",
     "deadline": 48, "reward_r": 2.0, "trend_filter": trend,
     "session_filter": session, "minimum_symbols": 25,
+    "maximum_censored_fraction": 0.35, "minimum_remaining_trades": 20,
 } for definition in r2.DEFINITIONS for trend in TREND_FILTERS
   for session in SESSION_FILTERS)
 FIELDS = r2.FIELDS
@@ -48,9 +50,17 @@ def _funding_unresolved(event):
 
 
 def _apply_symbol_floor(result, minimum_symbols, kept_count):
+    result["kept_symbols"] = kept_count
+    failures = []
+    if result.get("censored_fraction", 0.0) > 0.35:
+        failures.append(f"censored_fraction {result['censored_fraction']:.6f} exceeds maximum 0.350000")
+    if result.get("trades", 0) < 20:
+        failures.append(f"remaining trades {result.get('trades', 0)} below minimum 20")
     if kept_count < minimum_symbols:
+        failures.append(f"only {kept_count} kept symbols; need {minimum_symbols}")
+    if failures:
         result["status"] = "unscorable"
-        result["detail"] = f"only {kept_count} kept symbols; need {minimum_symbols}"
+        result["detail"] = "; ".join(filter(None, (result.get("detail", ""), *failures)))
     return result
 
 
@@ -61,7 +71,8 @@ def _append_r3(config, result, fingerprint):
     grid_hash = hashlib.sha256(grid.encode()).hexdigest()
     code_hash = hashlib.sha256()
     for name in ("crypto.py", "search_crypto.py", "search_crypto_r3.py",
-                 "data_access.py", "metrics.py", "resource_guard.py"):
+                 "data_access.py", "metrics.py", "resource_guard.py",
+                 "trial_ledger_compaction.py"):
         code_hash.update((HERE / name).read_bytes())
     metric = {key: result.get(key) for key in r2.METRIC_FIELDS}
     metric["train_input_fingerprint"] = fingerprint
@@ -108,10 +119,25 @@ def _run(shard="0/1"):
     fingerprint = r2._train_input_fingerprint("4h", barsets)
     kept, funding_excluded, empty_excluded = exclude_unscorable_symbols(barsets)
     zone_cache = {}
+    unresolved_symbols = sorted({
+        symbol for symbol, bars, funding, _ in kept
+        if any(_funding_unresolved(event) for event in funding.values())
+    })
     for config in CONFIGS:
         try:
             result = r2._run_trial(config, kept, zone_cache)
             result["kept_symbols"] = len(kept)
+            sensitivity = r2._run_trial(
+                config, kept, zone_cache, exclude_symbols=set(unresolved_symbols))
+            result.update(
+                sensitivity_excluded_symbols=compact_id_list(unresolved_symbols),
+                sensitivity_trades=sensitivity["trades"],
+                sensitivity_expectancy_bps=sensitivity["expectancy_bps"],
+                sensitivity_profit_factor=sensitivity["profit_factor"],
+                sensitivity_win_rate=sensitivity["win_rate"],
+                sensitivity_max_drawdown=sensitivity["max_drawdown"],
+                sensitivity_kept_symbols=sensitivity["kept_symbols"],
+            )
             # This is overlap-derived by the scorer; do not restore the old
             # symbol-wide prefilter list.
             result["excluded_no_train_bar_symbols"] = empty_excluded
