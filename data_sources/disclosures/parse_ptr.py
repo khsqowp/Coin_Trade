@@ -18,7 +18,7 @@ OUT = DATA / "events"
 FIELDS = ["docid", "member_name", "district", "holder", "asset_name", "ticker",
           "asset_code", "transaction_type", "trade_date", "notification_date",
           "amount_low", "amount_high", "confidence", "source"]
-AMOUNT = re.compile(r"\$\s*([\d,]+)\s*(?:-|to)\s*\$?\s*([\d,]+)", re.I)
+AMOUNT = re.compile(r"\$\s*(\d[\d,]*)\s*(?:-|to)\s*\$?\s*(\d[\d,]*)", re.I)
 DATE = re.compile(r"\b(\d{1,2}/\d{1,2}/\d{4})\b")
 CODE = re.compile(r"\[([A-Z]{1,5})\]")
 TICKER = re.compile(r"\(([A-Z][A-Z0-9.\-]{0,9})\)")
