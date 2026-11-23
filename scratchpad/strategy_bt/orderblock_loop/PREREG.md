@@ -555,3 +555,37 @@ Funding 사건이 진입 시각과 같거나 손절·목표 발생 봉의 시간
 - 같이 고정할 보정: 포트폴리오 곡선의 마지막 마킹일을 "5월 첫주 신호일 종가"에서 "그 다음 거래일 시가"로 맞춰, 종목별 실제 청산 체결일과 동일한 날짜 기준이 되게 한다(`entry_pos:may_pos+1` 범위를 `exit_pos`까지로, 마지막 구간의 마크를 해당일 종가 대신 시가로 교체).
 - 생존편향 처리(진입·청산일 모두 alive 요구, 미확인 시 코호트 전체 제외 후 `delisting_gap` 집계)는 R2~R4와 동일한 기존 fail-closed 관행이라 이 addendum에서 바꾸지 않는다.
 - 이 addendum은 수정 코드를 열기 전에 등록한다. 기존 `TRAIN_TRIALS.csv` 행(R5-KR-E3-J 포함)은 수정하지 않는다. 종목별 PF/expectancy 산출 경로, E3-A~I, 비용표, universe/membership 규칙, G 기준은 바꾸지 않는다. 실제 구현은 총괄(사용자 또는 요청한 피어 세션)의 별도 승인 후에만 진행한다.
+
+### G 게이트 판정 CLI `gate_check.py` addendum (2026-11-23, 코드 작성 전 선등록)
+
+후보가 TEST에서 나올 때 즉시 쓸 판정 도구다. `stats.py`/`metrics.py`의 기존 게이트 함수(`core_gate`, `full_gate`, `trade_metrics`, `curve_metrics`, `gate_decision`, `wilson_interval`, `bonferroni`, `reality_check`, `hansen_spa`, `deflated_sharpe`, `walk_forward_evidence`, `monte_carlo_reorder_evidence`, `plateau_evidence`, `data_integrity_evidence`, `concentration_by_year`)는 이미 전부 구현·테스트돼 있으므로 **이 addendum은 그 함수들을 재구현하지 않고 CSV/JSON 입력을 읽어 그대로 호출하는 오케스트레이터만 새로 만든다.** 위 "고정 합격 게이트 G" 1~8항의 수치 기준은 전혀 바꾸지 않는다.
+
+**입력 스키마 (후보 1개당 1회 실행):**
+- `--oos-trades <csv>` (필수): `symbol,entry_date,exit_date,net_return` — 해당 후보의 TEST 구간 청산완료 거래 1건당 1행. `net_return`은 비용차감후 소수(decimal) 수익률. `--market {crypto,US,KR}`로 `core_gate`의 시장별 문턱(코인 100건/15bp·주식 60건/30bp, 연환산일수)을 그대로 쓴다.
+- `--daily-pnl <csv>` (필수): `date,net_return` — G 4항에 이미 고정된 방식(초기 자본 동일가중, 미보유일 0, 재투자 없음)으로 해당 라운드 자체 러너가 만든 일간 포트폴리오 순수익. 이 스크립트는 이 집계 방식을 다시 만들지 않고 입력 그대로 받는다.
+- `--train-trials-count <N_train>`, `--frozen-test-count <N_test>` (필수, 정수): G 5항의 두 분모. 실행 시점에 호출자가 `TRAIN_TRIALS.csv` 행 수와 누적 동결 TEST 후보 수를 직접 세어 넘긴다(파일을 직접 다시 세지 않음 — 동시 쓰기 중인 장부와의 경합을 피한다).
+
+**자동 산출(추가 입력 없이 oos-trades/daily-pnl만으로 계산):**
+- CORE 8항목: `trade_metrics`+`curve_metrics`+`core_gate` 그대로 호출.
+- `monte_carlo`: `--oos-trades`의 `net_return` 목록을 그대로 `monte_carlo_reorder_evidence`에 넣는다(시뮬레이터 불필요, 이미 확정된 거래 손익만 섞는 검정이라 추가 입력 없이도 진짜 측정이다).
+- `walk_forward`: `--oos-trades`를 `entry_date` 기준 시간순으로 정렬해 5개 구간으로 최대한 균등 분할(나머지는 앞쪽 구간에 1개씩 추가)한 뒤 `walk_forward_evidence`에 넣는다. 분할 방식은 결정적이며 문서화한다.
+- `regime_2018`/`regime_2022`: `--daily-pnl`에서 해당 연도 행을 추려 연간 합 ≥0인지 직접 판정(해당 연도 행이 0개면 PREREG대로 미판정 `UNKNOWN`).
+- `profit_concentration`: `--daily-pnl`을 `concentration_by_year`에 넣고 `max_year_share < 0.5`를 `_issue_gate_evidence`로 감싼다(둘 다 `metrics.py`/`stats.py` 공개 함수 재사용).
+
+**선택 입력(각 항목 전용 companion 파일 — 없으면 그 항목만 `UNKNOWN`, 절대 임의 PASS/FAIL로 메꾸지 않는다):**
+- `--grid-returns <csv>` (`definition_json,net_return`) + `--winner-config <json>`: `plateau_evidence`.
+- `--family-daily-returns <csv>` (`date,candidate_id,net_return`, 같은 시장×시간단위 가족의 현재 동결 TEST 후보 전원, 날짜 정렬): `reality_check`/`hansen_spa`. block_length는 `--oos-trades`에서 구한 최대 보유기간(거래일 환산)을 그대로 쓴다.
+- `--cost-2x-trades <csv>` (동일 스키마, 비용 2배로 재시뮬레이션된 결과): `cost_stress_2x`(순수익 합 >0).
+- `--delay-1bar-trades <csv>` (동일 스키마, 진입 1봉 지연 재시뮬레이션): `delay_1_bar`.
+- `--untouched-symbol-trades <csv>` (동일 스키마, 사전 분리 미사용 종목군): `untouched_symbols`(종목별 순수익 >0 비율 ≥60%).
+- `--reimplementation-return <float>`: `independent_reimplementation`(이 값과 후보 누적 순수익 차이 ≤1%p).
+- `--bars <csv>` + `--cutoff-ms` + `--source-fingerprint` + `--funding-complete`/`--source-unchanged` 플래그: `data_integrity_evidence`.
+
+**영구히 이 CLI 범위 밖(항상 `UNKNOWN`, 별도 라운드별 스크립트가 필요):**
+- `random_entry`(`matched_random_entry_evidence`)와 `circular_shift`(`circular_shift_evidence`)는 후보의 실제 신호·체결 함수를 호출하는 Python 콜백이 반드시 필요해 CSV만으로는 진짜 측정이 불가능하다. 억지로 콜백을 흉내내지 않고 항상 미판정으로 둔다. 각 라운드의 `search_*.py`가 자기 시뮬레이터를 가진 전용 스크립트로 따로 계산해야 한다.
+
+**Bonferroni 원시 p값 정의(이번 addendum에서 새로 고정, 이전 라운드에 선례 없음):** G 5항의 "Bonferroni 임계값" 검정은 RC/SPA(가족 전체 부트스트랩)와 별개의 단일 후보 검정이다. `--daily-pnl` 표본(n≥60)에 1표본 단측 t검정(H0: 평균 일간 순수익 ≤0)을 적용하고, n이 충분히 크다는 전제로 표본평균/표본표준오차의 z값을 표준정규 분포로 근사해 p값을 계산한다(정확 t분포 대신 정규근사; stdlib에 t분포 CDF가 없어 근사를 명시적으로 쓰고 보고서에 "정규근사"라고 표기한다). 이 정의는 추후 더 정밀한 방법으로 바뀔 수 있는 해석이며, RC/SPA/DSR의 기존 수치 기준은 바꾸지 않는다.
+
+**출력:** `--out <경로>.json`에 (1) CORE 8항목 PASS/FAIL, (2) `gate_decision()`이 계산한 ROBUST+통계 4항목의 PASS/FAIL/UNKNOWN 표, (3) 모든 ROBUSTNESS_REQUIRED_KEYS가 채워졌을 때만 `full_gate()`로 계산한 최종 bool(그 전까지는 `"final": "incomplete"`), (4) 각 항목이 어느 입력에서 왔는지와 UNKNOWN 이유를 그대로 남긴다. 같은 내용을 사람이 읽을 `.md` 요약도 같이 쓴다.
+
+**금지:** `stats.py`/`metrics.py`의 통계 함수·문턱값 재구현·수정 금지. `TRAIN_TRIALS.csv`·비용표·universe/membership 규칙·G 1~8항 수치 변경 금지. 이 스크립트 자신은 실데이터를 조회·실행하지 않는다(입력 CSV는 호출자가 이미 만든 결과를 건네는 것). 코인 전략 파일(`search_crypto*.py`, `crypto.py`) 수정 금지. 합성 데이터 유닛테스트로 CORE 전부, 자동산출 4항목, 선택입력 있을 때/없을 때(UNKNOWN) 분기, `full_gate` 완전/불완전 분기를 검증한다.
