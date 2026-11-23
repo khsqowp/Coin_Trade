@@ -19,7 +19,8 @@ FIELDS = ["docid", "member_name", "district", "holder", "asset_name", "ticker",
           "asset_code", "transaction_type", "trade_date", "notification_date",
           "amount_low", "amount_high", "confidence", "source"]
 AMOUNT = re.compile(r"\$\s*(\d[\d,]*)\s*(?:-|to)\s*\$?\s*(\d[\d,]*)", re.I)
-DATE = re.compile(r"\b(\d{1,2}/\d{1,2}/\d{4})\b")
+# Dates can be glued together with no separator, so word boundaries miss the first one.
+DATE = re.compile(r"(\d{1,2}/\d{1,2}/\d{4})")
 CODE = re.compile(r"\[([A-Z]{1,5})\]")
 TICKER = re.compile(r"\(([A-Z][A-Z0-9.\-]{0,9})\)")
 TRADE = re.compile(r"(?<![A-Z])(S\s*\(\s*partial\s*\)|P|S|E)(?![A-Z])", re.I)
@@ -49,6 +50,7 @@ def parse_date(value: str) -> str | None:
 
 
 def parse_document(docid: str, text: str, metadata: dict[str, str], source: str) -> list[dict]:
+    text = text.replace("\x00", "")
     flat = re.sub(r"\s+", " ", text).strip()
     name = metadata.get("member_name") or _extract_member(flat)
     district = metadata.get("district")
