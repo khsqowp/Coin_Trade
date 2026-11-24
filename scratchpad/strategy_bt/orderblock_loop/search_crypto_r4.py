@@ -237,17 +237,27 @@ def _append(config, result, fingerprint, grid_hash, code_sha):
         writer.writerow(record)
 
 
-def _registered_trials(grid_hash, code_sha):
+def _registered_trials(grid_hash, code_sha, timeframe, fingerprint):
     if not common.CSV_PATH.exists() or common.CSV_PATH.stat().st_size == 0:
         return set()
     csv.field_size_limit(sys.maxsize)
+    registered = set()
     with common.CSV_PATH.open(newline="", encoding="utf-8") as stream:
-        return {
-            row["definition"] for row in csv.DictReader(stream)
-            if row["round"] == "R4-coin"
-            and row["parameter_grid_hash"] == grid_hash
-            and row["code_sha256"] == code_sha
-        }
+        for row in csv.DictReader(stream):
+            if (row["round"] != "R4-coin"
+                    or row["parameter_grid_hash"] != grid_hash
+                    or row["code_sha256"] != code_sha):
+                continue
+            try:
+                config = json.loads(row["definition"])
+                metric = json.loads(row["metric"])
+            except (json.JSONDecodeError, TypeError):
+                continue
+            if (isinstance(config, dict) and isinstance(metric, dict)
+                    and config.get("timeframe") == timeframe
+                    and metric.get("train_input_fingerprint") == fingerprint):
+                registered.add(row["definition"])
+    return registered
 
 
 def run():
@@ -261,10 +271,10 @@ def run():
     ).encode()).hexdigest()
     code_sha = _code_hash()
     completed = 0
-    registered = _registered_trials(grid_hash, code_sha)
     for timeframe in TIMEFRAMES:
         barsets = _load_timeframe(loader, timeframe)
         fingerprint = common._train_input_fingerprint(timeframe, barsets)
+        registered = _registered_trials(grid_hash, code_sha, timeframe, fingerprint)
         zone_cache = {}
         for config in CONFIGS:
             if config["timeframe"] != timeframe:

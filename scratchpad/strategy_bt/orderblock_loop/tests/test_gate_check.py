@@ -3,7 +3,7 @@ import json
 import tempfile
 import unittest
 from argparse import Namespace
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -15,15 +15,29 @@ class GateCheckTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
+        self.write_ledgers(train_rows=2, frozen_rows=1)
         self.trades = self.root / "trades.csv"
         with self.trades.open("w", newline="") as handle:
             writer = csv.writer(handle)
-            writer.writerow(["symbol", "entry_date", "exit_date", "net_return"])
+            writer.writerow(["symbol", "entry_date", "exit_date", "net_return", "signal_id"])
             start = date(2018, 1, 1)
             for index in range(100):
                 day = start + timedelta(days=index * 3)
                 value = "0.03" if index < 90 else "-0.01"
-                writer.writerow(["AAA", day.isoformat(), (day + timedelta(days=1)).isoformat(), value])
+                writer.writerow(["AAA", day.isoformat(), (day + timedelta(days=1)).isoformat(),
+                                 value, f"s{index}"])
+        self.m2_events = self.root / "m2-events.csv"
+        with self.m2_events.open("w", newline="") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["signal_id", "symbol", "entry_timestamp_ms",
+                             "exit_end_timestamp_ms", "target_first"])
+            for index in range(100):
+                day = date(2018, 1, 1) + timedelta(days=index * 3)
+                timestamp = int(datetime.combine(
+                    day, datetime.min.time(), timezone.utc
+                ).timestamp() * 1000)
+                writer.writerow([f"s{index}", "AAA", timestamp,
+                                 timestamp + 86_400_000, "true" if index < 90 else "false"])
         self.daily = self.root / "daily.csv"
         with self.daily.open("w", newline="") as handle:
             writer = csv.writer(handle)
@@ -37,14 +51,24 @@ class GateCheckTests(unittest.TestCase):
         self.temp.cleanup()
 
     def args(self, **overrides):
-        values = dict(oos_trades=str(self.trades), daily_pnl=str(self.daily), market="crypto",
-                      train_trials_count=10, frozen_test_count=5, grid_returns=None,
+        values = dict(oos_trades=str(self.trades), m2_events=str(self.m2_events),
+                      daily_pnl=str(self.daily), market="crypto",
+                      ledger_dir=self.root, grid_returns=None,
                       winner_config=None, family_daily_returns=None, cost_2x_trades=None,
                       delay_1bar_trades=None, untouched_symbol_trades=None,
                       reimplementation_return=None, bars=None, cutoff_ms=None,
                       source_fingerprint=None, funding_complete=False, source_unchanged=False)
         values.update(overrides)
         return Namespace(**values)
+
+    def write_ledgers(self, train_rows=2, frozen_rows=1):
+        train = self.root / "TRAIN_TRIALS.csv"
+        train.write_text("trial_id\n" + "same-config\n" * train_rows)
+        frozen = self.root / "FROZEN_TEST_CANDIDATES.csv"
+        lines = ["candidate_id,round,market,timeframe,prereg_sha256,freeze_utc,status,notes"]
+        for index in range(frozen_rows):
+            lines.append(f"c{index},R1,crypto,4h,{'a' * 64},2026-11-24T00:00:00Z,frozen,")
+        frozen.write_text("\n".join(lines) + "\n")
 
     def write_trade_companion(self, name, rows=None):
         path = self.root / name
@@ -69,7 +93,118 @@ class GateCheckTests(unittest.TestCase):
             self.assertEqual(result["gates"][key], "undetermined", key)
         self.assertEqual(result["gates"]["random_entry"], "undetermined")
         self.assertEqual(result["gates"]["circular_shift"], "undetermined")
+        self.assertEqual(result["gates"]["m2_target_first"], "pass")
+        self.assertEqual(result["gates"]["m2_nonoverlap_sample"], "fail")
+        self.assertEqual(result["counts"]["m2_signals"], 100)
+        self.assertEqual(result["counts"]["m2_nonoverlap_signals"], 100)
         self.assertEqual(result["final"], "incomplete")
+
+    def test_m2_requires_80_percent_and_200_nonoverlap_signals(self):
+        rows = [{"signal_id": f"s{i}", "symbol": "AAA", "entry_timestamp_ms": str(i * 2000),
+                 "exit_end_timestamp_ms": str(i * 2000 + 1000),
+                 "target_first": "true" if i < 160 else "false"}
+                for i in range(200)]
+        target, sample = gate_check._m2_evidence(rows, "crypto")
+        self.assertTrue(target.passed)
+        self.assertTrue(sample.passed)
+        self.assertEqual(target.diagnostics["rate"], 0.8)
+        self.assertEqual(sample.diagnostics["nonoverlap_signals"], 200)
+
+        target, sample = gate_check._m2_evidence(rows[:199], "crypto")
+        self.assertTrue(target.passed)
+        self.assertFalse(sample.passed)
+
+        below = [dict(row, target_first="true" if i < 159 else "false")
+                 for i, row in enumerate(rows)]
+        target, sample = gate_check._m2_evidence(below, "crypto")
+        self.assertFalse(target.passed)
+        self.assertTrue(sample.passed)
+
+    def test_nonoverlap_uses_maximum_cardinality_not_longest_first(self):
+        rows = [
+            {"signal_id": "long", "symbol": "AAA", "entry_timestamp_ms": "0",
+             "exit_end_timestamp_ms": "100", "target_first": "false"},
+            {"signal_id": "short1", "symbol": "AAA", "entry_timestamp_ms": "1",
+             "exit_end_timestamp_ms": "2", "target_first": "true"},
+            {"signal_id": "short2", "symbol": "AAA", "entry_timestamp_ms": "3",
+             "exit_end_timestamp_ms": "4", "target_first": "true"},
+        ]
+        _, sample = gate_check._m2_evidence(rows, "crypto")
+        self.assertEqual(sample.diagnostics["nonoverlap_signals"], 2)
+        self.assertEqual(sample.diagnostics["nonoverlap_target_first"], 2)
+
+    def test_statistical_denominators_come_from_ledgers(self):
+        train, frozen = gate_check._authoritative_trial_counts(self.root)
+        self.assertEqual(train, 2)
+        self.assertEqual(frozen, 1)
+        self.write_ledgers(train_rows=4, frozen_rows=2)
+        train, frozen = gate_check._authoritative_trial_counts(self.root)
+        self.assertEqual((train, frozen), (4, 2))
+
+    def test_ledgers_fail_closed_on_missing_frozen_candidates(self):
+        self.write_ledgers(train_rows=2, frozen_rows=0)
+        with self.assertRaisesRegex(ValueError, "no frozen candidate"):
+            gate_check._authoritative_trial_counts(self.root)
+
+    def test_ledgers_fail_closed_on_duplicate_candidate_id(self):
+        self.write_ledgers(train_rows=2, frozen_rows=2)
+        path = self.root / "FROZEN_TEST_CANDIDATES.csv"
+        lines = path.read_text().splitlines()
+        lines[2] = lines[1].replace("c1,", "c0,")
+        path.write_text("\n".join(lines) + "\n")
+        with self.assertRaisesRegex(ValueError, "duplicate candidate_id"):
+            gate_check._authoritative_trial_counts(self.root)
+
+    def test_crypto_gate_requires_m2_events_and_equities_mark_not_applicable(self):
+        legacy = self.root / "legacy-trades.csv"
+        legacy.write_text("symbol,entry_date,exit_date,net_return\nAAA,2020-01-01,2020-01-02,0.01\n")
+        result = gate_check.evaluate(self.args(m2_events=None))
+        self.assertEqual(result["gates"]["m2_target_first"], "undetermined")
+        self.assertEqual(result["final"], "incomplete")
+
+        result = gate_check.evaluate(self.args(market="US", oos_trades=str(legacy)))
+        self.assertEqual(result["gates"]["m2_target_first"], "pass")
+        self.assertEqual(result["evidence"]["m2_target_first"]["diagnostics"]["not_applicable"], True)
+
+        bad_schema = self.root / "bad-m2.csv"
+        bad_schema.write_text("signal_id,symbol\ns1,AAA\n")
+        with self.assertRaisesRegex(ValueError, "entry_timestamp_ms"):
+            gate_check.evaluate(self.args(m2_events=str(bad_schema)))
+
+    def test_m2_failure_forces_final_false_even_if_base_gate_passes(self):
+        events = self.root / "m2-below.csv"
+        with events.open("w", newline="") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["signal_id", "symbol", "entry_timestamp_ms",
+                             "exit_end_timestamp_ms", "target_first"])
+            for index in range(200):
+                if index < 100:
+                    day = date(2018, 1, 1) + timedelta(days=index * 3)
+                    signal_id = f"s{index}"
+                    start = int(datetime.combine(
+                        day, datetime.min.time(), timezone.utc
+                    ).timestamp() * 1000)
+                    hit = index < 90
+                else:
+                    signal_id = f"extra-{index}"
+                    start = 1_900_000_000_000 + (index - 100) * 2_000
+                    hit = index < 169
+                writer.writerow([f"s{index}", "AAA", start, start + 1000,
+                                 "true" if hit else "false"])
+        with patch.object(gate_check, "_final_gate", return_value=(True, True)):
+            result = gate_check.evaluate(self.args(m2_events=str(events)))
+        self.assertTrue(result["full_gate_complete"])
+        self.assertFalse(result["final"])
+        self.assertEqual(result["gates"]["m2_target_first"], "fail")
+
+    def test_crypto_scored_trade_must_match_m2_signal(self):
+        mismatched = self.root / "m2-mismatch.csv"
+        with self.m2_events.open(newline="") as source, mismatched.open("w", newline="") as target:
+            rows = list(csv.reader(source))
+            rows[1][1] = "OTHER"
+            csv.writer(target).writerows(rows)
+        with self.assertRaisesRegex(ValueError, "matching M2 event"):
+            gate_check.evaluate(self.args(m2_events=str(mismatched)))
 
     def test_companion_inputs_create_measured_evidence(self):
         grid = self.root / "grid.csv"
@@ -119,16 +254,26 @@ class GateCheckTests(unittest.TestCase):
 
     def test_cli_writes_json_and_markdown_summary(self):
         output = self.root / "result.json"
-        argv = ["--oos-trades", str(self.trades), "--daily-pnl", str(self.daily),
-                "--market", "crypto", "--train-trials-count", "10",
-                "--frozen-test-count", "5", "--out", str(output)]
-        self.assertEqual(gate_check.main(argv), 0)
+        argv = ["--oos-trades", str(self.trades), "--m2-events", str(self.m2_events),
+                "--daily-pnl", str(self.daily),
+                "--market", "crypto", "--out", str(output)]
+        with patch.object(gate_check, "LEDGER_DIR", self.root):
+            self.assertEqual(gate_check.main(argv), 0)
         result = json.loads(output.read_text())
         self.assertEqual(result["final"], "incomplete")
         self.assertIn("random_entry", result["unknown_reasons"])
         summary = output.with_suffix(".md").read_text()
         self.assertIn("CORE 8항목", summary)
         self.assertIn("UNKNOWN", summary)
+
+    def test_cli_does_not_accept_user_supplied_denominators(self):
+        with self.assertRaises(SystemExit) as caught:
+            gate_check._parser().parse_args([
+                "--oos-trades", "trades.csv", "--daily-pnl", "daily.csv",
+                "--market", "crypto", "--train-trials-count", "1",
+                "--frozen-test-count", "1", "--out", "result.json",
+            ])
+        self.assertEqual(caught.exception.code, 2)
 
     def test_full_gate_incomplete_and_complete_call_paths(self):
         incomplete = gate_check.evaluate(self.args())

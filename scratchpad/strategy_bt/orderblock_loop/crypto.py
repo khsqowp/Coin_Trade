@@ -12,6 +12,7 @@ from typing import Literal, Mapping, Sequence
 
 Definition = Literal["displacement", "bos_origin", "volume_displacement"]
 Direction = Literal["long", "short"]
+SUPPORTED_REWARD_R = (0.25, 0.5, 0.75, 1.0, 1.5, 2.0)
 
 
 @dataclass(frozen=True)
@@ -309,7 +310,7 @@ def first_retest(bars: Sequence[Bar], zone: Zone, *, deadline: int,
     Deadline is inclusive in bars after registration. An invalidation touch on
     the retest bar wins over entry because intrabar ordering is unknowable.
     """
-    if deadline not in (24, 48) or reward_r not in (1.5, 2.0):
+    if deadline not in (24, 48) or reward_r not in SUPPORTED_REWARD_R:
         raise ValueError("parameters outside preregistered grid")
     eligible = range(len(bars)) if validated else _validate(bars)
     if validated:
@@ -528,7 +529,7 @@ def simulate_orderblock(bars: Sequence[Bar], definition: Definition, direction: 
                         candidate_zones: Sequence[Zone] | None = None,
                         audit: dict[str, int] | None = None) -> list[Trade]:
     """Run one fixed OB candidate end-to-end without overlapping positions."""
-    if deadline not in (24, 48) or reward_r not in (1.5, 2.0):
+    if deadline not in (24, 48) or reward_r not in SUPPORTED_REWARD_R:
         raise ValueError("parameters outside preregistered grid")
     if bar_duration_ms is not None and bar_duration_ms <= 0:
         raise ValueError("bar_duration_ms must be positive")

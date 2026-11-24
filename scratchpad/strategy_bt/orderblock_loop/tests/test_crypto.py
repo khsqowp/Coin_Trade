@@ -20,6 +20,39 @@ class CryptoOrderBlockTests(unittest.TestCase):
         self.assertAlmostEqual(setup.stop, 98.8)
         self.assertAlmostEqual(setup.target, 104.3)
 
+    def test_shorter_preregistered_reward_multiple_changes_only_target_distance(self):
+        data = [Bar(i, 100, 102, 98, 100, 10) for i in range(24)]
+        data[20] = Bar(20, 100, 101, 99, 100, 10)
+        data[21] = Bar(21, 100, 103, 100, 102, 10)
+        data[22] = Bar(22, 101, 103, 100, 102, 10)
+        zone = Zone(20, 19, "long", 99, 101, 2)
+        setup = first_retest(data, zone, deadline=24, reward_r=0.5)
+        self.assertIsNotNone(setup)
+        self.assertEqual(setup.entry_index, 22)
+        self.assertEqual(setup.entry_price, 101)
+        self.assertAlmostEqual(setup.stop, 98.8)
+        self.assertAlmostEqual(setup.target, 102.1)
+
+    def test_orderblock_runner_accepts_preregistered_short_target(self):
+        data = [Bar(i, 100, 101, 99.5, 100, 10) for i in range(60)]
+        data[2] = Bar(2, 100, 100.5, 99.5, 100, 10)
+        data[3] = Bar(3, 101, 102.5, 100.5, 102, 10)
+        zone = Zone(1, 0, "long", 99, 100, 1)
+        with patch("crypto.zones", return_value=[zone]):
+            trades = simulate_orderblock(
+                data, "bos_origin", "long", deadline=24, reward_r=0.5,
+                funding={},
+            )
+        self.assertEqual(len(trades), 1)
+        self.assertEqual(trades[0].exit_reason, "target")
+        self.assertAlmostEqual(trades[0].exit_price, 102.05)
+
+    def test_unregistered_reward_multiple_is_rejected(self):
+        data = [Bar(i, 100, 102, 98, 100, 10) for i in range(24)]
+        zone = Zone(20, 19, "long", 99, 101, 2)
+        with self.assertRaises(ValueError):
+            first_retest(data, zone, deadline=24, reward_r=0.3)
+
     def test_invalidation_on_retest_bar_prevents_entry(self):
         data = [Bar(i, 100, 102, 98, 100, 10) for i in range(23)]
         data[21] = Bar(21, 100, 101, 98.7, 100, 10)

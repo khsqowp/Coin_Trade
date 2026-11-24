@@ -1,4 +1,5 @@
 import csv
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -39,7 +40,8 @@ class SearchCryptoR4Tests(unittest.TestCase):
 
     def test_resume_reader_handles_large_existing_metric_fields(self):
         fields = ("trial_id", "round", "parameter_grid_hash", "code_sha256", "definition", "metric")
-        config = '{"definition":"displacement"}'
+        config = '{"definition":"displacement","timeframe":"4h"}'
+        metric = json.dumps({"train_input_fingerprint": "fingerprint-a"})
         with tempfile.TemporaryDirectory() as directory:
             ledger = Path(directory) / "ledger.csv"
             with ledger.open("w", newline="", encoding="utf-8") as stream:
@@ -47,10 +49,40 @@ class SearchCryptoR4Tests(unittest.TestCase):
                 writer.writeheader()
                 writer.writerow({
                     "trial_id": "old", "round": "R4-coin", "parameter_grid_hash": "grid",
-                    "code_sha256": "code", "definition": config, "metric": "x" * 150_000,
+                    "code_sha256": "code", "definition": config,
+                    "metric": metric + " " * 150_000,
                 })
             with patch("search_crypto_r4.common.CSV_PATH", ledger):
-                self.assertEqual(_registered_trials("grid", "code"), {config})
+                self.assertEqual(
+                    _registered_trials("grid", "code", "4h", "fingerprint-a"),
+                    {config},
+                )
+                self.assertEqual(
+                    _registered_trials("grid", "code", "4h", "fingerprint-b"),
+                    set(),
+                )
+                self.assertEqual(
+                    _registered_trials("grid", "code", "1h", "fingerprint-a"),
+                    set(),
+                )
+
+    def test_resume_reader_does_not_reuse_rows_without_input_fingerprint(self):
+        fields = ("trial_id", "round", "parameter_grid_hash", "code_sha256", "definition", "metric")
+        with tempfile.TemporaryDirectory() as directory:
+            ledger = Path(directory) / "ledger.csv"
+            with ledger.open("w", newline="", encoding="utf-8") as stream:
+                writer = csv.DictWriter(stream, fieldnames=fields)
+                writer.writeheader()
+                writer.writerow({
+                    "trial_id": "old", "round": "R4-coin", "parameter_grid_hash": "grid",
+                    "code_sha256": "code", "definition": '{"timeframe":"4h"}',
+                    "metric": "{}",
+                })
+            with patch("search_crypto_r4.common.CSV_PATH", ledger):
+                self.assertEqual(
+                    _registered_trials("grid", "code", "4h", "fingerprint-a"),
+                    set(),
+                )
 
     def test_m2_reports_all_signals_and_symbol_nonoverlap_separately(self):
         events = [

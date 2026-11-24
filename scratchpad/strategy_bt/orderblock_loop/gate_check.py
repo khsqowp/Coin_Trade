@@ -6,9 +6,11 @@ import argparse
 import csv
 import json
 import math
+import re
+import sys
 from collections import defaultdict
 from dataclasses import asdict, is_dataclass
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from statistics import NormalDist, mean, stdev
 from typing import Any
@@ -16,7 +18,7 @@ from typing import Any
 from crypto import Bar
 from metrics import (CORE_REQUIRED_KEYS, ROBUSTNESS_REQUIRED_KEYS, GateEvidence,
                      _issue_gate_evidence, core_gate, curve_metrics, full_gate,
-                     trade_metrics)
+                     trade_metrics, wilson_lower)
 from stats import (bonferroni, concentration_by_year, data_integrity_evidence,
                    deflated_sharpe, gate_decision, hansen_spa,
                    monte_carlo_reorder_evidence, plateau_evidence,
@@ -24,6 +26,11 @@ from stats import (bonferroni, concentration_by_year, data_integrity_evidence,
 
 UNKNOWN = "undetermined"
 TRADE_FIELDS = ("symbol", "entry_date", "exit_date", "net_return")
+M2_FIELDS = ("signal_id", "symbol", "entry_timestamp_ms",
+             "exit_end_timestamp_ms", "target_first")
+LEDGER_DIR = Path(__file__).resolve().parent
+FROZEN_FIELDS = ("candidate_id", "round", "market", "timeframe",
+                 "prereg_sha256", "freeze_utc", "status")
 
 
 def _csv(path: str | Path, required: tuple[str, ...]) -> list[dict[str, str]]:
@@ -33,6 +40,69 @@ def _csv(path: str | Path, required: tuple[str, ...]) -> list[dict[str, str]]:
             raise ValueError(f"{path}: CSV requires columns {', '.join(required)}")
         rows = list(reader)
     return rows
+
+
+def _ledger_rows(path: Path, required: tuple[str, ...]) -> list[dict[str, str]]:
+    old_limit = csv.field_size_limit()
+    try:
+        csv.field_size_limit(sys.maxsize)
+        return _csv(path, required)
+    finally:
+        csv.field_size_limit(old_limit)
+
+
+def _count_train_trials(path: Path) -> int:
+    before = path.stat()
+    old_limit = csv.field_size_limit()
+    count = 0
+    try:
+        csv.field_size_limit(sys.maxsize)
+        with path.open(newline="", encoding="utf-8-sig") as handle:
+            reader = csv.DictReader(handle)
+            if reader.fieldnames is None or "trial_id" not in reader.fieldnames:
+                raise ValueError("TRAIN_TRIALS.csv requires a trial_id column")
+            for row in reader:
+                if not any((value or "").strip() for value in row.values()):
+                    continue
+                if not (row.get("trial_id") or "").strip():
+                    raise ValueError("TRAIN_TRIALS.csv has a blank trial_id")
+                count += 1
+    finally:
+        csv.field_size_limit(old_limit)
+    after = path.stat()
+    if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+        raise ValueError("TRAIN_TRIALS.csv changed while counting; rerun gate after writes stop")
+    if count == 0:
+        raise ValueError("TRAIN_TRIALS.csv has no attempts")
+    return count
+
+
+def _authoritative_trial_counts(ledger_dir: Path) -> tuple[int, int]:
+    train_count = _count_train_trials(ledger_dir / "TRAIN_TRIALS.csv")
+
+    frozen = _ledger_rows(ledger_dir / "FROZEN_TEST_CANDIDATES.csv", FROZEN_FIELDS)
+    ids = set()
+    for row in frozen:
+        candidate_id = (row.get("candidate_id") or "").strip()
+        prereg_hash = (row.get("prereg_sha256") or "").strip()
+        if any(not (row.get(field) or "").strip() for field in FROZEN_FIELDS):
+            raise ValueError("frozen TEST ledger has a blank required field")
+        if not candidate_id or candidate_id in ids:
+            raise ValueError("frozen TEST ledger has a blank or duplicate candidate_id")
+        if row["market"] not in ("crypto", "US", "KR"):
+            raise ValueError("frozen TEST ledger has an invalid market")
+        if not re.fullmatch(r"[0-9a-fA-F]{64}", prereg_hash):
+            raise ValueError("frozen TEST ledger has an invalid prereg_sha256")
+        try:
+            frozen_at = datetime.fromisoformat(row["freeze_utc"].replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("frozen TEST ledger has an invalid freeze_utc") from exc
+        if frozen_at.tzinfo is None or frozen_at.utcoffset() != timezone.utc.utcoffset(frozen_at):
+            raise ValueError("frozen TEST ledger freeze_utc must be UTC-aware")
+        ids.add(candidate_id)
+    if not frozen:
+        raise ValueError("FROZEN_TEST_CANDIDATES.csv has no frozen candidate")
+    return train_count, len(frozen)
 
 
 def _float_rows(rows: list[dict[str, str]], field: str) -> list[float]:
@@ -105,6 +175,85 @@ def _walk_forward(trades: list[dict[str, str]]):
     return walk_forward_evidence(folds)
 
 
+def _m2_evidence(events: list[dict[str, str]], market: str):
+    """Measure crypto target-first rate and per-symbol non-overlap sample."""
+    if market != "crypto":
+        not_applicable = _issue_gate_evidence(
+            True, "crypto-only M2 gate; not applicable", max(1, len(events)),
+            {"market": market, "not_applicable": True, "nonoverlap_signals": 0},
+        )
+        return not_applicable, not_applicable
+
+    parsed = []
+    seen_ids, seen_entries = set(), set()
+    for row in events:
+        signal_id = row["signal_id"].strip()
+        symbol = row["symbol"].strip()
+        entry = int(row["entry_timestamp_ms"])
+        exit_end = int(row["exit_end_timestamp_ms"])
+        outcome = row["target_first"].strip().lower()
+        if (not signal_id or not symbol or entry < 0 or exit_end <= entry
+                or outcome not in ("true", "false", "1", "0")):
+            raise ValueError("invalid crypto M2 event fields")
+        if signal_id in seen_ids or (symbol, entry) in seen_entries:
+            raise ValueError("duplicate crypto M2 signal timestamp per symbol")
+        seen_ids.add(signal_id)
+        seen_entries.add((symbol, entry))
+        parsed.append((symbol, entry, exit_end, outcome in ("true", "1")))
+
+    if not parsed:
+        return None, None
+    hits = sum(event[3] for event in parsed)
+    rate = hits / len(parsed)
+    lower = wilson_lower(hits, len(parsed))
+    nonoverlap = []
+    last_exit: dict[str, int] = {}
+    for symbol, entry, exit_end, target_first in sorted(
+            parsed, key=lambda item: (item[0], item[2], -item[1])):
+        if entry >= last_exit.get(symbol, -1):
+            nonoverlap.append(target_first)
+            last_exit[symbol] = exit_end
+    nonoverlap_hits = sum(nonoverlap)
+    nonoverlap_rate = nonoverlap_hits / len(nonoverlap) if nonoverlap else None
+    nonoverlap_lower = wilson_lower(nonoverlap_hits, len(nonoverlap))
+    target_evidence = _evidence(
+        rate >= 0.80, "all completed crypto signals target-first rate >= 80%",
+        len(parsed), {"signals": len(parsed), "target_first": hits,
+                      "rate": rate, "wilson_95_lower": lower},
+    )
+    sample_evidence = _evidence(
+        len(nonoverlap) >= 200, "per-symbol non-overlap M2 sample >= 200",
+        len(nonoverlap), {"signals": len(parsed), "nonoverlap_signals": len(nonoverlap),
+                          "nonoverlap_target_first": nonoverlap_hits,
+                          "nonoverlap_rate": nonoverlap_rate,
+                          "nonoverlap_wilson_95_lower": nonoverlap_lower},
+    )
+    return target_evidence, sample_evidence
+
+
+def _validate_m2_linkage(trades: list[dict[str, str]], events: list[dict[str, str]]) -> None:
+    """Require every scored crypto trade to reference a matching M2 event."""
+    if not events:
+        return
+    event_by_id = {row["signal_id"].strip(): row for row in events}
+    if len(event_by_id) != len(events):
+        raise ValueError("duplicate crypto M2 signal ID")
+    seen_trade_ids = set()
+    for trade in trades:
+        signal_id = trade["signal_id"].strip()
+        if not signal_id or signal_id in seen_trade_ids:
+            raise ValueError("crypto OOS trade IDs must be nonempty and unique")
+        seen_trade_ids.add(signal_id)
+        event = event_by_id.get(signal_id)
+        if event is None or event["symbol"].strip() != trade["symbol"].strip():
+            raise ValueError("crypto OOS trade must link to a matching M2 event")
+        entry_day = datetime.fromtimestamp(
+            int(event["entry_timestamp_ms"]) / 1000, timezone.utc
+        ).date()
+        if entry_day != _day(trade["entry_date"]):
+            raise ValueError("crypto OOS trade entry date disagrees with M2 timestamp")
+
+
 def _companion_trade_evidence(path: str | None, method: str):
     if path is None:
         return None
@@ -170,7 +319,15 @@ def _integrity(args: argparse.Namespace):
 
 
 def evaluate(args: argparse.Namespace) -> dict[str, Any]:
-    trades = _csv(args.oos_trades, TRADE_FIELDS)
+    train_trials_count, frozen_test_count = _authoritative_trial_counts(
+        args.ledger_dir
+    )
+    required_trade_fields = TRADE_FIELDS + (("signal_id",) if args.market == "crypto" else ())
+    trades = _csv(args.oos_trades, required_trade_fields)
+    m2_rows = (_csv(args.m2_events, M2_FIELDS)
+               if args.market == "crypto" and args.m2_events else [])
+    if args.market == "crypto":
+        _validate_m2_linkage(trades, m2_rows)
     trade_returns = _float_rows(trades, "net_return")
     daily_rows = _csv(args.daily_pnl, ("date", "net_return"))
     daily = _daily_map(daily_rows)
@@ -179,6 +336,7 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     metrics = trade_metrics(trade_returns)
     curve = curve_metrics(daily_returns, {"crypto": 365, "US": 252, "KR": 252}[args.market])
     core = core_gate(metrics, daily_returns, market=args.market)
+    m2_target, m2_nonoverlap = _m2_evidence(m2_rows, args.market)
     evidences: dict[str, Any] = {
         "monte_carlo": monte_carlo_reorder_evidence(trade_returns),
         "walk_forward": _walk_forward(trades),
@@ -214,8 +372,8 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         if deviation > 0:
             z = mean(daily_returns) / (deviation / math.sqrt(len(daily_returns)))
             bonf_p = 1 - NormalDist().cdf(z)
-            bonf_detail = bonferroni(bonf_p, args.frozen_test_count)
-    dsr = deflated_sharpe(daily_returns, args.train_trials_count)
+            bonf_detail = bonferroni(bonf_p, frozen_test_count)
+    dsr = deflated_sharpe(daily_returns, train_trials_count)
     candidate_metrics: dict[str, Any] = dict(core)
     candidate_metrics.update({key: (ev.passed if ev is not None else None)
                               for key, ev in evidences.items()})
@@ -235,8 +393,8 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         candidate_metrics["spa_p"] = spa_detail["p_value"]
 
     decisions = gate_decision(candidate_metrics,
-                              {"train_trials": args.train_trials_count,
-                               "frozen_test_candidates": args.frozen_test_count})
+                              {"train_trials": train_trials_count,
+                               "frozen_test_candidates": frozen_test_count})
     statuses: dict[str, str] = {key: ("pass" if value else "fail") for key, value in core.items()}
     for key, ev in evidences.items():
         statuses[key] = ("pass" if ev.passed else "fail") if ev is not None else UNKNOWN
@@ -244,6 +402,13 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     statuses["reality_check"] = decisions["reality_check"]
     statuses["spa"] = decisions["spa"]
     statuses["deflated_sharpe"] = decisions["deflated_sharpe"]
+    statuses["m2_target_first"] = (
+        ("pass" if m2_target.passed else "fail") if m2_target is not None else UNKNOWN
+    )
+    statuses["m2_nonoverlap_sample"] = (
+        ("pass" if m2_nonoverlap.passed else "fail")
+        if m2_nonoverlap is not None else UNKNOWN
+    )
 
     # ROBUSTNESS_REQUIRED_KEYS are issued only where an actual measurement exists.
     robust_evidence = {key: ev for key, ev in evidences.items() if ev is not None}
@@ -258,19 +423,27 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
             passed = decisions[key] == "pass"
             robust_evidence[key] = _evidence(passed, key, max(1, len(daily_returns)),
                                              {"raw_value": value, "decision": decisions[key]})
-    final, complete = _final_gate(core, robust_evidence)
+    base_final, base_complete = _final_gate(core, robust_evidence)
+    m2_complete = m2_target is not None and m2_nonoverlap is not None
+    complete = base_complete and m2_complete
+    if not complete:
+        final = "incomplete"
+    else:
+        final = bool(base_final) and m2_target.passed and m2_nonoverlap.passed
 
     sources = {key: ("--oos-trades" if key in ("monte_carlo", "walk_forward") else
                      "--daily-pnl" if key.startswith("regime_") or key == "profit_concentration" else
                      "--family-daily-returns" if key in ("reality_check", "spa") else
-                     "--daily-pnl + --frozen-test-count" if key == "bonferroni" else
-                     "--daily-pnl + --train-trials-count" if key == "deflated_sharpe" else
+                     "--daily-pnl + FROZEN_TEST_CANDIDATES.csv" if key == "bonferroni" else
+                     "--daily-pnl + TRAIN_TRIALS.csv" if key == "deflated_sharpe" else
                      "--grid-returns + --winner-config" if key == "plateau" else
                      "--cost-2x-trades" if key == "cost_stress_2x" else
                      "--delay-1bar-trades" if key == "delay_1_bar" else
                      "--untouched-symbol-trades" if key == "untouched_symbols" else
                      "--reimplementation-return" if key == "independent_reimplementation" else
                      "--bars and integrity flags" if key == "data_integrity" else
+                     ("--m2-events" if args.market == "crypto" else "해당 없음")
+                     if key.startswith("m2_") else
                      "permanently outside this CLI; simulator callback required"
                      if key in ("random_entry", "circular_shift") else "unavailable")
                for key in statuses}
@@ -280,11 +453,19 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     result = {
         "market": args.market,
         "counts": {"oos_trades": len(trades), "daily_observations": len(daily_returns),
-                   "train_trials": args.train_trials_count, "frozen_test_candidates": args.frozen_test_count},
+                   "m2_signals": (m2_target.sample_count
+                                  if args.market == "crypto" and m2_target is not None else 0),
+                   "m2_nonoverlap_signals": (
+                       m2_nonoverlap.diagnostics["nonoverlap_signals"]
+                       if m2_nonoverlap is not None else 0),
+                   "train_trials": train_trials_count, "frozen_test_candidates": frozen_test_count},
         "metrics": {"trade": asdict(metrics), "curve": asdict(curve)},
         "core": statuses_for_core(core),
         "gates": statuses,
-        "evidence": {key: _jsonable(ev) if ev is not None else None for key, ev in robust_evidence.items()},
+        "evidence": {**{key: _jsonable(ev) if ev is not None else None
+                         for key, ev in robust_evidence.items()},
+                     "m2_target_first": _jsonable(m2_target) if m2_target is not None else None,
+                     "m2_nonoverlap_sample": _jsonable(m2_nonoverlap) if m2_nonoverlap is not None else None},
         "statistical_details": {"bonferroni": bonf_detail, "bonferroni_raw_p": bonf_p,
                                 "p_value_method": "one-sided z approximation to one-sample t-test (n >= 60)",
                                 "reality_check": rc_detail, "spa": spa_detail,
@@ -292,6 +473,7 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         "sources": sources,
         "unknown_reasons": unknown_reasons,
         "full_gate_complete": complete,
+        "base_gate_complete": base_complete,
         "final": final,
     }
     return result
@@ -318,10 +500,9 @@ def _markdown(result: dict[str, Any]) -> str:
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--oos-trades", required=True)
+    parser.add_argument("--m2-events")
     parser.add_argument("--daily-pnl", required=True)
     parser.add_argument("--market", required=True, choices=("crypto", "US", "KR"))
-    parser.add_argument("--train-trials-count", required=True, type=int)
-    parser.add_argument("--frozen-test-count", required=True, type=int)
     parser.add_argument("--grid-returns")
     parser.add_argument("--winner-config")
     parser.add_argument("--family-daily-returns")
@@ -341,8 +522,7 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
-    if args.train_trials_count < 1 or args.frozen_test_count < 1:
-        parser.error("trial and frozen TEST counts must be positive")
+    args.ledger_dir = LEDGER_DIR
     if bool(args.grid_returns) != bool(args.winner_config):
         parser.error("--grid-returns and --winner-config must be supplied together")
     result = evaluate(args)

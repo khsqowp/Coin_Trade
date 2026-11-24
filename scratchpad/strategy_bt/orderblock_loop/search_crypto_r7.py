@@ -43,17 +43,18 @@ def _load_timeframe(loader):
 
 
 def _btc_regime(bars):
-    """Map BTC bar close times to a trailing, causal 150-bar rising-SMA flag."""
+    """Map BTC candle availability (close) times to trailing causal regime flags."""
     flags = {}
     closes = [bar.close for bar in bars]
     for index, bar in enumerate(bars):
+        available_at = bar.timestamp + DURATION_MS
         if index + 1 < BTC_SMA_WINDOW or index < BTC_SMA_SLOPE_LAG + BTC_SMA_WINDOW - 1:
-            flags[bar.timestamp] = False
+            flags[available_at] = False
             continue
         current = sum(closes[index - BTC_SMA_WINDOW + 1:index + 1]) / BTC_SMA_WINDOW
         past_end = index - BTC_SMA_SLOPE_LAG
         past = sum(closes[past_end - BTC_SMA_WINDOW + 1:past_end + 1]) / BTC_SMA_WINDOW
-        flags[bar.timestamp] = bar.close > current and current > past
+        flags[available_at] = bar.close > current and current > past
     return flags
 
 
@@ -97,7 +98,7 @@ def _setup_for_zone(bars, zone, config, audit=None):
 def _trades_for_symbol(bars, funding, config, zones, regime_times, regime_flags):
     zones = [zone for zone in zones if zone.direction == "long"]
     zones = [zone for zone in zones if _regime_at(
-        bars[zone.signal_index].timestamp, regime_times, regime_flags)]
+        bars[zone.signal_index].timestamp + DURATION_MS, regime_times, regime_flags)]
     trades = []
     audit = {"right_censored_setups": 0,
         "right_censored_confirmation_setups": 0,
