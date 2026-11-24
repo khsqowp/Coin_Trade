@@ -25,3 +25,6 @@ docs/kr-us-equity-trader/*.json
 
 # regenerable engine cache
 .rs_cache/
+
+# CODE 루트에서 옮겨온 비추적 백업/잔재 (대용량·민감 가능)
+_moved_from_CODE_*/
