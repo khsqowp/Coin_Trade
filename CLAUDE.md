@@ -8,3 +8,7 @@
 5. 대용량 데이터만 저장소 밖 `~/CODE/trading_data/`.
 6. 원격(GitHub Coin_Trade)이 공개일 수 있다. push 는 사용자 확인 후.
 세부 연구 규칙은 `AGENTS.md`. 서버 이전 절차는 `docs/SERVER_CUTOVER.md`.
+
+
+## 저장 규칙 (강제)
+- `/Users/user/CODE/` 루트에 투자 관련 새 폴더/파일 금지. 디렉터리·파일 저장 규칙 전체는 `docs/STORAGE_RULES.md`. 속도 우선(CPU·동시 실행 제한 없음).
