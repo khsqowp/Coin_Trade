@@ -1,0 +1,21 @@
+idea_id,name,long_n,long_ev_bps,long_pf,short_n,short_ev_bps,short_pf
+G123,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=55, H=48, k=0]",1583,145.72,1.597,1689,39.54,1.152
+G113,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=55, H=48, k=0]",2279,114.5,1.468,2269,27.12,1.102
+G118,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=50, H=48, k=0]",3045,105.07,1.414,3554,10.02,1.039
+G124,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=55, H=48, k=2.5]",1683,76.1,1.303,1804,34.79,1.161
+G112,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=55, H=24, k=0]",2728,71.85,1.423,2686,29.63,1.166
+G114,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=55, H=48, k=2.5]",2402,62.27,1.257,2409,32.61,1.153
+G108,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=50, H=48, k=0]",4206,85.19,1.342,4407,-1.41,0.995
+G223,"Price extreme vs HTF RSI non-confirmation (divergence) [N=24, delta=8, htf=1d, H=24, k=2.5]",501,69.64,1.392,724,38.02,1.204
+G119,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=50, H=48, k=2.5]",3456,67.01,1.278,4057,16.38,1.08
+G109,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=50, H=48, k=2.5]",4703,53.37,1.23,5001,13.24,1.064
+G102,"HTF prior-N high/low zone test + reclaim [lev=1d, N=40, band=0.002, H=24, k=0]",187,279.48,2.298,328,-82.95,0.69
+G222,"Price extreme vs HTF RSI non-confirmation (divergence) [N=24, delta=8, htf=1d, H=12, k=0]",454,80.54,1.754,657,13.69,1.105
+G122,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=55, H=24, k=2.5]",1994,38.91,1.2,2103,27.48,1.161
+G051,"Multi-tf momentum alignment (edge trigger) [align=1h+4h, scale=mid, H=48, k=2.5]",7856,36.99,1.178,7807,-10.83,0.95
+G060,"Multi-tf momentum alignment (edge trigger) [align=1h+4h+1d, scale=mid, H=48, k=0]",5576,35.88,1.148,5626,-25.94,0.906
+G107,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h, thr=50, H=24, k=0]",5452,36.82,1.204,5722,2.88,1.016
+G101,"HTF prior-N high/low zone test + reclaim [lev=1d, N=40, band=0.002, H=12, k=0]",219,106.46,1.644,428,-17.8,0.894
+G117,"Multi-tf RSI alignment + 1h RSI cross [combo=1h+4h+1d, thr=50, H=24, k=2.5]",4345,27.2,1.144,4971,6.09,1.037
+G139,"MACD histogram sign alignment across tfs (edge) [set=B, macd=12_26, H=16, k=0]",7036,38.2,1.261,5564,-13.91,0.923
+G145,"MACD histogram sign alignment across tfs (edge) [set=B, macd=8_21, H=16, k=0]",7900,31.22,1.205,6425,-6.79,0.962
