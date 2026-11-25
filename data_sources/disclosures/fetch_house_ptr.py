@@ -5,10 +5,10 @@ Per filing: PDF -> Microsoft markitdown -> Markdown. If markitdown yields (almos
 PDF is a scan, so it is rendered with pymupdf and OCR'd with tesseract; those files are
 flagged in manifest `method=ocr`.
 
-Outputs under $TRADING_DATA_DIR/external/disclosures/house/ (default ~/CODE/trading_data):
+Outputs under $TRADING_DATA_DIR/external/disclosures/house/ (default ~/CODE/Coin_Trade/trading_data):
   ptr_pdf/<year>/<docid>.pdf   ptr_md/<year>/<docid>.md   ptr_manifest.csv
 
-Run (inside the venv at ~/CODE/trading_data/cache/disclosures/venv):
+Run (inside the venv at ~/CODE/Coin_Trade/trading_data/cache/disclosures/venv):
   nice -n 10 python fetch_house_ptr.py [--years 2021 2022] [--limit N]
 """
 import argparse
@@ -25,7 +25,7 @@ from pathlib import Path
 
 import pytesseract  # needs the tesseract binary (brew install tesseract)
 
-BASE = Path(os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/trading_data"))
+BASE = Path(os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/Coin_Trade/trading_data"))
 ROOT = BASE / "external/disclosures/house"
 URL = "https://disclosures-clerk.house.gov/public_disc/ptr-pdfs/{y}/{d}.pdf"
 UA = "research-client/1.0"

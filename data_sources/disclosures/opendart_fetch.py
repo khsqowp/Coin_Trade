@@ -10,7 +10,7 @@ import urllib.request
 from datetime import date
 from pathlib import Path
 
-BASE = Path.home() / "CODE/trading_data/external/disclosures/opendart"
+BASE = Path.home() / "CODE/Coin_Trade/trading_data/external/disclosures/opendart"
 ENDPOINTS = {"elestock": "https://opendart.fss.or.kr/api/elestock.json",
              "majorstock": "https://opendart.fss.or.kr/api/majorstock.json"}
 DAILY_LIMIT = 20_000

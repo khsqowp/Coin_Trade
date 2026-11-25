@@ -13,7 +13,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-DATA = Path.home() / "CODE/trading_data/external/disclosures/house"
+DATA = Path.home() / "CODE/Coin_Trade/trading_data/external/disclosures/house"
 OUT = DATA / "events"
 FIELDS = ["docid", "member_name", "district", "holder", "asset_name", "ticker",
           "asset_code", "transaction_type", "trade_date", "notification_date",
