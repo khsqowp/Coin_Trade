@@ -6,7 +6,7 @@
 #   apply.sh                       dry run: prints the plan
 #   apply.sh --execute             archive + verify + remove originals (KEEP/COMPRESS lines)
 #   apply.sh --execute --allow-discard   additionally delete DISCARD lines (no archive!)
-# Options: --allowlist FILE (default: allowlist.txt next to this script), --dest DIR (default ~/CODE/trading_data)
+# Options: --allowlist FILE (default: allowlist.txt next to this script), --dest DIR (default ~/CODE/Coin_Trade/trading_data)
 # Safety: never uses rm -r; deletes only files that were listed, then removes empty dirs under the entry root.
 # Refuses anything under data_tick, trading-tick-archive, inbox, scratchpad, strategy_archive, .git.
 set -euo pipefail
@@ -14,7 +14,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(cd "$HERE/../.." && pwd)"
 ALLOW="$HERE/allowlist.txt"
-DEST="${HOME}/CODE/trading_data"
+DEST="${HOME}/CODE/Coin_Trade/trading_data"
 EXECUTE=0; ALLOW_DISCARD=0
 while [ $# -gt 0 ]; do
   case "$1" in

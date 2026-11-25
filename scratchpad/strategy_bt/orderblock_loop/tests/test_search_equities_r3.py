@@ -20,7 +20,7 @@ class SearchEquitiesR3Tests(unittest.TestCase):
         with patch.dict(os.environ):
             os.environ.pop("TRADING_DATA_DIR", None)
             self.assertEqual(_default_split_path(),
-                             Path.home() / "CODE/trading_data/cache/orderblock/equity_splits_r3.json")
+                             Path.home() / "CODE/Coin_Trade/trading_data/cache/orderblock/equity_splits_r3.json")
 
     def test_preregistered_grid_has_24_trials_per_market(self):
         self.assertEqual(len(_configs("US")), 24)

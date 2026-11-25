@@ -7,29 +7,23 @@ import hashlib
 import io
 import json
 import os
+import shutil
 import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-import search_crypto as common
-import search_crypto_r14 as r14
-import search_crypto_r19_match_attrition_audit as r19
-import search_crypto_r21_pre_bos_sweep as r21
-import search_crypto_r27_bos_fvg_confluence as r27
-import search_crypto_r29_bos_taker_flow as r29
-from resource_guard import heavy_task
-
 HERE = Path(__file__).resolve().parent
 ROUND = "R33-coin"
 PREREG_PATH = HERE / "PREREG_R33_DELAYED_SWEEP_BOS.md"
 MASTER_PATH = HERE / "PREREG.md"
-EXPECTED_ROWS = 1_689
-EXPECTED_N = 1_690
+EXPECTED_ROWS = 4_189
+EXPECTED_N = 4_190
 BAR_MS = 4 * 3_600_000
 SWEEP_LOOKBACK = 20
 MIN_DELAY = 4
 MAX_DELAY = 6
+MIN_FREE_BYTES = 40 * 1024**3
 _PREREG_SHA = hashlib.sha256(PREREG_PATH.read_bytes()).hexdigest()
 _MASTER_SHA = hashlib.sha256(MASTER_PATH.read_bytes()).hexdigest()
 CONFIG = {
@@ -56,6 +50,27 @@ CODE_FILES = (
 )
 
 
+def _code_hash():
+    digest = hashlib.sha256()
+    for name in CODE_FILES:
+        digest.update(name.encode())
+        digest.update((HERE / name).read_bytes())
+    return digest.hexdigest()
+
+
+# Snapshot sources before importing project modules; _run_locked rechecks both
+# the snapshot and current bytes before any TRAIN data reader is called.
+_IMPORT_CODE_SHA = _code_hash()
+
+import search_crypto as common
+import search_crypto_r14 as r14
+import search_crypto_r19_match_attrition_audit as r19
+import search_crypto_r21_pre_bos_sweep as r21
+import search_crypto_r27_bos_fvg_confluence as r27
+import search_crypto_r29_bos_taker_flow as r29
+from resource_guard import heavy_task
+
+
 class AppendUncertainError(RuntimeError):
     """Ledger append may be partial; inspect state and never retry."""
 
@@ -74,6 +89,12 @@ def _external_sweep(bars, index, direction):
 
 def _latest_qualifying_sweep(bars, bos_index, direction):
     """Return the latest completed sweep 4-6 bars before BOS, if any."""
+    if bos_index < 0 or bos_index >= len(bars):
+        return None
+    first_relevant = max(1, bos_index - MAX_DELAY - SWEEP_LOOKBACK)
+    if any(bars[k].timestamp - bars[k - 1].timestamp != BAR_MS
+           for k in range(first_relevant, bos_index + 1)):
+        return None
     candidates = range(max(SWEEP_LOOKBACK, bos_index - MAX_DELAY),
                        bos_index - MIN_DELAY + 1)
     matches = [j for j in candidates if _external_sweep(bars, j, direction)]
@@ -109,14 +130,6 @@ def _ledger_state():
             return rows
     finally:
         csv.field_size_limit(old)
-
-
-def _code_hash():
-    digest = hashlib.sha256()
-    for name in CODE_FILES:
-        digest.update(name.encode())
-        digest.update((HERE / name).read_bytes())
-    return digest.hexdigest()
 
 
 def _grid_hash(config):
@@ -196,8 +209,6 @@ def run():
 
 
 def _run_locked(data_root):
-    import data_access
-
     r19._assert_no_ledger_writer()
     rows = _ledger_state()
     config = {**CONFIG, "bonferroni_n": rows + 1}
@@ -206,6 +217,13 @@ def _run_locked(data_root):
             or hashlib.sha256(MASTER_PATH.read_bytes()).hexdigest() != _MASTER_SHA):
         raise RuntimeError(f"R33 preflight mismatch before data access: rows={rows}")
     grid_sha, code_sha = _grid_hash(config), _code_hash()
+    if code_sha != _IMPORT_CODE_SHA:
+        raise RuntimeError("R33 source bytes changed after import; refuse stale-code execution")
+    if shutil.disk_usage(data_root).free < MIN_FREE_BYTES:
+        raise RuntimeError("R33 requires at least 40 GiB free disk before TRAIN access")
+    import data_access
+    if _code_hash() != code_sha:
+        raise RuntimeError("R33 source bytes changed during dependency import")
     fingerprint, written = "UNAVAILABLE_BEFORE_TRAIN_INPUT", False
     try:
         split_sha, split_mtime = r29._split_cache_state(data_root, data_access)

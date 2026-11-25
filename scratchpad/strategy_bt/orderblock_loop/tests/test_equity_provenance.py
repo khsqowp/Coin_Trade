@@ -21,7 +21,7 @@ class EquityProvenanceTests(unittest.TestCase):
         with patch.dict(os.environ):
             os.environ.pop("TRADING_DATA_DIR", None)
             self.assertEqual(search_equities._default_split_path(),
-                             Path.home() / "CODE/trading_data/cache/orderblock/equity_splits_r2.json")
+                             Path.home() / "CODE/Coin_Trade/trading_data/cache/orderblock/equity_splits_r2.json")
 
     def test_train_frame_hash_is_stable_and_completion_sensitive(self):
         frame = pd.DataFrame([{"open_time": 1, "open": 10.0, "high": 11.0,

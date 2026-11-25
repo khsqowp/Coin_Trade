@@ -3,7 +3,7 @@ set -eu
 
 HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 TRADING_ROOT=$(CDPATH= cd -- "$HERE/.." && pwd)
-TRADING_DATA_DIR=${TRADING_DATA_DIR:-"$HOME/CODE/trading_data"}
+TRADING_DATA_DIR=${TRADING_DATA_DIR:-"$HOME/CODE/Coin_Trade/trading_data"}
 HOST=${FORWARD_SSH_HOST:-linuxserver}
 FORWARD_DIR="$TRADING_DATA_DIR/cache/forward"
 

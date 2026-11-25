@@ -287,7 +287,7 @@ def iter_train_bars(timeframe: str, *, shard_index: int = 0, shard_count: int = 
         raise ValueError(f"unsupported timeframe: {timeframe!r}")
     if shard_count < 1 or not 0 <= shard_index < shard_count:
         raise ValueError("shard must satisfy 0 <= index < count")
-    base = Path(data_dir or os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/trading_data")).expanduser()
+    base = Path(data_dir or os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/Coin_Trade/trading_data")).expanduser()
     split_path = Path(split_file).expanduser() if split_file else base / "cache/orderblock/crypto_splits_close_boundary.json"
     source_dir = base / "cache/orderblock/bars" / timeframe
     paths = sorted(source_dir.glob("*.parquet"))

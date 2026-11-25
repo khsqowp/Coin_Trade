@@ -31,7 +31,7 @@ MARKETS = ("US", "KR")
 
 
 def _default_split_path() -> Path:
-    data_dir = Path(os.environ.get("TRADING_DATA_DIR") or (Path.home() / "CODE/trading_data"))
+    data_dir = Path(os.environ.get("TRADING_DATA_DIR") or (Path.home() / "CODE/Coin_Trade/trading_data"))
     return data_dir / "cache/orderblock/equity_splits_r3.json"
 
 

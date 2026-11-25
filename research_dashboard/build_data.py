@@ -401,7 +401,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default="/Users/user/CODE/Coin_Trade")
     parser.add_argument("--out", default="dist/data.json")
-    data_dir = Path(os.environ.get("TRADING_DATA_DIR", str(Path.home() / "CODE/trading_data")))
+    data_dir = Path(os.environ.get("TRADING_DATA_DIR", str(Path.home() / "CODE/Coin_Trade/trading_data")))
     parser.add_argument("--forward-db-dir", default=str(data_dir / "cache/forward"))
     args = parser.parse_args()
     data = build(args.root, args.forward_db_dir)

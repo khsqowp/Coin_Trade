@@ -16,7 +16,7 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-BASE = Path(os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/trading_data"))
+BASE = Path(os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/Coin_Trade/trading_data"))
 SRC = BASE / "external/crypto/binance/um_klines_1m"
 OUT = BASE / "cache/orderblock/bars"
 CUTOFF_MS = int(pd.Timestamp("2026-06-01", tz="UTC").timestamp() * 1000)

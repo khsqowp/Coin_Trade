@@ -107,7 +107,7 @@ class EquityDataQualityTests(unittest.TestCase):
         from search_equities_r3 import _load_train
 
         root = Path(__file__).resolve().parents[1]
-        data_dir = Path("/Users/user/CODE/trading_data")
+        data_dir = Path("/Users/user/CODE/Coin_Trade/trading_data")
         split_file = data_dir / "cache/orderblock/equities_splits.json"
         baseline = {
             "AAL": {"kept": 3295, "invalid_ohlc": 0, "halt_bars": 0,
@@ -148,7 +148,7 @@ class EquityDataQualityTests(unittest.TestCase):
         from search_equities_r3 import _bars, _load_train
 
         root = Path(__file__).resolve().parents[1]
-        split_file = Path("/Users/user/CODE/trading_data/cache/orderblock/equity_splits_r3.json")
+        split_file = Path("/Users/user/CODE/Coin_Trade/trading_data/cache/orderblock/equity_splits_r3.json")
         baseline = {
             "AAL": (3295, "0465810c448040fbca1f9656d47af557c3c8d3046e8cb2680db774f68edc03e2"),
             "AAPL": (9552, "14daa6f4faad8073800627f3143e639983af4c546bd71886308e89264176d965"),

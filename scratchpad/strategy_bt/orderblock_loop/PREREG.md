@@ -916,8 +916,48 @@ R9·R10은 `TRAIN_TRIALS.csv`의 모든 실제 설정·실패·미완료를 각�
 - **가설:** 직전 20개 완료 4h봉 외부 극값을 sweep한 뒤 즉시 BOS가 생기는 대신, 4–6개 완료 4h봉 후 반대방향 BOS가 발생하면 sweep 이후 범위 내 체류가 유동성 흡수/재축적 과정일 수 있다. 해당 BOS-origin OB의 R14 첫 재방문 반응을 단일 고정 설정으로 시험한다.
 - **시점/정의:** sweep 봉 `j`에서 직전 20개 완료봉만 사용한다. 롱 sweep=`low[j]<prior20_min_low AND close[j]>prior20_min_low`; 숏은 대칭. BOS 신호봉 `i`는 `i-j ∈ {4,5,6}`인 경우에만 적격이며, 구간 양끝 포함. `j`는 BOS 전에 완료되어야 한다. 여러 적격 sweep이면 가장 최근 `j` 하나만 사용한다. R21의 1–3봉 케이스는 제외한다. 추가 시간창이나 파라미터 격자는 금지한다.
 - **거래 규칙:** 4h `bos_origin` zone, 1h mapper·single-active-zone·첫 접촉·중앙값 방향 회복, 다음 1h 시가 진입, R14 stop/0.50R target/24봉 만기/동일봉 stop 우선/왕복 12bp/`adverse_only` funding을 그대로 쓴다. R32 브레이커 무효화/역할전환을 사용하지 않는다.
-- **입력/단일 시도:** 고정 `CRYPTO_35.csv`, cutoff `2023-11-06T16:00:00Z` 이하 완료 TRAIN 4h/1h만. TEST/OOS와 2026-06-01 이후 자료 금지. 입력·cutoff-safe 30심볼 미만 또는 사전 행수 불일치는 데이터 접근 전 fail-closed. 사전 장부 1,689행, 계획 Bonferroni 분모 1,690, 이 설정 단 한 번만 허용한다. N 부족도 실패 기록이며 인접 기간·새 창으로 재탐색하지 않는다.
+- **입력/단일 시도:** 고정 `CRYPTO_35.csv`, cutoff `2023-11-06T16:00:00Z` 이하 완료 TRAIN 4h/1h만. TEST/OOS와 2026-06-01 이후 자료 금지. 입력·cutoff-safe 30심볼 미만 또는 사전 행수 불일치는 데이터 접근 전 fail-closed. preflight에서 ledger 4,189행을 확인했으며, 앞서 고정한 1,689행 이후 추가된 RB 무작위 대조 2,500행도 모두 다중검정 분모에 포함한다. 계획 분모 4,190, 이 설정 단 한 번만 허용한다. N 부족도 실패 기록이며 인접 기간·새 창으로 재탐색하지 않는다.
 - **고정 TRAIN 선별선:** scoreable N≥200, 전체 발행 신호 M2≥75%, 비용 후 EV≥+15bp, PF≥1.30 모두 충족해야 조건부 다음 단계 검토. 최종 G는 OOS M2≥80%, 비중복 OOS N≥200, EV≥+15bp, PF≥1.30, Sharpe≥1, MDD 상한 및 다중검정·강건성·PIT·권리 게이트 모두 유지한다. 결과를 본 뒤 기준을 낮추지 않는다.
 - **예상 실패:** 지연 조건 때문에 N<200, 또는 지연된 구조전환이 오히려 정보력을 잃어 M2/EV가 하락. R22의 post-BOS 추가 확인 악화와 R17 follow-through 부진을 반례로 사전 기록한다. 동일 TRAIN에서 나온 아이디어이므로 단일 시도도 독립 OOS 증거가 되지 않는다.
 - **게이트/필수 검증:** 구현 전 합성 prefix/future-mutation, 정확한 3/4/6/7봉 경계, sweep index·BOS overlap 금지, 롱숏 대칭, 여러 sweep 중 최신 선택, 실 R14 종단 simulator, 비용/funding, split fingerprint, writer/lock/append/hash 안전 테스트와 독립 레드팀 검토를 통과해야 한다. R32 결과 기록을 마친 뒤에만 R33 prereg/code를 확정한다. 최종 USD-M 2018·PIT·취득권 게이트는 닫힌 상태다.
-- R33 단일 시도 사전 행수 1,689, 계획 분모 1,690. R32의 1,181건·M2 63.25%·EV −4.65bp·PF .958을 확인한 뒤, R21의 1–3봉 범위와 겹치지 않는 sweep→BOS 4–6봉 지연만 고정한다. 이 아이디어는 이미 본 TRAIN 결과에서 나온 것이므로 새 독립 증거가 아니다. 상세 `PREREG_R33_DELAYED_SWEEP_BOS.md`; 실행은 테스트·레드팀·사전 hash 게이트 통과 후 한 번만 허용한다.
+- R33 최초 계획은 사전 장부 1,689행/분모 1,690이었으나, 실행 전 확인한 ledger는 4,189행이었다. 추가된 RB 무작위 대조 2,500시도를 모두 분모에 더해 사전 장부 4,189행/계획 분모 4,190으로 정정하고 재고정한다. R32의 1,181건·M2 63.25%·EV −4.65bp·PF .958을 확인한 뒤, R21의 1–3봉 범위와 겹치지 않는 sweep→BOS 4–6봉 지연만 고정한다. 이 아이디어는 이미 본 TRAIN 결과에서 나온 것이므로 새 독립 증거가 아니다. 상세 `PREREG_R33_DELAYED_SWEEP_BOS.md`; 실행은 테스트·레드팀·사전 hash 게이트 통과 후 한 번만 허용한다.
+- R33 결과(2026-11-25): 32종목·480건에서 M2 62.50% (300/480, Wilson 하한 58.09%), 비용 후 EV +0.73bp, PF 1.007, Sharpe 0.026, 누적 +0.109%, MDD 2.142%. N만 충족하고 고정 선별선 M2≥75%·EV≥15bp·PF≥1.30 미달이므로 반려한다. R21의 1–3봉 결과보다 표본은 커졌지만 목표 적중률은 유사하고 비용 후 EV/PF가 거의 0/1로 무너져 지연 sweep 메커니즘은 지지되지 않았다. 방향·연도별 분해는 runner가 저장하지 않아 확인 안 됨; 사후 재실험으로 채우지 않는다. OOS·강건성 미실행. 상세 `REPORT_R33_DELAYED_SWEEP_BOS.md`.
+
+## R34-coin — 첫 오더블록 재시험 직전 역방향 funding 상태 (2026-11-25, 사전등록)
+
+- R34는 독립 전략이 아닌 R14의 동일한 4h `bos_origin`·1h 첫 접촉/중앙값 회복 신호에 funding 상태 필터 하나를 추가하는 종속 하위집단 진단이다. R14/R33/R13과 독립 증거로 세지 않으며 같은 TRAIN 탐색 및 다중검정 분모에 포함한다. 가설은 “확인봉 종가 직전의 최신 반대편 funding 쏠림이 청산 연료로 작용할 수 있는가?”이며 입증되지 않았다.
+- 필터 기준은 확인봉 종가보다 최소 1시간 전의 최신 funding event다: `event.timestamp <= close_ts - 1h`. 그보다 최근인 이벤트는 아직 발표 지연이 불명확하므로 사용하지 않는다. 최신 적격 event가 gap·stale·중립/비정상 rate·실제 mark 결측 또는 close fallback이면 이전값으로 되돌아가지 않고 setup을 거부한다. 유효성은 age `1..12h` 포함, rate finite 및 `abs(rate)<1`, 실제 mark finite-positive·fallback 아님으로 고정한다. 롱은 rate<0, 숏은 rate>0만 통과한다.
+- 원본 `calc_time`은 보관된 settlement timestamp이며 별도 공개/확정 시각은 없다. 1시간 buffer는 지연 위험을 낮추는 보수적 가정이지 공개 지연을 증명하지 않는다. 이 제한을 성과와 함께 보고한다. selector에는 symbol 전체 TRAIN funding map을 쓰며, simulator에는 기존 R14 segment funding map을 그대로 전달해 보유 중 결제·gap 계산을 변경하지 않는다. 필터가 첫 접촉을 거절해도 해당 zone은 R14처럼 소진한다.
+- R14의 zone·stop·0.50R 목표·24개 1h봉 만기·동일봉 손절 우선·왕복 12bp·`adverse_only` funding·고정 35심볼·공통 cutoff를 유지한다. OOS 및 2026-06-01 이후 데이터는 열지 않는다. TRAIN 선별선 scoreable N≥200, 전체 신호 M2≥75%, 비용 후 EV≥15bp, PF≥1.30 및 최종 G는 그대로다. 기준·부호·1시간 buffer·12h 신선도를 바꾼 재시험은 금지한다.
+- 2026-11-25 metadata-only 사전 점검에서 장부 데이터 행 4,190, 계획 분모 4,191이었고, 실행 직전 재확인한다. funding timestamp 계약·스키마·문서 근거는 가격 행 로딩 전에 점검한다. 행수/중복/writer·lock/hash/cutoff/free disk/schema 불일치면 가격 데이터 접근 전에 중단한다. 상세 규칙·불확실성·테스트 게이트는 `PREREG_R34_OB_FUNDING_POLARITY.md`에 둔다.
+- R34 결과(2026-11-25): 사전 장부 4,190행, 총 N=4,191. 32종목·2,965 신호에서 M2 62.26% (1,846/2,965; Wilson 하한 60.50%), 비용 후 EV −18.51bp, PF 0.842, Sharpe −1.349, 누적손익 −17.15%, MDD 18.36%. TRAIN 선별선 M2≥75%·EV≥15bp·PF≥1.30 모두 미달, 반려. R14와의 소폭 원시 차이는 비독립·비paired 비교라 개선 증거로 세지 않는다. OOS·강건성·다중검정 최종 검증은 확인 안 됨. 상세 `REPORT_R34_OB_FUNDING_POLARITY.md`.
+
+## R35-coin — BOS 직전 range premium/discount 위치 (2026-11-25, 사전등록)
+
+- R35는 R14 `bos_origin` 4h zone + 1h 첫 재방문에 위치 필터 하나만 추가하는 단일 종속 TRAIN 진단이다. 롱 zone midpoint가 BOS 직전 20개 완료 4h봉의 고저 range midpoint 아래, 숏 zone midpoint가 위일 때만 유지한다. BOS봉은 range에서 제외하고 동률·불연속·불완전 창은 거부한다.
+- R14 다음 1h 시가 진입, distal ±0.10 ATR14 stop, 0.50R target, 24개 1h 만기, stop-first, 왕복 12bp, adverse-only funding, 고정 35심볼 및 cutoff는 바꾸지 않는다. R14 파생이며 독립 증거가 아니다.
+- 사전등록 당시 장부는 R34 포함 4,191행, 계획 분모 4,192다. 설정·위치 문턱을 늘리거나 결과 후 변경하지 않는다. TRAIN 선별선 N≥200, M2≥75%, EV≥+15bp, PF≥1.30과 최종 G를 그대로 적용한다. 상세 `PREREG_R35_OB_PREMIUM_DISCOUNT.md`.
+- R35 결과(2026-11-25): 32종목·2,547개 신호에서 M2 61.41% (1,564/2,547; Wilson 95% 59.50–63.28%), 비용 후 EV −4.87bp, PF 0.954, Sharpe −0.354, 누적 −3.88%, MDD 10.11%. 고정 TRAIN 선별선 M2≥75%·EV≥15bp·PF≥1.30 모두 미달해 반려한다. 기존 R14 대비 M2 +0.52%p·EV 16.01bp 덜 음수이나 trade-ID paired 비교가 없어 개선 증거로 인정하지 않는다. 위치 필터만 재조정하지 않는다. 상세 `REPORT_R35_OB_PREMIUM_DISCOUNT.md`; OOS·강건성·최종 G 미실행.
+
+## R36-coin — 첫 재방문 확인봉의 방향측 꼬리 (2026-11-25, 실행 전 고정)
+
+- R35 위치 조건은 2,547개 신호에서 M2 61.41%, EV −4.87bp, PF 0.954로 선별선에 미달했다. R36은 위치 조건을 재조정하지 않는다. 오더블록에 닿은 완료 1h 확인봉의 방향측 꼬리(롱 아래꼬리·숏 위꼬리)가 몸통 이상이면 반전 거부가 확인됐다는 별도 가설을 한 번만 시험한다. 확인한 기존 PREREG/REPORT에는 이 retest-candle wick/body 조건이 없었다. 이는 저장소 범위에서만의 중복 판단이고 R14 종속 필터다.
+- 기계 규칙: long `min(open,close)-low >= abs(close-open)`; short `high-max(open,close) >= abs(close-open)`. 평평한 고저 봉·불량 OHLC는 거부하며, doji는 방향측 꼬리가 양수일 때만 통과한다. 다른 필터·비율 격자·체결/청산 변경은 금지한다. 상세 `PREREG_R36_RETEST_REJECTION_WICK.md`.
+- R35 후 사전 장부는 4,192행, 계획 이번 포함 분모는 4,193이다. 중복 R36·writer/lock·가격행 cutoff·hash·40GiB 여유·30심볼 게이트를 데이터 열람 전에 재확인한다. 합성 인과성·실제 zone→R14 매퍼/simulator, 비용/funding, append 안전 테스트 및 독립 red-team 승인 전에는 실데이터를 열지 않는다.
+- 고정 TRAIN 선별선 N≥200, M2≥75%, 비용 후 EV≥+15bp, PF≥1.30을 모두 적용한다. 실패해도 재조정·재실행하지 않는다. 최종 OOS G(80% M2·비중복 N≥200·비용/위험/통계/강건성/PIT·권리) 기준은 변경하지 않는다. Binance USD-M 2018/PIT·상장폐지·취득권 게이트는 닫힌 상태다.
+- R36 결과(2026-11-25): 단일 고정 규칙·32종목·3,015신호에서 M2 59.77% (1,802/3,015; Wilson95 58.01–61.50%), EV −17.79bp, PF 0.857, Sharpe −1.369, 누적 −16.76%, MDD 17.31%. R14 유효 setup 8,423 중 꼬리 필터 통과 3,016, 거부 5,407. M2·EV·PF 선별선 모두 미달해 반려한다. R14 대비 M2 1.12%p 낮고 EV 3.09bp 덜 음수지만 paired trade ID가 없어 효과 증거로 보지 않는다. 확인봉 꼬리 조건 재조정은 하지 않는다. 상세 `REPORT_R36_RETEST_REJECTION_WICK.md`; OOS·강건성·최종 G 미실행.
+
+## R37-coin — BOS 이후 신선한 4h 오더블록 첫 재방문 (2026-11-25, 실행 전 고정)
+
+- R36 확인봉 꼬리는 유효 setup 중 5,407/8,423을 거부했지만 M2 59.77%, EV −17.79bp, PF .857로 반려됐다. 동일한 캔들 조건을 조절하지 않고 R37은 “BOS 직후 첫 재방문은 늦은 재방문보다 유효할 수 있다”는 zone age 가설 하나를 시험한다. 저장소 검색에서 완료 4h BOS 확정 이후 1~4개의 1h봉 내 첫 접촉 제한은 확인되지 않았다. R14 종속 하위집단이며 독립 증거가 아니다.
+- zone은 BOS 4h close와 일치하는 1h `signal_index`에서 age0로 활성화한다. 확인봉 age=`confirmation_index-signal_index`; 1~4만 허용, age0·5 이상 거부. age5 첫 접촉으로 거부된 zone은 소진되고 나중 재접촉하지 않는다. 그 외 R14의 first-touch/next-open·stop·target·max hold·cost·funding은 그대로다. 세부 `PREREG_R37_FRESH_OB_RETEST.md`.
+- 사전 장부는 R36 포함 4,193행, 계획 분모 4,194다. cutoff·hash·30종목·writer/lock·40GiB·합성 경계/미래불변성·실제 R14 체결 경로·독립 red-team 통과 뒤 단 한 번 TRAIN만 실행한다. 선별선 N≥200, M2≥75%, 비용 후 EV≥+15bp, PF≥1.30과 최종 OOS G 모두 유지한다. 결과 후 age 경계 변경·재실행 금지.
+- R37 결과(2026-11-25): 단일 고정 규칙·32 cutoff-safe 종목·4,361신호에서 목표 선도달 M2 60.93% (2,657/4,361; Wilson95 59.47–62.36%), 비용 후 EV −23.81bp, PF 0.807, Sharpe −2.092, 누적 −32.45%, MDD 32.93%. age 1–4 통과 setup 4,365, age 5–24 거부 setup 3,497. M2·EV·PF 선별선 전부 미달해 반려하며 age 범위 재조정·재실행하지 않는다. 실행 SHA d50fdaab…은 장부 기록과 일치하나, 현재 파일에서 결과행 제거 후 재계산한 SHA 94fc95f4…와 달라 전체 원본 실행 스냅샷 재구성은 확인되지 않았다. 상세 `REPORT_R37_FRESH_OB_RETEST.md`; OOS·강건성·최종 G 미실행.
+
+## R38-coin — 첫 재방문 전 방향성 3봉·몸통 비증가 필터 (2026-11-25, 실행 전 고정)
+
+- R37은 4,361 신호에서 M2 60.93%, EV −23.81bp, PF .807로 반려됐다. R38은 age를 재조정하지 않고 R14 첫 유효 접촉 직전 3개의 완료 1h봉을 본다. 롱은 세 봉 `low > zone.high` 및 엄격한 하락 종가, 숏은 `high < zone.low` 및 엄격한 상승 종가, 양방향 모두 절대 몸통 시간순 비증가일 때만 같은 첫 접촉을 허용한다. 몸통 비증가는 실제 가격속도·주문흐름 감속을 측정하지 않으므로 해당 해석은 주장하지 않는다.
+- 접근봉 3개와 접촉 확인봉은 완료·유효하고 1시간씩 정확히 연속이어야 하며, 첫 접근봉은 zone 활성 index 이상이어야 한다. 동률 종가·zone 사전 접촉/중첩·불량·불완전·시간 gap이면 거부하고 첫 접촉 zone은 R14대로 소진한다. 기본 R14 setup에서 필터가 거부한 것, 신호 없음, right-censored는 M2 신호 분모에서 제외하고 각각 기록한다. 실제 진입이 발생한 완결 거래만 M2에 넣고 목표 우선만 성공, stop/time 종료는 실패다. funding unscorable 거래는 M2에는 남고 scoreable N·EV/PF/Sharpe/수익/MDD에서 빠지며 개수를 따로 보고한다.
+- R10은 4h 부모 구역 재방문 뒤 1h 자식 구역 형성을 요구하지만 R38은 자식 구역을 만들지 않고 부모 첫 접촉 직전의 1h 궤적을 필터링한다. R38은 R14·R37 등의 TRAIN 결과를 본 뒤 설계된 종속·적응형 탐색이라 독립 증거가 아니며, TRAIN 통과도 G나 승인 후보가 아니다. 상세 규칙 및 R14 event priority는 `PREREG_R38_OB_APPROACH_DECELERATION.md`에 고정한다.
+- 사전 행수 4,194, 이번 포함 장부 등록 시도 Bonferroni 분모 4,195. 이는 장부에 저장된 행만 세며 과거 적응형 가설 발굴·장부 밖 탐색의 전체 수를 보증하지 않는다. 따라서 분모는 독립성·유의성 증거가 아니다. fixed split manifest SHA-256 `5873762fedc42ce05025ea76a91b2b2870a5693a0b5bbdc6dd7f7e571d96b1dd`, 1h/4h 완료봉 close cutoff `2023-11-06T16:00:00Z`를 고정한다. 실행 전 row count·중복·writer/lock·schema·source/detail/master prereg/split hashes·cutoff·`open_time`/`complete` 비가격 필드만 투영해 확인한 30개 공통 cutoff-safe 심볼·40GiB disk를 확인한다. 합성 경계/causality/R14 end-to-end/fail-closed 테스트 및 독립 레드팀 승인 전에는 OHLCV 가격행이나 ledger를 열지 않는다. 단일 TRAIN 실행만 허용하며, 불일치/불확실 시 가격행 접근 전에 중단한다. 실로드 후 usable 심볼이 30 미만이면 채점하지 않고 unscorable로 기록한다.
+- TRAIN 선별선은 scoreable N≥200, M2≥75%, 순 EV≥+15bp/거래, PF≥1.30 전부다. OOS, 다중검정, 무작위·이동 귀무, 2배 비용·1봉 지연·민감도 고원, 약세장/미사용 종목군, 독립 재구현, PIT·취득권을 포함한 최종 G 조건은 그대로다. 실패하면 원인만 기록하고 동일 규칙을 튜닝하지 않는다. cutoff·PIT·2018 선물 데이터·권리 게이트는 닫혀 있다.

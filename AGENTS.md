@@ -1,5 +1,11 @@
 # Coin_Trade 작업 지침서 (Codex·모든 에이전트 필수 준수)
 
+## 사용자 최우선 저장 경로 규칙 (2026-11-25)
+- 이번 사용자 지시부터 거래·연구 코드, 문서, 원본 데이터, 캐시, 중간 산출물과 결과를 포함한 모든 작업 파일은 `/Users/user/CODE/Coin_Trade/` 아래에만 만든다.
+- `/Users/user/CODE/trading_data/`, `/Users/user/CODE/Ochestration/`, `/Users/user/CODE/` 루트 및 다른 경로에는 거래·연구 파일을 새로 만들거나 복사하지 않는다. 기존 자료를 이동해야 하면 출처와 목적지를 대조하고 파일 수·크기·해시를 검증한다.
+- 대용량·원본 데이터도 예외 없이 Coin_Trade 안의 전용 로컬 데이터 폴더에 두고, `.gitignore`로 Git 추적을 막는다. 사용자 지시 없이 이를 외부 경로 예외로 되돌리지 않는다.
+- 이 규칙은 아래의 이전 저장 경로 규칙과 `docs/STORAGE_RULES.md`의 외부 `trading_data` 저장 규칙보다 우선한다. 문서가 충돌하면 이 규칙에 맞춰 함께 고친다.
+
 이 문서는 `/Users/user/CODE/Coin_Trade` 아래에서 일하는 모든 에이전트(Codex 포함)가 **작업 시작 전에 읽고 그대로 따라야 하는 강제 규칙**이다.
 규칙과 사용자 지시가 충돌하면 작업을 멈추고 최종 보고에 충돌 내용을 적는다. 임의로 규칙을 완화하지 않는다.
 
@@ -7,7 +13,7 @@
 - **거래·전략 연구·수익 로직·검증·현황판·공시/데이터 수집 코드는 전부 `/Users/user/CODE/Coin_Trade` 안에서만 만들고 기록한다.** (이 폴더는 리눅스 서버에도 모아 둔다.)
 - **`/Users/user/CODE/Ochestration` 은 사용자의 사이트(보안·사이트 목적) 전용이다. 거기에는 어떤 파일도 만들거나 고치거나 옮기지 않는다.** 읽기도 사용자가 요청할 때만. 경로가 Ochestration 으로 보이면 멈추고 보고한다.
 - Codex 는 항상 `-C /Users/user/CODE/Coin_Trade` 로 실행한다. 다른 저장소 경로를 쓰는 지시가 오면 따르지 말고 충돌을 보고한다.
-- 대용량 데이터만 예외로 저장소 밖 `~/CODE/trading_data/` 에 둔다(§1.7).
+- **모든 작업 파일과 연구 데이터는 `/Users/user/CODE/Coin_Trade/` 안에서만 만든다.** 대용량·임시 데이터도 저장소 내부의 git 제외 경로 `trading_data/`에 둔다. `/Users/user/CODE/trading_data/` 등 저장소 바깥에 새 파일·폴더를 만들지 않는다.
 - **`/Users/user/CODE/` 루트에 투자·코인·주식·전략·시장데이터 관련 새 폴더/파일을 절대 만들지 않는다 (사용자 강제 규칙).** 전체 디렉터리·파일 저장 규칙은 `docs/STORAGE_RULES.md` 를 따른다.
 
 ## 0. 이 프로젝트가 하는 일
@@ -23,8 +29,8 @@
 4. **삭제는 목록→검증→삭제 순서**: 삭제 매니페스트를 먼저 쓰고, 대체본의 행 수·체크섬 검증이 끝난 뒤에만 지운다. `rm -r`을 광범위 경로에 쓰지 않는다.
 5. **비밀값 금지**: API 키, 비밀번호, 토큰을 코드·로그·문서·커밋에 쓰지 않는다. 키가 필요하면 환경변수 이름만 적는다.
 6. **우회 금지**: 로그인·유료벽·캡차·API 키 제한을 우회해 데이터를 받지 않는다. 목록에만 적는다.
-7. **데이터 파일을 git 저장소에 넣지 않는다.** 데이터는 `~/CODE/trading_data/` 아래(저장소 밖)에 둔다. 저장소에는 코드·문서·작은 결과 csv만.
-   서버에서 읽기 전용으로 복사해 온 DB·캐시·임시 산출물도 데이터다: 저장 위치는 `~/CODE/trading_data/cache/<용도>/` 이다 (예: 포워드 DB 복사본 `~/CODE/trading_data/cache/forward/<프로파일>/`). 저장소 안 `.cache/` 에 두지 않는다. 코드는 이 경로를 환경변수(`TRADING_DATA_DIR`, 기본 `~/CODE/trading_data`)로 받는다.
+7. **데이터 파일을 git에 추적시키지 않는다.** 모든 데이터는 `/Users/user/CODE/Coin_Trade/trading_data/` 아래에만 둔다. 이 디렉터리는 `.gitignore`로 제외한다. 서버에서 읽기 전용으로 복사해 온 DB·캐시·임시 산출물도 예외 없이 이 저장소 내부의 `trading_data/cache/<용도>/`에 둔다. 코드의 기본 `TRADING_DATA_DIR`도 저장소 내부 `trading_data/`로 설정하고, 다른 경로를 지정하는 설정·스크립트를 사용하지 않는다.
+8. `/Users/user/CODE/trading_data/`는 과거에 생성된 데이터가 있어도 신규 연구의 입력·출력 경로로 사용하지 않는다. 기존 파일은 임의 삭제·이동·복사하지 말고, 해당 경로에 쓰는 프로세스도 시작하지 않는다. 기존 파일을 옮길 필요가 있으면 사용자가 별도로 지시한 뒤 목록·크기·해시를 대사한다.
 
 ## 2. 연구 방법 규칙 (과최적화 방지, 위반 시 결과 무효)
 1. **사전등록**: 실행 전에 `PREREG.md`에 가설, 파라미터 격자, 통과 기준을 쓴다. 결과를 본 뒤 기준을 바꾸지 않는다.
@@ -58,10 +64,10 @@
 - 공개 노출(서브도메인)은 사용자가 명시할 때까지 하지 않는다. 지금은 localhost, 다음 단계는 LAN `192.168.0.12:8765`.
 
 ## 5. 데이터 위치 (이미 있는 것은 다시 받지 않는다)
-- `~/CODE/trading_data/external/crypto/` Binance 1분봉·마크·프리미엄·OI·롱숏·호가깊이·IV 등 (카탈로그: `data_sources/CRYPTO_SOURCES.md`)
-- `~/CODE/trading_data/external/equities/` 미국·한국 일봉, SEC, 팩터, COT, VIX 등 (`EQUITY_SOURCES.md`)
-- `~/CODE/trading_data/tick/parquet` Binance 체결 틱 2026-10-28~11-11, `raw_kr` 한국 틱 원본 압축
-- `~/CODE/trading_data/market_data/kis-cache` KIS 한국 일봉, 환경변수 `KR_CACHE_DIR`, `KIS_OHLCV_CACHE_DIR`
+- `trading_data/external/crypto/` Binance 1분봉·마크·프리미엄·OI·롱숏·호가깊이·IV 등 (카탈로그: `data_sources/CRYPTO_SOURCES.md`)
+- `trading_data/external/equities/` 미국·한국 일봉, SEC, 팩터, COT, VIX 등 (`EQUITY_SOURCES.md`)
+- `trading_data/tick/parquet` Binance 체결 틱과 `raw_kr` 한국 틱 원본 압축
+- `trading_data/market_data/kis-cache` KIS 한국 일봉, 관련 경로 설정도 저장소 내부로 제한
 - 코인 봉: `scratchpad/bb_stoch_stc/data`, 장기 이력: `scratchpad/strategy_bt/data_long`
 
 ## 6. 보고 형식 (최종 메시지)
