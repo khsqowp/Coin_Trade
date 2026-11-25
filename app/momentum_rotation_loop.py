@@ -771,6 +771,29 @@ def _manual_enter(state: dict, prices: dict[str, float]) -> None:
     log_event(state, "[수동] 즉시 진입 실행 — 현 시점 랭킹으로 롱숏 재구성, 리밸런스 타이머 리셋.")
 
 
+def _manual_rebalance(state: dict, prices: dict[str, float]) -> None:
+    """즉시 리밸런스 — flat 이 아닌 상태에서, 정기 리밸런스 시각을 기다리지 않고 지금 랭킹으로 재구성한다."""
+    if LIVE:
+        from app.momentum_rotation_exec import account_equity_usdt, exec_client
+        if state.get("halted"):
+            log_event(state, "[수동] 즉시 리밸런스 거부 — halted 상태. MOMENTUM_ROTATION_RESET_HALT=true 로 재기동 필요.")
+            return
+        if PROFIT_LOCK and (state.get("profit_lock_active") or state.get("profit_lock_flatten_pending")):
+            log_event(state, "[수동] 즉시 리밸런스 거부 — PROFIT 보호 정지/청산 대기 상태.")
+            return
+        client = exec_client(EXCHANGE_MODE)
+        equity = account_equity_usdt(client)
+        hwm = max(float(state.get("hwm_usdt") or equity), equity)
+        dd = 1.0 - equity / hwm if hwm > 0 else 0.0
+        eff_lev = _effective_leverage(dd)
+        if not _rebalance_live(state, prices, eff_lev):
+            log_event(state, "[수동] 즉시 리밸런스 보류 — 가격 갭 등으로 건너뛰어짐(다시 시도하세요)")
+            return
+    else:
+        _rebalance(state, prices)
+    log_event(state, "[수동] 즉시 리밸런스 실행 — 정기 시각을 기다리지 않고 현 시점 랭킹으로 재구성, 타이머 리셋.")
+
+
 def handle_control(cmd: dict) -> bool:
     """제어 명령 1건 처리. 처리(성공/실패 확정)했으면 True, 나중에 재시도할 거면 False."""
     state = load_state()
@@ -786,6 +809,13 @@ def handle_control(cmd: dict) -> bool:
                 save_state(state)
                 return False
             _manual_enter(state, prices)
+        elif cmd["cmd"] == "rebalance":
+            prices = _fetch_current_prices()
+            if not prices:
+                log_event(state, "[수동] 즉시 리밸런스 명령 — 시세 조회 실패, 다음 틱에 재시도")
+                save_state(state)
+                return False
+            _manual_rebalance(state, prices)
     except Exception as exc:  # noqa: BLE001
         import traceback
         log_event(state, f"[수동] 명령 '{cmd['cmd']}' 실행 실패: {exc}")

@@ -1,4 +1,4 @@
-"""봇 수동 제어 채널 (즉시 매도 / 즉시 진입).
+"""봇 수동 제어 채널 (즉시 매도 / 즉시 진입 / 즉시 리밸런스).
 
 `api` 컨테이너가 공유 RW 볼륨의 control.json 에 명령을 쓰고, 각 로테이션 봇이 매 루프
 틱마다 자기 슬롯을 읽는다. 명령은 nonce 로 식별하고, 봇은 소비한 nonce 를 자기 상태
@@ -15,13 +15,13 @@ from pathlib import Path
 
 CONTROL_PATH = Path(os.environ.get("TRADING_CONTROL_PATH", "/app/control/control.json"))
 
-_VALID_CMDS = {"flatten", "enter"}
+_VALID_CMDS = {"flatten", "enter", "rebalance"}
 
 
 def read_command(bot: str) -> dict | None:
     """bot 슬롯의 명령을 반환하거나, 없으면 None.
 
-    반환 형태: {"cmd": "flatten"|"enter", "nonce": str, "ts": str, "reason": str|None}
+    반환 형태: {"cmd": "flatten"|"enter"|"rebalance", "nonce": str, "ts": str, "reason": str|None}
     """
     try:
         raw = CONTROL_PATH.read_text()
