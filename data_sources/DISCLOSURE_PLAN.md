@@ -16,7 +16,7 @@
 | 시장 | 자료 | 지연 | 로그인/키 | 상태 |
 |---|---|---|---|---|
 | 미국 | SEC Form 4 (임원·10% 주주 거래), 분기별 일괄 파일 2006+ | 2영업일 | 불필요하나 **SEC는 연락처가 든 User-Agent 필수**(이름+이메일). 일반 UA는 403 확인됨 | **미확보 (준비물 1)** |
-| 미국 | SEC 13F (기관 분기말 보유), 일괄 파일 2013+ | 45일 | 위와 같음 | 미확보 (준비물 1) |
+| 미국 | SEC 13F (기관 분기말 보유), 일괄 파일 2013+ | 45일 | SEC_USER_AGENT 환경변수 (기본값 있음) | 연락처 승인됨, 현재 SEC 접근 차단으로 보류; 수집 코드 준비됨 |
 | 미국 | SEC 13D/13G (5% 이상) | 10일 안팎 | 위와 같음 | 미확보 (준비물 1) |
 | 미국 | 하원 의원 거래 보고서(PTR) | 최대 45일 | 불필요 | **색인 확보**, PDF 본문 미확보 |
 | 미국 | 상원 의원 거래 보고서 | 최대 45일 | eFD 사이트 약관 동의 클릭 필요 | 미확보 (자동 우회 안 함, 준비물 4) |
@@ -27,7 +27,7 @@
 | 한국 | 국회의원 주식 거래 | 거래 단위 공시 없음(연 1회 재산공개) | - | 연구 불가, 제외 |
 
 ## 2. 이미 확보한 것 (이번 세션)
-- 위치: `~/CODE/trading_data/external/disclosures/house/` 에 `2014FD.zip ~ 2026FD.zip` (13개, 합계 약 1.1MB), sha256은 `MANIFEST_sha256.csv`.
+- 위치: `~/CODE/Coin_Trade/trading_data/external/disclosures/house/` 에 `2014FD.zip ~ 2026FD.zip` (13개, 합계 약 1.1MB), sha256은 `MANIFEST_sha256.csv`.
 - 내용: 하원 재무공시 **색인**(XML+TXT). 의원 이름, 선거구, 공시 종류, 공시일, 문서 번호(DocID)만 있다. **실제 거래 내역(종목·매수/매도·금액 구간)은 PDF 안에 있어서 아직 없다.**
 - 거래 보고서(PTR, 종류 P) 건수: 2015 728, 2016 765, 2017 801, 2018 830, 2019 683, 2020 733, 2021 680, 2022 624, 2023 460, 2024 451, 2025 515, 2026 477. 합계 약 7,700건 (2014는 색인 1건뿐이라 사실상 비어 있음).
 - PDF 주소 형식: `https://disclosures-clerk.house.gov/public_disc/ptr-pdfs/<연도>/<DocID>.pdf` (한 건 HEAD 응답 200 확인).
@@ -74,10 +74,10 @@
 - 키·이메일은 환경변수로만 받고 코드·문서·커밋에 쓰지 않는다.
 
 ## 6. 준비물 (사용자가 발급·결정할 것) — 마지막에 한꺼번에
-1. **SEC 접속용 연락처 결정**: SEC는 요청 헤더(User-Agent)에 "이름 이메일" 형식의 연락처를 요구한다. 어떤 이름/이메일을 헤더에 쓸지 정해서 알려주거나, 환경변수 `SEC_USER_AGENT="이름 이메일"`로 직접 설정. (내가 임의로 네 이메일을 외부에 보내지 않는다.) 계정 가입은 필요 없음.
+1. **SEC 접속용 연락처**: 사용자가 승인했고 `SEC_USER_AGENT` 환경변수 (기본값 있음)로 설정된다. SEC 접속 성공 여부는 네트워크 상태에 달려 있다. 계정 가입은 필요 없음.
 2. **OpenDART API 키**: https://opendart.fss.or.kr 회원가입 → 인증키 신청(즉시 발급, 무료). 환경변수 `OPENDART_API_KEY`. 채팅에 붙여넣지 말 것.
 3. **KRX 데이터 포털 계정**: https://data.krx.co.kr 회원가입(무료). 로그인 정보는 환경변수 `KRX_ID`, `KRX_PW`로만(채팅 금지). 자동 로그인이 막혀 있으면 직접 CSV 내보내기로 대체할 수 있음(투자자별 순매수 기간별 다운로드).
-4. (선택) 상원: https://efdsearch.senate.gov 에서 약관 동의 후 검색. 자동화는 약관 동의 단계 때문에 우회하지 않는다. 필요하면 직접 CSV 내보내기 후 `~/CODE/trading_data/external/disclosures/senate/`에 넣어주기.
+4. (선택) 상원: https://efdsearch.senate.gov 에서 약관 동의 후 검색. 자동화는 약관 동의 단계 때문에 우회하지 않는다. 필요하면 직접 CSV 내보내기 후 `~/CODE/Coin_Trade/trading_data/external/disclosures/senate/`에 넣어주기.
 5. (선택) 한국은행 ECOS 키, Alpaca 키는 이 계획과 무관(기존 P2 목록 항목).
 6. 결정 필요: PDF 스캔본 OCR을 할지(기본: 안 함), 시작 시점(기본: 키 받은 뒤 단계 1부터).
 
@@ -85,4 +85,11 @@
 - 스왑 무시하고 진행. SEC 연락처(준비물 1)와 KRX 계정(준비물 3)은 불필요로 결정 -> 미국 내부자 Form 4/13F와 한국 순매수는 이번 범위에서 제외(필요 시 다시 연다).
 - OpenDART 키(준비물 2)는 발급 진행 중. 상원(준비물 4)은 접근 거부(access denied)로 제외.
 - PDF 처리: Microsoft `markitdown`으로 Markdown 변환, 글자가 안 나오는 스캔 PDF만 tesseract OCR(회전 보정 포함). 스크립트 `data_sources/disclosures/fetch_house_ptr.py` (재개 가능, 초당 1건).
-- 산출물: `~/CODE/trading_data/external/disclosures/house/{ptr_pdf,ptr_md,ptr_manifest.csv}`. 변환 결과는 줄바꿈이 없는 한 덩어리 텍스트라 거래 행 파싱은 단계 2에서 별도로 한다. OCR 결과는 오인식이 있어 파싱 실패율을 보고한다.
+- 산출물: `~/CODE/Coin_Trade/trading_data/external/disclosures/house/{ptr_pdf,ptr_md,ptr_manifest.csv}`. 변환 결과는 줄바꿈이 없는 한 덩어리 텍스트라 거래 행 파싱은 단계 2에서 별도로 한다. OCR 결과는 오인식이 있어 파싱 실패율을 보고한다.
+
+## 7. 결정 기록 (2026-11-26)
+- 사용자가 SEC 요청용 연락처를 승인했다. 코드는 `SEC_USER_AGENT` 환경변수를 우선 사용하고, 기본값은 `data_sources/disclosures/sec_common.py` 한 곳에만 보관한다.
+- 13F 파일럿은 공식 안내 페이지부터 접근하도록 작성했다. 실제 네트워크 접근이 되는 세션에서 `fetch_13f.py --pilot`을 직접 실행한 결과 안내 페이지가 HTTP 403(SEC Akamai 봇 방어, "Request Rate Threshold Exceeded")으로 거부돼 zip 링크·데이터 행을 받지 못했다. 같은 403은 `www.sec.gov` 루트/`cgi-bin/browse-edgar`/`data.sec.gov`/`robots.txt`/`full-index`/`efts.sec.gov`에서도 동일하게 관측했고, UA를 정확한 형식으로 보내도 바뀌지 않았다 — IP/네트워크 평판 기반 차단으로 보인다. (Codex 작업 샌드박스 안에서는 네트워크가 자체적으로 막혀 있어 DNS조차 실패했는데, 이건 SEC 응답이 아니라 Codex 샌드박스 자체 제약이라 참고용으로만 남겨뒀다.)
+- 안내 페이지 링크를 읽지 못했으므로 분기별 zip URL 패턴은 **확인 안 됨**이다. 추정 URL 다운로드는 시도하지 않았고, 차단 우회(프록시/VPN/핑거프린트 위장)도 시도하지 않았다.
+- `data_sources/disclosures/fetch_13f.py`와 네트워크 없는 유닛 테스트가 준비됐다. 원본, parquet, 데이터 manifest는 SEC 접근 실패로 아직 생성되지 않았다.
+- 저장 위치는 `TRADING_DATA_DIR/external/disclosures/13f/{raw,parquet}` 및 `MANIFEST_sha256.csv`다. 백테스트 체결은 `accepted_at` 기준으로만 해야 하고 `period_of_report`는 참고용이다.

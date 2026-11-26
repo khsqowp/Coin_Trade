@@ -16,11 +16,16 @@ import pyarrow.parquet as pq
 DATA = Path.home() / "CODE/Coin_Trade/trading_data/external/disclosures/house"
 OUT = DATA / "events"
 FIELDS = ["docid", "member_name", "district", "holder", "asset_name", "ticker",
-          "asset_code", "transaction_type", "trade_date", "notification_date",
+          "asset_code", "transaction_type", "trade_date", "notification_date", "disclose_date",
           "amount_low", "amount_high", "confidence", "source"]
 AMOUNT = re.compile(r"\$\s*(\d[\d,]*)\s*(?:-|to)\s*\$?\s*(\d[\d,]*)", re.I)
 # Dates can be glued together with no separator, so word boundaries miss the first one.
-DATE = re.compile(r"(\d{1,2}/\d{1,2}/\d{4})")
+DATE = re.compile(r"(\d{1,2}/\d{1,2}/\d{2,4})")
+AMOUNT_EXACT = re.compile(
+    r"(?<![A-Z])(?:S\s*\(\s*partial\s*\)|P|S|E)(?![A-Z])\s*"
+    r"\d{1,2}/\d{1,2}/\d{2,4}\s*\d{1,2}/\d{1,2}/\d{2,4}\s*"
+    r"\$(\d[\d,]+\.\d{2})(?!\d)", re.I
+)
 CODE = re.compile(r"\[([A-Z]{1,5})\]")
 TICKER = re.compile(r"\(([A-Z][A-Z0-9.\-]{0,9})\)")
 TRADE = re.compile(r"(?<![A-Z])(S\s*\(\s*partial\s*\)|P|S|E)(?![A-Z])", re.I)
@@ -43,10 +48,14 @@ def index_metadata(year: int) -> dict[str, dict[str, str]]:
 
 
 def parse_date(value: str) -> str | None:
-    try:
-        return datetime.strptime(value.strip(), "%m/%d/%Y").date().isoformat()
-    except (ValueError, AttributeError):
+    if not isinstance(value, str):
         return None
+    for fmt in ("%m/%d/%Y", "%m/%d/%y"):
+        try:
+            return datetime.strptime(value.strip(), fmt).date().isoformat()
+        except ValueError:
+            pass
+    return None
 
 
 def parse_document(docid: str, text: str, metadata: dict[str, str], source: str) -> list[dict]:
@@ -55,9 +64,14 @@ def parse_document(docid: str, text: str, metadata: dict[str, str], source: str)
     name = metadata.get("member_name") or _extract_member(flat)
     district = metadata.get("district")
     events = []
-    matches = list(AMOUNT.finditer(flat))
-    for i, amount in enumerate(matches):
-        start = matches[i - 1].end() if i else 0
+    matches = [(m.start(), m.end(), m, False) for m in AMOUNT.finditer(flat)]
+    ranged_spans = [(start, end) for start, end, _, _ in matches]
+    for amount in AMOUNT_EXACT.finditer(flat):
+        if not any(start < amount.end() and amount.start() < end for start, end in ranged_spans):
+            matches.append((amount.start(), amount.end(), amount, True))
+    matches.sort(key=lambda item: item[0])
+    for i, (_, _, amount, is_exact) in enumerate(matches):
+        start = matches[i - 1][1] if i else 0
         segment = flat[start:amount.end()]
         dates = DATE.findall(segment)
         tr = _last_match(TRADE, segment)
@@ -68,6 +82,10 @@ def parse_document(docid: str, text: str, metadata: dict[str, str], source: str)
         confidence = 0.84 if tr and dates and code else 0.62 if tr and dates else 0.30
         if source == "ocr":
             confidence *= 0.75
+        amount_value = float(amount.group(1).replace(",", ""))
+        amount_low = int(amount_value)
+        amount_high = (amount_low + (amount_value > amount_low)) if is_exact else int(amount.group(2).replace(",", ""))
+        notification_date = parse_date(dates[1]) if len(dates) > 1 else metadata.get("notification_date")
         events.append({
             "docid": str(docid), "member_name": name, "district": district,
             "holder": holder, "asset_name": asset,
@@ -75,9 +93,10 @@ def parse_document(docid: str, text: str, metadata: dict[str, str], source: str)
             "asset_code": code.group(1) if code else None,
             "transaction_type": _normalize_trade(tr.group(1)) if tr else None,
             "trade_date": parse_date(dates[0]) if dates else None,
-            "notification_date": parse_date(dates[1]) if len(dates) > 1 else metadata.get("notification_date"),
-            "amount_low": int(amount.group(1).replace(",", "")),
-            "amount_high": int(amount.group(2).replace(",", "")),
+            "notification_date": notification_date,
+            "disclose_date": notification_date,
+            "amount_low": amount_low,
+            "amount_high": amount_high,
             "confidence": round(confidence, 2), "source": source,
         })
     return events
