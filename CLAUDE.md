@@ -1,10 +1,18 @@
 # Claude 프로젝트 규칙
 
-모든 Coin_Trade 작업에서는 먼저 `AGENTS.md`와 `docs/STORAGE_RULES.md`를 읽고 따른다.
+모든 Coin_Trade 작업에서는 먼저 `AGENTS.md`와 `docs/STORAGE_RULES.md`를 읽고 따른다. 두 파일의 최신 사용자 지시는 과거 지침보다 우선한다.
 
 ## 절대 저장 경로
 
-- 거래·연구와 관련한 코드, 문서, 원본 데이터, 캐시, 중간 파일과 결과는 예외 없이 `/Users/user/CODE/Coin_Trade/` 안에서만 생성·수정·복사한다.
-- `/Users/user/CODE/trading_data/`, `/Users/user/CODE/Ochestration/`, `/Users/user/CODE/` 루트 및 그 밖의 경로에 거래·연구 파일을 만들지 않는다.
-- 대용량 자료도 저장소 내 로컬 전용 디렉터리에 두고 Git 추적을 차단한다. 사용자 승인 없이는 외부 저장소 예외를 만들지 않는다.
-- 이 규칙은 문서에 남아 있을 수 있는 과거 `trading_data` 경로 안내보다 우선하며, 충돌 발견 시 진행 전에 문서를 정합시킨다.
+- 이 규칙은 Claude 본체, 위임·병렬 에이전트, 셸·Python·노트북·브라우저 다운로드, 라이브러리 캐시와 임시파일에 예외 없이 적용한다.
+- 도구·하위 프로세스가 저장소 밖에 기본 저장하거나 실제 출력 경로를 보장할 수 없으면 실행을 중단한다. 저장소 밖에 연구 파일·데이터를 만들지 않는다.
+- 거래·연구 코드와 문서는 `/Users/user/CODE/Coin_Trade/`, 모든 데이터·캐시·로그·임시자료는 `/Users/user/CODE/Coin_Trade/trading_data/` 안에서만 만든다.
+- 폐기 경로 `/Users/user/CODE/trading_data/`는 읽기·쓰기·다운로드·복사·존재 확인을 포함해 어떤 방식으로도 접근하지 않는다.
+- 모든 실행은 `TRADING_DATA_DIR=/Users/user/CODE/Coin_Trade/trading_data`를 지정한다. 저장소 안 데이터는 Git 추적에서 제외한다.
+- 실행 전 환경변수가 정확한 내부 경로인지 확인하고, 코드·설정·인자에 저장소 밖 데이터 경로가 없는지 점검한다. 폐기 경로는 존재 확인도 금지하므로 `ls`, `stat`, `find` 등으로 조회하지 않는다.
+- 매 실행 전 저장소 루트·데이터 루트, 코드 기본값과 fallback, 하위 프로세스에 전달되는 환경변수를 검증한다. 데이터·캐시·로그·임시파일의 생성 경로를 저장소 내부로 증명할 수 없으면 작업을 시작하지 않는다. 폐기 경로는 금지 규칙을 설명하는 문장 외에 명령·설정·코드·파일 접근에 사용하지 않는다. 실행 후 실제 출력 경로도 확인한다. 저장소 밖 생성 또는 경로 불확실성이 생기면 추가 처리·이동·삭제를 하지 말고 즉시 사용자에게 보고한다.
+- 임시 파일·다운로드 조각·캐시·로그도 `/Users/user/CODE/Coin_Trade/` 안에만 둔다. 외부 경로 생성이 불가피한 도구는 실행하지 말고 저장소 내부 대안을 마련한다.
+- Codex 작업은 `codex exec -C /Users/user/CODE/Coin_Trade --add-dir /Users/user/CODE/Coin_Trade/trading_data`로만 실행한다. 추가 쓰기 경로를 지정하지 않는다.
+- `/Users/user/CODE/Ochestration/`, `/Users/user/CODE/` 루트 및 다른 경로에는 거래·연구 파일을 만들지 않는다. 충돌하는 과거 경로 안내는 최신 `AGENTS.md`와 `docs/STORAGE_RULES.md`에 맞춰 수정한다.
+- **과거 명령을 그대로 복사 실행하지 않는다.** `PREREG.md`, `STATUS.md`, 이전 보고서에는 폐기된 데이터·가상환경 경로가 남아 있을 수 있다. 실행 전 모든 데이터·캐시·로그·임시파일 및 Python 실행파일 경로를 현재 Coin_Trade 내부로 확인하고, 정확한 `TRADING_DATA_DIR`를 명시한다. 과거 경로가 하나라도 있거나 해석이 불명확하면 실행하지 않는다.
+- 데이터 기본 루트도 저장소 내부 경로인지 실행 전에 확인한다. 환경변수가 비어 있거나 폐기 경로 fallback이 발생할 수 있으면 실행하지 말고 fail-closed 가드와 합성 테스트부터 수정한다. 폐기 경로의 존재 확인도 금지한다.

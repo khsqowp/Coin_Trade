@@ -1,14 +1,17 @@
 # 디렉터리·파일 저장 규칙 (Claude·ChatGPT/Codex 공용, 강제)
 
-## 2026-11-25 사용자 우선 경로 변경
+## 2026-11-25 절대 강제 데이터 경로
 
-- 이후 새로 만들거나 복사하는 투자·거래 연구 자료는 크기·형식·원본 여부와 관계없이 `/Users/user/CODE/Coin_Trade/` 내부에만 둔다.
-- `/Users/user/CODE/trading_data/`는 Coin_Trade 작업의 신규 데이터 저장 위치로 사용하지 않는다. 저장소 밖 예외를 허용하던 아래의 이전 규칙은 이 사용자 지시와 충돌하는 범위에서 폐기한다.
-- 원본·대용량 데이터는 저장소 내부의 전용 로컬 데이터 디렉터리에 보관하고 반드시 Git 추적 제외한다. 산출물 문서에는 해당 경로가 로컬 전용임을 적는다.
-- 과거 자료가 외부 경로에 있으면 승인된 이동 작업만 수행하고, 이동 전후 파일 개수·바이트 수·SHA-256을 대조한다. 검증이 끝날 때까지 출처 자료를 삭제하지 않는다.
-- 이 변경은 Coin_Trade `AGENTS.md`의 2026-11-25 사용자 우선 경로 규칙을 따른다.
+- 모든 거래·연구 파일은 `/Users/user/CODE/Coin_Trade/` 안에서만 생성·복사·수정한다. 데이터 전용 경로는 `/Users/user/CODE/Coin_Trade/trading_data/`다.
+- `/Users/user/CODE/trading_data/`는 폐기된 경로다. 읽기·쓰기·다운로드·복사·캐시·로그·임시파일·디렉터리 생성·이동·존재 확인을 전부 금지한다.
+- 모든 실행에서 `TRADING_DATA_DIR=/Users/user/CODE/Coin_Trade/trading_data`를 사용한다. 코드의 기본값도 이 정확한 경로로 한다.
+- 이 경계는 주 에이전트와 위임 에이전트, 셸·Python·노트북·브라우저 다운로드, 라이브러리 캐시·임시파일 등 모든 실행 주체에 똑같이 적용한다. 저장소 밖에 기본 저장하는 도구는 출력 위치를 고정할 수 없으면 실행하지 않는다.
+- 실행 전에는 환경변수의 정확한 값을 검증하고 코드·설정·인자에 저장소 밖 데이터 경로가 없는지 확인한다. 폐기 경로는 존재 확인도 금지하므로 `ls`, `stat`, `find` 등으로 조회하지 않는다.
+- 실행 전 저장소 루트·데이터 루트·코드 기본값/fallback과 하위 프로세스의 환경변수 전달을 확인한다. 출력될 데이터·캐시·로그·임시파일의 실제 경로를 저장소 내부로 증명할 수 없으면 실행하지 않는다. 실행 직후 출력 경로를 재확인한다. 저장소 밖 생성 또는 경로 불확실성이 발견되면 파일을 열거나 옮기거나 삭제하지 말고 추가 작업을 중단해 사용자에게 보고한다.
+- 임시 파일·다운로드 조각·캐시·로그도 `/Users/user/CODE/Coin_Trade/` 안에만 둔다. 외부 경로 생성을 막을 수 없는 도구는 실행하지 말고 저장소 내부 대안을 사용한다.
+- 저장소 내부 데이터 폴더는 Git 추적에서 제외한다. 기존 외부 저장 경로 규칙은 이 사용자 지시에 충돌하는 범위에서 폐기한다.
 
-기준일 2026-11-24. 사용자 절대 규칙이다. 위반하면 즉시 멈추고 보고한다.
+기준일 2026-11-25. 사용자 절대 규칙이다. 위반하면 즉시 멈추고 보고한다.
 
 ## 0. 절대 금지
 
@@ -24,19 +27,19 @@
 | 대용량 데이터(가격, 공시 PDF, 캐시, 포워드 DB 복사본, 임시 산출물) | `/Users/user/CODE/Coin_Trade/trading_data/{external,cache,...}` (환경변수 `TRADING_DATA_DIR`) | `.gitignore` 제외 |
 | 연구 실행 로그·센티널 | `Coin_Trade/trading_data/cache/orderblock/runs/` | `.gitignore` 제외 |
 | 옛 백업·잔재 보관 | `Coin_Trade/_moved_from_CODE_*/` | 비추적(.gitignore) |
-| 임시 스크립트·중간 파일 (세션용) | 세션 scratchpad 디렉터리 (Claude) / `Coin_Trade/scratchpad/` (Codex) | 세션 종료 시 폐기 또는 정리 |
+| 임시 스크립트·중간 파일 (세션용) | `Coin_Trade/scratchpad/` 안의 지정 하위 폴더 | 저장소 내부 규칙에 따라 보존·정리 |
 
-`Coin_Trade/trading_data` 는 모든 대용량 데이터의 유일한 저장소다. 대용량 파일을 포함해 연구 작업 중 생성·다운로드·캐시·로그·임시 파일을 `/Users/user/CODE/Coin_Trade/` 바깥에 만들지 않는다. 새 데이터 하위 폴더는 저장소 내부 `trading_data/` 아래에만 만든다. `/Users/user/CODE/trading_data/`는 과거 잔존물로 취급하며 새 작업의 입력·출력·캐시 경로로 사용하지 않는다. 기존 잔존물은 임의 삭제·이동·복사하지 않는다.
+`Coin_Trade/trading_data` 는 모든 대용량 데이터의 유일한 저장소다. 대용량 파일을 포함해 연구 작업 중 생성·다운로드·캐시·로그·임시 파일을 `/Users/user/CODE/Coin_Trade/` 바깥에 만들지 않는다. 새 데이터 하위 폴더는 저장소 내부 `trading_data/` 아래에만 만든다. 폐기 경로 `/Users/user/CODE/trading_data/`는 읽기·쓰기·다운로드·복사·캐시·로그·임시 파일 생성·디렉터리 생성·존재 확인을 포함해 일절 접근하지 않는다. 해당 경로를 참조하는 실행은 시작 전에 중단한다.
 
 ## 2. 파일 규칙
 
 1. 데이터 파일(csv/parquet/pdf/db)을 git 저장소에 넣지 않는다. 작은 결과 csv(수 MB)와 장부(`TRAIN_TRIALS.csv`)만 예외다.
 2. 비밀값(API 키·비밀번호·토큰)은 코드·로그·문서·커밋에 쓰지 않는다. 환경변수 이름만 적는다.
-3. 사용자 지시 없이 파일을 삭제하지 않는다. 지우기 전 목록→검증→삭제 순서를 따르고 `rm -r` 을 넓은 경로에 쓰지 않는다. 옛 파일은 `_moved_from_CODE_*` 로 옮긴다.
+3. 사용자 지시 없이 파일을 삭제하거나 옮기지 않는다. 허가된 삭제는 목록→검증→삭제 순서를 따르고 `rm -r` 을 넓은 경로에 쓰지 않는다. 저장소 밖의 옛 자료는 임의로 조회·이동·복사하지 않는다.
 4. 연구 장부(`TRAIN_TRIALS.csv`)는 수정하지 않고 행을 추가만 한다. 모든 시도는 장부에 남는다.
 5. 새 연구 라운드의 코드·사전등록(`PREREG.md`)·보고서(`REPORT_*.md`)는 `scratchpad/strategy_bt/orderblock_loop/` 에 둔다.
-6. 커밋·푸시는 작업 단위마다 자동으로 한다 (Coin_Trade). Ochestration 에는 거래 파일을 커밋하지 않는다.
-7. Codex 는 항상 `codex exec -C /Users/user/CODE/Coin_Trade` 로 실행한다. `/Users/user/CODE/Coin_Trade/` 바깥 경로를 추가 쓰기 대상으로 지정하지 않는다. `TRADING_DATA_DIR` 기본값은 `/Users/user/CODE/Coin_Trade/trading_data`이며, 환경변수로도 저장소 밖 경로를 지정하지 않는다.
+6. 사용자가 명시적으로 요청한 경우에만 커밋·푸시한다. Ochestration 에 거래 파일을 커밋하지 않는다.
+7. Codex 는 항상 `codex exec -C /Users/user/CODE/Coin_Trade --add-dir /Users/user/CODE/Coin_Trade/trading_data` 로 실행한다. 추가 쓰기 경로를 지정하지 않는다. 모든 실행 명령에 `TRADING_DATA_DIR=/Users/user/CODE/Coin_Trade/trading_data`를 명시하고, 코드 기본값도 이 경로로 둔다. 환경변수로 저장소 밖 경로를 지정하지 않는다.
 
 ## 3. 우선순위
 

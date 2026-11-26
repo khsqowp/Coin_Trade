@@ -3,7 +3,20 @@ import datetime as dt,pathlib
 import numpy as np
 import pyarrow as pa, pyarrow.parquet as pq
 import os
-ROOT=pathlib.Path(os.environ.get('TICK_PARQUET_DIR',pathlib.Path.home()/'CODE'/'trading_data'/'tick'/'parquet'))
+
+EXPECTED_DATA_DIR = pathlib.Path('/Users/user/CODE/Coin_Trade/trading_data')
+EXPECTED_TICK_DIR = EXPECTED_DATA_DIR / 'tick' / 'parquet'
+
+def _resolve_root(environ=None):
+ env = os.environ if environ is None else environ
+ if env.get('TRADING_DATA_DIR') != str(EXPECTED_DATA_DIR):
+  raise RuntimeError('TRADING_DATA_DIR must be the canonical Coin_Trade data path')
+ override = env.get('TICK_PARQUET_DIR')
+ if override is not None and override != str(EXPECTED_TICK_DIR):
+  raise RuntimeError('TICK_PARQUET_DIR must remain below canonical Coin_Trade trading_data')
+ return EXPECTED_TICK_DIR
+
+ROOT = _resolve_root()
 def _days(start,end):
  s=dt.date.fromisoformat(str(start)[:10]);e=dt.date.fromisoformat(str(end)[:10]);
  while s<=e:yield s.isoformat();s+=dt.timedelta(days=1)
