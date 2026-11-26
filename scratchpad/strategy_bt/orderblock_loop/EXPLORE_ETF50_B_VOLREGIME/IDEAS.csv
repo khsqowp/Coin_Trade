@@ -1,0 +1,17 @@
+# EXPLORATORY SCREEN ONLY - not part of the 13-round preregistered G-gate track, not added to TRAIN_TRIALS.csv, no promotion without separate formal preregistration + synthetic tests + resource-gated TRAIN run.
+idea_id,family,params,rationale
+VOLREG-L1,VIX_absolute,"VIX>=18 enter SHY; VIX<15 return SPY50/QQQ50","Hysteresis separates fear entry and recovery thresholds to reduce whipsaw."
+VOLREG-L2,VIX_absolute,"VIX>=22 enter SHY; VIX<22 return SPY50/QQQ50","Single symmetric threshold fills the 20/25/30 level gap."
+VOLREG-L3,VIX_percentile,"504-day trailing VIX percentile>=85 enter SHY; <=60 return SPY50/QQQ50","Adaptive thresholds account for long-run shifts in normal VIX levels."
+VOLREG-S1,VIX_change,"5-day VIX change>=40%; hold 10 trading days, renew on trigger, otherwise return risk-on","Rapid volatility expansion can mark acute stress beyond absolute level."
+VOLREG-S2,VIX_change,"5-day VIX change>=25% enter SHY; <=0% return risk-on","Lower shock trigger with dynamic signal-based exit."
+VOLREG-S3,VIX_change,"10-day VIX change>=50% enter SHY; VIX below SMA20 returns risk-on","Longer shock window and mean recovery exit."
+VOLREG-T1,term_structure,"VIX/VIX3M>=1.00 enter SHY; <0.95 return risk-on","Spot versus 3-month inversion marks acute stress."
+VOLREG-T2,term_structure,"VIX9D/VIX>=1.05 enter SHY; <1.00 return risk-on","Short-dated inversion may detect immediate event risk."
+VOLREG-T3,term_structure,"VX front-month settle<VIX enter SHY; >=VIX return risk-on","Tradable futures backwardation complements index ratios."
+VOLREG-R1,realized_vs_implied,"VIX minus annualized 20-day SPY realized volatility <=-2 enter SHY; >=0 return risk-on","Negative implied-minus-realized proxy marks realized stress."
+VOLREG-R2,realized_vs_implied,"Trailing 504-day percentile of VIX minus realized20 <=10 enter SHY; >=30 return risk-on","Adaptive version of the absolute volatility spread."
+VOLREG-V1,volatility_target,"15% target / annualized realized20; risky SPY50/QQQ50 weight clipped [0,1.5], trade only >=5pp from last traded target","Continuous exposure scaling with a turnover deadband."
+VOLREG-V2,volatility_target,"10% target / annualized realized60; risky SPY50/QQQ50 weight clipped [0,1.5], trade only >=5pp from last traded target","Lower target and slower volatility estimate."
+VOLREG-M1,VIX_contrarian,"252-day rolling VIX z>=2 -> risky basket 100%; z<1 -> neutral 50% risky/50% SHY","Extreme fear is treated as potentially excessive and faded."
+VOLREG-M2,VIX_contrarian,"VIX>1.5x SMA252 -> risky 100%; VIX<1.1x SMA252 -> SHY 100%","Simple relative VIX extreme mean-reversion rule."
