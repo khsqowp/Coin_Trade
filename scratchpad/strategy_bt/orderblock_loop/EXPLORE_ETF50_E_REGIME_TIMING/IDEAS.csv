@@ -1,0 +1,21 @@
+# EXPLORATORY SCREEN ONLY - not part of the 13-round preregistered G-gate track, not added to TRAIN_TRIALS.csv, no promotion without separate formal preregistration + synthetic tests + resource-gated TRAIN run.
+idea_id,family,params,rationale
+RT-PX200-L0,PX200,SPY adj_close > SMA200; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-PX200-L5,PX200,SPY adj_close > SMA200; confirmation_lag_days=5,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-PX200-L10,PX200,SPY adj_close > SMA200; confirmation_lag_days=10,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-PX200-L20,PX200,SPY adj_close > SMA200; confirmation_lag_days=20,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-PX200-L40,PX200,SPY adj_close > SMA200; confirmation_lag_days=40,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-VIXMED-L0,VIXMED,VIX < cutoff-filtered full-series median; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-VIXMED-L5,VIXMED,VIX < cutoff-filtered full-series median; confirmation_lag_days=5,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-VIXMED-L10,VIXMED,VIX < cutoff-filtered full-series median; confirmation_lag_days=10,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-VIXMED-L20,VIXMED,VIX < cutoff-filtered full-series median; confirmation_lag_days=20,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-VIXMED-L40,VIXMED,VIX < cutoff-filtered full-series median; confirmation_lag_days=40,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD15-L0,DD15,SPY drawdown > -15%; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD15-L5,DD15,SPY drawdown > -15%; confirmation_lag_days=5,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD15-L10,DD15,SPY drawdown > -15%; confirmation_lag_days=10,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD15-L20,DD15,SPY drawdown > -15%; confirmation_lag_days=20,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD15-L40,DD15,SPY drawdown > -15%; confirmation_lag_days=40,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD10-L0,DD10,SPY drawdown > -10%; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-DD20-L0,DD20,SPY drawdown > -20%; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-TR12M-L0,TR12M,SPY trailing 252-session return >= 0; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
+RT-GC5020-L0,GC5020,SPY SMA50 > SMA200; confirmation_lag_days=0,불리언 강세/약세 레짐의 연속 유지 확인 지연 효과를 탐색; 정식 검증 아님
