@@ -69,17 +69,19 @@ services:
     restart: unless-stopped
     logging: *default-logging
 
+  # 2026-11-27, 사용자 지시: 전체 자동매매 스택이 오랫동안 꺼져 있던 동안 기존
+  # us_swing_loop(EMA크로스)이 사실상 죽은 전략이었다고 확인돼 VOLREG-R1 포워드
+  # 가상매매로 대체했다(동결 파라미터: entry=-2.5, exit=2.5, SPY50/QQQ50/SHY,
+  # PREREG_VOLREG_R1_TEST_FREEZE.md). 같은 모의계좌(CANO 50203118)·같은 상태볼륨을
+  # 그대로 쓴다 — 기존 us_swing_state.json은 지우지 않고 볼륨에 남겨둔다.
   trading-us-swing:
     build: .
-    entrypoint: ["python", "-u", "-m", "app.us_swing_loop"]
+    entrypoint: ["python", "-u", "-m", "app.volreg_r1_loop"]
     env_file:
       - path: .env
         required: false
-    environment:
-      TICK_STATE_PATH: /app/tick-state/tick_state.json
     volumes:
       - trading_us_swing_state:/app/data
-      - trading_tick_state:/app/tick-state:ro
     networks: [trading]
     profiles: ["us-swing"]
     restart: unless-stopped

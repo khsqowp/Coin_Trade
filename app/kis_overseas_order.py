@@ -23,7 +23,7 @@ BALANCE_TR_ID = "VTTS3012R"
 PRICE_TR_ID = "HHDFS00000300"
 PSAMOUNT_TR_ID = "VTTS3007R"  # 모의투자 해외주식 매수가능금액조회 [v1_해외주식-014]
 
-_ORDER_EXCG_MAP = {"NAS": "NASD", "NYS": "NYSE"}
+_ORDER_EXCG_MAP = {"NAS": "NASD", "NYS": "NYSE", "AMS": "AMEX"}
 MARKETABLE_LIMIT_BUFFER = 0.01  # 즉시체결 유도용 지정가 버퍼(매수 +1%, 매도 -1%)
 
 
