@@ -5,14 +5,13 @@
     spread >= exit(1.0)   아님, exit(2.5) → state 1.0 (risk-on: SPY 50% / QQQ 50%)
     그 사이면 직전 state 유지(히스테리시스).
 
-TRAIN/TEST 백테스트는 SPY/QQQ Yahoo 수정종가(adj_close)를 썼지만, 포워드는 KIS 해외시세의
-비조정 종가를 쓴다 — SPY/QQQ는 배당은 나오지만 최근 분할은 없어 RV20(수익률 표준편차)에는
-영향이 거의 없고, 이 근사가 동결 정의와 다르다는 점을 여기 명시해 둔다.
+TRAIN/TEST 백테스트는 SPY/QQQ Yahoo 수정종가(adj_close)를 썼지만, 포워드는 토스증권 공식
+시세 API의 비조정 종가를 쓴다 — SPY/QQQ는 배당은 나오지만 최근 분할은 없어 RV20(수익률
+표준편차)에는 영향이 거의 없고, 이 근사가 동결 정의와 다르다는 점을 여기 명시해 둔다.
+(한투 KIS 모의투자 인증이 계속 막혀서 2026-11-27 사용자 승인으로 토스로 교체했다.)
 
-VIX는 KIS가 지수 시세 TR을 안정적으로 제공하는지 확인 안 됐어서(모의투자 계좌 인증 문제로
-이번 세션엔 어떤 해외시세 TR도 테스트 못 함) CBOE 공식 공개 CSV(cboe_index_history.parquet를
-만들 때 쓴 바로 그 소스, 비공식 스크레이핑이 아니라 CBOE가 직접 공개하는 공식 엔드포인트)에서
-받는다. KIS 모의투자 재신청 뒤 KIS 지수 TR이 확인되면 이 부분만 교체 검토.
+VIX는 CBOE 공식 공개 CSV(cboe_index_history.parquet를 만들 때 쓴 바로 그 소스, 비공식
+스크레이핑이 아니라 CBOE가 직접 공개하는 공식 엔드포인트)에서 받는다.
 """
 from __future__ import annotations
 
@@ -21,7 +20,7 @@ import math
 
 import requests
 
-from app.kis_overseas_data import fetch_ohlcv_kis_overseas
+from app.toss_price import get_daily_closes
 
 VIX_CSV_URL = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
 ENTRY = -2.5
@@ -55,12 +54,12 @@ def fetch_vix_closes(max_retries: int = 4) -> dict[str, float]:
     return out
 
 
-def fetch_spy_closes(token: str, since_iso: str) -> dict[str, float]:
-    """날짜 -> SPY 비조정 종가. KIS 해외시세(NAS)."""
-    frame = fetch_ohlcv_kis_overseas("SPY", "NAS", token, since_iso)
-    if frame.empty:
-        raise RuntimeError("SPY 종가 조회 결과가 비어 있음 — KIS 모의투자 해외시세 TR 응답 확인 필요")
-    return {idx.date().isoformat(): float(row["Close"]) for idx, row in frame.iterrows()}
+def fetch_spy_closes(since_iso: str) -> dict[str, float]:
+    """날짜 -> SPY 비조정 종가. 토스증권 공식 시세 API 일봉."""
+    closes = get_daily_closes("SPY", since_iso)
+    if not closes:
+        raise RuntimeError("SPY 종가 조회 결과가 비어 있음 — 토스 API 응답 확인 필요")
+    return closes
 
 
 def compute_rv20(closes_by_date: dict[str, float], ordered_dates: list[str]) -> dict[str, float]:
@@ -78,10 +77,10 @@ def compute_rv20(closes_by_date: dict[str, float], ordered_dates: list[str]) -> 
     return rv
 
 
-def latest_spread(token: str) -> dict[str, object]:
+def latest_spread() -> dict[str, object]:
     """가장 최근 종가가 확정된 거래일의 spread와 그 날짜를 반환한다."""
     since = (dt.date.today() - dt.timedelta(days=LOOKBACK_CALENDAR_DAYS)).isoformat()
-    spy_closes = fetch_spy_closes(token, since)
+    spy_closes = fetch_spy_closes(since)
     vix_closes = fetch_vix_closes()
     spy_dates = sorted(spy_closes)
     rv = compute_rv20(spy_closes, spy_dates)

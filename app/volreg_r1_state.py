@@ -20,10 +20,16 @@ STATE_PATH = Path(os.environ.get("VOLREG_R1_STATE_PATH", "/app/data/volreg_r1_st
 SEED_STATE_AS_OF = "2026-11-19"
 SEED_STATE = 1.0  # risk-on: SPY 0.5 / QQQ 0.5 / SHY 0.0
 
+# 실거래 아님 — 토스 시세 API로 받은 현재가 기준 가상 현금/보유수량만 기록하는 장부용 노션 금액.
+SEED_CASH_USD = 100_000.0
+
 _DEFAULT_STATE = {
     "regime_state": None,          # 1.0(risk-on) 또는 0.0(risk-off); None이면 아직 시드 안 됨
     "regime_state_asof_date": None,  # 이 상태를 결정한 신호 계산 기준일(세션 종가일, "YYYY-MM-DD")
     "executed_weights": {"SPY": None, "QQQ": None, "SHY": None},  # 실제로 마지막에 체결한 목표비중
+    "cash_usd": SEED_CASH_USD,     # 가상 현금(USD) — 실거래 아님, 장부 기록용
+    "holdings": {"SPY": 0.0, "QQQ": 0.0, "SHY": 0.0},  # 가상 보유수량
+    "nav_usd": SEED_CASH_USD,      # 마지막으로 계산한 가상 순자산가치
     "last_signal_date": None,      # 마지막으로 신호를 계산한 날(미국 동부시간 기준 거래일)
     "last_rebalance_date": None,   # 마지막으로 리밸런싱 주문을 낸 날
     "pending_target_state": None,  # 신호계산 완료, 아직 다음 장시작 체결 대기중인 목표 state
