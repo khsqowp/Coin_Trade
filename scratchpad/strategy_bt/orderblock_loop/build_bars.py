@@ -12,13 +12,16 @@ import hashlib
 import os
 from pathlib import Path
 
+from research_paths import require_trading_data_dir
+
+BASE = require_trading_data_dir(os.environ.get("TRADING_DATA_DIR"))
+SRC = BASE / "external/crypto/binance/um_klines_1m"
+OUT = BASE / "cache/orderblock/bars"
+
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-BASE = Path(os.environ.get("TRADING_DATA_DIR", Path.home() / "CODE/Coin_Trade/trading_data"))
-SRC = BASE / "external/crypto/binance/um_klines_1m"
-OUT = BASE / "cache/orderblock/bars"
 CUTOFF_MS = int(pd.Timestamp("2026-06-01", tz="UTC").timestamp() * 1000)
 TFS = {"15m": 15, "1h": 60, "4h": 240}
 COLS = ["open_time", "open", "high", "low", "close", "volume", "quote_volume", "count"]
