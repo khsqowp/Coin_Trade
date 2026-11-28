@@ -32,3 +32,4 @@ _moved_from_CODE_*/
 # 대용량 데이터 저장소 (저장소 안으로 이동됨 2026-11-24; 절대 커밋 금지)
 /trading_data/
 state/
+/trading_data
