@@ -13,7 +13,7 @@ from typing import Callable
 import pandas as pd
 
 CUTOFF = date(2026, 5, 31)
-ROOT = Path('/Users/user/CODE/Coin_Trade/trading_data/external/kr_pit')
+ROOT = Path('/home/noroot/CODE/Coin_Trade/trading_data/external/kr_pit')
 MEMBERSHIP_COLUMNS = ['market', 'symbol', 'alive_from', 'alive_through', 'source', 'source_asof']
 
 

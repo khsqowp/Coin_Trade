@@ -7,8 +7,8 @@ from datetime import date, datetime
 from pathlib import Path
 
 CUTOFF = date(2026, 5, 31)
-DEFAULT_DELISTING = Path('/Users/user/CODE/Coin_Trade/trading_data/external/kr_pit/delisting_list.csv')
-DEFAULT_OUTPUT = Path('~/CODE/Coin_Trade/trading_data/cache/orderblock/equity_membership_kr.csv').expanduser()
+DEFAULT_DELISTING = Path('/home/noroot/CODE/Coin_Trade/trading_data/external/kr_pit/delisting_list.csv')
+DEFAULT_OUTPUT = Path('/home/noroot/CODE/Coin_Trade/trading_data/cache/orderblock/equity_membership_kr.csv').expanduser()
 MEMBERSHIP_COLUMNS = ['market', 'symbol', 'alive_from', 'alive_through', 'source', 'source_asof', 'status']
 STATUS = 'PIT_MEMBERSHIP_ONLY'
 

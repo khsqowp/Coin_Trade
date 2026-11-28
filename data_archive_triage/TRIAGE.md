@@ -81,7 +81,7 @@ Counts of table rows: KEEP 4, COMPRESS-AND-MOVE 17, DISCARD 13, KEEP-IN-PLACE 2.
     top_level/  rounds/  lev_loop/  aw1/  aw2/  equity_transfer/  rebal_loop/  sl_loop/  tp_loop/  jev_intraday/
   MANIFEST (per-archive .sha256 beside each .tar.zst)
 ```
-Each archive is `NN_<path>.tar.zst` + `NN_<path>.sha256` (sha256 of every source file, relative to repo root) + `.tar.zst.sha256`. Restore: `zstd -dc X.tar.zst | tar -xf - -C /Users/user/CODE/Coin_Trade`. Suggest also copying `~/CODE/trading_data` to NAS.
+Each archive is `NN_<path>.tar.zst` + `NN_<path>.sha256` (sha256 of every source file, relative to repo root) + `.tar.zst.sha256`. Restore: `zstd -dc X.tar.zst | tar -xf - -C /home/noroot/CODE/Coin_Trade`. Suggest also copying `~/CODE/trading_data` to NAS.
 
 ## How to use apply.sh
 

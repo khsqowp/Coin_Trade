@@ -8,7 +8,7 @@
 python3 -m venv /Users/user/CODE/trading_data/cache/kr_pit/venv
 /Users/user/CODE/trading_data/cache/kr_pit/venv/bin/python -m pip install --upgrade pip
 /Users/user/CODE/trading_data/cache/kr_pit/venv/bin/python -m pip install pykrx finance-datareader pyarrow pandas
-cd /Users/user/CODE/Coin_Trade/data_sources/kr_pit
+cd /home/noroot/CODE/Coin_Trade/data_sources/kr_pit
 /Users/user/CODE/trading_data/cache/kr_pit/venv/bin/python -m unittest -v test_collector.py
 /Users/user/CODE/trading_data/cache/kr_pit/venv/bin/python collector.py --rate-seconds 0.5
 ```

@@ -5,10 +5,10 @@ Per filing: PDF -> Microsoft markitdown -> Markdown. If markitdown yields (almos
 PDF is a scan, so it is rendered with pymupdf and OCR'd with tesseract; those files are
 flagged in manifest `method=ocr`.
 
-Outputs under $TRADING_DATA_DIR/external/disclosures/house/ (default ~/CODE/Coin_Trade/trading_data):
+Outputs under $TRADING_DATA_DIR/external/disclosures/house/ (default /home/noroot/CODE/Coin_Trade/trading_data):
   ptr_pdf/<year>/<docid>.pdf   ptr_md/<year>/<docid>.md   ptr_manifest.csv
 
-Run (inside the venv at ~/CODE/Coin_Trade/trading_data/cache/disclosures/venv):
+Run (inside the venv at /home/noroot/CODE/Coin_Trade/trading_data/cache/disclosures/venv):
   nice -n 10 python fetch_house_ptr.py [--years 2021 2022] [--limit N]
 """
 import argparse

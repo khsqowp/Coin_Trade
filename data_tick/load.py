@@ -4,7 +4,7 @@ import numpy as np
 import pyarrow as pa, pyarrow.parquet as pq
 import os
 
-EXPECTED_DATA_DIR = pathlib.Path('/Users/user/CODE/Coin_Trade/trading_data')
+EXPECTED_DATA_DIR = pathlib.Path('/home/noroot/CODE/Coin_Trade/trading_data')
 EXPECTED_TICK_DIR = EXPECTED_DATA_DIR / 'tick' / 'parquet'
 
 def _resolve_root(environ=None):

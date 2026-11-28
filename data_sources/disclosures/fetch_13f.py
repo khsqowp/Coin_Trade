@@ -22,7 +22,7 @@ try:
 except ImportError:  # 직접 스크립트 실행
     import sec_common
 
-TRADING_DATA_DIR = Path(os.environ.get("TRADING_DATA_DIR", "/Users/user/CODE/Coin_Trade/trading_data"))
+TRADING_DATA_DIR = Path(os.environ.get("TRADING_DATA_DIR", "/home/noroot/CODE/Coin_Trade/trading_data"))
 ROOT = TRADING_DATA_DIR / "external/disclosures/13f"
 DATASET_PAGE = "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets"
 # 알려진 것으로 추정되는 경로 형식: /files/structureddata/data/13f-data-sets/YYYYqQ_form13f.zip.
@@ -183,7 +183,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pilot", action="store_true", help="안내 페이지에서 확인된 최신 zip 한 분기만 처리")
     parser.parse_args()
-    expected = "/Users/user/CODE/Coin_Trade/trading_data"
+    expected = "/home/noroot/CODE/Coin_Trade/trading_data"
     if str(TRADING_DATA_DIR) != expected:
         raise ValueError("TRADING_DATA_DIR은 저장소 내부 trading_data 경로여야 합니다")
     try:

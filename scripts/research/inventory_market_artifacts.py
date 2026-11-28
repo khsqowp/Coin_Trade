@@ -20,7 +20,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
-COIN_ROOT = Path("/Users/user/CODE/Coin_Trade")
+COIN_ROOT = Path("/home/noroot/CODE/Coin_Trade")
 ORCH_ROOT = Path("/Users/user/CODE/Ochestration")
 SKIP_DIRS = {
     ".git", ".venv", "venv", "node_modules", "__pycache__",
