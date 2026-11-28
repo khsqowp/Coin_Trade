@@ -45,3 +45,11 @@
 - `/home/noroot/CODE/Ochestration/`, `/home/noroot/CODE/` 루트 및 다른 경로에는 거래·연구 파일을 만들지 않는다. 충돌하는 과거 경로 안내는 최신 `AGENTS.md`와 `docs/STORAGE_RULES.md`에 맞춰 수정한다.
 - **과거 명령을 그대로 복사 실행하지 않는다.** `PREREG.md`, `STATUS.md`, 이전 보고서에는 폐기된 데이터·가상환경 경로가 남아 있을 수 있다. 실행 전 모든 데이터·캐시·로그·임시파일 및 Python 실행파일 경로를 현재 Coin_Trade 내부로 확인하고, 정확한 `TRADING_DATA_DIR`를 명시한다. 과거 경로가 하나라도 있거나 해석이 불명확하면 실행하지 않는다.
 - 데이터 기본 루트도 저장소 내부 경로인지 실행 전에 확인한다. 환경변수가 비어 있거나 폐기 경로 fallback이 발생할 수 있으면 실행하지 말고 fail-closed 가드와 합성 테스트부터 수정한다. 폐기 경로의 존재 확인도 금지한다.
+
+## 서버 전용 레이아웃 (2026-11-28, 사용자 지시)
+- Coin_Trade 는 **리눅스 서버(noroot, /home/noroot/CODE/Coin_Trade)에서만** 관리한다. Mac 에는 두지 않는다. 접속: 내부 ssh, 외부 Tailscale(noroot.tail436a47.ts.net).
+- **SSD(엔진·운영)**: 코드, .venv, docker, 실시간 상태 `state/`(STATE_ROOT). **HDD(/mnt/hdd2tb)**: 틱·정적 데이터·로그·테스트 데이터만.
+  - `/mnt/hdd2tb/trading_data` ← `Coin_Trade/trading_data` 심볼릭 링크 (TRADING_DATA_DIR=/home/noroot/CODE/Coin_Trade/trading_data)
+  - `/mnt/hdd2tb/tick_archive` (TICK_ARCHIVE_HOST_DIR), `/mnt/hdd2tb/logs`
+- 백업은 NAS(/mnt/nas) 로만. Ochestration(사이트) 에는 거래·연구 파일·상태를 두지 않는다.
+- 실행 환경: `/home/noroot/CODE/Coin_Trade/.venv/bin/python`.

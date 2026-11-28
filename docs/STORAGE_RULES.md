@@ -52,3 +52,11 @@
 
 - Codex: `Coin_Trade/AGENTS.md` 와 `~/.codex/AGENTS.md` 가 이 문서를 가리킨다.
 - Claude: `~/.claude/rules/coin-trade-only.md`, `Coin_Trade/CLAUDE.md`, `Ochestration/CLAUDE.md` 가 이 문서를 가리킨다.
+
+## 서버 전용 레이아웃 (2026-11-28, 사용자 지시)
+- Coin_Trade 는 **리눅스 서버(noroot, /home/noroot/CODE/Coin_Trade)에서만** 관리한다. Mac 에는 두지 않는다. 접속: 내부 ssh, 외부 Tailscale(noroot.tail436a47.ts.net).
+- **SSD(엔진·운영)**: 코드, .venv, docker, 실시간 상태 `state/`(STATE_ROOT). **HDD(/mnt/hdd2tb)**: 틱·정적 데이터·로그·테스트 데이터만.
+  - `/mnt/hdd2tb/trading_data` ← `Coin_Trade/trading_data` 심볼릭 링크 (TRADING_DATA_DIR=/home/noroot/CODE/Coin_Trade/trading_data)
+  - `/mnt/hdd2tb/tick_archive` (TICK_ARCHIVE_HOST_DIR), `/mnt/hdd2tb/logs`
+- 백업은 NAS(/mnt/nas) 로만. Ochestration(사이트) 에는 거래·연구 파일·상태를 두지 않는다.
+- 실행 환경: `/home/noroot/CODE/Coin_Trade/.venv/bin/python`.
